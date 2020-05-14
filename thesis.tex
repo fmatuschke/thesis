@@ -1,0 +1,178 @@
+% **************************************************
+% Document Class Definition
+% **************************************************
+\documentclass[%
+    paper=A4,               % paper size --> A4 is default in Germany
+    twoside=false,              % onesite or twoside printing TODO: true
+    openright,              % doublepage cleaning ends up right side
+    parskip=half,           % spacing value / method for paragraphs
+    chapterprefix=true,     % prefix for chapter marks
+    11pt,                   % font size
+    headings=normal,        % size of headings
+    bibliography=totoc,     % include bib in toc
+    listof=totoc,           % include listof entries in toc
+    titlepage=on,           % own page for each title page
+    captions=tableabove,    % display table captions above the float env
+    chapterprefix=false,    % do not display a prefix for chapters
+    appendixprefix=false,   % but display a prefix for appendix chapter
+    draft=false,            % value for draft version
+]{scrreprt}%
+%
+%
+% **************************************************
+% Setup YOUR thesis document in this file !
+% **************************************************
+\input{thesis-setup}
+\ifshellescape
+\usetikzlibrary{external}
+\tikzexternalize[optimize command away=\includepdf,
+						figure name=tikz/\thesubsection-]
+\fi
+% 
+% \includeonly{
+%	content/titlepages,
+%	content/abstract,
+%	content/acknowledgment,
+%	content/01-chapter-introduction,
+%	content/02-chapter-neuroanatomy,
+%	content/03-chapter-theory,
+%	content/04-chapter-software,
+%   content/05-chapter-model,
+%   content/06-chapter-simulation,
+%   content/07-chapter-usecase,
+%  % content/08-chapter-conclusion,
+%  % content/todo,
+%  % content/09-chapter-appendix,
+%  % content/declaration
+% }
+% 
+\input{content/acronyms}
+%
+% **************************************************
+% Document CONTENT
+% **************************************************
+\begin{document}
+%
+% uncomment the following command to fill up pages with
+% whitespace instead of aligning the first and last lines
+% of a page (see \raggedbottom vs. \flushbottom)
+%\raggedbottom
+%
+% --------------------------
+% rename document parts
+% --------------------------
+%\renewcaptionname{ngerman}{\figurename}{Abb.}
+%\renewcaptionname{ngerman}{\tablename}{Tab.}
+\renewcaptionname{english}{\figurename}{Fig.}
+\renewcaptionname{english}{\tablename}{Tab.}
+%
+% --------------------------
+% Front matter
+% --------------------------
+\pagenumbering{roman}			% roman page numbing (invisible for empty page style)
+\pagestyle{empty}				% no header or footers
+\include{content/titlepages}
+% \cleardoublepage
+%
+\pagestyle{plain}				% display just page numbers
+\include{content/abstract}		% INCLUDE: the abstracts (english and german)
+% \cleardoublepage
+%
+\include{content/acknowledgement} % INCLUDE: acknowledgement
+% \cleardoublepage
+%
+\currentpdfbookmark{\contentsname}{toc}
+\setcounter{tocdepth}{2}		% define depth of toc
+{\hypersetup{hidelinks}
+\tableofcontents				% display table of contents
+}
+% \cleardoublepage
+%
+% --------------------------
+% Body matter
+% --------------------------
+\pagenumbering{arabic}			% arabic page numbering
+\setcounter{page}{1}			% set page counter
+\pagestyle{scrheadings}			% header and footer style
+%
+% --------------------------
+% Chapters
+% --------------------------
+%\part{Example Part}
+%
+\acresetall
+% \cleardoublepage
+\include{content/01-chapter-introduction}
+\acresetall
+% \cleardoublepage
+\include{content/02-chapter-neuroanatomy}
+\acresetall
+% \cleardoublepage
+\include{content/03-chapter-theory}
+\acresetall
+% \cleardoublepage
+\include{content/04-chapter-software}
+\acresetall
+% \cleardoublepage
+\include{content/05-chapter-model}
+\acresetall
+% \cleardoublepage
+\include{content/06-chapter-simulation}
+\acresetall
+% \cleardoublepage
+\include{content/07-chapter-usecase}
+\acresetall
+% \cleardoublepage
+\include{content/08-chapter-conclusion}
+\acresetall
+% \cleardoublepage
+\include{content/todo}
+%
+% --------------------------
+% Back matter
+% --------------------------
+%
+{
+\pdfbookmark[0]{Bibliography}{Bibliography}
+% \addchap{BibliographyTest}
+% \label{sec:bibliography}
+\setstretch{1.1}
+\renewcommand{\bibfont}{\normalfont\small}
+\setlength{\biblabelsep}{0pt}
+\setlength{\bibitemsep}{0.5\baselineskip plus 0.5\baselineskip}
+\printbibliography[heading=subbibliography,title={Literature},notkeyword={software}]
+\newrefcontext[labelprefix={@}]
+\printbibliography[heading=subbibliography,title={Software},keyword={software}]
+}
+% \cleardoublepage
+% %
+% \pdfbookmark[0]{Acronyms}{Acronyms}
+% \addchap{Acronyms}
+% \label{sec:acronyms}
+% \printacronyms[name={}]
+% \cleardoublepage
+% %
+% \listoffigures
+% \cleardoublepage
+% %
+% \listoftables
+% \cleardoublepage
+% %
+% \lstlistoflistings
+% \cleardoublepage
+% %
+% \appendix\cleardoublepage
+% \include{content/appendix}
+% %
+% %
+% \cleardoublepage
+% \include{content/declaration}
+% \clearpage
+%
+% \newpage
+% \mbox{}
+%
+% **************************************************
+% End of Document CONTENT
+% **************************************************
+\end{document}

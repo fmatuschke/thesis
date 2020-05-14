@@ -1,0 +1,67 @@
+{
+% \captionsetup[sub]{textfont=normalsize}
+\captionsetup[sub]{position=top, skip=-14pt}
+\tikzset{>=stealth}
+\tikzset{cross/.pic={
+\draw[->] (-{sqrt(2)},0) -- ({sqrt(2)},0) node[anchor=north]{\footnotesize $E_x$};
+\draw[->] (0,-{sqrt(2)}) -- (0,{sqrt(2)}) node[anchor=east]{\footnotesize $E_y$};
+}}
+% 
+\subcaptionbox{}[.3\textwidth]{
+\begin{tikzpicture}
+\pic at (0,0) {cross};
+\draw[] (0, 2) node () {linear, horizontal};
+\draw[thick, arrows={Stealth[scale=1]-Stealth[scale=1]}] (-1, 0) -- (1, 0);
+\draw[] (0, -2) node () {$\begin{pmatrix} 1&0 \end{pmatrix}$};
+\draw[] (0, -3) node () {$\begin{pmatrix} 1&1&0&0 \end{pmatrix}$};
+\end{tikzpicture}
+}
+\subcaptionbox{}[.3\textwidth]{
+\begin{tikzpicture}
+\pic at (0,0) {cross};
+\draw[] (0, 2) node () {linear, vertical};
+\draw[thick, arrows={Stealth[scale=1]-Stealth[scale=1]}] (0, -1) -- (0, 1);
+\draw[] (0, -2) node () {$\begin{pmatrix} 0&1 \end{pmatrix}$};
+\draw[] (0, -3) node () {$\begin{pmatrix} 1&-1&0&0 \end{pmatrix}$};
+\end{tikzpicture}
+}
+\subcaptionbox{}[.3\textwidth]{
+\begin{tikzpicture}
+\pic at (0,0) {cross};
+\draw[] (0, 2) node () {linear, $\pi/4$};
+\draw[thick, arrows={Stealth[scale=1]-Stealth[scale=1]}] (-1, -1) -- (1, 1);
+\draw[] (0, -2) node () {$\begin{pmatrix} 1&1 \end{pmatrix}$};
+\draw[] (0, -3) node () {$\begin{pmatrix} 1&0&1&0 \end{pmatrix}$};
+\end{tikzpicture}
+}
+\\[2em]
+\subcaptionbox{}[.3\textwidth]{
+\begin{tikzpicture}
+\pic at (0,0) {cross};
+\draw[] (0, 2) node () {left circular};
+\draw[thick] plot[domain=0:360,samples=90,smooth] ({cos(\x)},{sin(\x)});
+\draw[thick, arrows={-Stealth[scale=1]}] plot[domain=44:45,samples=1] ({cos(\x)},{sin(\x)});
+\draw[thick, arrows={-Stealth[scale=1]}] plot[domain=224:225,samples=1] ({cos(\x)},{sin(\x)});
+\draw[] (0, -2) node () {$\begin{pmatrix} 1&i \end{pmatrix}$};
+\draw[] (0, -3) node () {$\begin{pmatrix} 1&0&0&-1 \end{pmatrix}$};
+\end{tikzpicture}
+}
+\subcaptionbox{}[.3\textwidth]{
+\begin{tikzpicture}
+\pic at (0,0) {cross};
+\draw[] (0, 2) node () {right circular};
+\draw[thick] plot[domain=0:360,samples=90,smooth] ({cos(\x)},{sin(\x)});
+\draw[thick, arrows={-Stealth[scale=1]}] plot[domain=46:45,samples=1] ({cos(\x)},{sin(\x)});
+\draw[thick, arrows={-Stealth[scale=1]}] plot[domain=226:225,samples=1] ({cos(\x)},{sin(\x)});
+\draw[] (0, -2) node () {$\begin{pmatrix} 1&-i \end{pmatrix}$};
+\draw[] (0, -3) node () {$\begin{pmatrix} 1&0&0&1 \end{pmatrix}$};
+\end{tikzpicture}
+}
+\subcaptionbox{}[.3\textwidth]{
+\begin{tikzpicture}
+\pic at (0,0) {cross};
+\draw[] (0, 2) node () {unpolarized};
+\draw[] (0, -3) node () {$\begin{pmatrix} 1&0&0&0 \end{pmatrix}$};
+\end{tikzpicture}
+}
+}

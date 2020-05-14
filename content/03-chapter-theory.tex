@@ -1,0 +1,332 @@
+\chapter{3D-PLI}
+\label{sec:theory}
+%
+\comment{\paragraph{Ziele:} 
+\begin{itemize}
+    \item physik
+    \item analysen
+\end{itemize}}
+%
+\section{Theory}
+%
+\subsection{Electromagnetic Wave}
+% 
+\begin{align} 
+\begin{split} \label{eq::maxwell_macro}
+    \nabla \cdot \mathbf{D} &= 4\pi\rho_\text{f}\\
+    \nabla \cdot \mathbf{B} &= 0\\
+    \nabla \times \mathbf{E} &= -\frac{1}{c} \frac{\partial \mathbf{B}} {\partial t}\\
+    \nabla \times \mathbf{H} &= \frac{1}{c} \left(4\pi\mathbf{J}_\text{f} + \frac{\partial \mathbf{D}} {\partial t} \right)
+\end{split}
+\end{align}
+% 
+\begin{align} 
+\begin{split} \label{eq::maxwell_general}
+    \nabla \cdot \mathbf{E} &= \frac {\rho} {\varepsilon_0}\\
+    \nabla \cdot \mathbf{B} &= 0\\
+    \nabla \times \mathbf{E} &= -\frac{\partial \mathbf{B}} {\partial t}\\
+    \nabla \times \mathbf{B} &= \mu_0\left(\mathbf{J} + \varepsilon_0 \frac{\partial \mathbf{E}} {\partial t} \right)
+\end{split}
+\end{align}
+% 
+In a vacuum $\rho = 0$ and $\mathbf{J} = \mathbf{0}$:
+% 
+\begin{align}
+\begin{split} \label{eq::maxwell_vacuum}
+  \nabla \cdot \mathbf{E} &= 0 \quad\\
+  \nabla \cdot \mathbf{B} &= 0 \quad\\
+  \nabla \times \mathbf{E} &= -\frac{\partial\mathbf B}{\partial t}\\
+  \nabla \times \mathbf{B} &= \mu_0\varepsilon_0 \frac{\partial\mathbf E}{\partial t}
+  \end{split}
+\end{align}
+% 
+with the identity $\nabla \times \left( \nabla \times \mathbf{A} \right) = \nabla(\nabla \cdot \mathbf{A}) - \nabla^{2}\mathbf{A}$ and $\mu_0\varepsilon_0 = \frac{1}{c^2}$
+% 
+\begin{align}
+\begin{split} \label{eq::maxwell_wave_equations}
+  \frac{1}{c^2} \frac{\partial^2 \mathbf{E}}{\partial t^2} - \nabla^2 \mathbf{E} =& 0 \\
+  \frac{1}{c^2} \frac{\partial^2 \mathbf{B}}{\partial t^2} - \nabla^2 \mathbf{B} =& 0
+\end{split}
+\end{align}
+% 
+\begin{align}
+\begin{split} \label{eq::maxwell_wave_equations_box}
+  \Box \ \mathbf{E} &= 0 \\
+  \Box \ \mathbf{B} &= 0
+\end{split}
+\end{align}
+% 
+with $\Box \coloneqq \partial^a\partial_a = \nabla^2 - \frac{1}{c^2} \frac{\partial^2}{\partial t^2}$
+%
+\begin{figure}[!tb]
+\centering
+\resizebox{0.95\textwidth}{!}{
+\inputtikz{gfx/pli/polarization_state.tikz}}
+\label{fig:polarization_state}
+\caption{Illustration of light polarization state.}
+\end{figure}
+%
+\begin{figure}[!tb]
+\centering
+\resizebox{0.95\textwidth}{!}{
+\inputtikz{gfx/pli/retardation.tikz}}
+\label{fig:optic_retardation}
+\caption{Illustration of retardation.}
+\end{figure}
+% 
+\subsection{Polarization}
+% 
+solve DGL \ref{eq::maxwell_vacuum}
+% 
+\begin{align}
+\begin{split} \label{eq::dgl_solution}
+   \mathbf{E}( \mathbf{r}, t ) &= g(\phi( \mathbf{r}, t )) = g( \omega t - \mathbf{k} \cdot \mathbf{r} + \varphi)\\
+   \mathbf{B}( \mathbf{r}, t ) &= g(\phi( \mathbf{r}, t )) = g( \omega t - \mathbf{k} \cdot \mathbf{r} + \varphi )
+\end{split}
+\end{align}
+% 
+\begin{align}
+k = \mathopen| \mathbf{k} \mathclose| = \frac{\omega}{c} =  \frac{2 \pi}{\lambda}
+\end{align}
+% 
+Plane wave:
+\begin{align}
+\begin{split} \label{eq::plane_wave}
+\mathbf{E}(\mathbf{r}) &= \mathbf{E}_0 \cdot e^{ -i \, \mathbf{k} \cdot \mathbf{r} }\\
+ \mathbf{B}(\mathbf{r}) &= \mathbf{B}_0 \cdot e^{ -i \, \mathbf{k} \cdot \mathbf{r} }
+\end{split}
+\end{align}
+% 
+With $c^2  \frac{\partial B} {\partial z} = \frac{\partial E}{\partial t} \Rightarrow \mathbf{E} \cdot \mathbf{B} = 0$.
+% \begin{align}
+% \begin{split} \label{eq::sin_wave}
+% \mathbf{E} ( \mathbf{r}, t ) &= \mathbf{E}_0 \cos( \omega t - \mathbf{k} \cdot \mathbf{r} + \phi_0 )\\
+% \mathbf{B} ( \mathbf{r}, t ) &= \mathbf{B}_0 \cos( \omega t - \mathbf{k} \cdot \mathbf{r} + \phi_0 ) 
+% \end{split}
+% \end{align}
+% 
+\subsubsection{Polarization}
+% 
+\begin{align}
+\mathbf{E}(\mathbf{r}) &= \mathbf{E}_0 \cdot e^{ -i \, \mathbf{k} \cdot \mathbf{r}}
+\end{align}
+% 
+combination (superposition) of x and y wave with z equal to direction of propagation.
+\begin{align}
+\mathbf{E}(z,t) &= \begin{pmatrix} E_{0x} \cdot e^{ -i \phi_x } \\ E_{0y} \cdot e^{ -i \phi_y } \\ 0 \end{pmatrix}
+e^{ -i (kz - \omega t)}
+\end{align}
+%
+\begin{figure}[!tb]
+\centering
+\input{gfx/pli/pol_states}
+\caption{polarization states, check vector length} 
+\end{figure}
+%
+\subsection{Birefingence}
+\subsubsection{Refraction}
+\begin{align}
+\underline{n} = n + i\kappa
+\end{align}
+% 
+\begin{align}
+\begin{split}
+\mathbf{E}(z, t) &= \operatorname{Re}\! \left[\mathbf{E}_0 \cdot e^{i\, (kz - \omega t)}\right] \\
+&= \operatorname{Re}\! \left[\mathbf{E}_0 \cdot e^{i\, (2\pi(n + i\kappa)z/\lambda_0 - \omega t)}\right] \\
+&= e^{-2\pi \kappa z/\lambda_0} \operatorname{Re}\! \left[\mathbf{E}_0 \cdot e^{i\, (kz - \omega t)}\right]
+\end{split}
+\end{align}
+%
+\begin{figure}[!tb]
+\centering
+% 
+\subcaptionbox{}[.49\textwidth]{
+\def\rot{0}
+\resizebox{0.45\textwidth}{!}{
+\inputtikz{gfx/pli/ellipsoid.tikz}
+}}
+% 
+\subcaptionbox{}[.49\textwidth]{
+\def\rot{1}
+\resizebox{0.45\textwidth}{!}{
+\inputtikz{gfx/pli/ellipsoid.tikz}
+}}
+\caption{birefringence elipsoid}
+\end{figure}
+% 
+% 
+\subsection{Jones}
+% 
+\begin{align}
+\begin{split}
+\begin{pmatrix}
+0 & 0 \\ 0 & 1
+\end{pmatrix}
+\begin{pmatrix}
+1 & 0 \\ 0 & 0
+\end{pmatrix}
+\begin{pmatrix}
+e^{i\, \varphi_x} & 0 \\ 0 & e^{i\, \varphi_y}
+\end{pmatrix}
+e^{\frac{i \pi}{4}}
+\begin{pmatrix}
+1 & 0 \\ 0 & -i
+\end{pmatrix}
+\end{split}
+\end{align}
+% 
+\begin{align}
+\begin{split}
+M(\theta )=R(\theta )\,M\,R(-\theta )\\
+R(\theta ) = 
+\begin{pmatrix}
+\cos \theta & -\sin \theta \\
+\sin \theta & \cos \theta
+\end{pmatrix}
+\end{split}
+\end{align}
+% 
+\subsection{Mueller-Stokes}\label{sec:Mueller-Stokes}
+% 
+\paragraph{Stokes vector}
+\begin{align}
+\begin{split}
+S_0 &= I \\
+S_1 &= I p \cos 2\psi \cos 2\chi \\
+S_2 &= I p \sin 2\psi \cos 2\chi \\
+S_3 &= I p \sin 2\chi
+\end{split} \hspace{-6em}
+\begin{split}
+& \equiv \langle E_x^{2} \rangle + \langle E_y^{2} \rangle \\
+%  & = \langle E_a^{2} \rangle + \langle E_b^{2} \rangle \\
+%  & =  \langle E_l^{2} \rangle + \langle E_r^{2} \rangle \\
+& \equiv \langle E_x^{2} \rangle - \langle E_y^{2} \rangle \\
+& \equiv \langle E_a^{2} \rangle - \langle E_b^{2} \rangle \\
+& \equiv  \langle E_l^{2} \rangle - \langle E_r^{2} \rangle
+\end{split}
+\hspace{2em}
+\mathbf{S} =
+\begin{pmatrix} S_0 \\ S_1 \\ S_2 \\ S_3\end{pmatrix}
+\end{align}
+% 
+% \begin{align}
+% \begin{split}
+% S_0 & \equiv \langle E_x^{2} \rangle + \langle E_y^{2} \rangle \\
+%  & = \langle E_a^{2} \rangle + \langle E_b^{2} \rangle \\
+%  & =  \langle E_l^{2} \rangle + \langle E_r^{2} \rangle \\
+% S_1 & \equiv \langle E_x^{2} \rangle - \langle E_y^{2} \rangle \\
+% S_2 & \equiv \langle E_a^{2} \rangle - \langle E_b^{2} \rangle \\
+% S_3 & \equiv  \langle E_l^{2} \rangle - \langle E_r^{2} \rangle
+% \end{split}
+% \end{align}
+% 
+\paragraph{Rotation Matrix}
+\begin{align}
+\begin{split}
+\begin{pmatrix}
+    1 &                0 &               0 & 0 \\
+    0 & \cos{(2\theta)} & -\sin{(2\theta)} & 0 \\
+    0 & \sin{(2\theta)} & \cos{(2\theta)} & 0 \\
+    0 &                0 &               0 & 1
+  \end{pmatrix}
+\end{split}
+\end{align}
+% 
+\paragraph{Rotation Matrix}
+\begin{align}
+\frac{1}{2}
+\begin{pmatrix}
+    1 &                0 &               0 & 0 \\
+    0 &  \cos{(2\theta)} & \sin{(2\theta)} & 0 \\
+    0 & -\sin{(2\theta)} & \cos{(2\theta)} & 0 \\
+    0 &                0 &               0 & 1
+\end{pmatrix}
+\end{align}
+% 
+\paragraph{Linear Polarizer}
+\begin{align}
+\frac{1}{2}
+\begin{pmatrix}
+    1 & 1 & 0 & 0 \\
+    1 & 1 & 0 & 0 \\
+    0 & 0 & 0 & 0 \\
+    0 & 0 & 0 & 0
+  \end{pmatrix}
+\end{align}
+\begin{align}
+\frac{1}{2}
+\begin{pmatrix}
+     1 & -1 & 0 & 0 \\
+    -1 &  1 & 0 & 0 \\
+     0 &  0 & 0 & 0 \\
+     0 &  0 & 0 & 0
+\end{pmatrix}
+\end{align}
+% 
+\paragraph{Quarter-wave plate (fast-axis vertical)}
+\begin{align}
+\begin{pmatrix}
+    1 & 0 & 0 &  0 \\
+    0 & 1 & 0 &  0 \\
+    0 & 0 & 0 & -1 \\
+    0 & 0 & 1 &  0
+\end{pmatrix}
+\end{align}
+% 
+\section{Model}
+\paragraph{Micro vs Macro:}
+% 
+\begin{align}
+    % \frac{\oint \vec{v}_z \mathrm{d}A}{\oint \vec{v}_x \mathrm{d}A} = 
+    % \frac{\int_{-1}^{1}\abs{\vec{v}} \mathrm{d}x}{\int_{-\frac{\pi}{2}}^{\frac{\pi}{2}} \abs{\vec{v}} \cos(\varphi) \mathrm{d}\varphi} =
+    % \frac{2}{1}
+    \frac{A_{\Box}}{A_{\circ}} = \frac{4}{\pi}
+\end{align}
+% 
+\section{Experimental Setup}
+%
+\begin{figure}[!tb]
+	\centering
+	\subcaptionbox{}[.98\textwidth]{
+		\resizebox{0.95\textwidth}{!}{
+		\inputtikz{gfx/pli/pli_setup.tikz}
+	}}\\[1cm]
+	\subcaptionbox{}[.98\textwidth]{
+		\resizebox{0.95\textwidth}{!}{
+		\inputtikz{gfx/pli/pli_setup_pm.tikz}
+	}}
+	\label{fig:pli_setup}
+	\caption{Illustration of PLI setup. (a) LAP, (b) PM.}
+\end{figure}
+%
+\begin{figure}[!tb]
+	\centering
+	\subcaptionbox{}[.49\textwidth]{
+    \resizebox{0.45\textwidth}{!}{
+			\inputtikz{gfx/pli/pli_detail.tikz}
+	}}
+	\subcaptionbox{}[.49\textwidth]{
+    \resizebox{0.45\textwidth}{!}{
+			\inputtikz{gfx/pli/pli_detail_pm.tikz}
+	}}
+	\label{fig:pli_detail}
+	\caption{Illustration of detail PLI setup. (a) LAP, (b) PM.}
+\end{figure}
+%
+% 
+\section{Signal Analysis}
+% 
+\begin{quote}
+Definition 1 (Streamline). A streamline is a finite sequence of points that is used to represent a connection in the brain obtained using dMRI based tractography. Following the sequence notation, we denote a streamline as $\Gamma = (p_0, p_1, p_2, \cdots )$ where $p_i \in \mathbb{R}^3$. % https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6139055/
+\end{quote}
+
+\begin{align}
+\begin{split}
+A \sin(\omega t + \alpha) + B \sin(\omega t + \beta) &= \sqrt{C^2 + D^2} \cdot \sin \, \left( \omega t + \tan^-1 \left( \frac{D}{C} \right) \right)
+\end{split}
+\\
+\begin{split}
+C &= A \cos(\alpha)+ B \cos(\beta)\\
+D &= A \sin(\alpha)+ B \sin(\beta)
+\end{split} \nonumber 
+\end{align}

@@ -1,0 +1,188 @@
+% !TEX root = thesis.tex
+%
+% **************************************************
+% Files' Character Encoding
+% **************************************************
+\PassOptionsToPackage{utf8}{inputenc}
+\usepackage{inputenc}
+%
+%
+% **************************************************
+% Information and Commands for Reuse
+% **************************************************
+\newcommand{\thesisTitle}{Nerve Fiber Modelling and 3D-PLI Simulations:\\ A Fiber Architect Simulation Toolbox} %Modelling of 3D Nerve Fibers and their Applications in 3D-PLI
+\newcommand{\thesisName}{Felix Matuschke}
+\newcommand{\thesisSubject}{Documentation}
+\newcommand{\thesisDate}{\today}
+\newcommand{\thesisVersion}{My First Draft}
+%
+\newcommand{\thesisFirstReviewer}{Prof. Dr. Gunnar Schr\"{o}der}
+\newcommand{\thesisFirstReviewerUniversity}{\protect{ICS-6}}
+\newcommand{\thesisFirstReviewerDepartment}{Forschungszentrum J\"{u}lich}
+%
+\newcommand{\thesisSecondReviewer}{Prof. Dr. Katrin Amunts}
+\newcommand{\thesisSecondReviewerUniversity}{\protect{INM-1}}
+\newcommand{\thesisSecondReviewerDepartment}{Forschungszentrum J\"{u}lich}
+%
+\newcommand{\thesisFirstSupervisor}{Dr. Markus Axer}
+%\newcommand{\thesisSecondSupervisor}{}
+%
+\newcommand{\thesisUniversity}{\protect{Universit\"{a}t D\"{u}sseldorf}}
+\newcommand{\thesisUniversityDepartment}{Forschungszentrum J\"{u}lich}
+\newcommand{\thesisUniversityInstitute}{INM-1}
+\newcommand{\thesisUniversityGroup}{}
+\newcommand{\thesisUniversityCity}{J\"{u}lich}
+\newcommand{\thesisUniversityStreetAddress}{Wilhelm-Johnen-Stra{\ss}e}
+\newcommand{\thesisUniversityPostalCode}{52428 J\"{u}lich}
+%
+% **************************************************
+% User Commands
+% **************************************************
+\newcommand{\comment}[1]{\textcolor{gray}{\textit{#1}}}
+%
+%
+% **************************************************
+% Format
+% **************************************************
+\usepackage[english]{babel} % babel system, adjust the language of the content
+\PassOptionsToPackage{% setup clean thesis style
+    figuresep=colon,%
+    hangfigurecaption=false,%
+    hangsection=true,%
+    hangsubsection=true,%
+    sansserif=false,%
+    configurelistings=true,%
+    colorize=full,%
+    colortheme=bluemagenta,%
+    configurebiblatex=true,%
+    bibsys=biber,%
+    bibfile=bib-refs,%
+    bibstyle=alphabetic,%
+    bibsorting=nty,%
+}{cleanthesis}
+\usepackage{cleanthesis}
+%
+\hypersetup{% setup the hyperref-package options
+    pdftitle={\thesisTitle},    %   - title (PDF meta)
+    pdfsubject={\thesisSubject},%   - subject (PDF meta)
+    pdfauthor={\thesisName},    %   - author (PDF meta)
+    plainpages=false,           %   -
+    colorlinks=true,            %   - colorize links?
+    pdfborder={0 0 0},          %   -
+    breaklinks=true,            %   - allow line break inside links
+    bookmarksnumbered=true,     %
+    bookmarksopen=true,         %
+    citecolor=green!50!black    %
+}
+%
+\setcounter{secnumdepth}{3}
+%
+% **************************************************
+%  Packages
+% **************************************************
+\usepackage{float}              % [H]
+\usepackage{graphicx}           % (pdf, png, jpg, eps)
+\usepackage{subcaption}
+\usepackage{amsmath, amssymb, mathtools}
+\usepackage{dirtree}
+\usepackage{acro}
+\usepackage{siunitx}
+\usepackage[nameinlink]{cleveref}
+\usepackage{esvect}
+\usepackage{xspace}
+\usepackage{currfile}
+\usepackage{blindtext}
+\usepackage{ifplatform}
+\usepackage{mwe}
+\newsavebox{\largestimage}
+% 
+% \crefname{figure}{fig.}{fig.}
+% \Crefname{figure}{Fig.}{Fig.}
+% 
+% **************************************************
+%  Math
+% **************************************************
+\DeclarePairedDelimiter\abs{\lvert}{\rvert}
+\DeclarePairedDelimiter\norm{\lVert}{\rVert}
+%
+% **************************************************
+% Syntax Highlighting
+% **************************************************
+\usepackage{listings}
+% 
+\newfloat{lstfloat}{htbp}{lop}
+\floatname{lstfloat}{Alg.}
+\crefname{lstfloat}{alg.}{alg.}
+\Crefname{lstfloat}{Alg.}{Alg.}
+\renewcommand{\lstlistingname}{Alg.}
+% 
+\definecolor{syntax_green}{rgb}{0,0.6,0}
+\definecolor{syntax_mauve}{rgb}{0.58,0,0.82}
+%
+\lstset{ %
+	backgroundcolor=\color{white},       % choose the background color
+	basicstyle=\scriptsize,            % size of fonts used for the code
+	breaklines=false,                     % automatic line breaking only at whitespace
+	captionpos=b,                        % sets the caption-position to bottom
+	commentstyle=\color{syntax_green},   % comment style
+	escapeinside={\%*}{*)},              % if you want to add LaTeX within your code
+	keywordstyle=\color{blue},           % keyword style
+	stringstyle=\color{syntax_mauve},    % string literal style
+	frame=tb,
+	tabsize=3,
+}
+%
+% **************************************************
+% Tikz & PGFplots
+% **************************************************
+%\usepackage[dvipsnames]{xcolor}        % required by pgfplots
+\usepackage{tikz}
+% \usepackage{tikz-uml}
+% \usepackage{tikz-3dplot}
+\usetikzlibrary{shapes, arrows}
+\usetikzlibrary{mindmap, backgrounds}
+\usetikzlibrary{calc}
+\usetikzlibrary{intersections}
+\usetikzlibrary{perspective}
+\usetikzlibrary{3d}
+\usetikzlibrary{arrows.meta}
+\usetikzlibrary{patterns}
+%
+\usepackage{pgfplots}
+\usepackage{pgfplotstable}
+\pgfplotsset{compat=1.15}
+\usepgfplotslibrary{groupplots}
+%
+\newcommand{\inputtikz}[1]{%
+    % \tikzsetnextfilename{#1}
+    \IfFileExists{#1}{\input{#1}}{
+    \noindent\includegraphics[width=3cm]{example-image}}   
+}
+% \newcommand{\inputtikz}[1]{%
+% 	\IfFileExists{#1.pdf}%
+% 	{\includegraphics{#1.pdf}}%
+% 	{\ifshellescape%
+% 	 \tikzsetnextfilename{#1}%
+% 	 \fi%
+% 	 \input{#1.tikz}}%
+% }
+% COMMANDS:
+% pdflatex -shell-escape %.tex
+% mkdir build
+% mkdir build/content
+% mkdir build/tikz
+% mkdir build/build
+% mkdir build/build/tikz
+%
+% 
+% **************************************************
+% User Macros
+% **************************************************
+% \newcommand{\overbar}[1]{\mkern 1.5mu\overline{\mkern-1.5mu#1\mkern-1.5mu}\mkern 1.5mu}
+\newcommand{\dummy}{\textcolor{violet}{\textbf{\{...\}}}\xspace}
+% 
+% **************************************************
+% Debug LaTeX Information
+% **************************************************
+%\listfiles
+% \usepackage{showframe}
