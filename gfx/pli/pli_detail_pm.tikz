@@ -1,0 +1,49 @@
+\begin{tikzpicture}
+%
+\colorlet{led}{green!70!black}
+% camera
+\begin{scope}[shift={(4,-10)}, rotate=-90]
+	\def\wbody{1}
+	\def\hbody{0.5}
+	\shade[left color=black!10!white,right color=black!40!white] (-\wbody,-\hbody) rectangle  (\wbody,\hbody);
+	\draw(-\wbody,-\hbody) rectangle  (\wbody,\hbody);
+	
+	\def\wlense{0.6}
+	\def\hlense{0.5}
+	\shade[left color=black!10!white,right color=black!40!white] (-\wlense,- \hbody) rectangle  (\wlense,-\hlense - \hbody);
+	\draw(-\wlense,- \hbody) rectangle  (\wlense,-\hlense - \hbody);
+	
+	\draw[line join=round,fill=blue!15] (0.9*\wlense,-\hbody - 0.5*\hlense) arc (60:120:1.1) arc (-120:-60:1.1)  ;
+%	
+	\draw[blue] (-0.75*\wbody,\hbody) -- (0.75*\wlense,-\hbody - 0.5*\hlense) -- (1,-3){};
+	\draw[blue] (0.75*\wbody,\hbody) -- (-0.75*\wlense,-\hbody - 0.5*\hlense) --  (-1,-5){};
+\end{scope}
+%
+\begin{scope}[shift={(0,-10)}]
+\def\m{1.5}
+\draw[dotted] (-\m,\m) -- (\m,-\m) node[right,xshift=0.25cm] {mirror};
+\draw[blue] (-1, 1) -- (-2, 10) {};
+\draw[blue] (1, -1) -- (2, 10) {};
+\end{scope}
+%
+\def\w{2}
+\begin{scope}[shift={(0,-7.25)}]
+	\draw[dotted] (-\w,0) -- (\w,0) node[right,xshift=0.25cm] {filter};
+\end{scope}
+\begin{scope}[shift={(0,-6.75)}]
+\draw[dotted] (-\w,0) -- (\w,0) node[right,xshift=0.25cm] {circular};
+\end{scope}
+%
+\begin{scope}[shift={(0,-4)}]
+\draw[dotted] (-\w,0) -- (\w,0) node[right,xshift=0.25cm] {brain section};
+\end{scope}
+%
+\begin{scope}[shift={(0,-2)}]
+\draw[dotted] (-\w,0) -- (\w,0) node[right,xshift=0.25cm] {polarizer};
+\end{scope}
+%
+\begin{scope}[shift={(0,0)}]
+\draw[dotted, led] (-\w,0) -- (\w,0) node[right,xshift=0.25cm] {LED};
+\end{scope}
+%
+\end{tikzpicture}

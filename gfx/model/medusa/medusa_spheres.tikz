@@ -1,0 +1,31 @@
+\begin{tikzpicture}
+\foreach \x in {0, 15, ..., 360} {
+    \node[draw,circle,minimum size=30cm,inner sep=0pt, fill=cyan!80!black, opacity=0.85] (test) at (\x, {15*sin(\x)}) {};
+}  
+\begin{scope}[shift={(0,-100)}]
+\foreach \x in {0, 15, ..., 360} {
+    \node[draw,circle,minimum size=30cm,inner sep=0pt, fill=cyan!80!black, opacity=0.85] (test) at (\x, {15*sin(\x)}) {};
+}  
+\foreach \x in {0, 10, ..., 360} {
+    \node[draw,circle,minimum size=15cm,inner sep=0pt, fill=red!75!white, opacity=0.85] (test) at (\x, {15*sin(\x)}) {};
+}
+\end{scope}
+\begin{scope}[shift={(0,-200)}]
+\foreach \x in {0, 15, ..., 100} {
+    \node[draw,circle,minimum size=30cm,inner sep=0pt, fill=cyan!80!black, opacity=0.85] (test) at (\x, {15*sin(\x)}) {};
+}
+\foreach \x in {135, 150, ..., 230} {
+    \node[draw,circle,minimum size=30cm,inner sep=0pt, fill=cyan!80!black, opacity=0.85] (test) at (\x, {15*sin(\x)}) {};
+}  
+\foreach \x in {270, 285, ..., 360} {
+    \node[draw,circle,minimum size=30cm,inner sep=0pt, fill=cyan!80!black, opacity=0.85] (test) at (\x, {15*sin(\x)}) {};
+}
+\foreach \x in {0, 10, ..., 360} {
+    \node[draw,circle,minimum size=15cm,inner sep=0pt, fill=red!75!white, opacity=0.85] (test) at (\x, {15*sin(\x)}) {};
+}  
+\end{scope}
+\node[draw,circle,minimum size=15cm,inner sep=0pt, fill=red!75!white, opacity=0.85] (test) at (35, -130) {};
+\node[draw,circle,minimum size=30cm,inner sep=0pt, fill=cyan!80!black, opacity=0.85] (test) at (85, -130) {};
+\draw[<->, very thick] (45, -135) -- (45, -125);
+\draw[<->, very thick] (105, -140) -- (105, -120);
+\end{tikzpicture}

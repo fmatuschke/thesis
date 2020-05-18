@@ -1,0 +1,50 @@
+\def\zangle{10}
+\def\xangle{-40}
+\colorlet{block}{gray!75}
+\definecolor{led}{rgb}{0.29,1,0}
+%
+\begin{tikzpicture}[x=(\xangle:0.75cm), y=(90:1cm), z=(\zangle:1.5cm),
+plate/.style={fill},>=stealth]
+%
+% TissueBlock
+\begin{scope}[shift={(0,0,0)}]
+	\path [block!100, plate] 
+		(-1,-1,0) -- (-1,0,0) -- (1,0,0) -- (1,-1,0) -- cycle;
+	\path [block!50, plate] 
+		(1,-1,0) -- (1,-1,1.5) -- (1,0,1.5) -- (1,0,0) -- cycle;
+	\draw [<->, >=latex] (1,-1.1,0) -- (1,-1.1,1.5)  node [midway, below] {\tiny a)};
+\end{scope}
+%
+% klinge
+\begin{scope}[shift={(0,-0.06,1)}]
+	\path [block!25, plate] 
+	(1.25,0,0) -- (1.25,0.5,1) -- (1.25,0,1) -- cycle;
+	\draw [->, >=latex] (1.25,0.125,0.75) -- (1.75, 0.125,0.75)  node [near end, below right] {\tiny c)};
+	\draw [densely dashdotdotted, <-, >=latex] (-1.75,0.125,0.75) -- (-1.25,0.125,0.75);
+	\path [block!12.5, plate] 
+		(-1.25,0,0) -- (-1.25,0.5,1) -- (1.25,0.5,1) -- (1.25,0,0) -- cycle;
+	\draw [black!20, densely dashdotdotted, -, >=latex] (-1.5,0.125,0.75) -- (1.25,0.125,0.75);
+\end{scope}
+%
+% angled slice
+\begin{scope}[shift={(0,0,1)}]
+	\path [block!75, plate, opacity=0.5] 
+	(-1,0,-0.015) -- (-1,0.25,0.5) -- (1,0.25,0.5) -- (1,0,-0.015) -- cycle;
+	\path [block!50, plate, opacity=0.5] 
+	(1,0,-0.015) -- (1,0.25,0.5) -- (1,0.2,0.515) -- (1,-0.06,0) -- cycle;
+\end{scope}
+%
+% top slice
+\begin{scope}[shift={(0,0,0)}]
+\path [block!100, plate] 
+(-1,-0.06,0.0) -- (-1,0,0) -- (1,0,0) -- (1,-0.06,0) -- cycle;
+\path [block!50, plate] 
+(1,-0.06,0) -- (1,-0.06,1.0) -- (1,0,0.985) -- (1,0,0) -- cycle;
+\path [block!75, plate] 
+(-1,0,0) -- (-1,0,0.985) -- (1,0,0.985) -- (1,0,0) -- cycle;
+\node[xslant=tan(-50), yslant=tan(10)] () at (0,0,0.75)
+{\includegraphics[width=0.8cm, height=1.6cm, angle=-90]{gfx/neuroanatomy/human-brain-section.pdf}};
+\draw [<->, >=latex] (1,0,0.75) -- (1,-1,0.75) node [midway, right] {\tiny b)};
+\end{scope}
+%
+\end{tikzpicture}

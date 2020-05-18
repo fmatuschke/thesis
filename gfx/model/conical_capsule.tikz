@@ -1,0 +1,49 @@
+\begin{tikzpicture}
+\def\ra{1}
+\def\d{4}
+\def\alpha{85}
+\path[] (0,0) -- (-\alpha:\ra) coordinate (A) {};
+\path[] (A) -- + (0,0) arc (-\alpha:\alpha:\ra) coordinate (B) -- ++ (\alpha+90:\d) coordinate (C);
+
+\path[name path=line] (C) -- +(\alpha+180:2*\ra);
+\path[name path=xaxis] (-5*\ra,0) -- (0,0);
+\path[name intersections={of=xaxis and line, by={R}}];
+% \node (r) at (R) {R};
+\draw[] let \p1 = ($ (C) - (R) $),
+            \n1 = {veclen(\x1,\y1)}
+            in 
+            (A) -- 
+            ++ (0,0) arc (-\alpha:\alpha:\ra) coordinate (B) -- 
+            ++ (\alpha+90:\d) -- 
+            ++ (0,0) arc (\alpha:360-\alpha:\n1) coordinate (D) --
+            cycle;
+% 
+% \node (a) at (A) {A};
+% \node (b) at (B) {B};
+% \node (c) at (C) {C};
+% \node (d) at (D) {D};
+% 
+\draw[thin, dashed] (A) arc (360-\alpha:\alpha:\ra);
+\draw[thin, dashed] let \p1 = ($ (C) - (R) $),
+            \n1 = {veclen(\x1,\y1)} 
+            in (C) arc (\alpha:-\alpha:\n1);
+% 
+\draw[thin] (0,0) -- (B) node[pos=0.5, left]{$r_1$};
+\draw[thin] (R) -- (C) node[pos=0.5, left]{$r_0$};
+% 
+\path[] let \p1 = ($ (C) - (R) $),
+            \n1 = {veclen(\x1,\y1)}
+            in 
+            (0,0) -- (-90:\n1) coordinate (AR) {};
+\draw[blue, dashed] let 
+            \p1 = ($ (C) - (R) $),
+            \p2 = ($ (0,0) - (R) $),
+            \n1 = {veclen(\x1,\y1)},
+            \n2 = {veclen(\x2,\y2)}
+            in 
+            (AR) -- ++ (0,0) arc (-90:90:\n1) -- 
+            ++ (180:\n2) -- 
+            ++ (0,0) arc (90:270:\n1) -- 
+            cycle;
+% \node (ar) at (AR) {AR};
+\end{tikzpicture}

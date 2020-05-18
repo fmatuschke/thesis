@@ -1,0 +1,53 @@
+\begin{tikzpicture}[>=stealth, scale=0.65]
+% 
+\def\xc{0.7}
+\def\yc{0.2}
+\def\rin{1.5}
+\def\rout{3}
+% 
+\definecolor{c1}{HTML}{440154FF}
+\definecolor{c2}{HTML}{38598CFF}
+\definecolor{c3}{HTML}{1E9B8AFF}
+\definecolor{c4}{HTML}{FDE725FF}
+% 
+\newcommand{\fiber}[3]{
+	\def\dd{#1}
+	\pgfmathsetmacro{\xmin}{int(floor(\xc-\rout))}
+	\pgfmathsetmacro{\xmax}{int(ceil(\xc+\rout))}
+	\pgfmathsetmacro{\xd}{\xmin+\dd}
+	\pgfmathsetmacro{\ymin}{int(floor(\yc-\rout))}
+	\pgfmathsetmacro{\ymax}{int(ceil(\yc+\rout))}
+	\pgfmathsetmacro{\yd}{\ymin+\dd}
+	% 
+	\pgfmathsetmacro{\rmin}{\rin*\rin*100}
+	\pgfmathsetmacro{\rmax}{\rout*\rout*100}
+	\foreach \x in {\xmin,\xd,...,\xmax} {
+		\foreach \y in {\ymin,\yd,...,\ymax} {
+			\pgfmathsetmacro{\d}{int(((\x-\xc+\dd/2)*(\x-\xc+\dd/2)+(\y-\yc+\dd/2)*(\y-\yc+\dd/2))*100)}
+			\ifnum\d>\rmin
+			\ifnum\d<\rmax
+			\path [#3] (\x,\y) rectangle ($ (\x, \y) + (\dd, \dd) $);
+			\fi\fi
+		}
+	}
+	\foreach \x in {\xmin,\xd,...,\xmax} {
+		\draw[#2] (\x,\ymin) -- (\x,\ymax);
+	}
+	\foreach \y in {\ymin,\yd,...,\ymax} {
+		\draw[#2] (\xmin,\y) -- (\xmax,\y);
+	}
+}
+% 
+\fiber{2}{line width = 0.2mm}{pattern color=c1,pattern=horizontal lines}
+\fiber{1}{line width = 0.1mm}{pattern color=c2,pattern=vertical lines}
+\fiber{0.5}{line width = 0.05mm}{pattern color=c3,pattern=north east lines}
+\fiber{0.25}{line width = 0.025mm}{pattern color=c4,pattern=crosshatch dots}
+% \fiber{2}{}{fill, c1, opacity=0.25}
+% \fiber{1}{very thin}{fill, c2, opacity=0.25}
+% \fiber{0.5}{ultra thin}{fill, c3, opacity=0.25}
+% \fiber{0.25}{ultra thin}{fill, c4, opacity=0.25}
+% 
+\draw[line width = 0.4mm] (\xc,\yc) circle (\rin);
+\draw[line width = 0.4mm] (\xc,\yc) circle (\rout);
+% 
+\end{tikzpicture}
