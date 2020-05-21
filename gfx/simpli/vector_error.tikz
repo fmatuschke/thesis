@@ -1,14 +1,18 @@
-\begin{tikzpicture}[>=stealth, scale=0.65]
+\begin{tikzpicture}[scale=0.65]
 % 
 \def\xc{0.7}
 \def\yc{0.2}
 \def\rin{1.5}
 \def\rout{3}
 % 
-\definecolor{c1}{HTML}{440154FF}
-\definecolor{c2}{HTML}{38598CFF}
-\definecolor{c3}{HTML}{1E9B8AFF}
-\definecolor{c4}{HTML}{FDE725FF}
+% \definecolor{c1}{HTML}{440154FF}
+% \definecolor{c2}{HTML}{38598CFF}
+% \definecolor{c3}{HTML}{1E9B8AFF}
+% \definecolor{c4}{HTML}{FDE725FF}
+\definecolor{c1}{rgb}{0.25,0.4,0.1}
+\definecolor{c2}{rgb}{1.0,0.73,0}
+\definecolor{c3}{rgb}{0.98,0.4,0.25}
+\definecolor{c4}{rgb}{0.22,0.36,0.59}
 % 
 \newcommand{\fiber}[3]{
 	\def\dd{#1}

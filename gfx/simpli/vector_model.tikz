@@ -1,4 +1,4 @@
-\begin{tikzpicture}[>=stealth, scale=0.65]
+\begin{tikzpicture}[scale=0.65]
 \def\xc{0.7}
 \def\yc{0.2}
 \def\rin{2}

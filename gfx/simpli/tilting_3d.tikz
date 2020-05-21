@@ -1,4 +1,4 @@
-\begin{tikzpicture}[>=stealth, scale=0.25]
+\begin{tikzpicture}[scale=0.25]
 \path[] (-7, -7) -- (7, 7);
 \begin{scope}[
 3d view={\azimuth}{\elevation},

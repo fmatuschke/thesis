@@ -1,5 +1,4 @@
 \tikzset{%
-  >={Latex[width=2mm,length=2mm]},
   % Specifications for style of nodes:
     base/.style = {rectangle, rounded corners, draw=black,
                   minimum width=4cm, minimum height=1cm,

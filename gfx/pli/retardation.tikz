@@ -8,8 +8,7 @@ axis/.style={black, thick},
 wave/.style={green!25!black, opacity=.5, fill=green!70!black, thick}}
 %
 \begin{tikzpicture}[
-3d view={\azimuth}{\elevation},
->=stealth]
+3d view={\azimuth}{\elevation}]
 \draw[thick, ->] (0,0,0) -- (1,0,0) node[anchor=north]{x};
 \draw[thick, ->] (0,0,0) -- (0,1,0) node[anchor=south]{y};
 \draw[thick, ->] (0,0,0) -- (0,0,1) node[anchor=south]{z};

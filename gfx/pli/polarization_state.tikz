@@ -19,8 +19,7 @@ pics/plate/.style args={#1}{code={
 }}}
 %
 \begin{tikzpicture}[
-3d view={\azimuth}{\elevation},
->=stealth]
+3d view={\azimuth}{\elevation}]
 % \draw[thick, ->] (0,0,0) -- (1,0,0) node{x};
 % \draw[thick, ->] (0,0,0) -- (0,1,0) node{y};
 % \draw[thick, ->] (0,0,0) -- (0,0,1) node{z};
