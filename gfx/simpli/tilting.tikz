@@ -1,4 +1,4 @@
-\begin{tikzpicture}[>=stealth, scale=0.5]
+\begin{tikzpicture}[scale=0.5]
 % 
 \pgfmathsetmacro{\gridsize}{0.5}
 \pgfmathsetmacro{\gridshift}{0.5*\gridsize}
@@ -30,7 +30,9 @@
 \end{scope}
 \draw[<->] ($(X)+(0,1.75*\dy)$) arc (90:90-\tilt:1.75*\dy) node[midway,yshift=2.5mm]{$\vartheta$};
 \draw[dashed, thin, gray] (I) -- (0,-\dccd);
-\draw[>-<] (Y |- {,-0.95*\dccd}) -- (0,-0.95*\dccd) node[midway,below]{$\Delta$};
+\draw[] (Y |- {,-0.95*\dccd}) -- (0,-0.95*\dccd) node[midway,below]{$\Delta$};
+\draw[->] ($(Y |- {,-0.95*\dccd}) + (-0.1, 0)$) -- (Y |- {,-0.95*\dccd});
+\draw[->] ($(0,-0.95*\dccd) + (0.1,0)$) -- (0,-0.95*\dccd);
 }
 % 
 \end{tikzpicture}

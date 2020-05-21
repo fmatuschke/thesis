@@ -4,7 +4,7 @@
 \def\alpha{-15}
 \pgfmathsetmacro{\beta}{-atan(1.5*\a*cos(\alpha) / (1.5*\c*sin(\alpha))}
 % 
-\begin{tikzpicture}[>=stealth]
+\begin{tikzpicture}[]
 % 
 \path[help lines] (-2,-2.3) grid (2,2.3);
 % 

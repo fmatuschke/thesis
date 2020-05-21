@@ -6,7 +6,7 @@
 \colorlet{led}{green!70!black}
 %
 \begin{tikzpicture}[x=(\xangle:0.75cm), y=(90:1cm), z=(\zangle:1.5cm),
-plate/.style={fill, opacity=0.875},>=stealth]
+plate/.style={fill, opacity=0.875}]
 %
 % LED
 \begin{scope}[shift={(0,0,0*\dz)}]
@@ -31,7 +31,7 @@ plate/.style={fill, opacity=0.875},>=stealth]
 	\node [yslant=tan(\xangle), below, font=\footnotesize] at 
 	(-1.125,-1,0){Polarizer};
 	\draw [led, thick, -] (0,0,0) -- (0,0,\dz);
-	\draw[->,>=stealth'] ([shift=(30:1.2)]0,0,-0.0675) arc (30:100:1.2) node[midway,yshift=1.5mm]{\tiny rotation};
+	\draw[->,'] ([shift=(30:1.2)]0,0,-0.0675) arc (30:100:1.2) node[midway,yshift=1.5mm]{\tiny rotation};
 \end{scope}
 %
 % Quarter
@@ -43,7 +43,7 @@ plate/.style={fill, opacity=0.875},>=stealth]
 	\node [yslant=tan(\xangle), below, font=\footnotesize] at 
 	(-1.125,-1,0){Quarter Wave Plate};
 	\draw [led, thick, -] (0,0,0) -- (0,0,\dz);
-	\draw[->,>=stealth'] ([shift=(30:1.2)]0,0,-0.0675) arc (30:100:1.2) node[midway,yshift=1.5mm]{\tiny rotation};
+	\draw[->,'] ([shift=(30:1.2)]0,0,-0.0675) arc (30:100:1.2) node[midway,yshift=1.5mm]{\tiny rotation};
 \end{scope}
 %
 % Tissue
@@ -70,7 +70,7 @@ plate/.style={fill, opacity=0.875},>=stealth]
 	\node [yslant=tan(\xangle), below, font=\footnotesize] at 
 	(-1.125,-1,0){Polarizer};
 	\draw [led, thick, -] (0,0,0) -- (0,0,\dz);
-	\draw[->,>=stealth'] ([shift=(30:1.2)]0,0,-0.0675) arc (30:100:1.2) node[midway,yshift=1.5mm]{\tiny rotation};
+	\draw[->,'] ([shift=(30:1.2)]0,0,-0.0675) arc (30:100:1.2) node[midway,yshift=1.5mm]{\tiny rotation};
 \end{scope}
 %
 % CCD
