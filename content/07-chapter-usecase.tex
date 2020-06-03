@@ -85,6 +85,25 @@
 \caption{A test}
 \end{figure}
 % 
+% 
+% 
+% 
+\begin{figure}[!tb]
+\resizebox{\textwidth}{!}{
+\foreach \omega in {0,30,60,90} {
+    \resizebox{0.215\textwidth}{!}{
+    \input{dev/data/pm_omega_\omega.0_psi_epa_dir.tikz}
+    }
+}}
+\resizebox{\textwidth}{!}{
+\foreach \omega in {0,30,60,90} {
+    \resizebox{0.215\textwidth}{!}{
+    \input{dev/data/pm_omega_\omega.0_psi_epa_ret.tikz}
+    }
+}}
+\caption{A test}
+\end{figure}
+% 
 \section{ROFL}
 %
 \section{Tissue Geometry in Experimental Results}
