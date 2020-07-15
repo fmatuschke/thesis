@@ -258,7 +258,8 @@ This however meant, that for each tilted image the local volume had to be recalc
 Also the memory consumption was much larger.
 This yields in a quite big reduction of processing time. \footnote{so much, that the local memory is the bootlenek, not the cpu power.}\\
 % 
-At corners the light beam can travel through several \mpi volumes. Therefore after each main loop the ommunication has to be done.
+At corners the light beam can travel through several \mpi volumes.
+Therefore after each main loop the ommunication has to be done.
 Then the main loop is repeated with all incomming light rays.
 When no light rays are communicated anymore, the simulation is finished.
 This is a rather small cost considering the saving of memory and for tissue section commenly thin tissue sections of \SI{60}{\micro\meter}.
@@ -275,9 +276,9 @@ This is a rather small cost considering the saving of memory and for tissue sect
 % 
 \begin{figure}[!tb]
 \centering
-\resizebox{0.75\textwidth}{!}{
+\resizebox{0.95\textwidth}{!}{
 \inputtikz{gfx/simpli/vector_error.tikz}}
-\caption{Discretization error}
+\caption[Discretization error]{Discretization error. This behavier is much stronger with myelin layers}
 \label{fig:vectorfield_disc}
 \end{figure}
 % 

@@ -1,18 +1,8 @@
-\begin{tikzpicture}[scale=0.65]
 % 
 \def\xc{0.7}
 \def\yc{0.2}
 \def\rin{1.5}
 \def\rout{3}
-% 
-% \definecolor{c1}{HTML}{440154FF}
-% \definecolor{c2}{HTML}{38598CFF}
-% \definecolor{c3}{HTML}{1E9B8AFF}
-% \definecolor{c4}{HTML}{FDE725FF}
-\definecolor{c1}{rgb}{0.25,0.4,0.1}
-\definecolor{c2}{rgb}{1.0,0.73,0}
-\definecolor{c3}{rgb}{0.98,0.4,0.25}
-\definecolor{c4}{rgb}{0.22,0.36,0.59}
 % 
 \newcommand{\fiber}[3]{
 	\def\dd{#1}
@@ -31,27 +21,60 @@
 			\ifnum\d>\rmin
 			\ifnum\d<\rmax
 			\path [#3] (\x,\y) rectangle ($ (\x, \y) + (\dd, \dd) $);
+			\draw[#2] ($ (\x, \y) + (0, 0) $) -- ($ (\x, \y) + (\dd, 0) $);
+			\draw[#2] ($ (\x, \y) + (\dd, 0) $) -- ($ (\x, \y) + (\dd, \dd) $);
+			\draw[#2] ($ (\x, \y) + (\dd, \dd) $) -- ($ (\x, \y) + (0, \dd) $);
+			\draw[#2] ($ (\x, \y) + (0, \dd) $) -- ($ (\x, \y) + (0, 0) $);
 			\fi\fi
 		}
 	}
-	\foreach \x in {\xmin,\xd,...,\xmax} {
-		\draw[#2] (\x,\ymin) -- (\x,\ymax);
-	}
-	\foreach \y in {\ymin,\yd,...,\ymax} {
-		\draw[#2] (\xmin,\y) -- (\xmax,\y);
-	}
+%	\foreach \x in {\xmin,\xd,...,\xmax} {
+%		\draw[#2] (\x,\ymin) -- (\x,\ymax);
+%	}
+%	\foreach \y in {\ymin,\yd,...,\ymax} {
+%		\draw[#2] (\xmin,\y) -- (\xmax,\y);
+%	}
 }
 % 
+% \definecolor{c1}{HTML}{440154FF}
+% \definecolor{c2}{HTML}{38598CFF}
+% \definecolor{c3}{HTML}{1E9B8AFF}
+% \definecolor{c4}{HTML}{FDE725FF}
+% 
+\definecolor{c1}{rgb}{0.25,0.4,0.1}
+\definecolor{c2}{rgb}{1.0,0.73,0}
+\definecolor{c3}{rgb}{0.98,0.4,0.25}
+\definecolor{c4}{rgb}{0.22,0.36,0.59}
+%
+\begin{tikzpicture}[scale=0.65]
+\draw[] (-2, -2) -- (2, 2);
 \fiber{2}{line width = 0.2mm}{pattern color=c1,pattern=horizontal lines}
+\draw[line width = 0.4mm] (\xc,\yc) circle (\rin);
+\draw[line width = 0.4mm] (\xc,\yc) circle (\rout);
+\end{tikzpicture}
+%
+\begin{tikzpicture}[scale=0.65]
+\path[] (-2, -2) -- (2, 2);
 \fiber{1}{line width = 0.1mm}{pattern color=c2,pattern=vertical lines}
+\draw[line width = 0.4mm] (\xc,\yc) circle (\rin);
+\draw[line width = 0.4mm] (\xc,\yc) circle (\rout);
+\end{tikzpicture}
+%
+\begin{tikzpicture}[scale=0.65]
+\path[] (-2, -2) -- (2, 2);
 \fiber{0.5}{line width = 0.05mm}{pattern color=c3,pattern=north east lines}
+\draw[line width = 0.4mm] (\xc,\yc) circle (\rin);
+\draw[line width = 0.4mm] (\xc,\yc) circle (\rout);
+\end{tikzpicture}
+%
+\begin{tikzpicture}[scale=0.65]
+\path[] (-2, -2) -- (2, 2);
 \fiber{0.25}{line width = 0.025mm}{pattern color=c4,pattern=crosshatch dots}
+\draw[line width = 0.4mm] (\xc,\yc) circle (\rin);
+\draw[line width = 0.4mm] (\xc,\yc) circle (\rout);
 % \fiber{2}{}{fill, c1, opacity=0.25}
 % \fiber{1}{very thin}{fill, c2, opacity=0.25}
 % \fiber{0.5}{ultra thin}{fill, c3, opacity=0.25}
 % \fiber{0.25}{ultra thin}{fill, c4, opacity=0.25}
-% 
-\draw[line width = 0.4mm] (\xc,\yc) circle (\rin);
-\draw[line width = 0.4mm] (\xc,\yc) circle (\rout);
 % 
 \end{tikzpicture}

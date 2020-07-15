@@ -23,11 +23,11 @@
 % Setup YOUR thesis document in this file !
 % **************************************************
 \input{thesis-setup}
-\ifshellescape
+%\ifshellescape
 \usetikzlibrary{external}
 \tikzexternalize[optimize command away=\includepdf,
 						figure name=tikz/\thesubsection-]
-\fi
+%\fi
 % 
 % \includeonly{
 %	content/titlepages,
@@ -39,7 +39,7 @@
 %	content/04-chapter-software,
 %   content/05-chapter-model,
 %   content/06-chapter-simulation,
-%   content/07-chapter-usecase,
+%%   content/07-chapter-usecase,
 %  % content/08-chapter-conclusion,
 %  % content/todo,
 %  % content/09-chapter-appendix,
