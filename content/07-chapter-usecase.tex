@@ -4,13 +4,13 @@
 \section{Parameter narrowing}
 % 
 \begin{itemize}
-    \item myelin radius
-    \item micro oder macro
-    \item dn -> trel
-    \item voxelsize
-    \item n filter rho
-    \item intensity
-    \item LAP pixel size
+    \item myelin radius ->literatur
+    \item micro oder macro -> simulation
+    \item dn -> trel? different density?
+    \item voxelsize -> simulation
+    \item n filter rho -> fixed to 9 like experiment
+    \item intensity ->fixed with sigma noise
+    \item LAP pixel size / which density, fiber configuration, ... can be identified
 \end{itemize}
 % 
 % \begin{figure}[!tbh]
@@ -39,6 +39,87 @@
     S(f_0(\alpha, \varphi), f_1(\omega, \psi)) = \\
     T(S(f_0(\alpha, \varphi), f_1(\omega, \psi)), \theta, \phi) = 
 \end{align*}
+
+\subsection{simulation sampling}
+% 
+\begin{itemize}
+    \item \micro or \macro
+    \item \voxelsize
+\end{itemize}
+
+to identify the needed optical resolution inside the simulation, the \voxelsize and \model(\micro or \macro) will be analysed.
+The question is, how big can the \voxelsize be so that the resulting signal (for one \ac{PM} pixel) is not significantly different.
+The same is true for the choice of \model.
+The simulation setup is as follows:
+
+\begin{table}
+\centering
+\pgfplotstabletypeset[
+    column type=l,
+    every even row/.style={before row={\rowcolor[gray]{0.95}}},
+    % columns/person/.style={column name=},
+    % columns/singEnglish/.style={column name=English},
+    % columns/singGaeilge/.style={column name=Gaeilge},
+    columns/variable/.style={string type},
+    columns/value/.style={string type},
+    % colums/value/.style={},
+    % empty cells with={--}, % replace empty cells with '--'
+    every head row/.style={before row=\toprule,after row=\midrule},
+    every last row/.style={after row=\bottomrule},
+    col sep=&,
+    row sep=\\,
+    % string type,
+]
+{variable & value\\
+simpli.pixel\_size & \SI{1.25}{\micro\meter}\\
+simpli.sensor\_gain & \SI{1.5}{}\\
+simpli.optical\_sigma & \SI{0.71}{}\\
+% simpli.filter\_rotations & np.linspace(0, np.pi, 9, False)\\
+simpli.interpolate & \SI{1}{}\\
+simpli.untilt\_sensor\_view & \SI{1}{}\\
+simpli.wavelength & \SI{525}{\nano\meter}  \\
+simpli.light\_intensity & \SI{50000}{\arbitraryunit} \\
+% simpli.tilts & \SI{np.deg2rad(np.array([(0, 0)]))}{}\\
+simpli.voxel\_size & \$\voxelsize\\
+% \multirow{2}{*}{simpli.set\_voi} & $-\SIlist[list-units = brackets,list-final-separator={, },]{0.5;0.5;30}{\micro\meter}$\\
+simpli.set\_voi & $-\SIlist[list-units = brackets,list-final-separator={, },]{0.5;0.5;30}{\micro\meter}$\\
+& $\phantom{-}\SIlist[list-units = brackets,list-final-separator={, },]{0.5;0.5;30}{\micro\meter}$\\
+}
+\caption{simulation setup}
+\end{table}
+% 
+% 
+% \begin{lstfloat}[!tb]
+% \lstset{
+% language=python,
+% keywordstyle=\color{blue},
+% stringstyle=\color{red},
+% commentstyle=\color{green!60!black},
+% tabsize=2
+% }
+% \begin{lstlisting}
+% PIXEL_SIZE = 1.0
+% FIBER_RADII = 1.0
+% THICKNESS = 60
+
+% simpli.pixel_size = PIXEL_SIZE
+% simpli.sensor_gain = 1.5  # in micro meter
+% simpli.optical_sigma = 0.71  # in voxel size
+% simpli.filter_rotations = np.linspace(0, np.pi, 9, False)
+% simpli.interpolate = True
+% simpli.untilt_sensor_view = True
+% simpli.wavelength = 525  # in nm
+% simpli.light_intensity = 50000  # a.u.
+% simpli.tilts = np.deg2rad(np.array([(0, 0)]))
+% simpli.voxel_size = voxel_size
+% simpli.set_voi(-0.5 * np.array([PIXEL_SIZE, PIXEL_SIZE, THICKNESS]),
+%               0.5 * np.array([PIXEL_SIZE, PIXEL_SIZE, THICKNESS]))
+% simpli.dim_origin = [10, 10, -0.5 * THICKNESS]
+% \end{lstlisting}
+% \label{alg:voxel_size_setup}
+% \caption{voxel\_size\_setup}
+% \end{lstfloat}
+% 
 % 
 % \begin{figure}[!tb]
 %     \resizebox{\textwidth}{!}{
@@ -87,22 +168,22 @@
 % 
 % 
 % 
-% 
-\begin{figure}[!tb]
-\resizebox{\textwidth}{!}{
-\foreach \omega in {0,30,60,90} {
-    \resizebox{0.215\textwidth}{!}{
-    \input{dev/data/pm_omega_\omega.0_psi_epa_dir.tikz}
-    }
-}}
-\resizebox{\textwidth}{!}{
-\foreach \omega in {0,30,60,90} {
-    \resizebox{0.215\textwidth}{!}{
-    \input{dev/data/pm_omega_\omega.0_psi_epa_ret.tikz}
-    }
-}}
-\caption{A test}
-\end{figure}
+% TODO:
+% \begin{figure}[!tb]
+% \resizebox{\textwidth}{!}{
+% \foreach \omega in {0,30,60,90} {
+%     \resizebox{0.215\textwidth}{!}{
+%     \input{dev/data/pm_omega_\omega.0_psi_epa_dir.tikz}
+%     }
+% }}
+% \resizebox{\textwidth}{!}{
+% \foreach \omega in {0,30,60,90} {
+%     \resizebox{0.215\textwidth}{!}{
+%     \input{dev/data/pm_omega_\omega.0_psi_epa_ret.tikz}
+%     }
+% }}
+% \caption{A test}
+% \end{figure}
 % 
 \section{ROFL}
 %
