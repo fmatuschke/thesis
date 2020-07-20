@@ -47,7 +47,7 @@
 \definecolor{c4}{rgb}{0.22,0.36,0.59}
 %
 \begin{tikzpicture}[scale=0.65]
-\draw[] (-2, -2) -- (2, 2);
+\draw[] (-3, -3) -- (3, 3);
 \fiber{2}{line width = 0.2mm}{pattern color=c1,pattern=horizontal lines}
 \draw[line width = 0.4mm] (\xc,\yc) circle (\rin);
 \draw[line width = 0.4mm] (\xc,\yc) circle (\rout);

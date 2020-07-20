@@ -1,3 +1,6 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Official Acronyms
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % \newcommand{\DeclareAcronymF}[2]{\DeclareAcronym{#1}{#2, short-format = \itshape}}
 \DeclareAcronym{dMRI}{short = dMRI, long = diffusion MRI}
 \DeclareAcronym{MRI}{short = MRI, long = Magnetic Resonance Imaging}
@@ -13,11 +16,27 @@
 \DeclareAcronym{AABB}{short = AABB, long = axis aligned bounding box}
 \DeclareAcronym{VOI}{short = VOI, long = volume of interest}
 \DeclareAcronym{LAP}{short = LAP, long = large area polarimeter}
+\DeclareAcronym{PM}{short = PM, long = polarization microscop}
 \DeclareAcronym{CPU}{short = CPU, long = central processing unit}
 \DeclareAcronym{GPU}{short = GPU, long = graphics processing unit}
 \DeclareAcronym{RAM}{short = RAM, long = random access memory}
 %
 %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Parameter
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\voxelsize}{\textit{voxel\_size}\xspace}
+\newcommand{\model}{\textit{model}\xspace}
+\newcommand{\micro}{\textit{micro}\xspace}
+\newcommand{\macro}{\textit{macro}\xspace}
+\newcommand{\trel}{$\text{\textit{t}}_{\text{\textit{rel}}}$\xspace}
+\newcommand{\dn}{$\Delta n$\xspace}
+\newcommand{\intensity}{$I$\xspace}
+\newcommand{\pixelsize}{\textit{pixel_size}\xspace}
+\newcommand{\opticsigma}{$\sigma_{\text{optic}} n$\xspace}
+\newcommand{\filterrots}{\textit{filter\_rotations}\xspace}
+\newcommand{\wavelength}{$\lambda$\xspace}
+% 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Other
 %%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -35,3 +54,8 @@
 \newcommand{\simpli}{\textit{simPLI}\xspace}
 \newcommand{\fastpli}{\textit{fastPLI}\xspace}
 % 
+% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Units
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\DeclareSIUnit{\arbitraryunit}{a.u.}
