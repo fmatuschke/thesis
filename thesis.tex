@@ -23,6 +23,11 @@
 % Setup YOUR thesis document in this file !
 % **************************************************
 \input{thesis-setup}
+% 
+\setcounter{secnumdepth}{3}
+\setcounter{minitocdepth}{4}
+\mtcsetoffset{minitoc}{-4em}
+% 
 %\ifshellescape
 \usetikzlibrary{external}
 \tikzexternalize[optimize command away=\includepdf,
@@ -33,17 +38,20 @@
 % content/titlepages,
 % content/abstract,
 % content/acknowledgment,
+% content/todo,
 % content/01-chapter-introduction,
 % content/02-chapter-neuroanatomy,
 % content/03-chapter-theory,
 % content/04-chapter-software,
-% content/05-chapter-model,
-% content/06-chapter-simulation,
-content/07-chapter-usecase,
-% content/08-chapter-conclusion,
-% content/todo,
-% content/09-chapter-appendix,
+% content/05-chapter-software-model,
+% content/06-chapter-software-simulation,
+content/07-chapter-analysis-model,
+content/08-chapter-analysis-simulation,
+% content/09-chapter-usecase,
+% content/10-chapter-conclusion,
 % content/declaration
+% content/appendix,
+% 
 }
 % 
 \input{content/acronyms}
@@ -52,6 +60,9 @@ content/07-chapter-usecase,
 % Document CONTENT
 % **************************************************
 \begin{document}
+% 
+% \dominitoc% Initialization
+\doparttoc
 %
 % uncomment the following command to fill up pages with
 % whitespace instead of aligning the first and last lines
@@ -100,41 +111,61 @@ content/07-chapter-usecase,
 % --------------------------
 %\part{Example Part}
 %
-\acresetall
-% \cleardoublepage
-\include{content/01-chapter-introduction}
-\acresetall
-% \cleardoublepage
-\include{content/02-chapter-neuroanatomy}
-\acresetall
-% \cleardoublepage
-\include{content/03-chapter-theory}
-\acresetall
-% \cleardoublepage
-\include{content/04-chapter-software}
-\acresetall
-% \cleardoublepage
-\include{content/05-chapter-model}
-\acresetall
-% \cleardoublepage
-\include{content/06-chapter-simulation}
-\acresetall
-% \cleardoublepage
-\include{content/07-chapter-usecase}
-\acresetall
-% \cleardoublepage
-\include{content/08-chapter-conclusion}
-\acresetall
-% \cleardoublepage
 \include{content/todo}
+% 
+\cleardoublepage
+\acresetall
+\include{content/01-chapter-introduction}
+% 
+\cleardoublepage
+\part{Theory}
+\acresetall
+\include{content/02-chapter-neuroanatomy}
+% 
+\cleardoublepage
+\acresetall
+\include{content/03-chapter-theory}
+% 
+\cleardoublepage
+\part{Software}
+\acresetall
+\include{content/04-chapter-software}
+% 
+\cleardoublepage
+\acresetall
+\include{content/05-chapter-software-model}
+% 
+\cleardoublepage
+\acresetall
+\include{content/06-chapter-software-simulation}
+% 
+\cleardoublepage
+\part{Analysis}
+\acresetall
+\include{content/07-chapter-analysis-model}
+% 
+\cleardoublepage
+\acresetall
+\include{content/08-chapter-analysis-simulation}
+% 
+\cleardoublepage
+\part{Use cases}
+\acresetall
+\include{content/09-chapter-usecase}
+% 
+\cleardoublepage
+\acresetall
+\part{Discussion and Conclusion}
+\include{content/10-chapter-conclusion}
 %
 % --------------------------
 % Back matter
 % --------------------------
 %
+\addtocontents{toc}{\vspace{\normalbaselineskip}}
 {
 \pdfbookmark[0]{Bibliography}{Bibliography}
-% \addchap{BibliographyTest}
+\addchap{Bibliography}
 % \label{sec:bibliography}
 \setstretch{1.1}
 \renewcommand{\bibfont}{\normalfont\small}
@@ -145,29 +176,38 @@ content/07-chapter-usecase,
 \printbibliography[heading=subbibliography,title={Software},keyword={software}]
 }
 % \cleardoublepage
-% %
+% 
 % \pdfbookmark[0]{Acronyms}{Acronyms}
+\cleardoublepage
 % \addchap{Acronyms}
-% \label{sec:acronyms}
-% \printacronyms[name={}]
-% \cleardoublepage
-% %
-% \listoffigures
-% \cleardoublepage
-% %
-% \listoftables
-% \cleardoublepage
-% %
-% \lstlistoflistings
-% \cleardoublepage
-% %
-\appendix\cleardoublepage
-\include{content/appendix}
-% %
-% %
+\label{sec:acronyms}
+\printacronyms[]
+%
+\cleardoublepage
+\phantomsection
+\addcontentsline{toc}{chapter}{\listfigurename}
+\listoffigures
+%
+\cleardoublepage
+\phantomsection
+\addcontentsline{toc}{chapter}{\listtablename}
+\listoftables
+%
+\cleardoublepage
+\phantomsection
+\addcontentsline{toc}{chapter}{\lstlistlistingname}
+\lstlistoflistings
+%
+% 
 % \cleardoublepage
 % \include{content/declaration}
 % \clearpage
+%
+\appendix\cleardoublepage
+\part*{Appendices}
+% \include{content/appendix}
+% %
+% %
 %
 % \newpage
 % \mbox{}

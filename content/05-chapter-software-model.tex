@@ -1,5 +1,6 @@
 \chapter{Modelling}
 \label{chap:modelling}
+% \minitoc
 % 
 % 
 % \subsection{Geometry of Nerve Fibers}
@@ -89,7 +90,7 @@ To reduce the computational afford, the \ac{CC} will be interpreted as a capsule
 % 
 To calculate the smallest distance between two line segemnts, sevverel algorith,s already exists. A fast approach was chosen\footnote{\href{https://www.john.geek.nz/2009/03/code-shortest-distance-between-any-two-line-segments/}{https://www.john.geek.nz/2009/03/code-shortest-distance-between-any-two-line-segments/}}.
 %
-\subsection{World}
+\section{World}
 For a given cuboid volume the computing grows $\mathcal{O}(V^3)$. Furthermore each object has to be checked to each other, therefore the number of objects to be checked for a collision grows by $\mathcal{O}(n^2)$. This explodes rather quick. In the literature are several approuches (e.g. computer games industry). However since the number of objects will be $\approx \num{e9}$ \dummy cant be used. \\
 % 
 A "tree" is a data structure consist of a collection of "nodes", which are connected to each other. One node is conected toword the "root" with a single parent node and towords the "branches" with several "children" or "branches". The nodes at the end of a branch are refered to as "leafs" wich contain the data. Traversing a  evenly distributed tree is of $\mathcal{O}(\log(n))$.\\
@@ -212,14 +213,6 @@ This is a fast written approuch. Current rendering software uses far more advanc
 % 
 A more advanced Tool, the \textit{FAConstructor} \cite{Reuter2019} was written by Andr'e Reuter in the context of this doctorial research. This tool uses \textit{OpenGl 3} and additional calculation on the GPU. Additionally it allows user defined interactive technique to create a 3d fiber model.
 %  
-%
-% 
-% 
-\section{Analysis}
-% 
-% 
-% 
-% 
 % 
 % 
 % 
