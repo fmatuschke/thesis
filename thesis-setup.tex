@@ -39,6 +39,18 @@
 % User Commands
 % **************************************************
 \newcommand{\comment}[1]{\textcolor{gray}{\textit{#1}}}
+% 
+\makeatletter
+\renewcommand\listoftables{%
+        \@starttoc{lot}%
+}
+\makeatother
+% 
+\makeatletter
+\renewcommand\listoffigures{%
+        \@starttoc{lof}%
+}
+\makeatother
 %
 %
 % **************************************************
@@ -75,14 +87,13 @@
     citecolor=green!50!black    %
 }
 %
-\setcounter{secnumdepth}{3}
-%
 % **************************************************
 %  Packages
 % **************************************************
 \usepackage{float}              % [H]
 \usepackage{graphicx}           % (pdf, png, jpg, eps)
 \usepackage{subcaption}
+\usepackage{minitoc}
 \usepackage{amsmath, amssymb, mathtools}
 \usepackage{dirtree}
 \usepackage{acro}
@@ -115,6 +126,7 @@
 \crefname{lstfloat}{alg.}{alg.}
 \Crefname{lstfloat}{Alg.}{Alg.}
 \renewcommand{\lstlistingname}{Alg.}
+\renewcommand{\lstlistlistingname}{List of Algorithm}
 % 
 \definecolor{syntax_green}{rgb}{0,0.6,0}
 \definecolor{syntax_mauve}{rgb}{0.58,0,0.82}
@@ -155,6 +167,12 @@
 \usepackage{booktabs,colortbl}
 \usepackage{multirow}
 %
+\newcommand{\inputpdf}[1]{%
+    % \tikzsetnextfilename{#1}
+    \IfFileExists{#1}{\includegraphics{#1}}{
+    \noindent\includegraphics[width=3cm]{example-image}}   
+}
+% 
 \newcommand{\inputtikz}[1]{%
     % \tikzsetnextfilename{#1}
     \IfFileExists{#1}{\input{#1}}{

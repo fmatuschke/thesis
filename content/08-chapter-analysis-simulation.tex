@@ -1,6 +1,8 @@
-\chapter{Usecases}
-\label{sec:usecases}
-%
+\chapter{Simulation Analysis}
+\label{cha:simulation_analysis}
+% \minitoc
+% 
+% 
 \section{Parameter narrowing}
 % 
 \begin{itemize}
@@ -184,13 +186,108 @@ simpli.set\_voi & $-\SIlist[list-units = brackets,list-final-separator={, },]{0.
 % }}
 % \caption{A test}
 % \end{figure}
+
 % 
-\section{ROFL}
-%
-\section{Tissue Geometry in Experimental Results}
-%
-\section{Traktography}
-%
-\section{ODF}
-%
-\section{Dispersion}
+\section{Optimal Grid Size}
+
+\subsection{Impact on labelfield}
+% 
+\tikzexternaldisable
+% 
+\begin{figure}[!tb]
+\centering
+\resizebox{1.0\textwidth}{!}{
+\inputtikz{gfx/simpli/vector_error.tikz}}
+\caption[Discretization error]{Discretization error. This behavior is much stronger with myelin layers}
+\label{fig:vectorfield_disc_error}
+\end{figure}
+% 
+\tikzexternalenable
+% 
+\subsection{Impact on vektorfield}
+% 
+% \subcaptionbox{}[.245\textwidth]{
+% \begin{figure}[!tb]
+% \centering
+% \resizebox{0.75\textwidth}{!}{
+% \inputtikz{dev/gfx/1/optical_axis_high_norm_1.00_19.0_r.tex}}
+% \caption{Discretization error}
+% \label{fig:vd1}
+% \end{figure}
+% % 
+% \begin{figure}[!tb]
+% \centering
+% \resizebox{0.75\textwidth}{!}{
+% \inputtikz{dev/gfx/1/optical_axis_high_norm_0.50_9.0_r.tex}}
+% \caption{Discretization error}
+% \label{fig:vd2}
+% \end{figure}
+% % 
+% \begin{figure}[!tb]
+% \centering
+% \resizebox{0.75\textwidth}{!}{
+% \inputtikz{dev/gfx/1/optical_axis_high_norm_0.20_4.0_r.tex}}
+% \caption{Discretization error}
+% \label{fig:vd3}
+% \end{figure}
+% 
+\paragraph{Macro}
+\paragraph{Micro}
+% 
+\subsection{Impact on data}
+% 
+\begin{figure}[!tb]
+\centering
+\resizebox{0.75\textwidth}{!}{
+\inputpdf{dev/gfx/5/foo_p.pdf}}
+\caption{}
+\label{fig:foo_p}
+\end{figure}
+% 
+\begin{figure}[!tb]
+\centering
+\resizebox{0.75\textwidth}{!}{
+\inputpdf{dev/gfx/5/foo_p_zoom.pdf}}
+\caption{}
+\label{fig:foo_p_zoom}
+\end{figure}
+% 
+\begin{figure}[!tb]
+\centering
+\resizebox{0.75\textwidth}{!}{
+\inputpdf{dev/gfx/5/foo_r.pdf}}
+\caption{}
+\label{fig:foo_r}
+\end{figure}
+% 
+\begin{figure}[!tb]
+\centering
+\resizebox{0.75\textwidth}{!}{
+\inputpdf{dev/gfx/5/foo_r_zoom.pdf}}
+\caption{}
+\label{fig:foo_r_zoom}
+\end{figure}
+% 
+\begin{figure}[!tb]
+\centering
+\resizebox{0.75\textwidth}{!}{
+\inputpdf{dev/gfx/5/foo_p_noise.pdf}}
+\caption{}
+\label{fig:foo_p_noise}
+\end{figure}
+% 
+\begin{figure}[!tb]
+\centering
+\resizebox{0.75\textwidth}{!}{
+\inputpdf{dev/gfx/5/foo_r_noise.pdf}}
+\caption{}
+\label{fig:foo_r_noise}
+\end{figure}
+% 
+\paragraph{Macro}
+\paragraph{Micro}
+% 
+\subsection{Impact on modalities}
+\paragraph{Macro}
+\paragraph{Micro}
+% 
