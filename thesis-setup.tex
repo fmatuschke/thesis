@@ -128,19 +128,42 @@
 \renewcommand{\lstlistingname}{Alg.}
 \renewcommand{\lstlistlistingname}{List of Algorithm}
 % 
-\definecolor{syntax_green}{rgb}{0,0.6,0}
-\definecolor{syntax_mauve}{rgb}{0.58,0,0.82}
+\definecolor{syntax_red}{RGB}{160,0,0}
+\definecolor{syntax_green}{RGB}{0,160,0}
+\definecolor{syntax_blue}{RGB}{0,0,210}
+\definecolor{syntax_mauve}{RGB}{150,0,210}
+\definecolor{syntax_keywords}{RGB}{255,0,90}
+\definecolor{syntax_comments}{RGB}{0,0,113}
 %
-\lstset{ %
-	backgroundcolor=\color{white},       % choose the background color
-	basicstyle=\scriptsize,            % size of fonts used for the code
-	breaklines=false,                     % automatic line breaking only at whitespace
-	captionpos=b,                        % sets the caption-position to bottom
-	commentstyle=\color{syntax_green},   % comment style
-	escapeinside={\%*}{*)},              % if you want to add LaTeX within your code
-	keywordstyle=\color{blue},           % keyword style
-	stringstyle=\color{syntax_mauve},    % string literal style
-	frame=tb,
+% 
+\lstdefinestyle{common}{
+    basicstyle=\footnotesize\ttfamily,
+    showstringspaces=false,
+    breaklines=false,
+    captionpos=b,
+    frame=tb,
+    xleftmargin=\parindent,
+}
+% 
+\lstdefinestyle{cpp}{
+    language=C++,
+    style=common,
+    keywordstyle=\color{syntax_blue},
+    commentstyle=\color{syntax_green},
+    stringstyle=\color{syntax_red},
+    % identifierstyle=\color{syntax_mauve},
+    tabsize=2,
+}
+%  
+\lstdefinestyle{python}{
+    language=Python, 
+    style=common,
+    % basicstyle=\ttfamily\small, 
+    keywordstyle=\color{syntax_keywords},
+    commentstyle=\color{syntax_comments},
+    stringstyle=\color{syntax_red},
+    identifierstyle=\color{syntax_green},
+    procnamekeys={def,class},
 	tabsize=3,
 }
 %

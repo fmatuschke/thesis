@@ -4,7 +4,7 @@
 \def\alpha{85}
 \path[] (0,0) -- (-\alpha:\ra) coordinate (A) {};
 \path[] (A) -- + (0,0) arc (-\alpha:\alpha:\ra) coordinate (B) -- ++ (\alpha+90:\d) coordinate (C);
-
+% 
 \path[name path=line] (C) -- +(\alpha+180:2*\ra);
 \path[name path=xaxis] (-5*\ra,0) -- (0,0);
 \path[name intersections={of=xaxis and line, by={R}}];
@@ -45,5 +45,22 @@
             ++ (180:\n2) -- 
             ++ (0,0) arc (90:270:\n1) -- 
             cycle;
-% \node (ar) at (AR) {AR};
+\draw[red, very thin, dash dot] let 
+            \p1 = ($ (C) - (R) $),
+            \p2 = ($ (0,0) - (R) $),
+            \n1 = {veclen(\x1,\y1)},
+            \n2 = {veclen(\x2,\y2)}
+            in 
+            ($(R) - (\n1,\n1)$) -- ++ ($(0,\n1)+(0,\n1)$) -- ++ ($(\n1,0)+(\n1,0)+(\n2,0)$) -- ++ ($(0,-\n1)+(0,-\n1)$) --
+            cycle;
+% \draw[red, very thin, dash dot] let 
+%             \p1 = ($ (C) - (R) $),
+%             \p2 = ($ (0,0) - (R) $),
+%             \p3 = ($ (0,0) - (B) $),
+%             \n1 = {veclen(\x1,\y1)},
+%             \n2 = {veclen(\x2,\y2)},
+%             \n3 = {veclen(\x3,\y3)}
+%             in 
+%             ($(R) - (\n1,\n1)$) -- ++ ($(0,\n1)+(0,\n1)$) -- ++ ($(\n1,0)+(\n3,0)+(\n2,0)$) -- ++ ($(0,-\n1)+(0,-\n1)$) --
+%             cycle;
 \end{tikzpicture}

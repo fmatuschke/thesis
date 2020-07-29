@@ -67,7 +67,9 @@
     \centering
     \resizebox{.5\textwidth}{!}{
     \inputtikz{gfx/model/conical_capsule.tikz}}
-	\caption[cc and co]{\Acf{CC}: \raisebox{.25em}{\tikz \draw[black](0,0)--(0.275,0);} \ac{CC}, \raisebox{.25em}{\tikz \draw[blue, dash pattern=on 2.5pt off 2.5pt](0,0)--(0.275,0);} capsule}
+    \tikzexternaldisable
+	\caption[cc and co]{\Acf{CC}: \raisebox{.25em}{\tikz \draw[black](0,0)--(0.275,0);} \ac{CC}, \raisebox{.25em}{\tikz \draw[blue, dash pattern=on 2.5pt off 2.5pt](0,0)--(0.275,0);} capsule, \raisebox{.25em}{\tikz \draw[red, dash pattern={on 2.5pt off 0.9pt on 0.42pt off 0.9pt}](0,0)--(0.275,0);} bounding box}
+	\tikzexternalenable
 	\label{fig:conical_capsule}
 \end{figure}
 % 
@@ -140,13 +142,7 @@ The limit is set as a minimal radius of $r_{\min}$. If a point $p_{i}$ in a fibe
 Both movements are added to the velocity vector before performing the overall movement.
 The algorithm performs each step sequentially (see \cref{alg:pseudocode_solver}).
 \begin{lstfloat}[!tb]
-\lstset{
-language=C++,
-keywordstyle=\color{blue},
-stringstyle=\color{red},
-commentstyle=\color{green!60!black},
-tabsize=2
-}
+\lstset{style=cpp}
 
 \begin{lstlisting}[]
 FiberCollisionSolver(objects) {
@@ -289,7 +285,7 @@ The calculation of collisions is done via the GPU architecture. For this a first
 \end{align}
 % 
 \begin{lstfloat}[!tb]
-	\lstinputlisting[language=c++]{code/medusa.cu}
+	\lstinputlisting[style=cpp]{code/medusa.cu}
 	\caption{Pseudocode of \acs{MEDUSA} collision checking.}
 	\label{alg:medusa_collision}
 \end{lstfloat}

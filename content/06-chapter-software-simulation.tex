@@ -44,8 +44,17 @@ For the radial case the smallest distance to the line segment $(\vv{p}_i,\vv{p}_
 \label{fig:fiber_discretisation}
 \end{figure}
 % 
+\begin{figure}[!tb]
+\centering
+\resizebox{0.75\textwidth}{!}{
+\inputtikz{gfx/simpli/indexing.tikz}
+}
+\caption{indexing of arrays. The vector inside the array at index position $[i,j,k]$ will correspond to the vector at position $p=(i+0.5,j+0.5,k+0.5)\cdot \text{\voxelsize}$}
+\label{fig:indexing_array}
+\end{figure}
+% 
 The radial orientation vector is then parallel to the smallest distance vector $\vv{d}$.
-The distance is also used to check wich layer of the fiber is "active" (\eg axon or myelin). 
+The distance is also used to check which layer of the fiber is "active" (\eg axon or myelin). 
 % 
 The \ac{CC} object has the following \ac{AABB}:
 \begin{align}
@@ -234,7 +243,7 @@ If the birefringence is 0 the multiplication of the M\"uller matrices is skipped
 Since the M\"uller matrices are spasly (in this case), the calculation is optimized for this.
 % 
 \begin{lstfloat}[!tb]
-	\lstinputlisting[language=c++]{code/simulation.cpp}
+	\lstinputlisting[style=cpp]{code/simulation.cpp}
 	\caption{Pseudocode simulation}
 	\label{alg:simulation}
 \end{lstfloat}
