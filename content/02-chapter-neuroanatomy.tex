@@ -39,3 +39,24 @@
 \end{figure}
 %
 \section{Microscopy}
+% 
+Axon diameter \cite{Liewald2014}:
+% 
+\begin{table}
+\centering
+\pgfplotstabletypeset[
+thesis,
+col sep=comma,
+columns/Name/.style={string type},
+columns/Mean/.style={fixed zerofill},
+columns/SD/.style={fixed zerofill},
+columns/Median/.style={fixed zerofill},
+columns/Max/.style={fixed zerofill},
+columns/Min/.style={fixed zerofill},
+% fixed zerofill,
+% precision=1,
+% dec sep align,
+]{data/axon_distribution.csv}
+\caption{axon diameter distribution of the human brain in \si{\micro\meter} \cite{Liewald2014}}
+\end{table}
+
