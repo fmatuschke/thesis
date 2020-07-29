@@ -206,6 +206,31 @@ simpli.set\_voi & $-\SIlist[list-units = brackets,list-final-separator={, },]{0.
 % 
 \subsection{Impact on vektorfield}
 % 
+slerp and multisampling and sparse vectorfield
+% 
+\begin{figure}[!tb]
+\centering
+\resizebox{0.95\textwidth}{!}{
+\subcaptionbox{yz-view}[.3\textwidth]{
+\includegraphics[width=0.3\textwidth,page=1]{dev/gfx/1/vector_field_0.2.pdf}}
+\subcaptionbox{zx-view}[.3\textwidth]{
+\includegraphics[width=0.3\textwidth,page=2]{dev/gfx/1/vector_field_0.2.pdf}}
+\subcaptionbox{xy-view}[.3\textwidth]{
+\includegraphics[width=0.3\textwidth,page=3]{dev/gfx/1/vector_field_0.2.pdf}}
+}
+\caption{Discretization}
+% \label{fig:vd1}
+\end{figure}
+
+\begin{figure}[!tb]
+\centering
+\resizebox{0.95\textwidth}{!}{
+\inputtikz{dev/gfx/1/vector_field_mode_plot_0.20_5_r.tikz}
+}
+\caption{NN, Lerp, Slerp}
+% \label{fig:vd1}
+\end{figure}
+% 
 % \subcaptionbox{}[.245\textwidth]{
 % \begin{figure}[!tb]
 % \centering
@@ -235,15 +260,7 @@ simpli.set\_voi & $-\SIlist[list-units = brackets,list-final-separator={, },]{0.
 \paragraph{Micro}
 % 
 \subsection{Impact on data}
-% 
-\begin{figure}[!tb]
-\centering
-\resizebox{0.75\textwidth}{!}{
-\inputpdf{dev/gfx/5/foo_p.pdf}}
-\caption{}
-\label{fig:foo_p}
-\end{figure}
-% 
+%
 \begin{figure}[!tb]
 \centering
 \resizebox{0.75\textwidth}{!}{
@@ -290,4 +307,9 @@ simpli.set\_voi & $-\SIlist[list-units = brackets,list-final-separator={, },]{0.
 \subsection{Impact on modalities}
 \paragraph{Macro}
 \paragraph{Micro}
+% 
+\section{LAP PM impact}
+\paragraph{LAP}
+können vereinfachte modelle genutzt werden?, p-doppelbrechnung, gröser radius, ...
+\paragraph{PM}
 % 
