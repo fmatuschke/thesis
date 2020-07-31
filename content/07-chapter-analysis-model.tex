@@ -10,8 +10,11 @@ The goal is to choice a set of parameters, which allow a) fast, b) collision fre
 \centering
 \resizebox{0.875\textwidth}{!}{
 \inputtikz{dev/gfx/2/model_stat.tex}}
-\caption{at fl=3 somethings wrong with the first fr value.}
+\caption{at fl=3 somethings wrong with the first fr value. Better use time, steps depends on every variable!}
 % \label{fig:}
 \end{figure}
 % 
-\
+\section{CPU Acceleration}
+% 
+As described in \dummy \openmp is used for acceleration. This means no usage of multiple computer nodes is currently available. Since the Code traverses an octree, This would not be feasable. Also more then 8 cores \dummy. 
+% 
