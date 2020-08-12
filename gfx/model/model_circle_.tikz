@@ -1,0 +1,21 @@
+\begin{tikzsize}{\textwidth}
+\begin{tikzpicture}[scale=\tikzscale]
+% 
+\coordinate (A) at ({cos(0)},{sin(0)});
+\coordinate (B) at ({cos(120)},{sin(120)});
+\coordinate (C) at ({cos(240)},{sin(240)});
+\draw[dashed] (0,0) circle (1);
+\draw[fill] (A) circle (0.1);
+\draw[fill] (B) circle (0.1);
+\draw[fill] (C) circle (0.1);
+\draw[thin] (A) -- (B) -- (C) -- cycle;
+\draw[thin] ($(B) - (0,0.42)$) arc (-90:-30:0.42);
+\path[] ($(B) - (0,0.42)$) arc (-90:-60:0.42) -- (B) node[pos=0.35,anchor=mid] {$\varphi$};
+% 
+\draw[->] (1.25,1.30) -- ({cos(60)},{sin(60)}) node[pos=0, anchor=west] {name};
+% 
+% \path[] (-2.35, 0) rectangle (2.35, 0); %bb
+\path[] (-3.2, 0) rectangle (3.2, 0); %bb
+% 
+\end{tikzpicture}
+\end{tikzsize}

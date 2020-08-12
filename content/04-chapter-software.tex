@@ -1,3 +1,4 @@
+\setcounter{chapter}{4}
 \chapter{Software implementation}
 \label{Software}
 % \minitoc
@@ -13,8 +14,8 @@
 \comment{\paragraph{Ziele:} 
 \begin{itemize}
     \item User-Friendly: Python
-    \item ... C++
-    \item 
+    \item C++ 
+    \item usw.
 \end{itemize}}
 %
 \cite{pybind11}
@@ -26,9 +27,14 @@ The software package \ac{fastPLI} is build as a \textit{Python3} \cite{Python3} 
 
 To explain Python packages, first Python modules needs to be explained.
 
-Simply said, a Python module is a collection of executable functions. They can however also contain other modules. Their structure is exacly build up like a file structure. 
+Simply said, a Python module is a collection of executable functions.
+They can however also contain other modules.
+Their structure is exacly build up like a file structure. 
 
-A Python package on the other side is a collection of python code and modules. Their sturcture are indistinguishable from modules, however they contain additional instruction for the installation process. E.g Python can also run compiled shared \CCXX{} functions. A python package can include the instructions to compile this functions with a suitable \CCXX{} compiler and a list of all necessary additional \CCXX{}-Libraries.
+A Python package on the other side is a collection of python code and modules.
+Their sturcture are indistinguishable from modules, however they contain additional instruction for the installation process.
+E.g Python can also run compiled shared \CCXX{} functions.
+A python package can include the instructions to compile this functions with a suitable \CCXX{} compiler and a list of all necessary additional \CCXX{}-Libraries.
 
 \begin{figure}
     \centering

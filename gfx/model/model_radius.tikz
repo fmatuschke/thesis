@@ -1,0 +1,34 @@
+% 
+% \tikzexternaldisable
+% 
+\begin{tikzsize}{\textwidth}
+\begin{tikzpicture}[scale=\tikzscale]
+% \draw[thin] (0,-5) grid (10,5);
+\pgfmathsetmacro{\lastx}{0}
+\pgfmathsetmacro{\x}{0}
+\pgfmathsetmacro{\dx}{15}
+\pgfmathsetmacro{\lastr}{0}
+\pgfmathsetmacro{\r}{0}
+% 
+\node[overlay] at (-0.5, 2.1) {$\frac{r_{circle}}{r_{fiber}}$};
+% 
+\foreach \r in {5,10,20,40}{
+\pgfmathsetmacro{\x}{\lastx+\lastr+\dx+\r}
+% \draw[line width=10 pt] (\x pt,0) circle (\r pt);
+\pgfmathsetmacro{\f}{\r/10}
+\node[] at (\x pt, 2.1) {$\f$};
+\draw{} (\x pt, 0) circle (\r-5 pt);
+\draw{} (\x pt, 0) circle (\r+5 pt);
+\global\let\lastx=\x
+\global\let\lastr=\r
+}
+% 
+\draw[->] (\lastx pt, 0) -- (\lastx pt, -\lastr pt) node[pos=0.5, anchor=west] {$r$};
+\draw[<->] (\lastx pt, \lastr+5 pt) -- (\lastx pt, \lastr-5 pt) node[pos=0.5, anchor=west] {$d$};
+% 
+\path[] (0-10-17.5 pt, 0) rectangle (\lastx+50+17.5 pt, 0); %bb
+% 
+\end{tikzpicture}
+\end{tikzsize}
+% 
+% \tikzexternalenable

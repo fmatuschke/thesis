@@ -1,3 +1,4 @@
+\setcounter{chapter}{5}
 \chapter{Modelling}
 \label{chap:modelling}
 % \minitoc
@@ -73,46 +74,104 @@
 	\label{fig:conical_capsule}
 \end{figure}
 % 
-This Method aims to model densly \ac{WM}. The main component inside \ac{WM} consist of an Axon and its surrounding Myeling [see \dummy]. The Myelin itself is split into several parts to allow the propagation of the action potential at the Nodes of Ranvier. \\
+This Method aims to model densly \ac{WM}.
+The main component inside \ac{WM} consist of an Axon and its surrounding Myeling [see \dummy].
+The Myelin itself is split into several parts to allow the propagation of the action potential at the Nodes of Ranvier. \\
 % 
-This structure is modelled as a chain of capsules, a cylinder with hemispherical ends \cref{fig:conical_capsule}. To allow a change of cross section or radii, the capsule ending are allowed to consist of individual radii. The resulting shape will be referred to as a \ac{CC}. The chain of \ac{CC} consist therefore of a list of 3d points with individual radius. \\
+This structure is modelled as a chain of capsules, a cylinder with hemispherical ends \cref{fig:conical_capsule}.
+To allow a change of cross section or radii, the capsule ending are allowed to consist of individual radii.
+The resulting shape will be referred to as a \ac{CC}.
+The chain of \ac{CC} consist therefore of a list of 3d points with individual radius. \\
 % 
-To model flexible and curved densly packed nerve fibers, a collision free result needs to be obtained. The representaion of nerve fibers by \ac{CC} allows a fast calculation if two \ac{CC} are colliding each other. \\
+To model flexible and curved densly packed nerve fibers, a collision free result needs to be obtained.
+The representaion of nerve fibers by \ac{CC} allows a fast calculation if two \ac{CC} are colliding each other. \\
 % 
 However instead of building a collision free model, which is quite impossible for a \dummy structure, the strategy is to initialize a model, checking for collisions and then solving these collisions by pushing the fiber or \ac{CC} slightly apart. \\
 % 
-This allows a user to specify any initial configuration and reaching a collision free model, which, depending on the initial overlap, follows the initial geometry. The disadvantage obvious is that the configuration has to change. However since biological tissue is deformable and not "caotic" itself, it follows its natrual behavier.
+This allows a user to specify any initial configuration and reaching a collision free model, which, depending on the initial overlap, follows the initial geometry.
+The disadvantage obvious is that the configuration has to change.
+However since biological tissue is deformable and not "caotic" itself, it follows its natrual behavier.
 %
 % 
 % 
 \section{Collision Detection}
 % 
 Collision detection for a large number of objects is a very computational intense algorithm.
-To reduce the computational afford, the \ac{CC} will be interpreted as a capsule object, since this alows a much simpler calculation. The capsule has the radius $r_{\text{capsule}} = \max(r_0, r_1)$ to soroun the hole \ac{CC}. To check if two capsules collide with each other the distance between the line segments, defined by the capsule begin and end points $p_0, p_1$, is calculated.if the distance $d$ is $d < (r_0 + r_1)$ then the two capsule objects are colliding each other. \\
+To reduce the computational afford, the \ac{CC} will be interpreted as a capsule object, since this alows a much simpler calculation.
+The capsule has the radius $r_{\text{capsule}} = \max(r_0, r_1)$ to soroun the hole \ac{CC}.
+To check if two capsules collide with each other the distance between the line segments, defined by the capsule begin and end points $p_0, p_1$, is calculated.if the distance $d$ is $d < (r_0 + r_1)$ then the two capsule objects are colliding each other. \\
 % 
-To calculate the smallest distance between two line segemnts, sevverel algorith,s already exists. A fast approach was chosen\footnote{\href{https://www.john.geek.nz/2009/03/code-shortest-distance-between-any-two-line-segments/}{https://www.john.geek.nz/2009/03/code-shortest-distance-between-any-two-line-segments/}}.
+To calculate the smallest distance between two line segemnts, sevverel algorith,s already exists.
+A fast approach was chosen\footnote{\href{https://www.john.geek.nz/2009/03/code-shortest-distance-between-any-two-line-segments/}{https://www.john.geek.nz/2009/03/code-shortest-distance-between-any-two-line-segments/}}.
 %
 \section{World}
-For a given cuboid volume the computing grows $\mathcal{O}(V^3)$. Furthermore each object has to be checked to each other, therefore the number of objects to be checked for a collision grows by $\mathcal{O}(n^2)$. This explodes rather quick. In the literature are several approuches (e.g. computer games industry). However since the number of objects will be $\approx \num{e9}$ \dummy cant be used. \\
+For a given cuboid volume the computing grows $\mathcal{O}(V^3)$.
+Furthermore each object has to be checked to each other, therefore the number of objects to be checked for a collision grows by $\mathcal{O}(n^2)$.
+This explodes rather quick.
+In the literature are several approuches (e.g. computer games industry).
+However since the number of objects will be $\approx \num{e9}$ \dummy cant be used. \\
 % 
-A "tree" is a data structure consist of a collection of "nodes", which are connected to each other. One node is conected toword the "root" with a single parent node and towords the "branches" with several "children" or "branches". The nodes at the end of a branch are refered to as "leafs" wich contain the data. Traversing a  evenly distributed tree is of $\mathcal{O}(\log(n))$.\\
+A "tree" is a data structure consist of a collection of "nodes", which are connected to each other.
+One node is conected toword the "root" with a single parent node and towords the "branches" with several "children" or "branches".
+The nodes at the end of a branch are refered to as "leafs" wich contain the data.
+Traversing a  evenly distributed tree is of $\mathcal{O}(\log(n))$.\\
 % 
-An octtree is a special kind of tree where each node contain 8 children. This allows to divide a cubic volume into 8 equal cutted subcubes. Therefore this data structure was chosen to reorder the fiber segents. To order them, a recursive function is used. It checks, if the number of objects is below a threshold $n < t_n$, or the subvolume cube length is below a threshold $dim < t_{dim}$. If so, the leaf is reached and all objects are check for collision with each other. Otherwise a 8 new subvolumes will be created and each object will be check, if it is inside upto 8 of the new created volumes. The next branch will check only with the new includes objects. \\
+\begin{figure}[!tb]
+    \centering
+    \subcaptionbox{oct tree}[.3\textwidth]{
+    \resizebox{!}{0.6\textwidth}{
+    \input{gfx/model/oct_tree.tikz}}}
+    \subcaptionbox{collision 2d}[.65\textwidth]{
+    \resizebox{!}{0.6\textwidth}{
+    \input{gfx/model/collision_tree.tikz}}}
+	\caption{}
+	\label{fig:oct_tree}
+\end{figure}
 % 
-This allows a rather quick reduction of number of objects to be checked. Therefore the last step with an $\mathcal{O}(n^2)$ is not that painful anymore. To speed up the calculation, The objects itself wont be duplicated. All objects are contained in a \textit{std::vector} of cones. Only the indices will be transfered to the next recursive function call. Also the objects are traversed in order, so that the maximum speed from the cpu cache can be exploited. \\
+An octtree is a special kind of tree where each node contain 8 children.
+This allows to divide a cubic volume into 8 equal cutted subcubes.
+Therefore this data structure was chosen to reorder the fiber segents.
+To order them, a recursive function is used.
+It checks, if the number of objects is below a threshold $n < t_n$, or the subvolume cube length is below a threshold $dim < t_{dim}$.
+If so, the leaf is reached and all objects are check for collision with each other.
+Otherwise a 8 new subvolumes will be created and each object will be check, if it is inside upto 8 of the new created volumes.
+The next branch will check only with the new includes objects. \\
 % 
-The minimal subvolume size is choses to $\sqrt{3} \times \max(\text{object size})$. Smaller then this would only replicated subvolumes with identical contained objects.
+This allows a rather quick reduction of number of objects to be checked.
+Therefore the last step with an $\mathcal{O}(n^2)$ is not that painful anymore.
+To speed up the calculation, The objects itself wont be duplicated.
+All objects are contained in a \textit{std::vector} of cones.
+Only the indices will be transfered to the next recursive function call.
+Also the objects are traversed in order, so that the maximum speed from the cpu cache can be exploited. \\
+% 
+The minimal subvolume size is choses to $\sqrt{3} \times \max(\text{object size})$.
+Smaller then this would only replicated subvolumes with identical contained objects.
 The maximum number of objects is set to \num{25} objects \footnote{found suitable by testing.}. \\
 % 
-The building of the tree is don in parallel. Up to 8 threads are spawned to check for the first 8 subvolumes, which objects are contained. The next level can again spawn upto 8 new threads (64 in total). This compensates if a the objects are not uniformly distributed. After the first level, each cpu thread traverses it branch. At each leaf a list ob object is returned containing the object of the leaf. All list are collected for the collision checking test. This collected list is in the next step fully parallel traversed to check for collisions.
+The building of the tree is don in parallel.
+Up to 8 threads are spawned to check for the first 8 subvolumes, which objects are contained.
+The next level can again spawn upto 8 new threads (64 in total).
+This compensates if a the objects are not uniformly distributed.
+After the first level, each cpu thread traverses it branch.
+At each leaf a list ob object is returned containing the object of the leaf.
+All list are collected for the collision checking test.
+This collected list is in the next step fully parallel traversed to check for collisions.
 % 
 \subsection{Solving a collision}
-To solve a collision between two \ac{CC} objects the two points of each object will be moved. The movement will be parallel to the smallest distance line between both objects. To take the 3d placement into consideration, the movement is weighted with the distance of the the individual points to the intersection point with the smallest distance line (see fig \dummy). This will result in a more controlled movement if \eg only the two endings of the fiber objects collide each other. \\
+To solve a collision between two \ac{CC} objects the two points of each object will be moved.
+The movement will be parallel to the smallest distance line between both objects.
+To take the 3d placement into consideration, the movement is weighted with the distance of the the individual points to the intersection point with the smallest distance line (see fig \dummy).
+This will result in a more controlled movement if \eg only the two endings of the fiber objects collide each other. \\
 % 
-The movement is saved for each object in a velocity \textit{std::vector}. Therefore the sum of all velocities is taken into account. The maximum speed is however limited to a value of $v_{\max} = 0.1 \times \min(object radius)$. This prevents movement through another object.
+The movement is saved for each object in a velocity \textit{std::vector}.
+Therefore the sum of all velocities is taken into account.
+The maximum speed is however limited to a value of $v_{\max} = 0.1 \times \min(object radius)$.
+This prevents movement through another object.
 % 
 \subsection{Shape Control}
-The movement of individual points can results in a "distorted" fiber model, \eg two points move very far apart from each other. Therefore boundry conditions have to be specified. It was decided to use the following two conditions:
+The movement of individual points can results in a "distorted" fiber model, \eg two points move very far apart from each other.
+Therefore boundry conditions have to be specified.
+It was decided to use the following two conditions:
 % 
 \subsubsection{Mean segment length}
 % 
@@ -122,7 +181,20 @@ The movement of individual points can results in a "distorted" fiber model, \eg 
 	\label{fig:merge_split}
 \end{figure}
 % 
-The Mean segment length coresponts to the distance between the two points of an object. If the lenght of the object becomes to small/big, the points inside a fiber coresponding to the object are merged/splitted resulting in one point less / adding a new point. The minimum/maximum distance of the object is set to $d_{\min} = \frac{2}{3} \overline{d}, d_{\max} = \frac{4}{3}\overline{d}$. Therefore the mean allowed value of the object is $\frac{d_{\min} + d_{\max}}{2} = \overline{d}$. \\
+% 
+\begin{figure}[!tb]
+    \centering
+    % \resizebox{\textwidth}{!}{
+    \inputtikz{gfx/model/model_length.tikz}
+    % }
+	\caption{different fiber segment length.}
+	\label{fig:model_length}
+\end{figure}
+% 
+The Mean segment length coresponts to the distance between the two points of an object.
+If the lenght of the object becomes to small/big, the points inside a fiber coresponding to the object are merged/splitted resulting in one point less / adding a new point.
+The minimum/maximum distance of the object is set to $d_{\min} = \frac{2}{3} \overline{d}, d_{\max} = \frac{4}{3}\overline{d}$.
+Therefore the mean allowed value of the object is $\frac{d_{\min} + d_{\max}}{2} = \overline{d}$. \\
 % 
 If a new point is created due to exceeding the maximum limitation, the new points position $\vv{p}_{new}$ is 
 \begin{align}
@@ -135,8 +207,33 @@ r_{new} &= \frac{r_{i} + r_{i+1}}{2}\\
 with a radius of $r_{new}$ and a velocity$\vv{v}_{new}$.
 % 
 \subsubsection{Bending radius}
+% 
 The bending radius is defined as the circular radius coresponding to the circle definded by three neigborinig points $p_{i-1}, p_{i}, p_{i+1}$. 
-The limit is set as a minimal radius of $r_{\min}$. If a point $p_{i}$ in a fiber fall below this value, the three points will be moved. $p_{i-1},p_{i+1}$ will be moved \dummy and $p_{i}$ oposit. Therefore the curvature will be reduced.
+The limit is set as a minimal radius of $r_{\min}$.
+If a point $p_{i}$ in a fiber fall below this value, the three points will be moved.
+$p_{i-1},p_{i+1}$ will be moved \dummy and $p_{i}$ oposit.
+Therefore the curvature will be reduced.
+% 
+\begin{figure}[!tb]
+    \centering
+    \inputtikz{gfx/model/model_radius.tikz}
+	\caption{different bending radii for const fiber radius.}
+	\label{fig:model_radius}
+\end{figure}
+% 
+\begin{figure}[!tb]
+    \centering
+    \inputtikz{gfx/model/model_circular.tikz}
+	\caption{radial ....}
+	\label{fig:model_circular}
+\end{figure}
+% 
+\begin{figure}[!tb]
+    \centering
+    \inputtikz{gfx/model/model_circle_.tikz}
+	\caption{radial ....}
+	\label{fig:model_circle_}
+\end{figure}
 % 
 \newline
 Both movements are added to the velocity vector before performing the overall movement.
@@ -186,161 +283,187 @@ Therefore the value is to 0 so that after each step the velocity is resetted to 
 %
 % 
 % 
-\section{Sandbox}
-% 
-\section{Visualization}
-% 
-A visualization tool was written to visualize the fiber configuration. This allows the user a direct feedback (\eg after each step) to tune the initial fiber configuration or boundry condition. It was written in \textit{OpenGL 2}.
-% 
-\ac{CC} are either renderd via the \textit{gluCylinder} function provided by the \textit{GLUT} library for a rough but fast visualiation. This represents the capsule representation. For a more precise and correct visualization of the \ac{CC}, a self implemented rendering was developet. The outer hull, or mesh, is created as a tube sourounding the fiber with circular orderd poinuts around a fiber point $p_i$ (see \dummy).
-% 
-From the mesh, vertices and normals are calculated, which are then finaly rendered. To allow a visualization of the inner axon, the myelin hull can also be transperented rendert. This however needs sorted vertices along the z axis (inside the screen). This process takes quite some time, therefore only feasible for screenshoots at this time (see fig \dummy).
-% 
-\begin{figure}[!tb]
-    \resizebox{\textwidth}{!}{
-    \inputtikz{gfx/model/vis.tikz}
-    }
-	\caption{mesh}
-	\label{fig:vis_mesh}
-\end{figure}
-% 
-\paragraph{Disclamer}
-This is a fast written approuch. Current rendering software uses far more advanced techniques. However this rendering algorithm was written to be a light integrated tool using only the aditional \textit{OpenGL 2} and \textit{GLUT} library.\\
-% 
-A more advanced Tool, the \textit{FAConstructor} \cite{Reuter2019} was written by Andr'e Reuter in the context of this doctorial research. This tool uses \textit{OpenGl 3} and additional calculation on the GPU. Additionally it allows user defined interactive technique to create a 3d fiber model.
-%  
-% 
-% 
-% 
-\section{Medusa}
-% 
-Additionally to the previous discussed Algorithm (\dummy), the \ac{MEDUSA} algorithm, was developed in a cooperation with the team Neurospin from \ac{CEA} in France \cite{Ginsburger2019}. The targed was to develop an algorithm which can build a library of \ac{WM} tissue. This library should not only contein nerve fibers, but also other cell types like olegodendrocites or astrocytes. These cell types are currently not used in \ac{3D-PLI} routin analysis however in \ac{dMRI} the cell are quite important [\dummy]. Furthermore these cells take up additional volume which results in different nerve fiber configurations.\\
-% 
-Since this tool aims to build a statistically library, other parameters are chosen for boundry conditions. These parameters are chosen as close as possible from the current \ac{dMRI} models:
-\dummy\\
-\dummy\\
-% 
-% Instead of choosing \ac{CC} the fibers and cells are represented as a collection of spheres. This has the advantage that the collision of spheres are more easier to be calculated:
+% \section{Sandbox}
+% % 
+% \section{Visualization}
+% % 
+% A visualization tool was written to visualize the fiber configuration.
+This allows the user a direct feedback (\eg after each step) to tune the initial fiber configuration or boundry condition.
+It was written in \textit{OpenGL 2}.
+% % 
+% \ac{CC} are either renderd via the \textit{gluCylinder} function provided by the \textit{GLUT} library for a rough but fast visualiation.
+This represents the capsule representation.
+For a more precise and correct visualization of the \ac{CC}, a self implemented rendering was developet.
+The outer hull, or mesh, is created as a tube sourounding the fiber with circular orderd poinuts around a fiber point $p_i$ (see \dummy).
+% % 
+% From the mesh, vertices and normals are calculated, which are then finaly rendered.
+To allow a visualization of the inner axon, the myelin hull can also be transperented rendert.
+This however needs sorted vertices along the z axis (inside the screen).
+This process takes quite some time, therefore only feasible for screenshoots at this time (see fig \dummy).
+% % 
+% \begin{figure}[!tb]
+%     \resizebox{\textwidth}{!}{
+%     \inputtikz{gfx/model/vis.tikz}
+%     }
+% 	\caption{mesh}
+% 	\label{fig:vis_mesh}
+% \end{figure}
+% % 
+% \paragraph{Disclamer}
+% This is a fast written approuch.
+Current rendering software uses far more advanced techniques.
+However this rendering algorithm was written to be a light integrated tool using only the aditional \textit{OpenGL 2} and \textit{GLUT} library.\\
+% % 
+% A more advanced Tool, the \textit{FAConstructor} \cite{Reuter2019} was written by Andr'e Reuter in the context of this doctorial research.
+This tool uses \textit{OpenGl 3} and additional calculation on the GPU.
+Additionally it allows user defined interactive technique to create a 3d fiber model.
+% %  
+% % 
+% % 
+% % 
+% \section{Medusa}
+% % 
+% Additionally to the previous discussed Algorithm (\dummy), the \ac{MEDUSA} algorithm, was developed in a cooperation with the team Neurospin from \ac{CEA} in France \cite{Ginsburger2019}.
+The targed was to develop an algorithm which can build a library of \ac{WM} tissue.
+This library should not only contein nerve fibers, but also other cell types like olegodendrocites or astrocytes.
+These cell types are currently not used in \ac{3D-PLI} routin analysis however in \ac{dMRI} the cell are quite important [\dummy].
+Furthermore these cells take up additional volume which results in different nerve fiber configurations.\\
+% % 
+% Since this tool aims to build a statistically library, other parameters are chosen for boundry conditions.
+These parameters are chosen as close as possible from the current \ac{dMRI} models:
+% \dummy\\
+% \dummy\\
+% % 
+% % Instead of choosing \ac{CC} the fibers and cells are represented as a collection of spheres.
+This has the advantage that the collision of spheres are more easier to be calculated:
+% % \begin{align}
+% %     d < r_i + r_j
+% % \end{align}
+% % 
+% On the other side more spheres  are needed to represent a fiber.
+There can always be a resulting overlapp which depnding on the usecase, can lead to .. results.\\
+% % 
+% Cells are also represented as a collection of spheres, filling out the sum of the spheres volume. \\
+% %
+% In this theses cells are disregarded.
+A full description of the construction with astrocytes and olegodendrocytes can be found in \cite{Ginsburger2019}.
+% % 
+% \subsection{Algorithm}
+% % 
+% \begin{figure}[!tb]
+% \centering
+% \resizebox{0.75\textwidth}{!}{
+% \inputtikz{gfx/model/medusa/medusa_spheres.tikz}}
+% \caption{modified from \cite{Ginsburger2019}}
+% \label{fig:model:medusa_4}
+% \end{figure}
+% % 
+% \begin{figure}[!tb]
+%     \centering
+%     \resizebox{0.75\textwidth}{!}{
+%     \includegraphics{gfx/model/medusa/4.jpg}}
+% 	\caption{4 \cite{Ginsburger2019}}
+% 	\label{fig:model:medusa_4_org}
+% \end{figure}
+% % 
+% Since all objects are represented as a collection of spheres (see \cref{fig:model:medusa_4})
 % \begin{align}
-%     d < r_i + r_j
+%     \mathcal{S} = \{ (x_i,y_i,z_i,r_i) : i \in \{0, 1, ..., n_\text{objects}-1\}  \} 
 % \end{align}
-% 
-On the other side more spheres  are needed to represent a fiber. There can always be a resulting overlapp which depnding on the usecase, can lead to .. results.\\
-% 
-Cells are also represented as a collection of spheres, filling out the sum of the spheres volume. \\
-%
-In this theses cells are disregarded. A full description of the construction with astrocytes and olegodendrocytes can be found in \cite{Ginsburger2019}.
-% 
-\subsection{Algorithm}
-% 
-\begin{figure}[!tb]
-\centering
-\resizebox{0.75\textwidth}{!}{
-\inputtikz{gfx/model/medusa/medusa_spheres.tikz}}
-\caption{modified from \cite{Ginsburger2019}}
-\label{fig:model:medusa_4}
-\end{figure}
-% 
-\begin{figure}[!tb]
-    \centering
-    \resizebox{0.75\textwidth}{!}{
-    \includegraphics{gfx/model/medusa/4.jpg}}
-	\caption{4 \cite{Ginsburger2019}}
-	\label{fig:model:medusa_4_org}
-\end{figure}
-% 
-Since all objects are represented as a collection of spheres (see \cref{fig:model:medusa_4})
-\begin{align}
-    \mathcal{S} = \{ (x_i,y_i,z_i,r_i) : i \in \{0, 1, ..., n_\text{objects}-1\}  \} 
-\end{align}
-% 
-, a collision is present if (VCS !!!)
-% 
-\begin{align}
-\begin{split}
-d<r_i+r_j\\
-d = \abs{\vv{p}_i - \vv{p}_j}
-\end{split}
-\end{align}
-% 
-However since neighboring spheres in one fiber are colliding for a densly filled fiber, they have to be excluded if
-\begin{align}
-\begin{split}
-d(i,j) &\leq  r_i + r_j\\
-d(i,j) &= 
-\begin{cases}
-\sum_{n=i}^{j-1} \abs{\vv{p}_n - \vv{p}_{n+1}},& \text{if } j-i \geq 1\\
-0 & \text{otherwise}
-\end{cases}
-\end{split}
-\end{align}
-% 
-Spheres inside cell bodys are not checked for collision, since their volume aproximate? the volume of the cell.\\
-% 
-The calculation of collisions is done via the GPU architecture. For this a first implementation was written with the \textit{AxisAligedSortedSearch} \cite{Karras2012}. It sorteds the spheres along one axis, \eg x-axis, and search for each sphere the fist and last possible collision on this axis:
-\begin{align}
-\begin{split}
-\mathcal{C}_i = \{ s \in \mathcal{S} \mid \abs{s_i.x - s_j.x} < r_i+r_j \}
-\end{split}
-\end{align}
-% 
-\begin{lstfloat}[!tb]
-	\lstinputlisting[style=cpp]{code/medusa.cu}
-	\caption{Pseudocode of \acs{MEDUSA} collision checking.}
-	\label{alg:medusa_collision}
-\end{lstfloat}
-% 
-The above described algorithm is currently used for volumes $\approx \SI{200}{\micro\meter}$. For this volume size the algorithm is for the current use fast enough. However, more advaned algorithm exist wich can be applied here (\eg \textit{BoundindBoxHierarchy} \cite{Karras2012}).
-% 
-\subsection{Results}
-% 
-\begin{figure}[!tb]
-    \centering
-    \resizebox{0.95\textwidth}{!}{
-    \includegraphics{gfx/model/medusa/8.jpg}}
-	\caption{8 \cite{Ginsburger2019}}
-	\label{fig:medusa_8}
-\end{figure}
-% 
-\begin{figure}[!tb]
-    \centering
-    \resizebox{0.95\textwidth}{!}{
-    \includegraphics{gfx/model/medusa/11_.jpg}}
-	\caption{11 \cite{Ginsburger2019}}
-	\label{fig:medusa_11}
-\end{figure}
-% 
-% 
-% 
-% 
-% 
-% 
-% 
-%
-% Neurospin works with \ac{dMRI} signals.
-% One focus is on the analysis of the fiber architect of the human brain.
-% \ac{dMRI} is here quite handy since it is currently the only technique to allow in-vivo measurements to analyse the orientation of white matter tracts. Another importance is the availability of \ac{MRI} machines in almost every hospital in the western civilization.
-% Although their resolution is with \SIrange{1.5}{3}{\tesla} limited.
-% However, Neurospin is equipped with a mordern \SI{7}{\tesla} \ac{MRI}.
-% This makes it possible, including higher measurments times on post mortem brain tissue, a \ac{dMRI} resolution up to \SI{200}{\micro\meter}.
-% This makes it possible to allow \ac{3D-PLI} to verify and enhance the analysis of current developed tractography data. 
+% % 
+% , a collision is present if (VCS !!!)
+% % 
+% \begin{align}
+% \begin{split}
+% d<r_i+r_j\\
+% d = \abs{\vv{p}_i - \vv{p}_j}
+% \end{split}
+% \end{align}
+% % 
+% However since neighboring spheres in one fiber are colliding for a densly filled fiber, they have to be excluded if
+% \begin{align}
+% \begin{split}
+% d(i,j) &\leq  r_i + r_j\\
+% d(i,j) &= 
+% \begin{cases}
+% \sum_{n=i}^{j-1} \abs{\vv{p}_n - \vv{p}_{n+1}},& \text{if } j-i \geq 1\\
+% 0 & \text{otherwise}
+% \end{cases}
+% \end{split}
+% \end{align}
+% % 
+% Spheres inside cell bodys are not checked for collision, since their volume aproximate? the volume of the cell.\\
+% % 
+% The calculation of collisions is done via the GPU architecture.
+For this a first implementation was written with the \textit{AxisAligedSortedSearch} \cite{Karras2012}.
+It sorteds the spheres along one axis, \eg x-axis, and search for each sphere the fist and last possible collision on this axis:
+% \begin{align}
+% \begin{split}
+% \mathcal{C}_i = \{ s \in \mathcal{S} \mid \abs{s_i.x - s_j.x} < r_i+r_j \}
+% \end{split}
+% \end{align}
+% % 
+% \begin{lstfloat}[!tb]
+% 	\lstinputlisting[style=cpp]{code/medusa.cu}
+% 	\caption{Pseudocode of \acs{MEDUSA} collision checking.}
+% 	\label{alg:medusa_collision}
+% \end{lstfloat}
+% % 
+% The above described algorithm is currently used for volumes $\approx \SI{200}{\micro\meter}$.
+For this volume size the algorithm is for the current use fast enough.
+However, more advaned algorithm exist wich can be applied here (\eg \textit{BoundindBoxHierarchy} \cite{Karras2012}).
+% % 
+% \subsection{Results}
+% % 
+% \begin{figure}[!tb]
+%     \centering
+%     \resizebox{0.95\textwidth}{!}{
+%     \includegraphics{gfx/model/medusa/8.jpg}}
+% 	\caption{8 \cite{Ginsburger2019}}
+% 	\label{fig:medusa_8}
+% \end{figure}
+% % 
+% \begin{figure}[!tb]
+%     \centering
+%     \resizebox{0.95\textwidth}{!}{
+%     \includegraphics{gfx/model/medusa/11_.jpg}}
+% 	\caption{11 \cite{Ginsburger2019}}
+% 	\label{fig:medusa_11}
+% \end{figure}
+% % 
+% % 
+% % 
+% % 
+% % 
+% % 
+% % 
 % %
-% Along this works they developed a simulation tool (name) which is computing a Monte-Carlo simulation on the diffusion process in virtual tissues.
-% Therefore, for simulations of the \ac{dMRI} signal in the brain, geometric models of nerve fibers as well as nerve cells are required.
-% %
-% The common goal was, due to a work packes inside the \ac{HBP}, the development of a common general purpose tool to build a geometrical library of nerve fiber configurations.
-% Therefore it was decided to work based on the first approaches \cite{Ginsburger2018}.
-% %
-% \begin{quotation}
-% We design a novel white matter numerical phantom generation algorithm which constructs biomimicking geometric configurations with few design parameters, and enables to control the level of disorder of the generated phantoms. The influence of various geometrical parameters present in white matter, such as global angular dispersion, tortuosity, presence of Ranvier nodes, beading, ...
-% \end{quotation}
-% %
-% It is therefore qualified to generate a large database or library of parameter controlled white matter volumes.
-% %
-% \paragraph{differences:} 
-% \begin{itemize}
-%     \item All objects are aproximated with spheres.
-%     \item Statistical ... of tissue
-%     \item diffusion specific parameters
-%     \item pathological changes like axon beeding
-% \end{itemize}
+% % Neurospin works with \ac{dMRI} signals.
+% % One focus is on the analysis of the fiber architect of the human brain.
+% % \ac{dMRI} is here quite handy since it is currently the only technique to allow in-vivo measurements to analyse the orientation of white matter tracts.
+Another importance is the availability of \ac{MRI} machines in almost every hospital in the western civilization.
+% % Although their resolution is with \SIrange{1.5}{3}{\tesla} limited.
+% % However, Neurospin is equipped with a mordern \SI{7}{\tesla} \ac{MRI}.
+% % This makes it possible, including higher measurments times on post mortem brain tissue, a \ac{dMRI} resolution up to \SI{200}{\micro\meter}.
+% % This makes it possible to allow \ac{3D-PLI} to verify and enhance the analysis of current developed tractography data. 
+% % %
+% % Along this works they developed a simulation tool (name) which is computing a Monte-Carlo simulation on the diffusion process in virtual tissues.
+% % Therefore, for simulations of the \ac{dMRI} signal in the brain, geometric models of nerve fibers as well as nerve cells are required.
+% % %
+% % The common goal was, due to a work packes inside the \ac{HBP}, the development of a common general purpose tool to build a geometrical library of nerve fiber configurations.
+% % Therefore it was decided to work based on the first approaches \cite{Ginsburger2018}.
+% % %
+% % \begin{quotation}
+% % We design a novel white matter numerical phantom generation algorithm which constructs biomimicking geometric configurations with few design parameters, and enables to control the level of disorder of the generated phantoms.
+The influence of various geometrical parameters present in white matter, such as global angular dispersion, tortuosity, presence of Ranvier nodes, beading, ...
+% % \end{quotation}
+% % %
+% % It is therefore qualified to generate a large database or library of parameter controlled white matter volumes.
+% % %
+% % \paragraph{differences:} 
+% % \begin{itemize}
+% %     \item All objects are aproximated with spheres.
+% %     \item Statistical ... of tissue
+% %     \item diffusion specific parameters
+% %     \item pathological changes like axon beeding
+% % \end{itemize}

@@ -1,0 +1,39 @@
+\begin{tikzpicture}
+    % \draw (0,0) grid (10,10);
+    \path (0,0) -- (10,10);
+    \begin{scope}[shift={(0.75,3)},local bounding box=BB1]
+        \draw (0:1cm) \foreach \x in {0,120,...,360} {-- (\x:1cm)} -- cycle {};
+        \node (0,0) {obj 1};
+    \end{scope}
+    % 
+    \begin{scope}[shift={(7,5)},local bounding box=BB2]
+        \draw (0:1cm) \foreach \x in {0,60,...,360} {-- (\x:1cm)} -- cycle {};
+        \node (0,0) {obj 2};
+    \end{scope}
+    % 
+    \begin{scope}[shift={(5.5,8)},local bounding box=BB3]
+        \draw (0:1cm) \foreach \x in {0,90,...,360} {-- (\x:1cm)} -- cycle {};
+        \node (0,0) {obj 3};
+    \end{scope}
+    % 
+    \draw[thick, red] (BB1.north west) rectangle (BB1.south east);
+    \draw[thick, red] (BB2.north west) rectangle (BB2.south east);
+    \draw[thick, red] (BB3.north west) rectangle (BB3.south east);
+    % 
+    \draw[thick] (0,0) rectangle (10,10);
+    % 
+    \draw[] (5,0) -- (5,10);
+    \draw[] (0,5) -- (10,5);
+     % 
+    \draw[thin] (5,7.5) -- (10,7.5);
+    \draw[thin] (7.5,5) -- (7.5,10);
+    % 
+    \node at (2.5, 2.5) {$(0,0)$};
+    \node at (7.5, 2.5) {$(1,0)$};
+    \node at (2.5, 7.5) {$(0,1)$};
+    % 
+    \node at (6.25, 6.25) {$(10,10)$};
+    \node at (8.75, 6.25) {$(11,10)$};
+    \node at (6.25, 8.75) {$(10,11)$};
+    \node at (8.75, 8.75) {$(11,11)$};
+\end{tikzpicture}

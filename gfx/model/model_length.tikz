@@ -1,0 +1,30 @@
+% 
+\pgfmathsetmacro{\lastx}{0}
+\pgfmathsetmacro{\x}{0}
+\pgfmathsetmacro{\dx}{15}
+\pgfmathsetmacro{\lastr}{0}
+\pgfmathsetmacro{\r}{0}
+% 
+% \tikzexternaldisable
+\begin{tikzsize}{\textwidth}
+\begin{tikzpicture}[scale=\tikzscale]
+% \begin{tikzpicture}[scale=1.25]
+% \draw[thin] (0,-5) grid (10,5);
+% 
+\node[] at (-0.75,0.0) {segment length};
+\foreach \l [count=\li] in {0.125,0.25,0.5,1,2,4,8}{
+    \node[] at (-0.75,-\li*0.625) {\l};
+    \foreach \i in {0,1,...,64}{
+        \pgfmathsetmacro{\ll}{int(round(\l*\i*10))}
+        \ifthenelse{\ll<81}{
+            \draw[] (\l*\i,-\li*0.625) circle ( 0.25);
+        }{}
+}}
+% 
+\path[] (-2, 0) rectangle (10, 0); %bb
+% 
+\end{tikzpicture}
+\end{tikzsize}
+% 
+% \tikzexternalenable
+% 

@@ -1,3 +1,4 @@
+\setcounter{chapter}{6}
 \chapter{Simulation}
 \label{cha:simulation}
 % \minitoc
@@ -10,7 +11,8 @@
     \item Parallelisierungen/Optimierungen
 \end{itemize}}
 %
-The \ac{3D-PLI} simulation is based on he previous developt tool \textit{simPLI} \cite{Dohmen2015}, which uses linear optics \cite{} to simulate the light tissue inteaction in the \ac{PLI} setup. This version however uses M\"uller matrices \cite{} to define the optical elements and the Stokes vector \cite{} for describing the light \cref{sec:Mueller-Stokes}.\\
+The \ac{3D-PLI} simulation is based on he previous developt tool \textit{simPLI} \cite{Dohmen2015}, which uses linear optics \cite{} to simulate the light tissue inteaction in the \ac{PLI} setup.
+This version however uses M\"uller matrices \cite{} to define the optical elements and the Stokes vector \cite{} for describing the light \cref{sec:Mueller-Stokes}.\\
 % 
 The simulation is split into two conscutive parts.
 The first part is to build a discrete grid model from a given fiber configuration (\eg \dummy).
@@ -49,7 +51,8 @@ For the radial case the smallest distance to the line segment $(\vv{p}_i,\vv{p}_
 \resizebox{0.75\textwidth}{!}{
 \inputtikz{gfx/simpli/indexing.tikz}
 }
-\caption{indexing of arrays. The vector inside the array at index position $[i,j,k]$ will correspond to the vector at position $p=(i+0.5,j+0.5,k+0.5)\cdot \text{\voxelsize}$}
+\caption{indexing of arrays.
+The vector inside the array at index position $[i,j,k]$ will correspond to the vector at position $p=(i+0.5,j+0.5,k+0.5)\cdot \text{\voxelsize}$}
 \label{fig:indexing_array}
 \end{figure}
 % 
@@ -122,7 +125,8 @@ Each \mpi process can use \openmp to spawn multiple threads to efficiently use s
 \section{simulation}
 \label{sec:simulation}
 % 
-The simulation pipeline runs the M\"uller-Stokes calculus on the precious calculated discretised volume. Since no scattering effects or refraction effects inside the tissue volume are included, each light ray trajectory follows a straight line.
+The simulation pipeline runs the M\"uller-Stokes calculus on the precious calculated discretised volume.
+Since no scattering effects or refraction effects inside the tissue volume are included, each light ray trajectory follows a straight line.
 The light matter interaction $\left( \prod_i R_i M_i R_i \times \vv{S} \right)$ is calculated. 
 After the light ray reaches the end of the tissue the final optical elements (\eg polariser) are applied.
 finally the light intensity is stored inside the resulting ccd-image array.\\
@@ -153,6 +157,7 @@ To always get the same dens of light rays per ccd-pixel, all light ray starting 
 % 
 \paragraph{calculation of light ray starting position}
 % 
+% FIXME
 \begin{figure}[!tb]
 % \centering
 % 
@@ -254,7 +259,9 @@ There are several optimizations used inside this pipeline.\\
 % 
 First the order of the tissue stored inside the memory is along the z-axis.
 This allows the light for the non tilted case along the z-axis and therfore along the memory.
-therefore the data can be transferred linear to the cache and the prefetcher\footnote{A prefetcher get not only the data of the memory address i but also its neighbours i+1 and i-1 (depending on the order). This means the data is already in cache, if the next step is calculated. For linear traversions this means effectively a infinitive cache size.} of (modern) \ac{CPU} architectures hits its full potential.
+therefore the data can be transferred linear to the cache and the prefetcher\footnote{A prefetcher get not only the data of the memory address i but also its neighbours i+1 and i-1 (depending on the order).
+This means the data is already in cache, if the next step is calculated.
+For linear traversions this means effectively a infinitive cache size.} of (modern) \ac{CPU} architectures hits its full potential.
 This is also noticeable in the tilted view, since the tilting angle in the \ac{PLI}-experiment is rather small.
 This reduces secnificantly the acces time of the \ac{CPU} and the \ac{RAM}.\\
 % 
