@@ -32,7 +32,12 @@
 % \usepackage{shellesc}
 \usetikzlibrary{external}
 \tikzexternalize[optimize command away=\includepdf,
-						figure name=tikz/\thesubsection-]
+                 figure name=tikz/\thesubsection-,
+                 mode=list and make,
+                 ]
+\tikzset{external/system call={pdflatex \tikzexternalcheckshellescape
+          -halt-on-error -interaction=batchmode -jobname "\image" "\texsource"}
+        }              
 %\fi
 % 
 \includeonly{
