@@ -1,0 +1,76 @@
+\def\zangle{50}
+\def\xangle{-0}
+% 
+\begin{tikzpicture}[x=(\xangle:1cm), y=(90:1cm), z=(\zangle:0.5cm)]
+    % % 
+    % \draw (0,0,0)--(1,0,0) node[midway] {x};
+    % \draw (0,0,0)--(0,1,0) node[midway] {y};
+    % \draw (0,0,0)--(0,0,1) node[midway] {z};
+    % 
+    \begin{scope}[local bounding box=BB1]
+    \draw[thick] (0,0,0)--(1,0,0){};
+    \draw[thick] (0,0,0)--(0,1,0){};
+    \draw[thick] (1,0,0)--(1,1,0){};
+    \draw[thick] (0,1,0)--(1,1,0){};
+    \draw[thick] (1,1,0)--(1,1,1){};
+    \draw[thick] (1,0,0)--(1,0,1){};
+    \draw[thick] (0,1,0)--(0,1,1){};
+    \draw[thick] (0,1,1)--(1,1,1){};
+    \draw[thick] (1,0,1)--(1,1,1){};
+    \end{scope}
+    % 
+    \begin{scope}[yshift = -2cm, local bounding box=BB2]
+    \draw[thick] (0,0,0)--(1,0,0){};
+    \draw[thick] (0,0,0)--(0,1,0){};
+    \draw[thick] (1,0,0)--(1,1,0){};
+    \draw[thick] (0,1,0)--(1,1,0){};
+    \draw[thick] (1,1,0)--(1,1,1){};
+    \draw[thick] (1,0,0)--(1,0,1){};
+    \draw[thick] (0,1,0)--(0,1,1){};
+    \draw[thick] (0,1,1)--(1,1,1){};
+    \draw[thick] (1,0,1)--(1,1,1){};
+    % 
+    \draw[] (1,1,0.5)--(1,0,0.5){};
+    \draw[] (1,1,0.5)--(0,1,0.5){};
+    \draw[] (0.5,1,0)--(0.5,0,0){};
+    \draw[] (0.5,1,0)--(0.5,1,1){};
+    \draw[] (0,0.5,0)--(1,0.5,0){};
+    \draw[] (1,0.5,1)--(1,0.5,0){};
+    \end{scope}
+    % 
+    \begin{scope}[yshift = -4cm, local bounding box=BB3]
+    \draw[thick] (0,0,0)--(1,0,0){};
+    \draw[thick] (0,0,0)--(0,1,0){};
+    \draw[thick] (1,0,0)--(1,1,0){};
+    \draw[thick] (0,1,0)--(1,1,0){};
+    \draw[thick] (1,1,0)--(1,1,1){};
+    \draw[thick] (1,0,0)--(1,0,1){};
+    \draw[thick] (0,1,0)--(0,1,1){};
+    \draw[thick] (0,1,1)--(1,1,1){};
+    \draw[thick] (1,0,1)--(1,1,1){};
+    % 
+    \draw[] (1,1,0.5)--(1,0,0.5){};
+    \draw[] (1,1,0.5)--(0,1,0.5){};
+    \draw[] (0.5,1,0)--(0.5,0,0){};
+    \draw[] (0.5,1,0)--(0.5,1,1){};
+    \draw[] (0,0.5,0)--(1,0.5,0){};
+    \draw[] (1,0.5,1)--(1,0.5,0){};
+    % 
+    \draw[very thin] (0.75,0.5,0)--(0.75,1,0){};
+    \draw[very thin] (0.5,0.75,0)--(1,0.75,0){};
+    \draw[very thin] (0.75,1,0)--(0.75,1,0.5){};
+    \draw[very thin] (0.5,1,0.25)--(1,1,0.25){};
+    \draw[very thin] (1,0.75,0)--(1,0.75,0.5){};
+    \draw[very thin] (1,0.5,0.25)--(1,1,0.25){};
+    \draw[very thin] (0.25,0,0)--(0.25,0.5,0){};
+    \draw[very thin] (0,0.25,0)--(0.5,0.25,0){};
+    \end{scope}
+    % 
+    \draw[->] ($(BB1.south) - (0,0.1)$) -- ($(BB2.north) + (0,0.1)$){};
+    \draw[->] ($(BB2.south) - (0,0.1)$) -- ($(BB3.north) + (0,0.1)$){};
+    % 
+    \node[above, anchor=south, xshift=-1ex,rotate=90] at (BB1.west) {\scriptsize level=0};
+    \node[above, anchor=south, xshift=-1ex,rotate=90] at (BB2.west) {\scriptsize level=1};
+    \node[above, anchor=south, xshift=-1ex,rotate=90] at (BB3.west) {\scriptsize level=2};
+    % 
+\end{tikzpicture}

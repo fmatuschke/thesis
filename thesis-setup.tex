@@ -205,6 +205,25 @@
     \IfFileExists{#1}{\input{#1}}{
     \noindent\includegraphics[width=3cm]{example-image}}   
 }
+% 
+% \tikzset{font=\small}
+% \tikzset{font={\fontsize{10pt}{12}\selectfont}}
+% 
+\usepackage{environ}
+\makeatletter
+\newsavebox{\measure@tikzpicture}
+\NewEnviron{tikzsize}[1]{%
+    \def\tikz@width{#1}%
+    \def\tikzscale{1}\begin{lrbox}{\measure@tikzpicture}%
+    \tikzset{external/export next=false,external/optimize=false}% force translation of this BODY (and do not optimize it away as it would usually do):
+    \BODY
+    \end{lrbox}%
+    \pgfmathparse{#1/\wd\measure@tikzpicture}%
+    \edef\tikzscale{\pgfmathresult}%
+    \BODY
+}
+\makeatother
+% 
 % \newcommand{\inputtikz}[1]{%
 % 	\IfFileExists{#1.pdf}%
 % 	{\includegraphics{#1.pdf}}%
