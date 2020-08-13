@@ -191,6 +191,7 @@
 \usepgfplotslibrary{colorbrewer}
 \usepgfplotslibrary{statistics}
 \usepgfplotslibrary{groupplots}
+\usepgfplotslibrary{patchplots}
 \usepackage{booktabs,colortbl}
 \usepackage{multirow}
 %
@@ -211,14 +212,21 @@
 % 
 \usepackage{environ}
 \makeatletter
+\def\tikzwidth{\textwidth}
+\def\tikzheight{\textheight}
 \newsavebox{\measure@tikzpicture}
-\NewEnviron{tikzsize}[1]{%
+\NewEnviron{tikzsize}[2]{%
     \def\tikz@width{#1}%
+    \def\tikz@height{#2}%
     \def\tikzscale{1}\begin{lrbox}{\measure@tikzpicture}%
     \tikzset{external/export next=false,external/optimize=false}% force translation of this BODY (and do not optimize it away as it would usually do):
     \BODY
     \end{lrbox}%
     \pgfmathparse{#1/\wd\measure@tikzpicture}%
+    \edef\tikzscalewidth{\pgfmathresult}%
+    \pgfmathparse{#2/\ht\measure@tikzpicture}%
+    \edef\tikzscaleheight{\pgfmathresult}%
+    \pgfmathparse{min(\tikzscalewidth, \tikzscaleheight)}%
     \edef\tikzscale{\pgfmathresult}%
     \BODY
 }

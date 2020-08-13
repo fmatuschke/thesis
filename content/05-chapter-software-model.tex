@@ -1,4 +1,4 @@
-\setcounter{chapter}{5}
+\setcounter{chapter}{4}
 \chapter{Modelling}
 \label{chap:modelling}
 % \minitoc
@@ -66,8 +66,10 @@
 % 
 \begin{figure}[!tbh]
     \centering
-    \resizebox{.5\textwidth}{!}{
-    \inputtikz{gfx/model/conical_capsule.tikz}}
+    % \resizebox{.5\textwidth}{!}{
+    \def\tikzwidth{0.5\textwidth}
+    \inputtikz{gfx/model/conical_capsule.tikz}
+    % }
     \tikzexternaldisable
 	\caption[cc and co]{\Acf{CC}: \raisebox{.25em}{\tikz \draw[black](0,0)--(0.275,0);} \ac{CC}, \raisebox{.25em}{\tikz \draw[blue, dash pattern=on 2.5pt off 2.5pt](0,0)--(0.275,0);} capsule, \raisebox{.25em}{\tikz \draw[red, dash pattern={on 2.5pt off 0.9pt on 0.42pt off 0.9pt}](0,0)--(0.275,0);} bounding box}
 	\tikzexternalenable
@@ -119,11 +121,17 @@ Traversing a  evenly distributed tree is of $\mathcal{O}(\log(n))$.\\
 \begin{figure}[!tb]
     \centering
     \subcaptionbox{oct tree}[.3\textwidth]{
-    \resizebox{!}{0.6\textwidth}{
-    \input{gfx/model/oct_tree.tikz}}}
+    % \resizebox{!}{0.6\textwidth}{
+    \def\tikzwidth{0.3\textwidth}
+    \input{gfx/model/oct_tree.tikz}
+    % }
+    }
     \subcaptionbox{collision 2d}[.65\textwidth]{
-    \resizebox{!}{0.6\textwidth}{
-    \input{gfx/model/collision_tree.tikz}}}
+    % \resizebox{!}{0.6\textwidth}{
+    \def\tikzwidth{0.6\textwidth}
+    \input{gfx/model/collision_tree.tikz}
+    % }
+    }
 	\caption{}
 	\label{fig:oct_tree}
 \end{figure}

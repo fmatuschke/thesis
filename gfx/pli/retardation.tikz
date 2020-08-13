@@ -7,8 +7,9 @@
 axis/.style={black, thick},
 wave/.style={green!25!black, opacity=.5, fill=green!70!black, thick}}
 %
-\begin{tikzpicture}[
-3d view={\azimuth}{\elevation}]
+\begin{tikzsize}{\tikzwidth}{\tikzheight}
+\begin{tikzpicture}[scale=\tikzscale,
+                    3d view={\azimuth}{\elevation}]
 \draw[thick, ->] (0,0,0) -- (1,0,0) node[anchor=north]{x};
 \draw[thick, ->] (0,0,0) -- (0,1,0) node[anchor=south]{y};
 \draw[thick, ->] (0,0,0) -- (0,0,1) node[anchor=south]{z};
@@ -31,8 +32,8 @@ wave/.style={green!25!black, opacity=.5, fill=green!70!black, thick}}
 \path [optical!50, fill, opacity=0.5] (2*\n,-\h,-\h) -- (0,-\h,-\h) -- (0,-\h,\h) -- (2*\n,-\h,\h) -- cycle;
 \path [optical!75, fill, opacity=0.5] (2*\n,-\h,\h) -- (0,-\h,\h) -- (0,\h,\h) -- (2*\n,\h,\h) -- cycle;
 % 
-\draw[thick, ->] (2*\n,-\h,-\h) -- (2*\n,-\h/2,-\h) node[anchor=west]{$n_y$};
-\draw[thick, ->] (2*\n,-\h,-\h) -- (2*\n,-\h,-\h/1.5) node[anchor=east]{$n_z$};
+\draw[thick, ->] (2*\n,-\h,-\h) -- (2*\n,0,-\h) node[pos=0.5, anchor=north west]{$n_y$};
+\draw[thick, ->] (2*\n,-\h,-\h) -- (2*\n,-\h,-\h/4) node[pos=0.5, anchor=east]{$n_z$};
 \end{scope}
 % 
 \begin{scope}[shift={(4*\n,0,0)}]
@@ -42,3 +43,4 @@ wave/.style={green!25!black, opacity=.5, fill=green!70!black, thick}}
 \end{scope}
 % 
 \end{tikzpicture}
+\end{tikzsize}

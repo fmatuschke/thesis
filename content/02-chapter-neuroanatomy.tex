@@ -1,4 +1,4 @@
-\setcounter{chapter}{2}
+\setcounter{chapter}{1}
 \chapter{Neuroanatomy}
 \label{sec:neuro}
 % \minitoc
@@ -16,13 +16,11 @@
 %
 \begin{figure}[!tb]
 	\centering
-	\resizebox{0.75\textwidth}{!}{
-		\subfloat[]{\includegraphics[height=5cm]{gfx/neuroanatomy/human-brain-profile.pdf}}
-		\hspace{1cm}
-		\subfloat[]{\includegraphics[height=5cm]{gfx/neuroanatomy/human-brain-section.pdf}}
-		\hspace{1cm}
-		\subfloat[]{\includegraphics[height=5cm]{gfx/neuroanatomy/neuron-axon.pdf}}
-	}
+% 	\resizebox{0.75\textwidth}{!}{
+\subcaptionbox{}[.28\textwidth]{\includegraphics[height=3cm]{gfx/neuroanatomy/human-brain-profile.pdf}}
+\subcaptionbox{}[.35\textwidth]{\includegraphics[height=3cm]{gfx/neuroanatomy/human-brain-section.pdf}}
+\subcaptionbox{}[.35\textwidth]{\includegraphics[height=3cm]{gfx/neuroanatomy/neuron-axon.pdf}}
+% 	}
 	\caption{(a) Illustration of human brain. (b) Illustration of a coronal human brain section. (c) Illustration of a neuron with axon and oligodendrocytes.}
 	\label{fig::human-brain}
 \end{figure}
@@ -33,8 +31,10 @@
 %
 \begin{figure}[!tb]
 	\centering
-	\resizebox{\textwidth}{!}{
-	\inputtikz{gfx/neuroanatomy/brain_sectioning.tikz}}
+% 	\resizebox{\textwidth}{!}{
+    \def\tikzwidth{\textwidth}
+	\inputtikz{gfx/neuroanatomy/brain_sectioning.tikz}
+% 	}
 	\caption{Illustration of sectioning.}
 	\label{fig::brain_sectioning}
 \end{figure}

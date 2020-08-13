@@ -1,7 +1,9 @@
 \def\zangle{50}
 \def\xangle{-0}
 % 
-\begin{tikzpicture}[x=(\xangle:1cm), y=(90:1cm), z=(\zangle:0.5cm)]
+\begin{tikzsize}{\textwidth}
+\begin{tikzpicture}[scale=\tikzscale,
+                    x=(\xangle:1cm), y=(90:1cm), z=(\zangle:0.5cm)]
     % % 
     % \draw (0,0,0)--(1,0,0) node[midway] {x};
     % \draw (0,0,0)--(0,1,0) node[midway] {y};
@@ -74,3 +76,4 @@
     \node[above, anchor=south, xshift=-1ex,rotate=90] at (BB3.west) {\scriptsize level=2};
     % 
 \end{tikzpicture}
+\end{tikzsize}
