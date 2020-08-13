@@ -1,4 +1,4 @@
-\begin{tikzsize}{\textwidth}
+\begin{tikzsize}{\tikzwidth}{\tikzheight}
 \begin{tikzpicture}[scale=\tikzscale]
 % 
 \coordinate (A) at ({cos(0)},{sin(0)});

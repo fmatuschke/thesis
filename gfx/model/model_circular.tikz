@@ -1,4 +1,4 @@
-\begin{tikzsize}{\textwidth}
+\begin{tikzsize}{\tikzwidth}{\tikzheight}
 \begin{tikzpicture}[scale=\tikzscale]
 % \draw (-0.20,-0.20) -- (0.20,0.20);
 % \draw (-0.20,0.20) -- (0.20,-0.20);

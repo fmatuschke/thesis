@@ -1,7 +1,7 @@
 % 
 % \tikzexternaldisable
 % 
-\begin{tikzsize}{\textwidth}
+\begin{tikzsize}{\tikzwidth}{\tikzheight}
 \begin{tikzpicture}[scale=\tikzscale]
 % \draw[thin] (0,-5) grid (10,5);
 \pgfmathsetmacro{\lastx}{0}
