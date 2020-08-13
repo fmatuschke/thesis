@@ -1,4 +1,5 @@
-\begin{tikzpicture}
+\begin{tikzsize}{\tikzwidth}{\tikzheight}
+\begin{tikzpicture}[scale=\tikzscale]
 %
 \colorlet{led}{green!70!black}
 % camera
@@ -47,3 +48,4 @@
 \end{scope}
 %
 \end{tikzpicture}
+\end{tikzsize}

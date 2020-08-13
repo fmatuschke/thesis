@@ -1,4 +1,5 @@
-\begin{tikzpicture}
+\begin{tikzsize}{\textwidth}
+\begin{tikzpicture}[scale=\tikzscale]
     % \draw (0,0) grid (10,10);
     \path (0,0) -- (10,10);
     \begin{scope}[shift={(0.75,3)},local bounding box=BB1]
@@ -37,3 +38,4 @@
     \node at (6.25, 8.75) {$(10,11)$};
     \node at (8.75, 8.75) {$(11,11)$};
 \end{tikzpicture}
+\end{tikzsize}

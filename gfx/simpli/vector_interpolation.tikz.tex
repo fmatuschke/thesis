@@ -5,7 +5,8 @@
 \def\yb{sin(135)}
 \def\theta{100}
 % 
-\begin{tikzpicture}
+\begin{tikzsize}{\tikzwidth}{\tikzheight}
+\begin{tikzpicture}[scale=\tikzscale]
     \begin{axis}[
     hide axis,
     axis equal,
@@ -39,3 +40,4 @@
      {sin((1-x)*\theta)/sin(\theta)*\ya+sin(x*\theta)/sin(\theta) * \yb});
     \end{axis}
 \end{tikzpicture}
+\end{tikzsize}
