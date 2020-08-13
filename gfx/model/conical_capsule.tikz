@@ -1,4 +1,4 @@
-\begin{tikzsize}{\textwidth}
+\begin{tikzsize}{\tikzwidth}{\tikzheight}
 \begin{tikzpicture}[scale=\tikzscale]
 \def\ra{1}
 \def\d{4}

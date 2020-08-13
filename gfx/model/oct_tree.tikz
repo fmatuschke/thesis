@@ -1,7 +1,7 @@
 \def\zangle{50}
 \def\xangle{-0}
 % 
-\begin{tikzsize}{\textwidth}
+\begin{tikzsize}{\tikzwidth}{\tikzheight}
 \begin{tikzpicture}[scale=\tikzscale,
                     x=(\xangle:1cm), y=(90:1cm), z=(\zangle:0.5cm)]
     % % 
@@ -75,5 +75,6 @@
     \node[above, anchor=south, xshift=-1ex,rotate=90] at (BB2.west) {\scriptsize level=1};
     \node[above, anchor=south, xshift=-1ex,rotate=90] at (BB3.west) {\scriptsize level=2};
     % 
+    \path[] (0,0) -- (1.5,0); %BB
 \end{tikzpicture}
 \end{tikzsize}

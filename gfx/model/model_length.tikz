@@ -6,7 +6,7 @@
 \pgfmathsetmacro{\r}{0}
 % 
 % \tikzexternaldisable
-\begin{tikzsize}{\textwidth}
+\begin{tikzsize}{\tikzwidth}{\tikzheight}
 \begin{tikzpicture}[scale=\tikzscale]
 % \begin{tikzpicture}[scale=1.25]
 % \draw[thin] (0,-5) grid (10,5);
