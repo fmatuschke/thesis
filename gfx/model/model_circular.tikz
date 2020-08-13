@@ -1,0 +1,22 @@
+\begin{tikzsize}{\textwidth}
+\begin{tikzpicture}[scale=\tikzscale]
+% \draw (-0.20,-0.20) -- (0.20,0.20);
+% \draw (-0.20,0.20) -- (0.20,-0.20);
+\draw[fill] (0,0) circle (0.075);
+% \draw[pattern=bricks] (0,0) circle (3);
+\draw[fill=white] (0,0) circle (1);
+\draw[pattern=dots] (0,0) circle (1);
+\draw[dash dot] (0,0) circle (2);
+\draw[dashed] (0,0) circle (3);
+\draw[thin, <->] (0,0) -- (-1,0) node[midway, below] {$r_0$};
+\draw[thin, <->] (1,0) -- (2,0) node[midway, below] {$r_1$};
+% 
+\foreach \i in {40,50,...,140}{
+\draw ({cos(\i)*2}, {sin(\i)*2}) circle (1);
+}
+\draw[->] (3,3) -- ({cos(45)*3},{sin(45)*3}) node[pos=0, anchor=west] {circular fiber};
+% 
+\path[] (-5.5, 0) rectangle (5.5, 0); %bb
+% 
+\end{tikzpicture}
+\end{tikzsize}
