@@ -30,15 +30,15 @@ scale uniformly strategy=units only,
     mesh/colorspace explicit color output=cmyk,
     variable = \u,
     variable y = \v,
-    domain = -180:180,
+    domain = 0:360,
     y domain = 0:180,
-    samples = 36,
+    samples = 18,
     opacity=0.2,
     fill opacity=1.0,
     % point meta={symbolic={Hsb=deg(v),u,u}},
     point meta={
         symbolic={hsb=(
-            {abs(u)/180}, 
+            {abs(mod(u,180))/180}, 
             {1}, 
             {1-(2*abs(90-v)/180)}
             % h = 360.0 * np.abs(directionValue) / np.pi
