@@ -1,3 +1,4 @@
+
 \begin{tikzsize}{\tikzwidth}{\tikzheight}
 \begin{tikzpicture}[scale=\tikzscale,]
 \begin{axis}[%
@@ -34,11 +35,15 @@ scale uniformly strategy=units only,
     samples = 36,
     opacity=0.2,
     fill opacity=1.0,
+    % point meta={symbolic={Hsb=deg(v),u,u}},
     point meta={
-        symbolic={(
-            {abs(cos(u)*sin(v))}, % R
-            {abs(sin(u)*sin(v))}, % G
-            {abs(cos(v))}% B
+        symbolic={hsb=(
+            {abs(u)/180}, 
+            {1}, 
+            {1-(2*abs(90-v)/180)}
+            % h = 360.0 * np.abs(directionValue) / np.pi
+            % s = 1.0
+            % v = 1.0 - (2 * np.abs(inclinationValue) / np.pi)
         }},
     ]
 ({cos(u)*sin(v)}, {sin(u)*sin(v)}, {cos(v)});
