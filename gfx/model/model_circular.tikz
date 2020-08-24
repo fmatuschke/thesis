@@ -18,7 +18,8 @@
 \begin{axis}[%
     axis equal,
     axis lines=none,
-    zmin=-8, zmax=2,
+    scale only axis,
+    zmin=-9, zmax=3,
     view={0}{42},
     ticks=none,
     ]
@@ -41,12 +42,12 @@
         {(12 + 6 * cos(x)) * sin(y)},
         {6 * sin(x)});
     % 
-    \draw[dashed] (axis cs: 0,0,10) -- (axis cs: 0,0,28);
-    \draw[dashed] (axis cs: 0,0,-20.5) -- (axis cs: 0,0,-30);
+    \draw[dashed] (axis cs: 0,0,10) -- (axis cs: 0,0,35);
+    \draw[dashed] (axis cs: 0,0,-20.5) -- (axis cs: 0,0,-35);
     \draw[dashed] (axis cs:{12*cos(200)},{12*sin(200)},0) \foreach \i in {201,202,...,340}{-- (axis cs:{12*cos(\i)},{12*sin(\i)},0)};
     \draw [] (axis cs:{12*cos(280)},{12*sin(280)},0) -- (7,-10) node[anchor=west, pos=1] {$fiber_2$};
     \draw [] (axis cs: 0,0,16) -- (axis cs: 5,5,16) node[anchor=west, pos=1] {$fiber_1$};
-    \path[] (axis cs: 0,0,-20.5) -- (axis cs: 0,0,28);
+    \path[] (axis cs: 0,0,-35) -- (axis cs: 0,0,35);
     \path[] (axis cs: -18,0,0) -- (axis cs: 18,0,0);
 \end{axis}
 % 

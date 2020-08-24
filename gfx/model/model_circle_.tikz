@@ -21,7 +21,8 @@
 \begin{axis}[%
     axis equal,
     axis lines=none,
-    zmin=-8, zmax=2,
+    scale only axis,
+    zmin=-9, zmax=3,
     view={0}{42},
     ticks=none,
     ]
@@ -38,7 +39,7 @@
     \coordinate (A) at (axis cs:{12*cos(120)},{12*sin(120)},0);
     \draw[black] ($(A) + (axis cs:0,0,0) - (axis cs:{3.8*cos(90)},{3.8*sin(90)},0)$) \foreach \i in {91,92,...,150}{-- ($(A) + (axis cs:0,0,0) - (axis cs:{3.8*cos(\i)},{3.8*sin(\i)},0)$) };
     \node[anchor = base] at ($(A)+(axis cs:0,0,0)-(axis cs:{2.75*cos(115)},{2.75*sin(115)},0)$) {$\varphi$};
-    \path[] (axis cs: 0,0,-20.5) -- (axis cs: 0,0,28);
+    \path[] (axis cs: 0,0,-35) -- (axis cs: 0,0,35);
     \path[] (axis cs: -18,0,0) -- (axis cs: 18,0,0);
 \end{axis}
 % 
