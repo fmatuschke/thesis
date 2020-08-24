@@ -14,10 +14,9 @@
 % 
 \foreach \r in {5,10,20,40}{
 \pgfmathsetmacro{\x}{\lastx+\lastr+\dx+\r}
-% \draw[line width=10 pt] (\x pt,0) circle (\r pt);
 \pgfmathsetmacro{\f}{\r/10}
 \node[] at (\x pt, 2.1) {$\f$};
-\draw{} (\x pt, 0) circle (\r-5 pt);
+\draw{} (\x pt, 0) circle (\r-5+0.1 pt);
 \draw{} (\x pt, 0) circle (\r+5 pt);
 \global\let\lastx=\x
 \global\let\lastr=\r

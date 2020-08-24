@@ -193,6 +193,7 @@
 \usepgfplotslibrary{statistics}
 \usepgfplotslibrary{groupplots}
 \usepgfplotslibrary{patchplots}
+\usepgfplotslibrary{colormaps}
 \usepackage{booktabs,colortbl}
 \usepackage{multirow}
 %
@@ -279,6 +280,17 @@
 % ["#9b59b6", "#3498db", "#95a5a6", "#e74c3c", "#34495e", "#2ecc71"]
 % 
 % use colorbrew instead
+% 
+\makeatletter
+\definecolor{cc21}{HTML}{A6CEE3}
+\definecolor{cc22}{HTML}{1F78B4}
+\pgfplotscreateplotcyclelist{cc2}{cc21, cc22}
+\makeatother
+% 
+% \definecolor{cc21}{HTML}{9b59b6}
+% \definecolor{cc22}{HTML}{3498db}
+% \pgfplotscreateplotcyclelist{cc2}{cc21, cc22}
+% 
 % \definecolor{cc21}{HTML}{9b59b6}
 % \definecolor{cc22}{HTML}{3498db}
 % \pgfplotscreateplotcyclelist{cc2}{cc21, cc22}

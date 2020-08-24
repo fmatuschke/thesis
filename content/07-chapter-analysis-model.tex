@@ -7,68 +7,25 @@
 % 
 The goal is to choice a set of parameters, which allow a) fast, b) collision free and c)a high wolume fraction for densly fibers. 
 % 
-\begin{figure}[!tb]
+\begin{figure}[!t]
 \centering
-\resizebox{1.0\textwidth}{!}{
-\def\fiberradius{0.5}
-\includegraphics[width=1.0\textwidth, page=1]{dev/gfx/2/parameter_statistic_box_plot.pdf}}
-\caption{at fl=3 somethings wrong with the first fr value.
-Better use time, steps depends on every variable!}
+\includegraphics[width=0.95\textwidth, page=1]{dev/gfx/2/parameter_statistic_box_plot.pdf}
+\caption{}
 % \label{fig:}
 \end{figure}
 % 
-%  textwidth in cm: \printinunitsof{cm}\prntlen{\textwidth}\\
-%  textheight in cm: \printinunitsof{cm}\prntlen{\textheight}
-% 
-\begin{figure}[!tb]
+\begin{figure}[!t]
 \centering
-\resizebox{1.0\textwidth}{!}{
-\def\fiberradius{0.5}
-\includegraphics[width=1.0\textwidth, page=2]{dev/gfx/2/parameter_statistic_box_plot.pdf}}
-\caption{at fl=3 somethings wrong with the first fr value.
-Better use time, steps depends on every variable!}
+\includegraphics[width=0.95\textwidth, page=2]{dev/gfx/2/parameter_statistic_box_plot.pdf}
+\caption{}
 % \label{fig:}
 \end{figure}
 % 
-% \begin{figure}[!tb]
-% \centering
-% \resizebox{1.0\textwidth}{!}{
-% \def\fiberradius{1.0}
-% \inputtikz{dev/gfx/2/cube_stat.tex}}
-% \caption{at fl=3 somethings wrong with the first fr value. Better use time, steps depends on every variable!}
-% % \label{fig:}
-% \end{figure}
-% % 
-% \begin{figure}[!tb]
-% \centering
-% \resizebox{1.0\textwidth}{!}{
-% \def\fiberradius{2.0}
-% \inputtikz{dev/gfx/2/cube_stat.tex}}
-% \caption{at fl=3 somethings wrong with the first fr value. Better use time, steps depends on every variable!}
-% % \label{fig:}
-% \end{figure}
-% % 
-% \begin{figure}[!tb]
-% \centering
-% \resizebox{1.0\textwidth}{!}{
-% \def\fiberradius{5.0}
-% \inputtikz{dev/gfx/2/cube_stat.tex}}
-% \caption{at fl=3 somethings wrong with the first fr value. Better use time, steps depends on every variable!}
-% % \label{fig:}
-% \end{figure}
-% % 
-% \begin{figure}[!tb]
-% \centering
-% \resizebox{1.0\textwidth}{!}{
-% \def\fiberradius{10.0}
-% \inputtikz{dev/gfx/2/cube_stat.tex}}
-% \caption{at fl=3 somethings wrong with the first fr value. Better use time, steps depends on every variable!}
-% % \label{fig:}
-% \end{figure}
+\section{timeing}
 % 
 \section{is overlap important?}
 % 
-analog analysis like voxelsize
+analog analysis like voxelsize -> simulation?
 % 
 \section{CPU Acceleration}
 % 
@@ -77,27 +34,32 @@ This means no usage of multiple computer nodes is currently available.
 Since the Code traverses an octree, This would not be feasable.
 Also more then 8 cores \dummy.
 % 
+\begin{figure}[!t]
+\centering
+\def\tikzwidth{\textwidth}
+\inputtikz{dev/gfx/4/model_solver_cubes.tikz}
+\caption{}
+% \label{fig:}
+\end{figure}
+
+% 
 \section{Building Models}
 % 
 \tikzexternaldisable
 % 
-\begin{figure}[!tb]
+\begin{figure}[!t]
 \centering
 % \resizebox{1.0\textwidth}{!}{
 % \inputpdf{dev/gfx/2/cube_2pop_images.pdf}
 \begin{tikzpicture}
 \node[inner sep=0pt] (image) at (0,0) {\includegraphics[width=1.0\textwidth, page=1]{dev/gfx/2/cube_2pop_orientation_hist.pdf}};
-\begin{scope}[overlay]
-    \draw[->,thick] ($(image.north west)-(0.05,-0.05)$) -- ++(1,0) node [midway, above] {$\Omega$};
-    \draw[->,thick] ($(image.north west)-(0.05,-0.05)$) -- ++(0,-1) node [midway, above, rotate=90] {$\Psi$};
-\end{scope}
 \end{tikzpicture}
 % }
 \caption{}
 % \label{fig:}
 \end{figure}
 % 
-% \begin{figure}[!tb]
+% \begin{figure}[!t]
 % \centering
 % \resizebox{1.0\textwidth}{!}{
 % \begin{tikzpicture}
