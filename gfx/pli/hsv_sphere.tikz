@@ -32,7 +32,7 @@ scale uniformly strategy=units only,
     variable y = \v,
     domain = 0:360,
     y domain = 0:180,
-    samples = 18,
+    samples = 9,%36
     opacity=0.2,
     fill opacity=1.0,
     % point meta={symbolic={Hsb=deg(v),u,u}},
