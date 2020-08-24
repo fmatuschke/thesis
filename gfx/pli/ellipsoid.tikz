@@ -1,8 +1,11 @@
-% \def\rot{1}
-\def\a{1}
-\def\c{2}
-\def\alpha{-15}
+\pgfmathsetmacro{\a}{1}
+\pgfmathsetmacro{\c}{2}
+\pgfmathsetmacro{\alpha}{-15}
 \pgfmathsetmacro{\beta}{-atan(1.5*\a*cos(\alpha) / (1.5*\c*sin(\alpha))}
+% 
+\ifthenelse{\boolean{\rot}}
+{\pgfmathsetmacro{\roty}{\beta-90}}
+{\pgfmathsetmacro{\roty}{0}}
 % 
 \begin{tikzsize}{\tikzwidth}{\tikzheight}
 \begin{tikzpicture}[scale=\tikzscale]
@@ -11,7 +14,7 @@
 % 
 \begin{scope}[
 3d view={20}{20},
-rotate around y={\rot*(\beta-90)},
+rotate around y={\roty},
 ]
 % 
 % \draw[->] (-1,0,0)-- (1,0,0)node[pos=1.1]{x};

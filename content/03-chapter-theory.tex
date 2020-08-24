@@ -143,22 +143,15 @@ e^{ -i (kz - \omega t)}
 %
 \begin{figure}[!t]
 \centering
-% 
 \subcaptionbox{}[.49\textwidth]{
-\def\rot{0}
+\def\rot{false} 
 \def\tikzwidth{0.49*\textwidth}
-% \resizebox{0.45\textwidth}{!}{
-\inputtikz{gfx/pli/ellipsoid.tikz}
-}
-% }
-% 
+\inputtikz{gfx/pli/ellipsoid.tikz}}
+%
 \subcaptionbox{}[.49\textwidth]{
-\def\rot{1}
+\def\rot{true} 
 \def\tikzwidth{0.49*\textwidth}
-% \resizebox{0.45\textwidth}{!}{
-\inputtikz{gfx/pli/ellipsoid.tikz}
-}
-% }
+\inputtikz{gfx/pli/ellipsoid.tikz}}
 \caption{birefringence elipsoid}
 \end{figure}
 % 
@@ -354,7 +347,7 @@ D &= A \sin(\alpha)+ B \sin(\beta)
 % 
 \begin{figure}[!t]
 \centering
-\def\tikzwidth{0.5*\textwidth}
+\def\tikzwidth{0.45*\textwidth}
 \subcaptionbox{rgb}[.49\textwidth]{
 \inputtikz{gfx/pli/rgb_sphere.tikz}}
 \subcaptionbox{hsv}[.49\textwidth]{
