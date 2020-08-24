@@ -1,5 +1,61 @@
 % \captionsetup[sub]{position=top, skip=-14pt}
 %
+\tikzset{
+    pics/cone/.style n args={4}{
+      code = {
+        \begin{scope}[local bounding box=bb]
+        \def\pa{#1}
+        \def\pb{#3}
+        \pgfmathsetmacro{\ra}{#2}
+        \pgfmathsetmacro{\rb}{#4}
+        \pgfmathsetmacro{\out}{\ra/(\ra - \rb)}
+        \node[circle,minimum size=2 * \ra cm,inner sep=0pt] (l1) at \pa {};
+        \node[circle,minimum size=2 * \rb cm,inner sep=0pt] (l2) at \pb {};
+        \path (l1.center) -- node[coordinate,pos=\out] (out) {}  (l2.center);
+        % 
+        \foreach \i in {1,2}{
+        \foreach \j in {1,2}{
+            \coordinate (t\i\j) at (tangent cs:node=l\i,point={(out)},solution=\j);
+        }}
+        % 
+        \foreach \i in {1,2}{
+            \draw[] (t1\i) --  (t2\i);
+        }
+        % 
+        % \node () at (t11) {t11};
+        % \node () at (t12) {t12};
+        % \node () at (t21) {t21};
+        % \node () at (t22) {t22};
+        % \node () at \pa {pa};
+        % \node () at \pb {pb};
+        % 
+        \begin{scope}[overlay]
+            \coordinate (t1) at ($(t11)!-\ra!(t21)$);
+            \coordinate (t2) at ($(t12)!-\ra!(t22)$);
+            % \node () at (t1) {t1};
+            % \node () at (t2) {t2};
+            % \draw[green] (t11)--(t12)--(t2)--(t1)--cycle;
+            \begin{pgfinterruptboundingbox}
+            \clip (t11)--(t12)--(t2)--(t1)--cycle;
+            \end{pgfinterruptboundingbox}
+            \draw \pa circle (\ra);
+        \end{scope}
+        \begin{scope}[overlay]
+            \coordinate (t1) at ($(t21)!-\rb!(t11)$);
+            \coordinate (t2) at ($(t22)!-\rb!(t12)$);
+            % \node () at (t1) {t1};
+            % \node () at (t2) {t2};
+            % \draw[green] (t21)--(t22)--(t2)--(t1)--cycle;
+            \begin{pgfinterruptboundingbox}
+            \clip (t21)--(t22)--(t2)--(t1)--cycle;
+            \end{pgfinterruptboundingbox}
+            \draw \pb circle (\rb);
+        \end{scope}
+        \draw[red] (bb.north west) rectangle (bb.south east);
+        \end{scope}
+    }}
+}
+% 
 % \centering
 \subcaptionbox{}[0.5\textwidth]{
 \resizebox{.42\textwidth}{!}{

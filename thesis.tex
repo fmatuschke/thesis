@@ -31,10 +31,10 @@
 %\ifshellescape
 % \usepackage{shellesc}
 \usetikzlibrary{external}
-% \tikzexternalize[optimize command away=\includepdf,
-%                  figure name=tikz/\thesubsection-,
-%                 %  mode=list and make,
-%                  ]
+\tikzexternalize[optimize command away=\includepdf,
+                 figure name=tikz/\thesubsection-,
+                %  mode=list and make,
+                 ]
 % \tikzset{external/system call={lualatex \tikzexternalcheckshellescape
 %           -halt-on-error -interaction=batchmode -jobname "\image" "\texsource"}
 %         }          
@@ -47,7 +47,7 @@
 % content/todo,
 % content/01-chapter-introduction,
 % content/02-chapter-neuroanatomy,
-content/03-chapter-theory,
+% content/03-chapter-theory,
 % content/04-chapter-software,
 content/05-chapter-software-model,
 % content/06-chapter-software-simulation,

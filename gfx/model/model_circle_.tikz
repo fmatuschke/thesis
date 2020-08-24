@@ -1,21 +1,46 @@
 \begin{tikzsize}{\tikzwidth}{\tikzheight}
 \begin{tikzpicture}[scale=\tikzscale]
 % 
-\coordinate (A) at ({cos(0)},{sin(0)});
-\coordinate (B) at ({cos(120)},{sin(120)});
-\coordinate (C) at ({cos(240)},{sin(240)});
-\draw[dashed] (0,0) circle (1);
-\draw[fill] (A) circle (0.1);
-\draw[fill] (B) circle (0.1);
-\draw[fill] (C) circle (0.1);
-\draw[thin] (A) -- (B) -- (C) -- cycle;
-\draw[thin] ($(B) - (0,0.42)$) arc (-90:-30:0.42);
-\path[] ($(B) - (0,0.42)$) arc (-90:-60:0.42) -- (B) node[pos=0.35,anchor=mid] {$\varphi$};
+% \coordinate (A) at ({3*cos(0)},{3*sin(0)});
+% \coordinate (B) at ({3*cos(120)},{3*sin(120)});
+% \coordinate (C) at ({3*cos(240)},{3*sin(240)});
+% \draw[dashed] (0,0) circle (2.5);
+% \draw[dash dot] (0,0) circle (3);
+% \draw[dashed] (0,0) circle (3.5);
+% \draw[fill] (A) circle (0.1);
+% \draw[fill] (B) circle (0.1);
+% \draw[fill] (C) circle (0.1);
+% \draw[thin] (A) -- (B) -- (C) -- cycle;
+% \draw[thin] ($(B) - (0,0.42*3)$) arc (-90:-30:0.42*3);
+% \path[] ($(B) - (0,0.42*3)$) arc (-90:-60:0.42*3) -- (B) node[pos=0.35,anchor=mid] {$\varphi$};
+% % 
+% \draw[->] (1.25*3,1.30*3) -- ({cos(60)*3},{sin(60)*3}) node[pos=0, anchor=west, align=left] {bending\\fiber};
+% \path[] (-3, -3) rectangle (6, 4.2); %bb
 % 
-\draw[->] (1.25,1.30) -- ({cos(60)},{sin(60)}) node[pos=0, anchor=west] {name};
 % 
-% \path[] (-2.35, 0) rectangle (2.35, 0); %bb
-\path[] (-3.2, 0) rectangle (3.2, 0); %bb
+\begin{axis}[%
+    axis equal,
+    axis lines=none,
+    zmin=-8, zmax=2,
+    view={0}{42},
+    ticks=none,
+    ]
+    % 
+    \addplot3[domain=0:360,y domain=0:360, samples=40,surf,z buffer=sort, colormap/winter]
+        ({(12 + 3 * cos(x)) * cos(y)} ,
+        {(12 + 3 * cos(x)) * sin(y)},
+        {3 * sin(x)});
+    %  
+    \draw[dashed] (axis cs:{12*cos(0)},{12*sin(0)},0) \foreach \i in {1,2,...,359}{-- (axis cs:{12*cos(\i)},{12*sin(\i)},0)} -- cycle;
+    \draw[] (axis cs:{12*cos(0)},{12*sin(0)},0) -- (axis cs:{12*cos(120)},{12*sin(120)},0) -- (axis cs:{12*cos(240)},{12*sin(240)},0) -- cycle ;
+    \draw [] (axis cs:{12*cos(60)},{12*sin(60)},0) -- (axis cs:{18*cos(50)},{18*sin(50)},0) node[anchor=west, pos=1] {$fiber$};
+    % 
+    \coordinate (A) at (axis cs:{12*cos(120)},{12*sin(120)},0);
+    \draw[black] ($(A) + (axis cs:0,0,0) - (axis cs:{3.8*cos(90)},{3.8*sin(90)},0)$) \foreach \i in {91,92,...,150}{-- ($(A) + (axis cs:0,0,0) - (axis cs:{3.8*cos(\i)},{3.8*sin(\i)},0)$) };
+    \node[anchor = base] at ($(A)+(axis cs:0,0,0)-(axis cs:{2.75*cos(115)},{2.75*sin(115)},0)$) {$\varphi$};
+    \path[] (axis cs: 0,0,-20.5) -- (axis cs: 0,0,28);
+    \path[] (axis cs: -18,0,0) -- (axis cs: 18,0,0);
+\end{axis}
 % 
 \end{tikzpicture}
 \end{tikzsize}

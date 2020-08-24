@@ -76,7 +76,7 @@ scale uniformly strategy=units only,
     ({cos(45)*sin(v)*0.3},{sin(45)*sin(v)*0.3},{cos(v)*0.3});
 \node[anchor=west] at 
     (axis cs:{cos(45)*sin(67.5)*0.3},{sin(45)*sin(67.5)*0.3},{cos(67.5)*0.3})
-    {\scriptsize $\theta$};
+    {\scriptsize $\alpha$};
 % 
 \end{axis}
 \end{tikzpicture}

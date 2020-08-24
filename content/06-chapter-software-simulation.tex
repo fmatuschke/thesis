@@ -37,7 +37,7 @@ In the case of parallel orientation the orientation $o$ is:
 For the radial case the smallest distance to the line segment $(\vv{p}_i,\vv{p}_{i+1})$ has to be calculated:
 (see collision detection?)
 % 
-\begin{figure}[!tb]
+\begin{figure}[!t]
 \centering
 \resizebox{0.75\textwidth}{!}{
 \inputtikz{gfx/simpli/vector_model.tikz}
@@ -46,7 +46,7 @@ For the radial case the smallest distance to the line segment $(\vv{p}_i,\vv{p}_
 \label{fig:fiber_discretisation}
 \end{figure}
 % 
-\begin{figure}[!tb]
+\begin{figure}[!t]
 \centering
 \resizebox{0.75\textwidth}{!}{
 \inputtikz{gfx/simpli/indexing.tikz}
@@ -138,7 +138,7 @@ Both methods result in the same light path.
 The tiltible specimen however results in a distorted view.
 This distortion can be described by an affine transformation (see \cref{fig::affine_transformation}).
 % 
-\begin{figure}[!tb]
+\begin{figure}[!t]
 \centering
 \resizebox{0.95\textwidth}{!}{
 \input{gfx/pli/affine_transformation}}
@@ -158,7 +158,7 @@ To always get the same dens of light rays per ccd-pixel, all light ray starting 
 \paragraph{calculation of light ray starting position}
 % 
 % FIXME
-\begin{figure}[!tb]
+\begin{figure}[!t]
 % \centering
 % 
 \subcaptionbox{normal}[.495\textwidth]{
@@ -181,7 +181,7 @@ To always get the same dens of light rays per ccd-pixel, all light ray starting 
 % 
 % 
 % 
-\begin{figure}[!tb]
+\begin{figure}[!t]
 % \centering
 \def\azimuth{0}
 \def\elevation{90}
@@ -247,7 +247,7 @@ Light which leaves the tissue / starts outside the tissue will be calculated wit
 If the birefringence is 0 the multiplication of the M\"uller matrices is skipped and only the absorption is taken into account.
 Since the M\"uller matrices are spasly (in this case), the calculation is optimized for this.
 % 
-\begin{lstfloat}[!tb]
+\begin{lstfloat}[!t]
 	\lstinputlisting[style=cpp]{code/simulation.cpp}
 	\caption{Pseudocode simulation}
 	\label{alg:simulation}

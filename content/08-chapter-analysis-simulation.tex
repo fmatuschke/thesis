@@ -55,7 +55,7 @@ The question is, how big can the \voxelsize be so that the resulting signal (for
 The same is true for the choice of \model.
 The simulation setup is as follows:
 
-\begin{table}
+\begin{table}[!b]
 \centering
 \pgfplotstabletypeset[
     column type=l,
@@ -124,7 +124,7 @@ simpli.set\_voi & $-\SIlist[list-units = brackets,list-final-separator={, },]{0.
 % \end{lstfloat}
 % 
 % 
-% \begin{figure}[!tb]
+% \begin{figure}[!t]
 %     \resizebox{\textwidth}{!}{
 %     \inputtikz{gfx/model/sphere_discretization.tikz}
 %     }
@@ -132,7 +132,7 @@ simpli.set\_voi & $-\SIlist[list-units = brackets,list-final-separator={, },]{0.
 % 	\label{fig:sphere_discretization}
 % \end{figure}
 % % 
-% \begin{figure}[!tb]
+% \begin{figure}[!t]
 %     \resizebox{\textwidth}{!}{
 %     \inputtikz{data/5/voxel_size_vs_diff_dir.tikz}
 %     }
@@ -141,7 +141,7 @@ simpli.set\_voi & $-\SIlist[list-units = brackets,list-final-separator={, },]{0.
 % \end{figure}
 % 
 %  MACHT PROBLEME FIXME:
-% \begin{figure}[!tb]
+% \begin{figure}[!t]
 %     \resizebox{\textwidth}{!}{
 %     \inputtikz{data/5/voxel_size_vs_retardation.tikz}
 %     }
@@ -149,7 +149,7 @@ simpli.set\_voi & $-\SIlist[list-units = brackets,list-final-separator={, },]{0.
 % 	\label{fig:voxel_size_vs_retardation}
 % \end{figure}
 % 
-% \begin{figure}[!tb]
+% \begin{figure}[!t]
 % \resizebox{\textwidth}{!}{
 % \includegraphics[]{gfx/model/cube_2pop_montage.jpg}
 % %\begin{minipage}{30cm}
@@ -172,7 +172,7 @@ simpli.set\_voi & $-\SIlist[list-units = brackets,list-final-separator={, },]{0.
 % 
 % 
 % TODO:
-% \begin{figure}[!tb]
+% \begin{figure}[!t]
 % \resizebox{\textwidth}{!}{
 % \foreach \omega in {0,30,60,90} {
 %     \resizebox{0.215\textwidth}{!}{
@@ -195,7 +195,7 @@ simpli.set\_voi & $-\SIlist[list-units = brackets,list-final-separator={, },]{0.
 % 
 \tikzexternaldisable
 % 
-\begin{figure}[!tb]
+\begin{figure}[!t]
 \centering
 \resizebox{1.0\textwidth}{!}{
 \inputtikz{gfx/simpli/vector_error.tikz}}
@@ -210,7 +210,7 @@ This behavior is much stronger with myelin layers}
 % 
 slerp and multisampling and sparse vectorfield
 % 
-\begin{figure}[!tb]
+\begin{figure}[!t]
 \centering
 \resizebox{0.95\textwidth}{!}{
 \subcaptionbox{yz-view}[.3\textwidth]{
@@ -224,7 +224,7 @@ slerp and multisampling and sparse vectorfield
 % \label{fig:vd1}
 \end{figure}
 
-\begin{figure}[!tb]
+\begin{figure}[!t]
 \centering
 \resizebox{0.95\textwidth}{!}{
 \inputtikz{dev/gfx/1/vector_field_mode_plot_0.20_5_r.tikz}
@@ -234,7 +234,7 @@ slerp and multisampling and sparse vectorfield
 \end{figure}
 % 
 % \subcaptionbox{}[.245\textwidth]{
-% \begin{figure}[!tb]
+% \begin{figure}[!t]
 % \centering
 % \resizebox{0.75\textwidth}{!}{
 % \inputtikz{dev/gfx/1/optical_axis_high_norm_1.00_19.0_r.tex}}
@@ -242,7 +242,7 @@ slerp and multisampling and sparse vectorfield
 % \label{fig:vd1}
 % \end{figure}
 % % 
-% \begin{figure}[!tb]
+% \begin{figure}[!t]
 % \centering
 % \resizebox{0.75\textwidth}{!}{
 % \inputtikz{dev/gfx/1/optical_axis_high_norm_0.50_9.0_r.tex}}
@@ -250,7 +250,7 @@ slerp and multisampling and sparse vectorfield
 % \label{fig:vd2}
 % \end{figure}
 % % 
-% \begin{figure}[!tb]
+% \begin{figure}[!t]
 % \centering
 % \resizebox{0.75\textwidth}{!}{
 % \inputtikz{dev/gfx/1/optical_axis_high_norm_0.20_4.0_r.tex}}
@@ -263,7 +263,7 @@ slerp and multisampling and sparse vectorfield
 % 
 \subsection{Impact on data}
 %
-\begin{figure}[!tb]
+\begin{figure}[!t]
 \centering
 \resizebox{0.75\textwidth}{!}{
 \inputpdf{dev/gfx/5/foo_p_zoom.pdf}}
@@ -271,7 +271,7 @@ slerp and multisampling and sparse vectorfield
 \label{fig:foo_p_zoom}
 \end{figure}
 % 
-\begin{figure}[!tb]
+\begin{figure}[!t]
 \centering
 \resizebox{0.75\textwidth}{!}{
 \inputpdf{dev/gfx/5/foo_r.pdf}}
@@ -279,7 +279,7 @@ slerp and multisampling and sparse vectorfield
 \label{fig:foo_r}
 \end{figure}
 % 
-\begin{figure}[!tb]
+\begin{figure}[!t]
 \centering
 \resizebox{0.75\textwidth}{!}{
 \inputpdf{dev/gfx/5/foo_r_zoom.pdf}}
@@ -287,7 +287,7 @@ slerp and multisampling and sparse vectorfield
 \label{fig:foo_r_zoom}
 \end{figure}
 % 
-\begin{figure}[!tb]
+\begin{figure}[!t]
 \centering
 \resizebox{0.75\textwidth}{!}{
 \inputpdf{dev/gfx/5/foo_p_noise.pdf}}
@@ -295,7 +295,7 @@ slerp and multisampling and sparse vectorfield
 \label{fig:foo_p_noise}
 \end{figure}
 % 
-\begin{figure}[!tb]
+\begin{figure}[!t]
 \centering
 \resizebox{0.75\textwidth}{!}{
 \inputpdf{dev/gfx/5/foo_r_noise.pdf}}
