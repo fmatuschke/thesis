@@ -184,6 +184,7 @@
 \usetikzlibrary{3d}
 \usetikzlibrary{arrows.meta}
 \usetikzlibrary{patterns}
+\usetikzlibrary{bending} % bend arrow heads
 \usetikzlibrary{decorations.pathreplacing}
 %
 \usepackage{pgfplots}
@@ -198,14 +199,12 @@
 \usepackage{multirow}
 %
 \newcommand{\inputpdf}[1]{%
-    % \tikzsetnextfilename{#1}
     \IfFileExists{#1}{\includegraphics{#1}}{
     \noindent\includegraphics[width=3cm]{example-image}}   
 }
 % 
 \newcommand{\inputtikz}[1]{%
-    % \tikzsetnextfilename{#1}
-    \IfFileExists{#1}{\input{#1}}{
+    \IfFileExists{#1}{\tikzsetnextfilename{#1}\input{#1}}{
     \noindent\includegraphics[width=3cm]{example-image}}   
 }
 % 

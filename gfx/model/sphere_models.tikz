@@ -1,0 +1,41 @@
+\pgfmathsetmacro{\r}{1}
+\pgfmathsetmacro{\varomega}{30}
+\pgfmathsetmacro{\varalpha}{17}
+% 
+\begin{tikzsize}{\tikzwidth}{\tikzheight}
+\begin{tikzpicture}[%
+scale=\tikzscale,
+3d view={52}{22},
+]
+% 
+\shade[ball color = lightgray, opacity = 0.5] (0,0,0) circle (1cm);
+% 
+\draw[->] (-1.30,0,0)-- (1.75,0,0)node[pos=1, anchor = north west]{x};
+\draw[->] (0,-1.25,0)-- (0,1.4,0)node[pos=1, anchor = west]{y};
+\draw[->] (0,0,-1.35)-- (0,0,1.25)node[pos=1, anchor = west]{z};
+% 
+\begin{scope}[rotate around y=-\varalpha]
+\begin{scope}[canvas is yz plane at x=0.85]
+\draw[green!50!black, thick, ->] (0.1,0) arc (0:290:0.1);
+\end{scope}
+% 
+\draw[very thick, green!50!black, ->] (0,0,0) -- (\r,0,0) node [pos=1, anchor = west, xshift=-1ex] () {$f_0$};
+% 
+\begin{scope}[rotate around x=30]
+    \draw[very thick, blue, ->] (0,0,0) -- ({\r*cos(\varomega)},{\r*sin(\varomega)},0) node [pos=1, anchor = south west] () {$f_1$};
+    \begin{scope}[canvas is xy plane at z=0]
+        \draw[] (0.60,0) arc (0:\varomega:0.60) node [pos=0.35, anchor= east] () {$\Omega$};
+    \end{scope}
+\end{scope}
+% 
+\begin{scope}[canvas is zy plane at x={cos(\varomega}]
+\draw[blue, thick, dashed] (0,0) circle({sin(\varomega)});
+\foreach \i in {-90,-60,...,90}{\node[circle,fill,blue,inner sep=1.25pt] at ({sin(\varomega)*sin(\i)},{sin(\varomega)*cos(\i)}) {};}
+\end{scope}
+\end{scope}
+\begin{scope}[canvas is xz plane at y=0]
+    \draw[] (0.5,0) arc (0:\varalpha:0.5) node [pos=0.65, anchor=east] () {$\alpha$};
+\end{scope}
+% 
+\end{tikzpicture}
+\end{tikzsize}

@@ -7,7 +7,7 @@
         \node (0,0) {obj 1};
     \end{scope}
     % 
-    \begin{scope}[shift={(7,5)},local bounding box=BB2]
+    \begin{scope}[shift={(7,4.8)},local bounding box=BB2]
         \draw (0:1cm) \foreach \x in {0,60,...,360} {-- (\x:1cm)} -- cycle {};
         \node (0,0) {obj 2};
     \end{scope}

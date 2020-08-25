@@ -62,14 +62,26 @@
     \item link to \cite{matuschke2019}
 \end{itemize}
 % 
+\section{sandbox}
+% 
+\begin{figure}[!t]
+    \centering
+    \def\tikzheight{0.45\textwidth}
+    \subcaptionbox{oct tree}[.49\textwidth]{
+    \inputtikz{gfx/model/rnd_circle_points.tikz}}
+    \def\tikzheight{0.45\textwidth}
+    \subcaptionbox{oct tree}[.49\textwidth]{
+    \inputtikz{gfx/model/crossing_bundle.tikz}}
+	\caption{crossing bundles.}
+% 	\label{fig:}
+\end{figure}
+% 
 \section{\VCS}
 % 
 \begin{figure}[!tbh]
     \centering
-    % \resizebox{.5\textwidth}{!}{
     \def\tikzwidth{0.75\textwidth}
     \inputtikz{gfx/model/conical_capsule.tikz}
-    % }
     \tikzexternaldisable
 	\caption[cc and co]{\Acf{CC}: \raisebox{.25em}{\tikz \draw[black](0,0)--(0.275,0);} \ac{CC}, \raisebox{.25em}{\tikz \draw[blue, dash pattern=on 2.5pt off 2.5pt](0,0)--(0.275,0);} capsule, \raisebox{.25em}{\tikz \draw[red, dash pattern={on 2.5pt off 0.9pt on 0.42pt off 0.9pt}](0,0)--(0.275,0);} bounding box}
 	\tikzexternalenable
@@ -122,12 +134,10 @@ Traversing a  evenly distributed tree is of $\mathcal{O}(\log(n))$.\\
     \centering
     \subcaptionbox{oct tree}[.3\textwidth]{
     \def\tikzheight{0.6\textwidth}
-    \input{gfx/model/oct_tree.tikz}
-    }
+    \inputtikz{gfx/model/oct_tree.tikz}}
     \subcaptionbox{collision 2d}[.65\textwidth]{
     \def\tikzheight{0.6\textwidth}
-    \input{gfx/model/collision_tree.tikz}
-    }
+    \inputtikz{gfx/model/collision_tree.tikz}}
 	\caption{}
 	\label{fig:oct_tree}
 \end{figure}
@@ -180,7 +190,8 @@ It was decided to use the following two conditions:
 \subsubsection{Mean segment length}
 % 
 \begin{figure}[!t]
-    \input{gfx/model/merge_split}
+    \def\tikzwidth{.45\textwidth}
+    \inputtikz{gfx/model/merge_split.tikz}
 	\caption{a) merge, b) split}
 	\label{fig:merge_split}
 \end{figure}
@@ -188,9 +199,8 @@ It was decided to use the following two conditions:
 % 
 \begin{figure}[!t]
     \centering
-    % \resizebox{\textwidth}{!}{
+    \def\tikzwidth{\textwidth}
     \inputtikz{gfx/model/model_length.tikz}
-    % }
 	\caption{different fiber segment length.}
 	\label{fig:model_length}
 \end{figure}
@@ -232,7 +242,7 @@ Therefore the curvature will be reduced.
     \inputtikz{gfx/model/model_circular.tikz}}
     \subcaptionbox{lower bound $phi=\SI{60}{\degree} \xrightarrow{} r_{min} \geq \SI{0.5773}{} \cdot l_{mean}$}[.49\textwidth]{
     \inputtikz{gfx/model/model_circle_.tikz}}
-	\caption{... versteht noch keiner ...}
+	\caption{... besser ...}
 	\label{fig:model_circle_}
 \end{figure}
 % 
