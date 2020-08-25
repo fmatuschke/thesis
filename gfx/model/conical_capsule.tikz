@@ -15,7 +15,7 @@
 \foreach \i in {1,2}{
 \foreach \j in {1,2}{
     \coordinate (t\i\j) at (tangent cs:node=l\i,point={(out)},solution=\j);}}
-\foreach \i in {1,2}{\draw[very thick] (t1\i) --  (t2\i);}
+\foreach \i in {1,2}{\draw[line width=0.75mm] (t1\i) --  (t2\i);}
 % 
 \begin{scope}[overlay]
     \coordinate (t1) at ($(t11)!-\ra!(t21)$);
@@ -28,7 +28,7 @@
     \begin{pgfinterruptboundingbox}
     \clip ($(t11)+(t11)-(PA)$)--(PA)--($(t12)+(t12)-(PA)$)--(t2)--(t1)--cycle;
     \end{pgfinterruptboundingbox}
-    \draw[very thick] (PA) circle (\ra cm+0.2pt);
+    \draw[line width=0.75mm] (PA) circle (\ra cm+0.2pt);
 \end{scope}
 \begin{scope}[overlay]
     \coordinate (t1) at ($(t21)!-\rb!(t11)$);
@@ -37,7 +37,7 @@
     % \clip (t21)--(t22)--(t2)--(t1)--cycle;
     \clip ($(t21)+(t21)-(PB)$)--(PB)--($(t22)+(t22)-(PB)$)--(t2)--(t1)--cycle;
     \end{pgfinterruptboundingbox}
-    \draw[very thick] (PB) circle (\rb cm+0.2pt);
+    \draw[line width=0.75mm] (PB) circle (\rb cm+0.2pt);
 \end{scope}
 \end{scope}
 % 

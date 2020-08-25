@@ -1,0 +1,15 @@
+\begin{tikzsize}{\tikzwidth}{\tikzheight}
+\begin{tikzpicture}[scale=\tikzscale,]
+%
+\foreach \yValue in {0,1,...,420} {
+\pgfmathparse{rnd*360}\let\phi=\pgfmathresult
+\pgfmathparse{sqrt(rnd)}\let\r=\pgfmathresult
+\pgfmathparse{\r*cos(\phi)}\let\x=\pgfmathresult
+\pgfmathparse{\r*sin(\phi)}\let\y=\pgfmathresult
+\node[circle,fill,inner sep=0.5pt] at (\x,\y) {};
+}
+\draw[] (0,0) circle (1);
+\path[] (0,-1.25)--(0,1.25);
+% 
+\end{tikzpicture}
+\end{tikzsize}
