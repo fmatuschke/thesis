@@ -7,6 +7,8 @@
 % 
 The goal is to choice a set of parameters, which allow a) fast, b) collision free and c)a high wolume fraction for densly fibers. 
 % 
+As described in \cref{chap5:ShapeControl} the choice of shape parameters \segLength and \segRadius are quite important.
+% 
 \begin{figure}[!t]
 \centering
 \includegraphics[width=0.95\textwidth, page=1]{dev/gfx/2/parameter_statistic_box_plot.pdf}
@@ -22,6 +24,13 @@ The goal is to choice a set of parameters, which allow a) fast, b) collision fre
 \end{figure}
 % 
 \section{timeing}
+% 
+\begin{figure}[!t]
+\centering
+\includegraphics[width=0.95\textwidth]{dev/gfx/2/parameter_statistic_time_evolve.pdf}
+\caption{}
+% \label{fig:}
+\end{figure}
 % 
 \section{is overlap important?}
 % 
@@ -58,20 +67,5 @@ Also more then 8 cores \dummy.
 \caption{}
 % \label{fig:}
 \end{figure}
-% 
-% \begin{figure}[!t]
-% \centering
-% \resizebox{1.0\textwidth}{!}{
-% \begin{tikzpicture}
-% \node[inner sep=0pt] (image) at (0,0) {\includegraphics[width=1.0\textwidth, page=1]{dev/gfx/2/cube_2pop_analysis.pdf}};
-% \begin{scope}[overlay]
-%     \draw[->,thick] ($(image.north west)-(0.25,-0.25)$) -- ++(1,0) node [midway, above] {$\Psi$};
-%     \draw[->,thick] ($(image.north west)-(0.25,-0.25)$) -- ++(0,-1) node [midway, above, rotate=90] {$\Omega$};
-% \end{scope}
-% \end{tikzpicture}
-% }
-% \caption{}
-% % \label{fig:}
-% \end{figure}
 % 
 \tikzexternalenable
