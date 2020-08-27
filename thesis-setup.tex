@@ -204,7 +204,9 @@
 }
 % 
 \newcommand{\inputtikz}[1]{%
-    \IfFileExists{#1}{\tikzsetnextfilename{#1}\input{#1}}{
+    \IfFileExists{#1}{
+    % \tikzsetnextfilename{#1}
+    \input{#1}}{
     \noindent\includegraphics[width=3cm]{example-image}}   
 }
 % 
@@ -217,6 +219,7 @@
 \def\tikzheight{\textheight}
 \newsavebox{\measure@tikzpicture}
 \NewEnviron{tikzsize}[2]{%
+\tikzifexternalizingnext{%
     \def\tikz@width{#1}%
     \def\tikz@height{#2}%
     \def\tikzscale{1}\begin{lrbox}{\measure@tikzpicture}%
@@ -230,7 +233,9 @@
     \pgfmathparse{min(\tikzscalewidth, \tikzscaleheight)}%
     \edef\tikzscale{\pgfmathresult}%
     \BODY
-}
+}{% this will re-use an existing external graphics:
+\BODY
+}}
 \makeatother
 % 
 % \newcommand{\inputtikz}[1]{%

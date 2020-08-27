@@ -182,7 +182,7 @@ Therefore the sum of all velocities is taken into account.
 The maximum speed is however limited to a value of $v_{\max} = 0.1 \times \min(object radius)$.
 This prevents movement through another object.
 % 
-\subsection{Shape Control}
+\subsection{Shape Control}\label{chap5:ShapeControl}
 The movement of individual points can results in a "distorted" fiber model, \eg two points move very far apart from each other.
 Therefore boundry conditions have to be specified.
 It was decided to use the following two conditions:
@@ -237,10 +237,11 @@ Therefore the curvature will be reduced.
 % 
 \begin{figure}[!t]
     \centering
-    \def\tikzwidth{.42\textwidth}
     \subcaptionbox{...}[.49\textwidth]{
+    \def\tikzwidth{.42\textwidth}
     \inputtikz{gfx/model/model_circular.tikz}}
     \subcaptionbox{lower bound $phi=\SI{60}{\degree} \xrightarrow{} r_{min} \geq \SI{0.5773}{} \cdot l_{mean}$}[.49\textwidth]{
+    \def\tikzwidth{.42\textwidth}
     \inputtikz{gfx/model/model_circle_.tikz}}
 	\caption{... besser ...}
 	\label{fig:model_circle_}
