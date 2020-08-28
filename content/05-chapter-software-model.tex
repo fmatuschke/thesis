@@ -65,11 +65,13 @@
 \section{sandbox}
 % 
 \begin{figure}[!t]
+    % \def\tikzwidth{\textwidth}
+    \def\tikzheight{0.35\textwidth}
     \centering
-    \def\tikzheight{0.45\textwidth}
+    % \tikzset{external/remake next}
     \subcaptionbox{oct tree}[.49\textwidth]{
     \inputtikz{gfx/model/rnd_circle_points.tikz}}
-    \def\tikzheight{0.45\textwidth}
+    % \tikzset{external/remake next}
     \subcaptionbox{oct tree}[.49\textwidth]{
     \inputtikz{gfx/model/crossing_bundle.tikz}}
 	\caption{crossing bundles.}
@@ -218,11 +220,11 @@ r_{new} &= \frac{r_{i} + r_{i+1}}{2}\\
 \vv{v}_{new} &= \frac{\vv{v}_{i} + \vv{v}_{i+1}}{2}
 \end{split}
 \end{align}
-with a radius of $r_{new}$ and a velocity$\vv{v}_{new}$.
+with a radius of $r_{new}$ and a velocity $\vv{v}_{new}$.
 % 
 \subsubsection{Bending radius}
 % 
-The bending radius is defined as the circular radius coresponding to the circle definded by three neigborinig points $p_{i-1}, p_{i}, p_{i+1}$. 
+The bending radius is defined as the circular radius corresponding to the circle defined by three neighbouring points $p_{i-1}, p_{i}, p_{i+1}$. 
 The limit is set as a minimal radius of $r_{\min}$.
 If a point $p_{i}$ in a fiber fall below this value, the three points will be moved.
 $p_{i-1},p_{i+1}$ will be moved \dummy and $p_{i}$ oposit.

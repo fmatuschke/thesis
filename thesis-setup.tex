@@ -100,7 +100,9 @@
 \usepackage{siunitx}
 % \usepackage{caption}
 \usepackage[nameinlink]{cleveref}
-\usepackage{esvect}
+% \usepackage{esvect}
+\let\vv\mathbf
+% 
 \usepackage{xspace}
 \usepackage{currfile}
 \usepackage{blindtext}
@@ -110,6 +112,12 @@
 % 
 % \crefname{figure}{fig.}{fig.}
 % \Crefname{figure}{Fig.}{Fig.}
+\sisetup{%
+    %  fixed-exponent=3,
+     list-units=brackets,
+     range-units=brackets,
+    %  scientific-notation=fixed
+}%
 % 
 % **************************************************
 %  Math
@@ -218,7 +226,7 @@
 \def\tikzwidth{\textwidth}
 \def\tikzheight{\textheight}
 \newsavebox{\measure@tikzpicture}
-\NewEnviron{tikzsize}[2]{%
+\NewEnviron{tikzsize}[2]{%\def\tikzscale{1}
 \tikzifexternalizingnext{%
     \def\tikz@width{#1}%
     \def\tikz@height{#2}%
@@ -234,7 +242,8 @@
     \edef\tikzscale{\pgfmathresult}%
     \BODY
 }{% this will re-use an existing external graphics:
-\BODY
+    \def\tikzscale{1}
+    \BODY
 }}
 \makeatother
 % 
@@ -270,7 +279,15 @@
 % User Macros
 % **************************************************
 % \newcommand{\overbar}[1]{\mkern 1.5mu\overline{\mkern-1.5mu#1\mkern-1.5mu}\mkern 1.5mu}
-\newcommand{\dummy}{\textcolor{violet}{\textbf{\{...\}}}\xspace}
+\usepackage{soul}
+\newcommand{\dummy}{\textcolor{ProcessBlue}{\textbf{\{...\}}}\xspace}
+% \newcommand{\todo}[1]{\textcolor{ProcessBlue}{\textbf{\{#1\}}}}
+\newcommand{\todo}[1]{%
+  \begingroup
+  \sethlcolor{ProcessBlue}%
+  \hl{#1}%
+  \endgroup
+}
 % 
 % **************************************************
 % Debug LaTeX Information
