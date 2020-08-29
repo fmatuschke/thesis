@@ -227,10 +227,11 @@
 \def\tikzheight{\textheight}
 \newsavebox{\measure@tikzpicture}
 \NewEnviron{tikzsize}[2]{%
+\def\tikzscale{1}%
 \tikzifexternalizingnext{%
     \def\tikz@width{#1}%
     \def\tikz@height{#2}%
-    \def\tikzscale{1}\begin{lrbox}{\measure@tikzpicture}%
+    \begin{lrbox}{\measure@tikzpicture}%
     \tikzset{external/export next=false,external/optimize=false}% force translation of this BODY (and do not optimize it away as it would usually do):
     \BODY
     \end{lrbox}%
@@ -266,14 +267,6 @@
 % }
 % \makeatother
 % 
-% \newcommand{\inputtikz}[1]{%
-% 	\IfFileExists{#1.pdf}%
-% 	{\includegraphics{#1.pdf}}%
-% 	{\ifshellescape%
-% 	 \tikzsetnextfilename{#1}%
-% 	 \fi%
-% 	 \input{#1.tikz}}%
-% }
 % COMMANDS:
 % pdflatex -shell-escape %.tex
 % mkdir build
