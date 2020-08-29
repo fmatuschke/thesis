@@ -226,7 +226,7 @@
 \def\tikzwidth{\textwidth}
 \def\tikzheight{\textheight}
 \newsavebox{\measure@tikzpicture}
-\NewEnviron{tikzsize}[2]{%\def\tikzscale{1}
+\NewEnviron{tikzsize}[2]{%
 \tikzifexternalizingnext{%
     \def\tikz@width{#1}%
     \def\tikz@height{#2}%
@@ -242,10 +242,29 @@
     \edef\tikzscale{\pgfmathresult}%
     \BODY
 }{% this will re-use an existing external graphics:
-    \def\tikzscale{1}
     \BODY
 }}
-\makeatother
+% 
+% \makeatother
+% \makeatletter
+% \def\tikzwidth{\textwidth}
+% \def\tikzheight{\textheight}
+% \newsavebox{\measure@tikzpicture}
+% \NewEnviron{tikzsize}[2]{%
+%     \def\tikz@width{#1}%
+%     \def\tikz@height{#2}%
+%     \def\tikzscale{1}\begin{lrbox}{\measure@tikzpicture}%
+%     \BODY
+%     \end{lrbox}%
+%     \pgfmathparse{#1/\wd\measure@tikzpicture}%
+%     \edef\tikzscalewidth{\pgfmathresult}%
+%     \pgfmathparse{#2/\ht\measure@tikzpicture}%
+%     \edef\tikzscaleheight{\pgfmathresult}%
+%     \pgfmathparse{min(\tikzscalewidth, \tikzscaleheight)}%
+%     \edef\tikzscale{\pgfmathresult}%
+%     \BODY
+% }
+% \makeatother
 % 
 % \newcommand{\inputtikz}[1]{%
 % 	\IfFileExists{#1.pdf}%
@@ -288,6 +307,13 @@
   \hl{#1}%
   \endgroup
 }
+% 
+% \usepackage{todonotes}
+% \makeatletter
+% \renewcommand{\todo}[2][]{%
+%   \tikzexternaldisable\@todo[#1]{#2}\tikzexternalenable%
+% }
+% \makeatother
 % 
 % **************************************************
 % Debug LaTeX Information

@@ -27,7 +27,7 @@
     ticks=none,
     ]
     % 
-    \addplot3[domain=0:360,y domain=0:360, samples=40,surf,z buffer=sort, colormap/winter]
+    \addplot3[domain=0:360,y domain=0:360, samples=21,samples y=42,surf,z buffer=sort, colormap/winter]
         ({(12 + 3 * cos(x)) * cos(y)} ,
         {(12 + 3 * cos(x)) * sin(y)},
         {3 * sin(x)});
