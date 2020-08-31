@@ -1,0 +1,34 @@
+\begin{tikzsize}{\tikzwidth}{\tikzheight}
+\begin{tikzpicture}[scale=\tikzscale,]
+% 
+\begin{scope}[shift={(0,0)}, local bounding box=bb1]
+\path[] (0,2.5) -- (0,-3.08);
+\draw[lightgray,rounded corners,line width=42pt] (0,0)
+\foreach \i in {(2,1),(4,-1),(6,0.75),(8,-0.15)}{
+-- \i} -- (10,0.42);
+\end{scope}
+% 
+\foreach \p [count=\i] in {(0,0),(2,1),(4,-1),(6,0.75),(8,-0.15),(10,0.42)}{
+\draw[lightgray, fill] \p circle (21pt/\tikzscale);
+\draw[black, dashed] \p circle (21pt/\tikzscale);
+\pgfmathsetmacro{\ii}{int(\i-1)}
+\draw[black, fill] \p circle (2pt) node[black, yshift=-5pt, anchor=north] {$p_{\ii}$};}
+% 
+% 
+\begin{scope}[shift={(0,-7.0)}, local bounding box=bb2]
+\path[] (0,1.75) -- (0,-3.08);
+\draw[lightgray,rounded corners,line width=42pt] (0,0)
+\foreach \i in {(4,-1),(8,-0.15)}{
+-- \i} -- (10,0.42);
+% 
+\foreach \p [count=\i] in {(0,0),(4,-1),(8,-0.15),(10,0.42)}{
+\draw[lightgray, fill] \p circle (21pt/\tikzscale);
+\draw[black, dashed] \p circle (21pt/\tikzscale);
+\pgfmathsetmacro{\ii}{int(\i-1)}
+\draw[black, fill] \p circle (2pt) node[black, yshift=-5pt, anchor=north] {$p'_{\ii}$};}
+\end{scope}
+% 
+\draw[->, line width=4.2pt] (bb1.south) -- (bb2.north);
+% 
+\end{tikzpicture}
+\end{tikzsize} 

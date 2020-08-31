@@ -16,8 +16,8 @@
 % % 
 % \draw[->] (1.25*3,1.30*3) -- ({cos(60)*3},{sin(60)*3}) node[pos=0, anchor=west, align=left] {bending\\fiber};
 % \path[] (-3, -3) rectangle (6, 4.2); %bb
-% 
-% 
+
+
 \begin{axis}[%
     axis equal,
     axis lines=none,
