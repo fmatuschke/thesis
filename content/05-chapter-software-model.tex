@@ -193,7 +193,10 @@ It was decided to use the following two conditions:
 % 
 \begin{figure}[!t]
     \def\tikzwidth{.45\textwidth}
-    \inputtikz{gfx/model/merge_split.tikz}
+    \subcaptionbox{merge}[.5\textwidth]{
+    \inputtikz{gfx/model/model_merge.tikz}}
+    \subcaptionbox{split}[.5\textwidth]{
+    \inputtikz{gfx/model/model_split.tikz}}
 	\caption{a) merge, b) split}
 	\label{fig:merge_split}
 \end{figure}
