@@ -242,13 +242,12 @@ Therefore the curvature will be reduced.
 % 
 \begin{figure}[!t]
     \centering
-    \subcaptionbox{lower bound $r_{min} \geq \fiberRadiusMean $}[.49\textwidth]{
     \def\tikzheight{.42\textwidth}
+    \subcaptionbox{Boundry segment length: lower bound $phi=\SI{60}{\degree} \xrightarrow{} r_{min} \geq \SI{0.5773}{} \cdot l_{mean}$}[.475\textwidth]{
+    \inputtikz{gfx/model/model_circle_.tikz}}\hfill
+    \subcaptionbox{Boundry segment radii: lower bound $r_{min} \geq \fiberRadiusMean $}[.45\textwidth]{
     \inputtikz{gfx/model/model_circular.tikz}}
-    \subcaptionbox{lower bound $phi=\SI{60}{\degree} \xrightarrow{} r_{min} \geq \SI{0.5773}{} \cdot l_{mean}$}[.49\textwidth]{
-    \def\tikzheight{.42\textwidth}
-    \inputtikz{gfx/model/model_circle_.tikz}}
-	\caption{... besser ...}
+	\caption{Geometrical boundry condition for fiber segment length \segLength and fiber bending radius \segRadius.}
 	\label{fig:model_circle_}
 \end{figure}
 % 

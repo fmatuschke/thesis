@@ -49,11 +49,11 @@ As described in \cref{chap5:ShapeControl} the choice of shape parameters \segLen
 \begin{figure}[!t]
 \centering
 \def\tikzwidth{0.5*\textwidth}
-\subcaptionbox{...}[.49\textwidth]{
-\inputtikz{gfx/model/sphere_models_.tikz}}
-\subcaptionbox{\label{subfig:Test1}}[.49\textwidth]{
+\subcaptionbox{fixed first fiber population; half rotation of second fiber population}[.49\textwidth]{
+\inputtikz{gfx/model/sphere_models_.tikz}}\hfill
+\subcaptionbox{\label{subfig:Test1}increasing inclination for first fiber population}[.49\textwidth]{
 \inputtikz{gfx/model/sphere_models.tikz}}
-\caption{...}
+\caption{two population model library}
 \label{fig:twomodelpop}
 \end{figure}
 % 
@@ -73,8 +73,8 @@ As described in \cref{chap5:ShapeControl} the choice of shape parameters \segLen
 ]
 {name & variable & values\\
 mean fiber radius & \fiberRadiusMean & $\{0.5,1,2,5,10\}$ \si{\micro\meter}\\
-mean segment length factor & \segLength & $\{1,2,4,8\}$ \si{\micro\meter}\\
-min segment bending radii factor & \segRadius & $\{1,2,4,8\}$ \si{\micro\meter}\\
+mean segment length factor & \segLengthFactor & $\{1,2,4,8\}$ \si{\micro\meter}\\
+min segment bending radii factor & \segRadiusFactor & $\{1,2,4,8\}$ \si{\micro\meter}\\
 fiber bundle distribution value & \modelPsi & $\{0.1,0.2,...,1.0\}$ \\
 fiber bundle crossing angle & \modelOmega & $\{0,10,...,90\}$\si{\degree}\\
 }
@@ -102,8 +102,8 @@ seed.distance & $2 \cdot \textcolor{violet}{\fiberRadiusMean}$\\
 seed.size & $2 \cdot \text{volume}$\\
 bundle distribution & \textcolor{violet}{\modelPsi}\\
 bundle crossing & \textcolor{violet}{\modelOmega}\\
-solver.obj\_mean\_length & $\fiberRadiusMean \cdot \textcolor{violet}{\segLength}$\\
-solver.obj\_min\_radius & $\fiberRadiusMean \cdot \textcolor{violet}{\segRadius}$\\
+solver.obj\_mean\_length & $\fiberRadiusMean \cdot \textcolor{violet}{\segLengthFactor}$\\
+solver.obj\_min\_radius & $\fiberRadiusMean \cdot \textcolor{violet}{\segRadiusFactor}$\\
 solver.max\_steps & \SI{100000}{}\\
 }
 \caption{parameter\_statistic setup and \textcolor{violet}{variables}.}

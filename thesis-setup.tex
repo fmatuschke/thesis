@@ -107,13 +107,13 @@
 \usepackage{subcaption}
 \usepackage{minitoc}
 \usepackage{amsmath, amssymb, mathtools}
+\usepackage{newtxmath}          % new math fonts
 \usepackage{dirtree}
 \usepackage{acro}
 \usepackage{siunitx}
 % \usepackage{caption}
 \usepackage[nameinlink]{cleveref}
 % \usepackage{esvect}
-\let\vv\mathbf
 % 
 \usepackage{xspace}
 \usepackage{currfile}
@@ -136,6 +136,8 @@
 % **************************************************
 \DeclarePairedDelimiter\abs{\lvert}{\rvert}
 \DeclarePairedDelimiter\norm{\lVert}{\rVert}
+\let\vv\mathbf
+\newcommand{\overbar}[1]{\mkern 1.5mu\overline{\mkern-1.5mu#1\mkern-1.5mu}\mkern 1.5mu}
 %
 % **************************************************
 % Syntax Highlighting
@@ -291,7 +293,7 @@
 % \captionsetup[table]{textfont=it, parskip=10em} % skip does not work for table
 \pgfplotstableset{thesis/.style={
     column type=l,
-    every even row/.style={before row={\rowcolor[gray]{0.95}}},
+    every even row/.style={before row={\rowcolor[gray]{0.90}}},
     % empty cells with={--}, % replace empty cells with '--'
     every head row/.style={before row=\toprule,after row=\midrule},
     every last row/.style={after row=\bottomrule},
@@ -301,7 +303,6 @@
 % User Macros
 % **************************************************
 \newcommand{\comment}[1]{\textcolor{gray}{\textit{#1}}}
-% \newcommand{\overbar}[1]{\mkern 1.5mu\overline{\mkern-1.5mu#1\mkern-1.5mu}\mkern 1.5mu}
 \usepackage{soul}
 \newcommand{\dummy}{\textcolor{ProcessBlue}{\textbf{\{...\}}}\xspace}
 % \newcommand{\todo}[1]{\textcolor{ProcessBlue}{\textbf{\{#1\}}}}
