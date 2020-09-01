@@ -192,12 +192,12 @@ It was decided to use the following two conditions:
 \subsubsection{Mean segment length}
 % 
 \begin{figure}[!t]
-    \def\tikzwidth{.45\textwidth}
+    \def\tikzwidth{.42\textwidth}
     \subcaptionbox{merge}[.5\textwidth]{
     \inputtikz{gfx/model/model_merge.tikz}}
     \subcaptionbox{split}[.5\textwidth]{
     \inputtikz{gfx/model/model_split.tikz}}
-	\caption{a) merge, b) split}
+	\caption{Length control for fibers $f$ and $f'$}
 	\label{fig:merge_split}
 \end{figure}
 % 
@@ -233,20 +233,20 @@ If a point $p_{i}$ in a fiber fall below this value, the three points will be mo
 $p_{i-1},p_{i+1}$ will be moved \dummy and $p_{i}$ oposit.
 Therefore the curvature will be reduced.
 % 
-\begin{figure}[!t]
-    \centering
-    \inputtikz{gfx/model/model_radius.tikz}
-	\caption{different bending radii for const fiber radius.}
-	\label{fig:model_radius}
-\end{figure}
+% \begin{figure}[!t]
+%     \centering
+%     \inputtikz{gfx/model/model_radius.tikz}
+% 	\caption{different bending radii for const fiber radius.}
+% 	\label{fig:model_radius}
+% \end{figure}
 % 
 \begin{figure}[!t]
     \centering
-    \subcaptionbox{...}[.49\textwidth]{
-    \def\tikzwidth{.42\textwidth}
+    \subcaptionbox{lower bound $r_{min} \geq \fiberRadiusMean $}[.49\textwidth]{
+    \def\tikzheight{.42\textwidth}
     \inputtikz{gfx/model/model_circular.tikz}}
     \subcaptionbox{lower bound $phi=\SI{60}{\degree} \xrightarrow{} r_{min} \geq \SI{0.5773}{} \cdot l_{mean}$}[.49\textwidth]{
-    \def\tikzwidth{.42\textwidth}
+    \def\tikzheight{.42\textwidth}
     \inputtikz{gfx/model/model_circle_.tikz}}
 	\caption{... besser ...}
 	\label{fig:model_circle_}

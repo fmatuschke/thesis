@@ -31,8 +31,10 @@
 %\ifshellescape
 % \usepackage{shellesc}
 \usetikzlibrary{external}
-\tikzexternalize[optimize command away=\includepdf,
-                 figure name=tikz/\thesubsection-,
+\tikzexternalize[%
+                 optimize command away=\includepdf,
+                 prefix=tikz,
+                 figure name=\thesubsection-,
                  ]
 %  
 %                 %  mode=list and make,
@@ -52,7 +54,7 @@
 % content/04-chapter-software,
 content/05-chapter-software-model,
 % content/06-chapter-software-simulation,
-% content/07-chapter-analysis-model,
+content/07-chapter-analysis-model,
 % content/08-chapter-analysis-simulation,
 % content/09-chapter-usecase,
 % content/10-chapter-conclusion,
@@ -183,28 +185,19 @@ content/05-chapter-software-model,
 \newrefcontext[labelprefix={@}]
 \printbibliography[heading=subbibliography,title={Software},keyword={software}]
 }
-% \cleardoublepage
 % 
-% \pdfbookmark[0]{Acronyms}{Acronyms}
-\cleardoublepage
-% \addchap{Acronyms}
-\label{sec:acronyms}
-\printacronyms[]
-%
-\cleardoublepage
-\phantomsection
-\addcontentsline{toc}{chapter}{\listfigurename}
-\listoffigures
-%
-\cleardoublepage
-\phantomsection
-\addcontentsline{toc}{chapter}{\listtablename}
-\listoftables
-%
-\cleardoublepage
-\phantomsection
-\addcontentsline{toc}{chapter}{\lstlistlistingname}
-\lstlistoflistings
+% \cleardoublepage
+% \label{sec:acronyms}
+% \printacronyms[]
+% %
+% \cleardoublepage
+% \listoffigures
+% %
+% \cleardoublepage
+% \listoftables
+% %
+% \cleardoublepage
+% \lstlistoflistings
 %
 % 
 % \cleardoublepage

@@ -17,7 +17,12 @@ Therefore it is not necesarry to create any single fiber population with a direc
 The inclination however has to be sample between the hole range $[0,90]\si{\degree}$. But since we can simple rotate a fiber population from $\varphi=0, \alpha=0$ to $\varphi=\varphi_{\text{rot}}, \alpha=\alpha_{\text{rot}}$, it is not necessary to build individual fiber configurations.
 % 
 \paragraph{two fiber bundle populations}
-The same eigenschaften as above are true for the individual two fiber populations. This means, that only a differential angle between the two orientations, so called crossing angle $\modelOmega$, is needed as well as a density change between both populations. 
+The same eigenschaften as above are true for the individual two fiber populations. This means, that only a differential angle between the two orientations, so called crossing angle $\modelOmega$, is needed as well as a density change between both populations \modelPsi in:
+\begin{align}
+    F_G = \modelPsi \cdot F_0 + (1-\modelPsi) \cdot F_1
+\end{align}
+% 
+Since the direction of the first fiber bundle population can be again neglected, only the direction and inclination of the second fiber polulation rletaive to the first is importend. Therefore it was decided to build models with \modelOmega from ${0,10,...,90}$ and afterwords rotating the fiber orientations around the x axis (\cref{subfig:Test1})
 % 
 \paragraph{fiber population additional parameters}
 density, dispersion, radii, change of radii, ...
@@ -46,10 +51,10 @@ As described in \cref{chap5:ShapeControl} the choice of shape parameters \segLen
 \def\tikzwidth{0.5*\textwidth}
 \subcaptionbox{...}[.49\textwidth]{
 \inputtikz{gfx/model/sphere_models_.tikz}}
-\subcaptionbox{...}[.49\textwidth]{
+\subcaptionbox{\label{subfig:Test1}}[.49\textwidth]{
 \inputtikz{gfx/model/sphere_models.tikz}}
 \caption{...}
-% \label{}
+\label{fig:twomodelpop}
 \end{figure}
 % 
 \begin{table}[!b]
@@ -127,25 +132,25 @@ legend cell align={left},
 % 
 \subsection{Results}
 % 
-\todo{STRANGE behaviour in parameter\_statistic for smaler radii. probably because of rnd seeds}
+\todo{STRANGE behaviour in parameter\_statistic for smaller radii. probably because of rnd seeds}
 % 
 \begin{figure}[!t]
 \centering
-\includegraphics[width=0.95\textwidth, page=1]{dev/gfx/2/parameter_statistic_box_plot.pdf}
+\includegraphics[width=\textwidth, page=1]{dev/gfx/2/parameter_statistic_box_plot.pdf}
 \caption{Model (\fiberRadius) characteristic for different parameters}
 % \label{fig:}
 \end{figure}
 % 
 \begin{figure}[!t]
 \centering
-\includegraphics[width=0.95\textwidth, page=2]{dev/gfx/2/parameter_statistic_box_plot.pdf}
+\includegraphics[width=\textwidth, page=2]{dev/gfx/2/parameter_statistic_box_plot.pdf}
 \caption{Model characteristic for different parameters}
 % \label{fig:}
 \end{figure}
-% 
+
 \begin{figure}[!t]
 \centering
-\includegraphics[width=0.95\textwidth]{dev/gfx/2/parameter_statistic_time_evolve.pdf}
+\includegraphics[width=\textwidth]{dev/gfx/2/parameter_statistic_time_evolve.pdf}
 \caption[Time development of the model generation process.]{Time development of the model generation process.}
 % \label{fig:}
 \end{figure}
@@ -175,8 +180,7 @@ Also more then 8 cores \dummy.
 % 
 \begin{figure}[!t]
 \centering
-\def\tikzwidth{\textwidth}
-\inputtikz{dev/gfx/4/model_solver_cubes.tikz}
+\includegraphics[]{dev/gfx/4/model_solver_cubes.pdf}
 \caption{}
 % \label{fig:}
 \end{figure}
@@ -190,7 +194,7 @@ Also more then 8 cores \dummy.
 \begin{figure}[!t]
 \centering
 % \resizebox{1.0\textwidth}{!}{
-\includegraphics[width=0.95\textwidth, page=1]{dev/gfx/2/cube_2pop_orientation_hist.pdf}
+\includegraphics[width=\textwidth, page=1]{dev/gfx/2/cube_2pop_orientation_hist.pdf}
 % }
 \caption{}
 % \label{fig:}

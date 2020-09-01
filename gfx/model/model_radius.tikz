@@ -9,15 +9,16 @@
 \pgfmathsetmacro{\dx}{15}
 \pgfmathsetmacro{\lastr}{0}
 \pgfmathsetmacro{\r}{0}
+\pgfmathsetmacro{\rfiber}{5}
 % 
 \node[overlay] at (-0.5, 2.1) {$\frac{r_{circle}}{r_{fiber}}$};
 % 
 \foreach \r in {5,10,20,40}{
 \pgfmathsetmacro{\x}{\lastx+\lastr+\dx+\r}
-\pgfmathsetmacro{\f}{\r/10}
+\pgfmathsetmacro{\f}{\r / \rfiber}
 \node[] at (\x pt, 2.1) {$\f$};
-\draw{} (\x pt, 0) circle (\r-5+0.1 pt);
-\draw{} (\x pt, 0) circle (\r+5 pt);
+\draw{} (\x pt, 0) circle (\r-\rfiber+0.1 pt);
+\draw{} (\x pt, 0) circle (\r+\rfiber pt);
 \global\let\lastx=\x
 \global\let\lastr=\r
 }
