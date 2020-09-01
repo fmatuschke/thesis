@@ -106,11 +106,17 @@
 \usepackage{pdfpages}
 \usepackage{subcaption}
 \usepackage{minitoc}
-\usepackage{amsmath, amssymb, mathtools}
-\usepackage{newtxmath}          % new math fonts
+\usepackage{amsmath, amssymb, amsthm, mathtools}
+% \usepackage{newtxsf}
+\usepackage{newtxmath}          % new math fonts\usepackage[libertine, vvarbb]{newtxmath}
 \usepackage{dirtree}
 \usepackage{acro}
 \usepackage{siunitx}
+\sisetup{detect-mode=true,detect-family=false,
+        detect-display-math=false,detect-shape=false,
+        list-units=brackets, range-units=brackets,
+        math-micro=\muup} %\mathrm{\mu}}
+\AtBeginDocument{\sisetup{math-rm=\mathrm, text-rm=\sffamily}}
 % \usepackage{caption}
 \usepackage[nameinlink]{cleveref}
 % \usepackage{esvect}
@@ -124,12 +130,6 @@
 % 
 % \crefname{figure}{fig.}{fig.}
 % \Crefname{figure}{Fig.}{Fig.}
-\sisetup{%
-    %  fixed-exponent=3,
-     list-units=brackets,
-     range-units=brackets,
-    %  scientific-notation=fixed
-}%
 % 
 % **************************************************
 %  Math
@@ -291,7 +291,7 @@
 % 
 % 
 % \captionsetup[table]{textfont=it, parskip=10em} % skip does not work for table
-\pgfplotstableset{thesis/.style={
+\pgfplotstableset{thesisTableStyle/.style={
     column type=l,
     every even row/.style={before row={\rowcolor[gray]{0.90}}},
     % empty cells with={--}, % replace empty cells with '--'

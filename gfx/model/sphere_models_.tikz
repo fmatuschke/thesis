@@ -25,7 +25,7 @@ scale=\tikzscale,
     \draw[blue, dashed, thick] (1,0) arc (0:\varomega:1);
     \end{scope}
     \begin{scope}[canvas is yz plane at x=0.99]
-    \draw[blue,thick] (0.2,0) arc (0:\varomega:0.2) node [pos=1, anchor= west] () {$\psi$};
+    \draw[blue,thick] (0.2,0) arc (0:\varomega:0.2) node [pos=1, anchor= west] () {$\Upsilon$};
     \end{scope}
     % 
     \draw[very thick, green!50!black, ->] (0,0,0) -- (\r,0,0) node [pos=1, anchor = north east] () {$f_0$};

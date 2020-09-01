@@ -58,10 +58,11 @@ As described in \cref{chap5:ShapeControl} the choice of shape parameters \segLen
 \end{figure}
 % 
 \begin{table}[!b]
+\sisetup{parse-numbers=false,open-bracket={\{}, close-bracket={\}}, list-final-separator={,},list-pair-separator={,}}%
 \centering
 \pgfplotstabletypeset[%
+    thesisTableStyle,
     column type=lcl,
-    every even row/.style={before row={\rowcolor[gray]{0.95}}},
     columns/name/.style={string type},
     columns/variable/.style={string type},
     columns/values/.style={string type},
@@ -72,11 +73,11 @@ As described in \cref{chap5:ShapeControl} the choice of shape parameters \segLen
     % string type,
 ]
 {name & variable & values\\
-mean fiber radius & \fiberRadiusMean & $\{0.5,1,2,5,10\}$ \si{\micro\meter}\\
-mean segment length factor & \segLengthFactor & $\{1,2,4,8\}$ \si{\micro\meter}\\
-min segment bending radii factor & \segRadiusFactor & $\{1,2,4,8\}$ \si{\micro\meter}\\
-fiber bundle distribution value & \modelPsi & $\{0.1,0.2,...,1.0\}$ \\
-fiber bundle crossing angle & \modelOmega & $\{0,10,...,90\}$\si{\degree}\\
+mean fiber radius & $\fiberRadiusMean$ & $\SIlist{0.5;1;2;5;10}{\micro\meter}$\\
+mean segment length factor & $\segLengthFactor$ & $\SIlist{1;2;4;8}{\micro\meter}$\\
+min segment bending radii factor & $\segRadiusFactor$ & $\SIlist{1;2;4;8}{\micro\meter}$\\
+fiber bundle distribution value & $\modelPsi$ & $\SIlist{0.1;0.2;...;1.0}{}$ \\
+fiber bundle crossing angle & $\modelOmega$ & $\SIlist{0;10;...;90}{\degree}$\\
 }
 \caption{parameter\_statistic setup and \textcolor{violet}{variables}.}
 % \label{}
@@ -84,9 +85,10 @@ fiber bundle crossing angle & \modelOmega & $\{0,10,...,90\}$\si{\degree}\\
 % 
 \begin{table}[!b]
 \centering
+\sisetup{open-bracket={\{}, close-bracket={\}}, list-final-separator={,},list-pair-separator={,}}%
 \pgfplotstabletypeset[%
+    thesisTableStyle,
     column type=l,
-    every even row/.style={before row={\rowcolor[gray]{0.95}}},
     columns/variable/.style={string type},
     columns/value/.style={string type},
     every head row/.style={before row=\toprule,after row=\midrule},
@@ -96,15 +98,16 @@ fiber bundle crossing angle & \modelOmega & $\{0,10,...,90\}$\si{\degree}\\
 ]
 {variable & value\\
 pre model diameter & $d = \SI{105}{\micro\meter}$\\
-mean fiber radius & $\textcolor{violet}{\fiberRadiusMean} =$ \SIlist{0.5;1.0;2.0;5.0;10.0}{\micro\meter}\\
+mean fiber radius & $\textcolor{violet}{\fiberRadiusMean} = \SIlist{0.5;1;2;5;10}{\micro\meter}$\\
 fiber radius distribution & $\fiberRadiusSig = \SI{0.1}{}$, $\fiberRadiusMu = \SI{0}{\micro\meter}$\\
 seed.distance & $2 \cdot \textcolor{violet}{\fiberRadiusMean}$\\
-seed.size & $2 \cdot \text{volume}$\\
-bundle distribution & \textcolor{violet}{\modelPsi}\\
-bundle crossing & \textcolor{violet}{\modelOmega}\\
+seed.size & $2 \cdot \mathit{volume}$\\
+bundle distribution & $\textcolor{violet}{\modelPsi}$\\
+bundle crossing & $\textcolor{violet}{\modelOmega}$\\
 solver.obj\_mean\_length & $\fiberRadiusMean \cdot \textcolor{violet}{\segLengthFactor}$\\
 solver.obj\_min\_radius & $\fiberRadiusMean \cdot \textcolor{violet}{\segRadiusFactor}$\\
-solver.max\_steps & \SI{100000}{}\\
+solver.max\_steps & $\SI{100000}{}$\\
+max runtime & $\SI{24}{\hour}$\\
 }
 \caption{parameter\_statistic setup and \textcolor{violet}{variables}.}
 % \label{}
@@ -120,10 +123,10 @@ legend cell align={left},
 ]
 \pgfmathsetmacro{\muValue}{0}
 \pgfmathsetmacro{\sigmaValue}{0.05}
-\addplot[blue,domain=0.6:1.4, samples=1000]{1/(\sigmaValue*x*sqrt(2*pi))*exp(-(ln(x)-\muValue)^2/(2*\sigmaValue^2))}; \addlegendentry{$\mu=0.0,\sigma=0.05$}
+\addplot[blue,thick,domain=0.6:1.4, samples=1000]{1/(\sigmaValue*x*sqrt(2*pi))*exp(-(ln(x)-\muValue)^2/(2*\sigmaValue^2))}; \addlegendentry{$\mu=0.0,\sigma=0.05$}
 \pgfmathsetmacro{\muValue}{0}
 \pgfmathsetmacro{\sigmaValue}{0.1}
-\addplot[red,domain=0.6:1.4, samples=1000]{1/(\sigmaValue*x*sqrt(2*pi))*exp(-(ln(x)-\muValue)^2/(2*\sigmaValue^2))}; \addlegendentry{$\mu=0.0,\sigma=0.1$}
+\addplot[red,thick,domain=0.6:1.4, samples=1000]{1/(\sigmaValue*x*sqrt(2*pi))*exp(-(ln(x)-\muValue)^2/(2*\sigmaValue^2))}; \addlegendentry{$\mu=0.0,\sigma=0.1$}
 \end{axis}
 \end{tikzpicture}
 \caption[]{\todo{check values in literatur}}
