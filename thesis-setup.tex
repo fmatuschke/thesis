@@ -36,25 +36,35 @@
 \newcommand{\thesisUniversityPostalCode}{52428 J\"{u}lich}
 %
 % **************************************************
+% Debug LaTeX Information
+% **************************************************
+%\listfiles
+% 
+% **************************************************
 % User Commands
 % **************************************************
-\newcommand{\comment}[1]{\textcolor{gray}{\textit{#1}}}
 % 
-\makeatletter
-\renewcommand\listoftables{%
-        \@starttoc{lot}%
-}
-\makeatother
-% 
-\makeatletter
-\renewcommand\listoffigures{%
-        \@starttoc{lof}%
-}
-\makeatother
+% \makeatletter
+% \renewcommand\listoftables{%
+%         \@starttoc{lot}%
+% }
+% \makeatother
+% % 
+% \makeatletter
+% \renewcommand\listoffigures{%
+%         \@starttoc{lof}%
+% }
+% \makeatother
+% % 
+% \makeatletter
+% \renewcommand\lstlistoflistings{%
+%         \@starttoc{lof}%
+% }
+% \makeatother
 %
 %
 % **************************************************
-% Format
+% Load and Configure Packages
 % **************************************************
 \usepackage[english]{babel} % babel system, adjust the language of the content
 \PassOptionsToPackage{% setup clean thesis style
@@ -62,7 +72,7 @@
     hangfigurecaption=false,%
     hangsection=true,%
     hangsubsection=true,%
-    sansserif=false,%
+    sansserif=true,%
     configurelistings=true,%
     colorize=full,%
     colortheme=bluemagenta,%
@@ -90,8 +100,10 @@
 % **************************************************
 %  Packages
 % **************************************************
+\usepackage{scrhack}
 \usepackage{float}              % [H]
 \usepackage{graphicx}           % (pdf, png, jpg, eps)
+\usepackage{pdfpages}
 \usepackage{subcaption}
 \usepackage{minitoc}
 \usepackage{amsmath, amssymb, mathtools}
@@ -179,7 +191,7 @@
 % **************************************************
 % Tikz & PGFplots
 % **************************************************
-\usepackage{layouts} % measure sizes in cm
+% \usepackage{layouts} % measure sizes in cm
 %\usepackage[dvipsnames]{xcolor}        % required by pgfplots
 \usepackage{tikz}
 % \usepackage{tikz-uml}
@@ -248,8 +260,6 @@
 \makeatother
 % 
 % \makeatletter
-% \def\tikzwidth{\textwidth}
-% \def\tikzheight{\textheight}
 % \newsavebox{\measure@tikzpicture}
 % \NewEnviron{tikzsize}[2]{%
 %     \def\tikz@width{#1}%
@@ -290,6 +300,7 @@
 % **************************************************
 % User Macros
 % **************************************************
+\newcommand{\comment}[1]{\textcolor{gray}{\textit{#1}}}
 % \newcommand{\overbar}[1]{\mkern 1.5mu\overline{\mkern-1.5mu#1\mkern-1.5mu}\mkern 1.5mu}
 \usepackage{soul}
 \newcommand{\dummy}{\textcolor{ProcessBlue}{\textbf{\{...\}}}\xspace}
