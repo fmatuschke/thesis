@@ -39,18 +39,18 @@ For the radial case the smallest distance to the line segment $(\vv{p}_i,\vv{p}_
 % 
 \begin{figure}[!t]
 \centering
-\resizebox{0.75\textwidth}{!}{
+% \tikzset{external/remake next=true}
+\def\tikzwidth{0.75\textwidth}
 \inputtikz{gfx/simpli/vector_model.tikz}
-}
 \caption{discretisation of fiber}
 \label{fig:fiber_discretisation}
 \end{figure}
 % 
 \begin{figure}[!t]
 \centering
-\resizebox{0.75\textwidth}{!}{
+% \tikzset{external/remake next=true}
+\def\tikzwidth{0.5\textwidth}
 \inputtikz{gfx/simpli/indexing.tikz}
-}
 \caption{indexing of arrays.
 The vector inside the array at index position $[i,j,k]$ will correspond to the vector at position $p=(i+0.5,j+0.5,k+0.5)\cdot \text{\voxelsize}$}
 \label{fig:indexing_array}
