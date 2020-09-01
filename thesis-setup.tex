@@ -119,7 +119,7 @@
 \AtBeginDocument{\sisetup{math-rm=\mathrm, text-rm=\sffamily}}
 % \usepackage{caption}
 \usepackage[nameinlink]{cleveref}
-% \usepackage{esvect}
+% \usepackage{esvect} % see \let\vv\mathbf
 % 
 \usepackage{xspace}
 \usepackage{currfile}
@@ -193,6 +193,7 @@
 % **************************************************
 % Tikz & PGFplots
 % **************************************************
+\usepackage{shellesc}
 % \usepackage{layouts} % measure sizes in cm
 %\usepackage[dvipsnames]{xcolor}        % required by pgfplots
 \usepackage{tikz}
@@ -292,7 +293,6 @@
 % 
 % \captionsetup[table]{textfont=it, parskip=10em} % skip does not work for table
 \pgfplotstableset{thesisTableStyle/.style={
-    column type=l,
     every even row/.style={before row={\rowcolor[gray]{0.90}}},
     % empty cells with={--}, % replace empty cells with '--'
     every head row/.style={before row=\toprule,after row=\midrule},
@@ -305,7 +305,6 @@
 \newcommand{\comment}[1]{\textcolor{gray}{\textit{#1}}}
 \usepackage{soul}
 \newcommand{\dummy}{\textcolor{ProcessBlue}{\textbf{\{...\}}}\xspace}
-% \newcommand{\todo}[1]{\textcolor{ProcessBlue}{\textbf{\{#1\}}}}
 \newcommand{\todo}[1]{%
   \begingroup
   \sethlcolor{ProcessBlue}%

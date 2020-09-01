@@ -5,11 +5,18 @@
 \pgfmathsetmacro{\lastr}{0}
 \pgfmathsetmacro{\r}{0}
 % 
-% \tikzexternaldisable
+\tikzexternaldisable
 \begin{tikzsize}{\tikzwidth}{\tikzheight}
 \begin{tikzpicture}[scale=\tikzscale]
 % \begin{tikzpicture}[scale=1.25]
 % \draw[thin] (0,-5) grid (10,5);
+% 
+% \begin{scope}[shift={(0,0)}, local bounding box=bb1]
+% \path[] (0,2.5) -- (0,-3.08);
+% \draw[lightgray,rounded corners,line width=42pt] (0,0)
+% \foreach \i in {(2,1),(4,-1),(6,0.75),(8,-0.15)}{
+% -- \i} -- (10,0.42);
+% \end{scope}
 % 
 \node[] at (-0.75,0.0) {segment length};
 \foreach \l [count=\li] in {0.125,0.25,0.5,1,2,4,8}{
@@ -26,5 +33,5 @@
 \end{tikzpicture}
 \end{tikzsize}
 % 
-% \tikzexternalenable
+\tikzexternalenable
 % 
