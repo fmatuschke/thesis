@@ -299,6 +299,32 @@
     every last row/.style={after row=\bottomrule},
 }}
 % 
+\pgfplotstableset{
+    rowbf/.style={
+        postproc cell content/.append code={
+          \count0=\pgfplotstablerow
+            \advance\count0 by1
+            \ifnum\count0=#1
+              \pgfkeysalso{@cell content=\textbf{##1}}%
+            \fi
+        },
+    },
+}
+\pgfplotstableset{
+    rowem/.style={
+        postproc cell content/.append code={
+          \count0=\pgfplotstablerow
+            \advance\count0 by1
+            \ifnum\count0=#1
+              \pgfkeysalso{@cell content=\emph{##1}}%
+            \fi
+        },
+    },
+}
+% 
+% every row 3 column 3/.style={postproc cell content/.style=
+%         {@cell content=\textbf{##1}}}
+% 
 % **************************************************
 % User Macros
 % **************************************************
