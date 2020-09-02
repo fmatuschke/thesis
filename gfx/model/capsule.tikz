@@ -1,0 +1,29 @@
+\begin{tikzsize}{\tikzwidth}{\tikzheight}
+\begin{tikzpicture}[scale=\tikzscale,]
+\foreach \x/\y/\r[count=\i] in {0/0/0.25,2/1/0.35,4/-1/0.15,6/0.75/0.25,8/-0.15/0.21}{
+\ifnum \i > 1
+    \coordinate (A) at (\x,\y);
+    \coordinate (B) at (\lastx,\lasty);
+    \pgfmathanglebetweenpoints{\pgfpointanchor{A}{center}}
+                              {\pgfpointanchor{B}{center}}
+    \pgfmathsetmacro\angle{\pgfmathresult}
+    \pgfmathsetmacro\len{sqrt((\x-\lastx)*(\x-\lastx)+(\y-\lasty)*(\y-\lasty))}
+    \draw[fill, lightgray, rotate around={180+\angle:(\lastx,\lasty)}] ($(\lastx,\lasty-\r)$) rectangle ($(\lastx+\len,\lasty+\r)$);
+\fi
+
+\ifnum \i > 1
+    \draw[fill, lightgray] (\lastx, \lasty) circle (\r);
+\fi
+\xdef\lastx{\x}
+\xdef\lasty{\y}
+% \node at (\lastx,\lasty) [circle,fill,inner sep=1.5pt]{};
+\xdef\lastr{\r}
+\draw[fill, lightgray] (\lastx, \lasty) circle (\lastr);
+}
+\foreach \x/\y/\r[count=\i] in {0/0/0.25,2/1/0.35,4/-1/0.15,6/0.75/0.25,8/-0.15/0.21}{
+\node at (\x,\y) [circle,fill,inner sep=1.0pt]{};
+\draw[dashed] (\x,\y) circle (\r){};
+}
+\path[](-1,0)--(9,0); %bb
+\end{tikzpicture}
+\end{tikzsize}

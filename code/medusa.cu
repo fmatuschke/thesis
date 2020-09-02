@@ -1,7 +1,8 @@
-600 cm__global__ void computeRepulsionForces(const Sphere *spheres,
+__global__ void computeRepulsionForces(const Sphere *spheres,
                                        float3 *forces,
                                        const int spheresCount,
-                                       const float max_sphere_radius) {
+                                       const float max_sphere_radius)
+{
   int i = blockDim.x * blockIdx.x + threadIdx.x;
 
   if (i < spheresCount) {
