@@ -32,8 +32,10 @@ This allows a complex trajectory $f(t) \rightarrow \left(\vv{p}=(x,y,z),r\right)
 Two coordinates $(p_i, p_{i+1})$ and radii $(r_i, r_{i+1})$ are assigned to each segment. Two neighbouring segment share there parameters.
 Therefore a list of tuples containing four floating point numbers can be interpret as fiber (\cref{fig:fiberReb}):
 \begin{align}
+\begin{split}
 \mathit{fiber} &= \left\{ \vv{p}_i=(x_i,y_i,z_i), r_i \mid i \in \{0,1,N_{\mathit{points}}-1\}\right\} \\
 \mathit{segment}_i &= \left\{ \vv{p}_i, \vv{p}_{i+1}, r_i, r_{i+1} \mid i \in \{0,1,N_{\mathit{seg}}-1\} \right\}
+\end{split}
 \end{align}
 % 
 % This representation will also be used for visualization (see \dummy).
@@ -85,31 +87,53 @@ Therefore a list of tuples containing four floating point numbers can be interpr
 % 
 \section{Sandbox}
 % 
-\subsection{seeds}
+Two major processes are typical, when building white matter phantom. First, defining macrostructures like fiber bundles, second, defining fibers inside the fiber bundles.
+Defining a fiber bundle can be as easy as defining a fiber, if the shape should by tube like as well.
+\\
+To fill the fiber bundle, the following technique was developed.
 % 
-triangular grid\\
-user specified grid\\
-\eg rnd grid\\
+\subsection{seeds}\label{sec:seeds}
 % 
-\subsection{cube models}
-% 
-\subsection{cylindric models}
-% 
-\subsection{fill bundles}
+Seeds are a list of 3d points related to a coordinate center $(0,0,0)$ (see \cref{fig:triGrid,fig:rndGrid}).
+This list can be applied to a a trajectory.
 % 
 \begin{figure}[!t]
-    % \def\tikzwidth{\textwidth}
-    \def\tikzheight{0.35\textwidth}
+    % \def\tikzwidth{0.3\textwidth}
+    \def\tikzheight{0.25\textwidth}
     \centering
     % \tikzset{external/remake next}
-    \subcaptionbox{oct tree}[.49\textwidth]{
-    \inputtikz{gfx/model/rnd_circle_points.tikz}}
+    \subcaptionbox{\label{fig:triGrid}2d triangular grid}[.295\textwidth]{
+    \inputtikz{gfx/model/triangular_grid.tikz}\hfill}
     % \tikzset{external/remake next}
-    \subcaptionbox{oct tree}[.49\textwidth]{
-    \inputtikz{gfx/model/crossing_bundle.tikz}}
+    \subcaptionbox{\label{fig:rndGrid}rnd grid}[.295\textwidth]{
+    \inputtikz{gfx/model/rnd_circle_points.tikz}\hfill}
+    % \tikzset{external/remake next}
+    \subcaptionbox{\label{fig:crossBundle}2d filled fiber bundles}[.39\textwidth]{
+    \inputtikz{gfx/model/crossing_bundle.tikz}\hfill}
 	\caption{crossing bundles.}
 % 	\label{fig:}
 \end{figure}
+% 
+\subsection{cube models}
+% 
+Since \ac{3D-PLI} is a technique, which uses brain sections, and the camera signals result in 2d images, a method was implemented to build fiber bundles inside a 3d cube.
+The method works similar to filling a bundle with seeds (see \cref{sec:seeds, sec:fillBundle}).
+The population orientation is defined by a orientation vector $\vv{v}$;
+% 
+\subsection{cylindric models}
+% 
+building a cylindric model works the same way as cube models.
+The cylinder is definde by a vector $\vv{v}$ wich gives the orientation and length of the cylinder.
+A inner and outer radii $(r_{\mathit{in}}, r_{\mathit{out}})$ has to be defined as well.
+Inside the inner and outer radii the cylinder will be filled.
+Additionally a beginning end ending angle $(\alpha, \beta)$ can be defined, which let the cylinder only fill from $\alpha$ to $\beta$.
+Last the cylinder can be modelled in three ways. a) parallel, b) cylindrical and c) radial to the cylinder orientation (see \dummy).
+% 
+\subsection{fill bundles}\label{sec:fillBundle}
+% 
+Filling a \say{bundle} is is done via moving the \say{cloud} of seed points along the trajectory, moving,bending/rotating smooth along its way (like a good rolercoster).
+The trajectory of each individual seed point will then be interpret and returned as a individual fiber with a constant single radius, or individual radii (wich can later be changed if necessary).
+The distant of the seeds to their coordinate center can be scaled with the bundle \say{radii} or scale factor (set 1 for const).
 % 
 \section{\VCS}
 % 

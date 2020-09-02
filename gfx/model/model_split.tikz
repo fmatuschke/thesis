@@ -10,6 +10,8 @@
 % 
 \foreach \p [count=\i] in {(0,0),(2,-0.5),(4,-1),(6,-0.575),(8,-0.15),(10,0.42)}{
 \draw[lightgray, fill] \p circle (21pt/\tikzscale);
+}
+\foreach \p [count=\i] in {(0,0),(2,-0.5),(4,-1),(6,-0.575),(8,-0.15),(10,0.42)}{
 \draw[black, dashed] \p circle (21pt/\tikzscale);
 \pgfmathsetmacro{\ii}{int(\i-1)}
 \draw[black, fill] \p circle (2pt) node[black, yshift=-5pt, anchor=north] {$p'_{\ii}$};}

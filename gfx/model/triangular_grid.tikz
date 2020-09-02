@@ -1,0 +1,28 @@
+\begin{tikzsize}{\tikzwidth}{\tikzheight}
+\begin{tikzpicture}[scale=\tikzscale,]
+\pgfmathsetmacro{\r}{2.5};
+\draw[] (0,0) circle (\r);
+% 
+\foreach \i in {-5,-4,...,5}{
+\foreach \j in {-5,-4,...,5}{
+% 
+\pgfmathsetmacro{\x}{\i};
+\pgfmathsetmacro{\y}{\j*2*cos(30)};
+\pgfmathparse{sqrt(\x*\x+\y*\y)>\r?0:1}
+\ifnum\pgfmathresult>0
+    \node at (\x,\y) [circle,fill,inner sep=1.0pt]{};
+\fi
+% 
+\pgfmathsetmacro{\x}{\i+0.5};
+\pgfmathsetmacro{\y}{\j*2*cos(30)+cos(30)};
+\pgfmathparse{sqrt(\x*\x+\y*\y)>\r?0:1}
+\ifnum\pgfmathresult>0
+    \node at (\x,\y) [circle,fill,inner sep=1.0pt]{};
+\fi
+% 
+}}
+\draw[green!50!black, thick] (0,0) -- ++(60:1) -- ++(-60:1) -- cycle;
+% 
+\path[] ($(0,-1.25*\r)$)--($(0,1.25*\r)$); %bb
+\end{tikzpicture}
+\end{tikzsize}

@@ -1,12 +1,13 @@
 \begin{tikzsize}{\tikzwidth}{\tikzheight}
 \begin{tikzpicture}[scale=\tikzscale,]
 %
-\foreach \yValue in {0,1,...,420} {
+\pgfmathsetseed{42}
+\foreach \yValue in {0,1,...,210} {
 \pgfmathparse{rnd*360}\let\phi=\pgfmathresult
-\pgfmathparse{sqrt(rnd)}\let\r=\pgfmathresult
+\pgfmathparse{sqrt(rnd*0.99)}\let\r=\pgfmathresult
 \pgfmathparse{\r*cos(\phi)}\let\x=\pgfmathresult
 \pgfmathparse{\r*sin(\phi)}\let\y=\pgfmathresult
-\node[circle,fill,inner sep=0.5pt] at (\x,\y) {};
+\node[circle,fill,inner sep=1.0pt] at (\x,\y) {};
 }
 \draw[] (0,0) circle (1);
 \path[] (0,-1.25)--(0,1.25);
