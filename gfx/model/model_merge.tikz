@@ -7,9 +7,12 @@
 \foreach \i in {(2,1),(4,-1),(6,0.75),(8,-0.15)}{
 -- \i} -- (10,0.42);
 \end{scope}
-% 
+%
 \foreach \p [count=\i] in {(0,0),(2,1),(4,-1),(6,0.75),(8,-0.15),(10,0.42)}{
 \draw[lightgray, fill] \p circle (21pt/\tikzscale);
+}
+% 
+\foreach \p [count=\i] in {(0,0),(2,1),(4,-1),(6,0.75),(8,-0.15),(10,0.42)}{
 \draw[black, dashed] \p circle (21pt/\tikzscale);
 \pgfmathsetmacro{\ii}{int(\i-1)}
 \draw[black, fill] \p circle (2pt) node[black, yshift=-5pt, anchor=north] {$p_{\ii}$};}
@@ -20,9 +23,12 @@
 \draw[lightgray,rounded corners,line width=42pt] (0,0)
 \foreach \i in {(4,-1),(8,-0.15)}{
 -- \i} -- (10,0.42);
-% 
+%
 \foreach \p [count=\i] in {(0,0),(4,-1),(8,-0.15),(10,0.42)}{
 \draw[lightgray, fill] \p circle (21pt/\tikzscale);
+}
+% 
+\foreach \p [count=\i] in {(0,0),(4,-1),(8,-0.15),(10,0.42)}{
 \draw[black, dashed] \p circle (21pt/\tikzscale);
 \pgfmathsetmacro{\ii}{int(\i-1)}
 \draw[black, fill] \p circle (2pt) node[black, yshift=-5pt, anchor=north] {$p'_{\ii}$};}
