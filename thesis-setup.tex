@@ -84,6 +84,13 @@
 }{cleanthesis}
 \usepackage{cleanthesis}
 %
+% \colorlet{citeColor}{green!50!black}
+% \colorlet{linkColor}{green!75!black>wheel,1,2}
+% \colorlet{urlColor}{green!75!black>twheel,1,2}
+\colorlet{citeColor}{violet>twheel,2,3}
+\colorlet{linkColor}{violet}
+\colorlet{urlColor}{violet>twheel,1,3}
+% 
 \hypersetup{% setup the hyperref-package options
     pdftitle={\thesisTitle},    %   - title (PDF meta)
     pdfsubject={\thesisSubject},%   - subject (PDF meta)
@@ -94,7 +101,9 @@
     breaklinks=true,            %   - allow line break inside links
     bookmarksnumbered=true,     %
     bookmarksopen=true,         %
-    citecolor=green!50!black    %
+    citecolor=citeColor,        %
+    linkcolor=linkColor,        %
+    urlcolor=urlColor,          %
 }
 %
 % **************************************************
@@ -110,7 +119,6 @@
 % \usepackage{newtxsf}
 \usepackage{newtxmath}          % new math fonts\usepackage[libertine, vvarbb]{newtxmath}
 \usepackage{dirtree}
-\usepackage{acro}
 \usepackage{siunitx}
 \sisetup{detect-mode=true,detect-family=false,
         detect-display-math=false,detect-shape=false,
@@ -126,10 +134,24 @@
 \usepackage{blindtext}
 %\usepackage{ifplatform}
 \usepackage{mwe}
+\usepackage{acro}
 \newsavebox{\largestimage}
 % 
 % \crefname{figure}{fig.}{fig.}
 % \Crefname{figure}{Fig.}{Fig.}
+%
+% **************************************************
+%  Minitoc
+% **************************************************
+\renewcommand*{\partheadstartvskip}{%
+  \null\vskip20pt
+}
+\renewcommand*{\partheadendvskip}{%
+  \vskip2pt
+}
+\renewcommand\beforeparttoc{}
+\let\oldparttoc\parttoc
+\renewcommand*{\parttoc}{{\hypersetup{hidelinks}\oldparttoc}}
 % 
 % **************************************************
 %  Math
@@ -195,7 +217,6 @@
 % **************************************************
 \usepackage{shellesc}
 % \usepackage{layouts} % measure sizes in cm
-%\usepackage[dvipsnames]{xcolor}        % required by pgfplots
 \usepackage{tikz}
 % \usepackage{tikz-uml}
 % \usepackage{tikz-3dplot}

@@ -1,70 +1,3 @@
-% \begin{tikzsize}{\tikzwidth}{\tikzheight}
-% \begin{tikzpicture}[scale=\tikzscale,]
-% % 
-% % \path [] (-13,-9) grid (13,9);
-% % 
-% \begin{scope}[shift={(-7,0)}]
-% \foreach \pa/\pb/\ra/\rb [count=\ii] in {
-% (1,5)/{(-1,-5)}/2.5/2
-% } {
-%     \def\l{c\ii}
-%     % 
-%     \pgfmathsetmacro{\rone}{\ra}
-%     \pgfmathsetmacro{\rtwo}{\rb}
-%     \pgfmathsetmacro{\out}{\rone/(\rone - \rtwo)}
-%     \node[draw, circle,minimum size=2 * \rone cm,inner sep=0pt] (\l1) at \pa {};
-%     \node[circle,minimum size=2 * \rtwo cm,inner sep=0pt] (\l2) at \pb {};
-%     \path (\l1.center) -- node[coordinate,pos=\out] (out) {}  (\l2.center);
-%     % 
-%     \foreach \i in {1,2}
-%     \foreach \j in {1,2}
-%     \foreach \k in {out}
-%     \coordinate (t\i\j\k) at (tangent cs:node=\l\i,point={(\k)},solution=\j);
-%     % 
-%     \foreach \i in {1,2}
-%     \foreach \k in {out}
-%     \draw[red] ($(t1\i\k)!-0cm!(t2\i\k)$) --  ($(t2\i\k)!-0cm!(t1\i\k)$);
-%     % 
-%     % last circle
-%     \ifnum\ii=1
-%         \node[draw,circle,minimum size=2 * \rtwo cm,inner sep=0pt] (last) at \pb {};
-%     \fi
-% }
-% \end{scope}
-% % 
-% \draw[very thick, ->, >=latex, line width=5pt] (-1,0) -- (1,0);
-% % 
-% \begin{scope}[shift={(7,0)}]
-% \foreach \pa/\pb/\ra/\rb [count=\ii] in {
-% (1,5)/{(0,0)}/2.5/2.25,
-% (0,0)/{(-1,-5)}/2.25/2
-% } {
-%     \def\l{c\ii}
-%     % 
-%     \pgfmathsetmacro{\rone}{\ra}
-%     \pgfmathsetmacro{\rtwo}{\rb}
-%     \pgfmathsetmacro{\out}{\rone/(\rone - \rtwo)}
-%     \node[draw, circle,minimum size=2 * \rone cm,inner sep=0pt] (\l1) at \pa {};
-%     \node[circle,minimum size=2 * \rtwo cm,inner sep=0pt] (\l2) at \pb {};
-%     \path (\l1.center) -- node[coordinate,pos=\out] (out) {}  (\l2.center);
-%     % 
-%     \foreach \i in {1,2}
-%     \foreach \j in {1,2}
-%     \foreach \k in {out}
-%     \coordinate (t\i\j\k) at (tangent cs:node=\l\i,point={(\k)},solution=\j);
-%     % 
-%     \foreach \i in {1,2}
-%     \foreach \k in {out}
-%     \draw[red] ($(t1\i\k)!-0cm!(t2\i\k)$) --  ($(t2\i\k)!-0cm!(t1\i\k)$);
-%     % 
-%     % last circle
-%     \ifnum\ii=2
-%         \node[draw,circle,minimum size=2 * \rtwo cm,inner sep=0pt] (last) at \pb {};
-%     \fi
-% }
-% \end{scope}
-% \end{tikzpicture}
-% \end{tikzsize}
 % 
 \begin{tikzsize}{\tikzwidth}{\tikzheight}
 \begin{tikzpicture}[scale=\tikzscale,]
@@ -96,7 +29,7 @@
 \draw[black, fill] \p circle (2pt) node[black, yshift=-5pt, anchor=north] {$p_{\ii}$};}
 \end{scope}
 % 
-\draw[<-, line width=4.2pt] (bb1.north) -- (bb2.south);
+\draw[<-, line width=3.2pt] (bb1.north) -- (bb2.south);
 % 
 \end{tikzpicture}
 \end{tikzsize} 
