@@ -131,6 +131,14 @@ Last the cylinder can be modelled in three ways. a) parallel, b) cylindrical and
 % 
 \subsection{fill bundles}\label{sec:fillBundle}
 % 
+\begin{figure}[!t]
+    \centering
+    \resizebox{0.75\textwidth}{!}{
+    \includegraphics{dev/gfx/circle_bundle.png}}
+	\caption{Bending fiber along trajectory}
+	\label{fig:circleBundle}
+\end{figure}
+% 
 Filling a \say{bundle} is is done via moving the \say{cloud} of seed points along the trajectory, moving,bending/rotating smooth along its way (like a good rolercoster).
 The trajectory of each individual seed point will then be interpret and returned as a individual fiber with a constant single radius, or individual radii (wich can later be changed if necessary).
 The distant of the seeds to their coordinate center can be scaled with the bundle \say{radii} or scale factor (set 1 for const).
@@ -239,7 +247,7 @@ This will result in a more controlled movement if \eg only the two endings of th
 % 
 The movement is saved for each object in a velocity \textit{std::vector}.
 Therefore the sum of all velocities is taken into account.
-The maximum speed is however limited to a value of $v_{\max} = 0.1 \times \min(object radius)$.
+The maximum speed is however limited to a value of $v_{\max} = 0.1 \times \min(\mathit{object radius})$.
 This prevents movement through another object.
 % 
 \subsection{Shape Control}\label{chap5:ShapeControl}
@@ -290,13 +298,6 @@ The limit is set as a minimal radius of $r_{\min}$.
 If a point $p_{i}$ in a fiber fall below this value, the three points will be moved.
 $p_{i-1},p_{i+1}$ will be moved \dummy and $p_{i}$ oposit.
 Therefore the curvature will be reduced.
-% 
-% \begin{figure}[!t]
-%     \centering
-%     \inputtikz{gfx/model/model_radius.tikz}
-% 	\caption{different bending radii for const fiber radius.}
-% 	\label{fig:model_radius}
-% \end{figure}
 % 
 \begin{figure}[!t]
     \centering
