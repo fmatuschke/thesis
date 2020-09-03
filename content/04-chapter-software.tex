@@ -18,24 +18,24 @@
 \end{itemize}}
 %
 \cite{pybind11}
-
+% 
 \section{Introduction}
 \ac{GM}
-
+% 
 \section{Framework}
-The software package \ac{fastPLI} is build as a \textit{Python3} \cite{Python3} package.
-
+The software package \ac{fastPLI} \cite{fastpli} is build as a \textit{Python3} \cite{Python3} package.
+% 
 To explain Python packages, first Python modules needs to be explained.
-
+% 
 Simply said, a Python module is a collection of executable functions.
 They can however also contain other modules.
 Their structure is exacly build up like a file structure. 
-
+% 
 A Python package on the other side is a collection of python code and modules.
 Their sturcture are indistinguishable from modules, however they contain additional instruction for the installation process.
 E.g Python can also run compiled shared \CCXX{} functions.
 A python package can include the instructions to compile this functions with a suitable \CCXX{} compiler and a list of all necessary additional \CCXX{}-Libraries.
-
+% 
 \begin{figure}
     \centering
     % \resizebox{1.0\textwidth}{!}{
@@ -105,8 +105,8 @@ A python package can include the instructions to compile this functions with a s
     \caption{package dirlist, see \dummy.} %\cref{app:fastpli}
     \label{fig:package_dirlist}
 \end{figure}
-
-
+% 
+% 
 \subsection{Dependencies}
 % 
 \paragraph{Python:}
@@ -133,12 +133,12 @@ A python package can include the instructions to compile this functions with a s
 \url{www.opengl.org}
 \item[Pybind11:] Seamless operability between C++11 and Python \cite{pybind11}\\ \url{https://github.com/pybind/pybind11} 
 \end{description}
-
-
+% 
+% 
 \begin{figure}[!t]
 \centering
 \resizebox{0.95\textwidth}{!}{
- \inputtikz{gfx/fastpli/fastpli_sim_pipeline.tikz}}
+ \inputtikz{gfx/fastpli/fastpli_sim_pipeline}}
 \caption{pipeline}
 \label{fig:sim_pipeline}
 \end{figure}
@@ -205,7 +205,7 @@ A python package can include the instructions to compile this functions with a s
 % \begin{figure}[!t]
 % 	\centering
 % 	\resizebox{\textwidth}{!}{
-% 		\inputtikz{gfx/fastpli/fastpli_diagram.tikz}
+% 		\inputtikz{gfx/fastpli/fastpli_diagram}
 % 	}
 % 	\label{fig:fastpli_diagram}
 % 	\caption{fastpli diagram.}

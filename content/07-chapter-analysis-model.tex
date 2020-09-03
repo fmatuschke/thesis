@@ -2,6 +2,15 @@
 \chapter{Model Analysis}
 \label{cha:model_analysis}
 % 
+\section{Introduction}
+% 
+This chapter aims to build as reusable nerve fiber models for \ac{3D-PLI}.
+Since as later described, the most time consuming process is the collision solving algorithm, reusability for acurate phantoms is very preasures.
+% 
+\\
+% 
+At the end the generated models will be evaluated by their resulting shape (after the collosion solving step).
+% 
 \section{Model parameter}
 % 
 In this thesis a universal sets of eigen-cubes shall be analysed/ created.
@@ -30,15 +39,11 @@ density, dispersion, radii, change of radii, ...
 % 
 As described in \cref{chap5:ShapeControl} the choice of shape parameters \segLength and \segRadius are quite important. For a realistic fiber radius distribution of around \SI{0.5}{\micro\meter} the time for a \SI{60}{\micro\meter} usable cube (\SI{105}{\micro\meter} sphere) varies from several hours up to \SI{24}{\hour}.
 % 
-% 
-\subsection{Setup}
-% 
-
 \begin{figure}[!t]
 \centering
 % \def\tikzwidth{0.5\textwidth}
 \resizebox{0.5\textwidth}{!}{
-\inputtikz{gfx/model/sphere_cube.tikz}}
+\inputtikz{gfx/model/sphere_cube}}
 \caption[]{A spherical volume with diameter $d$ is used as boundry for a fiber model, so that a cube of side length $1/1.5 \cdot d$ can be cut in any orientation inside the sphere.}
 % \label{fig:}
 \end{figure}
@@ -47,12 +52,17 @@ As described in \cref{chap5:ShapeControl} the choice of shape parameters \segLen
 \centering
 \def\tikzwidth{0.5*\textwidth}
 \subcaptionbox{fixed first fiber population; half rotation of second fiber population}[.49\textwidth]{
-\inputtikz{gfx/model/sphere_models_.tikz}}\hfill
+\inputtikz{gfx/model/sphere_models_}}\hfill
 \subcaptionbox{\label{subfig:Test1}increasing inclination for first fiber population}[.49\textwidth]{
-\inputtikz{gfx/model/sphere_models.tikz}}
+\inputtikz{gfx/model/sphere_models}}
 \caption{two population model library}
 \label{fig:twomodelpop}
 \end{figure}
+% 
+% 
+\subsection{Setup}
+% 
+The library \say{cube\_2pop} is build with the parameter listed in \cref{tab:cube2pop, tab:cube2popSoftware}.
 % 
 \begin{table}[!b]
 \sisetup{parse-numbers=false,open-bracket={\{}, close-bracket={\}}, list-final-separator={,},list-pair-separator={,}}%
@@ -77,7 +87,7 @@ fiber bundle distribution value & $\modelPsi$ & $\SIlist{0.1;0.2;...;1.0}{}$ \\
 fiber bundle crossing angle & $\modelOmega$ & $\SIlist{0;10;...;90}{\degree}$\\
 }
 \caption{parameter\_statistic setup and \textcolor{violet}{variables}.}
-% \label{}
+\label{tab:cube2pop}
 \end{table}
 % 
 \begin{table}[!b]
@@ -107,7 +117,7 @@ solver.max\_steps & $\SI{100000}{}$\\
 max runtime & $\SI{24}{\hour}$\\
 }
 \caption{parameter\_statistic setup and \textcolor{violet}{variables}.}
-% \label{}
+\label{tab:cube2popSoftware}
 \end{table}
 % 
 % 

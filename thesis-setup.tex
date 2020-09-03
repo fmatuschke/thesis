@@ -119,12 +119,14 @@
 % \usepackage{newtxsf}
 \usepackage{newtxmath}          % new math fonts\usepackage[libertine, vvarbb]{newtxmath}
 \usepackage{dirtree}
+% 
 \usepackage{siunitx}
 \sisetup{detect-mode=true,detect-family=false,
         detect-display-math=false,detect-shape=false,
         list-units=brackets, range-units=brackets,
         math-micro=\muup} %\mathrm{\mu}}
 \AtBeginDocument{\sisetup{math-rm=\mathrm, text-rm=\sffamily}}
+% 
 % \usepackage{caption}
 \usepackage[nameinlink]{cleveref}
 % \usepackage{esvect} % see \let\vv\mathbf
@@ -233,6 +235,12 @@
 \usetikzlibrary{patterns}
 \usetikzlibrary{bending} % bend arrow heads
 \usetikzlibrary{decorations.pathreplacing}
+% 
+% \usepackage{pdftexcmds} % for externalizing names
+% \makeatletter
+% \ifx\pdf@filemdfivesum\undefined\def\pdf@filemdfivesum#{\mdfivesum file}\fi
+% \let\filesum\pdf@filemdfivesum
+% \makeatother
 %
 \usepackage{pgfplots}
 \usepackage{pgfplotstable}
@@ -262,12 +270,18 @@
 }
 % 
 \makeatletter
-\newcommand{\inputtikz}[1]{%
-    \IfFileExists{#1}{
+\newcommand{\inputtikz}[2][false]{%
+    \IfFileExists{#2.tikz}{
     % \filename@parse{#1}
     % \tikzsetnextfilename{\filename@base}
-    \input{#1}}{
-    \noindent\includegraphics[width=3cm]{example-image}}   
+    \tikzexternalenable
+    % \tikzset{external/force remake=#1}
+    \tikzset{external/remake next=#1}
+    % \tikzsetnextfilename{\filesum{#1.tikz}}
+    \input{#2.tikz}
+    \tikzexternaldisable
+    }{
+    \noindent\includegraphics[width=4.2cm]{example-image}}   
 }
 \makeatother
 % 
