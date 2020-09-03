@@ -10,12 +10,12 @@
     \item Parallelisierungen/Optimierungen
 \end{itemize}}
 %
-The \ac{3D-PLI} simulation is based on he previous developt tool \textit{simPLI} \cite{Dohmen2015}, which uses linear optics \cite{} to simulate the light tissue inteaction in the \ac{PLI} setup.
+The \ac{3D-PLI} simulation is based on he previous developt tool \textit{simPLI} \cite{Dohmen2015}, which uses linear optics \cite{} to simulate the light tissue inteaction in the \ac{3D-PLI} setup.
 This version however uses M\"uller matrices \cite{} to define the optical elements and the Stokes vector \cite{} for describing the light \cref{sec:Mueller-Stokes}.\\
 % 
-The simulation is split into two conscutive parts.
+The simulation is split into two consecutive parts.
 The first part is to build a discrete grid model from a given fiber configuration (\eg \dummy).
-The second part uses the discrete volume to calculate the resulting \acs{PLI} images.
+The second part uses the discrete volume to calculate the resulting \ac{3D-PLI} images.
 %
 %
 %
@@ -51,7 +51,7 @@ For the radial case the smallest distance to the line segment $(\vv{p}_i,\vv{p}_
 \def\tikzwidth{0.5\textwidth}
 \inputtikz{gfx/simpli/indexing.tikz}
 \caption{indexing of arrays.
-The vector inside the array at index position $[i,j,k]$ will correspond to the vector at position $p=(i+0.5,j+0.5,k+0.5)\cdot \text{\voxelsize}$}
+The vector inside the array at index position $[i,j,k]$ will correspond to the vector at position $p=(i+0.5,j+0.5,k+0.5)\cdot \mathit{\voxelsize}$}
 \label{fig:indexing_array}
 \end{figure}
 % 
@@ -124,6 +124,15 @@ Each \mpi process can use \openmp to spawn multiple threads to efficiently use s
 \section{simulation}
 \label{sec:simulation}
 % 
+% 
+\begin{figure}[!t]
+\centering
+\def\tikzwidth{0.5*\textwidth}
+\inputtikz{gfx/simpli/vector_interpolation.tikz}
+\caption{vector interpolation}
+\label{fig:vectorfield_disc}
+\end{figure}
+% 
 The simulation pipeline runs the M\"uller-Stokes calculus on the precious calculated discretised volume.
 Since no scattering effects or refraction effects inside the tissue volume are included, each light ray trajectory follows a straight line.
 The light matter interaction $\left( \prod_i R_i M_i R_i \times \vv{S} \right)$ is calculated. 
@@ -139,8 +148,7 @@ This distortion can be described by an affine transformation (see \cref{fig::aff
 % 
 \begin{figure}[!t]
 \centering
-\resizebox{0.95\textwidth}{!}{
-\input{gfx/pli/affine_transformation}}
+\input{gfx/pli/affine_transformation}
 \caption{affine transformation}
 \label{fig::affine_transformation}
 \end{figure}
@@ -156,51 +164,43 @@ To always get the same dens of light rays per ccd-pixel, all light ray starting 
 % 
 \paragraph{calculation of light ray starting position}
 % 
-% FIXME
 \begin{figure}[!t]
+\def\tikzwidth{0.42\textwidth}
 % \centering
 % 
 \subcaptionbox{normal}[.495\textwidth]{
-\resizebox{0.45\textwidth}{!}{
 \def\tilt{0}
 \def\nindex{2.25}
-\inputtikz{gfx/simpli/tilting.tikz}
-}}
+\inputtikz{gfx/simpli/tilting.tikz}}
 % 
 \subcaptionbox{tilted}[.495\textwidth]{
-\resizebox{0.45\textwidth}{!}{
 \def\tilt{20}
 \def\nindex{2.25}
-\inputtikz{gfx/simpli/tilting.tikz}
-}}
+\inputtikz{gfx/simpli/tilting.tikz}}
 \caption{side view tilting}
 \label{fig:tilted_side_view}
 \end{figure}
 % 
-% 
-% 
-% 
 \begin{figure}[!t]
+% 
+\def\tikzheight{0.42\textwidth}
 % \centering
 \def\azimuth{0}
 \def\elevation{90}
 \def\dz{2}
-\savebox{\largestimage}{\resizebox{0.45\textwidth}{!}{\inputtikz{gfx/simpli/tilting_3d.tikz}}}
 \subcaptionbox{camera view}[.495\textwidth]{
-\usebox{\largestimage}
-}
+\inputtikz{gfx/simpli/tilting_3d.tikz}}
 % 
-\subcaptionbox{perspective view}[.495\textwidth]{
-\raisebox{\dimexpr.5\ht\largestimage-.5\height}{%
-\resizebox{0.45\textwidth}{!}{
 \def\azimuth{20}
 \def\elevation{25}
 \def\dz{1}
-\inputtikz{gfx/simpli/tilting_3d.tikz}
-}}}
-\caption[3d tilting]{3d tilting: around $xy$-axis, \raisebox{.25em}{\tikz \draw[red,thick](0,0)--(0.25,0);} top, \raisebox{.25em}{\tikz \draw[green!50!black,thick](0,0)--(0.25,0);} middle, \raisebox{.25em}{\tikz \draw[blue,thick](0,0)--(0.25,0);} bottom, \raisebox{.25em}{\tikz \draw[dash pattern=on 1.25pt off 1.25pt,thick](0,0)--(0.25,0);} original, \raisebox{.25em}{\tikz \draw[gray](0,0)--(0.25,0);} axis of rotation \TODO{improve images}}
-\end{figure}
+\subcaptionbox{perspective view}[.495\textwidth]{
+\inputtikz{gfx/simpli/tilting_3d.tikz}}
 % 
+\tikzexternaldisable
+\caption[3d tilting]{3d tilting: around $xy$-axis, \raisebox{.25em}{\tikz \draw[red,thick](0,0)--(0.25,0);} top, \raisebox{.25em}{\tikz \draw[green!50!black,thick](0,0)--(0.25,0);} middle, \raisebox{.25em}{\tikz \draw[blue,thick](0,0)--(0.25,0);} bottom, \raisebox{.25em}{\tikz \draw[dash pattern=on 1.25pt off 1.25pt,thick](0,0)--(0.25,0);} original, \raisebox{.25em}{\tikz \draw[gray](0,0)--(0.25,0);} axis of rotation \TODO{improve images}}
+\tikzexternalenable
+\end{figure}
 % 
 Snell's law describes the refraction of light between two different isotropic media:
 \begin{align}
@@ -261,7 +261,7 @@ This allows the light for the non tilted case along the z-axis and therfore alon
 therefore the data can be transferred linear to the cache and the prefetcher\footnote{A prefetcher get not only the data of the memory address i but also its neighbours i+1 and i-1 (depending on the order).
 This means the data is already in cache, if the next step is calculated.
 For linear traversions this means effectively a infinitive cache size.} of (modern) \ac{CPU} architectures hits its full potential.
-This is also noticeable in the tilted view, since the tilting angle in the \ac{PLI}-experiment is rather small.
+This is also noticeable in the tilted view, since the tilting angle in the \ac{3D-PLI}-experiment is rather small.
 This reduces secnificantly the acces time of the \ac{CPU} and the \ac{RAM}.\\
 % 
 Secondly the main for loop for each light ray is parallized with \openmp.
