@@ -35,17 +35,19 @@ Simulation(container::NpArray<int> label_field,
                optic_axis = vm::dot(rotation, optic_axis);
         
             for rho in range(filter_rotation):
-               local_light_ray[rho] = MuellerMatrix(optic_axis, dn)*local_light_ray[rho]
+               local_light_ray[rho] = MuellerMatrix(optic_axis, dn) *
+                                        local_light_ray[rho]
                local_light_ray[rho] *= attenuation;
             
      if not mpi_halo:
         // light reached end of volume and ccd sensor
         for rho in range(filter_rotation):
            intensity_signal[local_light_ray.ccd_pos, rho] = 
-                                        (polarizer_y * local_light_ray[rho])[0];
+                            (polarizer_y * local_light_ray[rho])[0];
 
       if (mpi_) 
-         // stays in communication loop until all processes finished simulation
+         // stays in communication loop until
+         // all processes finished simulation
          while mpi_->ReduceNumComm == 0:
             global_light_positions.append(mpi_->RecvData());
              

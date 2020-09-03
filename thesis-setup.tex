@@ -245,17 +245,31 @@
 \usepackage{booktabs,colortbl}
 \usepackage{multirow}
 %
+% 3d canvis
+\makeatletter
+\tikzoption{canvas is plane}[]{\@setOxy#1}
+\def\@setOxy O(#1,#2,#3)x(#4,#5,#6)y(#7,#8,#9)%
+  {\def\tikz@plane@origin{\pgfpointxyz{#1}{#2}{#3}}%
+   \def\tikz@plane@x{\pgfpointxyz{#4}{#5}{#6}}%
+   \def\tikz@plane@y{\pgfpointxyz{#7}{#8}{#9}}%
+   \tikz@canvas@is@plane
+  }
+\makeatother 
+% 
 \newcommand{\inputpdf}[1]{%
     \IfFileExists{#1}{\includegraphics{#1}}{
     \noindent\includegraphics[width=3cm]{example-image}}   
 }
 % 
+\makeatletter
 \newcommand{\inputtikz}[1]{%
     \IfFileExists{#1}{
-    % \tikzsetnextfilename{#1}
+    % \filename@parse{#1}
+    % \tikzsetnextfilename{\filename@base}
     \input{#1}}{
     \noindent\includegraphics[width=3cm]{example-image}}   
 }
+\makeatother
 % 
 % \tikzset{font=\small}
 % \tikzset{font={\fontsize{10pt}{12}\selectfont}}
@@ -353,21 +367,25 @@
 % User Macros
 % **************************************************
 \newcommand{\comment}[1]{\textcolor{gray}{\textit{#1}}}
-\usepackage{soul}
 \newcommand{\dummy}{\textcolor{ProcessBlue}{\textbf{\{...\}}}\xspace}
-\newcommand{\todo}[1]{%
-  \begingroup
-  \sethlcolor{ProcessBlue}%
-  \hl{#1}%
-  \endgroup
-}
-% 
-% \usepackage{todonotes}
-% \makeatletter
-% \renewcommand{\todo}[2][]{%
-%   \tikzexternaldisable\@todo[#1]{#2}\tikzexternalenable%
+% \usepackage{soul}
+% \newcommand{\todo}[1]{%
+%   \begingroup
+%   \sethlcolor{ProcessBlue}%
+%   \hl{#1}%
+%   \endgroup
 % }
-% \makeatother
+% 
+\usepackage[colorinlistoftodos,prependcaption,textsize=footnotesize]{todonotes}
+\presetkeys%
+    {todonotes}%
+    {inline,backgroundcolor=ProcessBlue}{}
+\makeatletter
+\renewcommand{\todo}[2][]{%
+  \tikzexternaldisable\@todo[#1]{#2}\tikzexternalenable%
+}
+\makeatother
+\newcommand{\TODO}[2][]{\todo[color=red, #1]{#2}}
 % 
 % **************************************************
 % Debug LaTeX Information

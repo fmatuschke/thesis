@@ -1,4 +1,5 @@
-\begin{tikzpicture}[scale=0.5]
+\begin{tikzsize}{\tikzwidth}{\tikzheight}
+\begin{tikzpicture}[scale=\tikzscale]
 % 
 \pgfmathsetmacro{\gridsize}{0.5}
 \pgfmathsetmacro{\gridshift}{0.5*\gridsize}
@@ -36,3 +37,4 @@
 }
 % 
 \end{tikzpicture}
+\end{tikzsize}
