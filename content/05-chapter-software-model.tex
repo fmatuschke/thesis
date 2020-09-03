@@ -5,19 +5,45 @@
 \section{Introduction}
 \cite{Balls2009}
 % 
-\begin{itemize}
+\begin{itemize}[nosep]
     \item current techniques
     \item their limitations
     \item collisions
     \item link to \cite{matuschke2019}
 \end{itemize}
 % 
-\subsection{Overview}
+Nerve fiber modelling is a non trivial task, which is \comment{(mainly?)} used in simulations like \ac{dMRI} simulations \dummy. However most \ac{dMRI} simulation tools use fast simulation techniques as \dummy. This take analytical function describing the fiber paths to be capable of calculation very fast.
 % 
-\begin{itemize}
-    \item sandbox
-    \item solver
+In resent time with the improvement of computer power and algorithms, simulators like monte carlo are used \dummy. These simulate the random walk of individual water molecules inside a volume. If the target are \ac{WM} phantoms nerve fibers can be modelled as a meshed tube.
+These have the advantage, that any complex configuration can be modelled \eg beeding fibers \dummy.\\
+%
+However a disadvantage is that for resanable model sizes ( in \ac{dMRI} a voxel is about $\SIrange{100}{1000}{\micro\meter}$ order, size nerve fiber about \SI{1}{\micro\meter}), the number of triangles of the mesh is quite big.
+A further ... is to build a geometrical configuration, where no nerve fibers are overlapping each other (\ie  take the same volume in space). \\
+% 
+Collision detektion takes a major role here.
+When other simulations using geometrical models (\eg protein folding \dummy) can use something like electric potentials, where the actuall geometrical boundry is not that important, here it is different.
+Collision detection algorithms are manly used for computer \dummy.\\
+% 
+Inside this chapter the following procedures are described:
+\begin{itemize}[nosep]
+    \item geometrical representation of nerve fiber (bundles)
+    \item user friendly building methods
+    \item ensure collisionless models
 \end{itemize}
+% 
+% \paragraph{Module}
+% % 
+% The python sub package \pymodule{fastpli.model} consist of two modules:
+% % 
+% %\vspace{-1ex}
+% \begin{itemize}[nosep]
+%     \item \pymodule{sandbox}
+%     \item \pymodule{solver}
+% \end{itemize}
+% % 
+% The first module \pymodule{sandbox} enherets routines to help the user build simple geometric configurations.
+% Ths can then be used to build more complex structres of nerve fiber bundles.
+% The second module \pymodule{solver} contains a \CXX framework wrapped inside a \python class to ensure easier user \ac{API} (see \dummy).
 % 
 \section{Nerve Fiber representation}
 % 
@@ -44,7 +70,7 @@ Therefore a list of tuples containing four floating point numbers can be interpr
     % \tikzset{external/export next=true}
     \def\tikzwidth{0.85\textwidth}
     \centering
-    \inputtikz{gfx/model/fibe_rep.tikz}
+    \inputtikz{gfx/model/fibe_rep}
 	\caption[]{\todo{etwas besser}}
 	\label{fig:fiberReb}
 \end{figure}
@@ -73,11 +99,11 @@ Therefore a list of tuples containing four floating point numbers can be interpr
 %     \def\tikzwidth{0.85\textwidth}
 %     \centering
 %     % \subcaptionbox{cylinder}[\textwidth]{
-%     % \inputtikz{gfx/model/cylinder.tikz}}
+%     % \inputtikz{gfx/model/cylinder}}
 %     % \subcaptionbox{capsule}[\textwidth]{
-%     % \inputtikz{gfx/model/capsule.tikz}}
+%     % \inputtikz{gfx/model/capsule}}
 %     % \subcaptionbox{conical capsule}[\textwidth]{
-%     \inputtikz{gfx/model/conical_capsule.tikz}
+%     \inputtikz{gfx/model/conical_capsule}
 %     % }
 % 	\caption[]{crossing bundles. Noch mist}
 % % 	\label{fig:}
@@ -103,13 +129,13 @@ This list can be applied to a a trajectory.
     \centering
     % \tikzset{external/remake next}
     \subcaptionbox{\label{fig:triGrid}2d triangular grid}[.295\textwidth]{
-    \inputtikz{gfx/model/triangular_grid.tikz}\hfill}
+    \inputtikz{gfx/model/triangular_grid}\hfill}
     % \tikzset{external/remake next}
     \subcaptionbox{\label{fig:rndGrid}rnd grid}[.295\textwidth]{
-    \inputtikz{gfx/model/rnd_circle_points.tikz}\hfill}
+    \inputtikz{gfx/model/rnd_circle_points}\hfill}
     % \tikzset{external/remake next}
     \subcaptionbox{\label{fig:crossBundle}2d filled fiber bundles}[.39\textwidth]{
-    \inputtikz{gfx/model/crossing_bundle.tikz}\hfill}
+    \inputtikz{gfx/model/crossing_bundle}\hfill}
 	\caption{crossing bundles.}
 % 	\label{fig:}
 \end{figure}
@@ -135,7 +161,7 @@ Last the cylinder can be modelled in three ways. a) parallel, b) cylindrical and
     \centering
     \resizebox{0.75\textwidth}{!}{
     \includegraphics{dev/gfx/circle_bundle.png}}
-	\caption{Bending fiber along trajectory}
+	\caption[]{Bending fiber along trajectory $f(t) = \left( \cos(t), \sin(t), 0 \right)$}
 	\label{fig:circleBundle}
 \end{figure}
 % 
@@ -149,10 +175,10 @@ The distant of the seeds to their coordinate center can be scaled with the bundl
     \centering
     \def\tikzwidth{0.75\textwidth}
     % \tikzset{external/force remake=true}
-    \inputtikz{gfx/model/conical_capsule_bb.tikz}
-    \tikzexternaldisable
+    \inputtikz{gfx/model/conical_capsule_bb}
+    % \tikzexternaldisable
 	\caption[cc and co]{\Acf{CC}: \raisebox{.25em}{\tikz \draw[black](0,0)--(0.275,0);} \ac{CC}, \raisebox{.25em}{\tikz \draw[blue, dash pattern=on 2.5pt off 2.5pt](0,0)--(0.275,0);} capsule, \raisebox{.25em}{\tikz \draw[red, dash pattern={on 2.5pt off 0.9pt on 0.42pt off 0.9pt}](0,0)--(0.275,0);} bounding box}
-	\tikzexternalenable
+% 	\tikzexternalenable
 	\label{fig:conical_capsule}
 \end{figure}
 % 
@@ -202,10 +228,10 @@ Traversing a  evenly distributed tree is of $\mathcal{O}(\log(n))$.\\
     \centering
     \subcaptionbox{oct tree}[.3\textwidth]{
     \def\tikzheight{0.6\textwidth}
-    \inputtikz{gfx/model/oct_tree.tikz}}
+    \inputtikz{gfx/model/oct_tree}}
     \subcaptionbox{collision 2d}[.65\textwidth]{
     \def\tikzheight{0.6\textwidth}
-    \inputtikz{gfx/model/collision_tree.tikz}}
+    \inputtikz{gfx/model/collision_tree}}
 	\caption{}
 	\label{fig:oct_tree}
 \end{figure}
@@ -260,9 +286,9 @@ It was decided to use the following two conditions:
 \begin{figure}[!t]
     \def\tikzwidth{.42\textwidth}
     \subcaptionbox{merge}[.5\textwidth]{
-    \inputtikz{gfx/model/model_merge.tikz}}
+    \inputtikz{gfx/model/model_merge}}
     \subcaptionbox{split}[.5\textwidth]{
-    \inputtikz{gfx/model/model_split.tikz}}
+    \inputtikz{gfx/model/model_split}}
 	\caption{Length control for fibers $f$ and $f'$}
 	\label{fig:merge_split}
 \end{figure}
@@ -271,7 +297,7 @@ It was decided to use the following two conditions:
 \begin{figure}[!t]
     \centering
     \def\tikzwidth{\textwidth}
-    \inputtikz{gfx/model/model_length.tikz}
+    \inputtikz{gfx/model/model_length}
 	\caption{different fiber segment length.}
 	\label{fig:model_length}
 \end{figure}
@@ -303,9 +329,9 @@ Therefore the curvature will be reduced.
     \centering
     \def\tikzheight{.42\textwidth}
     \subcaptionbox{Boundry segment length: lower bound $phi=\SI{60}{\degree} \xrightarrow{} r_{min} \geq \SI{0.5773}{} \cdot l_{mean}$}[.475\textwidth]{
-    \inputtikz{gfx/model/model_circle_.tikz}}\hfill
+    \inputtikz{gfx/model/model_circle_}}\hfill
     \subcaptionbox{Boundry segment radii: lower bound $r_{min} \geq \fiberRadiusMean $}[.45\textwidth]{
-    \inputtikz{gfx/model/model_circular.tikz}}
+    \inputtikz{gfx/model/model_circular}}
 	\caption{Geometrical boundry condition for fiber segment length \segLength and fiber bending radius \segRadius.}
 	\label{fig:model_circle_}
 \end{figure}
@@ -367,7 +393,7 @@ From the mesh, vertices and normals are calculated, which are then finaly render
 \begin{figure}[!t]
     % \resizebox{\textwidth}{!}{
     \def\tikzwidth{\textwidth}
-    \inputtikz{gfx/model/vis.tikz}
+    \inputtikz{gfx/model/vis}
     % }
 	\caption{mesh}
 	\label{fig:vis_mesh}
@@ -406,7 +432,7 @@ In this theses cells are disregarded. A full description of the construction wit
 \centering
 % \resizebox{0.75\textwidth}{!}{
 \def\tikzwidth{0.75\textwidth}
-\inputtikz{gfx/model/medusa/medusa_spheres.tikz}
+\inputtikz{gfx/model/medusa/medusa_spheres}
 % }
 \caption{modified from \cite{Ginsburger2019}}
 \label{fig:model:medusa_4}

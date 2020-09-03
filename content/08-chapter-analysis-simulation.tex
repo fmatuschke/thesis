@@ -19,7 +19,7 @@
 % \begin{figure}[!tbh]
 %     \centering
 %     \resizebox{.95\textwidth}{!}{
-%     % \inputtikz{gfx/test.tikz}
+%     % \inputtikz{gfx/test}
 %     }
 % 	\caption{test_plot}
 % 	\label{fig:test_plot}
@@ -47,9 +47,9 @@
 \centering
 \def\tikzwidth{0.45*\textwidth}
 \subcaptionbox{...}[.49\textwidth]{
-\inputtikz{gfx/model/sphere_models_.tikz}}
+\inputtikz{gfx/model/sphere_models_}}
 \subcaptionbox{...}[.49\textwidth]{
-\inputtikz{gfx/model/sphere_models.tikz}}
+\inputtikz{gfx/model/sphere_models}}
 \caption{...}
 \end{figure}
 % 
@@ -136,7 +136,7 @@ simpli.set\_voi & $-\SIlist[list-units = brackets,list-final-separator={, },]{0.
 % 
 % \begin{figure}[!t]
 %     \resizebox{\textwidth}{!}{
-%     \inputtikz{gfx/model/sphere_discretization.tikz}
+%     \inputtikz{gfx/model/sphere_discretization}
 %     }
 % 	\caption{sphere\_discretization}
 % 	\label{fig:sphere_discretization}
@@ -144,7 +144,7 @@ simpli.set\_voi & $-\SIlist[list-units = brackets,list-final-separator={, },]{0.
 % % 
 % \begin{figure}[!t]
 %     \resizebox{\textwidth}{!}{
-%     \inputtikz{data/5/voxel_size_vs_diff_dir.tikz}
+%     \inputtikz{data/5/voxel_size_vs_diff_dir}
 %     }
 % 	\caption{voxel\_size\_vs\_diff\_dir}
 % 	\label{fig:voxel_size_vs_diff_dir}
@@ -153,7 +153,7 @@ simpli.set\_voi & $-\SIlist[list-units = brackets,list-final-separator={, },]{0.
 %  MACHT PROBLEME FIXME:
 % \begin{figure}[!t]
 %     \resizebox{\textwidth}{!}{
-%     \inputtikz{data/5/voxel_size_vs_retardation.tikz}
+%     \inputtikz{data/5/voxel_size_vs_retardation}
 %     }
 % 	\caption{voxel\_size\_vs\_retardation}
 % 	\label{fig:voxel_size_vs_retardation}
@@ -203,18 +203,14 @@ simpli.set\_voi & $-\SIlist[list-units = brackets,list-final-separator={, },]{0.
 
 \subsection{Impact on labelfield}
 % 
-% \tikzexternaldisable
-% 
 \begin{figure}[!t]
 \centering
 \resizebox{1.0\textwidth}{!}{
-\inputtikz{gfx/simpli/vector_error.tikz}}
+\inputtikz{gfx/simpli/vector_error}}
 \caption[Discretization error]{Discretization error.
 This behavior is much stronger with myelin layers}
 \label{fig:vectorfield_disc_error}
 \end{figure}
-% 
-% \tikzexternalenable
 % 
 \subsection{Impact on vektorfield}
 % 
@@ -237,7 +233,7 @@ slerp and multisampling and sparse vectorfield
 \begin{figure}[!t]
 \centering
 \resizebox{0.95\textwidth}{!}{
-\inputtikz{dev/gfx/1/vector_field_mode_plot_0.20_5_r.tikz}
+\inputtikz{dev/gfx/1/vector_field_mode_plot_0.20_5_r}
 }
 \caption{NN, Lerp, Slerp}
 % \label{fig:vd1}

@@ -40,7 +40,7 @@ For the radial case the smallest distance to the line segment $(\vv{p}_i,\vv{p}_
 \centering
 % \tikzset{external/remake next=true}
 \def\tikzwidth{0.625\textwidth}
-\inputtikz{gfx/simpli/vector_model.tikz}
+\inputtikz{gfx/simpli/vector_model}
 \caption{discretisation of fiber}
 \label{fig:fiber_discretisation}
 \end{figure}
@@ -49,7 +49,7 @@ For the radial case the smallest distance to the line segment $(\vv{p}_i,\vv{p}_
 \centering
 % \tikzset{external/remake next=true}
 \def\tikzwidth{0.33\textwidth}
-\inputtikz{gfx/simpli/indexing.tikz}
+\inputtikz{gfx/simpli/indexing}
 \caption{indexing of arrays.
 The vector inside the array at index position $[i,j,k]$ will correspond to the vector at position $p=(i+0.5,j+0.5,k+0.5)\cdot \mathit{\voxelsize}$}
 \label{fig:indexing_array}
@@ -127,8 +127,8 @@ Each \mpi process can use \openmp to spawn multiple threads to efficiently use s
 \begin{figure}[!t]
 \centering
 % \tikzset{external/remake next=true}
-\def\tikzwidth{0.5*\textwidth}
-\inputtikz{gfx/simpli/vector_interpolation.tikz}
+\def\tikzwidth{0.42*\textwidth}
+\inputtikz{gfx/simpli/vector_interpolation}
 \caption{vector interpolation}
 \label{fig:vectorfield_disc}
 \end{figure}
@@ -171,12 +171,12 @@ To always get the same dens of light rays per ccd-pixel, all light ray starting 
 \subcaptionbox{normal}[.495\textwidth]{
 \def\tilt{0}
 \def\nindex{2.25}
-\inputtikz{gfx/simpli/tilting.tikz}}
+\inputtikz{gfx/simpli/tilting}}
 % 
 \subcaptionbox{tilted}[.495\textwidth]{
 \def\tilt{20}
 \def\nindex{2.25}
-\inputtikz{gfx/simpli/tilting.tikz}}
+\inputtikz{gfx/simpli/tilting}}
 \caption{side view tilting}
 \label{fig:tilted_side_view}
 \end{figure}
@@ -190,18 +190,18 @@ To always get the same dens of light rays per ccd-pixel, all light ray starting 
 \def\elevation{90}
 \def\dz{2}
 \subcaptionbox{camera view}[.495\textwidth]{
-\inputtikz{gfx/simpli/tilting_3d.tikz}}
+\inputtikz{gfx/simpli/tilting_3d}}
 % 
 % \tikzset{external/remake next=true}
 \def\azimuth{20}
 \def\elevation{25}
 \def\dz{1}
 \subcaptionbox{perspective view}[.495\textwidth]{
-\inputtikz{gfx/simpli/tilting_3d.tikz}}
+\inputtikz{gfx/simpli/tilting_3d}}
 % 
-\tikzexternaldisable
+% \tikzexternaldisable
 \caption[3d tilting]{3d tilting: around $xy$-axis, \raisebox{.25em}{\tikz \draw[red,thick](0,0)--(0.25,0);} top, \raisebox{.25em}{\tikz \draw[green!50!black,thick](0,0)--(0.25,0);} middle, \raisebox{.25em}{\tikz \draw[blue,thick](0,0)--(0.25,0);} bottom, \raisebox{.25em}{\tikz \draw[dash pattern=on 1.25pt off 1.25pt,thick](0,0)--(0.25,0);} original, \raisebox{.25em}{\tikz \draw[gray](0,0)--(0.25,0);} axis of rotation \TODO{improve images}}
-\tikzexternalenable
+% \tikzexternalenable
 \end{figure}
 % 
 Snell's law describes the refraction of light between two different isotropic media:
