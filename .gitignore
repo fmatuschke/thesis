@@ -3,6 +3,8 @@ dev/
 tikz/*
 output/
 *.*.*-*.pdf
+thesis.mtc
+thesis.ptc*
 
 # Created by https://www.gitignore.io/api/latex
 # Edit at https://www.gitignore.io/?templates=latex
