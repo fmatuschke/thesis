@@ -39,16 +39,16 @@ For the radial case the smallest distance to the line segment $(\vv{p}_i,\vv{p}_
 \begin{figure}[!t]
 \centering
 % \tikzset{external/remake next=true}
-\def\tikzwidth{0.75\textwidth}
+\def\tikzwidth{0.625\textwidth}
 \inputtikz{gfx/simpli/vector_model.tikz}
 \caption{discretisation of fiber}
 \label{fig:fiber_discretisation}
 \end{figure}
 % 
-\begin{figure}[!t]
+\begin{figure}[!tb]
 \centering
 % \tikzset{external/remake next=true}
-\def\tikzwidth{0.5\textwidth}
+\def\tikzwidth{0.33\textwidth}
 \inputtikz{gfx/simpli/indexing.tikz}
 \caption{indexing of arrays.
 The vector inside the array at index position $[i,j,k]$ will correspond to the vector at position $p=(i+0.5,j+0.5,k+0.5)\cdot \mathit{\voxelsize}$}
@@ -124,9 +124,9 @@ Each \mpi process can use \openmp to spawn multiple threads to efficiently use s
 \section{simulation}
 \label{sec:simulation}
 % 
-% 
 \begin{figure}[!t]
 \centering
+% \tikzset{external/remake next=true}
 \def\tikzwidth{0.5*\textwidth}
 \inputtikz{gfx/simpli/vector_interpolation.tikz}
 \caption{vector interpolation}
@@ -185,12 +185,14 @@ To always get the same dens of light rays per ccd-pixel, all light ray starting 
 % 
 \def\tikzheight{0.42\textwidth}
 % \centering
+% \tikzset{external/remake next=true}
 \def\azimuth{0}
 \def\elevation{90}
 \def\dz{2}
 \subcaptionbox{camera view}[.495\textwidth]{
 \inputtikz{gfx/simpli/tilting_3d.tikz}}
 % 
+% \tikzset{external/remake next=true}
 \def\azimuth{20}
 \def\elevation{25}
 \def\dz{1}
