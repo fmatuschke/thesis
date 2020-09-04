@@ -31,7 +31,7 @@
 \draw[black, fill] \p circle (2pt) node[black, yshift=-5pt, anchor=north] {$p_{\ii}$};}
 \end{scope}
 % 
-\draw[<-, line width=3.2pt] (bb1.north) -- (bb2.south);
+\draw[<-, line width=2.1pt] (bb1.north) -- (bb2.south);
 % 
 \end{tikzpicture}
 \end{tikzsize} 

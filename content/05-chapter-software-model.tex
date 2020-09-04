@@ -71,7 +71,8 @@ Therefore a list of tuples containing four floating point numbers can be interpr
     \def\tikzwidth{0.85\textwidth}
     \centering
     \inputtikz{gfx/model/fibe_rep}
-	\caption[]{\todo{etwas besser}}
+	\caption[]{representation of nerve fiber from a list of spheres $\left\{ \vv{p}_i=(x_i,y_i,z_i), r_i \mid i \in \{0,1,N_{\mathit{points}}-1\}\right\}$.
+	\todo{a little bit mor var in radius}}
 	\label{fig:fiberReb}
 \end{figure}
 % 
@@ -131,12 +132,12 @@ This list can be applied to a a trajectory.
     \subcaptionbox{\label{fig:triGrid}2d triangular grid}[.295\textwidth]{
     \inputtikz{gfx/model/triangular_grid}\hfill}
     % \tikzset{external/remake next}
-    \subcaptionbox{\label{fig:rndGrid}rnd grid}[.295\textwidth]{
+    \subcaptionbox{\label{fig:rndGrid}random grid}[.295\textwidth]{
     \inputtikz{gfx/model/rnd_circle_points}\hfill}
     % \tikzset{external/remake next}
     \subcaptionbox{\label{fig:crossBundle}2d filled fiber bundles}[.39\textwidth]{
     \inputtikz{gfx/model/crossing_bundle}\hfill}
-	\caption{crossing bundles.}
+	\caption{Filling fiber bundles with seed points.}
 % 	\label{fig:}
 \end{figure}
 % 
@@ -167,7 +168,7 @@ Last the cylinder can be modelled in three ways. a) parallel, b) cylindrical and
 % 
 Filling a \say{bundle} is is done via moving the \say{cloud} of seed points along the trajectory, moving,bending/rotating smooth along its way (like a good rolercoster).
 The trajectory of each individual seed point will then be interpret and returned as a individual fiber with a constant single radius, or individual radii (wich can later be changed if necessary).
-The distant of the seeds to their coordinate center can be scaled with the bundle \say{radii} or scale factor (set 1 for const).
+The distant of the seeds to their coordinate center can be scaled with the bundle \say{radii} or scale factor (set 1 for const). \comment{energy minimum?}.
 % 
 \section{\VCS}
 % 
@@ -297,6 +298,7 @@ It was decided to use the following two conditions:
 \begin{figure}[!t]
     \centering
     \def\tikzwidth{\textwidth}
+    % \tikzset{external/export next=true}
     \inputtikz{gfx/model/model_length}
 	\caption{different fiber segment length.}
 	\label{fig:model_length}
@@ -395,7 +397,7 @@ From the mesh, vertices and normals are calculated, which are then finaly render
     \def\tikzwidth{\textwidth}
     \inputtikz{gfx/model/vis}
     % }
-	\caption{mesh}
+	\caption{Generating mesh for visualization.}
 	\label{fig:vis_mesh}
 \end{figure}
 % 
@@ -403,7 +405,12 @@ From the mesh, vertices and normals are calculated, which are then finaly render
 This is a fast written approuch. Current rendering software uses far more advanced techniques. However this rendering algorithm was written to be a light integrated tool using only the aditional \textit{OpenGL 2} and \textit{GLUT} library.\\
 % 
 A more advanced Tool, the \textit{FAConstructor} \cite{Reuter2019} was written by Andr'e Reuter in the context of this doctorial research. This tool uses \textit{OpenGl 3} and additional calculation on the GPU. Additionally it allows user defined interactive technique to create a 3d fiber model.
-%  
+% 
+\subsection{Wall opacity}
+% 
+To be able to visualize axons inside myelinated nerve fibers, the visualisated vertices have to bi invisible.
+This however is a complicated task, since know the order of data processing is important.
+\dummy.
 % 
 % 
 % 

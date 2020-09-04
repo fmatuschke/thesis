@@ -314,6 +314,29 @@
 }}
 \makeatother
 % 
+\makeatletter
+\NewEnviron{sizetikz}[3][]{%
+\begin{tikzpicture}[#1]%
+\begin{pgfinterruptboundingbox}%
+\begin{scope}[opacity=0]%
+\BODY%
+\pgfsize{\tikzbbwidth}{\tikzbbheight}%
+\end{scope}%
+\end{pgfinterruptboundingbox}%
+\pgfmathparse{#2/\tikzbbwidth}%
+\edef\tikzscalewidth{\pgfmathresult}%
+\pgfmathparse{#3/\tikzbbheight}%
+\edef\tikzscaleheight{\pgfmathresult}%
+\pgfmathparse{min(\tikzscalewidth, \tikzscaleheight)}%
+\def\tikzscale{\pgfmathresult}%
+\begin{scope}[scale=\tikzscale]%
+\BODY%
+\end{scope}%
+\end{tikzpicture}%
+% \the\tikzbbwidth%
+}
+\makeatother
+% 
 % \makeatletter
 % \newsavebox{\measure@tikzpicture}
 % \NewEnviron{tikzsize}[2]{%
