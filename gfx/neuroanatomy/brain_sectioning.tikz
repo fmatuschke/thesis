@@ -44,7 +44,7 @@ plate/.style={fill}]
 \path [block!75, plate] 
 (-1,0,0) -- (-1,0,0.985) -- (1,0,0.985) -- (1,0,0) -- cycle;
 \node[xslant=tan(-50), yslant=tan(10)] () at (0,0,0.75)
-{\includegraphics[width=2.0cm, height=4.0cm, angle=-90]{gfx/neuroanatomy/human-brain-section.pdf}};
+{\includegraphics[width=0.85cm, height=1.7cm, angle=-90, scale=\tikzscale]{gfx/neuroanatomy/human-brain-section.pdf}};
 \draw [<->, >=latex] (1,0,0.75) -- (1,-1,0.75) node [midway, right] {b)};
 \end{scope}
 %
