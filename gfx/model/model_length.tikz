@@ -1,6 +1,4 @@
-\tikzexternaldisable
-% \begin{tikzsize}{\tikzwidth}{\tikzheight}
-
+\begin{tikzsize}[false]{\tikzwidth}{\tikzheight}
 \begin{tikzpicture}[scale=\tikzscale,remember picture]
 % \begin{sizetikz}[remember picture]{\textwidth}{\textheight}
 % 
@@ -236,5 +234,5 @@
 % 
 % \end{sizetikz}
 \end{tikzpicture}
-% \end{tikzsize}
+\end{tikzsize}
 \tikzexternalenable

@@ -293,49 +293,66 @@
 \def\tikzwidth{\textwidth}
 \def\tikzheight{\textheight}
 \newsavebox{\measure@tikzpicture}
-\NewEnviron{tikzsize}[2]{%
+\NewEnviron{tikzsize}[3][true]{%
 \def\tikzscale{1}%
+\ifthenelse{\boolean{#1}}{
 \tikzifexternalizingnext{%
-    \def\tikz@width{#1}%
-    \def\tikz@height{#2}%
+    \def\tikz@width{#2}%
+    \def\tikz@height{#3}%
     \begin{lrbox}{\measure@tikzpicture}%
     \tikzset{external/export next=false,external/optimize=false}% force translation of this BODY (and do not optimize it away as it would usually do):
     \BODY
     \end{lrbox}%
-    \pgfmathparse{#1/\wd\measure@tikzpicture}%
+    \pgfmathparse{#2/\wd\measure@tikzpicture}%
     \edef\tikzscalewidth{\pgfmathresult}%
-    \pgfmathparse{#2/\ht\measure@tikzpicture}%
+    \pgfmathparse{#3/\ht\measure@tikzpicture}%
     \edef\tikzscaleheight{\pgfmathresult}%
     \pgfmathparse{min(\tikzscalewidth, \tikzscaleheight)}%
     \edef\tikzscale{\pgfmathresult}%
     \BODY
 }{% this will re-use an existing external graphics:
     \BODY
+}}{%
+    \tikzset{external/export=false}%
+    \def\tikz@width{#2}%
+    \def\tikz@height{#3}%
+    \begin{lrbox}{\measure@tikzpicture}%
+    % \tikzexternaldisable
+    \BODY
+    \end{lrbox}%
+    \pgfmathparse{#2/\wd\measure@tikzpicture}%
+    \edef\tikzscalewidth{\pgfmathresult}%
+    \pgfmathparse{#3/\ht\measure@tikzpicture}%
+    \edef\tikzscaleheight{\pgfmathresult}%
+    \pgfmathparse{min(\tikzscalewidth, \tikzscaleheight)}%
+    \edef\tikzscale{\pgfmathresult}%
+    \BODY
 }}
 \makeatother
 % 
-\makeatletter
-\NewEnviron{sizetikz}[3][]{%
-\begin{tikzpicture}[#1]%
-\begin{pgfinterruptboundingbox}%
-\begin{scope}[opacity=0]%
-\BODY%
-\pgfsize{\tikzbbwidth}{\tikzbbheight}%
-\end{scope}%
-\end{pgfinterruptboundingbox}%
-\pgfmathparse{#2/\tikzbbwidth}%
-\edef\tikzscalewidth{\pgfmathresult}%
-\pgfmathparse{#3/\tikzbbheight}%
-\edef\tikzscaleheight{\pgfmathresult}%
-\pgfmathparse{min(\tikzscalewidth, \tikzscaleheight)}%
-\def\tikzscale{\pgfmathresult}%
-\begin{scope}[scale=\tikzscale]%
-\BODY%
-\end{scope}%
-\end{tikzpicture}%
-% \the\tikzbbwidth%
-}
-\makeatother
+% for testing,
+% \makeatletter
+% \NewEnviron{sizetikz}[3][]{%
+% \begin{tikzpicture}[#1]%
+% \begin{pgfinterruptboundingbox}%
+% \begin{scope}[opacity=0]%
+% \BODY%
+% \pgfsize{\tikzbbwidth}{\tikzbbheight}%
+% \end{scope}%
+% \end{pgfinterruptboundingbox}%
+% \pgfmathparse{#2/\tikzbbwidth}%
+% \edef\tikzscalewidth{\pgfmathresult}%
+% \pgfmathparse{#3/\tikzbbheight}%
+% \edef\tikzscaleheight{\pgfmathresult}%
+% \pgfmathparse{min(\tikzscalewidth, \tikzscaleheight)}%
+% \def\tikzscale{\pgfmathresult}%
+% \begin{scope}[scale=\tikzscale]%
+% \BODY%
+% \end{scope}%
+% \end{tikzpicture}%
+% % \the\tikzbbwidth%
+% }
+% \makeatother
 % 
 % \makeatletter
 % \newsavebox{\measure@tikzpicture}
