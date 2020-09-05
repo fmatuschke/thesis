@@ -166,6 +166,14 @@ Last the cylinder can be modelled in three ways. a) parallel, b) cylindrical and
 	\label{fig:circleBundle}
 \end{figure}
 % 
+\begin{figure}[!t]
+    \def\tikzheight{0.75\textwidth}
+    \centering
+    \inputtikz{gfx/model/min_torsion}
+	\caption{Minimal torsion along trajectory.}
+% 	\label{fig:}
+\end{figure}
+% 
 Filling a \say{bundle} is is done via moving the \say{cloud} of seed points along the trajectory, moving,bending/rotating smooth along its way (like a good rolercoster).
 The trajectory of each individual seed point will then be interpret and returned as a individual fiber with a constant single radius, or individual radii (wich can later be changed if necessary).
 The distant of the seeds to their coordinate center can be scaled with the bundle \say{radii} or scale factor (set 1 for const). \comment{energy minimum?}.
