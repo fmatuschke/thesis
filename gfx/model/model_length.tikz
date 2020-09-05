@@ -20,7 +20,7 @@
 \foreach \i in {0,10,...,200}{
 \pgfmathsetmacro{\x}{\i/20}
 \pgfmathsetmacro{\y}{(0.75*sin(\i)+0.5*sin(3*\i-90))}
-\pgfmathsetmacro{\r}{(5+rand*1)/10}
+\pgfmathsetmacro{\r}{(5+1.5*sin(\i*4.2)) / 10}
 \ifnum \i > 1
     \foreach \j in {0,0.1,...,1}{
     \pgfmathsetmacro{\rr}{\lastr+(\r-\lastr)*\j}
@@ -38,7 +38,7 @@
 \foreach \i in {0,10,...,200}{
 \pgfmathsetmacro{\x}{\i/20}
 \pgfmathsetmacro{\y}{(0.75*sin(\i)+0.5*sin(3*\i-90))}
-\pgfmathsetmacro{\r}{(5+rand*1)/10}
+\pgfmathsetmacro{\r}{(5+1.5*sin(\i*4.2)) / 10}
 \draw[fill, lightgray] (\x,\y) circle(\r);
 }
 % 
@@ -46,7 +46,7 @@
 \foreach \i in {0,10,...,200}{
 \pgfmathsetmacro{\x}{\i/20}
 \pgfmathsetmacro{\y}{(0.75*sin(\i)+0.5*sin(3*\i-90))}
-\pgfmathsetmacro{\r}{(5+rand*1)/10}
+\pgfmathsetmacro{\r}{(5+1.5*sin(\i*4.2)) / 10}
 \node at (\x,\y) [circle,fill,inner sep=1.0pt]{};
 % \draw[ultra thin,lightgray!75!white,dashed] (\x,\y) circle (\r){};
 }
@@ -59,7 +59,7 @@
 \foreach \i in {0,10,...,200}{
 \pgfmathsetmacro{\x}{\i/20}
 \pgfmathsetmacro{\y}{(0.75*sin(\i)+0.5*sin(3*\i-90))}
-\pgfmathsetmacro{\r}{(5+rand*1)/10}
+\pgfmathsetmacro{\r}{(5+1.5*sin(\i*4.2)) / 10}
 \path [clip] (\x,\y) circle (\r) [reverseclip];
 }
 % 
@@ -67,7 +67,7 @@
 \foreach \i in {0,10,...,200}{
 \pgfmathsetmacro{\x}{\i/20}
 \pgfmathsetmacro{\y}{(0.75*sin(\i)+0.5*sin(3*\i-90))}
-\pgfmathsetmacro{\r}{(5+rand*1)/10}
+\pgfmathsetmacro{\r}{(5+1.5*sin(\i*4.2)) / 10}
 \draw[thick, dashed] (\x,\y) circle (\r){};
 }
 \end{pgfinterruptboundingbox}
@@ -85,7 +85,7 @@
 \foreach \i in {0,10,...,200}{
 \pgfmathsetmacro{\x}{\i/20}
 \pgfmathsetmacro{\y}{(0.75*sin(\i)+0.5*sin(3*\i-90))}
-\pgfmathsetmacro{\r}{(5+rand*1)/10}
+\pgfmathsetmacro{\r}{(5+1.5*sin(\i*4.2)) / 10}
 % 
 \pgfmathparse{Mod(\i,20)==0?1:0}
 \ifnum\pgfmathresult>0
@@ -108,7 +108,7 @@
 \foreach \i in {0,10,...,200}{
 \pgfmathsetmacro{\x}{\i/20}
 \pgfmathsetmacro{\y}{(0.75*sin(\i)+0.5*sin(3*\i-90))}
-\pgfmathsetmacro{\r}{(5+rand*1)/10}
+\pgfmathsetmacro{\r}{(5+1.5*sin(\i*4.2)) / 10}
 % 
 \pgfmathparse{Mod(\i,20)==0?1:0}
 \ifnum\pgfmathresult>0
@@ -121,7 +121,7 @@
 % 
 \pgfmathsetmacro{\x}{\i/20}
 \pgfmathsetmacro{\y}{(0.75*sin(\i)+0.5*sin(3*\i-90))}
-\pgfmathsetmacro{\r}{(5+rand*1)/10}
+\pgfmathsetmacro{\r}{(5+1.5*sin(\i*4.2)) / 10}
 % 
 \pgfmathparse{Mod(\i,20)==0?1:0}
 \ifnum\pgfmathresult>0
@@ -138,7 +138,7 @@
 \foreach \i in {0,10,...,200}{
 \pgfmathsetmacro{\x}{\i/20}
 \pgfmathsetmacro{\y}{(0.75*sin(\i)+0.5*sin(3*\i-90))}
-\pgfmathsetmacro{\r}{(5+rand*1)/10}
+\pgfmathsetmacro{\r}{(5+1.5*sin(\i*4.2)) / 10}
 \path [clip] (\x,\y) circle (\r) [reverseclip];
 }
 % 
@@ -146,7 +146,7 @@
 \foreach \i in {0,10,...,200}{
 \pgfmathsetmacro{\x}{\i/20}
 \pgfmathsetmacro{\y}{(0.75*sin(\i)+0.5*sin(3*\i-90))}
-\pgfmathsetmacro{\r}{(5+rand*1)/10}
+\pgfmathsetmacro{\r}{(5+1.5*sin(\i*4.2)) / 10}
 \draw[thick, dashed] (\x,\y) circle (\r){};
 }
 \end{pgfinterruptboundingbox}
@@ -164,12 +164,12 @@
 \foreach \i in {0,10,...,200}{
 \pgfmathsetmacro{\x}{\i/20}
 \pgfmathsetmacro{\y}{(0.75*sin(\i)+0.5*sin(3*\i-90))}
-\pgfmathsetmacro{\r}{(5+rand*1)/10}
+\pgfmathsetmacro{\r}{(5+1.5*sin(\i*4.2)) / 10}
 % 
 \pgfmathparse{Mod(\i,40)==0?1:0}
 \ifnum\pgfmathresult>0
     \ifnum \i > 1
-        \foreach \j in {0,0.02,...,1}{
+        \foreach \j in {0,0.025,...,1}{
         \pgfmathsetmacro{\rr}{\lastr+(\r-\lastr)*\j}
         \pgfmathsetmacro{\xx}{\lastx + \j*(\x-\lastx)}
         \pgfmathsetmacro{\yy}{\lasty + \j*(\y-\lasty)}
@@ -187,7 +187,7 @@
 \foreach \i in {0,10,...,200}{
 \pgfmathsetmacro{\x}{\i/20}
 \pgfmathsetmacro{\y}{(0.75*sin(\i)+0.5*sin(3*\i-90))}
-\pgfmathsetmacro{\r}{(5+rand*1)/10}
+\pgfmathsetmacro{\r}{(5+1.5*sin(\i*4.2)) / 10}
 % 
 \pgfmathparse{Mod(\i,40)==0?1:0}
 \ifnum\pgfmathresult>0
@@ -200,7 +200,7 @@
 % 
 \pgfmathsetmacro{\x}{\i/20}
 \pgfmathsetmacro{\y}{(0.75*sin(\i)+0.5*sin(3*\i-90))}
-\pgfmathsetmacro{\r}{(5+rand*1)/10}
+\pgfmathsetmacro{\r}{(5+1.5*sin(\i*4.2)) / 10}
 % 
 \pgfmathparse{Mod(\i,40)==0?1:0}
 \ifnum\pgfmathresult>0
@@ -217,7 +217,7 @@
 \foreach \i in {0,10,...,200}{
 \pgfmathsetmacro{\x}{\i/20}
 \pgfmathsetmacro{\y}{(0.75*sin(\i)+0.5*sin(3*\i-90))}
-\pgfmathsetmacro{\r}{(5+rand*1)/10}
+\pgfmathsetmacro{\r}{(5+1.5*sin(\i*4.2)) / 10}
 \path [clip] (\x,\y) circle (\r) [reverseclip];
 }
 % 
@@ -225,7 +225,7 @@
 \foreach \i in {0,10,...,200}{
 \pgfmathsetmacro{\x}{\i/20}
 \pgfmathsetmacro{\y}{(0.75*sin(\i)+0.5*sin(3*\i-90))}
-\pgfmathsetmacro{\r}{(5+rand*1)/10}
+\pgfmathsetmacro{\r}{(5+1.5*sin(\i*4.2)) / 10}
 \draw[thick, dashed] (\x,\y) circle (\r){};
 }
 \end{pgfinterruptboundingbox}

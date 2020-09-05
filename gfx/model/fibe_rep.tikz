@@ -1,7 +1,7 @@
-\begin{tikzsize}{\tikzwidth}{\tikzheight}
+\begin{tikzsize}[true]{\tikzwidth}{\tikzheight}
 \begin{tikzpicture}[scale=\tikzscale,]
 % 
-\def\rndSeed{40}
+\def\rndSeed{37}
 \begin{scope}[shift={(0,2)}]
 \node[] at (-1.5,-0.5) {traj};
 % 
@@ -9,7 +9,7 @@
 \foreach \i in {0,10,...,200}{
 \pgfmathsetmacro{\x}{\i/20}
 \pgfmathsetmacro{\y}{(0.75*sin(\i)+0.5*sin(3*\i-90))}
-\pgfmathsetmacro{\r}{(5+rand*1)/10}
+\pgfmathsetmacro{\r}{(5+1.5*sin(\i*4.2)) / 10}
 \ifnum \i = 40
 \draw (\x,\y) -- ++ (-1.5*0.62,1.5*0.42) node[pos=1.0, anchor=east] {$\vv{p}_i,r_i$};
 \fi
@@ -24,13 +24,13 @@
 \begin{scope}[shift={(0,0)}]
 \node[] at (-1.5,-0.5) {fiber};
 % 
-\def\rndSeed{40}
+\def\rndSeed{37}
 % 
 \pgfmathsetseed{\rndSeed}%
 \foreach \i in {0,10,...,200}{
 \pgfmathsetmacro{\x}{\i/20}
 \pgfmathsetmacro{\y}{(0.75*sin(\i)+0.5*sin(3*\i-90))}
-\pgfmathsetmacro{\r}{(5+rand*1)/10}
+\pgfmathsetmacro{\r}{(5+1.5*sin(\i*4.2)) / 10}
 \ifnum \i > 1
     \foreach \j in {0,0.1,...,1}{
     \pgfmathsetmacro{\rr}{\lastr+(\r-\lastr)*\j}
@@ -48,7 +48,7 @@
 \foreach \i in {0,10,...,200}{
 \pgfmathsetmacro{\x}{\i/20}
 \pgfmathsetmacro{\y}{(0.75*sin(\i)+0.5*sin(3*\i-90))}
-\pgfmathsetmacro{\r}{(5+rand*1)/10}
+\pgfmathsetmacro{\r}{(5+1.5*sin(\i*4.2)) / 10}
 \draw[fill, lightgray] (\x,\y) circle(\r);
 }
 % 
@@ -56,7 +56,7 @@
 \foreach \i in {0,10,...,200}{
 \pgfmathsetmacro{\x}{\i/20}
 \pgfmathsetmacro{\y}{(0.75*sin(\i)+0.5*sin(3*\i-90))}
-\pgfmathsetmacro{\r}{(5+rand*1)/10}
+\pgfmathsetmacro{\r}{(5+1.5*sin(\i*4.2)) / 10}
 \node at (\x,\y) [circle,fill,inner sep=1.0pt]{};
 % \draw[thin,dashed] (\x,\y) circle (\r){};
 }
@@ -68,13 +68,13 @@
 % \begin{scope}[shift={(0,-2)}]
 % \node[] at (-1.5,-0.5) {medium};
 % % 
-% \def\rndSeed{40}
+% \def\rndSeed{37}
 % % 
 % \pgfmathsetseed{\rndSeed}%
 % \foreach \i in {0,10,...,200}{
 % \pgfmathsetmacro{\x}{\i/20}
 % \pgfmathsetmacro{\y}{(0.75*sin(\i)+0.5*sin(3*\i-90))}
-% \pgfmathsetmacro{\r}{(5+rand*1)/10}
+% \pgfmathsetmacro{\r}{(5+1.5*sin(\i*4.2)) / 10}
 % % 
 % \pgfmathparse{Mod(\i,20)==0?1:0}
 % \ifnum\pgfmathresult>0
@@ -97,7 +97,7 @@
 % \foreach \i in {0,10,...,200}{
 % \pgfmathsetmacro{\x}{\i/20}
 % \pgfmathsetmacro{\y}{(0.75*sin(\i)+0.5*sin(3*\i-90))}
-% \pgfmathsetmacro{\r}{(5+rand*1)/10}
+% \pgfmathsetmacro{\r}{(5+1.5*sin(\i*4.2)) / 10}
 % % 
 % \pgfmathparse{Mod(\i,20)==0?1:0}
 % \ifnum\pgfmathresult>0
@@ -110,7 +110,7 @@
 % % 
 % \pgfmathsetmacro{\x}{\i/20}
 % \pgfmathsetmacro{\y}{(0.75*sin(\i)+0.5*sin(3*\i-90))}
-% \pgfmathsetmacro{\r}{(5+rand*1)/10}
+% \pgfmathsetmacro{\r}{(5+1.5*sin(\i*4.2)) / 10}
 % % 
 % \pgfmathparse{Mod(\i,20)==0?1:0}
 % \ifnum\pgfmathresult>0
@@ -126,13 +126,13 @@
 % \begin{scope}[shift={(0,-2)}]
 % \node[] at (-1.5,-0.5) {rough};
 % % 
-% \def\rndSeed{40}
+% \def\rndSeed{37}
 % % 
 % \pgfmathsetseed{\rndSeed}%
 % \foreach \i in {0,10,...,200}{
 % \pgfmathsetmacro{\x}{\i/20}
 % \pgfmathsetmacro{\y}{(0.75*sin(\i)+0.5*sin(3*\i-90))}
-% \pgfmathsetmacro{\r}{(5+rand*1)/10}
+% \pgfmathsetmacro{\r}{(5+1.5*sin(\i*4.2)) / 10}
 % % 
 % \pgfmathparse{Mod(\i,40)==0?1:0}
 % \ifnum\pgfmathresult>0
@@ -155,7 +155,7 @@
 % \foreach \i in {0,10,...,200}{
 % \pgfmathsetmacro{\x}{\i/20}
 % \pgfmathsetmacro{\y}{(0.75*sin(\i)+0.5*sin(3*\i-90))}
-% \pgfmathsetmacro{\r}{(5+rand*1)/10}
+% \pgfmathsetmacro{\r}{(5+1.5*sin(\i*4.2)) / 10}
 % % 
 % \pgfmathparse{Mod(\i,40)==0?1:0}
 % \ifnum\pgfmathresult>0
@@ -168,7 +168,7 @@
 % % 
 % \pgfmathsetmacro{\x}{\i/20}
 % \pgfmathsetmacro{\y}{(0.75*sin(\i)+0.5*sin(3*\i-90))}
-% \pgfmathsetmacro{\r}{(5+rand*1)/10}
+% \pgfmathsetmacro{\r}{(5+1.5*sin(\i*4.2)) / 10}
 % % 
 % \pgfmathparse{Mod(\i,40)==0?1:0}
 % \ifnum\pgfmathresult>0
