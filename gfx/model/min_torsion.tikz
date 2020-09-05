@@ -1,9 +1,42 @@
 \begin{tikzsize}[]{\tikzwidth}{\tikzheight}
 \begin{tikzpicture}[scale=\tikzscale,]
 % 
+% \pgfplotsset{
+%     /pgf/declare function={
+%         p=3;q=3;
+%         % 
+%         fx(\t) = p*cos(\t);
+%         fy(\t) = q*sin(\t);
+%         fz(\t) = 0;
+%         flen(\t)=sqrt(fx(\t)^2+fy(\t)^2+fz(\t)^2);
+%         % 
+%         dfx(\t) = -p*sin(\t);
+%         dfy(\t) = q*cos(\t);
+%         dfz(\t) = 0;
+%         dflen(\t)=sqrt(dfx(\t)^2+dfy(\t)^2+dfz(\t)^2);
+%         % 
+%         ddfx(\t) = -p*cos(\t);
+%         ddfy(\t) = -q*sin(\t);
+%         ddfz(\t) = 0;
+%         ddflen(\t)=sqrt(ddfx(\t)^2+ddfy(\t)^2+ddfz(\t)^2);
+%         %
+%         tx(\t) = dfx(\t)/dflen(\t);
+%         ty(\t) = dfy(\t)/dflen(\t);
+%         tz(\t) = dfz(\t)/dflen(\t);
+%         %
+%         nx(\t) = ddfx(\t)/ddflen(\t);
+%         ny(\t) = ddfy(\t)/ddflen(\t);
+%         nz(\t) = ddfz(\t)/ddflen(\t);
+%         % 
+%         bx(\t) = dfy(\t)/dflen(\t)*nz(\t)-dfz(\t)/dflen(\t)*ny(\t);
+%         by(\t) = dfz(\t)/dflen(\t)*nx(\t)-dfx(\t)/dflen(\t)*nz(\t);
+%         bz(\t) = dfx(\t)/dflen(\t)*ny(\t)-dfy(\t)/dflen(\t)*nx(\t);
+%     },
+% }
+% 
 \pgfplotsset{
     /pgf/declare function={
-        p=2;q=3;
+        p=1;q=3;
         % 
         fx(\t) = (2+cos(p*\t))*cos(q*\t);
         fy(\t) = (2+cos(p*\t))*sin(q*\t);
@@ -11,12 +44,12 @@
         flen(\t)=sqrt(fx(\t)^2+fy(\t)^2+fz(\t)^2);
         % 
         dfx(\t) = -p*sin(p*\t)*cos(q*\t)-q*(cos(p*\t)+2)*sin(q*\t);
-        dfy(\t) = q*(cos(p*\t)+2)*cos(q*\t)-p*sin(p*\t)*sin(q*\t);
+        dfy(\t) = -p*sin(p*\t)*sin(q*\t)+q*(cos(p*\t)+2)*cos(q*\t);
         dfz(\t) = p*cos(p*\t);
         dflen(\t)=sqrt(dfx(\t)^2+dfy(\t)^2+dfz(\t)^2);
         % 
         ddfx(\t) = 2*p*q*sin(p*\t)*sin(q*\t)-cos(q*\t)*((p*p+q*q)*cos(p*\t)+2*q*q);
-        ddfy(\t) = q*(cos(p*\t)+2)*cos(q*\t)-p*sin(p*\t)*sin(q*\t);
+        ddfy(\t) = -2*p*q*sin(p*\t)*cos(q*\t)-sin(q*\t)*((p*p+q*q)*cos(p*\t)+2*q*q);
         ddfz(\t) = -p*p*cos(p*\t);
         ddflen(\t)=sqrt(ddfx(\t)^2+ddfy(\t)^2+ddfz(\t)^2);
         %
