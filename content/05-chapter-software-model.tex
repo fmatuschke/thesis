@@ -170,13 +170,22 @@ Last the cylinder can be modelled in three ways. a) parallel, b) cylindrical and
     \def\tikzheight{0.75\textwidth}
     \centering
     \inputtikz{gfx/model/min_torsion}
-	\caption{Minimal torsion along trajectory.}
+	\caption[Minimal torsion trajectory]{Minimal torsion along trajectory. The \textcolor{green!50!black}{binormal}, \textcolor{red}{principal normal} vector and \textcolor{blue}{tangent vector} vector at each step are also the coordinate system for the seed points.}
 % 	\label{fig:}
 \end{figure}
 % 
 Filling a \say{bundle} is is done via moving the \say{cloud} of seed points along the trajectory, moving,bending/rotating smooth along its way (like a good rolercoster).
 The trajectory of each individual seed point will then be interpret and returned as a individual fiber with a constant single radius, or individual radii (wich can later be changed if necessary).
-The distant of the seeds to their coordinate center can be scaled with the bundle \say{radii} or scale factor (set 1 for const). \comment{energy minimum?}.
+The distant of the seeds to their coordinate center can be scaled with the bundle \say{radii} or scale factor (set 1 for const). \comment{energy minimum?}:
+% 
+\begin{align}
+\begin{split}
+\vv{f}(s) &= (x(s),y(s),z(s)) \\
+\vv{t}(s) &= \vv{f}\,'(s) \\
+\vv{n}(s) &= \frac{\vv{t}\,'(s)}{|\vv{t}\,'(s)|} = \frac{\vv{r}\,''(s)}{|\vv{r}\,''(s)|} \\
+\vv{b}(s) &= \vv{t}(s) \times \vv{n}(s)
+\end{split}
+\end{align}
 % 
 \section{\VCS}
 % 
