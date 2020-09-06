@@ -1,6 +1,7 @@
 thesis.pdf
 dev/
 tikz/*
+tikz/**/*
 output/
 *.*.*-*.pdf
 thesis.mtc

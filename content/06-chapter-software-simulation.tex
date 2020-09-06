@@ -97,6 +97,7 @@ However this leads to a slow implementation, since for every object new threads 
 Therefore the parallel call is spawning all threads before the first loop over all objects.
 Therefore all threads process all objects.
 When the threads then loop over all indices, thread $n$ only processes the memory for the first volume dimension $i$ if:
+% 
 \begin{align}
 \begin{split}
     i \bmod N_{\text{Threads}} == n
@@ -199,9 +200,8 @@ To always get the same dens of light rays per ccd-pixel, all light ray starting 
 \subcaptionbox{perspective view}[.495\textwidth]{
 \inputtikz{gfx/simpli/tilting_3d}}
 % 
-% \tikzexternaldisable
+\tikzset{external/export=false}
 \caption[3d tilting]{3d tilting: around $xy$-axis, \raisebox{.25em}{\tikz \draw[red,thick](0,0)--(0.25,0);} top, \raisebox{.25em}{\tikz \draw[green!50!black,thick](0,0)--(0.25,0);} middle, \raisebox{.25em}{\tikz \draw[blue,thick](0,0)--(0.25,0);} bottom, \raisebox{.25em}{\tikz \draw[dash pattern=on 1.25pt off 1.25pt,thick](0,0)--(0.25,0);} original, \raisebox{.25em}{\tikz \draw[gray](0,0)--(0.25,0);} axis of rotation \TODO{improve images}}
-% \tikzexternalenable
 \end{figure}
 % 
 Snell's law describes the refraction of light between two different isotropic media:

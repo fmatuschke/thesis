@@ -30,13 +30,35 @@ if [ "$1" = "--clean" ]; then
    find . -type f -iname "*.toc" -exec rm {} \;
    find . -type f -iname "*.run.xml" -exec rm {} \;
    find . -type f -iname "*:Zone.Identifier" -exec rm {} \;
+   mkdir -p tikz
+   touch tikz/dummy.tex
    exit
+fi
+
+if [ "$1" == "--tikz" ]; then
+   mkdir -p tikz
+   for file in tikz/*.log; do
+      # echo $file
+      tikz=$(grep -e "\.tikz" -e "\.dpth" $file | grep -B 1 "tikz\/.*\.dpth" | tr ' ' '\n' | grep -o "(\.\/gfx.*\.tikz")
+      file_in="${file/log/pdf}"
+      file_out="${tikz/tikz/pdf}"
+      file_out="${file_out/(\.\//}"
+      echo $file_in tikz/$file_out
+      mkdir -p $(dirname tikz/$file_out)
+      cp $file_in tikz/$file_out
+   done
+   exit
+fi
+
+if [ ! -f tikz/dummy.tex ]; then
+   mkdir -p tikz
+   touch tikz/dummy.tex
 fi
 
 # mkdir -p output/tikz/output/tikz
 # find . -type d -not -path "./output*" -exec mkdir -p output/{} \;
-find gfx -type d -exec mkdir -p tikz/{} \;
-find dev -type d -exec mkdir -p tikz/{} \;
+# find gfx -type d -exec mkdir -p tikz/{} \;
+# find dev -type d -exec mkdir -p tikz/{} \;
 # find gfx -type d -exec mkdir -p output/tikz/{} \;
 # find dev -type d -exec mkdir -p output/tikz/{} \;
 # find gfx -type d -exec mkdir -p output/tikz/output/tikz/{} \;
