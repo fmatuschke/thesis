@@ -3,7 +3,7 @@
 \pgfmathsetmacro{\alpha}{-15}
 \pgfmathsetmacro{\beta}{-atan(1.5*\a*cos(\alpha) / (1.5*\c*sin(\alpha))}
 % 
-\ifthenelse{\boolean{\rot}}
+\ifthenelse{\boolean{false}}
 {\pgfmathsetmacro{\roty}{\beta-90}}
 {\pgfmathsetmacro{\roty}{0}}
 % 

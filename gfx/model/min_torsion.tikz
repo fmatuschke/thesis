@@ -77,9 +77,11 @@
             samples=37,
             domain=-180:180,
             variable=\t,
+            smooth,
             mark=*, mark size=0.5pt,
             ]
             ({fx(t)},{fy(t)},{fz(t)});
+    % 
     \foreach \t in {-180,-120,...,180}{%
         \edef\temp{\noexpand\draw[blue, ->] (axis cs:{fx(\t)},{fy(\t)},{fz(\t)}) -- (axis cs:{fx(\t)+tx(\t)*\vscale},{fy(\t)+ty(\t)*\vscale},{fz(\t)+tz(\t)*\vscale});} \temp
         \edef\temp{\noexpand\draw[red, ->] (axis cs:{fx(\t)},{fy(\t)},{fz(\t)}) -- (axis cs:{fx(\t)+nx(\t)*\vscale},{fy(\t)+ny(\t)*\vscale},{fz(\t)+nz(\t)*\vscale});} \temp
