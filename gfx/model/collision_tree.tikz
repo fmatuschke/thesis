@@ -7,8 +7,42 @@
     \end{scope}
     \node at (BB1.center) {$\mathit{obj}_1$};
     % 
-    \begin{scope}[shift={(7,4.8)},local bounding box=BB2]
-        \draw[, green!50!black] (0:1cm) \foreach \x in {0,60,...,360} {-- (\x:1cm)} -- cycle {};
+    \begin{scope}[shift={(7,4.8)},local bounding box=BB2,
+        3d view={85}{35},
+        scale=0.25,
+        ]
+        \pgfmathsetmacro\a{2}
+        \pgfmathsetmacro{\phi}{\a*(1+sqrt(5))/2}
+        \path 
+        coordinate(A) at (0,\phi,\a)
+        coordinate(B) at (0,\phi,-\a)
+        coordinate(C) at (0,-\phi,\a)
+        coordinate(D) at (0,-\phi,-\a)
+        coordinate(E) at (\a,0,\phi)
+        coordinate(F) at (\a,0,-\phi)
+        coordinate(G) at (-\a,0,\phi)
+        coordinate(H) at (-\a,0,-\phi)
+        coordinate(I) at (\phi,\a,0)
+        coordinate(J) at (\phi,-\a,0)
+        coordinate(K) at (-\phi,\a,0)
+        coordinate(L) at (-\phi,-\a,0); 
+        \draw[dashed, thick, green!50!black]
+        (B) -- (H) -- (F) 
+        (L) -- (D) -- (H) --cycle 
+        (K) -- (L) -- (H) --cycle
+        (K) -- (L) -- (G) --cycle
+        (C) -- (L) (B)--(K) (A)--(K);
+        \draw[green!50!black, rounded corners=1pt]
+        (A) -- (I) -- (B) --cycle 
+        (F) -- (I) -- (B) --cycle 
+        (F) -- (I) -- (J) --cycle
+        (F) -- (D) -- (J) --cycle
+        (C) -- (D) -- (J) --cycle
+        (C) -- (E) -- (J) --cycle
+        (I) -- (E) -- (J) --cycle
+        (I) -- (E) -- (A) --cycle
+        (G) -- (E) -- (A) --cycle
+        (G) -- (E) -- (C) --cycle; 
     \end{scope}
     \node at (BB2.center) {$\mathit{obj}_2$};
     % 
