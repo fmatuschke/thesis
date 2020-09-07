@@ -1,0 +1,43 @@
+\begin{tikzsize}{\tikzwidth}{\tikzheight}
+\begin{tikzpicture}[scale=\tikzscale]
+% 
+\def\tilt{20}
+\def\nindex{2.25}
+% 
+\pgfmathsetmacro{\gridsize}{0.5}
+\pgfmathsetmacro{\gridshift}{0.5*\gridsize}
+\pgfmathsetmacro{\dx}{5+\gridshift}
+\pgfmathsetmacro{\dy}{1}
+\pgfmathsetmacro{\dccd}{4*\dy}
+\pgfmathsetmacro{\refracted}{asin(sin(\tilt)/\nindex)}
+% 
+\path(-1.05*\dx,-5.0*\dy) rectangle (1.05*\dx,4.75*\dy);
+\draw[step=\gridsize,line width=0.1pt,shift={(\gridshift,0)}] (-\gridshift-\dx,\dccd-1e-4) grid (-\gridshift+\dx,\dccd+\gridsize);
+% 
+\begin{scope}[rotate=-\tilt]
+\draw[thick] (-\dx,\dy) -- (\dx,\dy) -- (\dx,-\dy) -- (-\dx,-\dy) -- cycle;
+\draw[step=\gridsize,line width=0.1pt,shift={(\gridshift,0)}] (-\gridshift-\dx,-\dy) grid (-\gridshift+\dx,\dy);
+\path[name path global=line1] (-\dx,\dy) -- (\dx,\dy);
+\path[name path global=line2] (-\dx,-\dy) -- (\dx,-\dy);
+\end{scope}
+% 
+\coordinate (I) at (0,\dccd);
+\path[name path=light1] (I) -- (0,-2*\dy);
+\draw[<-,name intersections={of=line1 and light1, by={X}}] (I) -- (X);
+\path[name path=light2] (X) -- ++(-90-\refracted:3*\dy);
+\draw[name intersections={of=light2 and line2, by={Y}}] (X) -- (Y);
+\draw[] (Y) -- (Y |- {,-\dccd});
+% 
+\ifthenelse{\equal{\tilt}{0}}{}{
+\begin{scope}[rotate=-\tilt]
+\draw[dashed] (X) -- +(90:2*\dy);
+\end{scope}
+\draw[<->] ($(X)+(0,1.75*\dy)$) arc (90:90-\tilt:1.75*\dy) node[midway,yshift=2.5mm]{$\vartheta$};
+\draw[dashed, thin, gray] (I) -- (0,-\dccd);
+\draw[] (Y |- {,-0.95*\dccd}) -- (0,-0.95*\dccd) node[midway,below]{$\Delta$};
+\draw[->] ($(Y |- {,-0.95*\dccd}) + (-0.1, 0)$) -- (Y |- {,-0.95*\dccd});
+\draw[->] ($(0,-0.95*\dccd) + (0.1,0)$) -- (0,-0.95*\dccd);
+}
+% 
+\end{tikzpicture}
+\end{tikzsize}

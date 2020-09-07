@@ -1,5 +1,10 @@
 \begin{tikzsize}{\tikzwidth}{\tikzheight}
 \begin{tikzpicture}[scale=\tikzscale]
+% 
+\def\azimuth{20}
+\def\elevation{25}
+\def\dz{1}
+% 
 \path[] (-8, -7) rectangle (8, 8.5);
 \begin{scope}[
 3d view={\azimuth}{\elevation},

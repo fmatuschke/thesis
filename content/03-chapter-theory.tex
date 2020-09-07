@@ -60,9 +60,7 @@ with $\Box \coloneqq \partial^a\partial_a = \nabla^2 - \frac{1}{c^2} \frac{\part
 \begin{figure}[!t]
 \centering
 \def\tikzwidth{\textwidth}
-% \resizebox{0.95\textwidth}{!}{
 \inputtikz{gfx/pli/polarization_state}
-% }
 \label{fig:polarization_state}
 \caption{Illustration of light polarization state.}
 \end{figure}
@@ -70,9 +68,7 @@ with $\Box \coloneqq \partial^a\partial_a = \nabla^2 - \frac{1}{c^2} \frac{\part
 \begin{figure}[!t]
 \centering
 \def\tikzwidth{\textwidth}
-% \resizebox{0.95\textwidth}{!}{
 \inputtikz{gfx/pli/retardation}
-% }
 \label{fig:optic_retardation}
 \caption{Illustration of retardation.}
 \end{figure}
@@ -122,6 +118,7 @@ e^{ -i (kz - \omega t)}
 %
 \begin{figure}[!t]
 \centering
+\tikzset{external/export=false}
 \input{gfx/pli/pol_states}
 \caption{polarization states, check vector length, \todo{test speed}} 
 \end{figure}

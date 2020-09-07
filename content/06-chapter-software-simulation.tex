@@ -169,12 +169,10 @@ To always get the same dens of light rays per ccd-pixel, all light ray starting 
 \subcaptionbox{normal}[.495\textwidth]{
 \def\tilt{0}
 \def\nindex{2.25}
-\inputtikz{gfx/simpli/tilting}}
+\inputtikz{gfx/simpli/tilting_a}}
 % 
 \subcaptionbox{tilted}[.495\textwidth]{
-\def\tilt{20}
-\def\nindex{2.25}
-\inputtikz{gfx/simpli/tilting}}
+\inputtikz{gfx/simpli/tilting_b}}
 \caption{side view tilting}
 \label{fig:tilted_side_view}
 \end{figure}
@@ -183,17 +181,11 @@ To always get the same dens of light rays per ccd-pixel, all light ray starting 
 % 
 \def\tikzheight{0.42\textwidth}
 % \centering
-\def\azimuth{0}
-\def\elevation{90}
-\def\dz{2}
 \subcaptionbox{camera view}[.495\textwidth]{
-\inputtikz{gfx/simpli/tilting_3d}}
+\inputtikz{gfx/simpli/tilting_3d_a}}
 % 
-\def\azimuth{20}
-\def\elevation{25}
-\def\dz{1}
 \subcaptionbox{perspective view}[.495\textwidth]{
-\inputtikz{gfx/simpli/tilting_3d}}
+\inputtikz{gfx/simpli/tilting_3d_b}}
 % 
 \tikzset{external/export=false}
 \caption[3d tilting]{3d tilting: around $xy$-axis, \raisebox{.25em}{\tikz \draw[red,thick](0,0)--(0.25,0);} top, \raisebox{.25em}{\tikz \draw[green!50!black,thick](0,0)--(0.25,0);} middle, \raisebox{.25em}{\tikz \draw[blue,thick](0,0)--(0.25,0);} bottom, \raisebox{.25em}{\tikz \draw[dash pattern=on 1.25pt off 1.25pt,thick](0,0)--(0.25,0);} original, \raisebox{.25em}{\tikz \draw[gray](0,0)--(0.25,0);} axis of rotation \TODO{improve images}}

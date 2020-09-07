@@ -74,7 +74,9 @@ fi
 #find . -type f -exec sed -i.bak '/^%/!s/\([.!?]\) \([[:upper:]]\)/\1\n\2/g' {} \;
 
 lualatex -interaction=nonstopmode -halt-on-error -shell-escape thesis.tex
-make -j4 -f thesis.makefile
+if [ -f "thesis.makefile" ]; then
+   make -j4 -f thesis.makefile
+fi
 biber thesis
 lualatex -interaction=nonstopmode -halt-on-error -shell-escape thesis.tex
 

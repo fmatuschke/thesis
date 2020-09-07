@@ -43,15 +43,15 @@
     T(S(f_0(\alpha, \varphi), f_1(\omega, \psi)), \theta, \phi) = 
 \end{align*}
 % 
-\begin{figure}[!t]
-\centering
-\def\tikzwidth{0.45*\textwidth}
-\subcaptionbox{...}[.49\textwidth]{
-\inputtikz{gfx/model/sphere_models_}}
-\subcaptionbox{...}[.49\textwidth]{
-\inputtikz{gfx/model/sphere_models}}
-\caption{...}
-\end{figure}
+% \begin{figure}[!t]
+% \centering
+% \def\tikzwidth{0.45*\textwidth}
+% \subcaptionbox{...}[.49\textwidth]{
+% \inputtikz{gfx/model/sphere_models_a}}
+% \subcaptionbox{...}[.49\textwidth]{
+% \inputtikz{gfx/model/sphere_models_b}}
+% \caption{...}
+% \end{figure}
 % 
 \subsection{simulation sampling}
 % 
@@ -70,18 +70,12 @@ The simulation setup is as follows:
 \pgfplotstabletypeset[
     column type=l,
     every even row/.style={before row={\rowcolor[gray]{0.95}}},
-    % columns/person/.style={column name=},
-    % columns/singEnglish/.style={column name=English},
-    % columns/singGaeilge/.style={column name=Gaeilge},
     columns/variable/.style={string type},
     columns/value/.style={string type},
-    % colums/value/.style={},
-    % empty cells with={--}, % replace empty cells with '--'
     every head row/.style={before row=\toprule,after row=\midrule},
     every last row/.style={after row=\bottomrule},
     col sep=&,
     row sep=\\,
-    % string type,
 ]
 {variable & value\\
 simpli.pixel\_size & \SI{1.25}{\micro\meter}\\
@@ -206,7 +200,8 @@ simpli.set\_voi & $-\SIlist[list-units = brackets,list-final-separator={, },]{0.
 \begin{figure}[!t]
 \centering
 \resizebox{1.0\textwidth}{!}{
-\inputtikz{gfx/simpli/vector_error}}
+\tikzset{external/export=false}
+\input{gfx/simpli/vector_error}}
 \caption[Discretization error]{Discretization error.
 This behavior is much stronger with myelin layers}
 \label{fig:vectorfield_disc_error}

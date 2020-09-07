@@ -1,6 +1,9 @@
 \begin{tikzsize}{\tikzwidth}{\tikzheight}
 \begin{tikzpicture}[scale=\tikzscale]
 % 
+\def\tilt{0}
+\def\nindex{2.25}
+% 
 \pgfmathsetmacro{\gridsize}{0.5}
 \pgfmathsetmacro{\gridshift}{0.5*\gridsize}
 \pgfmathsetmacro{\dx}{5+\gridshift}
