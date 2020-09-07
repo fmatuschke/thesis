@@ -41,8 +41,9 @@ As described in \cref{chap5:ShapeControl} the choice of shape parameters \segLen
 % 
 \begin{figure}[!t]
 \centering
-\def\tikzwidth{0.5\textwidth}
-\inputtikz{gfx/model/sphere_cube}
+% \def\tikzwidth{0.5\textwidth}
+\resizebox{0.5\textwidth}{!}{
+\inputtikz{gfx/model/sphere_cube}}
 \caption[]{A spherical volume with diameter $d$ is used as boundry for a fiber model, so that a cube of side length $1/1.5 \cdot d$ can be cut in any orientation inside the sphere.}
 % \label{fig:}
 \end{figure}
