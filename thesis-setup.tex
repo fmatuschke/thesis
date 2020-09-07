@@ -272,22 +272,27 @@
 % 
 \makeatletter
 \newcommand{\inputtikz}[2][false]{%
-    \IfFileExists{tikz/#2.pdf}{
-      \includegraphics{tikz/#2.pdf}
-    }{
-      %  \noindent\includegraphics[width=4.2cm]{example-image}
-      \IfFileExists{#2.tikz}{
-         % \filename@parse{#1}
-         % \tikzsetnextfilename{\filename@base}
-         % \tikzexternalenable
-         % \tikzset{external/force remake=#1}
-         \tikzset{external/remake next=#1}
-         % \tikzsetnextfilename{\filesum{#1.tikz}}
-         \input{#2.tikz}
-         % \tikzexternaldisable
-      }{
-         \noindent\includegraphics[width=4.2cm]{example-image}
-      }   
+    \ifthenelse{\boolean{#1}}{ % build ext tikz
+        \tikzset{external/remake next=#1}
+        \input{#2.tikz}
+    }{ % try loading pdf if available
+        \IfFileExists{tikz/#2.pdf}{
+          \includegraphics{tikz/#2.pdf}
+        }{ % build ext tikz
+          %  \noindent\includegraphics[width=4.2cm]{example-image}
+          \IfFileExists{#2.tikz}{
+             % \filename@parse{#1}
+             % \tikzsetnextfilename{\filename@base}
+             % \tikzexternalenable
+             % \tikzset{external/force remake=#1}
+            %  \tikzset{external/remake next=#1}
+             % \tikzsetnextfilename{\filesum{#1.tikz}}
+             \input{#2.tikz}
+             % \tikzexternaldisable
+          }{
+             \noindent\includegraphics[width=4.2cm]{example-image}
+          }   
+        }
     }
 }
 \makeatother
