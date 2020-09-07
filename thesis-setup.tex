@@ -308,37 +308,38 @@
 \NewEnviron{tikzsize}[3][true]{%
 \def\tikzscale{1}%
 \ifthenelse{\boolean{#1}}{
-\tikzifexternalizingnext{%
-    \def\tikz@width{#2}%
-    \def\tikz@height{#3}%
-    \begin{lrbox}{\measure@tikzpicture}%
-    \tikzset{external/export next=false,external/optimize=false}% force translation of this BODY (and do not optimize it away as it would usually do):
-    \BODY
-    \end{lrbox}%
-    \pgfmathparse{#2/\wd\measure@tikzpicture}%
-    \edef\tikzscalewidth{\pgfmathresult}%
-    \pgfmathparse{#3/\ht\measure@tikzpicture}%
-    \edef\tikzscaleheight{\pgfmathresult}%
-    \pgfmathparse{min(\tikzscalewidth, \tikzscaleheight)}%
-    \edef\tikzscale{\pgfmathresult}%
-    \BODY
-}{% this will re-use an existing external graphics:
-    \BODY
-}}{%
-    \tikzset{external/export=false}%
-    \def\tikz@width{#2}%
-    \def\tikz@height{#3}%
-    \begin{lrbox}{\measure@tikzpicture}%
-    % \tikzexternaldisable
-    \BODY
-    \end{lrbox}%
-    \pgfmathparse{#2/\wd\measure@tikzpicture}%
-    \edef\tikzscalewidth{\pgfmathresult}%
-    \pgfmathparse{#3/\ht\measure@tikzpicture}%
-    \edef\tikzscaleheight{\pgfmathresult}%
-    \pgfmathparse{min(\tikzscalewidth, \tikzscaleheight)}%
-    \edef\tikzscale{\pgfmathresult}%
-    \BODY
+	\tikzifexternalizingnext{%
+		\def\tikz@width{#2}%
+		\def\tikz@height{#3}%
+		\begin{lrbox}{\measure@tikzpicture}%
+		\tikzset{external/export next=false,external/optimize=false}% force translation of this BODY (and do not optimize it away as it would usually do):
+		\BODY
+		\end{lrbox}%
+		\pgfmathparse{#2/\wd\measure@tikzpicture}%
+		\edef\tikzscalewidth{\pgfmathresult}%
+		\pgfmathparse{#3/\ht\measure@tikzpicture}%
+		\edef\tikzscaleheight{\pgfmathresult}%
+		\pgfmathparse{min(\tikzscalewidth, \tikzscaleheight)}%
+		\edef\tikzscale{\pgfmathresult}%
+		\BODY
+	}{% this will re-use an existing external graphics:
+		\BODY
+	}
+}{%
+	\tikzset{external/export next=false}%
+	\def\tikz@width{#2}%
+	\def\tikz@height{#3}%
+	\begin{lrbox}{\measure@tikzpicture}%
+	% \tikzexternaldisable
+	\BODY
+	\end{lrbox}%
+	\pgfmathparse{#2/\wd\measure@tikzpicture}%
+	\edef\tikzscalewidth{\pgfmathresult}%
+	\pgfmathparse{#3/\ht\measure@tikzpicture}%
+	\edef\tikzscaleheight{\pgfmathresult}%
+	\pgfmathparse{min(\tikzscalewidth, \tikzscaleheight)}%
+	\edef\tikzscale{\pgfmathresult}%
+	\BODY
 }}
 \makeatother
 % 

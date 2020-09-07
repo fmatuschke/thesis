@@ -1,4 +1,3 @@
-% \tikzset{external/remake next}
 \begin{tikzsize}{\tikzwidth}{\tikzheight}
 \begin{tikzpicture}[scale=\tikzscale]
 % 

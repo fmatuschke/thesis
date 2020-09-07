@@ -170,7 +170,8 @@ Last the cylinder can be modelled in three ways. a) parallel, b) cylindrical and
     \def\tikzwidth{0.75\textwidth}
     \centering
     \inputtikz{gfx/model/min_torsion}
-	\caption[Minimal torsion trajectory]{Minimal torsion along trajectory. The \textcolor{green!50!black}{binormal}, \textcolor{red}{principal normal} vector and \textcolor{blue}{tangent vector} vector at each step are also the coordinate system for the seed points.}
+	\caption[Minimal torsion trajectory]{Minimal torsion along trajectory. The 
+	\textcolor{green!50!black}{binormal}, \textcolor{red}{principal normal} vector and \textcolor{blue}{tangent vector} vector at each step are also the coordinate system for the seed points.}
 % 	\label{fig:}
 \end{figure}
 % 
@@ -269,7 +270,7 @@ All objects are contained in a \textit{std::vector} of cones.
 Only the indices will be transfered to the next recursive function call.
 Also the objects are traversed in order, so that the maximum speed from the cpu cache can be exploited. \\
 % 
-The minimal subvolume size is choses to $\sqrt{3} \times \max(\text{object size})$.
+The minimal subvolume size is choses to $\sqrt{3} \times \max(\mathit{object\_size})$.
 Smaller then this would only replicated subvolumes with identical contained objects.
 The maximum number of objects is set to \num{25} objects \footnote{found suitable by testing.}. \\
 % 
