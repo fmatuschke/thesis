@@ -67,10 +67,9 @@ Therefore a list of tuples containing four floating point numbers can be interpr
 % This representation will also be used for visualization (see \dummy).
 % 
 \begin{figure}[!t]
-    % \tikzset{external/export next=true}
     \def\tikzwidth{0.85\textwidth}
     \centering
-    \inputtikz{gfx/model/fibe_rep}
+    \inputtikz{gfx/model/fiber_model}
 	\caption[]{representation of nerve fiber from a list of spheres $\left\{ \vv{p}_i=(x_i,y_i,z_i), r_i \mid i \in \{0,1,N_{\mathit{points}}-1\}\right\}$.
 	\todo{a little bit mor var in radius}}
 	\label{fig:fiberReb}
@@ -96,7 +95,6 @@ Therefore a list of tuples containing four floating point numbers can be interpr
 % \end{align}
 % % 
 % \begin{figure}[!t]
-%     % \tikzset{external/export next=true}
 %     \def\tikzwidth{0.85\textwidth}
 %     \centering
 %     % \subcaptionbox{cylinder}[\textwidth]{
@@ -125,16 +123,12 @@ Seeds are a list of 3d points related to a coordinate center $(0,0,0)$ (see \cre
 This list can be applied to a a trajectory.
 % 
 \begin{figure}[!t]
-    % \def\tikzwidth{0.3\textwidth}
     \def\tikzheight{0.25\textwidth}
     \centering
-    % \tikzset{external/remake next}
     \subcaptionbox{\label{fig:triGrid}2d triangular grid}[.295\textwidth]{
     \inputtikz{gfx/model/triangular_grid}\hfill}
-    % \tikzset{external/remake next}
     \subcaptionbox{\label{fig:rndGrid}random grid}[.295\textwidth]{
     \inputtikz{gfx/model/rnd_circle_points}\hfill}
-    % \tikzset{external/remake next}
     \subcaptionbox{\label{fig:crossBundle}2d filled fiber bundles}[.39\textwidth]{
     \inputtikz{gfx/model/crossing_bundle}\hfill}
 	\caption{Filling fiber bundles with seed points.}
@@ -193,9 +187,8 @@ The distant of the seeds to their coordinate center can be scaled with the bundl
 \begin{figure}[!t]
     \centering
     \def\tikzwidth{0.75\textwidth}
-    % \tikzset{external/force remake=true}
     \inputtikz{gfx/model/conical_capsule_bb}
-    \tikzset{external/export = false}
+    \tikzset{external/export=false}
 	\caption[cc and co]{\Acf{CC}: \raisebox{.25em}{\tikz \draw[black](0,0)--(0.275,0);} \ac{CC}, \raisebox{.25em}{\tikz \draw[blue, dash pattern=on 2.5pt off 2.5pt](0,0)--(0.275,0);} capsule, \raisebox{.25em}{\tikz \draw[red, dash pattern={on 2.5pt off 0.9pt on 0.42pt off 0.9pt}](0,0)--(0.275,0);} bounding box}
 	\label{fig:conical_capsule}
 \end{figure}
@@ -315,7 +308,7 @@ It was decided to use the following two conditions:
 \begin{figure}[!t]
     \centering
     \def\tikzwidth{\textwidth}
-    % \tikzset{external/export next=true}
+    \tikzset{external/export next=false}
     \inputtikz{gfx/model/model_length}
 	\caption{different fiber segment length.}
 	\label{fig:model_length}
@@ -348,11 +341,11 @@ Therefore the curvature will be reduced.
     \centering
     \def\tikzheight{.42\textwidth}
     \subcaptionbox{Boundry segment length: lower bound $phi=\SI{60}{\degree} \xrightarrow{} r_{min} \geq \SI{0.5773}{} \cdot l_{mean}$}[.475\textwidth]{
-    \inputtikz{gfx/model/model_circle_}}\hfill
+    \inputtikz{gfx/model/model_circle}}\hfill
     \subcaptionbox{Boundry segment radii: lower bound $r_{min} \geq \fiberRadiusMean $}[.45\textwidth]{
     \inputtikz{gfx/model/model_circular}}
 	\caption{Geometrical boundry condition for fiber segment length \segLength and fiber bending radius \segRadius.}
-	\label{fig:model_circle_}
+	\label{fig:model_circle}
 \end{figure}
 % 
 \newline

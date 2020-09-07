@@ -1,4 +1,4 @@
-\begin{tikzsize}[false]{\tikzwidth}{\tikzheight}
+\begin{tikzsize}{\tikzwidth}{\tikzheight}
 \begin{tikzpicture}[scale=\tikzscale,remember picture]
 % \begin{sizetikz}[remember picture]{\textwidth}{\textheight}
 % 

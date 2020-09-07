@@ -1,4 +1,4 @@
-\begin{tikzsize}[]{\tikzwidth}{\tikzheight}
+\begin{tikzsize}{\tikzwidth}{\tikzheight}
 \begin{tikzpicture}[scale=\tikzscale,]
 % 
 % \pgfplotsset{
@@ -95,5 +95,8 @@
     \path[green!50!black, ->] (axis cs:{fx(\t)},{fy(\t)},{fz(\t)}) -- (axis cs:{fx(\t)+bx(\t)*\vscale},{fy(\t)+by(\t)*\vscale},{fz(\t)+bz(\t)*\vscale}) node[midway, green!50!black, anchor=south east] {$\vv{b}$};
     % 
 \end{axis}
+% \node at (2,-5) {\tikzwidth};
+% \node at (2,-6) {\tikzheight};
+% \node at (2,-7) {\tikzscale};
 \end{tikzpicture}
 \end{tikzsize}

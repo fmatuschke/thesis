@@ -1,5 +1,4 @@
- 
-\begin{tikzsize}{\tikzwidth}{\tikzheight}
+ \begin{tikzsize}{\tikzwidth}{\tikzheight}
 \begin{tikzpicture}[%
 scale=\tikzscale,
 3d view={52}{22},

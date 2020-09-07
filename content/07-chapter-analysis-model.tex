@@ -41,9 +41,8 @@ As described in \cref{chap5:ShapeControl} the choice of shape parameters \segLen
 % 
 \begin{figure}[!t]
 \centering
-% \def\tikzwidth{0.5\textwidth}
-\resizebox{0.5\textwidth}{!}{
-\inputtikz{gfx/model/sphere_cube}}
+\def\tikzwidth{0.5\textwidth}
+\inputtikz{gfx/model/sphere_cube}
 \caption[]{A spherical volume with diameter $d$ is used as boundry for a fiber model, so that a cube of side length $1/1.5 \cdot d$ can be cut in any orientation inside the sphere.}
 % \label{fig:}
 \end{figure}
@@ -52,9 +51,9 @@ As described in \cref{chap5:ShapeControl} the choice of shape parameters \segLen
 \centering
 \def\tikzwidth{0.5*\textwidth}
 \subcaptionbox{fixed first fiber population; half rotation of second fiber population}[.49\textwidth]{
-\inputtikz{gfx/model/sphere_models_}}\hfill
+\inputtikz{gfx/model/sphere_models_a}}\hfill
 \subcaptionbox{\label{subfig:Test1}increasing inclination for first fiber population}[.49\textwidth]{
-\inputtikz{gfx/model/sphere_models}}
+\inputtikz{gfx/model/sphere_models_b}}
 \caption{two population model library}
 \label{fig:twomodelpop}
 \end{figure}
@@ -211,4 +210,3 @@ Also more then 8 cores \dummy.
 \end{figure}
 % 
 \subsection{Discussion}
-

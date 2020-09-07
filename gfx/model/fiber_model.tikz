@@ -1,4 +1,4 @@
-\begin{tikzsize}[true]{\tikzwidth}{\tikzheight}
+\begin{tikzsize}{\tikzwidth}{\tikzheight}
 \begin{tikzpicture}[scale=\tikzscale,]
 % 
 \def\rndSeed{37}

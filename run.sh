@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-export open=xdf-open
+export open=xdg-open
 if [ -f "/home/till/.local/bin/wsl-open" ]; then
    export open=wsl-open
 fi
@@ -74,6 +74,7 @@ fi
 #find . -type f -exec sed -i.bak '/^%/!s/\([.!?]\) \([[:upper:]]\)/\1\n\2/g' {} \;
 
 lualatex -interaction=nonstopmode -halt-on-error -shell-escape thesis.tex
+make -j4 -f thesis.makefile
 biber thesis
 lualatex -interaction=nonstopmode -halt-on-error -shell-escape thesis.tex
 
