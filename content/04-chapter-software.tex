@@ -29,83 +29,214 @@ To explain Python packages, first Python modules needs to be explained.
 % 
 Simply said, a Python module is a collection of executable functions.
 They can however also contain other modules.
-Their structure is exacly build up like a file structure. 
+Their structure is exactly build up like a file structure. 
 % 
 A Python package on the other side is a collection of python code and modules.
-Their sturcture are indistinguishable from modules, however they contain additional instruction for the installation process.
+Their structure are indistinguishable from modules, however they contain additional instruction for the installation process.
 E.g Python can also run compiled shared \CCXX{} functions.
 A python package can include the instructions to compile this functions with a suitable \CCXX{} compiler and a list of all necessary additional \CCXX{}-Libraries.
+\\
 % 
-\begin{figure}
-    \centering
-    % \resizebox{1.0\textwidth}{!}{
-    \begin{tabular}{lr}
-    \begin{minipage}[t]{0.45\textwidth}
-    \dirtree{%
-        % .1 \_\_init\_\_.py.
-        .1 analysis.
-        .2 \_\_init\_\_.py.
-        .2 \_ROFL\_with\_jacobi.py.
-        .2 affine\_transformation.py.
-        .2 epa.py.
-        .2 images.py.
-        .2 rofl.py.
-    }
-    \vspace{1em}
-    \dirtree{%
-        .1 io.
-        .2 \_\_init\_\_.py.
-        .2 fiber.py.
-    }
-    \vspace{1em}
-    \dirtree{%
-        .1 model.
-        .2 \_\_init\_\_.py.
-        .2 \_visualizer.py.
-        .2 sandbox.
-        .3 \_\_init\_\_.py.
-        .3 fill.py.
-        .3 shape.py.
-        .2 solver.
-        .3 \_\_init\_\_.py.
-        .3 \_\_solver.cpython.so.
-        .3 \_solver.py.
-    }
-    \end{minipage}
-    &
-    \begin{minipage}[t]{0.45\textwidth}
-    \dirtree{%
-        .1 objects.
-        .2 \_\_init\_\_.py.
-        .2 fiber.py.
-        .2 fiber\_bundle.py.
-        .2 fiber\_bundles.py.
-    }
-    \vspace{1em}
-    \dirtree{%
-        .1 simulation.
-        .2 \_\_init\_\_.py.
-        .2 \_\_generation.cpython.so.
-        .2 \_\_simulation.cpython.so.
-        .2 \_simpli.py.
-        .2 optic.py.
-    }
-    \vspace{1em}
-    \dirtree{%
-        .1 tools.
-        .2 \_\_init\_\_.py.
-        .2 label\_converter.py.
-        .2 rotation.py.
-        % .1 version.py.
-        }
-    \end{minipage}
-    \\
-    \end{tabular}
-    % }
-    \caption{package dirlist, see \dummy.} %\cref{app:fastpli}
-    \label{fig:package_dirlist}
-\end{figure}
+The mathematical \dummy are descriebed in \cref{chap:modelling}.
+The following subpackeges are explained in detail:
 % 
+\begin{lstfloat}[!t]
+\lstset{style=python}
+\begin{lstlisting}
+import fastpli
+''' __version__
+'''
+
+import fastpli.analysis
+''' affine_transformation
+    epa
+    images
+    rofl
+'''
+
+import fastpli.io
+''' fiber_bundles
+'''
+
+import fastpli.model.sandbox
+''' fill
+    shape
+'''
+
+import fastpli.model.solver
+''' class Solver
+    __solver.cpython.so
+    _solver.py
+'''
+
+import fastpli.objects
+''' fiber
+    fiber_bundle
+    fiber_bundles
+'''
+
+import fastpli.simulation
+''' class Simpli
+    __generation.cpython.so
+    __simulation.cpython.so
+    _simpli.py
+    optic
+'''
+
+import fastpli.tools
+''' label_converter
+    rotation
+'''
+\end{lstlisting}
+\caption[Overview \fastpli package]{Overview \fastpli package with containing modules}
+% 	\label{alg:simulation}
+\end{lstfloat}
+% 
+\subsection{fastpli.analysis}
+\begin{lstfloat}[!t]
+\lstset{style=python}
+\begin{lstlisting}
+import fastpli.analysis
+fastpli.analysis.affine_transformation
+    # apply affine transformations to images (e.g. untilt)
+fastpli.analysis.epa
+    # analysis of 2d PLI images
+fastpli.analysis.images
+    # analysis/generation of color images (FOM, VectorImages, ...)
+fastpli.analysis.rofl
+    # analysis tilted PLI images
+\end{lstlisting}
+\caption{\texttt{fastpli.analysis}}
+% 	\label{alg:simulation}
+\end{lstfloat}
+% 
+\subsection{fastpli.io}
+\begin{lstfloat}[!t]
+\lstset{style=python}
+\begin{lstlisting}
+import fastpli.io
+fastpli.io.fiber_bundles
+    # io operations for dat-files and hdf5-files
+    # for the fiber_bundles format.
+\end{lstlisting}
+\caption{\texttt{fastpli.io}}\label{alg:fastpli.io}
+\end{lstfloat}
+% 
+\paragraph{fiber\_bundles.py} contains io routines (see \cref{alg:fastpli.io}) for reading and saving fiber\_bundles into dat-files or hdf5-files. dat-files are text files which have to following structure as in \cref{alg:dat-file}. This dataformat is used to be as exchange frandly as possible for new users. \hdf-files on the other hand are a binary dataformat \cite{hdf5}, where the individual datasets are arange in datacontainers, like the file explorer (see \cref{alg:hdf5})
+% 
+\begin{lstfloat}[!t]
+\lstset{style=common,morecomment=[l][\color{syntax_green}]{<-},}
+\begin{lstlisting}
+-6.55, -18.93, -64.98, 3.75 <- x, y, z, r
+-5.73, -14.89, -63.37, 3.4
+-4.42, -13.66, -58.95, 3.05
+    <- empty line indicates new fiber
+-1.96, -10.07, -52.5, 2.92
+-1.03, -9.4, -48.62, 2.93
+
+    <- two empty lines indicates new fiber bundle
+3.4, -4.02, -44.76, 3.11
+6.22, -1.04, -42.45, 3.26
+\end{lstlisting}
+\caption{exemplary dat-file format. Commets are currently not allowed and are only for the readers eyes.}\label{alg:dat-file}
+\end{lstfloat}
+% 
+\begin{lstfloat}[!t]
+\lstset{style=common}
+\begin{lstlisting}
+GROUP "/" { # fiber_bundles path
+   GROUP "0" { # id of fiber_bundle
+      DATASET "0" { # id of fiber
+         DATATYPE  H5T_IEEE_F64LE
+         DATASPACE  SIMPLE { ( 3, 4 ) / ( 3, 4 ) }
+         DATA {
+         (0,0): -6.55, -18.93, -64.98, 3.75,
+         (1,0): -5.73, -14.89, -63.37, 3.4,
+         (2,0): -4.42, -13.66, -58.95, 3.05,
+         }
+      }
+      DATASET "1" { # id of fiber
+         DATATYPE  H5T_IEEE_F64LE
+         DATASPACE  SIMPLE { ( 2, 4 ) / ( 2, 4 ) }
+         DATA {
+         (3,0): -1.96, -10.07, -52.5, 2.92,
+         (4,0): -1.03, -9.4, -48.62, 2.93,
+         }
+      }
+   }
+   GROUP "1" { # id of fiber_bundle
+      DATASET "0" { # id of fiber
+         DATATYPE  H5T_IEEE_F64LE
+         DATASPACE  SIMPLE { ( 2, 4 ) / ( 2, 4 ) }
+         DATA {
+         (0,0): 3.4, -4.02, -44.76, 3.11,
+         (1,0): 6.22, -1.04, -42.45, 3.26,
+         }
+      }
+   }
+}
+\end{lstlisting}
+\caption{exemplary hdf5-file format.} \label{alg:hdf5}
+\end{lstfloat}
+% 
+% 
+\subsection{fastpli.model.sandbox}
+\begin{lstfloat}[!t]
+\lstset{style=python}
+\begin{lstlisting}
+import fastpli.model.sandbox
+fastpli.model.sandbox.fill
+    # filling of trajectaries with seed points as fiber_bundles
+fastpli.model.sandbox.build
+    # building of geometries
+\end{lstlisting}
+\caption{\texttt{fastpli.model.sandbox}}
+% 	\label{alg:simulation}
+\end{lstfloat}
+% 
+\subsection{fastpli.model.solver}
+\begin{lstfloat}[!t]
+\lstset{style=python}
+\begin{lstlisting}
+import fastpli.model.solver
+fastpli.model.solver.Solver
+    # Class wrapper for C++ class.
+    # Solves any 3d configurations of fibers to a non colliding ...
+\end{lstlisting}
+\caption{\texttt{fastpli.model.solver}}
+% 	\label{alg:simulation}
+\end{lstfloat}
+% 
+\subsection{fastpli.simulation}
+\begin{lstfloat}[!t]
+\lstset{style=python}
+\begin{lstlisting}
+import fastpli.simulation
+fastpli.simulation.Simpli
+    # Class wrapper for C++ class.
+    # Generatoes:
+    #   - discretisied Tissue Volume
+    #   - 3D PLI images
+    #   - analysis of resultss
+\end{lstlisting}
+\caption{\texttt{fastpli.simulation}}
+% 	\label{alg:simulation}
+\end{lstfloat}
+% 
+\subsection{fastpli.tools}
+\begin{lstfloat}[!t]
+\lstset{style=python}
+\begin{lstlisting}
+import fastpli.tools
+fastpli.tools.label_converter
+    # conversion of discretisied tissue to 
+    # maxwell-solver input format
+fastpli.tools.rotation
+    # rotation matricies for 3d rotaions
+\end{lstlisting}
+\caption{\texttt{fastpli.tools}}
+% 	\label{alg:simulation}
+\end{lstfloat}
 % 
 \subsection{Dependencies}
 % 

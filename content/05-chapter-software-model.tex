@@ -3,6 +3,7 @@
 \label{chap:modelling}
 % 
 \section{Introduction}
+\comment{
 \cite{Balls2009}
 % 
 \begin{itemize}[nosep]
@@ -10,7 +11,11 @@
     \item their limitations
     \item collisions
     \item link to \cite{matuschke2019}
-\end{itemize}
+\end{itemize}}
+% 
+\vspace{5pt}
+\hrule
+\vspace{6pt}
 % 
 Nerve fiber modelling is a non trivial task, which is \comment{(mainly?)} used in simulations like \ac{dMRI} simulations \dummy. However most \ac{dMRI} simulation tools use fast simulation techniques as \dummy. This take analytical function describing the fiber paths to be capable of calculation very fast.
 % 
@@ -70,8 +75,7 @@ Therefore a list of tuples containing four floating point numbers can be interpr
     \def\tikzwidth{0.85\textwidth}
     \centering
     \inputtikz{gfx/model/fiber_model}
-	\caption[]{representation of nerve fiber from a list of spheres $\left\{ \vv{p}_i=(x_i,y_i,z_i), r_i \mid i \in \{0,1,N_{\mathit{points}}-1\}\right\}$.
-	\todo{a little bit mor var in radius}}
+	\caption[]{representation of nerve fiber from a list of spheres $\left\{ \vv{p}_i=(x_i,y_i,z_i), r_i \mid i \in \{0,1,N_{\mathit{points}}-1\}\right\}$.}
 	\label{fig:fiberReb}
 \end{figure}
 % 
@@ -128,7 +132,7 @@ This list can be applied to a a trajectory.
     \subcaptionbox{\label{fig:triGrid}2d triangular grid}[.295\textwidth]{
     \inputtikz{gfx/model/triangular_grid}\hfill}
     \subcaptionbox{\label{fig:rndGrid}random grid}[.295\textwidth]{
-    \inputtikz{gfx/model/rnd_circle_points}\hfill}
+    \inputtikz{gfx/model/rnd_circle_points}}\hfill
     \subcaptionbox{\label{fig:crossBundle}2d filled fiber bundles}[.39\textwidth]{
     \inputtikz{gfx/model/crossing_bundle}\hfill}
 	\caption{Filling fiber bundles with seed points.}
