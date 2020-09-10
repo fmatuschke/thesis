@@ -145,7 +145,7 @@ fastpli.io.fiber_bundles
 \lstset{style=common}
 \begin{lstlisting}
 GROUP "/" { # fiber_bundles path
-   GROUP "0" { # id of fiber_bundle
+  GROUP "0" { # id of fiber_bundle
       DATASET "0" { # id of fiber
          DATATYPE  H5T_IEEE_F64LE
          DATASPACE  SIMPLE { ( 3, 4 ) / ( 3, 4 ) }
@@ -163,8 +163,8 @@ GROUP "/" { # fiber_bundles path
          (4,0): -1.03, -9.4, -48.62, 2.93,
          }
       }
-   }
-   GROUP "1" { # id of fiber_bundle
+  }
+  GROUP "1" { # id of fiber_bundle
       DATASET "0" { # id of fiber
          DATATYPE  H5T_IEEE_F64LE
          DATASPACE  SIMPLE { ( 2, 4 ) / ( 2, 4 ) }
@@ -173,7 +173,7 @@ GROUP "/" { # fiber_bundles path
          (1,0): 6.22, -1.04, -42.45, 3.26,
          }
       }
-   }
+  }
 }
 \end{lstlisting}
 \caption{exemplary hdf5-file format.} \label{alg:hdf5}
@@ -276,24 +276,18 @@ fastpli.tools.rotation
 % 
 \begin{figure}[!t]
     \centering
-    \fbox{
-    \resizebox{\textwidth}{!}{
-    \includegraphics[width=0.95\textwidth,height=0.95\textheight,keepaspectratio,trim={400px 42px 460px 42px},clip]{gfx/fastpli/fastpli_wiki_home.png}}}
+    \resizebox{\textwidth}{!}{\fbox{
+    \includegraphics{gfx/fastpli/fastpli_wiki_home.png}}}
 	\caption{dummy}
 	\label{fig:fastpli_wiki_home}
 \end{figure}
 % 
 \begin{figure}[!t]
     \centering
-    \fbox{
-    \resizebox{\textwidth}{!}{
+    \resizebox{\textwidth}{!}{\fbox{
     \begin{tabular}{c|c}
-         	\includegraphics[width=\textwidth,height=\textheight,keepaspectratio,
-         					trim={400px 2735px 460px 42px},clip]{
-         						gfx/fastpli/fastpli_wiki_crossing.png} &
-         	\includegraphics[width=\textwidth,height=\textheight,keepaspectratio,
-         					trim={400px 42px 460px 2465px},clip]{
-         						gfx/fastpli/fastpli_wiki_crossing.png}  \\
+    \includegraphics[valign=T]{gfx/fastpli/fastpli_wiki_crossing_left.png} &
+ 	\includegraphics[valign=T]{gfx/fastpli/fastpli_wiki_crossing_right.png} \\
     \end{tabular}
     }}
 	\caption{dummy}
@@ -347,5 +341,4 @@ fastpli.tools.rotation
 % 	\label{fig:python_test}
 % 	\caption{python test.}
 % \end{figure}
-%
 %
