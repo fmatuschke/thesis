@@ -112,6 +112,7 @@
 \usepackage{scrhack}
 \usepackage{float}              % [H]
 \usepackage{graphicx}           % (pdf, png, jpg, eps)
+\usepackage[export]{adjustbox}
 \usepackage{pdfpages}
 \usepackage{subcaption}
 \usepackage{minitoc}
@@ -124,6 +125,7 @@
 \sisetup{detect-mode=true,detect-family=false,
         detect-display-math=false,detect-shape=false,
         list-units=brackets, range-units=brackets,
+        range-phrase = {\text{~to~}},
         math-micro=\muup} %\mathrm{\mu}}
 \AtBeginDocument{\sisetup{math-rm=\mathrm, text-rm=\sffamily}}
 % 

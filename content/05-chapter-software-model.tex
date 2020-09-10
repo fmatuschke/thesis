@@ -17,12 +17,22 @@
 \hrule
 \vspace{6pt}
 % 
+\comment{
+\begin{itemize}[nosep]
+    \item test
+\end{itemize}
+}
+% 
+\vspace{5pt}
+\hrule
+\vspace{6pt}
+% 
 Nerve fiber modelling is a non trivial task, which is \comment{(mainly?)} used in simulations like \ac{dMRI} simulations \dummy. However most \ac{dMRI} simulation tools use fast simulation techniques as \dummy. This take analytical function describing the fiber paths to be capable of calculation very fast.
 % 
 In resent time with the improvement of computer power and algorithms, simulators like monte carlo are used \dummy. These simulate the random walk of individual water molecules inside a volume. If the target are \ac{WM} phantoms nerve fibers can be modelled as a meshed tube.
 These have the advantage, that any complex configuration can be modelled \eg beeding fibers \dummy.\\
 %
-However a disadvantage is that for resanable model sizes ( in \ac{dMRI} a voxel is about $\SIrange{100}{1000}{\micro\meter}$ order, size nerve fiber about \SI{1}{\micro\meter}), the number of triangles of the mesh is quite big.
+However a disadvantage is that for resanable model sizes ( in \ac{dMRI} a voxel is about \SIrange{100}{1000}{\micro\meter} order, size nerve fiber about \SI{1}{\micro\meter}), the number of triangles of the mesh is quite big.
 A further ... is to build a geometrical configuration, where no nerve fibers are overlapping each other (\ie  take the same volume in space). \\
 % 
 Collision detektion takes a major role here.
@@ -35,21 +45,21 @@ Inside this chapter the following procedures are described:
     \item user friendly building methods
     \item ensure collisionless models
 \end{itemize}
+
+\paragraph{Module}
 % 
-% \paragraph{Module}
-% % 
-% The python sub package \pymodule{fastpli.model} consist of two modules:
-% % 
-% %\vspace{-1ex}
-% \begin{itemize}[nosep]
-%     \item \pymodule{sandbox}
-%     \item \pymodule{solver}
-% \end{itemize}
-% % 
-% The first module \pymodule{sandbox} enherets routines to help the user build simple geometric configurations.
-% Ths can then be used to build more complex structres of nerve fiber bundles.
-% The second module \pymodule{solver} contains a \CXX framework wrapped inside a \python class to ensure easier user \ac{API} (see \dummy).
+The python sub package \pymodule{fastpli.model} consist of two modules:
 % 
+%\vspace{-1ex}
+\begin{itemize}[nosep]
+    \item \pymodule{sandbox}
+    \item \pymodule{solver}
+\end{itemize}
+% 
+The first module \pymodule{sandbox} enherets routines to help the user build simple geometric configurations.
+Ths can then be used to build more complex structres of nerve fiber bundles.
+The second module \pymodule{solver} contains a \CXX framework wrapped inside a \python class to ensure easier user \ac{API} (see \dummy).
+
 \section{Nerve Fiber representation}
 % 
 As described in \cref{sec:fiberArchitecture} \ac{WM} consist of densly Axons which are surrounded by Myeling (see \cref{fig:nerveFiber}).
@@ -119,7 +129,7 @@ Therefore a list of tuples containing four floating point numbers can be interpr
 Two major processes are typical, when building white matter phantom. First, defining macrostructures like fiber bundles, second, defining fibers inside the fiber bundles.
 Defining a fiber bundle can be as easy as defining a fiber, if the shape should by tube like as well.
 \\
-To fill the fiber bundle, the following technique was developed.
+To populate the fiber bundle, the following technique was developed.
 % 
 \subsection{seeds}\label{sec:seeds}
 % 
@@ -129,20 +139,20 @@ This list can be applied to a a trajectory.
 \begin{figure}[!t]
     \def\tikzheight{0.25\textwidth}
     \centering
-    \subcaptionbox{\label{fig:triGrid}2d triangular grid}[.295\textwidth]{
+    \subcaptionbox{\label{fig:triGrid}equilateral triangle grid}[.295\textwidth]{
     \inputtikz{gfx/model/triangular_grid}\hfill}
     \subcaptionbox{\label{fig:rndGrid}random grid}[.295\textwidth]{
     \inputtikz{gfx/model/rnd_circle_points}}\hfill
-    \subcaptionbox{\label{fig:crossBundle}2d filled fiber bundles}[.39\textwidth]{
+    \subcaptionbox{\label{fig:crossBundle}populated fiber bundles}[.39\textwidth]{
     \inputtikz{gfx/model/crossing_bundle}\hfill}
-	\caption{Filling fiber bundles with seed points.}
+	\caption{Populating fiber bundles with seed points.}
 % 	\label{fig:}
 \end{figure}
 % 
 \subsection{cube models}
 % 
 Since \ac{3D-PLI} is a technique, which uses brain sections, and the camera signals result in 2d images, a method was implemented to build fiber bundles inside a 3d cube.
-The method works similar to filling a bundle with seeds (see \cref{sec:seeds, sec:fillBundle}).
+The method works similar to populate a bundle with seeds (see \cref{sec:seeds, sec:fillBundle}).
 The population orientation is defined by a orientation vector $\vv{v}$;
 % 
 \subsection{cylindric models}
@@ -150,11 +160,11 @@ The population orientation is defined by a orientation vector $\vv{v}$;
 building a cylindric model works the same way as cube models.
 The cylinder is definde by a vector $\vv{v}$ wich gives the orientation and length of the cylinder.
 A inner and outer radii $(r_{\mathit{in}}, r_{\mathit{out}})$ has to be defined as well.
-Inside the inner and outer radii the cylinder will be filled.
+Inside the inner and outer radii the cylinder will be populated $\{f_i \mid r_{min} < |(s_{i,x},s_{i,y})| < r_{max} \}$.
 Additionally a beginning end ending angle $(\alpha, \beta)$ can be defined, which let the cylinder only fill from $\alpha$ to $\beta$.
 Last the cylinder can be modelled in three ways. a) parallel, b) cylindrical and c) radial to the cylinder orientation (see \dummy).
 % 
-\subsection{fill bundles}\label{sec:fillBundle}
+\subsection{Populate bundles}\label{sec:fillBundle}
 % 
 \begin{figure}[!t]
     \centering
@@ -173,7 +183,7 @@ Last the cylinder can be modelled in three ways. a) parallel, b) cylindrical and
 % 	\label{fig:}
 \end{figure}
 % 
-Filling a \say{bundle} is is done via moving the \say{cloud} of seed points along the trajectory, moving,bending/rotating smooth along its way (like a good rolercoster).
+Populating a \say{bundle} is is done via moving the \say{cloud} of seed points along the trajectory, moving,bending/rotating smooth along its way (like a good rolercoster).
 The trajectory of each individual seed point will then be interpret and returned as a individual fiber with a constant single radius, or individual radii (wich can later be changed if necessary).
 The distant of the seeds to their coordinate center can be scaled with the bundle \say{radii} or scale factor (set 1 for const). \comment{energy minimum?}:
 % 
@@ -185,6 +195,11 @@ The distant of the seeds to their coordinate center can be scaled with the bundl
 \vv{b}(s) &= \vv{t}(s) \times \vv{n}(s)
 \end{split}
 \end{align}
+% 
+However, for a constant fiber trajectory (e.e. $f(s) = (s,0,0,1)$) $\vv{n}$ and $\vv{b}$ are not defined. There are alternatives like a minimal twisting frame. But this would mean, that \eg a fiber bundle would twist along a const path. This could be, but is not likely.
+\\
+% 
+Therefore it was decided to use another teqchnique. Its originates from the idea, that the tangential vector $\vv{t}$ should move by a single rotation matrix as fast as possible from $\vv{t}_i$ to $\vv{t}_{i+1}$. This can be also interpret as that the tangential vector on a sphere takes the geodic line to its next point. The same rotation matrix is then used for the $\vv{n}$ and $\vv{b}$ vector. The initial $\vv{n}$ and $\vv{n}$ correspont to the $\vv{e}_x$ and $\vv{e}_y$ of the seed points coordinate frame.
 % 
 \section{\VCS}
 % 
@@ -299,10 +314,11 @@ It was decided to use the following two conditions:
 \subsubsection{Mean segment length}
 % 
 \begin{figure}[!t]
+    \centering
     \def\tikzwidth{.42\textwidth}
-    \subcaptionbox{merge}[.5\textwidth]{
+    \subcaptionbox{merge}[.49\textwidth]{
     \inputtikz{gfx/model/model_merge}}
-    \subcaptionbox{split}[.5\textwidth]{
+    \subcaptionbox{split}[.49\textwidth]{
     \inputtikz{gfx/model/model_split}}
 	\caption{Length control for fibers $f$ and $f'$}
 	\label{fig:merge_split}
@@ -343,7 +359,7 @@ Therefore the curvature will be reduced.
 % 
 \begin{figure}[!t]
     \centering
-    \def\tikzheight{.42\textwidth}
+    \def\tikzheight{.40\textwidth}
     \subcaptionbox{Boundry segment length: lower bound $phi=\SI{60}{\degree} \xrightarrow{} r_{min} \geq \SI{0.5773}{} \cdot l_{mean}$}[.475\textwidth]{
     \inputtikz{gfx/model/model_circle}}\hfill
     \subcaptionbox{Boundry segment radii: lower bound $r_{min} \geq \fiberRadiusMean $}[.45\textwidth]{
@@ -484,7 +500,7 @@ d = \abs{\vv{p}_i - \vv{p}_j}
 \end{split}
 \end{align}
 % 
-However since neighboring spheres in one fiber are colliding for a densly filled fiber, they have to be excluded if
+However since neighboring spheres in one fiber are colliding for a densly populated fiber, they have to be excluded if
 \begin{align}
 \begin{split}
 d(i,j) &\leq  r_i + r_j\\
