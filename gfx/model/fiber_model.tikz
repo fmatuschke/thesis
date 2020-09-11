@@ -1,11 +1,16 @@
 \begin{tikzsize}{\tikzwidth}{\tikzheight}
-\begin{tikzpicture}[scale=\tikzscale,]
+\begin{tikzpicture}[scale=\tikzscale,remember picture]
 % 
-\def\rndSeed{37}
+\tikzstyle{reverseclip}=[insert path={(current page.north east) --
+  (current page.south east) --
+  (current page.south west) --
+  (current page.north west) --
+  (current page.north east)}
+]
+% 
 \begin{scope}[shift={(0,2)}]
 \node[] at (-1.5,-0.5) {traj};
-% 
-\pgfmathsetseed{\rndSeed}%
+% FIBER
 \foreach \i in {0,10,...,200}{
 \pgfmathsetmacro{\x}{\i/20}
 \pgfmathsetmacro{\y}{(0.75*sin(\i)+0.5*sin(3*\i-90))}
@@ -23,54 +28,44 @@
 % 
 \begin{scope}[shift={(0,0)}]
 \node[] at (-1.5,-0.5) {fiber};
-% 
-\def\rndSeed{37}
-% 
-\pgfmathsetseed{\rndSeed}%
+% FIBER
+\foreach \l/\c in {1/gray!100!white,0.8/gray!80!white,0.6/gray!60!white,0.4/gray!40!white}{
 \foreach \i in {0,10,...,200}{
 \pgfmathsetmacro{\x}{\i/20}
 \pgfmathsetmacro{\y}{(0.75*sin(\i)+0.5*sin(3*\i-90))}
 \pgfmathsetmacro{\r}{(5+1.5*sin(\i*4.2)) / 10}
 \ifnum \i > 1
-    \foreach \j in {0,0.1,...,1}{
+    \foreach \j in {0,0.1,...,1.01}{
     \pgfmathsetmacro{\rr}{\lastr+(\r-\lastr)*\j}
     \pgfmathsetmacro{\xx}{\lastx + \j*(\x-\lastx)}
     \pgfmathsetmacro{\yy}{\lasty + \j*(\y-\lasty)}
-    \draw[fill, lightgray] (\xx,\yy) circle(\rr);
+    \draw[fill, \c] (\xx,\yy) circle(\rr*\l);
     }
 \fi
 \xdef\lastx{\x}
 \xdef\lasty{\y}
 \xdef\lastr{\r}
 }
-% repair why i dont know yet (last one)
-\pgfmathsetseed{\rndSeed}%
-\foreach \i in {0,10,...,200}{
-\pgfmathsetmacro{\x}{\i/20}
-\pgfmathsetmacro{\y}{(0.75*sin(\i)+0.5*sin(3*\i-90))}
-\pgfmathsetmacro{\r}{(5+1.5*sin(\i*4.2)) / 10}
-\draw[fill, lightgray] (\x,\y) circle(\r);
 }
-% 
-\pgfmathsetseed{\rndSeed}%
+% POINTS
 \foreach \i in {0,10,...,200}{
 \pgfmathsetmacro{\x}{\i/20}
 \pgfmathsetmacro{\y}{(0.75*sin(\i)+0.5*sin(3*\i-90))}
 \pgfmathsetmacro{\r}{(5+1.5*sin(\i*4.2)) / 10}
 \node at (\x,\y) [circle,fill,inner sep=1.0pt]{};
-% \draw[thin,dashed] (\x,\y) circle (\r){};
 }
 \path[](-1,0)--(9,0); %bb
 \end{scope}
 % 
 % 
 % 
+% 
+% 
+% 
 % \begin{scope}[shift={(0,-2)}]
 % \node[] at (-1.5,-0.5) {medium};
-% % 
-% \def\rndSeed{37}
-% % 
-% \pgfmathsetseed{\rndSeed}%
+% % FIBER
+% \foreach \l/\c in {1/gray!100!white,0.8/gray!80!white,0.6/gray!60!white,0.4/gray!40!white}{
 % \foreach \i in {0,10,...,200}{
 % \pgfmathsetmacro{\x}{\i/20}
 % \pgfmathsetmacro{\y}{(0.75*sin(\i)+0.5*sin(3*\i-90))}
@@ -79,35 +74,20 @@
 % \pgfmathparse{Mod(\i,20)==0?1:0}
 % \ifnum\pgfmathresult>0
 %     \ifnum \i > 1
-%         \foreach \j in {0,0.05,...,1}{
+%         \foreach \j in {0,0.05,...,1.01}{
 %         \pgfmathsetmacro{\rr}{\lastr+(\r-\lastr)*\j}
 %         \pgfmathsetmacro{\xx}{\lastx + \j*(\x-\lastx)}
 %         \pgfmathsetmacro{\yy}{\lasty + \j*(\y-\lasty)}
-%         \draw[fill, lightgray] (\xx,\yy) circle(\rr);
+%         \draw[fill, \c] (\xx,\yy) circle(\rr*\l);
 %         }
 %     \fi
 %     \xdef\lastx{\x}
 %     \xdef\lasty{\y}
 %     \xdef\lastr{\r}
 % \fi
-% }
-% % 
-% % repair why i dont know yet (last one)
-% \pgfmathsetseed{\rndSeed}%
+% }}
+% % POINTS
 % \foreach \i in {0,10,...,200}{
-% \pgfmathsetmacro{\x}{\i/20}
-% \pgfmathsetmacro{\y}{(0.75*sin(\i)+0.5*sin(3*\i-90))}
-% \pgfmathsetmacro{\r}{(5+1.5*sin(\i*4.2)) / 10}
-% % 
-% \pgfmathparse{Mod(\i,20)==0?1:0}
-% \ifnum\pgfmathresult>0
-%     \draw[fill, lightgray] (\x,\y) circle(\r);
-% \fi
-% }
-% % 
-% \pgfmathsetseed{\rndSeed}%
-% \foreach \i in {0,10,...,200}{
-% % 
 % \pgfmathsetmacro{\x}{\i/20}
 % \pgfmathsetmacro{\y}{(0.75*sin(\i)+0.5*sin(3*\i-90))}
 % \pgfmathsetmacro{\r}{(5+1.5*sin(\i*4.2)) / 10}
@@ -115,20 +95,36 @@
 % \pgfmathparse{Mod(\i,20)==0?1:0}
 % \ifnum\pgfmathresult>0
 %     \node at (\x,\y) [circle,fill,inner sep=1.0pt]{};
-%     % \draw[thin,dashed] (\x,\y) circle (\r){};
 % \fi
 % }
 % \path[](-1,0)--(9,0); %bb
+% % GROUND TRUTH
+% \begin{scope}
+% \begin{pgfinterruptboundingbox}
+% \foreach \i in {0,10,...,200}{
+% \pgfmathsetmacro{\x}{\i/20}
+% \pgfmathsetmacro{\y}{(0.75*sin(\i)+0.5*sin(3*\i-90))}
+% \pgfmathsetmacro{\r}{(5+1.5*sin(\i*4.2)) / 10}
+% \path [clip] (\x,\y) circle (\r) [reverseclip];
+% }
+% \foreach \i in {0,10,...,200}{
+% \pgfmathsetmacro{\x}{\i/20}
+% \pgfmathsetmacro{\y}{(0.75*sin(\i)+0.5*sin(3*\i-90))}
+% \pgfmathsetmacro{\r}{(5+1.5*sin(\i*4.2)) / 10}
+% \draw[very thick, dashed] (\x,\y) circle (\r){};
+% }
+% \end{pgfinterruptboundingbox}
 % \end{scope}
-% 
-% 
-% 
-% \begin{scope}[shift={(0,-2)}]
+% \end{scope}
+% % 
+% % 
+% % 
+% % 
+% % 
+% \begin{scope}[shift={(0,-4)}]
 % \node[] at (-1.5,-0.5) {rough};
-% % 
-% \def\rndSeed{37}
-% % 
-% \pgfmathsetseed{\rndSeed}%
+% % FIBER
+% \foreach \l/\c in {1/gray!100!white,0.8/gray!80!white,0.6/gray!60!white,0.4/gray!40!white}{
 % \foreach \i in {0,10,...,200}{
 % \pgfmathsetmacro{\x}{\i/20}
 % \pgfmathsetmacro{\y}{(0.75*sin(\i)+0.5*sin(3*\i-90))}
@@ -137,35 +133,20 @@
 % \pgfmathparse{Mod(\i,40)==0?1:0}
 % \ifnum\pgfmathresult>0
 %     \ifnum \i > 1
-%         \foreach \j in {0,0.02,...,1}{
+%         \foreach \j in {0,0.025,...,1.01}{
 %         \pgfmathsetmacro{\rr}{\lastr+(\r-\lastr)*\j}
 %         \pgfmathsetmacro{\xx}{\lastx + \j*(\x-\lastx)}
 %         \pgfmathsetmacro{\yy}{\lasty + \j*(\y-\lasty)}
-%         \draw[fill, lightgray] (\xx,\yy) circle(\rr);
+%         \draw[fill, \c] (\xx,\yy) circle(\rr*\l);
 %         }
 %     \fi
 %     \xdef\lastx{\x}
 %     \xdef\lasty{\y}
 %     \xdef\lastr{\r}
 % \fi
-% }
-% % 
-% % repair why i dont know yet (last one)
-% \pgfmathsetseed{\rndSeed}%
+% }}
+% % POINTS
 % \foreach \i in {0,10,...,200}{
-% \pgfmathsetmacro{\x}{\i/20}
-% \pgfmathsetmacro{\y}{(0.75*sin(\i)+0.5*sin(3*\i-90))}
-% \pgfmathsetmacro{\r}{(5+1.5*sin(\i*4.2)) / 10}
-% % 
-% \pgfmathparse{Mod(\i,40)==0?1:0}
-% \ifnum\pgfmathresult>0
-%     \draw[fill, lightgray] (\x,\y) circle(\r);
-% \fi
-% }
-% % 
-% \pgfmathsetseed{\rndSeed}%
-% \foreach \i in {0,10,...,200}{
-% % 
 % \pgfmathsetmacro{\x}{\i/20}
 % \pgfmathsetmacro{\y}{(0.75*sin(\i)+0.5*sin(3*\i-90))}
 % \pgfmathsetmacro{\r}{(5+1.5*sin(\i*4.2)) / 10}
@@ -173,10 +154,26 @@
 % \pgfmathparse{Mod(\i,40)==0?1:0}
 % \ifnum\pgfmathresult>0
 %     \node at (\x,\y) [circle,fill,inner sep=1.0pt]{};
-%     % \draw[thin,dashed] (\x,\y) circle (\r){};
 % \fi
 % }
 % \path[](-1,0)--(9,0); %bb
+% % GROUND TRUTH
+% \begin{scope}
+% \begin{pgfinterruptboundingbox}
+% \foreach \i in {0,10,...,200}{
+% \pgfmathsetmacro{\x}{\i/20}
+% \pgfmathsetmacro{\y}{(0.75*sin(\i)+0.5*sin(3*\i-90))}
+% \pgfmathsetmacro{\r}{(5+1.5*sin(\i*4.2)) / 10}
+% \path [clip] (\x,\y) circle (\r) [reverseclip];
+% }
+% \foreach \i in {0,10,...,200}{
+% \pgfmathsetmacro{\x}{\i/20}
+% \pgfmathsetmacro{\y}{(0.75*sin(\i)+0.5*sin(3*\i-90))}
+% \pgfmathsetmacro{\r}{(5+1.5*sin(\i*4.2)) / 10}
+% \draw[very thick, dashed] (\x,\y) circle (\r){};
+% }
+% \end{pgfinterruptboundingbox}
+% \end{scope}
 % \end{scope}
 % 
 \end{tikzpicture}

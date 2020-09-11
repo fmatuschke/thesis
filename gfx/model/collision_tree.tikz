@@ -5,7 +5,7 @@
     \begin{scope}[shift={(0.75,3)},local bounding box=BB1]
         \draw[, green!50!black] (0:1cm) \foreach \x in {0,120,...,360} {-- (\x:1cm)} -- cycle {};
     \end{scope}
-    \node at (BB1.center) {$\mathit{obj}_1$};
+    \node[anchor=north east] at (BB1.south east) {$\mathit{obj}_1$};
     % 
     \begin{scope}[shift={(7,4.8)},local bounding box=BB2,
         3d view={85}{35},
@@ -44,12 +44,12 @@
         (G) -- (E) -- (A) --cycle
         (G) -- (E) -- (C) --cycle; 
     \end{scope}
-    \node at (BB2.center) {$\mathit{obj}_2$};
+    \node[anchor=north east] at (BB2.south east) {$\mathit{obj}_2$};
     % 
     \begin{scope}[shift={(5.5,8)},local bounding box=BB3]
         \draw[, green!50!black] (0:1cm) \foreach \x in {0,90,...,360} {-- (\x:1cm)} -- cycle {};
     \end{scope}
-    \node at (BB3.center) {$\mathit{obj}_3$};
+    \node[anchor=north east] at (BB3.south east) {$\mathit{obj}_3$};
     % 
     \draw[, red] (BB1.north west) rectangle (BB1.south east);
     \draw[, red] (BB2.north west) rectangle (BB2.south east);
