@@ -127,6 +127,7 @@
         list-units=brackets, range-units=brackets,
         range-phrase = {\text{~to~}},
         math-micro=\muup} %\mathrm{\mu}}
+\DeclareSIUnit{\arbitraryunit}{\mathit{arb. unit}}
 \AtBeginDocument{\sisetup{math-rm=\mathrm, text-rm=\sffamily}}
 % 
 % \usepackage{caption}
@@ -280,12 +281,15 @@
 \makeatother
 % 
 \makeatletter
-\newcommand{\inputtikz}[1]{%
-	\IfFileExists{tikz/#1.pdf}{% check if pdf tikz/.../*.pdf exists
-		\includegraphics{tikz/#1.pdf}
+\newcommand{\inputtikz}[2][false]{%
+    \ifthenelse{\boolean{#1}}{
+        \inputtikzext{#2}
+    }{
+	\IfFileExists{tikz/#2.pdf}{% check if pdf tikz/.../*.pdf exists
+		\includegraphics{tikz/#2.pdf}
 	}{ % build ext tikz
-		\inputtikzext{#1}
-	}
+		\inputtikzext{#2}
+	}}
 }
 \makeatother
 % 

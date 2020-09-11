@@ -3,41 +3,27 @@
 \label{chap:modelling}
 % 
 \section{Introduction}
-\comment{
-\cite{Balls2009}
 % 
-\begin{itemize}[nosep]
-    \item current techniques
-    \item their limitations
-    \item collisions
-    \item link to \cite{matuschke2019}
-\end{itemize}}
+Nerve fiber modelling is a \dummy, which is \comment{(mainly?)} used in simulations like \ac{dMRI} simulations \dummy.
+However most \ac{dMRI} simulation tools use fast simulation techniques as \dummy.
+This take analytical function describing the fiber paths to be capable of calculation very fast.
 % 
-\vspace{5pt}
-\hrule
-\vspace{6pt}
+Current algorithm are capable of using spline functions for individual nerve fiber or fiber bundles \cite{Balls2009}.
 % 
-\comment{
-\begin{itemize}[nosep]
-    \item test
-\end{itemize}
-}
-% 
-\vspace{5pt}
-\hrule
-\vspace{6pt}
-% 
-Nerve fiber modelling is a non trivial task, which is \comment{(mainly?)} used in simulations like \ac{dMRI} simulations \dummy. However most \ac{dMRI} simulation tools use fast simulation techniques as \dummy. This take analytical function describing the fiber paths to be capable of calculation very fast.
-% 
-In resent time with the improvement of computer power and algorithms, simulators like monte carlo are used \dummy. These simulate the random walk of individual water molecules inside a volume. If the target are \ac{WM} phantoms nerve fibers can be modelled as a meshed tube.
-These have the advantage, that any complex configuration can be modelled \eg beeding fibers \dummy.\\
+In resent time with the improvement of computer power and algorithms, simulators like monte carlo are used \dummy.
+These simulate the random walk of individual water molecules inside a volume.
+If the target are \ac{WM} phantoms nerve fibers can be modelled as a meshed tube.
+These have the advantage, that any complex configuration can be modelled \eg beeding fibers \dummy.
+\\
 %
-However a disadvantage is that for resanable model sizes ( in \ac{dMRI} a voxel is about \SIrange{100}{1000}{\micro\meter} order, size nerve fiber about \SI{1}{\micro\meter}), the number of triangles of the mesh is quite big.
-A further ... is to build a geometrical configuration, where no nerve fibers are overlapping each other (\ie  take the same volume in space). \\
+However, a disadvantage is that for resanable model sizes ( in \ac{dMRI} a voxel is about \SIrange{100}{1000}{\micro\meter} order, size nerve fiber about \SI{1}{\micro\meter}), the number of triangles of the mesh is quite big [\dummy].
+A further challange is to build a geometrical configuration, where no nerve fibers are overlapping each other (\ie  take the same volume in space).
+\\
 % 
-Collision detektion takes a major role here.
-When other simulations using geometrical models (\eg protein folding \dummy) can use something like electric potentials, where the actuall geometrical boundry is not that important, here it is different.
-Collision detection algorithms are manly used for computer \dummy.\\
+Collision detection takes a major role here.
+While other simulations which are using geometrical models (\eg protein folding \dummy) can use something like electric potentials, where the actually geometrical boundary is not that important.
+As we will we in the case of \ac{3D-PLI} (and \ac{dMRI}) it is different.
+\\
 % 
 Inside this chapter the following procedures are described:
 \begin{itemize}[nosep]
@@ -45,12 +31,11 @@ Inside this chapter the following procedures are described:
     \item user friendly building methods
     \item ensure collisionless models
 \end{itemize}
-
-\paragraph{Module}
+% 
+\paragraph{\ac{fastPLI} modules}
 % 
 The python sub package \pymodule{fastpli.model} consist of two modules:
 % 
-%\vspace{-1ex}
 \begin{itemize}[nosep]
     \item \pymodule{sandbox}
     \item \pymodule{solver}
@@ -59,19 +44,74 @@ The python sub package \pymodule{fastpli.model} consist of two modules:
 The first module \pymodule{sandbox} enherets routines to help the user build simple geometric configurations.
 Ths can then be used to build more complex structres of nerve fiber bundles.
 The second module \pymodule{solver} contains a \CXX framework wrapped inside a \python class to ensure easier user \ac{API} (see \dummy).
-
-\section{Nerve Fiber representation}
+\\
 % 
-As described in \cref{sec:fiberArchitecture} \ac{WM} consist of densly Axons which are surrounded by Myeling (see \cref{fig:nerveFiber}).
-The Myelin itself is split into several parts separated by Nodes of Ranvier, to allow the propagation of an action potential.\\
+First it has to be decided, how to represent a nerve fiber (bundle).
 % 
-How to represend such a "tube" is known for a long time. A common representation is a triangulared mesh representation (e.g. mri simulation \dummy). Since the goal of the later use is to acount for collisions between fibers, it is importeant to minimize the number ob "objects" as much as possible. However since a nerve fiber is relativly fexible it is a tradeoff between accurate representation and number of objects (later speed).
+\vspace{5pt}
+\hrule
+\vspace{6pt}
 % 
-For the purpose of collision solvin it was decided, to chunk a single nerve fiber into segments, which are themself conical objects.
-
-This allows a complex trajectory $f(t) \rightarrow \left(\vv{p}=(x,y,z),r\right)$ (depending on the segment length) it is however necessary, to split the cylinder in smaller segments. Since the radii of a nerve fiber is naturally changing along its trajectory, a \ac{CC} shape is best to use ass segment geometry.
-Two coordinates $(p_i, p_{i+1})$ and radii $(r_i, r_{i+1})$ are assigned to each segment. Two neighbouring segment share there parameters.
-Therefore a list of tuples containing four floating point numbers can be interpret as fiber (\cref{fig:fiberReb}):
+\section{Nerve fiber representation}
+% \label{}
+% 
+As described in \cref{sec:fiberArchitecture} \ac{WM} consist of densely packed bundles of nerve fibers.
+Nerve fibers themselves consist of axons surrounded by myelin (see \cref{fig:nerveFiber}).
+The myelin is further split into several parts separated by Ranvier nodes to allow the spread of an action potential.
+In the central nervous system, myelin is produced by olegodendrocytes, which are cells that wrap with their little \say{arms} around axons that are locally adjacent.
+The wrapping substance is called myelin and consists mainly of a lipid (fat) substance.
+\\
+% 
+The Question is, how to model/represent this tissue?
+\\
+% 
+The main focus of the modelling is to ensure that these models can be used for \ac{3D-PLI} simulations.
+However, it is reasonable that these models can also be used for other tasks \eg for \ac{dMRI} simulations.
+% 
+\paragraph{What does usable mean?}
+Since we are working with simulations, the computer algorithms have to be capable of getting an input for a geometrical fiber architecture.
+An obvious candidate are used in visualisation techniques.
+There, objects of different shape have to be represented so that the computer algorithm can use the representation to visualise an image of the objects.
+An obvious model for a fiber is a tube.
+Usually objects like tubes are visualised with a surrounding mesh.
+Meshes have the advantage, that a texture can be applied to the surface.
+However since meshes consist usually of 3d triangles, this means for a good approximation a lot of points, \ie data/memory, to represent a model.
+But even in the visualisation domain tubes are not modeld from inital meshes.
+They get initialised by a trajectory, which then gets an additional radius to get a volumetric representation.
+This representation can be used as well for nerve fiber tissue.
+\\
+% 
+Already existing techniques \dummy allow to represent such structures as analytical mathematical objects \eg a parametric function $f(t) -> (x,y,z,r)$ with $(x,y,z)$ as 3d coordinate and $r$ as radius.
+This however limitates the use drastically, since the user has to know in advance a parametic function.
+For trivial structures like parallel straight fibers this is quite easy and fast to process.
+However, if we want to model more complicated tissues like densly interwoven fiber bundles, the task is nearly impossible.
+One posibility would be to do not care, if two fibers overlap, \ie take the same space in volume.
+This is done \eg for simulations like protein folding, where the main interaction comes from electro dynamical forces.
+However it could already be shown, that for more complicated \ac{3D-PLI} simulations like \dummy non overlapping fibers are essential.
+\\
+% 
+For this reason it was decided to represent fibers in such a way that it will later be able to easily check for colliding objects, \ie nerve fibers.
+This means that the number of objects have to be small, with respect to the approximation of the desired level of detail.
+A second feature is that the chosen geometries have to be fast calculable for collision detection with each other.
+\\
+% 
+To allow a arbitrary level of detail, a tube like fiber can be split into a number of segments.
+Each tube segment can than be approximated as a cyrildig object.
+However since the radius of the nerve fibers can vary quite a bit along its path, the tube (or fiber segment) has also to be allowed to change.
+If this is done via a cylindrical approximation, the boundry effects between two segments can lead to unusually appearance.
+It was therefore decided to approximate a fiber segment with a \ac{CC}, a 3d cone on which end spheres with the required radii are attached.
+This has the advantage, that between two fiber segments there is a smooth transition along the fiber axis (for a reasonable curvature).
+% 
+\begin{figure}[!t]
+    \def\tikzwidth{0.85\textwidth}
+    \centering
+    % \tikzset{external/export next=false}
+    \inputtikz[true]{gfx/model/fiber_model}
+	\caption[]{representation of nerve fiber from a list of spheres $\left\{ \vv{p}_i=(x_i,y_i,z_i), r_i \mid i \in \{0,1,N_{\mathit{points}}-1\}\right\}$.}
+	\label{fig:fiberReb}
+\end{figure}
+% 
+A nerve fiber can therefore be represented as a list of 4d coordinates (see \cref{fig:fiberReb}):
 \begin{align}
 \begin{split}
 \mathit{fiber} &= \left\{ \vv{p}_i=(x_i,y_i,z_i), r_i \mid i \in \{0,1,N_{\mathit{points}}-1\}\right\} \\
@@ -79,15 +119,64 @@ Therefore a list of tuples containing four floating point numbers can be interpr
 \end{split}
 \end{align}
 % 
+% 
+\vspace{5pt}
+\hrule
+\vspace{6pt}
+% 
+\newpage
+% 
+% Nerve fiber modelling is a non trivial task, which is \comment{(mainly?)} used in simulations like \ac{dMRI} simulations \dummy. However most \ac{dMRI} simulation tools use fast simulation techniques as \dummy. This take analytical function describing the fiber paths to be capable of calculation very fast.
+% % 
+% In resent time with the improvement of computer power and algorithms, simulators like monte carlo are used \dummy. These simulate the random walk of individual water molecules inside a volume. If the target are \ac{WM} phantoms nerve fibers can be modelled as a meshed tube.
+% These have the advantage, that any complex configuration can be modelled \eg beeding fibers \dummy.\\
+% %
+% However a disadvantage is that for resanable model sizes ( in \ac{dMRI} a voxel is about \SIrange{100}{1000}{\micro\meter} order, size nerve fiber about \SI{1}{\micro\meter}), the number of triangles of the mesh is quite big.
+% A further ... is to build a geometrical configuration, where no nerve fibers are overlapping each other (\ie  take the same volume in space). \\
+% % 
+% Collision detektion takes a major role here.
+% When other simulations using geometrical models (\eg protein folding \dummy) can use something like electric potentials, where the actuall geometrical boundry is not that important, here it is different.
+% Collision detection algorithms are manly used for computer \dummy.\\
+% % 
+% Inside this chapter the following procedures are described:
+% \begin{itemize}[nosep]
+%     \item geometrical representation of nerve fiber (bundles)
+%     \item user friendly building methods
+%     \item ensure collisionless models
+% \end{itemize}
+
+% \paragraph{Module}
+% % 
+% The python sub package \pymodule{fastpli.model} consist of two modules:
+% % 
+% %\vspace{-1ex}
+% \begin{itemize}[nosep]
+%     \item \pymodule{sandbox}
+%     \item \pymodule{solver}
+% \end{itemize}
+% % 
+% The first module \pymodule{sandbox} enherets routines to help the user build simple geometric configurations.
+% Ths can then be used to build more complex structres of nerve fiber bundles.
+% The second module \pymodule{solver} contains a \CXX framework wrapped inside a \python class to ensure easier user \ac{API} (see \dummy).
+
+% \section{Nerve Fiber representation}
+% 
+% How to represend such a "tube" is known for a long time. A common representation is a triangulared mesh representation (e.g. mri simulation \dummy). Since the goal of the later use is to acount for collisions between fibers, it is importeant to minimize the number ob "objects" as much as possible. However since a nerve fiber is relativly fexible it is a tradeoff between accurate representation and number of objects (later speed).
+% % 
+% For the purpose of collision solvin it was decided, to chunk a single nerve fiber into segments, which are themself conical objects.
+
+% This allows a complex trajectory $f(t) \rightarrow \left(\vv{p}=(x,y,z),r\right)$ (depending on the segment length) it is however necessary, to split the cylinder in smaller segments. Since the radii of a nerve fiber is naturally changing along its trajectory, a \ac{CC} shape is best to use ass segment geometry.
+% Two coordinates $(p_i, p_{i+1})$ and radii $(r_i, r_{i+1})$ are assigned to each segment. Two neighbouring segment share there parameters.
+% Therefore a list of tuples containing four floating point numbers can be interpret as fiber (\cref{fig:fiberReb}):
+% \begin{align}
+% \begin{split}
+% \mathit{fiber} &= \left\{ \vv{p}_i=(x_i,y_i,z_i), r_i \mid i \in \{0,1,N_{\mathit{points}}-1\}\right\} \\
+% \mathit{segment}_i &= \left\{ \vv{p}_i, \vv{p}_{i+1}, r_i, r_{i+1} \mid i \in \{0,1,N_{\mathit{seg}}-1\} \right\}
+% \end{split}
+% \end{align}
+% 
 % This representation will also be used for visualization (see \dummy).
 % 
-\begin{figure}[!t]
-    \def\tikzwidth{0.85\textwidth}
-    \centering
-    \inputtikz{gfx/model/fiber_model}
-	\caption[]{representation of nerve fiber from a list of spheres $\left\{ \vv{p}_i=(x_i,y_i,z_i), r_i \mid i \in \{0,1,N_{\mathit{points}}-1\}\right\}$.}
-	\label{fig:fiberReb}
-\end{figure}
 % 
 % 
 % This allows to represent a nerve fiber by a chain of cylinders:
@@ -125,6 +214,7 @@ Therefore a list of tuples containing four floating point numbers can be interpr
 % This representation allows a smooth change in volume along the trajectory dependend on the number of segments and their individual length.
 % 
 \section{Sandbox}
+\comment{Why sandbox}
 % 
 Two major processes are typical, when building white matter phantom. First, defining macrostructures like fiber bundles, second, defining fibers inside the fiber bundles.
 Defining a fiber bundle can be as easy as defining a fiber, if the shape should by tube like as well.
@@ -135,6 +225,8 @@ To populate the fiber bundle, the following technique was developed.
 % 
 Seeds are a list of 3d points related to a coordinate center $(0,0,0)$ (see \cref{fig:triGrid,fig:rndGrid}).
 This list can be applied to a a trajectory.
+% 
+\todo{why rnd necesarry -> simulation}
 % 
 \begin{figure}[!t]
     \def\tikzheight{0.25\textwidth}
@@ -161,18 +253,10 @@ building a cylindric model works the same way as cube models.
 The cylinder is definde by a vector $\vv{v}$ wich gives the orientation and length of the cylinder.
 A inner and outer radii $(r_{\mathit{in}}, r_{\mathit{out}})$ has to be defined as well.
 Inside the inner and outer radii the cylinder will be populated $\{f_i \mid r_{min} < |(s_{i,x},s_{i,y})| < r_{max} \}$.
-Additionally a beginning end ending angle $(\alpha, \beta)$ can be defined, which let the cylinder only fill from $\alpha$ to $\beta$.
+Additionally a beginning end ending angle $(\alpha, \beta)$ can be defined, which let the cylinder only populate from $\alpha$ to $\beta$.
 Last the cylinder can be modelled in three ways. a) parallel, b) cylindrical and c) radial to the cylinder orientation (see \dummy).
 % 
 \subsection{Populate bundles}\label{sec:fillBundle}
-% 
-\begin{figure}[!t]
-    \centering
-    \resizebox{0.75\textwidth}{!}{
-    \includegraphics{dev/gfx/circle_bundle.png}}
-	\caption[]{Bending fiber along trajectory $f(t) = \left( \cos(t), \sin(t), 0 \right)$}
-	\label{fig:circleBundle}
-\end{figure}
 % 
 \begin{figure}[!t]
     \def\tikzwidth{0.75\textwidth}
@@ -181,6 +265,14 @@ Last the cylinder can be modelled in three ways. a) parallel, b) cylindrical and
 	\caption[Minimal torsion trajectory]{Minimal torsion along trajectory. The 
 	\textcolor{green!50!black}{binormal}, \textcolor{red}{principal normal} vector and \textcolor{blue}{tangent vector} vector at each step are also the coordinate system for the seed points.}
 % 	\label{fig:}
+\end{figure}
+% 
+\begin{figure}[!t]
+    \centering
+    \resizebox{0.42\textwidth}{!}{
+    \includegraphics{dev/gfx/circle_bundle.png}}
+	\caption[]{Bending fiber along trajectory $f(t) = \left( \cos(t), \sin(t), 0 \right)$}
+	\label{fig:circleBundle}
 \end{figure}
 % 
 Populating a \say{bundle} is is done via moving the \say{cloud} of seed points along the trajectory, moving,bending/rotating smooth along its way (like a good rolercoster).
@@ -261,7 +353,7 @@ Traversing a  evenly distributed tree is of $\mathcal{O}(\log(n))$.\\
     \inputtikz{gfx/model/oct_tree}}
     \subcaptionbox{collision 2d}[.65\textwidth]{
     \def\tikzheight{0.6\textwidth}
-    \inputtikzext{gfx/model/collision_tree}}
+    \inputtikz[true]{gfx/model/collision_tree}}
 	\caption{}
 	\label{fig:oct_tree}
 \end{figure}
@@ -295,7 +387,7 @@ At each leaf a list ob object is returned containing the object of the leaf.
 All list are collected for the collision checking test.
 This collected list is in the next step fully parallel traversed to check for collisions.
 % 
-\subsection{Solving a collision}
+\section{Solving a collision}
 To solve a collision between two \ac{CC} objects the two points of each object will be moved.
 The movement will be parallel to the smallest distance line between both objects.
 To take the 3d placement into consideration, the movement is weighted with the distance of the the individual points to the intersection point with the smallest distance line (see fig \dummy).
@@ -306,20 +398,20 @@ Therefore the sum of all velocities is taken into account.
 The maximum speed is however limited to a value of $v_{\max} = 0.1 \times \min(\mathit{object radius})$.
 This prevents movement through another object.
 % 
-\subsection{Shape Control}\label{chap5:ShapeControl}
+\section{Shape Control}\label{chap5:ShapeControl}
 The movement of individual points can results in a "distorted" fiber model, \eg two points move very far apart from each other.
 Therefore boundry conditions have to be specified.
 It was decided to use the following two conditions:
 % 
-\subsubsection{Mean segment length}
+\subsection{Mean segment length}
 % 
 \begin{figure}[!t]
     \centering
-    \def\tikzwidth{.42\textwidth}
+    \def\tikzwidth{.45\textwidth}
     \subcaptionbox{merge}[.49\textwidth]{
-    \inputtikz{gfx/model/model_merge}}
+    \inputtikz[true]{gfx/model/model_merge}}
     \subcaptionbox{split}[.49\textwidth]{
-    \inputtikz{gfx/model/model_split}}
+    \inputtikz[true]{gfx/model/model_split}}
 	\caption{Length control for fibers $f$ and $f'$}
 	\label{fig:merge_split}
 \end{figure}
@@ -327,9 +419,9 @@ It was decided to use the following two conditions:
 % 
 \begin{figure}[!t]
     \centering
-    \def\tikzwidth{\textwidth}
+    \def\tikzwidth{0.75\textwidth}
     \tikzset{external/export next=false}
-    \inputtikz{gfx/model/model_length}
+    \inputtikz[true]{gfx/model/model_length}
 	\caption{different fiber segment length.}
 	\label{fig:model_length}
 \end{figure}
@@ -337,7 +429,10 @@ It was decided to use the following two conditions:
 The Mean segment length coresponts to the distance between the two points of an object.
 If the lenght of the object becomes to small/big, the points inside a fiber coresponding to the object are merged/splitted resulting in one point less / adding a new point.
 The minimum/maximum distance of the object is set to $d_{\min} = \frac{2}{3} \overline{d}, d_{\max} = \frac{4}{3}\overline{d}$.
-Therefore the mean allowed value of the object is $\frac{d_{\min} + d_{\max}}{2} = \overline{d}$. \\
+Therefore the mean allowed value of the object is:
+\begin{align}
+\frac{d_{\min} + d_{\max}}{2} = \overline{d}
+\end{align}
 % 
 If a new point is created due to exceeding the maximum limitation, the new points position $\vv{p}_{new}$ is 
 \begin{align}
@@ -349,7 +444,7 @@ r_{new} &= \frac{r_{i} + r_{i+1}}{2}\\
 \end{align}
 with a radius of $r_{new}$ and a velocity $\vv{v}_{new}$.
 % 
-\subsubsection{Bending radius}
+\subsection{Bending radius}
 % 
 The bending radius is defined as the circular radius corresponding to the circle defined by three neighbouring points $p_{i-1}, p_{i}, p_{i+1}$. 
 The limit is set as a minimal radius of $r_{\min}$.
