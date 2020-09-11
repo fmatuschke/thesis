@@ -259,20 +259,17 @@ Last the cylinder can be modelled in three ways. a) parallel, b) cylindrical and
 \subsection{Populate bundles}\label{sec:fillBundle}
 % 
 \begin{figure}[!t]
-    \def\tikzwidth{0.75\textwidth}
     \centering
-    \inputtikz{gfx/model/min_torsion}
-	\caption[Minimal torsion trajectory]{Minimal torsion along trajectory. The 
-	\textcolor{green!50!black}{binormal}, \textcolor{red}{principal normal} vector and \textcolor{blue}{tangent vector} vector at each step are also the coordinate system for the seed points.}
+    \subcaptionbox{Minimal torsion along trajectory. The 
+	\textcolor{green!50!black}{binormal}, \textcolor{red}{principal normal} vector and \textcolor{blue}{tangent vector} vector at each step are also the coordinate system for the seed points.}[.49\textwidth]{
+    \def\tikzwidth{0.5\textwidth}
+    \inputtikz{gfx/model/min_torsion}}
+    % 
+    \subcaptionbox{Bending fiber along trajectory $f(t) = \left( \cos(t), \sin(t), 0 \right)$}[.49\textwidth]{
+    \resizebox{0.5\textwidth}{!}{
+    \includegraphics{dev/gfx/circle_bundle.png}}}
+	\caption{}
 % 	\label{fig:}
-\end{figure}
-% 
-\begin{figure}[!t]
-    \centering
-    \resizebox{0.42\textwidth}{!}{
-    \includegraphics{dev/gfx/circle_bundle.png}}
-	\caption[]{Bending fiber along trajectory $f(t) = \left( \cos(t), \sin(t), 0 \right)$}
-	\label{fig:circleBundle}
 \end{figure}
 % 
 Populating a \say{bundle} is is done via moving the \say{cloud} of seed points along the trajectory, moving,bending/rotating smooth along its way (like a good rolercoster).
