@@ -53,7 +53,7 @@ First it has to be decided, how to represent a nerve fiber (bundle).
 \vspace{6pt}
 % 
 \section{Nerve fiber representation}
-% \label{}
+\label{sec:nerve_fiber_representation}
 % 
 As described in \cref{sec:fiberArchitecture} \ac{WM} consist of densely packed bundles of nerve fibers.
 Nerve fibers themselves consist of axons surrounded by myelin (see \cref{fig:nerveFiber}).
@@ -85,7 +85,7 @@ Already existing techniques \dummy allow to represent such structures as analyti
 This however limitates the use drastically, since the user has to know in advance a parametic function.
 For trivial structures like parallel straight fibers this is quite easy and fast to process.
 However, if we want to model more complicated tissues like densly interwoven fiber bundles, the task is nearly impossible.
-One posibility would be to do not care, if two fibers overlap, \ie take the same space in volume.
+One possibility would be to do not care, if two fibers overlap, \ie take the same space in volume.
 This is done \eg for simulations like protein folding, where the main interaction comes from electro dynamical forces.
 However it could already be shown, that for more complicated \ac{3D-PLI} simulations like \dummy non overlapping fibers are essential.
 \\
@@ -95,12 +95,21 @@ This means that the number of objects have to be small, with respect to the appr
 A second feature is that the chosen geometries have to be fast calculable for collision detection with each other.
 \\
 % 
+\begin{figure}[!t]
+    \centering
+    \def\tikzwidth{0.75\textwidth}
+    \inputtikz[true]{gfx/model/conical_capsule_bb}
+    \tikzset{external/export=false}
+	\caption[cc and co]{\Acf{CC}: \raisebox{.25em}{\tikz \draw[black](0,0)--(0.275,0);} \ac{CC}, \raisebox{.25em}{\tikz \draw[blue, dash pattern=on 2.5pt off 2.5pt](0,0)--(0.275,0);} capsule, \raisebox{.25em}{\tikz \draw[red, dash pattern={on 2.5pt off 0.9pt on 0.42pt off 0.9pt}](0,0)--(0.275,0);} bounding box}
+	\label{fig:conical_capsule}
+\end{figure}
+% 
 To allow a arbitrary level of detail, a tube like fiber can be split into a number of segments.
-Each tube segment can than be approximated as a cyrildig object.
-However since the radius of the nerve fibers can vary quite a bit along its path, the tube (or fiber segment) has also to be allowed to change.
-If this is done via a cylindrical approximation, the boundry effects between two segments can lead to unusually appearance.
-It was therefore decided to approximate a fiber segment with a \ac{CC}, a 3d cone on which end spheres with the required radii are attached.
-This has the advantage, that between two fiber segments there is a smooth transition along the fiber axis (for a reasonable curvature).
+Each tube segment can than be approximated as a cylindrical object.
+However since the radius of the nerve fibers can vary quite a bit along its path, the tube (or fiber segments) has also to be allowed to change.
+If this is done via a cylindrical approximation, the boundry effects between two segments can lead to unusually appearance/behaviour.
+It was therefore decided to approximate a fiber segment with a \ac{CC}, a 3d cone on which end spheres with the required radii are attached (see \cref{fig:conical_capsule}).
+This has the advantage, that between two fiber segments there is a smooth transition along the fiber axis (for a reasonable curvature) (see \cref{fig:fiberReb, fig:model_length}).
 % 
 \begin{figure}[!t]
     \def\tikzwidth{0.85\textwidth}
@@ -111,150 +120,67 @@ This has the advantage, that between two fiber segments there is a smooth transi
 	\label{fig:fiberReb}
 \end{figure}
 % 
-A nerve fiber can therefore be represented as a list of 4d coordinates (see \cref{fig:fiberReb}):
+A nerve fiber can therefore be represented as a list of 4d coordinates (or spheres) (see \cref{fig:fiberReb}):
+% 
 \begin{align}
 \begin{split}
-\mathit{fiber} &= \left\{ \vv{p}_i=(x_i,y_i,z_i), r_i \mid i \in \{0,1,N_{\mathit{points}}-1\}\right\} \\
-\mathit{segment}_i &= \left\{ \vv{p}_i, \vv{p}_{i+1}, r_i, r_{i+1} \mid i \in \{0,1,N_{\mathit{seg}}-1\} \right\}
+% \vv{p} &= (x_i,y_i,z_i) \mid x,y,z \in \mathbb{R}\\
+% r &\mid r \in \mathbb{R}\\
+\mathit{fiber} &= \left\{ \vv{p}_i=(x_i,y_i,z_i), r_i \mid x,y,z \in \mathbb{R}, \, r \in \mathbb{R^+}, \, i \in \{0,1,...,N_{\mathit{points}}-1\}\right\} \\
+\mathit{fiber\_seg}_i &= (\vv{p}_i, \vv{p}_{i+1}, r_i, r_{i+1}), \, i \in \{0,1,...,N_{\mathit{points}}-2
 \end{split}
 \end{align}
 % 
+\section{Sandbox}
 % 
+Since the geometric representation of the fibers is defined, the question arises how such fibers can be constructed.
+For this purpose the \ac{fastPLI} module \textit{fastpli.model.sandbox} was developed.
+It contains a variate of methods to allow the user fast building algorithms to generate complex phantoms.
+\\
+% 
+These Algorithms can be split into two parts.
+Since this toolbox concentraits to prepair phantoms for the \ac{WM}, the focus on building also n buolding such structures.
+Since \ac{WM} nerve fiber bundles are usually combined into nerve fiber bundles (see \dummy), the \textit{sandbox} module contains two major parts o buld exatly such structures.
+%
+Nerve fiber bundles can be represented in a similar way as nerve fibers: tube like structures populated with individual nerve fibers.
+How to represent tube structures was already accomplished (see \cref{sec:nerve_fiber_representation}).
+\\
+If we think of nerve fiber bundles as a trajectory through the 3d coordinate systems, we can use the same representation as of nerve fibers.
+Additionally the contained radii can be used to scale a nerve fiber along its trajectory, \ie to inflate it.
+\\
+% 
+The question remains, how to \say{populate} such bundles.
+To populate a trajectory we can use a similar approach to tractography (see \cref{sec:fillBundle}).
+We start with seed points at the beginning of the bundle.
+\todo{improve transition}
+% 
+\subsection{Seeding a nerve fiber bundle}\label{sec:seeds}
+% 
+The initial seed can already determine specific outcomes of nerve fiber bundle geometries. 
+They are stored as a list of 3d points:
+\begin{align}
+\mathit{seeds} = \left\{ \vv{p}_i=(x_i,y_i,z_i) \mid x,y,z \in \mathbb{R} , \, i \in \{0,1,N_{\mathit{seed\_points}}-1\}\right\}
+\end{align}
+% 
+To build escepcially dense fiber bundles, a method to generate a equiliteral triangular grid was implemented.
+Mathematically a 2d packed circle contains the maximum package density if it is arrange in a triangular (or sometimes called hexagonal) grid for circles with equal radii (see \ref{fig:triGrid}).
+This highly regular symmetrical grid can however lead later to strange results in simulations (\eg maxwell, simpli).
+\todo{why rnd necesarry -> see simulation}
+Therefore it should only be uses as a initial configuration. 
+The positions can easily modified.
+A useful method was to add a rand value to the initial seed points, \eg $\mathit{shift} = norm(0,\sigma)$.
+However since the initial configuration is often unknown, it would be probably best to choose a random distribution.
+For a circle this is done via:
+\begin{align}
+\dummy
+\end{align}
+% 
+
 \vspace{5pt}
 \hrule
 \vspace{6pt}
 % 
 \newpage
-% 
-% Nerve fiber modelling is a non trivial task, which is \comment{(mainly?)} used in simulations like \ac{dMRI} simulations \dummy. However most \ac{dMRI} simulation tools use fast simulation techniques as \dummy. This take analytical function describing the fiber paths to be capable of calculation very fast.
-% % 
-% In resent time with the improvement of computer power and algorithms, simulators like monte carlo are used \dummy. These simulate the random walk of individual water molecules inside a volume. If the target are \ac{WM} phantoms nerve fibers can be modelled as a meshed tube.
-% These have the advantage, that any complex configuration can be modelled \eg beeding fibers \dummy.\\
-% %
-% However a disadvantage is that for resanable model sizes ( in \ac{dMRI} a voxel is about \SIrange{100}{1000}{\micro\meter} order, size nerve fiber about \SI{1}{\micro\meter}), the number of triangles of the mesh is quite big.
-% A further ... is to build a geometrical configuration, where no nerve fibers are overlapping each other (\ie  take the same volume in space). \\
-% % 
-% Collision detektion takes a major role here.
-% When other simulations using geometrical models (\eg protein folding \dummy) can use something like electric potentials, where the actuall geometrical boundry is not that important, here it is different.
-% Collision detection algorithms are manly used for computer \dummy.\\
-% % 
-% Inside this chapter the following procedures are described:
-% \begin{itemize}[nosep]
-%     \item geometrical representation of nerve fiber (bundles)
-%     \item user friendly building methods
-%     \item ensure collisionless models
-% \end{itemize}
-
-% \paragraph{Module}
-% % 
-% The python sub package \pymodule{fastpli.model} consist of two modules:
-% % 
-% %\vspace{-1ex}
-% \begin{itemize}[nosep]
-%     \item \pymodule{sandbox}
-%     \item \pymodule{solver}
-% \end{itemize}
-% % 
-% The first module \pymodule{sandbox} enherets routines to help the user build simple geometric configurations.
-% Ths can then be used to build more complex structres of nerve fiber bundles.
-% The second module \pymodule{solver} contains a \CXX framework wrapped inside a \python class to ensure easier user \ac{API} (see \dummy).
-
-% \section{Nerve Fiber representation}
-% 
-% How to represend such a "tube" is known for a long time. A common representation is a triangulared mesh representation (e.g. mri simulation \dummy). Since the goal of the later use is to acount for collisions between fibers, it is importeant to minimize the number ob "objects" as much as possible. However since a nerve fiber is relativly fexible it is a tradeoff between accurate representation and number of objects (later speed).
-% % 
-% For the purpose of collision solvin it was decided, to chunk a single nerve fiber into segments, which are themself conical objects.
-
-% This allows a complex trajectory $f(t) \rightarrow \left(\vv{p}=(x,y,z),r\right)$ (depending on the segment length) it is however necessary, to split the cylinder in smaller segments. Since the radii of a nerve fiber is naturally changing along its trajectory, a \ac{CC} shape is best to use ass segment geometry.
-% Two coordinates $(p_i, p_{i+1})$ and radii $(r_i, r_{i+1})$ are assigned to each segment. Two neighbouring segment share there parameters.
-% Therefore a list of tuples containing four floating point numbers can be interpret as fiber (\cref{fig:fiberReb}):
-% \begin{align}
-% \begin{split}
-% \mathit{fiber} &= \left\{ \vv{p}_i=(x_i,y_i,z_i), r_i \mid i \in \{0,1,N_{\mathit{points}}-1\}\right\} \\
-% \mathit{segment}_i &= \left\{ \vv{p}_i, \vv{p}_{i+1}, r_i, r_{i+1} \mid i \in \{0,1,N_{\mathit{seg}}-1\} \right\}
-% \end{split}
-% \end{align}
-% 
-% This representation will also be used for visualization (see \dummy).
-% 
-% 
-% 
-% This allows to represent a nerve fiber by a chain of cylinders:
-% \begin{align}
-% \mathit{fiber} = \left\{ \mathit{cylinder}(\vv{p_i}, \vv{p_{i+1}}, r) \mid i \in \{0,1,N_{\mathit{seg}-1}\} \right\}
-% \end{align}
-% % 
-% This already allows the change of radii along the fiber trajectory.
-% However when the fiber change is orientation along its trajectory, there would be a junction between two cylinders.
-% This can be fixed by using capsule (cylinders with spherical endings) instead of cylinders:
-% \begin{align}
-% \mathit{fiber} = \left\{ \mathit{capsule}(\vv{p_i}, \vv{p_{i+1}}, r) \mid i \in \{0,1,N_{\mathit{seg}-1}\} \right\}
-% \end{align}
-% % 
-% This representation works quite well for non changing fiber radii $r_i$.
-% If the radii is changing, the next logical step is to change the geometry from a capsule to a \ac{CC}.
-% \begin{align}
-% \mathit{fiber} = \left\{ \mathit{cone_{cap}}(\vv{p_i}, \vv{p_{i+1}}, r_i, r_{i+1}) \mid i \in \{0,1,N_{\mathit{seg}-1}\} \right\}
-% \end{align}
-% % 
-% \begin{figure}[!t]
-%     \def\tikzwidth{0.85\textwidth}
-%     \centering
-%     % \subcaptionbox{cylinder}[\textwidth]{
-%     % \inputtikz{gfx/model/cylinder}}
-%     % \subcaptionbox{capsule}[\textwidth]{
-%     % \inputtikz{gfx/model/capsule}}
-%     % \subcaptionbox{conical capsule}[\textwidth]{
-%     \inputtikz{gfx/model/conical_capsule}
-%     % }
-% 	\caption[]{crossing bundles. Noch mist}
-% % 	\label{fig:}
-% \end{figure}
-% % 
-% This representation allows a smooth change in volume along the trajectory dependend on the number of segments and their individual length.
-% 
-\section{Sandbox}
-\comment{Why sandbox}
-% 
-Two major processes are typical, when building white matter phantom. First, defining macrostructures like fiber bundles, second, defining fibers inside the fiber bundles.
-Defining a fiber bundle can be as easy as defining a fiber, if the shape should by tube like as well.
-\\
-To populate the fiber bundle, the following technique was developed.
-% 
-\subsection{seeds}\label{sec:seeds}
-% 
-Seeds are a list of 3d points related to a coordinate center $(0,0,0)$ (see \cref{fig:triGrid,fig:rndGrid}).
-This list can be applied to a a trajectory.
-% 
-\todo{why rnd necesarry -> simulation}
-% 
-\begin{figure}[!t]
-    \def\tikzheight{0.25\textwidth}
-    \centering
-    \subcaptionbox{\label{fig:triGrid}equilateral triangle grid}[.295\textwidth]{
-    \inputtikz{gfx/model/triangular_grid}\hfill}
-    \subcaptionbox{\label{fig:rndGrid}random grid}[.295\textwidth]{
-    \inputtikz{gfx/model/rnd_circle_points}}\hfill
-    \subcaptionbox{\label{fig:crossBundle}populated fiber bundles}[.39\textwidth]{
-    \inputtikz{gfx/model/crossing_bundle}\hfill}
-	\caption{Populating fiber bundles with seed points.}
-% 	\label{fig:}
-\end{figure}
-% 
-\subsection{cube models}
-% 
-Since \ac{3D-PLI} is a technique, which uses brain sections, and the camera signals result in 2d images, a method was implemented to build fiber bundles inside a 3d cube.
-The method works similar to populate a bundle with seeds (see \cref{sec:seeds, sec:fillBundle}).
-The population orientation is defined by a orientation vector $\vv{v}$;
-% 
-\subsection{cylindric models}
-% 
-building a cylindric model works the same way as cube models.
-The cylinder is definde by a vector $\vv{v}$ wich gives the orientation and length of the cylinder.
-A inner and outer radii $(r_{\mathit{in}}, r_{\mathit{out}})$ has to be defined as well.
-Inside the inner and outer radii the cylinder will be populated $\{f_i \mid r_{min} < |(s_{i,x},s_{i,y})| < r_{max} \}$.
-Additionally a beginning end ending angle $(\alpha, \beta)$ can be defined, which let the cylinder only populate from $\alpha$ to $\beta$.
-Last the cylinder can be modelled in three ways. a) parallel, b) cylindrical and c) radial to the cylinder orientation (see \dummy).
 % 
 \subsection{Populate bundles}\label{sec:fillBundle}
 % 
@@ -290,16 +216,44 @@ However, for a constant fiber trajectory (e.e. $f(s) = (s,0,0,1)$) $\vv{n}$ and 
 % 
 Therefore it was decided to use another teqchnique. Its originates from the idea, that the tangential vector $\vv{t}$ should move by a single rotation matrix as fast as possible from $\vv{t}_i$ to $\vv{t}_{i+1}$. This can be also interpret as that the tangential vector on a sphere takes the geodic line to its next point. The same rotation matrix is then used for the $\vv{n}$ and $\vv{b}$ vector. The initial $\vv{n}$ and $\vv{n}$ correspont to the $\vv{e}_x$ and $\vv{e}_y$ of the seed points coordinate frame.
 % 
+\begin{figure}[!t]
+    \def\tikzheight{0.25\textwidth}
+    \centering
+    \subcaptionbox{\label{fig:triGrid}equilateral triangle grid}[.295\textwidth]{
+    \inputtikz{gfx/model/triangular_grid}\hfill}
+    \subcaptionbox{\label{fig:rndGrid}random grid}[.295\textwidth]{
+    \inputtikz{gfx/model/rnd_circle_points}}\hfill
+    \subcaptionbox{\label{fig:crossBundle}populated fiber bundles}[.39\textwidth]{
+    \inputtikz{gfx/model/crossing_bundle}\hfill}
+	\caption{Populating fiber bundles with seed points.}
+% 	\label{fig:}
+\end{figure}
+% 
+\subsection{cube models}
+% 
+Since \ac{3D-PLI} is a technique, which uses brain sections, and the camera signals result in 2d images, a method was implemented to build fiber bundles inside a 3d cube.
+The method works similar to populate a bundle with seeds (see \cref{sec:seeds, sec:fillBundle}).
+The population orientation is defined by a orientation vector $\vv{v}$;
+% 
+\subsection{cylindric models}
+% 
+building a cylindric model works the same way as cube models.
+The cylinder is definde by a vector $\vv{v}$ wich gives the orientation and length of the cylinder.
+A inner and outer radii $(r_{\mathit{in}}, r_{\mathit{out}})$ has to be defined as well.
+Inside the inner and outer radii the cylinder will be populated $\{f_i \mid r_{min} < |(s_{i,x},s_{i,y})| < r_{max} \}$.
+Additionally a beginning end ending angle $(\alpha, \beta)$ can be defined, which let the cylinder only populate from $\alpha$ to $\beta$.
+Last the cylinder can be modelled in three ways. a) parallel, b) cylindrical and c) radial to the cylinder orientation (see \dummy).
+% 
 \section{\VCS}
 % 
-\begin{figure}[!t]
-    \centering
-    \def\tikzwidth{0.75\textwidth}
-    \inputtikz{gfx/model/conical_capsule_bb}
-    \tikzset{external/export=false}
-	\caption[cc and co]{\Acf{CC}: \raisebox{.25em}{\tikz \draw[black](0,0)--(0.275,0);} \ac{CC}, \raisebox{.25em}{\tikz \draw[blue, dash pattern=on 2.5pt off 2.5pt](0,0)--(0.275,0);} capsule, \raisebox{.25em}{\tikz \draw[red, dash pattern={on 2.5pt off 0.9pt on 0.42pt off 0.9pt}](0,0)--(0.275,0);} bounding box}
-	\label{fig:conical_capsule}
-\end{figure}
+% \begin{figure}[!t]
+%     \centering
+%     \def\tikzwidth{0.75\textwidth}
+%     \inputtikz{gfx/model/conical_capsule_bb}
+%     \tikzset{external/export=false}
+% 	\caption[cc and co]{\Acf{CC}: \raisebox{.25em}{\tikz \draw[black](0,0)--(0.275,0);} \ac{CC}, \raisebox{.25em}{\tikz \draw[blue, dash pattern=on 2.5pt off 2.5pt](0,0)--(0.275,0);} capsule, \raisebox{.25em}{\tikz \draw[red, dash pattern={on 2.5pt off 0.9pt on 0.42pt off 0.9pt}](0,0)--(0.275,0);} bounding box}
+% 	\label{fig:conical_capsule}
+% \end{figure}
 % 
 This Method aims to model densly \ac{WM}.
 The main component inside \ac{WM} consist of an Axon and its surrounding Myeling [see \dummy].

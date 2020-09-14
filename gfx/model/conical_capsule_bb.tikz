@@ -45,10 +45,10 @@
 \node[red, above] at ($(bb.north west)!0.25!(bb.north east)$) {$aabb_{cone}$};
 \node[blue, above] at ($(PA) + (-0.65*\ra,\ra)$) {$aabb_{0}$};
 \node[blue, above] at ($(PB) + (0.75*\rb,-\rb)$) {$aabb_{1}$};
-\node[below] at (PA) {$p_0$};
-\node[below] at (PB) {$p_1$};
-\draw[black, thin] (PA) -- (t12) node[midway, right] {$r_0$};
-\draw[black, thin] (PB) -- (t22) node[midway, right] {$r_1$};
+\node[below] at (PA) {$\vv{p}_{i}$};
+\node[below] at (PB) {$\vv{p}_{i+1}$};
+\draw[black, thin] (PA) -- (t12) node[midway, right] {$r_{i}$};
+\draw[black, thin] (PB) -- (t22) node[midway, right] {$r_{i+1}$};
 \end{pgfinterruptboundingbox}
 % 
 \ifthenelse{\lengthtest{\ra pt < \rmax pt}}{
@@ -109,8 +109,8 @@
 %             \n1 = {veclen(\x1,\y1)} 
 %             in (C) arc (\alpha:-\alpha:\n1);
 % % 
-% \draw[thin] (0,0) -- (B) node[pos=0.5, left]{$r_1$};
-% \draw[thin] (R) -- (C) node[pos=0.5, left]{$r_0$};
+% \draw[thin] (0,0) -- (B) node[pos=0.5, left]{$r_{i+1}$};
+% \draw[thin] (R) -- (C) node[pos=0.5, left]{$r_{i}$};
 % % 
 % \path[] let \p1 = ($ (C) - (R) $),
 %             \n1 = {veclen(\x1,\y1)}
