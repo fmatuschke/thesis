@@ -254,7 +254,9 @@ Now the populate of the bundle can simply full filled by starting a the beginnin
 % 
 \begin{figure}[!t]
     \centering
-    \subcaptionbox{\label{fig:cubeBuild}\dummy}[.5\textwidth-1ex]{
+    \subcaptionbox{\label{fig:cubeBuild}%
+        Populating a cuboid with straight fibers initialized from seed points along the direction $\vv{v}$.
+    }[.5\textwidth-1ex]{
     \def\tikzwidth{0.5\textwidth}
     \inputtikz{gfx/model/cube_build}}\hfill
     % 
@@ -263,9 +265,9 @@ Now the populate of the bundle can simply full filled by starting a the beginnin
 % 	\label{fig:}
 \end{figure}
 % 
-Additionaly to populating a fiber bundle, an additional method to fill cubic volumes with a main fiber direction $\vv{v}$ was developed.
+Additionally to populating a fiber bundle, an additional method to fill cubic volumes with a main fiber direction $\vv{v}$ was developed.
 This method uses a populates a cube by placing the seed points before and after the cube volume.
-Each fiber, correponds to two matching points, is then check if it collides with the cube.
+Each fiber, corresponds to two matching points, is then check if it collides with the cube.
 If it is, the fiber will then be cut to the sice of the cube and saved.
 The main direction of the fibers inside the cube can be specified by the user.
 All valid fibers are then returned as the resulting fiber bundle.
