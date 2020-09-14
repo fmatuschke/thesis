@@ -156,6 +156,19 @@ We start with seed points at the beginning of the bundle.
 % 
 \subsection{Seeding a nerve fiber bundle}\label{sec:seeds}
 % 
+\begin{figure}[!t]
+    \def\tikzheight{0.25\textwidth}
+    \centering
+    \subcaptionbox{\label{fig:triGrid}equilateral triangle grid}[.295\textwidth]{
+    \inputtikz{gfx/model/triangular_grid}\hfill}
+    \subcaptionbox{\label{fig:rndGrid}random grid}[.295\textwidth]{
+    \inputtikz{gfx/model/rnd_circle_points}}\hfill
+    \subcaptionbox{\label{fig:crossBundle}populated fiber bundles}[.39\textwidth]{
+    \inputtikz{gfx/model/crossing_bundle}\hfill}
+	\caption{Populating fiber bundles with seed points.}
+% 	\label{fig:}
+\end{figure}
+% 
 The initial seed can already determine specific outcomes of nerve fiber bundle geometries. 
 They are stored as a list of 3d points:
 \begin{align}
@@ -171,69 +184,91 @@ The positions can easily modified.
 A useful method was to add a rand value to the initial seed points, \eg $\mathit{shift} = norm(0,\sigma)$.
 However since the initial configuration is often unknown, it would be probably best to choose a random distribution.
 For a circle this is done via:
-\begin{align}
-\dummy
-\end{align}
-% 
-
-\vspace{5pt}
-\hrule
-\vspace{6pt}
-% 
-\newpage
+\begin{equation}
+\begin{aligned}
+ \varphi &= \mathrm{uniform}(0,2 \pi) \hspace{4.2ex} && x = r \cos(\varphi)\\
+ r &= R \sqrt{\mathrm{uniform}(0,1)} && y = r \sin(\varphi)
+\end{aligned}
+\end{equation}
 % 
 \subsection{Populate bundles}\label{sec:fillBundle}
 % 
 \begin{figure}[!t]
     \centering
-    \subcaptionbox{Minimal torsion along trajectory. The 
-	\textcolor{green!50!black}{binormal}, \textcolor{red}{principal normal} vector and \textcolor{blue}{tangent vector} vector at each step are also the coordinate system for the seed points.}[.49\textwidth]{
-    \def\tikzwidth{0.5\textwidth}
-    \inputtikz{gfx/model/min_torsion}}
+    \subcaptionbox{\label{fig:torsionCurve}Torsion along trajectory. The 
+	\textcolor{green!50!black}{binormal}, \textcolor{red}{principal normal} vector and \textcolor{blue}{tangent vector} vector at each step are also the coordinate system for the seed points.}[.5\textwidth-1ex]{
+    \def\tikzwidth{0.5\textwidth-1ex}
+    \inputtikz[true]{gfx/model/min_torsion}}\hfill
     % 
-    \subcaptionbox{Bending fiber along trajectory $f(t) = \left( \cos(t), \sin(t), 0 \right)$}[.49\textwidth]{
-    \resizebox{0.5\textwidth}{!}{
+    \subcaptionbox{\label{fig:filledBundle}Bending fiber along trajectory $f(t) = \left( \cos(t), \sin(t), 0 \right)$}[.5\textwidth-1ex]{
+    \resizebox{0.5\textwidth-1ex}{!}{
     \includegraphics{dev/gfx/circle_bundle.png}}}
 	\caption{}
 % 	\label{fig:}
 \end{figure}
 % 
-Populating a \say{bundle} is is done via moving the \say{cloud} of seed points along the trajectory, moving,bending/rotating smooth along its way (like a good rolercoster).
-The trajectory of each individual seed point will then be interpret and returned as a individual fiber with a constant single radius, or individual radii (wich can later be changed if necessary).
-The distant of the seeds to their coordinate center can be scaled with the bundle \say{radii} or scale factor (set 1 for const). \comment{energy minimum?}:
+To populate a nerve fiber bundle, the same idea as in tractography is used.
+There, seed points are initialized, and then via \dummy methods a next step is calcuulated.
+However, we don't need to calculate the next step, sinice it is already defined by its trajectory.
+However, the bending of the bundle has to be taken into account.\\
+% 
+Here, different techniques already exists.
+A common one is to use the torsion of the curve. This is achieved via the following method:
 % 
 \begin{align}
 \begin{split}
 \vv{f}(s) &= (x(s),y(s),z(s)) \\
 \vv{t}(s) &= \vv{f}\,'(s) \\
 \vv{n}(s) &= \frac{\vv{t}\,'(s)}{|\vv{t}\,'(s)|} = \frac{\vv{r}\,''(s)}{|\vv{r}\,''(s)|} \\
-\vv{b}(s) &= \vv{t}(s) \times \vv{n}(s)
+\vv{b}(s) &= \vv{t}(s) \times \vv{n}(s),
 \end{split}
 \end{align}
 % 
-However, for a constant fiber trajectory (e.e. $f(s) = (s,0,0,1)$) $\vv{n}$ and $\vv{b}$ are not defined. There are alternatives like a minimal twisting frame. But this would mean, that \eg a fiber bundle would twist along a const path. This could be, but is not likely.
+where $\vv{f}(s)$ is a parameterised trajectory of the parametric variable $s$, $\vv{t}(s)$ the tangential vector, $\vv{n}(s)$ the principal normal vector and $\vv{b}(s)$ the binormal vector (see \cref{fig:torsionCurve}).
+One could use this idea to rotate the seed points into the coordinate system of $\vv{t}(s),\vv{n}(s),\vv{b}(s)$.
+However this can lead to a arbitry rotation of the fibers, \eg when the curve descibes such a way that $\vv{n}(s),\vv{b}(s)$ would continous rotating around $\vv{t}(s)$.
 \\
 % 
-Therefore it was decided to use another teqchnique. Its originates from the idea, that the tangential vector $\vv{t}$ should move by a single rotation matrix as fast as possible from $\vv{t}_i$ to $\vv{t}_{i+1}$. This can be also interpret as that the tangential vector on a sphere takes the geodic line to its next point. The same rotation matrix is then used for the $\vv{n}$ and $\vv{b}$ vector. The initial $\vv{n}$ and $\vv{n}$ correspont to the $\vv{e}_x$ and $\vv{e}_y$ of the seed points coordinate frame.
+Since it is plausible, that nerve fiber bundles would not do this, a different approach was decided.
+The idea is, to minimise the rotation from one step to the next step.
+% If the trajectory, \ie nerve fiber bundle is at step $i$, it came form $i-1$ and goes to $i+1$.
+% Therefore one can describe a perpendicular plane between this points:
+If we define a plane, inside the above define vectors $\vv{n}(s),\vv{b}(s)$ we want that from one step $i$ to the next step $i+1$ the plane is rotated by the same amount as the curve bends.
+However the rotation along the vector $\vv{t}(s)$ shell be $0$.
+Since we have a discrete points, we can therefore rotate the plane with the same amount, as the vector $\vv{t}(s)$ obtains.
+However to optain a plane in the \say{middle} of the points $\vv{p}_{i-1}, \vv{p}_{i}, \vv{p}_{i+1}$ we will use the mean orientation of these points.
+An example is shown in \cref{fig:filledBundle}.
+\\
+\todo{explain and check algorithm}
 % 
-\begin{figure}[!t]
-    \def\tikzheight{0.25\textwidth}
-    \centering
-    \subcaptionbox{\label{fig:triGrid}equilateral triangle grid}[.295\textwidth]{
-    \inputtikz{gfx/model/triangular_grid}\hfill}
-    \subcaptionbox{\label{fig:rndGrid}random grid}[.295\textwidth]{
-    \inputtikz{gfx/model/rnd_circle_points}}\hfill
-    \subcaptionbox{\label{fig:crossBundle}populated fiber bundles}[.39\textwidth]{
-    \inputtikz{gfx/model/crossing_bundle}\hfill}
-	\caption{Populating fiber bundles with seed points.}
-% 	\label{fig:}
-\end{figure}
+Now the populate of the bundle can simply full filled by starting a the beginning of the fiber, placing the seed points at the start point, and rotating the seed point for each step $i$ along the trajectory by only rotating along one vector perpendicular to the curve bending.
+% 
+% 
+\vspace{5pt}
+\hrule
+\vspace{6pt}
+% 
+\newpage
 % 
 \subsection{cube models}
 % 
-Since \ac{3D-PLI} is a technique, which uses brain sections, and the camera signals result in 2d images, a method was implemented to build fiber bundles inside a 3d cube.
-The method works similar to populate a bundle with seeds (see \cref{sec:seeds, sec:fillBundle}).
-The population orientation is defined by a orientation vector $\vv{v}$;
+\begin{figure}[!t]
+    \centering
+    \subcaptionbox{\label{fig:cubeBuild}\dummy}[.5\textwidth-1ex]{
+    \def\tikzwidth{0.5\textwidth}
+    \inputtikz{gfx/model/cube_build}}\hfill
+    % 
+    \subcaptionbox{}[.5\textwidth-1ex]{\inputtikz{gfx/model/cylinder_build}}
+	\caption{}
+% 	\label{fig:}
+\end{figure}
+% 
+Additionaly to populating a fiber bundle, an additional method to fill cubic volumes with a main fiber direction $\vv{v}$ was developed.
+This method uses a populates a cube by placing the seed points before and after the cube volume.
+Each fiber, correponds to two matching points, is then check if it collides with the cube.
+If it is, the fiber will then be cut to the sice of the cube and saved.
+The main direction of the fibers inside the cube can be specified by the user.
+All valid fibers are then returned as the resulting fiber bundle.
 % 
 \subsection{cylindric models}
 % 

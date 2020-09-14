@@ -1,0 +1,27 @@
+\begin{tikzsize}{\tikzwidth}{\tikzheight}
+\begin{tikzpicture}[scale=\tikzscale]
+
+\draw (0,0,0) -- (0,0,3.0);
+\draw (0,0,0) -- (0,4,0);
+\draw (0,0,0) -- (5,0,0);
+
+\draw (5,0,0) -- (5,0,3);
+\draw (5,0,0) -- (5,4,0);
+\draw (0,4,0) -- (0,4,3);
+\draw (0,4,0) -- (5,4,0);
+\draw (0,0,3) -- (5,0,3);
+\draw (0,0,3) -- (0,4,3);
+
+\draw (5,4,3) -- (5,4,0);
+\draw (5,4,3) -- (5,0,3);
+\draw (5,4,3) -- (0,4,3);
+
+\draw[blue] (-3,2,-1) -- (8,8,4);
+
+\draw[red] (-3,-1,-1) -- (8,5,4);
+\draw[green!50!black, thick] (-1.1666,0,-0.1666) -- (6.1666,4,3.1666);
+\fill[green!50!black] (-1.1666,0,-0.1666) circle (1pt);
+\fill[green!50!black] (6.1666,4,3.1666) circle (1pt);
+
+\end{tikzpicture}
+\end{tikzsize}
