@@ -300,36 +300,108 @@ This way the fiber density will decrease along their path.
 \paragraph{c) parallel} fibers are orientated along the cylinder (see \cref{fig:cylParallel}).
 Here the seed points are in the $xy$-plane. Only fibers will be used, which are colliding with the cylinder.
 % 
+\section{Solving fiber collisions}
+% 
+One major drawback of all previous methods is, that the user has to make sure, that his fiber trajectory let enough space, so that the fibers (trajectories + radii) have enough space and do not intersect with each other.
+This maybe achievable for fibers with constant radii along there path for the upper construction methods.
+However, for more slightly more complex structures, \eg crossing fiber bundles, this already is nearly impossible.
+Therefore a method was developed, which takes the user defined fibers and checks them for collisions.
+When a collision is found it will try to move the colliding objects slightly apart, so that the collision will start to disappear.
+\\
+% 
+This concept is rather simple.
+The algorithm for collision detection are already used for century's especially in gaming world, where a character \eg should not be capable to walk through a wall. Another wide verity of algorithms are used in visualisation. There usually the problem is to detect the collision between a light path (mathematical line) and a object, usually a triangular surface. Also known as ray tracing.
+The drawback in both fields is, that computing time is limited.
+Therefore there algorithms use shortcuts as close to reality as possible but still produce usable data. \eg in computer games it is very important to have a stable frame rate of above $\num{60}$ \ac{fps} (or with the current technology even above 120 \ac{fps}).
+However it does not matter much for the gaming experience, if the character can walk slightly into a object or not.
+Therefore an object like a stone could be approximated by a sphere(s).
+\\
+%
+However since here we want to generate as good as possible large, complex and precise models, a new algorithm has to be developed which is specialised in this subject.
+% 
+\\[\baselineskip]
+% 
+For this purpose an algorithm was developed and publish in \cite{matuschke2019}.
+It is at this point integrated inside the \ac{fastPLI} package under \pymodule{fastpli.model.solver}.
+It structure consist out of the following parts:
+\begin{itemize}
+\item main loop
+\begin{itemize}
+    \item octtree separation
+    \item collision detection
+\end{itemize}
+\item moving objects
+\item apply boundary conditions
+\end{itemize}
+% 
+Before we go into the details of the algorithm, first we descipe the collision detection approuch.
+
+\subsection{Collision Detection}
+% 
+As it was described in \cref{sec:nerve_fiber_representation} nerve fibers are represent as a chain of spheres, where two neighbouring spheres are combined into a fiber segment forming a \ac{CC} (see \cref{fig:conical_capsule}).
+% 
+Therefore an algorithm is necessary to calculate a collision between to \ac{CC}.
+This is a non trivial task and very computational heavy.
+Therefore it was decided to change the object representation for the collision detection part from a \ac{CC} to a Capsule (see \cref{fig:conical_capsule}).
+This means, that the radii of the \ac{CC} grows for both spheres to the max of both spheres $r_{\mathit{capsule}} = \mathrm{max}(r_0, r_1)$.
+This has the disadvantage, that at intersections between two neighbouring cones the radii can be actually smaller, however if the change in radii is not rapid, it is justifiable.
+\\
+The algorithm to detect collisions between two capsules is shown in \cref{alg:pseudocodeCollisionDetection}:
+\\
+% 
+\setbox0=\hbox{%
+\begin{minipage}{0.49\linewidth}
+\lstinputlisting[style=cpp, basicstyle={\tiny\ttfamily}, firstline=1,lastline=42]{code/collision_detection.cpp}
+\end{minipage}}\savestack{\listingA}{\box0}
+% 
+\setbox0=\hbox{%
+\begin{minipage}{0.49\linewidth}
+\lstinputlisting[style=cpp,basicstyle={\tiny\ttfamily}, firstline=43,lastline=84,firstnumber=43]{code/collision_detection.cpp}
+\end{minipage}}\savestack{\listingB}{\box0}
+% 
+% \begin{landscape}
+\begin{sideways}
+\begin{tabular}{|c|c|}
+\hline
+\stackinset{l}{}{}{}{}{\listingA} &
+\stackinset{l}{}{}{}{}{\listingB} \\
+\hline
+\end{tabular}
+\end{sideways}
+% \end{landscape}
+% 
+\subsection{Octtree}
+% 
+This means that a collision algorithm has to check all existing fiber segments with each other.
+It is trivial to see that the computational effort grows with $\mathcal{O}(n^{2})$ which is not acceptable for large $n$.
+% 
+% 
+% 
 \vspace{5pt}
 \hrule
 \vspace{6pt}
 % 
 \newpage
 % 
-\section{\VCS}
 % 
-% \begin{figure}[!t]
-%     \centering
-%     \def\tikzwidth{0.75\textwidth}
-%     \inputtikz{gfx/model/conical_capsule_bb}
-%     \tikzset{external/export=false}
-% 	\caption[cc and co]{\Acf{CC}: \raisebox{.25em}{\tikz \draw[black](0,0)--(0.275,0);} \ac{CC}, \raisebox{.25em}{\tikz \draw[blue, dash pattern=on 2.5pt off 2.5pt](0,0)--(0.275,0);} capsule, \raisebox{.25em}{\tikz \draw[red, dash pattern={on 2.5pt off 0.9pt on 0.42pt off 0.9pt}](0,0)--(0.275,0);} bounding box}
-% 	\label{fig:conical_capsule}
-% \end{figure}
 % 
-This Method aims to model densly \ac{WM}.
+This Method aims to model den sly \ac{WM}.
 The main component inside \ac{WM} consist of an Axon and its surrounding Myeling [see \dummy].
-The Myelin itself is split into several parts to allow the propagation of the action potential at the Nodes of Ranvier. \\
+The Myelin itself is split into several parts to allow the propagation of the action potential at the Nodes of Ranvier. 
+\\
 % 
 This structure is modelled as a chain of capsules, a cylinder with hemispherical ends \cref{fig:conical_capsule}.
 To allow a change of cross section or radii, the capsule ending are allowed to consist of individual radii.
 The resulting shape will be referred to as a \ac{CC}.
-The chain of \ac{CC} consist therefore of a list of 3d points with individual radius. \\
+The chain of \ac{CC} consist therefore of a list of 3d points with individual radius. 
+\\
 % 
 To model flexible and curved densly packed nerve fibers, a collision free result needs to be obtained.
-The representaion of nerve fibers by \ac{CC} allows a fast calculation if two \ac{CC} are colliding each other. \\
+The representaion of nerve fibers by \ac{CC} allows a fast calculation if two \ac{CC} are colliding each other. 
+\\
 % 
-However instead of building a collision free model, which is quite impossible for a \dummy structure, the strategy is to initialize a model, checking for collisions and then solving these collisions by pushing the fiber or \ac{CC} slightly apart. \\
+However instead of building a collision free model, which is quite impossible for a \dummy structure, the strategy is to initialize a model, checking for collisions and then solving these collisions by pushing the fiber or \ac{CC} slightly apart. 
+\\
 % 
 This allows a user to specify any initial configuration and reaching a collision free model, which, depending on the initial overlap, follows the initial geometry.
 The disadvantage obvious is that the configuration has to change.
@@ -337,7 +409,6 @@ However since biological tissue is deformable and not "caotic" itself, it follow
 %
 % 
 % 
-\section{Collision Detection}
 % 
 Collision detection for a large number of objects is a very computational intense algorithm.
 To reduce the computational afford, the \ac{CC} will be interpreted as a capsule object, since this alows a much simpler calculation.
