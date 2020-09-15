@@ -243,43 +243,68 @@ An example is shown in \cref{fig:filledBundle}.
 % 
 Now the populate of the bundle can simply full filled by starting a the beginning of the fiber, placing the seed points at the start point, and rotating the seed point for each step $i$ along the trajectory by only rotating along one vector perpendicular to the curve bending.
 % 
+\subsection{cube models}
+% 
+\begin{figure}[!t]
+    \centering
+    \def\tikzwidth{0.75\textwidth}
+    \inputtikz{gfx/model/cube_build}
+	\caption{Populating a cuboid with straight fibers initialized from seed points along the direction $\vv{v}$.}
+    \label{fig:cubeBuild}%
+\end{figure}
+% 
+To be able to generate a model with a main fiber orientation, a method to populte a cuboid volume was developed as well.
+This method allows to generate fibers inside the cuboid volume which are orientated along a user given main orientation $\vv{v}$ (see \cref{fig:cubeBuild}). 
+The individual fibers are initialized with seed points as well.
+A infinity line will be placed through each seed point with the main orientation $\vv{v}$.
+If a line is colliding with the volume, the line inside the cuboid is returned as a fiber.
+% 
+\subsection{cylindric models}
+% 
+\begin{figure}[!t]
+    \centering
+    \def\tikzwidth{0.31\textwidth}
+    \subcaptionbox{\label{fig:cylCircular}%
+        \dummy.
+    }[.33\textwidth-1ex]{
+    \inputtikz{gfx/model/cylinder_circular}}\hfill
+    % 
+    \subcaptionbox{\label{fig:cylRadial}%
+        \dummy.
+    }[.33\textwidth-1ex]{
+    \inputtikz{gfx/model/cylinder_radial}}\hfill
+    % 
+    \subcaptionbox{\label{fig:cylParallel}%
+        \dummy.
+    }[.33\textwidth-1ex]{
+    \inputtikz{gfx/model/cylinder_parallel}}
+	\caption{The green area indicates the surface corresponding to the seed points xy-plane. The \textcolor{red}{red} coordinate system indicates the coordinates origin for the seed points.}
+% 	\label{fig:}
+\end{figure}
+% 
+Finally a method to build cylindrical structures was implemented as well.
+Since a cylinder has three symmetries, all three were implemented to be a option to populate the volume.
+First we define the coordinate system.
+The cylinder of an outer radii $r_{\mathit{out}}$ and inner radii $r_{\mathit{in}}$ will be orientated along the z-axis with a height $h$, starting at $(0,0,0)$.
+Additionally the cylinder can be radial be \say{cut} from a directional angle $\alpha$ to $\beta$.
+% 
+\paragraph{a) circular} mimics a path on the $xy$-plane of a cylinder (see \cref{fig:cylCircular}).
+The seed points will be used along the surface of cross section beginning at the first directional angle $\alpha$.
+From there the fibers path will go along circular until the second directional angle $\beta$.
+The step size of the circular path can be changed.
+% 
+\paragraph{b) radial} cylindric fibers are orientated from the center of the $xy$-plane the outside of the cylinder (see \cref{fig:cylRadial}).
+The seed points are localized along the inner radial plane.
+This way the fiber density will decrease along their path.
+% 
+\paragraph{c) parallel} fibers are orientated along the cylinder (see \cref{fig:cylParallel}).
+Here the seed points are in the $xy$-plane. Only fibers will be used, which are colliding with the cylinder.
 % 
 \vspace{5pt}
 \hrule
 \vspace{6pt}
 % 
 \newpage
-% 
-\subsection{cube models}
-% 
-\begin{figure}[!t]
-    \centering
-    \subcaptionbox{\label{fig:cubeBuild}%
-        Populating a cuboid with straight fibers initialized from seed points along the direction $\vv{v}$.
-    }[.5\textwidth-1ex]{
-    \def\tikzwidth{0.5\textwidth}
-    \inputtikz{gfx/model/cube_build}}\hfill
-    % 
-    \subcaptionbox{}[.5\textwidth-1ex]{\inputtikz{gfx/model/cylinder_build}}
-	\caption{}
-% 	\label{fig:}
-\end{figure}
-% 
-Additionally to populating a fiber bundle, an additional method to fill cubic volumes with a main fiber direction $\vv{v}$ was developed.
-This method uses a populates a cube by placing the seed points before and after the cube volume.
-Each fiber, corresponds to two matching points, is then check if it collides with the cube.
-If it is, the fiber will then be cut to the sice of the cube and saved.
-The main direction of the fibers inside the cube can be specified by the user.
-All valid fibers are then returned as the resulting fiber bundle.
-% 
-\subsection{cylindric models}
-% 
-building a cylindric model works the same way as cube models.
-The cylinder is definde by a vector $\vv{v}$ wich gives the orientation and length of the cylinder.
-A inner and outer radii $(r_{\mathit{in}}, r_{\mathit{out}})$ has to be defined as well.
-Inside the inner and outer radii the cylinder will be populated $\{f_i \mid r_{min} < |(s_{i,x},s_{i,y})| < r_{max} \}$.
-Additionally a beginning end ending angle $(\alpha, \beta)$ can be defined, which let the cylinder only populate from $\alpha$ to $\beta$.
-Last the cylinder can be modelled in three ways. a) parallel, b) cylindrical and c) radial to the cylinder orientation (see \dummy).
 % 
 \section{\VCS}
 % 

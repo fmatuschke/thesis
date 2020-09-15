@@ -65,7 +65,7 @@
 }
 % 
 \begin{scope}[rotate around z=\zrot, shift={(-4,0,0)}]
-\draw[thick, ->] (0,0,0) -- ++ (0.42,0,0) node[below, midway] {$\vv{v}$};
+\draw[thick, ->] (0,0,0) -- ++ (0.84,0,0) node[below, midway] {$\vv{v}$};
 \end{scope}
 %
 \end{tikzpicture}

@@ -1,0 +1,47 @@
+\begin{tikzsize}{\tikzwidth}{\tikzheight}
+\begin{tikzpicture}[scale=\tikzscale,]
+% 
+\pgfmathsetmacro{\phi}{240}
+\pgfmathsetmacro{\alpha}{20}
+\pgfmathsetmacro{\beta}{270}
+\pgfmathsetmacro{\h}{10}
+\pgfmathsetmacro{\rin}{5}
+\pgfmathsetmacro{\rout}{10}
+% 
+\begin{axis}[view={210}{30}, hide axis]
+\addplot3 [domain=\alpha:\beta,samples=42,samples y=0, smooth, name path=b1,] ({sin(x)*\rin},{cos(x)*\rin},{0});
+\addplot3 [domain=\alpha:\beta,samples=42,samples y=0, smooth, name path=b2,] ({sin(x)*\rin},{cos(x)*\rin},{\h});
+\fill[green!50!black, intersection segments={of=b1 and b2,sequence={A* -- B*[reverse]}}, ] -- cycle;
+% 
+\addplot3 [domain=\alpha:\beta,samples=42,samples y=0, smooth] ({sin(x)*\rout},{cos(x)*\rout},{0});
+\addplot3 [domain=\alpha:\beta,samples=42,samples y=0, smooth] ({sin(x)*\rout},{cos(x)*\rout},{\h});
+% 
+\addplot3 [no marks, black] coordinates {({sin(\alpha)*\rin},{cos(\alpha)*\rin},{0}) ({sin(\alpha)*\rin},{cos(\alpha)*\rin},{\h})};
+\addplot3 [no marks, black] coordinates {({sin(\beta)*\rin},{cos(\beta)*\rin},{0}) ({sin(\beta)*\rin},{cos(\beta)*\rin},{\h})};
+\addplot3 [no marks, black] coordinates {({sin(\alpha)*\rout},{cos(\alpha)*\rout},{0}) ({sin(\alpha)*\rout},{cos(\alpha)*\rout},{\h})};
+\addplot3 [no marks, black] coordinates {({sin(\beta)*\rout},{cos(\beta)*\rout},{0}) ({sin(\beta)*\rout},{cos(\beta)*\rout},{\h})};
+% 
+\addplot3 [no marks, black] coordinates {({sin(\alpha)*\rout},{cos(\alpha)*\rout},{0}) ({sin(\alpha)*\rin},{cos(\alpha)*\rin},{0})};
+\addplot3 [no marks, black] coordinates {({sin(\beta)*\rout},{cos(\beta)*\rout},{0}) ({sin(\beta)*\rin},{cos(\beta)*\rin},{0})};
+\addplot3 [no marks, black] coordinates {({sin(\alpha)*\rout},{cos(\alpha)*\rout},{\h}) ({sin(\alpha)*\rin},{cos(\alpha)*\rin},{\h})};
+\addplot3 [no marks, black] coordinates {({sin(\beta)*\rout},{cos(\beta)*\rout},{\h}) ({sin(\beta)*\rin},{cos(\beta)*\rin},{\h})};
+%
+\addplot3 [no marks, black] coordinates {({sin(\phi)*\rin},{cos(\phi)*\rin},{0}) ({sin(\phi)*\rin},{cos(\phi)*\rin},{\h})};
+\addplot3 [no marks, black] coordinates {({sin(\phi-180)*\rin},{cos(\phi-180)*\rin},{0}) ({sin(\phi-180)*\rin},{cos(\phi-180)*\rin},{\h})};
+\addplot3 [no marks, black] coordinates {({sin(\phi)*\rout},{cos(\phi)*\rout},{0}) ({sin(\phi)*\rout},{cos(\phi)*\rout},{\h})};
+\addplot3 [no marks, black] coordinates {({sin(\phi-180)*\rout},{cos(\phi-180)*\rout},{0}) ({sin(\phi-180)*\rout},{cos(\phi-180)*\rout},{\h})};
+% 
+\pgfmathsetseed{42}
+\foreach \ii in {1,2,...,142}{
+\pgfmathparse{rnd*(\beta-\alpha)+\alpha}\let\a=\pgfmathresult
+\pgfmathparse{rnd*\h}\let\hh=\pgfmathresult
+\addplot3 [no marks, blue] coordinates {({sin(\a)*\rin},{cos(\a)*\rin},{\hh}) ({sin(\a)*\rout},{cos(\a)*\rout},{\hh})};
+}
+% 
+\draw[red, ->] (axis cs:{sin(\alpha)*\rin},{cos(\alpha)*\rin},{0}) -- (axis cs:{sin(\alpha)*\rin+sin(\alpha+90)*2},{cos(\alpha)*\rin+cos(\alpha+90)*2},{0}) node[left] {$x$};
+\draw[red, ->] (axis cs:{sin(\alpha)*\rin},{cos(\alpha)*\rin},{0}) -- (axis cs:{sin(\alpha)*\rin},{cos(\alpha)*\rin},{2}) node[right, midway] {$y$};
+\draw[red, ->] (axis cs:{sin(\alpha)*\rin},{cos(\alpha)*\rin},{0}) -- (axis cs:{sin(\alpha)*\rin+sin(\alpha)*2},{cos(\alpha)*\rin+cos(\alpha)*2},{0}) node[below] {$z$};
+% 
+\end{axis}
+\end{tikzpicture}
+\end{tikzsize}
