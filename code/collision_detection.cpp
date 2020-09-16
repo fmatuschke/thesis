@@ -9,9 +9,13 @@ bool Cone::CollideWith(const Cone cone) const {
 }
 
 std::tuple<vm::Vec3<double>, vm::Vec3<double>>
-Cone::MinDistanceLineSegments(const vm::Vec3<double> P0, const vm::Vec3<double> P1,
-                                const vm::Vec3<double> Q0, const vm::Vec3<double> Q1) const {
-   // https://www.john.geek.nz/2009/03/code-shortest-distance-between-any-two-line-segments/
+Cone::MinDistanceLineSegments(
+    const vm::Vec3<double> P0,
+    const vm::Vec3<double> P1,
+    const vm::Vec3<double> Q0,
+    const vm::Vec3<double> Q1) const {
+       
+   // https://www.john.geek.nz/
    auto const u = P1 - P0;
    auto const v = Q1 - Q0;
    auto const w = P0 - Q0;

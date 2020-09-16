@@ -198,7 +198,7 @@ For a circle this is done via:
     \subcaptionbox{\label{fig:torsionCurve}Torsion along trajectory. The 
 	\textcolor{green!50!black}{binormal}, \textcolor{red}{principal normal} vector and \textcolor{blue}{tangent vector} vector at each step are also the coordinate system for the seed points.}[.5\textwidth-1ex]{
     \def\tikzwidth{0.5\textwidth-1ex}
-    \inputtikz[true]{gfx/model/min_torsion}}\hfill
+    \inputtikz[true]{gfx/model/min_torsion_wtf}}\hfill
     % 
     \subcaptionbox{\label{fig:filledBundle}Bending fiber along trajectory $f(t) = \left( \cos(t), \sin(t), 0 \right)$}[.5\textwidth-1ex]{
     \resizebox{0.5\textwidth-1ex}{!}{
@@ -247,7 +247,7 @@ Now the populate of the bundle can simply full filled by starting a the beginnin
 % 
 \begin{figure}[!t]
     \centering
-    \def\tikzwidth{0.75\textwidth}
+    \def\tikzwidth{0.5\textwidth}
     \inputtikz{gfx/model/cube_build}
 	\caption{Populating a cuboid with straight fibers initialized from seed points along the direction $\vv{v}$.}
     \label{fig:cubeBuild}%
@@ -347,28 +347,24 @@ This means, that the radii of the \ac{CC} grows for both spheres to the max of b
 This has the disadvantage, that at intersections between two neighbouring cones the radii can be actually smaller, however if the change in radii is not rapid, it is justifiable.
 \\
 The algorithm to detect collisions between two capsules is shown in \cref{alg:pseudocodeCollisionDetection}:
-\\
 % 
-\setbox0=\hbox{%
-\begin{minipage}{0.49\linewidth}
-\lstinputlisting[style=cpp, basicstyle={\tiny\ttfamily}, firstline=1,lastline=42]{code/collision_detection.cpp}
-\end{minipage}}\savestack{\listingA}{\box0}
-% 
-\setbox0=\hbox{%
-\begin{minipage}{0.49\linewidth}
-\lstinputlisting[style=cpp,basicstyle={\tiny\ttfamily}, firstline=43,lastline=84,firstnumber=43]{code/collision_detection.cpp}
-\end{minipage}}\savestack{\listingB}{\box0}
-% 
-% \begin{landscape}
+\begin{lstfloat}[!t]
+\resizebox{\textwidth}{!}{
 \begin{sideways}
-\begin{tabular}{|c|c|}
+\begin{tabular}{|cc|cc|}
 \hline
-\stackinset{l}{}{}{}{}{\listingA} &
-\stackinset{l}{}{}{}{}{\listingB} \\
+\hspace{1em} &
+\begin{minipage}{0.45\textheight}
+\lstinputlisting[style=cpp,basicstyle=\scriptsize\ttfamily,firstline=1,lastline=44]{code/collision_detection.cpp}
+\end{minipage} & \hspace{1em} &
+\begin{minipage}{0.45\textheight}
+\lstinputlisting[style=cpp,basicstyle=\scriptsize\ttfamily,firstline=45,lastline=88,firstnumber=45]{code/collision_detection.cpp}
+\end{minipage} \\
 \hline
 \end{tabular}
-\end{sideways}
-% \end{landscape}
+\end{sideways}}
+\caption{Collision detection between two cone objects}
+\end{lstfloat}
 % 
 \subsection{Octtree}
 % 
@@ -550,9 +546,9 @@ Therefore the curvature will be reduced.
 \newline
 Both movements are added to the velocity vector before performing the overall movement.
 The algorithm performs each step sequentially (see \cref{alg:pseudocode_solver}).
+% 
 \begin{lstfloat}[!tb]
 \lstset{style=cpp}
-
 \begin{lstlisting}[]
 FiberCollisionSolver(objects) {
 	colliding_list = {};
