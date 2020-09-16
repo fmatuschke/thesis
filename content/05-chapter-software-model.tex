@@ -300,7 +300,7 @@ This way the fiber density will decrease along their path.
 \paragraph{c) parallel} fibers are orientated along the cylinder (see \cref{fig:cylParallel}).
 Here the seed points are in the $xy$-plane. Only fibers will be used, which are colliding with the cylinder.
 % 
-\section{Solving fiber collisions}
+\section{Solving fiber collisions/Solver module}
 % 
 One major drawback of all previous methods is, that the user has to make sure, that his fiber trajectory let enough space, so that the fibers (trajectories + radii) have enough space and do not intersect with each other.
 This maybe achievable for fibers with constant radii along there path for the upper construction methods.
@@ -321,13 +321,14 @@ However since here we want to generate as good as possible large, complex and pr
 % 
 \\[\baselineskip]
 % 
+\todo{this is already main loop}
 For this purpose an algorithm was developed and publish in \cite{matuschke2019}.
 It is at this point integrated inside the \ac{fastPLI} package under \pymodule{fastpli.model.solver}.
 It structure consist out of the following parts:
 \begin{itemize}
 \item main loop
 \begin{itemize}
-    \item octtree separation
+    \item octree separation
     \item collision detection
 \end{itemize}
 \item moving objects
@@ -338,6 +339,27 @@ Before we go into the details of the algorithm, first we descipe the collision d
 
 \subsection{Collision Detection}
 % 
+% \afterpage{
+\begin{lstfloat}[!t]
+\resizebox{\textwidth}{!}{
+\begin{sideways}
+\begin{tabular}{|cc|cc|}
+\hline
+\hspace{1em} &
+\begin{minipage}{0.4625\textheight}
+\lstinputlisting[style=cpp,basicstyle=\scriptsize\ttfamily,firstline=1,lastline=44]{code/collision_detection.cpp}
+\end{minipage} & \hspace{1em} &
+\begin{minipage}{0.4625\textheight}
+\lstinputlisting[style=cpp,basicstyle=\scriptsize\ttfamily,firstline=45,lastline=88,firstnumber=45]{code/collision_detection.cpp}
+\end{minipage} \\
+\hline
+\end{tabular}
+\end{sideways}}
+\caption{Collision detection between two cone objects.}
+\end{lstfloat}
+% \clearpage
+% }
+% 
 As it was described in \cref{sec:nerve_fiber_representation} nerve fibers are represent as a chain of spheres, where two neighbouring spheres are combined into a fiber segment forming a \ac{CC} (see \cref{fig:conical_capsule}).
 % 
 Therefore an algorithm is necessary to calculate a collision between to \ac{CC}.
@@ -346,107 +368,87 @@ Therefore it was decided to change the object representation for the collision d
 This means, that the radii of the \ac{CC} grows for both spheres to the max of both spheres $r_{\mathit{capsule}} = \mathrm{max}(r_0, r_1)$.
 This has the disadvantage, that at intersections between two neighbouring cones the radii can be actually smaller, however if the change in radii is not rapid, it is justifiable.
 \\
-The algorithm to detect collisions between two capsules is shown in \cref{alg:pseudocodeCollisionDetection}:
+The algorithm to detect collisions between two capsules is shown in \cref{alg:pseudocodeCollisionDetection}\footnote{\href{https://www.john.geek.nz/2009/03/code-shortest-distance-between-any-two-line-segments/}{https://www.john.geek.nz/2009/03/code-shortest-distance-between-any-two-line-segments/}}.
 % 
-\begin{lstfloat}[!t]
-\resizebox{\textwidth}{!}{
-\begin{sideways}
-\begin{tabular}{|cc|cc|}
-\hline
-\hspace{1em} &
-\begin{minipage}{0.45\textheight}
-\lstinputlisting[style=cpp,basicstyle=\scriptsize\ttfamily,firstline=1,lastline=44]{code/collision_detection.cpp}
-\end{minipage} & \hspace{1em} &
-\begin{minipage}{0.45\textheight}
-\lstinputlisting[style=cpp,basicstyle=\scriptsize\ttfamily,firstline=45,lastline=88,firstnumber=45]{code/collision_detection.cpp}
-\end{minipage} \\
-\hline
-\end{tabular}
-\end{sideways}}
-\caption{Collision detection between two cone objects}
-\end{lstfloat}
-% 
-\subsection{Octtree}
-% 
-This means that a collision algorithm has to check all existing fiber segments with each other.
-It is trivial to see that the computational effort grows with $\mathcal{O}(n^{2})$ which is not acceptable for large $n$.
-% 
-% 
-% 
-\vspace{5pt}
-\hrule
-\vspace{6pt}
-% 
-\newpage
-% 
-% 
-% 
-This Method aims to model den sly \ac{WM}.
-The main component inside \ac{WM} consist of an Axon and its surrounding Myeling [see \dummy].
-The Myelin itself is split into several parts to allow the propagation of the action potential at the Nodes of Ranvier. 
+It works on the principle, that it calculates the shortest distance between two line segments.
+Three cases can occur.
+First, the shortest distance is a line perpendicular two both line segments of the cones.
+Second, only one line segment is perpendicular to the shortest distance line.
+The other has an anchor point at either his first or second point.
+Third, the shortest distance is a connection between one of the point of both cones.
+For cones a collision is present if the distance is smaller than the sum of both radii.
 \\
 % 
-This structure is modelled as a chain of capsules, a cylinder with hemispherical ends \cref{fig:conical_capsule}.
-To allow a change of cross section or radii, the capsule ending are allowed to consist of individual radii.
-The resulting shape will be referred to as a \ac{CC}.
-The chain of \ac{CC} consist therefore of a list of 3d points with individual radius. 
-\\
+The Problem occurring with \ac{CC} is, that since the radii changes along its axis, it is not simply the case anymore, that the shortest distance between two line segments is also the shortest distance between a 3d \ac{CC}.
 % 
-To model flexible and curved densly packed nerve fibers, a collision free result needs to be obtained.
-The representaion of nerve fibers by \ac{CC} allows a fast calculation if two \ac{CC} are colliding each other. 
-\\
+\subsection{octree}
 % 
-However instead of building a collision free model, which is quite impossible for a \dummy structure, the strategy is to initialize a model, checking for collisions and then solving these collisions by pushing the fiber or \ac{CC} slightly apart. 
-\\
+\begin{figure}[!t]
+    \centering
+    \subcaptionbox{\label{fig:octreeCube}octree}[.3\textwidth]{
+    \def\tikzheight{0.6\textwidth}
+    \inputtikz{gfx/model/oct_tree}}
+    \subcaptionbox{\label{fig:octreeCube}collision 2d}[.65\textwidth]{
+    \def\tikzheight{0.6\textwidth}
+    \inputtikz[true]{gfx/model/collision_tree}}
+	\caption{}
+	\label{fig:octree}
+\end{figure}
 % 
-This allows a user to specify any initial configuration and reaching a collision free model, which, depending on the initial overlap, follows the initial geometry.
-The disadvantage obvious is that the configuration has to change.
-However since biological tissue is deformable and not "caotic" itself, it follows its natrual behavier.
-%
-% 
-% 
-% 
-Collision detection for a large number of objects is a very computational intense algorithm.
-To reduce the computational afford, the \ac{CC} will be interpreted as a capsule object, since this alows a much simpler calculation.
-The capsule has the radius $r_{\text{capsule}} = \max(r_0, r_1)$ to soroun the hole \ac{CC}.
-To check if two capsules collide with each other the distance between the line segments, defined by the capsule begin and end points $p_0, p_1$, is calculated.if the distance $d$ is $d < (r_0 + r_1)$ then the two capsule objects are colliding each other. \\
-% 
-To calculate the smallest distance between two line segemnts, sevverel algorith,s already exists.
-A fast approach was chosen\footnote{\href{https://www.john.geek.nz/2009/03/code-shortest-distance-between-any-two-line-segments/}{https://www.john.geek.nz/2009/03/code-shortest-distance-between-any-two-line-segments/}}.
-%
-\section{World}
-For a given cuboid volume the computing grows $\mathcal{O}(V^3)$.
-Furthermore each object has to be checked to each other, therefore the number of objects to be checked for a collision grows by $\mathcal{O}(n^2)$.
-This explodes rather quick.
-In the literature are several approuches (e.g. computer games industry).
-However since the number of objects will be $\approx \num{e9}$ \dummy cant be used. \\
-% 
-A "tree" is a data structure consist of a collection of "nodes", which are connected to each other.
+\comment{A \say{tree} is a data structure consist of a collection of "nodes", which are connected to each other.
 One node is conected toword the "root" with a single parent node and towords the "branches" with several "children" or "branches".
 The nodes at the end of a branch are refered to as "leafs" wich contain the data.
 Traversing a  evenly distributed tree is of $\mathcal{O}(\log(n))$.\\
 % 
-\begin{figure}[!t]
-    \centering
-    \subcaptionbox{oct tree}[.3\textwidth]{
-    \def\tikzheight{0.6\textwidth}
-    \inputtikz{gfx/model/oct_tree}}
-    \subcaptionbox{collision 2d}[.65\textwidth]{
-    \def\tikzheight{0.6\textwidth}
-    \inputtikz[true]{gfx/model/collision_tree}}
-	\caption{}
-	\label{fig:oct_tree}
-\end{figure}
-% 
-An octtree is a special kind of tree where each node contain 8 children.
+An octree is a special kind of tree where each node contain 8 children.
 This allows to divide a cubic volume into 8 equal cutted subcubes.
 Therefore this data structure was chosen to reorder the fiber segents.
 To order them, a recursive function is used.
 It checks, if the number of objects is below a threshold $n < t_n$, or the subvolume cube length is below a threshold $dim < t_{dim}$.
 If so, the leaf is reached and all objects are check for collision with each other.
 Otherwise a 8 new subvolumes will be created and each object will be check, if it is inside upto 8 of the new created volumes.
-The next branch will check only with the new includes objects. \\
+The next branch will check only with the new includes objects.
+}
 % 
+This means that a collision algorithm has to check all existing fiber segments with each other.
+It is trivial to see that the computational effort grows with $\mathcal{O}(n^{2})$ which is not acceptable for large $n$.
+Therefore the first effort was to implement a structure which is reducing the number of collision checks between objects.
+This can be done via pre sorting the objects into structures. 
+There are again several existing methods for this.
+The most important property for this kind of sorting is, that the objects have all the same order of magnitude in size.
+This is the case, as we will see in \dummy.
+\\[\baselineskip]
+% 
+The structure of an octree is the following (see \cref{fig:octreeCube}, \cref{alg:pseudocode_octree}).
+% 
+\begin{lstfloat}[!tb]
+\lstset{style=python}
+\begin{lstlisting}[]
+def octree(volume, objects):
+    if num(objects) > threshold:
+        sub_volumes, sub_objects = split(volume, objects)
+        leafs = [octree(v,o) for v,o in zip(sub_volumes, sub_objets)]
+    else:
+        leafs=[objects]
+    return leafs
+\end{lstlisting}
+\caption{Pseudocode of octree}
+\label{alg:pseudocode_octree}
+\end{lstfloat}
+% 
+With this rather simple recursive algorithm the volume ill be split automatically into a \texttt{tree}.
+% 
+The careful part is the splitting process of the volume and objects.
+When a volume is split into sub\_volumes a single object can be part of several (up to eight) sub\_volumes (see 2d example \cref{fig:octreeCube}).
+Only if placed in such a way can the leafs be computed separately.
+\footnote{This also means for a high overlapping coefficient a lot of branches can be filled with the same objects, hence the calculation time increases exponentially}.
+The value of the threshold has to be manually set.
+Usually the value is around \SI{20}{} objects.
+It is a fight between the number of leafs (which grows $\mathcal{O}(\mathit{level})$ and the calculation inside a leaf.
+The main goals is of course to have a minimal number of calculations.
+However this depends heavily on the values of different parameters such as the \segLength or \segRadius (which will be explained later \dummy).
+% 
+\comment{
 This allows a rather quick reduction of number of objects to be checked.
 Therefore the last step with an $\mathcal{O}(n^2)$ is not that painful anymore.
 To speed up the calculation, The objects itself wont be duplicated.
@@ -466,8 +468,59 @@ After the first level, each cpu thread traverses it branch.
 At each leaf a list ob object is returned containing the object of the leaf.
 All list are collected for the collision checking test.
 This collected list is in the next step fully parallel traversed to check for collisions.
+}
 % 
-\section{Solving a collision}
+% 
+\section{World/main}
+% 
+\begin{lstfloat}[!tb]
+\lstset{style=python}
+\begin{lstlisting}[]
+def step():
+    # Reset Parameter
+    SetSpeed(objects, 0)
+    
+    # Building Octree
+    octree = Octree(objects)
+    
+    # Collision Detection
+    for leaf in octree:
+        colliding_objs = CheckLeaf(leaf.fiber_list)
+        colliding_list.insert(colliding_objs)
+	
+    # Seperation Process
+    AddSpeed(colliding_list)
+    NormalizeSpeed(colliding_list)
+    MoveObject(colliding_list)
+	
+    # Shape Control
+    SegmentLength(colliding_list, target_length)
+    BendingRadius(colliding_list, target_curvature)
+
+    return colliding_list.is_empty()
+\end{lstlisting}
+\caption{Pseudocode of the main algorithm: The function \texttt{FiberCollisionSolver} will loop the followings four steps, which are run in parallel, until no collision are detected anymore: 1. build an \texttt{octree} from all objects, 2. \texttt{Collision Detection}, 3. \texttt{Seperation Process} and 4. \texttt{Shape Control}.}
+\label{alg:pseudocode_solver}
+\end{lstfloat}
+
+\todo{direct after solver module section}
+% 
+The world/main function is the \say{loop} which is executed to calculate for e collision, moving the objects, and checking the boundary collision (see \cref{alg:pseudocode_solver}).
+The looping procedure is similar to a game loop or visualisation loop (\eg opengl main loop).
+However, to allow the user as much control as possible, the user has to loop over each step in thir own loop, or use one of the examples inside the packages.
+After each step the user is now capable to change parameter, fiber trajectories, add/rm fibers from the \say{scene}, and so on.
+Additionally the user can decide, if a fully solved volume is necesarry and for example break out of the solving loop before this step. 
+\footnote{Later this behaviour will be researched}
+% 
+% 
+% 
+\vspace{5pt}
+\hrule
+\vspace{6pt}
+% 
+\newpage
+%
+\section{Movement Phase}
 To solve a collision between two \ac{CC} objects the two points of each object will be moved.
 The movement will be parallel to the smallest distance line between both objects.
 To take the 3d placement into consideration, the movement is weighted with the distance of the the individual points to the intersection point with the smallest distance line (see fig \dummy).
@@ -547,47 +600,16 @@ Therefore the curvature will be reduced.
 Both movements are added to the velocity vector before performing the overall movement.
 The algorithm performs each step sequentially (see \cref{alg:pseudocode_solver}).
 % 
-\begin{lstfloat}[!tb]
-\lstset{style=cpp}
-\begin{lstlisting}[]
-FiberCollisionSolver(objects) {
-	colliding_list = {};
-	do{
-		// Reset Parameter
-		colliding_list.clear();
-		SetSpeed(objects, 0);
-		
-		// Building Octree
-		octree = OctTree(objects);
-		
-		// Collision Detection
-		for ( leaf : octree ){
-			colliding_objs = CheckLeaf(leaf.fiber_list());
-			colliding_list.insert(colliding_objs);
-		}
-		
-		// Seperation Process
-		AddSpeed(colliding_list);
-		NormalizeSpeed(colliding_list);
-		MoveObject(colliding_list);
-		
-		// Shape Control
-		SegmentLength(colliding_list, target_length);
-		BendingRadius(colliding_list, target_curvature);
-		
-	} while (!colliding_list.empty());
-}
-\end{lstlisting}
-\caption{Pseudocode of the main algorithm: The function \texttt{FiberCollisionSolver} will loop the followings four steps, which are run in parallel, until no collision are detected anymore: 1. build an \texttt{OctTree} from all objects, 2. \texttt{Collision Detection}, 3. \texttt{Seperation Process} and 4. \texttt{Shape Control}.}
-\label{alg:pseudocode_solver}
-\end{lstfloat}
-% 
 Finaly a volume is marked as collision free, if no collision are found and all boundry conditions are fullfiled. 
 The voundry conditions can be set to 0 to ignore them.
 Additionally a drag value can be set, to reduce the velocity by its factor after each step.
 It can help to reach a collision free volume faster, however the density will be significantly reduced.
 Therefore the value is to 0 so that after each step the velocity is resetted to $\vv{0}$. 
 % 
+\subsection{"Conclusion"}
+This allows a user to specify any initial configuration and reaching a collision free model, which, depending on the initial overlap, follows the initial geometry.
+The disadvantage obvious is that the configuration has to change.
+However since biological tissue is deformable and not "caotic" itself, it follows its natrual behavier.
 % 
 \section{Visualization}
 % 
