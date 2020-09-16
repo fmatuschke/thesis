@@ -141,9 +141,9 @@
 \usepackage{mwe}
 \usepackage{acro}
 \usepackage{dirtytalk}
-\usepackage{lscape}         % pdflscape for pdflatex
+% \usepackage{lscape}         % pdflscape for pdflatex
+% \usepackage{stackengine}    % for double sided floats
 \usepackage{rotating}         
-\usepackage{stackengine}    % for double sided floats
 \newsavebox{\largestimage}
 % 
 \acsetup{barriers/use=true,barriers/reset = true}
@@ -269,17 +269,15 @@
   }
 \makeatother 
 % 
-\newcommand{\inputpdf}[1]{%
-    \IfFileExists{#1}{\includegraphics{#1}}{
-    \noindent\includegraphics[width=3cm]{example-image}}   
-}
+\def\tikzwidth{\textwidth}
+\def\tikzheight{\textheight}
 % 
 \makeatletter
 \newcommand{\inputtikzext}[1]{%
 	\IfFileExists{#1.tikz}{
 		\input{#1.tikz}
 	}{
-		\noindent\includegraphics[width=4.2cm]{example-image}
+		\noindent\includegraphics[width=\tikzwidth]{example-image}
 	}
 }
 \makeatother
@@ -298,8 +296,6 @@
 \makeatother
 % 
 \usepackage{environ}
-\def\tikzwidth{\textwidth}
-\def\tikzheight{\textheight}
 \makeatletter
 \newsavebox{\measure@tikzpicture}
 \NewEnviron{tikzsize}[2]{%
