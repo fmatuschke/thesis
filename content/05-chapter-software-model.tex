@@ -127,7 +127,7 @@ A nerve fiber can therefore be represented as a list of 4d coordinates (or spher
 % \vv{p} &= (x_i,y_i,z_i) \mid x,y,z \in \mathbb{R}\\
 % r &\mid r \in \mathbb{R}\\
 \mathit{fiber} &= \left\{ \vv{p}_i=(x_i,y_i,z_i), r_i \mid x,y,z \in \mathbb{R}, \, r \in \mathbb{R^+}, \, i \in \{0,1,...,N_{\mathit{points}}-1\}\right\} \\
-\mathit{fiber\_seg}_i &= (\vv{p}_i, \vv{p}_{i+1}, r_i, r_{i+1}), \, i \in \{0,1,...,N_{\mathit{points}}-2
+\mathit{fiber\_segment}_i &= (\vv{p}_i, \vv{p}_{i+1}, r_i, r_{i+1}), \, i \in \{0,1,...,N_{\mathit{points}}-2\}
 \end{split}
 \end{align}
 % 
@@ -339,24 +339,46 @@ Before we go into the details of the algorithm, first we descipe the collision d
 
 \subsection{Collision Detection}
 % 
-% \afterpage{
+% 
 \begin{lstfloat}[!t]
 \resizebox{\textwidth}{!}{
-\begin{sideways}
+% \begin{sideways}
 \begin{tabular}{|cc|cc|}
 \hline
 \hspace{1em} &
-\begin{minipage}{0.4625\textheight}
-\lstinputlisting[style=cpp,basicstyle=\scriptsize\ttfamily,firstline=1,lastline=44]{code/collision_detection.cpp}
+\begin{minipage}{0.4625\textwidth}
+\lstinputlisting[style=cpp,basicstyle=\scriptsize\ttfamily,firstline=1,lastline=32]{code/collision_detection.py}
 \end{minipage} & \hspace{1em} &
-\begin{minipage}{0.4625\textheight}
-\lstinputlisting[style=cpp,basicstyle=\scriptsize\ttfamily,firstline=45,lastline=88,firstnumber=45]{code/collision_detection.cpp}
+\begin{minipage}{0.4625\textwidth}
+\lstinputlisting[style=cpp,basicstyle=\scriptsize\ttfamily,firstline=33,lastline=64,firstnumber=35]{code/collision_detection.py}
 \end{minipage} \\
 \hline
 \end{tabular}
-\end{sideways}}
-\caption{Collision detection between two cone objects.}
+% \end{sideways}
+}
+\caption{Collision detection between two capsule objects. The distance as well as the points on the line segments is returned. A collision takes place if the distance is smaller than $\mathit{cone_a.r}+\mathit{cone_b.r} > d$.}
 \end{lstfloat}
+% 
+% 
+% \afterpage{
+% \begin{lstfloat}[!t]
+% % \lstinputlisting[style=python,basicstyle=\footnotesize\ttfamily,]{code/collision_detection.py}
+% \resizebox{\textwidth}{!}{
+% \begin{sideways}
+% \begin{tabular}{|cc|cc|}
+% \hline
+% \hspace{1em} &
+% \begin{minipage}{0.4625\textheight}
+% \lstinputlisting[style=cpp,basicstyle=\scriptsize\ttfamily,firstline=1,lastline=34]{code/collision_detection.py}
+% \end{minipage} & \hspace{1em} &
+% \begin{minipage}{0.4625\textheight}
+% \lstinputlisting[style=cpp,basicstyle=\scriptsize\ttfamily,firstline=35,lastline=68,firstnumber=35]{code/collision_detection.py}
+% \end{minipage} \\
+% \hline
+% \end{tabular}
+% \end{sideways}}
+% \caption{Collision detection between two cone objects.}
+% \end{lstfloat}
 % \clearpage
 % }
 % 
