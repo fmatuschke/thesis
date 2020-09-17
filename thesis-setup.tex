@@ -151,6 +151,10 @@
 % \crefname{figure}{fig.}{fig.}
 % \Crefname{figure}{Fig.}{Fig.}
 % 
+\makeatletter
+\def\convertto#1#2{\strip@pt\dimexpr #2*65536/\number\dimexpr 1#1}
+\makeatother
+% 
 % **************************************************
 %  Minitoc
 % **************************************************
@@ -269,8 +273,10 @@
   }
 \makeatother 
 % 
-\def\tikzwidth{\textwidth}
-\def\tikzheight{\textheight}
+\newlength{\tikzwidth}
+\newlength{\tikzheight}
+\setlength{\tikzwidth}{\textwidth} %22.37076cm
+\setlength{\tikzheight}{\textheight} %13.87303cm
 % 
 \makeatletter
 \newcommand{\inputtikzext}[1]{%
@@ -298,21 +304,34 @@
 \usepackage{environ}
 \makeatletter
 \newsavebox{\measure@tikzpicture}
-\NewEnviron{tikzsize}[2]{%
+\NewEnviron{tikzsize}[3][true]{%
 	\def\tikzscale{1}%
+	\ifthenelse{\boolean{#1}}{
 	\tikzifexternalizingnext{%
 		\begin{lrbox}{\measure@tikzpicture}%
 		\tikzset{external/export next=false,external/optimize=false}% force translation of this BODY (and do not optimize it away as it would usually do):
 		\BODY
 		\end{lrbox}%
-		\pgfmathparse{#1/\wd\measure@tikzpicture}%
+		\expandafter\pgfmathparse{#2/\wd\measure@tikzpicture}%
 		\edef\tikzscalewidth{\pgfmathresult}%
-		\pgfmathparse{#2/\ht\measure@tikzpicture}%
+		\expandafter\pgfmathparse{#3/\ht\measure@tikzpicture}%
 		\edef\tikzscaleheight{\pgfmathresult}%
 		\pgfmathparse{min(\tikzscalewidth, \tikzscaleheight)}%
 		\edef\tikzscale{\pgfmathresult}%
 		\BODY
 	}{% this will re-use an existing external graphics:
+		\BODY
+	}}{
+	    \begin{lrbox}{\measure@tikzpicture}%
+		\tikzset{external/export next=false,external/optimize=false}% force translation of this BODY (and do not optimize it away as it would usually do):
+		\BODY
+		\end{lrbox}%
+		\expandafter\pgfmathparse{#2/\wd\measure@tikzpicture}%
+		\edef\tikzscalewidth{\pgfmathresult}%
+		\expandafter\pgfmathparse{#3/\ht\measure@tikzpicture}%
+		\edef\tikzscaleheight{\pgfmathresult}%
+		\pgfmathparse{min(\tikzscalewidth, \tikzscaleheight)}%
+		\edef\tikzscale{\pgfmathresult}%
 		\BODY
 	}
 }
