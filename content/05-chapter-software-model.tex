@@ -328,179 +328,7 @@ Therefore an object like a stone could be approximated by a sphere(s).
 However since here we want to generate as good as possible large, complex and precise models, a new algorithm has to be developed which is specialised in this subject.
 % 
 \\[\baselineskip]
-% 
-\todo{this is already main loop}
-For this purpose an algorithm was developed and publish in \cite{matuschke2019}.
-It is at this point integrated inside the \ac{fastPLI} package under \pymodule{fastpli.model.solver}.
-It structure consist out of the following parts:
-\begin{itemize}
-\item main loop
-\begin{itemize}
-    \item octree separation
-    \item collision detection
-\end{itemize}
-\item moving objects
-\item apply boundary conditions
-\end{itemize}
-% 
-Before we go into the details of the algorithm, first we descipe the collision detection approuch.
-
-\subsection{Collision Detection}
-% 
-% 
-\begin{lstfloat}[!t]
-\resizebox{\textwidth}{!}{
-% \begin{sideways}
-\begin{tabular}{|cc|cc|}
-\hline
-\hspace{1em} &
-\begin{minipage}{0.4625\textwidth}
-\lstinputlisting[style=cpp,basicstyle=\scriptsize\ttfamily,firstline=1,lastline=32]{code/collision_detection.py}
-\end{minipage} & \hspace{1em} &
-\begin{minipage}{0.4625\textwidth}
-\lstinputlisting[style=cpp,basicstyle=\scriptsize\ttfamily,firstline=33,lastline=64,firstnumber=35]{code/collision_detection.py}
-\end{minipage} \\
-\hline
-\end{tabular}
-% \end{sideways}
-}
-\caption{Collision detection between two capsule objects. The distance as well as the points on the line segments is returned. A collision takes place if the distance is smaller than $\mathit{cone_a.r}+\mathit{cone_b.r} > d$.}
-\end{lstfloat}
-% 
-% 
-% \afterpage{
-% \begin{lstfloat}[!t]
-% % \lstinputlisting[style=python,basicstyle=\footnotesize\ttfamily,]{code/collision_detection.py}
-% \resizebox{\textwidth}{!}{
-% \begin{sideways}
-% \begin{tabular}{|cc|cc|}
-% \hline
-% \hspace{1em} &
-% \begin{minipage}{0.4625\textheight}
-% \lstinputlisting[style=cpp,basicstyle=\scriptsize\ttfamily,firstline=1,lastline=34]{code/collision_detection.py}
-% \end{minipage} & \hspace{1em} &
-% \begin{minipage}{0.4625\textheight}
-% \lstinputlisting[style=cpp,basicstyle=\scriptsize\ttfamily,firstline=35,lastline=68,firstnumber=35]{code/collision_detection.py}
-% \end{minipage} \\
-% \hline
-% \end{tabular}
-% \end{sideways}}
-% \caption{Collision detection between two cone objects.}
-% \end{lstfloat}
-% \clearpage
-% }
-% 
-As it was described in \cref{sec:nerve_fiber_representation} nerve fibers are represent as a chain of spheres, where two neighbouring spheres are combined into a fiber segment forming a \ac{CC} (see \cref{fig:conical_capsule}).
-% 
-Therefore an algorithm is necessary to calculate a collision between to \ac{CC}.
-This is a non trivial task and very computational heavy.
-Therefore it was decided to change the object representation for the collision detection part from a \ac{CC} to a Capsule (see \cref{fig:conical_capsule}).
-This means, that the radii of the \ac{CC} grows for both spheres to the max of both spheres $r_{\mathit{capsule}} = \mathrm{max}(r_0, r_1)$.
-This has the disadvantage, that at intersections between two neighbouring cones the radii can be actually smaller, however if the change in radii is not rapid, it is justifiable.
-\\
-The algorithm to detect collisions between two capsules is shown in \cref{alg:pseudocodeCollisionDetection}\footnote{\href{https://www.john.geek.nz/2009/03/code-shortest-distance-between-any-two-line-segments/}{https://www.john.geek.nz/2009/03/code-shortest-distance-between-any-two-line-segments/}}.
-% 
-It works on the principle, that it calculates the shortest distance between two line segments.
-Three cases can occur.
-First, the shortest distance is a line perpendicular two both line segments of the cones.
-Second, only one line segment is perpendicular to the shortest distance line.
-The other has an anchor point at either his first or second point.
-Third, the shortest distance is a connection between one of the point of both cones.
-For cones a collision is present if the distance is smaller than the sum of both radii.
-\\
-% 
-The Problem occurring with \ac{CC} is, that since the radii changes along its axis, it is not simply the case anymore, that the shortest distance between two line segments is also the shortest distance between a 3d \ac{CC}.
-% 
-\subsection{octree}
-% 
-\begin{figure}[!t]
-    \centering
-    \subcaptionbox{\label{fig:octreeCube}octree}[.3\textwidth]{
-    \def\tikzheight{0.6\textwidth}
-    \inputtikz{gfx/model/oct_tree}}
-    \subcaptionbox{\label{fig:octreeCube}collision 2d}[.65\textwidth]{
-    \def\tikzheight{0.6\textwidth}
-    \inputtikz[true]{gfx/model/collision_tree}}
-	\caption{}
-	\label{fig:octree}
-\end{figure}
-% 
-\comment{A \say{tree} is a data structure consist of a collection of "nodes", which are connected to each other.
-One node is conected toword the "root" with a single parent node and towords the "branches" with several "children" or "branches".
-The nodes at the end of a branch are refered to as "leafs" wich contain the data.
-Traversing a  evenly distributed tree is of $\mathcal{O}(\log(n))$.\\
-% 
-An octree is a special kind of tree where each node contain 8 children.
-This allows to divide a cubic volume into 8 equal cutted subcubes.
-Therefore this data structure was chosen to reorder the fiber segents.
-To order them, a recursive function is used.
-It checks, if the number of objects is below a threshold $n < t_n$, or the subvolume cube length is below a threshold $dim < t_{dim}$.
-If so, the leaf is reached and all objects are check for collision with each other.
-Otherwise a 8 new subvolumes will be created and each object will be check, if it is inside upto 8 of the new created volumes.
-The next branch will check only with the new includes objects.
-}
-% 
-This means that a collision algorithm has to check all existing fiber segments with each other.
-It is trivial to see that the computational effort grows with $\mathcal{O}(n^{2})$ which is not acceptable for large $n$.
-Therefore the first effort was to implement a structure which is reducing the number of collision checks between objects.
-This can be done via pre sorting the objects into structures. 
-There are again several existing methods for this.
-The most important property for this kind of sorting is, that the objects have all the same order of magnitude in size.
-This is the case, as we will see in \dummy.
-\\[\baselineskip]
-% 
-The structure of an octree is the following (see \cref{fig:octreeCube}, \cref{alg:pseudocode_octree}).
-% 
-\begin{lstfloat}[!tb]
-\lstset{style=python}
-\begin{lstlisting}[]
-def octree(volume, objects):
-    if num(objects) > threshold:
-        sub_volumes, sub_objects = split(volume, objects)
-        leafs = [octree(v,o) for v,o in zip(sub_volumes, sub_objets)]
-    else:
-        leafs=[objects]
-    return leafs
-\end{lstlisting}
-\caption{Pseudocode of octree}
-\label{alg:pseudocode_octree}
-\end{lstfloat}
-% 
-With this rather simple recursive algorithm the volume ill be split automatically into a \texttt{tree}.
-% 
-The careful part is the splitting process of the volume and objects.
-When a volume is split into sub\_volumes a single object can be part of several (up to eight) sub\_volumes (see 2d example \cref{fig:octreeCube}).
-Only if placed in such a way can the leafs be computed separately.
-\footnote{This also means for a high overlapping coefficient a lot of branches can be filled with the same objects, hence the calculation time increases exponentially}.
-The value of the threshold has to be manually set.
-Usually the value is around \SI{20}{} objects.
-It is a fight between the number of leafs (which grows $\mathcal{O}(\mathit{level})$ and the calculation inside a leaf.
-The main goals is of course to have a minimal number of calculations.
-However this depends heavily on the values of different parameters such as the \segLength or \segRadius (which will be explained later \dummy).
-% 
-\comment{
-This allows a rather quick reduction of number of objects to be checked.
-Therefore the last step with an $\mathcal{O}(n^2)$ is not that painful anymore.
-To speed up the calculation, The objects itself wont be duplicated.
-All objects are contained in a \textit{std::vector} of cones.
-Only the indices will be transfered to the next recursive function call.
-Also the objects are traversed in order, so that the maximum speed from the cpu cache can be exploited. \\
-% 
-The minimal subvolume size is choses to $\sqrt{3} \times \max(\mathit{object\_size})$.
-Smaller then this would only replicated subvolumes with identical contained objects.
-The maximum number of objects is set to \num{25} objects \footnote{found suitable by testing.}. \\
-% 
-The building of the tree is don in parallel.
-Up to 8 threads are spawned to check for the first 8 subvolumes, which objects are contained.
-The next level can again spawn upto 8 new threads (64 in total).
-This compensates if a the objects are not uniformly distributed.
-After the first level, each cpu thread traverses it branch.
-At each leaf a list ob object is returned containing the object of the leaf.
-All list are collected for the collision checking test.
-This collected list is in the next step fully parallel traversed to check for collisions.
-}
-% 
-% 
+%
 \section{World/main}
 % 
 \begin{lstfloat}[!tb]
@@ -541,6 +369,194 @@ However, to allow the user as much control as possible, the user has to loop ove
 After each step the user is now capable to change parameter, fiber trajectories, add/rm fibers from the \say{scene}, and so on.
 Additionally the user can decide, if a fully solved volume is necesarry and for example break out of the solving loop before this step. 
 \footnote{Later this behaviour will be researched}
+%  
+\todo{this is already main loop}
+\comment{
+For this purpose an algorithm was developed and publish in \cite{matuschke2019}.
+It is at this point integrated inside the \ac{fastPLI} package under \pymodule{fastpli.model.solver}.
+It structure consist out of the following parts:
+\begin{itemize}
+\item main loop
+\begin{itemize}
+    \item octree separation
+    \item collision detection
+\end{itemize}
+\item moving objects
+\item apply boundary conditions
+\end{itemize}
+% 
+Before we go into the details of the algorithm, first we descipe the collision detection approuch.
+}
+\subsection{Collision Detection}
+% 
+% 
+\begin{lstfloat}[!t]
+\resizebox{\textwidth}{!}{
+% \begin{sideways}
+\begin{tabular}{|cc|cc|}
+\hline
+\hspace{1em} &
+\begin{minipage}{0.4625\textwidth}
+\lstinputlisting[style=cpp,basicstyle=\scriptsize\ttfamily,firstline=1,lastline=32]{code/collision_detection.py}
+\end{minipage} & \hspace{1em} &
+\begin{minipage}{0.4625\textwidth}
+\lstinputlisting[style=cpp,basicstyle=\scriptsize\ttfamily,firstline=33,lastline=64,firstnumber=35]{code/collision_detection.py}
+\end{minipage} \\
+\hline
+\end{tabular}
+% \end{sideways}
+}
+\caption{Collision detection between two capsule objects. The distance as well as the points on the line segments is returned. A collision takes place if the distance is smaller than $\mathit{cone_a.r}+\mathit{cone_b.r} > d$.}
+\end{lstfloat}
+% 
+As it was described in \cref{sec:nerve_fiber_representation} nerve fibers are represent as a chain of spheres, where two neighbouring spheres are combined into a fiber segment forming a \ac{CC} (see \cref{fig:conical_capsule}).
+% 
+Therefore an algorithm is necessary to calculate a collision between to \ac{CC}.
+This is a non trivial task and very computational heavy.
+Therefore it was decided to change the object representation for the collision detection part from a \ac{CC} to a Capsule (see \cref{fig:conical_capsule}).
+This means, that the radii of the \ac{CC} grows for both spheres to the max of both spheres $r_{\mathit{capsule}} = \mathrm{max}(r_0, r_1)$.
+This has the disadvantage, that at intersections between two neighbouring cones the radii can be actually smaller, however if the change in radii is not rapid, it is justifiable.
+\\
+The algorithm to detect collisions between two capsules is shown in \cref{alg:pseudocodeCollisionDetection}\footnote{\href{https://www.john.geek.nz/2009/03/code-shortest-distance-between-any-two-line-segments/}{https://www.john.geek.nz/2009/03/code-shortest-distance-between-any-two-line-segments/}}.
+% 
+It works on the principle, that it calculates the shortest distance between two line segments.
+Three cases can occur.
+First, the shortest distance is a line perpendicular two both line segments of the cones.
+Second, only one line segment is perpendicular to the shortest distance line.
+The other has an anchor point at either his first or second point.
+Third, the shortest distance is a connection between one of the point of both cones.
+For cones a collision is present if the distance is smaller than the sum of both radii.
+\\
+% 
+The Problem occurring with \ac{CC} is, that since the radii changes along its axis, it is not simply the case anymore, that the shortest distance between two line segments is also the shortest distance between a 3d \ac{CC}.
+% 
+The calculation of the collision check is expected to be the most costly function at this point.
+Therefore the next logical step is to reduce the amount of calculations as far as possible.
+A first bruteforce collision check would check each object with all remaining objects.
+The next object has then to be checkt with $n-1$ and so on.
+This leads to a computational cost of $\mathcal{O}(n^{2})$ which is for large n not acceptable.
+To reduce the amount of collision checks have to be done an octree structure is used.
+% 
+\subsection{octree}
+% 
+\begin{figure}[!t]
+    \centering
+    \subcaptionbox{\label{fig:octreeCube}octree}[.3\textwidth]{
+    \def\tikzheight{0.6\textwidth}
+    \inputtikz{gfx/model/oct_tree}}
+    \subcaptionbox{\label{fig:octreeCube}collision 2d}[.65\textwidth]{
+    \def\tikzheight{0.6\textwidth}
+    \inputtikz[true]{gfx/model/collision_tree}}
+	\caption{}
+	\label{fig:octree}
+\end{figure}
+% 
+A \say{tree} is a data structure consist of a collection of \say{nodes}, which are connected to each other.
+One node is conected toward the \say{root} with a single parent node and towards the \say{branches} with several \say{children} or \say{branches}.
+The nodes at the end of a branch are refered to as \say{leafs} wich contain the data.
+Traversing a evenly distributed tree has the advantage of beeing of computational cost of $\mathcal{O}(\log(n))$.
+\\
+% 
+An octree is a special kind of tree where each node contain 8 children.
+This allows to divide \ie a cubic volume into 8 equal cutted subcubes.
+An example is shown in \cref{fig:octreeCube}.
+This means that the length of the volumes shrink exponentialy with $(1/2)^\mathit{level}$.
+% 
+An octree can be implemented in different ways.
+Here a recursion function was chosen (see \cref{alg:pseudocode_octree}).
+% 
+\begin{lstfloat}[!tb]
+\lstset{style=python}
+\begin{lstlisting}[]
+def octree(volume, objects):
+    if num(objects) > threshold:
+        sub_volumes, sub_objects = split(volume, objects)
+        leafs = [octree(v,o) for v,o in zip(sub_volumes, sub_objets)]
+    else:
+        leafs=[objects]
+    return leafs
+\end{lstlisting}
+\caption{Pseudocode of octree}
+\label{alg:pseudocode_octree}
+\end{lstfloat}
+% 
+A recursen means in computation, that a function (can) call itself.
+The idea is the following.
+At the beginning, all objects have to be sorted into the 8 leafs of the current node (if the number ob objects is not trivially to low).
+That means, for every object it has to be checked, if a collision with one or more of the eight sub volumes occurse.
+However since this means already a large amount of checking, the checking function should be as fast as possible, even if it is not the most precise one.
+For this purpose only the \ac{aabb} of the object is checked if it collides with the leafs volume (which is its own \ac{aabb}).
+A collision detection of two \ac{aabb}s is rather simple (see \cref{alg:collisionAABB}).
+% 
+\begin{lstfloat}[!tb]
+\lstset{style=python}
+\begin{lstlisting}[]
+def aabb_collide(aabb_0, aabb_1):
+   for i in dim(aabb):
+      if aabb_0[i].min > aabb_1[i].max:
+         return false
+      if aabb_0[i].max < aabb_1[i].min:
+         return false
+   return true
+\end{lstlisting}
+\caption{Pseudocode collision between aabbs.}
+\label{alg:collisionAABB}
+\end{lstfloat}
+% 
+When all objects are sorted into their corresponding subvolumes, the recursion can begin.
+Since a branch can be considered as a node, the same algorithm can be performed again, until a desired limit(eigenschaft) is reached.
+This means, that again the current (sub) volume is, if necesarry, split into eight sub volumes again, and the objects of the current (sub) volume are sorted into the new ones.
+The recursion means also, that the next function call has to have a list of the current objects.
+This means either, that the objects have to be copied, whis is costly, or they have to be moved, depending on the structure is also costly and they have to be moved back, or a pointer or index has to be traversed.
+The last option was choisen because speed test in the implementation process showed it to be the fastest aprouch.
+The next question is, which is the desired goal to stop the branching process and characterise the node as a leaf.
+\\[\baselineskip]
+% 
+The desired goal is of course to reduce the computational time.
+However, these means that for complex models and therefore unique octrees there is no simple answer.
+The usually way is to have the following three limitations
+First, limit the maximal level of nodes, and second, limit the maximal number of objects in a node.
+% 
+\paragraph{Number of level limitation:}
+The maximum number of levels is limited usually in the following two ways.
+First if a threshold of maximum level counter is reached.
+Since the sice of the volume shrinks exponentional, the maximum can be calculated if the algorithm expectes vertaned inputs.
+However usually this is further limited by limiting the minimal size of the volume.
+For a range of objects sizes this means, that it makes only sense to split into the next volume, if the object sizes are at least two times smaller than the current volume.
+Otherwise all eight sub volumes would contain all objects and the number of collision checks increases by eight.
+Since all objects are expeted to be in the same order of size, a global value can be set by initial measure the maximal \ac{aabb} and setting the threshold two times higher.
+This automatic limits the maximum number of levels that can be reached.
+% 
+\paragraph{Minimal number of objects:}
+The minimal number of objects in a node to start the final collision algorithm has to be measured since it depends on the actual instructions run on the system.
+It is a draw between running less computational costly high acuracy collision checks and running at least 8 more branches.
+In the development phase of the algorithm this value was choisen to be \comment{20}\dummy.
+Of course the use can change this hard coded value if necesarry. 
+\\[\baselineskip]
+% 
+\paragraph{OpenMP:}
+To be able to use multiple \ac{CPUs} \ac{OpenMP} is used. With an structer like an octree the seperation process into the new sub volumes can already be parallelised up to eight corse.
+However, since all eight cores have to share the objects list data, even if only reading, it is not possible to get a speed up up to eight times from this point on (see later speedup measurements \dummy).
+% 
+Now the objects are sorted into a octree structure.
+The next task is to calculate the collision checking algorithms of each leaf and to return a list of objects to perform the necesarry instructions to ... the collisions.
+It was found during the development phase, that returning firstly only the indicies pairs of collidiong opjects (\eg object id $i$ and $j$) into a unique \texttt{std::vector}.
+Unique in this case means that there should not be multiple entries of the same item so that the next instructions wont be called multiple times on the same objects.
+The \texttt{std::vector} has the advantage, hat is data lies linearly in the memory.
+Modern \ac{CPUs} have a build in method which is called \say{prefetcher}.
+Data has to be prepaired and send from the \ac{RAM} to the \ac{CPU}s cache.
+This costs time.
+The cache has the main advantage that is is very fast.
+However becaus it has to be very close to the \ac{CPU} (at modern systems already because of the speed of light) its size is very limited (usually around \si{\mega\byte}).
+The prefetcher is a genius instruction which not only gets the item at adress $i$ in the memory, but also the item next to it ($i+1$ or $i-1$ depening on the algorithm).
+Since many algorithms treverse arrays, usually the next item to be calculeted on is the next (or before) item.
+Therefore the amount of time needed to copy the data to the cache ind prepairing it is reduced.
+It can be shown that for linear operations on the memory the prefetcher reduces the time so much, that it looks like the \ac{CPU} has an infinit chache.
+% 
+Many optimization were done in this way in this theses because of this "Eigenschaft". 
+\\
+% 
+The next task is to run the seperation process.
 % 
 % 
 % 
