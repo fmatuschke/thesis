@@ -106,7 +106,7 @@ A second feature is that the chosen geometries have to be fast calculable for co
 % 
 \begin{figure}[!t]
     \centering
-    \setlength{\tikzwidth}{0.75\textwidth}
+    \setlength{\tikzwidth}{0.5\textwidth}
     \inputtikz[true]{gfx/model/capsule}
 	\caption{schematic capsule}
 	\label{fig:conical_capsule}
@@ -458,7 +458,7 @@ Traversing a evenly distributed tree has the advantage of beeing of computationa
 \\
 % 
 An octree is a special kind of tree where each node contain 8 children.
-This allows to divide \ie a cubic volume into 8 equal cutted subcubes.
+This allows to divide \ie a cubic volume into eight equal cutted subcubes.
 An example is shown in \cref{fig:octreeCube}.
 This means that the length of the volumes shrink exponentialy with $(1/2)^\mathit{level}$.
 % 
@@ -485,19 +485,19 @@ The idea is the following.
 At the beginning, all objects have to be sorted into the 8 leafs of the current node (if the number ob objects is not trivially to low).
 That means, for every object it has to be checked, if a collision with one or more of the eight sub volumes occurse.
 However since this means already a large amount of checking, the checking function should be as fast as possible, even if it is not the most precise one.
-For this purpose only the \ac{aabb} of the object is checked if it collides with the leafs volume (which is its own \ac{aabb}).
-A collision detection of two \ac{aabb}s is rather simple (see \cref{alg:collisionAABB}).
+For this purpose only the \ac{AABB} of the object is checked if it collides with the leafs volume (which is its own \ac{AABB}).
+A collision detection of two \ac{AABB}s is rather simple (see \cref{alg:collisionAABB}).
 % 
 \begin{lstfloat}[!tb]
 \lstset{style=python}
 \begin{lstlisting}[]
 def aabb_collide(aabb_0, aabb_1):
-   for i in dim(aabb):
+  for i in dim(aabb):
       if aabb_0[i].min > aabb_1[i].max:
          return false
       if aabb_0[i].max < aabb_1[i].min:
          return false
-   return true
+  return true
 \end{lstlisting}
 \caption{Pseudocode collision between aabbs.}
 \label{alg:collisionAABB}
@@ -524,7 +524,7 @@ Since the sice of the volume shrinks exponentional, the maximum can be calculate
 However usually this is further limited by limiting the minimal size of the volume.
 For a range of objects sizes this means, that it makes only sense to split into the next volume, if the object sizes are at least two times smaller than the current volume.
 Otherwise all eight sub volumes would contain all objects and the number of collision checks increases by eight.
-Since all objects are expeted to be in the same order of size, a global value can be set by initial measure the maximal \ac{aabb} and setting the threshold two times higher.
+Since all objects are expeted to be in the same order of size, a global value can be set by initial measure the maximal \ac{AABB} and setting the threshold two times higher.
 This automatic limits the maximum number of levels that can be reached.
 % 
 \paragraph{Minimal number of objects:}
@@ -535,7 +535,7 @@ Of course the use can change this hard coded value if necesarry.
 \\[\baselineskip]
 % 
 \paragraph{OpenMP:}
-To be able to use multiple \ac{CPUs} \ac{OpenMP} is used. With an structer like an octree the seperation process into the new sub volumes can already be parallelised up to eight corse.
+To be able to use multiple \ac{CPU}s \openmp is used. With an structer like an octree the seperation process into the new sub volumes can already be parallelised up to eight corse.
 However, since all eight cores have to share the objects list data, even if only reading, it is not possible to get a speed up up to eight times from this point on (see later speedup measurements \dummy).
 % 
 Now the objects are sorted into a octree structure.
@@ -543,11 +543,11 @@ The next task is to calculate the collision checking algorithms of each leaf and
 It was found during the development phase, that returning firstly only the indicies pairs of collidiong opjects (\eg object id $i$ and $j$) into a unique \texttt{std::vector}.
 Unique in this case means that there should not be multiple entries of the same item so that the next instructions wont be called multiple times on the same objects.
 The \texttt{std::vector} has the advantage, hat is data lies linearly in the memory.
-Modern \ac{CPUs} have a build in method which is called \say{prefetcher}.
+Modern \ac{CPU}s have a build in method which is called \say{prefetcher}.
 Data has to be prepaired and send from the \ac{RAM} to the \ac{CPU}s cache.
 This costs time.
 The cache has the main advantage that is is very fast.
-However becaus it has to be very close to the \ac{CPU} (at modern systems already because of the speed of light) its size is very limited (usually around \si{\mega\byte}).
+However because it has to be very close to the \ac{CPU} (at modern systems already because of the speed of light) its size is very limited (usually around $\si{\mega\byte}$).
 The prefetcher is a genius instruction which not only gets the item at adress $i$ in the memory, but also the item next to it ($i+1$ or $i-1$ depening on the algorithm).
 Since many algorithms treverse arrays, usually the next item to be calculeted on is the next (or before) item.
 Therefore the amount of time needed to copy the data to the cache ind prepairing it is reduced.
