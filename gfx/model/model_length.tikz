@@ -12,7 +12,7 @@
 \def\rndSeed{40}
 % 
 \begin{scope}[shift={(0,0)}]
- \node[] at (-2.5,-0.5) {$\segLength = \SI{1}{\arbitraryunit}$};
+ \node[] at (-2.5,-0.5) {$\segLength = \SI{1}{\mathit{L_0}}$};
 % 
 \def\rndSeed{40}
 % 
@@ -77,7 +77,7 @@
 % 
 % 
 \begin{scope}[shift={(0,-2)}]
- \node[] at (-2.5,-0.5) {$\segLength = \SI{2}{\arbitraryunit}$};
+ \node[] at (-2.5,-0.5) {$\segLength = \SI{2}{\mathit{L_0}}$};
 % 
 \def\rndSeed{40}
 % 
@@ -156,7 +156,7 @@
 % 
 % 
 \begin{scope}[shift={(0,-4)}]
- \node[] at (-2.5,-0.5) {$\segLength = \SI{4}{\arbitraryunit}$};
+ \node[] at (-2.5,-0.5) {$\segLength = \SI{4}{\mathit{L_0}}$};
 % 
 \def\rndSeed{40}
 % 
