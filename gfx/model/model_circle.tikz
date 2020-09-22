@@ -1,15 +1,7 @@
 \begin{tikzsize}{\tikzwidth}{\tikzheight}
 \begin{tikzpicture}[scale=\tikzscale]
 % 
-\path[] (-1.75,-1.75)--(1.75,1.75);
-% 
-% \draw[] ({-cos(60)},{sin(60)}) circle (0.1);
-% \draw[] ({-cos(60)},{-sin(60)}) circle (0.1);
-% \draw[] ({1},{0}) circle (0.1);
-% % 
-% \draw[red] ({0.5*cos(60)},{0.5*sin(60)}) circle (0.1);
-% \draw[red] ({0.5*cos(60)},{0.5*-sin(60)}) circle (0.1);
-% \draw[red] ({-0.5},{0}) circle (0.1);
+\path[] (-1.6,-1.6)--(1.6,1.6);
 % 
 \begin{scope}[shift={({0.5*cos(60)},{0.5*sin(60)})}, rotate=150]
 \node[cylinder, draw, shape aspect=.5, 
@@ -23,19 +15,15 @@
   minimum height=1cm, cylinder body fill=green!25, opacity=0.5,
   scale=2, transform shape] at (-0.15,0) {}; %, rotate=-135
 \end{scope}
-\begin{scope}[shift={({0.5*cos(60)},{0.5*-sin(60)})}, rotate=30]
-\node[cylinder, draw, shape aspect=.5, 
-  cylinder uses custom fill, cylinder end fill=green!50, 
-  minimum height=1cm, cylinder body fill=green!25, opacity=0.5,
-  scale=2, transform shape] at (-0.15,0) {};
-\end{scope}
 % 
-\draw[fill=black] ({-cos(60)},{sin(60)}) circle (0.05);
-\draw[fill=black] ({-cos(60)},{-sin(60)}) circle (0.05);
-\draw[fill=black] ({1},{0}) circle (0.05);
+\draw[fill=black] ({-cos(60)},{sin(60)}) circle (0.05) node[left, xshift=-1em] {$\vv{p}_{i}$};
+\draw[fill=black] ({-cos(60)},{-sin(60)}) circle (0.05) node[below, yshift=-1em] {$\vv{p}_{i-1}$};
+\draw[fill=black] ({1},{0}) circle (0.05) node[right, xshift=1em] {$\vv{p}_{i+1}$};
 \draw[dashed] (0,0) circle (1);
-\draw [] ({cos(210)},{sin(210)}) -- (-1.5,-0.8) node[anchor=east, pos=1] {$fiber\_traj$};
-\draw [] ({cos(120)},{sin(120)}) -- (-1.5,0.8) node[anchor=east, pos=1] {$fiber\_point$};
+% \draw [] ({cos(210)},{sin(210)}) -- (-1.25,-0.8) node[anchor=east, pos=1] {$bending\_radius$};
+\draw [] ({cos(60)},{sin(60)}) -- (0,1.42) node[anchor=east, pos=1] {$bending\_radius$};
+\draw [] (0,0) -- ({cos(-30)},{sin(-30)}) node[below, sloped, pos=0.5] {$r_{\mathit{bend}}$};
+% \draw [] ({cos(120)},{sin(120)}) -- (-1.5,0.8) node[anchor=east, pos=1] {$fiber\_point$};
 % 
 \end{tikzpicture}
 \end{tikzsize}
