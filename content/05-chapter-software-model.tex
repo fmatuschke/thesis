@@ -98,7 +98,7 @@ A second feature is that the chosen geometries have to be fast calculable for co
 \begin{figure}[!t]
     \centering
     \setlength{\tikzwidth}{0.75\textwidth}
-    \inputtikz[true]{gfx/model/conical_capsule_bb}
+    \inputtikz{gfx/model/conical_capsule_bb}
     \tikzset{external/export=false}
 	\caption[cc and co]{\Acf{CC}: \raisebox{.25em}{\tikz \draw[black](0,0)--(0.275,0);} \ac{CC}, \raisebox{.25em}{\tikz \draw[blue, dash pattern=on 2.5pt off 2.5pt](0,0)--(0.275,0);} capsule, \raisebox{.25em}{\tikz \draw[red, dash pattern={on 2.5pt off 0.9pt on 0.42pt off 0.9pt}](0,0)--(0.275,0);} bounding box}
 	\label{fig:conical_capsule}
@@ -107,7 +107,7 @@ A second feature is that the chosen geometries have to be fast calculable for co
 \begin{figure}[!t]
     \centering
     \setlength{\tikzwidth}{0.5\textwidth}
-    \inputtikz[true]{gfx/model/capsule}
+    \inputtikz{gfx/model/capsule}
 	\caption{schematic capsule}
 	\label{fig:conical}
 \end{figure}
@@ -123,7 +123,7 @@ This has the advantage, that between two fiber segments there is a smooth transi
     \setlength{\tikzwidth}{0.85\textwidth}
     \centering
     % \tikzset{external/export next=false}
-    \inputtikz[true]{gfx/model/fiber_model}
+    \inputtikz{gfx/model/fiber_model}
 	\caption[]{representation of nerve fiber from a list of spheres $\left\{ \vv{p}_i=(x_i,y_i,z_i), r_i \mid i \in \{0,1,N_{\mathit{points}}-1\}\right\}$.}
 	\label{fig:fiberReb}
 \end{figure}
@@ -206,7 +206,7 @@ For a circle this is done via:
     \subcaptionbox{\label{fig:torsionCurve}Torsion along trajectory. The 
 	\textcolor{green!50!black}{binormal}, \textcolor{red}{principal normal} vector and \textcolor{blue}{tangent vector} vector at each step are also the coordinate system for the seed points.}[.5\textwidth-4.3pt]{
     \setlength{\tikzwidth}{0.5\textwidth - 4.3pt}
-    \inputtikz[true]{gfx/model/min_torsion}}\hfill
+    \inputtikz{gfx/model/min_torsion}}\hfill
     % 
     \subcaptionbox{\label{fig:filledBundle}Bending fiber along trajectory $f(t) = \left(\cos(t), \sin(t), 0 \right)$}[.5\textwidth-4.3pt]{
     \resizebox{.5\textwidth-4.3pt}{!}{
@@ -451,7 +451,7 @@ To reduce the amount of collision checks have to be done an octree structure is 
     \inputtikz{gfx/model/oct_tree}}
     \subcaptionbox{\label{fig:collision2D}collision 2d}[.65\textwidth]{
     \def\tikzheight{0.6\textwidth}
-    \inputtikz[true]{gfx/model/collision_tree}}
+    \inputtikz{gfx/model/collision_tree}}
 	\caption{}
 	\label{fig:octree}
 \end{figure}
@@ -591,9 +591,9 @@ It was decided to use the following two conditions:
     \centering
     \setlength{\tikzwidth}{.45\textwidth}
     \subcaptionbox{merge}[.49\textwidth]{
-    \inputtikz[true]{gfx/model/model_merge}}
+    \inputtikz{gfx/model/model_merge}}
     \subcaptionbox{split}[.49\textwidth]{
-    \inputtikz[true]{gfx/model/model_split}}
+    \inputtikz{gfx/model/model_split}}
 	\caption{Length control for fibers $f$ and $f'$}
 	\label{fig:merge_split}
 \end{figure}
@@ -603,7 +603,7 @@ It was decided to use the following two conditions:
     \centering
     \setlength{\tikzwidth}{0.75\textwidth}
     \tikzset{external/export next=false}
-    \inputtikz[true]{gfx/model/model_length}
+    \inputtikz{gfx/model/model_length}
 	\caption{different fiber segment length.}
 	\label{fig:model_length}
 \end{figure}
