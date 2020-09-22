@@ -360,8 +360,6 @@ def step():
 \caption{Pseudocode of the main algorithm: The function \texttt{FiberCollisionSolver} will loop the followings four steps, which are run in parallel, until no collision are detected anymore: 1. build an \texttt{octree} from all objects, 2. \texttt{Collision Detection}, 3. \texttt{Seperation Process} and 4. \texttt{Shape Control}.}
 \label{alg:pseudocode_solver}
 \end{lstfloat}
-
-\todo{direct after solver module section}
 % 
 The world/main function is the \say{loop} which is executed to calculate for e collision, moving the objects, and checking the boundary collision (see \cref{alg:pseudocode_solver}).
 The looping procedure is similar to a game loop or visualisation loop (\eg opengl main loop).
@@ -369,8 +367,7 @@ However, to allow the user as much control as possible, the user has to loop ove
 After each step the user is now capable to change parameter, fiber trajectories, add/rm fibers from the \say{scene}, and so on.
 Additionally the user can decide, if a fully solved volume is necesarry and for example break out of the solving loop before this step. 
 \footnote{Later this behaviour will be researched}
-%  
-\todo{this is already main loop}
+%
 \comment{
 For this purpose an algorithm was developed and publish in \cite{matuschke2019}.
 It is at this point integrated inside the \ac{fastPLI} package under \pymodule{fastpli.model.solver}.
@@ -428,6 +425,13 @@ The other has an anchor point at either his first or second point.
 Third, the shortest distance is a connection between one of the point of both cones.
 For cones a collision is present if the distance is smaller than the sum of both radii.
 \\
+\begin{figure}[!t]
+    \centering
+    \def\tikzheight{0.5\textwidth}
+    \inputtikz{gfx/model/shortest_dist}
+	\caption{shortest distance}
+	\label{fig:shortDist}
+\end{figure}
 % 
 The Problem occurring with \ac{CC} is, that since the radii changes along its axis, it is not simply the case anymore, that the shortest distance between two line segments is also the shortest distance between a 3d \ac{CC}.
 % 
@@ -565,8 +569,8 @@ With the resulting list of colliding object pairs the next task is to run the se
 % 
 \newpage
 %
-\section{Movement Phase}
-To solve a collision between two \ac{CC} objects the two points of each object will be moved.
+\section{Seperation Phase}
+To solve a collision between two \ac{CC} objects each point of both object have to be moved.
 The movement will be parallel to the smallest distance line between both objects.
 To take the 3d placement into consideration, the movement is weighted with the distance of the the individual points to the intersection point with the smallest distance line (see fig \dummy).
 This will result in a more controlled movement if \eg only the two endings of the fiber objects collide each other. \\

@@ -1,0 +1,49 @@
+\begin{tikzsize}{\tikzwidth}{\tikzheight}
+\begin{tikzpicture}[scale=\tikzscale]
+\begin{scope}[rotate=-30]
+\pgfmathsetmacro{\h}{6}
+% 
+\draw[thick] (0,0) -- (0,\h);
+\draw[thick] (4,0) -- (4,\h);
+% 
+\draw[thick] (4,\h) arc (0:-180:2 and 1);
+\draw[thick, dashed] (4,\h) arc (0:180:2 and 1);
+\draw[thick] (4,\h) arc (0:180:2 and 1.75);
+% 
+\draw[thick] (4,0) arc (0:-180:2 and 1);
+\draw[thick, dashed] (4,0) arc (0:180:2 and 1); 
+\draw[thick] (4,0) arc (0:-180:2 and 1.75);
+% 
+\draw[dashed] (2,0) -- (2,\h);
+\coordinate (A) at (2,3);
+\coordinate (AA) at (2,3.4);
+\end{scope}
+% 
+\begin{scope}[shift={(2,2)}, rotate around x=30, yscale=0.6, rotate around y=20, rotate=70]
+\pgfmathsetmacro{\h}{6}
+% 
+\draw[thick] (0,0) -- (0,\h);
+\draw[thick] (4,0) -- (4,\h);
+% 
+\draw[thick] (4,\h) arc (0:-180:2 and 1);
+\draw[thick, dashed] (4,\h) arc (0:180:2 and 1);
+\draw[thick] (4,\h) arc (0:180:2 and 1.75);
+% 
+\draw[thick] (4,0) arc (0:-180:2 and 1);
+\draw[thick, dashed] (4,0) arc (0:180:2 and 1); 
+\draw[thick] (4,0) arc (0:-180:2 and 1.75);
+% 
+\draw[dashed] (2,0) -- (2,\h);
+\coordinate (B) at (2,3);
+\coordinate (BB) at (2,2.4);
+\end{scope}
+% 
+\draw[red, thick, ->] (A) -- (B) node[pos=0.18, below, sloped] {$\vv{d}_{\mathit{short}}$};
+\node[below right] at (A) {$\vv{p}_a$};
+\node[below left] at (B) {$\vv{p}_b$};
+% \draw (A) arc (0:90:1);
+\draw[] (AA) to[bend right] ($(A)!0.075!(B)$);
+\draw[] ($(B)!0.1!(A)$) to[bend right] (BB);
+% 
+\end{tikzpicture}
+\end{tikzsize}

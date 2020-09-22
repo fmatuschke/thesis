@@ -39,10 +39,11 @@
 \addplot3 [no marks, blue] coordinates {({sin(\a)*\rr},{cos(\a)*\rr},{0}) ({sin(\a)*\rr},{cos(\a)*\rr},{\h})};
 }
 % 
-\draw[red, ->] (axis cs:{0},{0},{0}) -- (axis cs:{2},{0},{0}) node[left] {$x$};
-\draw[red, ->] (axis cs:{0},{0},{0}) -- (axis cs:{0},{2},{0}) node[right, below] {$y$};
-\draw[red, ->] (axis cs:{0},{0},{0}) -- (axis cs:{0},{0},{2}) node[right, midway] {$z$};
+\draw[red, ->] (axis cs:{0},{0},{0}) -- (axis cs:{2*cos(150+90)},{2*sin(150+90)},{0}) node[right] {$y$};
+\draw[red, ->] (axis cs:{0},{0},{0}) -- (axis cs:{2*cos(150)},{2*sin(150)},{0}) node[below] {$x$};
+\draw[red, ->] (axis cs:{0},{0},{0}) -- (axis cs:{0},{0},{2}) node[left, midway] {$z$};
 % 
 \end{axis}
+\path[] (2,0.5) -- (2,2.5);
 \end{tikzpicture}
 \end{tikzsize}
