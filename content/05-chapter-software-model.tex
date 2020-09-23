@@ -531,24 +531,29 @@ Of course the user can change this hard coded value if necessary.
 With the resulting list of colliding object pairs, the next task is to perform the separation process.
 %
 \section{Separation Phase}
-To solve a collision between two \ac{CC} objects each point $\vv{p}_i$ and $\vv{p}_{i+1}$ of both object have to be moved.
-The movement will be parallel to the smallest distance line between both objects.
-To take the 3d placement into consideration, the movement is weighted with the distance of the the individual points to the intersection point with the smallest distance line (see \cref{fig:shortDist}):
+To solve a collision between two \ac{CC} objects, each point $\vv{p}_i$ and $\vv{p}_{i+1}$ of both objects must be moved.
+The movement is parallel to the smallest distance line between the two objects.
+To take the 3D placement into account, the movement is weighted by the distance of each point from the intersection with the smallest distance line (see \cref{fig:shortDist}):
 \begin{align}
 v_i = \dummy
 \end{align}
-This will result in a more controlled movement if \eg only the two endings of the fiber objects collide each other.
+This leads to a more controlled movement if \eg only the two ends of the fiber objects collide.
 \\
 % 
-The movement is saved as sum from all collisions for each object in a velocity \textit{std::vector}.
+TThe motion is stored as the sum of all collisions for each object in a velocity \texttt{std::vector}.
 The maximum speed is limited to a value of $v_{\max} = 0.1 \times \min(\mathit{object radius})$.
-This is limitit two to two needed properties. First it prevents movement through another object and second, it smooths the movement and therefore the maximum reachable density of the resulting models.
-However this also means the solving process takes more time.
+This is limited due to two required properties. First, it prevents movement through another object and second, it smoothes the movement and thus the maximum achievable density of the resulting models.
+However, this also means that the solution process takes more time.
+\\
+% 
+A special case are the end points.
+These are only allowed to move along the surface perpendicular to the first / last segment line.
+This prevents the fibers from growing into infinity.
 % 
 \section{Shape Control}\label{chap5:ShapeControl}
-The movement of individual points can results in a distorted fiber model, \eg two points move very far apart from each other.
-Therefore boundary conditions have to be specified.
-It was decided to use the following two conditions:
+The movement of individual points can lead to a distorted fiber model, \eg two points move very far apart.
+Therefore boundary conditions must be specified.
+It was decided to use the following two conditions.
 % 
 \subsection{Mean segment length}
 % 
@@ -573,8 +578,8 @@ It was decided to use the following two conditions:
 	\label{fig:model_length}
 \end{figure}
 % 
-The mean segment length corresponds to the distance between the two points of an object.
-If the length of the segment becomes to small/big, the points inside a fiber corresponding to the object are merged/split resulting in one point less/adding a new point.
+The mean segment length is the distance between the two points of an object.
+If the segment length becomes too small/large, the points within a fiber corresponding to the object are merged/separated, adding one point less/one new point.
 The minimum/maximum distance of the object is set to $d_{\min} = \frac{2}{3} \overline{d}, d_{\max} = \frac{4}{3}\overline{d}$.
 Therefore the mean value of the object is:
 \begin{align}
@@ -601,11 +606,11 @@ r_{new} = \frac{r_{i} + r_{i+1}}{2},\enspace
 	\label{fig:model_circle}
 \end{figure}
 % 
-The bending radius is defined as the circular radius corresponding to the circle defined by three neighbouring points $\vv{p}_{i-1}, \vv{p}_{i}, \vv{p}_{i+1}$ (see \cref{fig:boundaryLength}). 
-The limit is set as a minimal radius of $r_{\min}$.
-If a point $p_{i}$ in a fiber fall below this value, the three points will be moved.
-$p_{i-1},p_{i+1}$ will be moved \dummy and $p_{i}$ opposite.
-Therefore the curvature will be reduced.
+The bending radius is defined as the circle radius corresponding to the circle defined by three adjacent points $\vv{p}_{i-1}, \vv{p}_{i}, \vv{p}_{i+1}$ (see \cref{fig:boundaryLength}). 
+The limit is set as a minimum radius of $r_{\min}$.
+If a $p_{i}$ point in a fiber falls below this value, the three points are moved.
+$p_{i-1},p_{i+1}$ is moved \dummy and $p_{i}$ opposite each other.
+This reduces the curvature.
 \\
 % 
 \section{Movement Phase}
