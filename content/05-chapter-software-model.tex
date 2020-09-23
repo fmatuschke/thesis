@@ -628,21 +628,24 @@ Therefore the value is to 0 so that after each step the velocity is reset to $\v
 Among other techniques, two main optimisation techniques are used to speed up the process.
 % 
 \paragraph{Memory alignment}
-The \texttt{std::vector} has the advantage, hat is data lies linearly in the memory.
-Modern \ac{CPU}s have a build in method which is called \say{prefetcher}.
-Data has to be prepared and send from the \ac{RAM} to the \ac{CPU}s cache.
-This costs time.
-The cache has the main advantage that is is very fast.
-However because it has to be very close to the \ac{CPU} (at modern systems already because of the speed of light) its size is very limited (usually around $\si{\mega\byte}$).
-The prefetcher is a genius instruction which not only gets the item at address $i$ in the memory, but also the item next to it ($i+1$ or $i-1$ depending on the algorithm).
-Since many algorithms traverse arrays, usually the next item to be calculated on is the next (or before) item.
-Therefore the amount of time needed to copy the data to the cache ind preparing it is reduced.
-It can be shown that for linear operations on the memory the prefetcher reduces the time so much, that it behaves like the \ac{CPU} has an infinite cache.
+The \texttt{std::vector} has the advantage that the data is linear in memory.
+Modern \ac{CPU}s have a built-in method called \say{ache prefetching}.
+Data must be prepared and sent from the \ac{RAM} to the cache of the \ac{CPU}s.
+This takes time.
+The main advantage of the cache is that it is very fast.
+However, since it must be very close to the \ac{CPU}, the cache is very fast. (in modern systems the speed is already limited by the speed of light) its size is very limited (usually around $\si{\mega\byte}$).
+The prefetcher is an ingenious directive, which not only obtains the item at address $i$ in memory, but also the item next to it ($i+1$ or $i-1$ depending on the algorithm).
+Since many algorithms pass through arrays, the next item to be calculated is usually the next (or previous) item.
+Therefore the time needed to copy the data into the cache and prepare it is reduced.
+It can be shown that for linear operations on the memory the cache prefetcher reduces the time so much that it behaves as if the \ac{CPU} has an infinite cache.
 % 
 \paragraph{OpenMP}
 % 
 To be able to use several \ac{CPU}s, \openmp is used. With a structure like an octree, the separation process into the new partial volumes can already be parallelized up to eight cores.
-However, since all eight cores have to share the object list data, even if they only read, it is no longer possible to achieve up to eight times the speed from this point on (see later acceleration measurements \dummy).
+However, since all eight cores have to share the object list data, even if they are only reading, it is no longer possible from this point on to achieve up to eight times the speed (see later acceleration measurements \dummy).
+\\
+% 
+Furthermore, all instructions containing loops, such as the separation phase, are also parallelized with \openmp.
 % 
 % 
 % 
