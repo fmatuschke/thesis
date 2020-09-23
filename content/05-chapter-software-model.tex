@@ -358,35 +358,23 @@ def step():
 
     return colliding_list.is_empty()
 \end{lstlisting}
-\caption{Pseudocode of the main algorithm: The function \texttt{FiberCollisionSolver} will loop the followings four steps, which are run in parallel, until no collision are detected anymore: 1. build an \texttt{octree} from all objects, 2. \texttt{Collision Detection}, 3. \texttt{Seperation Process} and 4. \texttt{Shape Control}. \todo{check algorithm, spetially movement phase}}
+\caption{Pseudocode of the \texttt{main} algorithm: The function \texttt{FiberCollisionSolver} will loop the followings four steps, which are run in parallel, until no collision are detected anymore: 1. build an \texttt{octree} from all objects, 2. \texttt{Collision Detection}, 3. \texttt{Seperation Process} and 4. \texttt{Shape Control}. \todo{check algorithm, spetially movement phase}}
 \label{alg:pseudocode_solver}
 \end{lstfloat}
 % 
-The world/main function is the \say{loop} which is executed to calculate for e collision, moving the objects, and checking the boundary collision (see \cref{alg:pseudocode_solver}).
-The looping procedure is similar to a game loop or visualisation loop (\eg opengl main loop).
-However, to allow the user as much control as possible, the user has to loop over each step in thir own loop, or use one of the examples inside the packages.
-After each step the user is now capable to change parameter, fiber trajectories, add/rm fibers from the \say{scene}, and so on.
-Additionally the user can decide, if a fully solved volume is necesarry and for example break out of the solving loop before this step. 
-\footnote{Later this behaviour will be researched}
+The world/main function is the \texttt{loop}, which is executed to calculate the collision, move the objects and check the boundary collision (see \cref{alg:pseudocode_solver}).
+The loop procedure is similar to a game loop or a visualization loop (\eg in glut \texttt{glutMainLoop}).
+But to give the user as much control as possible, the user has to go through each step in a separate loop like in one of the examples within the packages.
+After each step, the user is now able to change parameters, fiber paths, add/remove fibers from the \say{scene} and so on.
+In addition, the user can decide whether a completely solved volume is required and e.g. break out of the loop before the final step (see \dummy{}).
 %
-\comment{
-For this purpose an algorithm was developed and publish in \cite{matuschke2019}.
-It is at this point integrated inside the \ac{fastPLI} package under \pymodule{fastpli.model.solver}.
-It structure consist out of the following parts:
-\begin{itemize}[nosep]
-\item main loop
-\begin{itemize}[nosep]
-    \item octree separation
-    \item collision detection
-\end{itemize}
-\item moving objects
-\item apply boundary conditions
-\end{itemize}
+A stand alone Algorithm is already publish in \cite{matuschke2019}.
+At this point it is integrated inside the \ac{fastPLI} package under \pymodule{fastpli.model.solver}.
+Before going into the details of the algorithm, the collision detection algorithm is described.
 % 
-Before we go into the details of the algorithm, first we descipe the collision detection approuch.
-}
+% 
+% 
 \subsection{Collision Detection}
-% 
 % 
 \begin{lstfloat}[!t]
 \resizebox{\textwidth}{!}{
@@ -408,23 +396,23 @@ Before we go into the details of the algorithm, first we descipe the collision d
 \label{pseudocodeCollisionDetection}
 \end{lstfloat}
 % 
-As it was described in \cref{sec:nerve_fiber_representation} nerve fibers are represent as a chain of spheres, where two neighbouring spheres are combined into a fiber segment forming a \ac{CC} (see \cref{fig:conical_capsule}).
+As described in \cref{sec:nerve_fiber_representation}, nerve fibers are represented as a chain of spheres, where two adjacent spheres are combined to form a fiber segment that has a \ac{CC} (see \cref{fig:conical_capsule}).
 % 
-Therefore an algorithm is necessary to calculate a collision between to \ac{CC}.
-This is a non trivial task and very computational heavy.
-Therefore it was decided to change the object representation for the collision detection part from a \ac{CC} to a Capsule (see \cref{fig:conical_capsule}).
-This means, that the radii of the \ac{CC} grows for both spheres to the max of both spheres $r_{\mathit{capsule}} = \mathrm{max}(r_0, r_1)$.
-This has the disadvantage, that at intersections between two neighbouring cones the radii can be actually smaller, however if the change in radii is not rapid, it is justifiable.
+Therefore an algorithm is necessary to calculate a collision between up to \ac{CC}.
+This is a non-trivial task and very computationally intensive.
+Therefore it was decided to change the object representation for the collision detection part from a \ac{CC} to a capsule (see \cref{fig:conical_capsule}).
+This means that the radii of the \ac{CC} for both spheres grow to the maximum of the two spheres $r_{\mathit{capsule}} = \mathrm{max}(r_0, r_1)$.
+This has the disadvantage that at intersections of two adjacent cones the radii can actually be smaller, but if the change in radius is not rapid, this is acceptable.
 \\
-The algorithm to detect collisions between two capsules is shown in \cref{alg:pseudocodeCollisionDetection}\footnote{\href{https://www.john.geek.nz/2009/03/code-shortest-distance-between-any-two-line-segments/}{https://www.john.geek.nz/2009/03/code-shortest-distance-between-any-two-line-segments/}}.
+The algorithm for detecting collisions between two capsules is shown in \cref{alg:pseudocodeCollisionDetection}\footnote{\href{https://www.john.geek.nz/2009/03/code-shortest-distance-between-any-two-line-segments/}{https://www.john.geek.nz/2009/03/code-shortest-distance-between-any-two-line-segments/}}.
 % 
-It works on the principle, that it calculates the shortest distance between two line segments.
+It works on the principle that it calculates the shortest distance between two line segments.
 Three cases can occur.
-First, the shortest distance is a line perpendicular two both line segments of the cones.
-Second, only one line segment is perpendicular to the shortest distance line.
-The other has an anchor point at either his first or second point.
-Third, the shortest distance is a connection between one of the point of both cones.
-For cones a collision is present if the distance is smaller than the sum of both radii.
+First, the shortest distance is a line perpendicular to two of the two line segments of the cones.
+Second, only one line segment is perpendicular to the line of the shortest distance.
+The other has an anchor point at either its first or second point.
+Third, the shortest distance is a connection between one of the points of the two cones.
+For cones, a collision occurs when the distance is smaller than the sum of the two radii.
 \\
 \begin{figure}[!t]
     \centering
@@ -434,16 +422,18 @@ For cones a collision is present if the distance is smaller than the sum of both
 	\label{fig:shortDist}
 \end{figure}
 % 
-The Problem occurring with \ac{CC} is, that since the radii changes along its axis, it is not simply the case anymore, that the shortest distance between two line segments is also the shortest distance between a 3d \ac{CC}.
+The problem with \ac{CC} is that as the radii along its axis change, it is no longer simply the case that the shortest distance between two line segments is also the shortest distance between a 3d \ac{CC}.
+To do this, the lines on both object surfaces containing the closed point must be found.
+However, this is very complex to calculate and was therefore rejected.
 % 
-The calculation of the collision check is expected to be the most costly function at this point.
-Therefore the next logical step is to reduce the amount of calculations as far as possible.
-A first bruteforce collision check would check each object with all remaining objects.
-The next object has then to be checkt with $n-1$ and so on.
-This leads to a computational cost of $\mathcal{O}(n^{2})$ which is for large n not acceptable.
-To reduce the amount of collision checks have to be done an octree structure is used.
+It is expected that the calculation of the collision check will be the most costly function at this point.
+Therefore the next logical step is to reduce the scope of the calculations as much as possible.
+A first brute force collision check would check each object with all other objects.
+The next object must then be checked with $n-1$ etc.
+This results in a calculation effort of $\mathcal{O}(n^{2})$, which is not acceptable for large n.
+To reduce the number of collision checks to be performed, an octree structure is used.
 % 
-\subsection{octree}
+\subsection{Octree}
 % 
 \begin{figure}[!t]
     \centering
@@ -457,17 +447,16 @@ To reduce the amount of collision checks have to be done an octree structure is 
 	\label{fig:octree}
 \end{figure}
 % 
-A \say{tree} is a data structure consist of a collection of \say{nodes}, which are connected to each other.
-One node is conected toward the \say{root} with a single parent node and towards the \say{branches} with several \say{children} or \say{branches}.
-The nodes at the end of a branch are refered to as \say{leafs} wich contain the data.
-Traversing a evenly distributed tree has the advantage of beeing of computational cost of $\mathcal{O}(\log(n))$.
+A \texttt{tree} is a data structure that consists of a collection of Say nodes that are connected to each other.
+A node is connected in the direction of the \texttt{root} with a single parent node and in the direction of the \texttt{branches} with several \texttt{children} or \texttt{branches}.
+The nodes at the end of a branch are called \texttt{leaves}, which contain the data.
+Traversing an evenly distributed tree has the advantage that the cost of the traversing it is $\mathcal{O}(\log(n))$.
 \\
 % 
-An octree is a special kind of tree where each node contain 8 children.
-This allows to divide \ie a cubic volume into eight equal cutted subcubes.
+An octree is a special kind of tree where each node contains eight children.
+This allows to divide a cubic volume into eight equally cut sub-cubes.
 An example is shown in \cref{fig:octreeCube}.
-This means that the length of the volumes shrink exponentialy with $(1/2)^\mathit{level}$.
-% 
+This means that the length of the volumes shrinks exponentially with $(1/2)^\mathit{level}$.
 An octree can be implemented in different ways.
 Here a recursion function was chosen (see \cref{alg:pseudocode_octree}).
 % 
@@ -486,12 +475,12 @@ def octree(volume, objects):
 \label{alg:pseudocode_octree}
 \end{lstfloat}
 % 
-A recursen means in computation, that a function (can) call itself.
+In computer science, a recursive function means that a function (can) call itself.
 The idea is the following.
-At the beginning, all objects have to be sorted into the 8 leafs of the current node (if the number ob objects is not trivially to low).
-That means, for every object it has to be checked, if a collision with one or more of the eight sub volumes occurse.
-However since this means already a large amount of checking, the checking function should be as fast as possible, even if it is not the most precise one.
-For this purpose only the \ac{AABB} of the object is checked if it collides with the leafs volume (which is its own \ac{AABB}) (see \cref{fig:collision2D}).
+At the beginning all objects must be sorted into the eight leaves of the current node (if the number of objects is not trivial to small).
+This means that for each object it must be checked whether there is a collision with one or more of the eight leaves.
+However, since this already means a high test effort, the test function should be as fast as possible, usually approximate.
+For this purpose only the \ac{AABB} of the object is checked if it collides with the sheet volume (which is its own \ac{AABB}) (see \cref{fig:collision2D}).
 A collision detection of two \ac{AABB}s is rather simple (see \cref{alg:collisionAABB}).
 % 
 \begin{lstfloat}[!tb]
@@ -509,58 +498,37 @@ def aabb_collide(aabb_0, aabb_1):
 \label{alg:collisionAABB}
 \end{lstfloat}
 % 
-When all objects are sorted into their corresponding subvolumes, the recursion can begin.
-Since a branch can be considered as a node, the same algorithm can be performed again, until a desired limit(eigenschaft) is reached.
-This means, that again the current (sub) volume is, if necesarry, split into eight sub volumes again, and the objects of the current (sub) volume are sorted into the new ones.
-The recursion means also, that the next function call has to have a list of the current objects.
-This means either, that the objects have to be copied, whis is costly, or they have to be moved, depending on the structure is also costly and they have to be moved back, or a pointer or index has to be traversed.
-The last option was choisen because speed test in the implementation process showed it to be the fastest aprouch.
-The next question is, which is the desired goal to stop the branching process and characterise the node as a leaf.
+When all objects are sorted into their respective sub-volumes, recursion can begin.
+Since a branch can be considered a node, the same algorithm can be executed again until a desired limit or property is reached.
+This means that the current (sub-)volume will be split into eight sub-volumes again, if necessary, and the objects of the current (sub-)volume will be sorted into the new sub-volumes.
+The recursion also means that the next function call must contain a list of the current objects.
+This means either that the objects must be copied, which is time-consuming, or they must be moved, which is also time-consuming depending on the structure, and they must be moved back, or a pointer or index must be traversed.
+The last option was chosen because it proved to be the fastest in a speed test during the implementation process.
+The next question is, which is the desired goal to stop the branching process and characterize the node as a leaf.
 \\[\baselineskip]
 % 
-The desired goal is of course to reduce the computational time.
-However, these means that for complex models and therefore unique octrees there is no simple answer.
-The usually way is to have the following three limitations
-First, limit the maximal level of nodes, and second, limit the maximal number of objects in a node.
+The goal is of course the reduction of the computing time.
+However, this means that there is no simple answer for complex models and thus for unique octrees.
+The usual way is to have the three following restrictions.
 % 
 \paragraph{Number of level limitation:}
-The maximum number of levels is limited usually in the following two ways.
-First if a threshold of maximum level counter is reached.
-Since the sice of the volume shrinks exponentional, the maximum can be calculated if the algorithm expectes vertaned inputs.
-However usually this is further limited by limiting the minimal size of the volume.
-For a range of objects sizes this means, that it makes only sense to split into the next volume, if the object sizes are at least two times smaller than the current volume.
-Otherwise all eight sub volumes would contain all objects and the number of collision checks increases by eight.
-Since all objects are expected to be in the same order of size, a global value can be set by initial measure the maximal \ac{AABB} and setting the threshold two times higher.
-This automatic limits the maximum number of levels that can be reached.
+The maximum number of steps is usually limited in the following two ways.
+First, when a threshold value for the counter of the maximum number of levels is reached.
+Since the since of the volume shrinks exponential, this is a good way to control the amount of calculations.
+Usually, however, this is further limited by limiting the minimum size of the volume.
+For a number of object sizes, this means that splitting into the next volume only makes sense if the object sizes are at least twice smaller than the current volume.
+Otherwise, all eight volumes would contain all objects and the number of collision checks would increase by eight.
+Since all objects are expected to be in the same order of magnitude, a global value can be set by first measuring the maximum \ac{AABB} and setting the threshold twice higher.
+This automatically limits the maximum number of levels that can be reached.
 % 
 \paragraph{Minimal number of objects:}
-The minimal number of objects in a node to start the final collision algorithm has to be measured since it depends on the actual instructions run on the system.
-It is a draw between running less computational costly high accuracy collision checks and running at least 8 more branches.
-In the development phase of the algorithm this value was chosen to be \comment{20}\dummy.
-Of course the use can change this hard coded value if necessary. 
+The optimal minimum number of objects in a node to start the final collision algorithm must be measured, since it depends on the instructions actually executed on the system.
+It is a trade-off between executing less computationally intensive, costly and highly accurate collision checks and executing at least eight more branches.
+In the development phase of the algorithm this value was chosen as \comment{20}\dummy.
+Of course the user can change this hard coded value if necessary. 
+\\
 % 
-\paragraph{OpenMP:}
-To be able to use multiple \ac{CPU}s \openmp is used. With an structure like an octree the separation process into the new sub volumes can already be parallelised up to eight cores.
-However, since all eight cores have to share the objects list data, even if only reading, it is not possible to get a speed up up to eight times from this point on (see later speedup measurements \dummy).
-\todo{check paragraph name, maybe a optimization section}
-% 
-Now the objects are sorted into a octree structure.
-The next task is to calculate the collision checking algorithms of each leaf and to return a list of objects to perform the necessary instructions to ... the collisions.
-It was found during the development phase, that returning firstly only the indices pairs of colliding objects (\eg object id $i$ and $j$) into a unique \texttt{std::vector}.
-Unique in this case means that there should not be multiple entries of the same item so that the next instructions wont be called multiple times on the same objects.
-% The \texttt{std::vector} has the advantage, hat is data lies linearly in the memory.
-% Modern \ac{CPU}s have a build in method which is called \say{prefetcher}.
-% Data has to be prepared and send from the \ac{RAM} to the \ac{CPU}s cache.
-% This costs time.
-% The cache has the main advantage that is is very fast.
-% However because it has to be very close to the \ac{CPU} (at modern systems already because of the speed of light) its size is very limited (usually around $\si{\mega\byte}$).
-% The prefetcher is a genius instruction which not only gets the item at address $i$ in the memory, but also the item next to it ($i+1$ or $i-1$ depending on the algorithm).
-% Since many algorithms traverse arrays, usually the next item to be calculated on is the next (or before) item.
-% Therefore the amount of time needed to copy the data to the cache ind preparing it is reduced.
-% It can be shown that for linear operations on the memory the prefetcher reduces the time so much, that it behaves like the \ac{CPU} has an infinite cache.
-\\[\baselineskip]
-% 
-With the resulting list of colliding object pairs the next task is to run the separation process.
+With the resulting list of colliding object pairs, the next task is to perform the separation process.
 %
 \section{Separation Phase}
 To solve a collision between two \ac{CC} objects each point $\vv{p}_i$ and $\vv{p}_{i+1}$ of both object have to be moved.
@@ -668,9 +636,8 @@ It can be shown that for linear operations on the memory the prefetcher reduces 
 % 
 \paragraph{OpenMP}
 % 
-Since exept the octree phase all other instructions are independent, there commands can be processed in parallel. Here \openmp is used to build simply but effective \texttt{for}-loop parallelisms.
-% 
-Forther possible optimizations will be discussed in \dummy{}.
+To be able to use several \ac{CPU}s, \openmp is used. With a structure like an octree, the separation process into the new partial volumes can already be parallelized up to eight cores.
+However, since all eight cores have to share the object list data, even if they only read, it is no longer possible to achieve up to eight times the speed from this point on (see later acceleration measurements \dummy).
 % 
 % 
 % 
