@@ -6,53 +6,50 @@
 % 
 \section{Introduction}
 % 
-Nerve fiber modelling is a unique technique, which is commonly used in simulations like \ac{dMRI} simulations \dummy.
-However most \ac{dMRI} simulation tools use fast simulation techniques as \dummy.
-This take analytical function describing the fiber paths to be capable of calculation very fast.
-% 
-Current algorithm are capable of using spline functions for individual nerve fiber or fiber bundles \cite{Balls2009}.
-% 
-In resent time with the improvement of computer power and algorithms, simulators like monte carlo are used \dummy.
-These simulate the random walk of individual water molecules inside a volume.
+Nerve fiber modelling is a unique technique often used in simulations like \ac{dMRI}-simulations \dummy.
+However, most \ac{dMRI} simulation tools use fast numeric simulation techniques like \dummy.
+These use analytical functions to describe the fiber paths in order to calculate very quickly and accurately.
+Current algorithms are able to use spline functions for single nerve fibers or fiber bundles \cite{Balls2009}.
+Recently, with the improvement of computer performance and algorithms, simulation techniques such as Monte Carlo \dummy are used.
+These simulate the random movement of individual water molecules within a volume.
 If the target are \ac{WM} phantoms nerve fibers can be modelled as a meshed tube.
-These have the advantage, that any complex configuration can be modelled \eg beeding fibers \dummy.
+If \ac{WM} phantoms are involved, nerve fibers can be modeled as a meshed tube.
+These have the advantage that any complex configuration can be modeled \eg fibers \dummy.
 \\
 %
-However, a disadvantage is that for resanable model sizes ( in \ac{dMRI} a voxel is about \SIrange{100}{1000}{\micro\meter} order, size nerve fiber about \SI{1}{\micro\meter}), the number of triangles of the mesh is quite big [\dummy].
-A further challange is to build a geometrical configuration, where no nerve fibers are overlapping each other (\ie  take the same volume in space).
+A disadvantage, however, is that realistic model sizes require individual nerve fiber models in the order of \SI{1}{\micro\meter}.
+Experimental \ac{dMRI} system have voxel sizes in the range of \SIrange{100}{1000}{\micro\meter}.
+This means that for a signal the number of triangles in the mesh is quite large [\dummy].
+Another challenge is to build a geometric configuration where no nerve fibers overlap (\ie, take the same volume in space).
 \\
 % 
-Collision detection takes a major role here.
-While other simulations which are using geometrical models (\eg protein folding \dummy) can use something like electric potentials, where the actually geometrical boundary is not that important.
-As we will we in the case of \ac{3D-PLI} (and \ac{dMRI}) it is different.
-\\
+Collision detection plays an important role in this process.
+While other simulations that use geometric models (\eg protein folding \dummy) may use something like electric potentials where the actual geometric boundary is not so important.
+In the case of \ac{3D-PLI} (and \ac{dMRI}) it will be shown to be different.
+\\[\baselineskip]
 % 
-Inside this chapter the following procedures are described:
+The following procedures are described in this chapter:
 \begin{itemize}[nosep]
-    \item geometrical representation of nerve fiber (bundles)
-    \item user friendly building methods
-    \item ensure collisionless models
+    \item geometric representation of the nerve fiber (bundle)
+    \item user-friendly construction methods of models
+    \item how to ensure collision-free models
 \end{itemize}
 % 
-\paragraph{\ac{fastPLI} modules}
-% 
-The python sub package \pymodule{fastpli.model} consist of two modules:
+All described methods can be used within the package \pymodule{fastpli.model}:
 % 
 \begin{itemize}[nosep]
     \item \pymodule{sandbox}
     \item \pymodule{solver}
 \end{itemize}
 % 
-The first module \pymodule{sandbox} enherets routines to help the user build simple geometric configurations.
-Ths can then be used to build more complex structres of nerve fiber bundles.
-The second module \pymodule{solver} contains a \CXX framework wrapped inside a \python class to ensure easier user \ac{API} (see \dummy).
+The first module \pymodule{sandbox} contains routines that help the user to create simple geometric configurations.
+These can then be used to build more complex structures of nerve fiber bundles.
+The second module \pymodule{solver} contains a \CXX framework wrapped in a \python class to allow the user to build simpler \ac{API} (see \dummy).
 \\
 % 
-First it has to be decided, how to represent a nerve fiber (bundle).
+First, however, it must be decided how a nerve fiber and a nerve bundle is to be represented.
 % 
-\vspace{5pt}
-\hrule
-\vspace{6pt}
+% 
 % 
 \section{Nerve fiber representation}
 \label{sec:nerve_fiber_representation}
@@ -375,9 +372,9 @@ Additionally the user can decide, if a fully solved volume is necesarry and for 
 For this purpose an algorithm was developed and publish in \cite{matuschke2019}.
 It is at this point integrated inside the \ac{fastPLI} package under \pymodule{fastpli.model.solver}.
 It structure consist out of the following parts:
-\begin{itemize}
+\begin{itemize}[nosep]
 \item main loop
-\begin{itemize}
+\begin{itemize}[nosep]
     \item octree separation
     \item collision detection
 \end{itemize}
