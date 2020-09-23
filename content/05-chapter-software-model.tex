@@ -304,27 +304,31 @@ Here the seed points are located in the $xy$ plane (see \cref{fig:cylParallel}).
 % 
 % 
 % 
-\section{Solving fiber collisions/Solver module}
+\section{Solving fiber collisions}
 \label{sec:Solver}
 % 
-One major drawback of all previous methods is, that the user has to make sure, that his fiber trajectory let enough space, so that the fibers (trajectories + radii) have enough space and do not intersect with each other.
-This maybe achievable for fibers with constant radii along there path for the upper construction methods.
-However, for more slightly more complex structures, \eg crossing fiber bundles, this already is nearly impossible.
-Therefore a method was developed, which takes the user defined fibers and checks them for collisions.
-When a collision is found it will try to move the colliding objects slightly apart, so that the collision will start to disappear.
+A major disadvantage of all previous methods is that the user has to make sure that his fiber path leaves enough space so that the fibers (paths + radii) have enough room and do not overlap.
+This can be achieved for fibers with constant radii along their course in the upper designs.
+However, for more complex structures, \eg crossing fiber bundles, this is almost impossible.
+Therefore, a method has been developed that takes the user-defined fibers and checks for collisions.
+If a collision is found, it will try to move the colliding objects slightly apart so that the collision starts to disappear.
 \\
 % 
-This concept is rather simple.
-The algorithm for collision detection are already used for century's especially in gaming world, where a character \eg should not be capable to walk through a wall. Another wide verity of algorithms are used in visualisation. There usually the problem is to detect the collision between a light path (mathematical line) and a object, usually a triangular surface. Also known as ray tracing.
-The drawback in both fields is, that computing time is limited.
-Therefore there algorithms use shortcuts as close to reality as possible but still produce usable data. \eg in computer games it is very important to have a stable frame rate of above $\num{60}$ \ac{fps} (or with the current technology even above 120 \ac{fps}).
-However it does not matter much for the gaming experience, if the character can walk slightly into a object or not.
-Therefore an object like a stone could be approximated by a sphere(s).
+This concept is quite simple.
+Collision detection algorithms have been used for centuries, especially in the gaming environment where \eg a character should not be able to walk through a wall.
+Another wide range of algorithms is used in visualization.
+There the problem is usually to detect the collision between a light path (mathematical line) and an object, usually a triangular surface.
+Also known as raytracing.
+The disadvantage in both areas is that the computing time is limited.
+Therefore, algorithms there use abbreviations that come as close as possible to reality, but still produce useful data \eg in computer games it is very important to have a stable framerate of over $\num{60}$ \ac{fps} (or with current technology even over 120 \ac{fps}).
+For the gaming experience, however, it is not important whether the character can easily run against an object or not.
+Therefore an object could be approximated like a stone by a sphere(s).
 \\
 %
-However since here we want to generate as good as possible large, complex and precise models, a new algorithm has to be developed which is specialised in this subject.
+But since here the goal is to create models that are as large, complex and precise as possible, a new algorithm has to be developed that is specialized in this task.
 % 
 \\[\baselineskip]
+\todo{next sections as subsections?}
 %
 \section{World/main}
 % 
