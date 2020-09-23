@@ -55,43 +55,39 @@ First, however, it must be decided how a nerve fiber and a nerve bundle is to be
 \label{sec:nerve_fiber_representation}
 % 
 As described in \cref{sec:fiberArchitecture} \ac{WM} consist of densely packed bundles of nerve fibers.
-Nerve fibers themselves consist of axons surrounded by myelin (see \cref{fig:nerveFiber}).
+Nerve fibers in \ac{WM} consist of axons surrounded by myelin (see \cref{fig:nerveFiber}).
 The myelin is further split into several parts separated by Ranvier nodes to allow the spread of an action potential.
-In the central nervous system, myelin is produced by olegodendrocytes, which are cells that wrap with their little \say{arms} around axons that are locally adjacent.
+In the central nervous system, myelin is produced by olegodendrocytes, i.e. cells that wrap their small \say{arms} around locally adjacent axons.
 The wrapping substance is called myelin and consists mainly of a lipid (fat) substance.
+The question is how this tissue can be modelled and represented.
 \\
 % 
-The Question is, how to model/represent this tissue?
-\\
-% 
-The main focus of the modelling is to ensure that these models can be used for \ac{3D-PLI} simulations.
+The main focus of modeling is to ensure that these models can be used for \ac{3D-PLI} simulations.
 However, it is reasonable that these models can also be used for other tasks \eg for \ac{dMRI} simulations.
 % 
-\paragraph{What does usable mean?}
-Since we are working with simulations, the computer algorithms have to be capable of getting an input for a geometrical fiber architecture.
-An obvious candidate are used in visualisation techniques.
-There, objects of different shape have to be represented so that the computer algorithm can use the representation to visualise an image of the objects.
+\paragraph{What means usable?}
+Since simulations are used, computer algorithms must be able to receive an input for a geometric fiber architecture.
+One possibility is to look into the field of visualization techniques.
+There, objects of different shapes have to be represented so that the computer algorithm can use the representation to visualize an image of the objects.
 An obvious model for a fiber is a tube.
-Usually objects like tubes are visualised with a surrounding mesh.
-Meshes have the advantage, that a texture can be applied to the surface.
-However since meshes consist usually of 3d triangles, this means for a good approximation a lot of points, \ie data/memory, to represent a model.
-But even in the visualisation domain tubes are not modeld from inital meshes.
-They get initialised by a trajectory, which then gets an additional radius to get a volumetric representation.
-This representation can be used as well for nerve fiber tissue.
+Usually objects like tubes are visualized with a surrounding mesh.
+Meshes have the advantage that a texture can be applied to the surface.
+However, since meshes usually consist of 3D triangles, this means a lot of points, \ie data and memory, for a good approximation to represent a model.
+But even in the visualization domain tubes are not modeled from initial meshes.
+They are initialized by a trajectory, which is then given an additional radius to obtain a volumetric representation.
+This representation can also be used for nerve fiber tissue.
 \\
 % 
-Already existing techniques \dummy allow to represent such structures as analytical mathematical objects \eg a parametric function $f(t) -> (x,y,z,r)$ with $(x,y,z)$ as 3d coordinate and $r$ as radius.
-This however limitates the use drastically, since the user has to know in advance a parametic function.
-For trivial structures like parallel straight fibers this is quite easy and fast to process.
-However, if we want to model more complicated tissues like densly interwoven fiber bundles, the task is nearly impossible.
-One possibility would be to do not care, if two fibers overlap, \ie take the same space in volume.
-This is done \eg for simulations like protein folding, where the main interaction comes from electro dynamical forces.
-However it could already be shown, that for more complicated \ac{3D-PLI} simulations like \dummy non overlapping fibers are essential.
+Existing simulation techniques \dummy allow to represent such structures as analytical mathematical objects \eg a parametric function $f(t) -> (x,y,z,r)$ with $(x,y,z)$ as 3D coordinate and $r$ as radius.
+However, this drastically restricts the use of this function, since the user needs to know a parametric function in advance.
+For trivial structures such as parallel straight fibers this is quite easy and fast to process.
+However, if we want to model more complicated fabrics like densely interwoven fiber bundles, the task is almost impossible.
+One possibility would be not to care if two fibers overlap, \ie occupy the same space in the volume.
+This is done \eg for simulations such as protein folding, where the main interaction comes from electrodynamic forces.
+However, it has already been shown that for more complicated \ac{3D-PLI} Simulations non-overlapping fibers are essential [\dummy].
 \\
 % 
-For this reason it was decided to represent fibers in such a way that it will later be able to easily check for colliding objects, \ie nerve fibers.
-This means that the number of objects have to be small, with respect to the approximation of the desired level of detail.
-A second feature is that the chosen geometries have to be fast calculable for collision detection with each other.
+For this reason, it was decided to represent fibers in such a way that they can be easily checked later whether colliding objects, \ie nerve fibers, are present.
 \\
 % 
 \begin{figure}[!t]
@@ -111,24 +107,24 @@ A second feature is that the chosen geometries have to be fast calculable for co
 	\label{fig:conical}
 \end{figure}
 % 
-To allow a arbitrary level of detail, a tube like fiber can be split into a number of segments.
-Each tube segment can than be approximated as a cylindrical object.
-However since the radius of the nerve fibers can vary quite a bit along its path, the tube (or fiber segments) has also to be allowed to change.
-If this is done via a cylindrical approximation, the boundry effects between two segments can lead to unusually appearance/behaviour.
-It was therefore decided to approximate a fiber segment with a \ac{CC}, a 3d cone on which end spheres with the required radii are attached (see \cref{fig:conical_capsule}).
-This has the advantage, that between two fiber segments there is a smooth transition along the fiber axis (for a reasonable curvature) (see \cref{fig:fiberReb, fig:model_length}).
+In order to enable any level of detail, a tubular fiber can be divided into a number of segments.
+Each tubular segment can then be approximated as a cylindrical object.
+However, since the radius of the nerve fibers can vary quite a lot along their path, the tube (or the fiber segments) must also be allowed to change.
+If this is done via a cylindrical approximation, the boundary effects between two segments can lead to an unusual appearance/behavior.
+It was therefore decided to approximate a fiber segment with a \ac{CC}, a 3D cone on which end spheres with the required radii are attached (see \cref{fig:conical_capsule}).
+This has the advantage that between two fiber segments there is a smooth transition along the fiber axis (for reasonable curvature) (see \cref{fig:fiberReb, fig:model_length}).
 % 
 \begin{figure}[!t]
     \setlength{\tikzwidth}{0.85\textwidth}
     \centering
     % \tikzset{external/export next=false}
     \inputtikz{gfx/model/fiber_model}
-	\caption[]{representation of nerve fiber from a list of spheres $\left\{ \vv{p}_i=(x_i,y_i,z_i), r_i \mid i \in \{0,1,N_{\mathit{points}}-1\}\right\}$.}
+	\caption[]{Representation of a nerve fiber from a list of spheres.}
 	\label{fig:fiberReb}
 \end{figure}
 % 
 A nerve fiber can therefore be represented as a list of 4d coordinates (or spheres) (see \cref{fig:fiberReb}):
-% 
+% z
 \begin{align}
 \begin{split}
 % \vv{p} &= (x_i,y_i,z_i) \mid x,y,z \in \mathbb{R}\\
