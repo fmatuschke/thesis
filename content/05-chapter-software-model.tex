@@ -651,20 +651,19 @@ Furthermore, all instructions containing loops, such as the separation phase, ar
 % 
 \section{Visualization}
 % 
-A visualization tool was written to visualise the fiber configuration.
-This allows the user a direct feedback (\eg after each step) to tune the initial fiber configuration or boundry condition.
+A visualization tool was written to visualize the fiber configuration.
+This enables the user to get a direct feedback (\eg after each step) to adjust the initial fiber configuration or boundary condition.
 It is written in \CXX and \textit{OpenGL2} \cite{isocpp, khronos}.
 \\
 % 
-\ac{CC} are rendered via the \textit{gluCylinder} function provided by the \textit{GLUT} library for a rough but fast visualisation.
-This represents also the capsule representation and therefore the collisin checking algorithm.
-For a more precise and correct visualisation of the \ac{CC}, a self implemented rendering was developed.
-The first step in visualising surfaces ist usually to generate a \textit{mesh} of triangles.
-A texture can then be places on each triangle.
-Since here fibers have to be visualized the mesh is created as a tube surrounding the fiber with circular ordered points around a fiber point $p_i$ (see \cref{fig:mesh}).
-From the mesh, vertices and normals are calculated, which are then finally rendered with a color inside a lighted scene.
-\\
-To allow a visualization of the inner axon, the myelin hull can also be transperented rendert.
+\ac{CC} are rendered using the \textit{gluCylinder} function provided by the \textit{GLUT} library for a rough but fast visualization.
+Representation and thus the collision check algorithm is also provided by the \textit{GLUT} library for a rough but fast visualization.
+For a more accurate and correct visualization of the \ac{CC} a self-implemented rendering was developed.
+The first step in the visualization of surfaces is usually the generation of a \textit{mesh} from triangles.
+A texture can then be placed on each triangle.
+Since fibers have to be visualized here, the mesh is generated as a tube surrounding the fiber with circularly arranged points around a fiber point $p_i$ (see \cref{fig:mesh}).
+Corner points and normals are calculated from the mesh, which are finally rendered with a color within an illuminated scene.
+To enable visualization of the inner axon, the myelin sheath can also be rendered.
 
 % 
 \begin{figure}[!t]
@@ -678,16 +677,21 @@ To allow a visualization of the inner axon, the myelin hull can also be transper
 \end{figure}
 % 
 \paragraph{Disclamer}
-This is a fast written approuch. Current rendering software uses far more advanced techniques. However this rendering algorithm was written to be a light integrated tool using only the aditional \textit{OpenGL 2} and \textit{GLUT} library.\\
+This is a fast implementation.
+Current rendering software uses much more advanced techniques.
+However, this rendering algorithm has been written to be an easily integrated tool that uses only the additional \textit{OpenGL 2} and \textit{GLUT} library.
+\\
 % 
-A more advanced Tool, the \textit{FAConstructor} \cite{Reuter2019} was written by Andr'e Reuter in the context of this doctorial research. This tool uses \textit{OpenGl 3} and additional calculation on the GPU. Additionally it allows user defined interactive technique to create a 3d fiber model.
+A more advanced tool, the \textit{FAConstructor} \cite{Reuter2019} was written by Andr'e Reuter as part of this doctoral thesis.
+This tool uses \textit{OpenGl 3} and additional calculation on the GPU. Additionally it allows a user-defined interactive technique to create a 3D fiber model.
+The next step is already carried out with the visualization tool by Nicole Schubert called \textit{PLIVis}.
 % 
 \subsection{Wall opacity}
 % 
-To be able to visualise axons inside myelinated nerve fibers, the visualisated vertices have to be at elast transperent.
-This however needs sorted vertices along the z axis (viewer/camera? axis).
-This is nedded, so that a the vertives will be rendert from back to front, allowing take the abosrbint path of the light into account.
-This process takes quite some time, therefore only feasible for taking screenshoots at this time (see fig \dummy).
+In order to visualize axons within the myelinated nerve fibers, the visualized vertices must be transparent.
+However, this requires sorted vertices along the z-axis (viewer/camera? axis).
+This is needed because vertices are rendered from back to front, so that the absorption of light can be taken into account.
+This process takes a certain amount of time and is therefore only recommended for screen shoots at this time (see \dummy).
 % 
 % 
 \vspace{5pt}
