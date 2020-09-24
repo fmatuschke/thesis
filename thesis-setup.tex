@@ -6,7 +6,6 @@
 \PassOptionsToPackage{utf8}{inputenc}
 \usepackage{inputenc}
 %
-%
 % **************************************************
 % Information and Commands for Reuse
 % **************************************************
@@ -391,8 +390,8 @@
 % **************************************************
 \newcommand{\comment}[1]{\textcolor{gray}{\textit{#1}}}
 \newcommand{\dummy}{\textcolor{ProcessBlue}{\textbf{\{...\}}}}
-% \usepackage{soul}
-% \newcommand{\todo}[1]{%
+\usepackage{soul}
+% \newcommand{\itodo}[1]{%
 %   \begingroup
 %   \sethlcolor{ProcessBlue}%
 %   \hl{#1}%
@@ -402,12 +401,13 @@
 \usepackage[colorinlistoftodos,prependcaption,textsize=footnotesize]{todonotes}
 \presetkeys%
     {todonotes}%
-    {inline,backgroundcolor=ProcessBlue}{}
+    {backgroundcolor=ProcessBlue, linecolor=ProcessBlue, tickmarkheight=1ex}{} %
 \makeatletter
 \renewcommand{\todo}[2][]{%
-  \tikzset{external/export next=false}\@todo[#1]{#2}%
+  \tikzset{external/export=false}\@todo[#1]{#2}%
 }
 \makeatother
+\newcommand{\itodo}[2][]{\todo[inline, #1]{#2}}
 \newcommand{\TODO}[2][]{\todo[color=red, #1]{#2}}
 \newcommand{\markus}[1]{\todo[color=orange]{#1}}
 % 

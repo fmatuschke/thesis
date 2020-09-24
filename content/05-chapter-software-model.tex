@@ -2,9 +2,9 @@
 \chapter{Modelling}
 \label{chap:modelling}
 % 
-\markus{This is an example.}
+% \markus{This is an example.}
 % 
-\section{Introduction}
+% \section{Introduction}
 % 
 Nerve fiber modelling is a unique technique often used in simulations like \ac{dMRI}-simulations \dummy{}.
 However, most \ac{dMRI} simulation tools use fast numeric simulation techniques like \dummy{}.
@@ -17,8 +17,8 @@ If \ac{WM} phantoms are involved, nerve fibers can be modeled as a meshed tube.
 These have the advantage that any complex configuration can be modeled \eg{} fibers \dummy{}.
 \\
 %
-A disadvantage, however, is that realistic model sizes require individual nerve fiber models in the order of \SI{1}{\micro\meter}.
-Experimental \ac{dMRI} system have voxel sizes in the range of \SIrange{100}{1000}{\micro\meter}.
+A disadvantage, however, is that realistic model sizes require individual nerve fiber models in the order of $\SI{1}{\micro\meter}$.
+Experimental \ac{dMRI} system have voxel sizes in the range of $\SIrange{100}{1000}{\micro\meter}$.
 This means that for a signal the number of triangles in the mesh is quite large [\dummy{}].
 Another challenge is to build a geometric configuration where no nerve fibers overlap (\ie{}, take the same volume in space).
 \\
@@ -358,7 +358,7 @@ def step():
 
     return colliding_list.is_empty()
 \end{lstlisting}
-\caption{Pseudocode of the \code{main} algorithm: The function \code{FiberCollisionSolver} will loop the followings four steps, which are run in parallel, until no collision are detected anymore: 1. build an \code{octree} from all objects, 2. \code{Collision Detection}, 3. \code{Seperation Process} and 4. \code{Shape Control}. \todo{check algorithm, spetially movement phase}}
+\caption{Pseudocode of the \code{main} algorithm: The function \code{FiberCollisionSolver} will loop the followings four steps, which are run in parallel, until no collision are detected anymore: 1. build an \code{octree} from all objects, 2. \code{Collision Detection}, 3. \code{Seperation Process} and 4. \code{Shape Control}. \itodo{check algorithm, spetially movement phase}}
 \label{alg:pseudocode_solver}
 \end{lstfloat}
 % 
