@@ -6,25 +6,25 @@
 % 
 \section{Introduction}
 % 
-Nerve fiber modelling is a unique technique often used in simulations like \ac{dMRI}-simulations \dummy.
-However, most \ac{dMRI} simulation tools use fast numeric simulation techniques like \dummy.
+Nerve fiber modelling is a unique technique often used in simulations like \ac{dMRI}-simulations \dummy{}.
+However, most \ac{dMRI} simulation tools use fast numeric simulation techniques like \dummy{}.
 These use analytical functions to describe the fiber paths in order to calculate very quickly and accurately.
 Current algorithms are able to use spline functions for single nerve fibers or fiber bundles \cite{Balls2009}.
-Recently, with the improvement of computer performance and algorithms, simulation techniques such as Monte Carlo \dummy are used.
+Recently, with the improvement of computer performance and algorithms, simulation techniques such as Monte Carlo \dummy{} are used.
 These simulate the random movement of individual water molecules within a volume.
 If the target are \ac{WM} phantoms nerve fibers can be modelled as a meshed tube.
 If \ac{WM} phantoms are involved, nerve fibers can be modeled as a meshed tube.
-These have the advantage that any complex configuration can be modeled \eg fibers \dummy.
+These have the advantage that any complex configuration can be modeled \eg{} fibers \dummy{}.
 \\
 %
 A disadvantage, however, is that realistic model sizes require individual nerve fiber models in the order of \SI{1}{\micro\meter}.
 Experimental \ac{dMRI} system have voxel sizes in the range of \SIrange{100}{1000}{\micro\meter}.
-This means that for a signal the number of triangles in the mesh is quite large [\dummy].
-Another challenge is to build a geometric configuration where no nerve fibers overlap (\ie, take the same volume in space).
+This means that for a signal the number of triangles in the mesh is quite large [\dummy{}].
+Another challenge is to build a geometric configuration where no nerve fibers overlap (\ie{}, take the same volume in space).
 \\
 % 
 Collision detection plays an important role in this process.
-While other simulations that use geometric models (\eg protein folding \dummy) may use something like electric potentials where the actual geometric boundary is not so important.
+While other simulations that use geometric models (\eg{} protein folding \dummy{}) may use something like electric potentials where the actual geometric boundary is not so important.
 In the case of \ac{3D-PLI} (and \ac{dMRI}) it will be shown to be different.
 \\[\baselineskip]
 % 
@@ -44,7 +44,7 @@ All described methods can be used within the package \pymodule{fastpli.model}:
 % 
 The first module \pymodule{sandbox} contains routines that help the user to create simple geometric configurations.
 These can then be used to build more complex structures of nerve fiber bundles.
-The second module \pymodule{solver} contains a \CXX framework wrapped in a \python class to allow the user to build simpler \ac{API} (see \dummy).
+The second module \pymodule{solver} contains a \cpp{} framework wrapped in a \python{} class to allow the user to build simpler \ac{API} (see \dummy{}).
 \\
 % 
 First, however, it must be decided how a nerve fiber and a nerve bundle is to be represented.
@@ -63,7 +63,7 @@ The question is how this tissue can be modelled and represented.
 \\
 % 
 The main focus of modeling is to ensure that these models can be used for \ac{3D-PLI} simulations.
-However, it is reasonable that these models can also be used for other tasks \eg for \ac{dMRI} simulations.
+However, it is reasonable that these models can also be used for other tasks \eg{} for \ac{dMRI} simulations.
 % 
 \paragraph{What means usable?}
 Since simulations are used, computer algorithms must be able to receive an input for a geometric fiber architecture.
@@ -72,22 +72,22 @@ There, objects of different shapes have to be represented so that the computer a
 An obvious model for a fiber is a tube.
 Usually objects like tubes are visualized with a surrounding mesh.
 Meshes have the advantage that a texture can be applied to the surface.
-However, since meshes usually consist of 3D triangles, this means a lot of points, \ie data and memory, for a good approximation to represent a model.
+However, since meshes usually consist of 3D triangles, this means a lot of points, \ie{} data and memory, for a good approximation to represent a model.
 But even in the visualization domain tubes are not modeled from initial meshes.
 They are initialized by a trajectory, which is then given an additional radius to obtain a volumetric representation.
 This representation can also be used for nerve fiber tissue.
 \\
 % 
-Existing simulation techniques \dummy allow to represent such structures as analytical mathematical objects \eg a parametric function $f(t) -> (x,y,z,r)$ with $(x,y,z)$ as 3D coordinate and $r$ as radius.
+Existing simulation techniques \dummy{} allow to represent such structures as analytical mathematical objects \eg{} a parametric function $f(t) -> (x,y,z,r)$ with $(x,y,z)$ as 3D coordinate and $r$ as radius.
 However, this drastically restricts the use of this function, since the user needs to know a parametric function in advance.
 For trivial structures such as parallel straight fibers this is quite easy and fast to process.
 However, if we want to model more complicated fabrics like densely interwoven fiber bundles, the task is almost impossible.
-One possibility would be not to care if two fibers overlap, \ie occupy the same space in the volume.
-This is done \eg for simulations such as protein folding, where the main interaction comes from electrodynamic forces.
-However, it has already been shown that for more complicated \ac{3D-PLI} Simulations non-overlapping fibers are essential [\dummy].
+One possibility would be not to care if two fibers overlap, \ie{} occupy the same space in the volume.
+This is done \eg{} for simulations such as protein folding, where the main interaction comes from electrodynamic forces.
+However, it has already been shown that for more complicated \ac{3D-PLI} Simulations non-overlapping fibers are essential [\dummy{}].
 \\
 % 
-For this reason, it was decided to represent fibers in such a way that they can be easily checked later whether colliding objects, \ie nerve fibers, are present.
+For this reason, it was decided to represent fibers in such a way that they can be easily checked later whether colliding objects, \ie{} nerve fibers, are present.
 \\
 % 
 \begin{figure}[!t]
@@ -143,7 +143,7 @@ It contains a variety of methods that allow the user to create complex phantoms 
 % 
 These algorithms can be divided into two parts.
 This toolbox focuses on constructing phantoms for the \ac{WM}.
-Since \ac{WM} nerve fiber bundles are usually combined to nerve fiber bundles (see \dummy), the \pymodule{sandbox} module contains two main parts, which can contain exactly such structures.
+Since \ac{WM} nerve fiber bundles are usually combined to nerve fiber bundles (see \dummy{}), the \pymodule{sandbox} module contains two main parts, which can contain exactly such structures.
 %
 Representation of nerve fiber bundles is very similar to that of nerve fibers: tube-like structures that are equipped with individual nerve fibers.
 Representation of tubular structures has already been achieved (see \cref{sec:nerve_fiber_representation}).
@@ -179,11 +179,11 @@ Seed points are stored as a list of 3D points:
 % 
 In order to form particularly dense fiber bundles, a method for generating an isosceles triangular grid was implemented.
 Mathematically, a 2d packed circle contains the maximum packing density when arranged in a triangular grid\footnote{also referred to as hexagonal grid} for circles with equal radii (see \ref{fig:triGrid}).
-However, this highly regular symmetrical grid can lead to strange results as will be shown later (\eg maxwell, simplified).
+However, this highly regular symmetrical grid can lead to strange results as will be shown later (\eg{} maxwell, simplified).
 \todo{why rnd necesarry -> see simulation}
 It should therefore only be used as an initial configuration. 
 The positions can easily be changed.
-A useful method was to add a boundary value to the initial starting points, \eg $\mathit{shift} = norm(0,\sigma)$.
+A useful method was to add a boundary value to the initial starting points, \eg{} $\mathit{shift} = norm(0,\sigma)$.
 However, since the initial configuration is often unknown, it is probably best to choose a random distribution (see \cref{fig:rndGrid}).
 For a circle, this is done using:
 \begin{equation}
@@ -210,7 +210,7 @@ For a circle, this is done using:
 \end{figure}
 % 
 To populate a nerve fiber bundle, the same idea is used as in tractography.
-There seed points are initialized and then \dummy methods are used to calculate the next step.
+There seed points are initialized and then \dummy{} methods are used to calculate the next step.
 However, we do not need to calculate the next step, because it is already defined by its trajectory.
 But the bending of the bundle has to be considered.
 \\
@@ -229,7 +229,7 @@ A common one is the use of torsion of the curve. This is achieved by the followi
 % 
 where $\vv{f}(s)$ is a parameterized trajectory of the parametric variable $s$, $\vv{t}(s)$ is the tangential vector, $\vv{n}(s)$ is the principal normal vector and $\vv{b}(s)$ is the binormal vector (see \cref{fig:torsionCurve}).
 One could use this idea to rotate the seed points into the coordinate system of $\vv{t}(s),\vv{n}(s),\vv{b}(s)$.
-However, this can lead to an arbitrary rotation of the fibers, \eg if the curve is described in such a way that $\vv{n}(s),\vv{b}(s)$ would continuously rotate around $\vv{t}(s)$.
+However, this can lead to an arbitrary rotation of the fibers, \eg{} if the curve is described in such a way that $\vv{n}(s),\vv{b}(s)$ would continuously rotate around $\vv{t}(s)$.
 \\
 % 
 Since it is plausible that nerve fiber bundles would not do this, a different approach was chosen.
@@ -309,18 +309,18 @@ Here the seed points are located in the $xy$ plane (see \cref{fig:cylParallel}).
 % 
 A major disadvantage of all previous methods is that the user has to make sure that his fiber path leaves enough space so that the fibers (paths + radii) have enough room and do not overlap.
 This can be achieved for fibers with constant radii along their course in the upper designs.
-However, for more complex structures, \eg crossing fiber bundles, this is almost impossible.
+However, for more complex structures, \eg{} crossing fiber bundles, this is almost impossible.
 Therefore, a method has been developed that takes the user-defined fibers and checks for collisions.
 If a collision is found, it will try to move the colliding objects slightly apart so that the collision starts to disappear.
 \\
 % 
 This concept is quite simple.
-Collision detection algorithms have been used for centuries, especially in the gaming environment where \eg a character should not be able to walk through a wall.
+Collision detection algorithms have been used for centuries, especially in the gaming environment where \eg{} a character should not be able to walk through a wall.
 Another wide range of algorithms is used in visualization.
 There the problem is usually to detect the collision between a light path (mathematical line) and an object, usually a triangular surface.
 Also known as raytracing.
 The disadvantage in both areas is that the computing time is limited.
-Therefore, algorithms there use abbreviations that come as close as possible to reality, but still produce useful data \eg in computer games it is very important to have a stable framerate of over $\num{60}$ \ac{fps} (or with current technology even over 120 \ac{fps}).
+Therefore, algorithms there use abbreviations that come as close as possible to reality, but still produce useful data \eg{} in computer games it is very important to have a stable framerate of over $\num{60}$ \ac{fps} (or with current technology even over 120 \ac{fps}).
 For the gaming experience, however, it is not important whether the character can easily run against an object or not.
 Therefore an object could be approximated like a stone by a sphere(s).
 \\
@@ -358,12 +358,12 @@ def step():
 
     return colliding_list.is_empty()
 \end{lstlisting}
-\caption{Pseudocode of the \texttt{main} algorithm: The function \texttt{FiberCollisionSolver} will loop the followings four steps, which are run in parallel, until no collision are detected anymore: 1. build an \texttt{octree} from all objects, 2. \texttt{Collision Detection}, 3. \texttt{Seperation Process} and 4. \texttt{Shape Control}. \todo{check algorithm, spetially movement phase}}
+\caption{Pseudocode of the \code{main} algorithm: The function \code{FiberCollisionSolver} will loop the followings four steps, which are run in parallel, until no collision are detected anymore: 1. build an \code{octree} from all objects, 2. \code{Collision Detection}, 3. \code{Seperation Process} and 4. \code{Shape Control}. \todo{check algorithm, spetially movement phase}}
 \label{alg:pseudocode_solver}
 \end{lstfloat}
 % 
-The world/main function is the \texttt{loop}, which is executed to calculate the collision, move the objects and check the boundary collision (see \cref{alg:pseudocode_solver}).
-The loop procedure is similar to a game loop or a visualization loop (\eg in glut \texttt{glutMainLoop}).
+The world/main function is the \code{loop}, which is executed to calculate the collision, move the objects and check the boundary collision (see \cref{alg:pseudocode_solver}).
+The loop procedure is similar to a game loop or a visualization loop (\eg{} in glut \code{glutMainLoop}).
 But to give the user as much control as possible, the user has to go through each step in a separate loop like in one of the examples within the packages.
 After each step, the user is now able to change parameters, fiber paths, add/remove fibers from the \say{scene} and so on.
 In addition, the user can decide whether a completely solved volume is required and e.g. break out of the loop before the final step (see \dummy{}).
@@ -447,9 +447,9 @@ To reduce the number of collision checks to be performed, an octree structure is
 	\label{fig:octree}
 \end{figure}
 % 
-A \texttt{tree} is a data structure that consists of a collection of Say nodes that are connected to each other.
-A node is connected in the direction of the \texttt{root} with a single parent node and in the direction of the \texttt{branches} with several \texttt{children} or \texttt{branches}.
-The nodes at the end of a branch are called \texttt{leaves}, which contain the data.
+A \name{tree} is a data structure that consists of a collection of Say nodes that are connected to each other.
+A node is connected in the direction of the \name{root} with a single parent node and in the direction of the \name{branches} with several \name{children} or \name{branches}.
+The nodes at the end of a branch are called \name{leaves}, which contain the data.
 Traversing an evenly distributed tree has the advantage that the cost of the traversing it is $\mathcal{O}(\log(n))$.
 \\
 % 
@@ -524,7 +524,7 @@ This automatically limits the maximum number of levels that can be reached.
 \paragraph{Minimal number of objects:}
 The optimal minimum number of objects in a node to start the final collision algorithm must be measured, since it depends on the instructions actually executed on the system.
 It is a trade-off between executing less computationally intensive, costly and highly accurate collision checks and executing at least eight more branches.
-In the development phase of the algorithm this value was chosen as \comment{20}\dummy.
+In the development phase of the algorithm this value was chosen as \comment{20}\dummy{}.
 Of course the user can change this hard coded value if necessary. 
 \\
 % 
@@ -535,12 +535,12 @@ To solve a collision between two \ac{CC} objects, each point $\vv{p}_i$ and $\vv
 The movement is parallel to the smallest distance line between the two objects.
 To take the 3D placement into account, the movement is weighted by the distance of each point from the intersection with the smallest distance line (see \cref{fig:shortDist}):
 \begin{align}
-v_i = \dummy
+v_i = \dummy{}
 \end{align}
-This leads to a more controlled movement if \eg only the two ends of the fiber objects collide.
+This leads to a more controlled movement if \eg{} only the two ends of the fiber objects collide.
 \\
 % 
-TThe motion is stored as the sum of all collisions for each object in a velocity \texttt{std::vector}.
+TThe motion is stored as the sum of all collisions for each object in a velocity \code{std::vector}.
 The maximum speed is limited to a value of $v_{\max} = 0.1 \times \min(\mathit{object radius})$.
 This is limited due to two required properties. First, it prevents movement through another object and second, it smoothes the movement and thus the maximum achievable density of the resulting models.
 However, this also means that the solution process takes more time.
@@ -551,7 +551,7 @@ These are only allowed to move along the surface perpendicular to the first / la
 This prevents the fibers from growing into infinity.
 % 
 \section{Shape Control}\label{chap5:ShapeControl}
-The movement of individual points can lead to a distorted fiber model, \eg two points move very far apart.
+The movement of individual points can lead to a distorted fiber model, \eg{} two points move very far apart.
 Therefore boundary conditions must be specified.
 It was decided to use the following two conditions.
 % 
@@ -609,7 +609,7 @@ r_{new} = \frac{r_{i} + r_{i+1}}{2},\enspace
 The bending radius is defined as the circle radius corresponding to the circle defined by three adjacent points $\vv{p}_{i-1}, \vv{p}_{i}, \vv{p}_{i+1}$ (see \cref{fig:boundaryLength}). 
 The limit is set as a minimum radius of $r_{\min}$.
 If a $p_{i}$ point in a fiber falls below this value, the three points are moved.
-$p_{i-1},p_{i+1}$ is moved \dummy and $p_{i}$ opposite each other.
+$p_{i-1},p_{i+1}$ is moved \dummy{} and $p_{i}$ opposite each other.
 This reduces the curvature.
 \\
 % 
@@ -628,9 +628,9 @@ Therefore the value is to 0 so that after each step the velocity is reset to $\v
 Among other techniques, two main optimisation techniques are used to speed up the process.
 % 
 \paragraph{Memory alignment}
-The \texttt{std::vector} has the advantage that the data is linear in memory.
-Modern \ac{CPU}s have a built-in method called \say{ache prefetching}.
-Data must be prepared and sent from the \ac{RAM} to the cache of the \ac{CPU}s.
+The \code{std::vector} has the advantage that the data is linear in memory.
+Modern \acp{CPU} have a built-in method called \say{ache prefetching}.
+Data must be prepared and sent from the \ac{RAM} to the cache of the \acp{CPU}.
 This takes time.
 The main advantage of the cache is that it is very fast.
 However, since it must be very close to the \ac{CPU}, the cache is very fast. (in modern systems the speed is already limited by the speed of light) its size is very limited (usually around $\si{\mega\byte}$).
@@ -641,8 +641,8 @@ It can be shown that for linear operations on the memory the cache prefetcher re
 % 
 \paragraph{OpenMP}
 % 
-To be able to use several \ac{CPU}s, \openmp is used. With a structure like an octree, the separation process into the new partial volumes can already be parallelized up to eight cores.
-However, since all eight cores have to share the object list data, even if they are only reading, it is no longer possible from this point on to achieve up to eight times the speed (see later acceleration measurements \dummy).
+To be able to use several \acp{CPU}, \openmp is used. With a structure like an octree, the separation process into the new partial volumes can already be parallelized up to eight cores.
+However, since all eight cores have to share the object list data, even if they are only reading, it is no longer possible from this point on to achieve up to eight times the speed (see later acceleration measurements \dummy{}).
 \\
 % 
 Furthermore, all instructions containing loops, such as the separation phase, are also parallelized with \openmp.
@@ -652,14 +652,14 @@ Furthermore, all instructions containing loops, such as the separation phase, ar
 \section{Visualization}
 % 
 A visualization tool was written to visualize the fiber configuration.
-This enables the user to get a direct feedback (\eg after each step) to adjust the initial fiber configuration or boundary condition.
-It is written in \CXX and \textit{OpenGL2} \cite{isocpp, khronos}.
+This enables the user to get a direct feedback (\eg{} after each step) to adjust the initial fiber configuration or boundary condition.
+It is written in \cpp{} and \opengl{} \cite{isocpp, khronos}.
 \\
 % 
-\ac{CC} are rendered using the \textit{gluCylinder} function provided by the \textit{GLUT} library for a rough but fast visualization.
-Representation and thus the collision check algorithm is also provided by the \textit{GLUT} library for a rough but fast visualization.
+\ac{CC} are rendered using the \code{gluCylinder} function provided by the \name{GLUT} library for a rough but fast visualization.
+Representation and thus the collision check algorithm is also provided by the \name{GLUT} library for a rough but fast visualization.
 For a more accurate and correct visualization of the \ac{CC} a self-implemented rendering was developed.
-The first step in the visualization of surfaces is usually the generation of a \textit{mesh} from triangles.
+The first step in the visualization of surfaces is usually the generation of a \name{mesh} from triangles.
 A texture can then be placed on each triangle.
 Since fibers have to be visualized here, the mesh is generated as a tube surrounding the fiber with circularly arranged points around a fiber point $p_i$ (see \cref{fig:mesh}).
 Corner points and normals are calculated from the mesh, which are finally rendered with a color within an illuminated scene.
@@ -679,19 +679,19 @@ To enable visualization of the inner axon, the myelin sheath can also be rendere
 \paragraph{Disclamer}
 This is a fast implementation.
 Current rendering software uses much more advanced techniques.
-However, this rendering algorithm has been written to be an easily integrated tool that uses only the additional \textit{OpenGL 2} and \textit{GLUT} library.
+However, this rendering algorithm has been written to be an easily integrated tool that uses only the additional \name{OpenGl 2} and \name{GLUT} library.
 \\
 % 
-A more advanced tool, the \textit{FAConstructor} \cite{Reuter2019} was written by Andr'e Reuter as part of this doctoral thesis.
-This tool uses \textit{OpenGl 3} and additional calculation on the GPU. Additionally it allows a user-defined interactive technique to create a 3D fiber model.
-The next step is already carried out with the visualization tool by Nicole Schubert called \textit{PLIVis}.
+A more advanced tool, the \name{FAConstructor} \cite{Reuter2019} was written by Andr'e Reuter as part of this doctoral thesis.
+This tool uses \name{OpenGl 3} and additional calculation on the GPU. Additionally it allows a user-defined interactive technique to create a 3D fiber model.
+The next step is already carried out with the visualization tool by Nicole Schubert called \name{PLIVis}.
 % 
 \subsection{Wall opacity}
 % 
 In order to visualize axons within the myelinated nerve fibers, the visualized vertices must be transparent.
 However, this requires sorted vertices along the z-axis (viewer/camera? axis).
 This is needed because vertices are rendered from back to front, so that the absorption of light can be taken into account.
-This process takes a certain amount of time and is therefore only recommended for screen shoots at this time (see \dummy).
+This process takes a certain amount of time and is therefore only recommended for screen shoots at this time (see \dummy{}).
 % 
 % 
 \vspace{5pt}
@@ -702,11 +702,11 @@ This process takes a certain amount of time and is therefore only recommended fo
 % 
 \section{Medusa}
 % 
-Additionally to the previous discussed modelling algorithm (see \cref{sec:Solver}), the \ac{MEDUSA} algorithm, was developed in a cooperation with the team Neurospin from \ac{CEA} in France \cite{Ginsburger2019}. The targed was to develop an algorithm which can build a library of \ac{WM} tissue. This library should not only contain nerve fibers, but also other cell types like olegodendrocites or astrocytes. These cell types are currently not used in \ac{3D-PLI} routine analysis however in \ac{dMRI} the cell are quite important [\dummy]. Furthermore these cells take up additional volume which results in different nerve fiber configurations.\\
+Additionally to the previous discussed modelling algorithm (see \cref{sec:Solver}), the \ac{MEDUSA} algorithm, was developed in a cooperation with the team Neurospin from \ac{CEA} in France \cite{Ginsburger2019}. The targed was to develop an algorithm which can build a library of \ac{WM} tissue. This library should not only contain nerve fibers, but also other cell types like olegodendrocites or astrocytes. These cell types are currently not used in \ac{3D-PLI} routine analysis however in \ac{dMRI} the cell are quite important [\dummy{}]. Furthermore these cells take up additional volume which results in different nerve fiber configurations.\\
 % 
 Since this tool aims to build a statistically library, other parameters are chosen for boundary conditions. These parameters are chosen as close as possible from the current \ac{dMRI} models:
-\dummy\\
-\dummy\\
+\dummy{}\\
+\dummy{}\\
 % 
 % Instead of choosing \ac{CC} the fibers and cells are represented as a collection of spheres. This has the advantage that the collision of spheres are more easier to be calculated:
 % \begin{align}
@@ -769,7 +769,7 @@ d(i,j) &=
 % 
 Spheres inside cell bodys are not checked for collision, since their volume aproximate? the volume of the cell.\\
 % 
-The calculation of collisions is done via the GPU architecture. For this a first implementation was written with the \textit{AxisAligedSortedSearch} \cite{Karras2012}. It sorteds the spheres along one axis, \eg x-axis, and search for each sphere the fist and last possible collision on this axis:
+The calculation of collisions is done via the GPU architecture. For this a first implementation was written with the \name{AxisAligedSortedSearch} \cite{Karras2012}. It sorteds the spheres along one axis, \eg{} x-axis, x-axis, and search for each sphere the fist and last possible collision on this axis:
 \begin{align}
 \begin{split}
 \mathcal{C}_i = \{ s \in \mathcal{S} \mid \abs{s_i.x - s_j.x} < r_i+r_j \}
@@ -782,7 +782,7 @@ The calculation of collisions is done via the GPU architecture. For this a first
 	\label{alg:medusa_collision}
 \end{lstfloat}
 % 
-The above described algorithm is currently used for volumes $\approx \SI{200}{\micro\meter}$. For this volume size the algorithm is for the current use fast enough. However, more advaned algorithm exist wich can be applied here (\eg \textit{BoundindBoxHierarchy} \cite{Karras2012}).
+The above described algorithm is currently used for volumes $\approx \SI{200}{\micro\meter}$. For this volume size the algorithm is for the current use fast enough. However, more advaned algorithm exist wich can be applied here (\eg{} \name{BoundindBoxHierarchy} \cite{Karras2012}).
 % 
 \begin{figure}[!t]
     \centering
