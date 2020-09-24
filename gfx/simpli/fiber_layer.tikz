@@ -1,11 +1,20 @@
 \begin{tikzsize}{\tikzwidth}{\tikzheight}
 \begin{tikzpicture}[scale=\tikzscale]
+% 
+% \colorlet{c1}{green>twheel,2,3}
+% \colorlet{c2}{green}
+% \colorlet{c3}{green>twheel,1,3}
+% 
+\definecolor{c1}{HTML}{66c2a5}
+\definecolor{c2}{HTML}{fc8d62}
+\definecolor{c3}{HTML}{8da0cb}
+% 
 \pgfmathsetmacro{\s}{2.0}
 \path (1.25*\s,1.25*\s) -- (-1.25*\s,-1.25*\s);
-\foreach \r/\c [count=\i] in {1.0/green!75!black,0.9/blue,0.8/green!75!black,0.7/blue,0.6/red} {
+\foreach \r/\c [count=\i] in {1.0/c1,0.9/c2,0.8/c1,0.7/c2,0.6/c3} {
     \draw[fill, \c] (0,0) circle (\s*\r);
 }
-\foreach \r/\c [count=\i] in {1.0/green!75!black,0.9/blue,0.8/green!75!black,0.7/blue,0.6/red} {
+\foreach \r [count=\i] in {1.0,0.9,0.8,0.7,0.6} {
     \pgfmathsetmacro{\ii}{int(5-\i)}
     \draw[black, ->] (0,0) -- ++(6+\ii*42.0:\s*\r) node[midway, anchor=north, sloped]{$r_{\ii}$};
 }

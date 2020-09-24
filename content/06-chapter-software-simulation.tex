@@ -165,8 +165,8 @@ The DV-Generator returns the \code{label field}, \code{vector field} and \code{p
 \subsection{optimization}
 % 
 Two methods are used to parallel the algorithm on the \ac{CPU}.
-The first uses \openmp for the parallelisation of filling the \ac{AABB} volume of each object.
-The second uses \mpi to allow the distribution on multiple \ac{CPU} cores without the capability of shared memory. 
+The first uses \openmp{} for the parallelisation of filling the \ac{AABB} volume of each object.
+The second uses \mpi{} to allow the distribution on multiple \ac{CPU} cores without the capability of shared memory. 
 % 
 The parallelisation of the \ac{AABB} volume leads to a race condition if multiple threads want to write in the same memory address (or coordinate) (\eg{} two objects occupy the same space).
 A solution with a lock would be very slow.
@@ -356,4 +356,4 @@ This is a rather small cost considering the saving of memory and for tissue sect
 % 	\label{alg:mpi_comm}
 % \end{lstfloat}
 % 
-\todo{smart sampling}
+\itodo{smart sampling}
