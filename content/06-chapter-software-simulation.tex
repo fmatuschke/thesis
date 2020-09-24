@@ -2,19 +2,18 @@
 \chapter{Simulation}
 \label{cha:simulation}
 % 
-\comment{\paragraph{Ziele:} 
-\begin{itemize}
-    \item Aufbau simPLI Pipeline
-    \item Umsetzungen der einzelnen Elemente
-    \item Test einzelner Elemente
-    \item Parallelisierungen/Optimierungen
-\end{itemize}}
-%
-The \ac{3D-PLI} simulation is based on he previous developt tool \textit{simPLI} \cite{Dohmen2015}, which uses linear optics \cite{} to simulate the light tissue inteaction in the \ac{3D-PLI} setup.
+\fastpli 
+% 
+% 
+\vspace{5pt}
+\hrule
+\vspace{6pt}
+% 
+The \ac{3D-PLI} simulation is based on the previous develop tool \simpli \cite{Dohmen2015}, which uses linear optics \cite{} to simulate the light tissue inteaction in the \ac{3D-PLI} setup.
 This version however uses M\"uller matrices \cite{} to define the optical elements and the Stokes vector \cite{} for describing the light \cref{sec:Mueller-Stokes}.\\
 % 
 The simulation is split into two consecutive parts.
-The first part is to build a discrete grid model from a given fiber configuration (\eg \dummy).
+The first part is to build a discrete grid model from a given fiber configuration (\eg \dummy{}).
 The second part uses the discrete volume to calculate the resulting \ac{3D-PLI} images.
 %
 %
@@ -25,7 +24,7 @@ The second part uses the discrete volume to calculate the resulting \ac{3D-PLI} 
 To calculate a discrete volume of optical properties from a fiber configuration, the same fiber representation as in \cref{chap:modelling} is used.
 Therefore the problem of discretisation can be reduced to the case of a single \ac{CC} object $(\vv{p_i}, \vv{p_{j}}, r_i, r_{j})$.
 % 
-Since the birefringend orientation inside a fiber can be represented either with the micro or marcoscopic model (see \dummy), the radial or parallel orientation for a point $q$ to the object has to be calculated.
+Since the birefringend orientation inside a fiber can be represented either with the micro or marcoscopic model (see \dummy{}), the radial or parallel orientation for a point $q$ to the object has to be calculated.
 In the case of parallel orientation the orientation $o$ is:
 \begin{align}
 \begin{split}
@@ -62,17 +61,17 @@ The \ac{CC} object has the following \ac{AABB}:
     \sum_{1,2,3} \epsilon_{i,j} \times \hat{e}_i \times \max(p_{0,j}, p_{1,j}) + \max(r_0, r_1)
 \end{split}
 \end{align}
-To calculate the discreticed voxels, this \ac{AABB} is iterated. for v in V(AABB): \dummy
+To calculate the discreticed voxels, this \ac{AABB} is iterated. for v in V(AABB): \dummy{}
 % 
 Iterating over all voxels and afterwords over all objects of all fibers yield in the discretisec volume model.\\
 % 
-To account for the race condition, when two objects take up the same voxel (\eg neighboring fiber segments) a distance map \textit{distance array} is used.
+To account for the race condition, when two objects take up the same voxel (\eg neighboring fiber segments) a distance map \code{distance array} is used.
 In this 3d array the distance $d$ for a calculated orientation will be saved.
 If a new point for another object has a smaller distance, it overwrites the orientation and distance.
 Furthermore a 3d "label" array is needed, which represents the id of the physical properties which have to be used (\eg which layer or which fiber properties).
-The value inside the label array corresponds to a look up table of a \textit{property list}.
+The value inside the label array corresponds to a look up table of a \code{property list}.
 % 
-The DV-Generator returns the \textit{label field}, \textit{vector field} and \textit{property list}.
+The DV-Generator returns the \code{label field}, \code{vector field} and \code{property list}.
 % 
 \footnote{same calculations for cells, except that the birefingence and orientation is 0.}
 % 
@@ -80,7 +79,7 @@ The DV-Generator returns the \textit{label field}, \textit{vector field} and \te
 % 
 \subsection{parameter list}
 % 
-voxel\_size, VOI, fiber\_bundles, \dummy
+voxel\_size, VOI, fiber\_bundles, \dummy{}
 % 
 \subsection{parallelisation}
 % 
@@ -223,7 +222,7 @@ Therefore there is again a shift of \num{0.5} between the index and the center o
 
 % 
 \paragraph{matrix calculus}
-From the starting position the light tissue interaction will be calculated according to $\left( \prod_i R_i M_i R_i \times \vv{S} \right)$ (see \dummy).
+From the starting position the light tissue interaction will be calculated according to $\left( \prod_i R_i M_i R_i \times \vv{S} \right)$ (see \dummy{}).
 Since the starting point is at the bottom of the tissue plain, and a light beam takes the step $s$ the physical property from $(x,y,z) + \frac{s}{2}$ is used (ZEICHNUNG).
 For a non tilted view with a stept size equal to the voxel size this results in the indices values.
 As long the light beam is inside the local (\mpi) tissue volume, everything can be calculated.
