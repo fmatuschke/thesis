@@ -1,0 +1,13 @@
+\begin{tikzsize}{\tikzwidth}{\tikzheight}
+\begin{tikzpicture}[scale=\tikzscale]
+\pgfmathsetmacro{\s}{2.0}
+\path (1.25*\s,1.25*\s) -- (-1.25*\s,-1.25*\s);
+\foreach \r/\c [count=\i] in {1.0/green!75!black,0.9/blue,0.8/green!75!black,0.7/blue,0.6/red} {
+    \draw[fill, \c] (0,0) circle (\s*\r);
+}
+\foreach \r/\c [count=\i] in {1.0/green!75!black,0.9/blue,0.8/green!75!black,0.7/blue,0.6/red} {
+    \pgfmathsetmacro{\ii}{int(5-\i)}
+    \draw[black, ->] (0,0) -- ++(6+\ii*42.0:\s*\r) node[midway, anchor=north, sloped]{$r_{\ii}$};
+}
+\end{tikzpicture}
+\end{tikzsize}

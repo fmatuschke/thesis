@@ -83,13 +83,16 @@ For the radial case the smallest distance to the line segment $(\vv{p}_i,\vv{p}_
 % 
 \begin{figure}[!t]
 \centering
-\def\tikzwidth{0.625\textwidth}
-\inputtikz{gfx/simpli/vector_model}
+\setlength{\tikzwidth}{0.45\textwidth}\hfill
+\subcaptionbox{vector\_model}[.495\textwidth]{
+\inputtikz[true]{gfx/simpli/vector_model}} \hfill
+\subcaptionbox{fiber\_layer}[.495\textwidth]{
+\inputtikz[true]{gfx/simpli/fiber_layer}}\hfill
 \caption{discretisation of fiber}
 \label{fig:fiber_discretisation}
 \end{figure}
 % 
-\begin{figure}[!tb]
+\begin{figure}[!t]
 \centering
 \def\tikzwidth{0.33\textwidth}
 \inputtikz{gfx/simpli/indexing}
@@ -121,6 +124,14 @@ fbs_properties = [[(layer_scale, dn, mu, 'p'), (second layer), ...],
 \caption{Definig fiber bundle properties}
 \label{alg:pseudocode_octree}
 \end{lstfloat}
+% 
+% \begin{figure}[!t]
+% \centering
+% \def\tikzwidth{0.625\textwidth}
+% \inputtikz{gfx/simpli/fiber_layer}
+% \caption{fiber layer}
+% \label{fig:fiber_layer}
+% \end{figure}
 % 
 These parameters have to set for every layer (see \todo{bild erzeugen}) inside the fiber.
 A \code{layer} is a concept to allow such things as differentiate between axon and myelin or multiple layers of myelin with intracellular fluid between the windings.

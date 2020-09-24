@@ -5,7 +5,7 @@
 \def\rin{2}
 \def\rout{4}
 \pgfmathsetmacro{\rmin}{\rin-1}
-\path (-5+\xc, -5+\yc) rectangle (5+\xc, 5+\yc);
+\path[] (-5+\xc, -5+\yc) rectangle (5+\xc, 5+\yc);
 \draw[semithick] (-4.5+\xc, -4.5+\yc) grid (4.5+\xc, 4.5+\yc);
 \draw[semithick] (\xc,\yc) circle (\rin);
 \draw[semithick] (\xc,\yc) circle (\rout);
@@ -23,8 +23,8 @@
 % \path[semithick] (\xc,\yc) -- ++(-150:\rin) node[midway, anchor=south, yshift=2mm]{$r_{\text{max}}$}; 
 \draw[blue,semithick, ->] (\xc,\yc) -- ++(-150:\rout) node[pos=0.25, anchor=south, yshift=2mm]{$r_{\text{max}}$}; 
 \draw[red,semithick, {Circle[length=2mm]}-{Circle[length=2mm]},
-    shorten >=-.5mm, shorten <=-.5mm]
+    shorten >=-.5mm, shorten <=-.50mm]
     (\xc,\yc) -- (2.5,1.5) node[midway, anchor=north west, xshift=-0.5mm]{$\vv{q}$}; 
-% \node[red, anchor=north west] at (2.5,1.5) {\Large $\vv{q}$}; 
+% \node[red, anchor=north west] at (2.5,1.5) {\Large $\vv{q}$};
 \end{tikzpicture}
 \end{tikzsize}

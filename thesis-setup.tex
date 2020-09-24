@@ -319,8 +319,12 @@
 		\edef\tikzscale{\pgfmathresult}%
 		\BODY
 	}{% this will re-use an existing external graphics:
+	    \def\tikzscalewidth{3.0}%
+	    \def\tikzscaleheight{3.1}%
 		\BODY
 	}}{
+	    \def\tikzscalewidth{2.0}%
+	    \def\tikzscaleheight{2.1}%
 	    \begin{lrbox}{\measure@tikzpicture}%
 		\tikzset{external/export next=false,external/optimize=false}% force translation of this BODY (and do not optimize it away as it would usually do):
 		\BODY
@@ -406,7 +410,7 @@
      tickmarkheight=1ex}{} %
 \makeatletter
 \renewcommand{\todo}[2][]{%
-  \tikzset{external/export=false}\@todo[#1]{#2}%
+  {\tikzset{external/export=false}\@todo[#1]{#2}}%
 }
 \makeatother
 \reversemarginpar
