@@ -110,9 +110,9 @@ For each voxel in the volume of the \ac{AABB} the smallest distance to the line 
 \centering
 \setlength{\tikzwidth}{0.45\textwidth}
 \subcaptionbox{\label{fig:vectormodel}vector\_model with microscopic birefringence myelin layer}[.49\textwidth]{
-\inputtikz[true]{gfx/simpli/vector_model}} \hfill
+\inputtikz{gfx/simpli/vector_model}} \hfill
 \subcaptionbox{\label{fig:fiberLayer}additional fiber layers}[.49\textwidth]{
-\inputtikz[true]{gfx/simpli/fiber_layer}}
+\inputtikz{gfx/simpli/fiber_layer}}
 \caption{Discretisation of fiber with layered properties.}
 \label{fig:fiber_discretisation}
 \end{figure}
@@ -120,7 +120,7 @@ For each voxel in the volume of the \ac{AABB} the smallest distance to the line 
 \begin{figure}[!t]
 \centering
 \def\tikzwidth{0.42\textwidth}
-\inputtikz[true]{gfx/simpli/indexing}
+\inputtikz{gfx/simpli/indexing}
 \caption{indexing of arrays.
 The vector inside the array at index position $[i,j,k]$ will correspond to the vector at position $p=(i+0.5,j+0.5,k+0.5)\cdot \mathit{\voxelsize}$}
 \label{fig:indexing_array}
@@ -228,7 +228,7 @@ Each \mpi{} process can additionally use \openmp{} to create multiple threads fo
 \begin{figure}[!t]
 \centering
 \def\tikzwidth{0.75*\textwidth}
-\inputtikz[true]{gfx/simpli/vector_interpolation}
+\inputtikz{gfx/simpli/vector_interpolation}
 \tikzset{external/export=false}
 \caption[Illustration linear and spherical interpolation.]{Illustration of difference between linear and spherical interpolation. Linear interpolation has a constant distance $s$ between each point, spherical interpolation a constant angle $\varphi$ for the same $dt$.}
 \label{fig:vectorfield_disc}
@@ -285,10 +285,10 @@ To always get the same dens of light rays per ccd-pixel, all light ray starting 
 \def\tikzheight{0.42\textwidth}
 % \centering
 \subcaptionbox{camera view}[.49\textwidth]{
-\inputtikz[true]{gfx/simpli/tilting_3d_a}}
+\inputtikz{gfx/simpli/tilting_3d_a}}
 % 
 \subcaptionbox{perspective view}[.49\textwidth]{
-\inputtikz[true]{gfx/simpli/tilting_3d_b}}
+\inputtikz{gfx/simpli/tilting_3d_b}}
 % 
 \tikzset{external/export=false}
 \caption[3d tilting]{3d tilting: around $xy$-axis, \raisebox{.25em}{\tikz \draw[red,thick](0,0)--(0.25,0);} top, \raisebox{.25em}{\tikz \draw[green,thick](0,0)--(0.25,0);} middle, \raisebox{.25em}{\tikz \draw[blue,thick](0,0)--(0.25,0);} bottom, \raisebox{.25em}{\tikz \draw[dash pattern=on 1.25pt off 1.25pt,thick](0,0)--(0.25,0);} original, \raisebox{.25em}{\tikz \draw[gray](0,0)--(0.25,0);} axis of rotation \itodo{test david und daniel}}
