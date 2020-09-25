@@ -9,7 +9,7 @@
 \pgfmathsetmacro{\rout}{10}
 % 
 \begin{axis}[view={210}{30}, hide axis]
-\addplot3 [no marks, green!50!black, fill] coordinates {({sin(\beta)*\rin},{cos(\beta)*\rin},{0}) ({sin(\beta)*\rin},{cos(\beta)*\rin},{\h}) ({sin(\beta)*\rout},{cos(\beta)*\rout},{\h}) ({sin(\beta)*\rout},{cos(\beta)*\rout},{0})};
+\addplot3 [no marks, green, fill] coordinates {({sin(\beta)*\rin},{cos(\beta)*\rin},{0}) ({sin(\beta)*\rin},{cos(\beta)*\rin},{\h}) ({sin(\beta)*\rout},{cos(\beta)*\rout},{\h}) ({sin(\beta)*\rout},{cos(\beta)*\rout},{0})};
 % 
 \addplot3 [domain=\alpha:\beta,samples=42,samples y=0, smooth] ({sin(x)*\rin},{cos(x)*\rin},{0});
 \addplot3 [domain=\alpha:\beta,samples=42,samples y=0, smooth] ({sin(x)*\rin},{cos(x)*\rin},{\h});
