@@ -1,8 +1,8 @@
 \begin{tikzsize}{\tikzwidth}{\tikzheight}
 \begin{tikzpicture}[scale=\tikzscale]
-\colorlet{red}{dark22}
-\colorlet{green}{dark21}
-\colorlet{blue}{dark23}
+\colorlet{red}{dred}
+\colorlet{green}{dgreen}
+\colorlet{blue}{dblue}
 \def\xc{0.7}
 \def\yc{0.2}
 \def\rin{2}
