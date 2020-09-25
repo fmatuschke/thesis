@@ -21,10 +21,10 @@ rotate around y={\roty},
 % \draw[->] (0,-1,0)-- (0,1,0)node[pos=1.1]{y};
 % \draw[->] (0,0,-1)-- (0,0,1)node[pos=1.1]{z};
 % 
-\draw[red, densely dotted] plot[domain=0:360,samples=90,smooth] ({\a*sin(\x)*cos(\alpha)}, {\a*cos(\x)}, {\c*sin(\x)*sin(\alpha)});
-\draw[thick, red, ->] (0,0,0) -- ({1.5*\c*sin(-\alpha)},0,{1.5*\a*cos(\alpha)}) node [midway, anchor = west] () {$\vec{k}$};
-\draw[green!50!black] (0,0,0) -- (0,-\a,0) node [anchor = north] () {$n_o$};
-\draw[green!50!black] (0,0,0) -- ({-\a*cos(\alpha)},0,{\c* sin(-\alpha)}) node [midway, anchor=south] () {$n_a$};
+\draw[Red, densely dotted] plot[domain=0:360,samples=90,smooth] ({\a*sin(\x)*cos(\alpha)}, {\a*cos(\x)}, {\c*sin(\x)*sin(\alpha)});
+\draw[thick, Red, ->] (0,0,0) -- ({1.5*\c*sin(-\alpha)},0,{1.5*\a*cos(\alpha)}) node [midway, anchor = west] () {$\vec{k}$};
+\draw[Green!50!black] (0,0,0) -- (0,-\a,0) node [anchor = north] () {$n_o$};
+\draw[Green!50!black] (0,0,0) -- ({-\a*cos(\alpha)},0,{\c* sin(-\alpha)}) node [midway, anchor=south] () {$n_a$};
 % 
 \begin{scope}[canvas is zx plane at y=0]
 \draw[] (1,0) arc (0:90-\beta:1) node [midway, above] () {$\theta$};
