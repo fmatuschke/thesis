@@ -59,50 +59,94 @@ Inside is everything to perform a pipeline code as well as full control about ev
 \section{DV-Generator}
 \label{sec:dv_generator}
 % 
-First the volume has to be defined.
-The simulated/discretizied volume is limitied by a \ac{AABB}.
-The \code{voxel\_size} is set to a floating point number and defines the edge length of the discretized voxels.
-Next the each voxel has to be set with is physical properties.
+\begin{figure}[!t]
+\centering
+\setlength{\tikzwidth}{0.5\textwidth}
+\inputtikz{gfx/simpli/disc_volume}
+\caption{discretisation volume}
+\label{fig:discVol}
+\end{figure}
+% 
+First, the volume to be created must be defined.
+The simulated/discretized volume is limited by an \ac{AABB} or \ac{VOI}, which is defined by a minimal and maximal value $\voi = [(x_{\mathit{min}}, y_{\mathit{min}}, z_{\mathit{min}}),(x_{\mathit{max}}, y_{\mathit{max}}, z_{\mathit{max}})]$.
+Additionally the \voxelsize{} parameter is set to a floating point number and defines the edge length of the discretized voxels.
+If the division of the \voi{} by the \voxelsize{} is not an integer, the \voi{} is automatically increased to the next possible integer value.
 \\
 % 
+There are two arrays with information about the discrete volume.
+First the \tissue array.
+It contains an index value to the corresponding list of physical properties (see \cref{alg:fiberbundleprops}). \todo{has immense potential for zipping.}
+Second, the \opticalaxis-array.
+It contains sliding values of the $x,y,z$ values of the optical axis orientation (see \cref{fig:vectormodel}).
+Additionally, there will be a \code{distance} array for the generation algorithm, which contains information about how far away the next currently found object is to the center of its voxel.
+\\
+% 
+All arrays are implemented as contiguous c-arrays, which are accessible as \name{Numpy}-arrays.
+Since these arrays grow with $\mathcal{O}(n^3)$, the aim was to make them movable through the \cpp libraries as well as in \python.
+The memory order of the arrays is in $x-y-z$ direction, so the largest memory shift is in $x$ and the smallest in $z$.
+This was chosen so that later in the simulation, where light usually travels mainly in $z$-direction, the memory is aligned to the required information and thus the cache prefetcher can be used.
+\\
+% 
+Next, each voxel of those arrays have to be filled with its correct properties.
+\\[\baselineskip]
+% 
+\paragraph{Iteration cycle}
 To calculate a discrete volume of optical properties from a fiber configuration, the same fiber representation as in \cref{sec:nerve_fiber_representation} is used, \ie{} a list of lists of 4d coordinates.
 The first list inherits nerve fiber bundles.
-The second inner list the nerve fibers.
-Since all objects are \ac{CC}, the problem of discretisation can be therefore reduced to the case of a single \ac{CC} object $(\vv{p_i}, \vv{p_{i+1}}, r_i, r_{i+1})$.
+The second inner list lists the nerve fibers.
+Since all objects are \ac{CC}, the problem of discretization can therefore be reduced to the case of a single \ac{CC} object $(\vv{p_i}, \vv{p_{i+1}}, r_i, r_{i+1})$.
 % 
-Since the birefringend orientation inside a fiber can be represented either with the micro or marcoscopic model (see \dummy{}), the radial or parallel orientation for a point $q$ to the object has to be calculated.
-In the case of parallel orientation the orientation $o$ is:
+To fill the arrays with their information, all voxels of the current \ac{AABB} of the \ac{CC} are iterated over.
+For each voxel in the volume of the \ac{AABB} the smallest distance to the line segment of the \ac{CC} is calculated (see \cref{alg:smallDistLinePoint}).
+\\
+% 
+\begin{lstfloat}[!tb]
+\lstinputlisting[style=python]{code/short_dist_line_seg_point.py}
+\caption[Calculating smallest distance between line segment and point]{Calculating smallest distance and point on line from line segment $p_0, p_1$ to point $q$.}
+\label{alg:smallDistLinePoint}
+\end{lstfloat}
+% 
+\begin{figure}[!t]
+\centering
+\setlength{\tikzwidth}{0.45\textwidth}
+\subcaptionbox{\label{fig:vectormodel}vector\_model with microscopic birefringence myelin layer}[.49\textwidth]{
+\inputtikz[true]{gfx/simpli/vector_model}} \hfill
+\subcaptionbox{\label{fig:fiberLayer}additional fiber layers}[.49\textwidth]{
+\inputtikz[true]{gfx/simpli/fiber_layer}}
+\caption{Discretisation of fiber with layered properties.}
+\label{fig:fiber_discretisation}
+\end{figure}
+% 
+\begin{figure}[!t]
+\centering
+\def\tikzwidth{0.42\textwidth}
+\inputtikz[true]{gfx/simpli/indexing}
+\caption{indexing of arrays.
+The vector inside the array at index position $[i,j,k]$ will correspond to the vector at position $p=(i+0.5,j+0.5,k+0.5)\cdot \mathit{\voxelsize}$}
+\label{fig:indexing_array}
+\end{figure}
+% 
+Using the smallest distance from the current position, the actual physical property of the current fiber segment can be calculated and stored.
+Since the birefringent orientation within a fiber can be represented either with the micro- or the maroscopic model (see \dummy{}), the radial or parallel orientation for a point $q$ in the volume (see \cref{fig:vector model}) to the fiber segment must be calculated.
+In case of a parallel orientation, the orientation is $o$:
 \begin{align}
 \begin{split}
     o = \frac{\vv{p}_i - \vv{p}_{i+1}}{\abs{\vv{p}_i - \vv{p}_{i+1}}}
 \end{split}
 \end{align}
 % 
-For the radial case the smallest distance to the line segment $(\vv{p}_i,\vv{p}_{i+1})$ has to be calculated (analog to \cref{sec:collisionDetection}) \todo{and for the distance value}.
+Since a fiber can have multiple layers, \eg{} axon or myelin, the layer must be identified at the  position $q$ (see \cref{fig:fiberLayer}).
+This is achieved by comparing the smallest distance from this point to the layer size.
+However, since the layer size scales with the fiber radii, it must be taken into account.
+This simply means that the current layer is $l$, which satisfies the following condition: 
+\begin{align}
+    \left(\fiberRadius_i \cdot b + \fiberRadius_{i+1} \cdot(1-b)\right) \cdot \code{layer}_l <= \code{distance} < \left(\fiberRadius_i \cdot b + \fiberRadius_{i+1} \cdot(1-b)\right) \cdot \code{layer}_{l+1} \ 
+\end{align}
 % 
-\begin{figure}[!t]
-\centering
-\setlength{\tikzwidth}{0.45\textwidth}\hfill
-\subcaptionbox{vector\_model}[.495\textwidth]{
-\inputtikz[true]{gfx/simpli/vector_model}} \hfill
-\subcaptionbox{fiber\_layer}[.495\textwidth]{
-\inputtikz[true]{gfx/simpli/fiber_layer}}\hfill
-\caption{discretisation of fiber}
-\label{fig:fiber_discretisation}
-\end{figure}
-% 
-\begin{figure}[!t]
-\centering
-\def\tikzwidth{0.33\textwidth}
-\inputtikz{gfx/simpli/indexing}
-\caption{indexing of arrays.
-The vector inside the array at index position $[i,j,k]$ will correspond to the vector at position $p=(i+0.5,j+0.5,k+0.5)\cdot \mathit{\voxelsize}$}
-\label{fig:indexing_array}
-\end{figure}
-% 
-The radial orientation vector is then parallel to the smallest distance vector $\vv{d}$.
-The distance is also used to check which layer of the fiber is "active" (\eg axon or myelin). 
-% 
+If a current voxel already has an entry stored, its value within the \code{distance}-array is compared to the current distance.
+If the current distance is smaller, the values are overwritten.
+This also accounts for the race condition, when two objects take up the same voxel, \eg{} neighboring fiber segments.
+At this point all voxels of all fiber segments must be iterated over.
 % 
 \paragraph{Fiber layers and their properties}
 Each nerve fiber bundle needs to be characterized by the corresponding physical parameters.
@@ -116,50 +160,24 @@ These parameters are
 \begin{lstfloat}[!tb]
 \lstset{style=python}
 \begin{lstlisting}[]
-fbs_properties = [[(layer_scale, dn, mu, 'p'), (second layer), ...],
+fbs_properties = [[(layer, dn, mu, 'p'), (second layer), ...],
                   [(first layer of second bundle), ...],
                   [...]]
 \end{lstlisting}
 \caption{Definig fiber bundle properties}
-\label{alg:pseudocode_octree}
+\label{alg:fiberbundleprops}
 \end{lstfloat}
 % 
-% \begin{figure}[!t]
-% \centering
-% \def\tikzwidth{0.625\textwidth}
-% \inputtikz{gfx/simpli/fiber_layer}
-% \caption{fiber layer}
-% \label{fig:fiber_layer}
-% \end{figure}
+These parameters must be set for each layer (see \cref{fig:fiberLayer}) within the fiber.
+A \code{layer} is a concept that allows the differentiation between axon and myelin or multiple myelin layers with intracellular fluid between the coils (see \cref{fig:fiberLayer}).
+This requires the parameters to be set (see \cref{alg:pseudocode_octree}).
 % 
-These parameters have to set for every layer (see \todo{bild erzeugen}) inside the fiber.
-A \code{layer} is a concept to allow such things as differentiate between axon and myelin or multiple layers of myelin with intracellular fluid between the windings.
-Therefore the parameters have to be set in the following way (see \cref{alg:pseudocode_octree})
+The \code{layer} is a factor for how large the proportion of the radius of this layer is.
+For example, $\code=0.75$ means that from $0\leq r < 0.75$ of the radii are interpreted as the first layer.
+The value can even be set to values $>1$ if the user so wishes.
+Of course, a collision-free model is then no longer a guarantee that it is collision-free.
 % 
-The \code{layer\_scale} is a factor of how much of the radii will be set to this layer.
-E.\ g. $\code{layer\_scale}=0.75$ means that from $0\leq r < 0.75$ of the radii will be interpret as the first layer.
-The value can even be set to values $>1$ if the user whishes to.
-Of course then a collision free model is not guarantee to be any more collision free.
-% 
-The \ac{CC} object has the following \ac{AABB}:
-\begin{align}
-\begin{split}
-    \sum_{1,2,3} \epsilon_{i,j} \times \hat{e}_i \times \max(p_{0,j}, p_{1,j}) + \max(r_0, r_1)
-\end{split}
-\end{align}
-To calculate the discreticed voxels, this \ac{AABB} is iterated. for v in V(AABB): \dummy{}
-% 
-Iterating over all voxels and afterwords over all objects of all fibers yield in the discretisec volume model.\\
-% 
-To account for the race condition, when two objects take up the same voxel (\eg{} neighboring fiber segments) a distance map \code{distance array} is used.
-In this 3d array the distance $d$ for a calculated orientation will be saved.
-If a new point for another object has a smaller distance, it overwrites the orientation and distance.
-Furthermore a 3d "label" array is needed, which represents the id of the physical properties which have to be used (\eg which layer or which fiber properties).
-The value inside the label array corresponds to a look up table of a \code{property list}.
-% 
-The DV-Generator returns the \code{label field}, \code{vector field} and \code{property list}.
-% 
-\footnote{same calculations for cells, except that the birefingence and orientation is $0$.}
+At the end the DV-Generator returns the arrays \tissue, \opticalaxis and the \propertylist for the use of the simulation.
 % 
 \subsection{optimization}
 % 
@@ -184,8 +202,7 @@ When the threads then loop over all indices, thread $n$ only processes the memor
 This operation results in a thread safe writable operation.
 The only disadvantage is, that all threads have to check, if the \ac{AABB} is inside the \ac{VOI}.
 However since with this configuration only one time threads are spawned, it is rather quick.
-One has to be known, that the array is in order $x-y-z$, therefore the largest memory displacement is in $x$ and the smallest in $z$.
-This was chosen, so that later at the simulation process, where the light traverses usually mainly in $z$-direction, the memory is aligned with the needed information, and therefore the cache-prefetcher can be used.
+\\
 % 
 For large volumes bigger then the local shareable memory size the computation has to be split over multiple "nodes".
 For this purpose \mpi{} is used.
@@ -207,7 +224,7 @@ Each \mpi{} process can use \openmp{} to spawn multiple threads to efficiently u
 \def\tikzwidth{0.75*\textwidth}
 \inputtikz[true]{gfx/simpli/vector_interpolation}
 \tikzset{external/export=false}
-\caption{Illustration of difference between linear and spherical interpolation}
+\caption[Illustration linear and spherical interpolation.]{Illustration of difference between linear and spherical interpolation. Linear interpolation has a constant distance $s$ between each point, spherical interpolation a constant angle $\varphi$ for the same $dt$.}
 \label{fig:vectorfield_disc}
 \end{figure}
 % 
@@ -362,4 +379,4 @@ This is a rather small cost considering the saving of memory and for tissue sect
 % 	\label{alg:mpi_comm}
 % \end{lstfloat}
 % 
-\itodo{smart sampling}
+\itodo{smart sampling spæter diskutieren}
