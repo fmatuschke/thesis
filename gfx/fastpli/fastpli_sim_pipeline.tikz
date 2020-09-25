@@ -1,11 +1,12 @@
+\tikzset{external/export=false}
 \tikzset{%
   % Specifications for style of nodes:
     base/.style = {rectangle, rounded corners, draw=black,
                   minimum width=4cm, minimum height=1cm,
                   text centered, font=\sffamily},
-    activity/.style = {base, fill=blue!30},
-    activityLoop/.style = {base, fill=red!30},
-    activitySingle/.style = {base, fill=green!30},
+    activity/.style = {base, fill=BlueGreen!30},
+    activityLoop/.style = {base, fill=Red!30},
+    activitySingle/.style = {base, fill=YellowGreen!60},
     save/.style = {base, minimum width=2.5cm, fill=orange!15,
                           font=\ttfamily},
 }
