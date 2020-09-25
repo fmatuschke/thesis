@@ -68,7 +68,6 @@ Next the each voxel has to be set with is physical properties.
 To calculate a discrete volume of optical properties from a fiber configuration, the same fiber representation as in \cref{sec:nerve_fiber_representation} is used, \ie{} a list of lists of 4d coordinates.
 The first list inherits nerve fiber bundles.
 The second inner list the nerve fibers.
-
 Since all objects are \ac{CC}, the problem of discretisation can be therefore reduced to the case of a single \ac{CC} object $(\vv{p_i}, \vv{p_{i+1}}, r_i, r_{i+1})$.
 % 
 Since the birefringend orientation inside a fiber can be represented either with the micro or marcoscopic model (see \dummy{}), the radial or parallel orientation for a point $q$ to the object has to be calculated.
@@ -205,9 +204,10 @@ Each \mpi{} process can use \openmp{} to spawn multiple threads to efficiently u
 % 
 \begin{figure}[!t]
 \centering
-\def\tikzwidth{0.42*\textwidth}
-\inputtikz{gfx/simpli/vector_interpolation}
-\caption{vector interpolation}
+\def\tikzwidth{0.75*\textwidth}
+\inputtikz[true]{gfx/simpli/vector_interpolation}
+\tikzset{external/export=false}
+\caption{Illustration of difference between linear and spherical interpolation}
 \label{fig:vectorfield_disc}
 \end{figure}
 % 
@@ -259,16 +259,22 @@ To always get the same dens of light rays per ccd-pixel, all light ray starting 
 % 
 \begin{figure}[!t]
 % 
+% \colorlet{red}{dark22}
+% \colorlet{green}{dark21}
+% \colorlet{blue}{dark23}
+\colorlet{red}{set11}
+\colorlet{green}{set13}
+\colorlet{blue}{set12}
 \def\tikzheight{0.42\textwidth}
 % \centering
 \subcaptionbox{camera view}[.49\textwidth]{
-\inputtikz{gfx/simpli/tilting_3d_a}}
+\inputtikz[true]{gfx/simpli/tilting_3d_a}}
 % 
 \subcaptionbox{perspective view}[.49\textwidth]{
-\inputtikz{gfx/simpli/tilting_3d_b}}
+\inputtikz[true]{gfx/simpli/tilting_3d_b}}
 % 
 \tikzset{external/export=false}
-\caption[3d tilting]{3d tilting: around $xy$-axis, \raisebox{.25em}{\tikz \draw[red,thick](0,0)--(0.25,0);} top, \raisebox{.25em}{\tikz \draw[green!50!black,thick](0,0)--(0.25,0);} middle, \raisebox{.25em}{\tikz \draw[blue,thick](0,0)--(0.25,0);} bottom, \raisebox{.25em}{\tikz \draw[dash pattern=on 1.25pt off 1.25pt,thick](0,0)--(0.25,0);} original, \raisebox{.25em}{\tikz \draw[gray](0,0)--(0.25,0);} axis of rotation \itodo{improve images}}
+\caption[3d tilting]{3d tilting: around $xy$-axis, \raisebox{.25em}{\tikz \draw[red,thick](0,0)--(0.25,0);} top, \raisebox{.25em}{\tikz \draw[green,thick](0,0)--(0.25,0);} middle, \raisebox{.25em}{\tikz \draw[blue,thick](0,0)--(0.25,0);} bottom, \raisebox{.25em}{\tikz \draw[dash pattern=on 1.25pt off 1.25pt,thick](0,0)--(0.25,0);} original, \raisebox{.25em}{\tikz \draw[gray](0,0)--(0.25,0);} axis of rotation \itodo{test david und daniel}}
 \end{figure}
 % 
 Snell's law describes the refraction of light between two different isotropic media:
