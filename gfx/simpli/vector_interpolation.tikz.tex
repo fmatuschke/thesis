@@ -1,43 +1,53 @@
-% 
-\def\xa{cos(35)}
-\def\ya{sin(35)}
-\def\xb{cos(135)}
-\def\yb{sin(135)}
-\def\theta{100}
-% 
 \begin{tikzsize}{\tikzwidth}{\tikzheight}
-\begin{tikzpicture}[scale=\tikzscale]
-    \begin{axis}[
-    hide axis,
-    axis equal,
-    axis equal image,
+\begin{tikzpicture}[%
+    scale=\tikzscale,
+    triangle/.style = {regular polygon, regular polygon sides=3}
     ]
-    %\def\PI{3.14159265359}
-    \addplot[
-        domain=0:360,
-        samples=180,
-        no marks,
-    ]
-    ({cos(x)}, {sin(x)});
+    \colorlet{red}{dred}
+    \colorlet{green}{dgreen}
+    \colorlet{blue}{dblue}
     % 
-    \addplot[
-        domain=0:1,
-        samples=10,
-        only marks,
-        mark=*,
-        blue,
-    ]
-    ({((1-x)*\xa + x * \xb) / sqrt(((1-x)*\xa + x * \xb)*((1-x)*\xa + x * \xb) + ((1-x)*\ya + x * \yb)*((1-x)*\ya + x * \yb))}, {((1-x)*\ya + x * \yb) / sqrt(((1-x)*\xa + x * \xb)*((1-x)*\xa + x * \xb) + ((1-x)*\ya + x * \yb)*((1-x)*\ya + x * \yb))});
+    \pgfmathsetmacro{\xa}{cos(35)}
+    \pgfmathsetmacro{\ya}{sin(35)}
+    \pgfmathsetmacro{\xb}{cos(135)}
+    \pgfmathsetmacro{\yb}{sin(135)}
+    \pgfmathsetmacro{\theta}{100}
     % 
-    \addplot[
-        domain=0:1,
-        samples=10,
-        only marks,
-        mark=triangle*,
-        red,
-    ]
-    ({sin((1-x)*\theta)/sin(\theta)*\xa+sin(x*\theta)/sin(\theta) * \xb},
-     {sin((1-x)*\theta)/sin(\theta)*\ya+sin(x*\theta)/sin(\theta) * \yb});
-    \end{axis}
+    \pgfmathsetmacro{\r}{3}
+    \coordinate (a) at ({\r*\xa},{\r*\ya});
+    \coordinate (b) at ({\r*\xb},{\r*\yb});
+    % 
+    \draw[] ({\r*\xa}, {\r*\ya}) arc(35:135:\r);
+    \draw[name path=AB] (a) -- (b);
+    % 
+    % \pgfmathsetmacro{\r}{0.1}
+    \foreach \i in {0,1,2,3,4,5,6}{
+        \pgfmathsetmacro{\x}{1/6*\i}
+        \node[green,circle,fill,inner sep=2] at
+        ({\r*(((1-\x)*\xa+\x*\xb)/sqrt(((1-\x)*\xa+\x*\xb)*((1-\x)*\xa+\x*\xb)+((1-\x)*\ya+\x*\yb)*((1-\x)*\ya+\x*\yb)))},
+        {\r*(((1-\x)*\ya+\x*\yb)/sqrt(((1-\x)*\xa+\x*\xb)*((1-\x)*\xa+\x*\xb)+((1-\x)*\ya+\x*\yb)*((1-\x)*\ya+\x*\yb)))}) {};
+        \path[name path=P] (0,0) --        ({\r*(((1-\x)*\xa+\x*\xb)/sqrt(((1-\x)*\xa+\x*\xb)*((1-\x)*\xa+\x*\xb)+((1-\x)*\ya+\x*\yb)*((1-\x)*\ya+\x*\yb)))},
+        {\r*(((1-\x)*\ya+\x*\yb)/sqrt(((1-\x)*\xa+\x*\xb)*((1-\x)*\xa+\x*\xb)+((1-\x)*\ya+\x*\yb)*((1-\x)*\ya+\x*\yb)))});
+        \draw[green, name intersections={of=P and AB, by=E}] (E) -- ({\r*(((1-\x)*\xa+\x*\xb)/sqrt(((1-\x)*\xa+\x*\xb)*((1-\x)*\xa+\x*\xb)+((1-\x)*\ya+\x*\yb)*((1-\x)*\ya+\x*\yb)))},
+        {\r*(((1-\x)*\ya+\x*\yb)/sqrt(((1-\x)*\xa+\x*\xb)*((1-\x)*\xa+\x*\xb)+((1-\x)*\ya+\x*\yb)*((1-\x)*\ya+\x*\yb)))}) node[pos=0.0,green,circle,fill,inner sep=2] (P\i) {};
+    }
+    % 
+    \foreach \i in {0,1,2,3,4,5,6}{
+        \pgfmathsetmacro{\x}{1/6*\i}
+        \node[red,triangle,fill,inner sep={sqrt(1/2)*2}] at
+        ({\r*(sin((1-\x)*\theta)/sin(\theta)*\xa+sin(\x*\theta)/sin(\theta)*\xb)},
+        {\r*(sin((1-\x)*\theta)/sin(\theta)*\ya+sin(\x*\theta)/sin(\theta)*\yb)}) {};
+        \draw[red] (0,0) --
+        ({\r*(sin((1-\x)*\theta)/sin(\theta)*\xa+sin(\x*\theta)/sin(\theta)*\xb)},
+        {\r*(sin((1-\x)*\theta)/sin(\theta)*\ya+sin(\x*\theta)/sin(\theta)*\yb)}); 
+    }
+    \draw[green, thick] (P1) -- (P2) node[below, pos=0.75] {$s$};
+        \draw[red, thick] ({0.25*\r*\xa}, {0.25*\r*\ya}) arc(35:35+100/6:0.25*\r) node[right] {$\varphi$};
+    % 
+    \coordinate (BB1) at (current bounding box.north east);
+    \coordinate (BB2) at (current bounding box.south east);
+    \path (BB1) -- (BB2) node[right, green, pos=0.42] {linear};
+    \path (BB1) -- (BB2) node[right, red, pos=0.58] {spherical};
+    \path[] (-1.42*\r,0) -- (1.42*\r,0);
 \end{tikzpicture}
 \end{tikzsize}

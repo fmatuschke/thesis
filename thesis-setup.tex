@@ -425,45 +425,49 @@
 % **************************************************
 % Custom Colors
 % **************************************************
-% ["#9b59b6", "#3498db", "#95a5a6", "#e74c3c", "#34495e", "#2ecc71"]
+%  from colorbrewer
+\definecolor{set11}{HTML}{e41a1c}
+\definecolor{set12}{HTML}{377eb8}
+\definecolor{set13}{HTML}{4daf4a}
+\definecolor{set14}{HTML}{984ea3}
+\definecolor{set15}{HTML}{ff7f00}
+\definecolor{set16}{HTML}{ffff33}
+\definecolor{set17}{HTML}{a65628}
+\definecolor{set18}{HTML}{f781bf}
 % 
-% use colorbrew instead
+\definecolor{set21}{HTML}{66c2a5}
+\definecolor{set22}{HTML}{fc8d62}
+\definecolor{set23}{HTML}{8da0cb}
+\definecolor{set24}{HTML}{e78ac3}
+\definecolor{set25}{HTML}{a6d854}
+\definecolor{set26}{HTML}{ffd92f}
+\definecolor{set27}{HTML}{e5c494}
+\definecolor{set28}{HTML}{b3b3b3}
 % 
-\makeatletter
-\definecolor{cc21}{HTML}{A6CEE3}
-\definecolor{cc22}{HTML}{1F78B4}
-\pgfplotscreateplotcyclelist{cc2}{cc21, cc22}
-\makeatother
+\definecolor{dark21}{HTML}{1b9e77}
+\definecolor{dark22}{HTML}{d95f02}
+\definecolor{dark23}{HTML}{7570b3}
+\definecolor{dark24}{HTML}{e7298a}
+\definecolor{dark25}{HTML}{66a61e}
+\definecolor{dark26}{HTML}{e6ab02}
+\definecolor{dark27}{HTML}{a6761d}
+\definecolor{dark28}{HTML}{666666}
 % 
-% \definecolor{cc21}{HTML}{9b59b6}
-% \definecolor{cc22}{HTML}{3498db}
+\colorlet{sred}{set11}
+\colorlet{sgreen}{set13}
+\colorlet{sblue}{set12}
+% 
+\colorlet{dred}{dark22}
+\colorlet{dgreen}{dark21}
+\colorlet{dblue}{dark23}
+% 
+% \makeatletter
+% \definecolor{cc21}{HTML}{A6CEE3}
+% \definecolor{cc22}{HTML}{1F78B4}
 % \pgfplotscreateplotcyclelist{cc2}{cc21, cc22}
-% % 
-% \definecolor{cc31}{HTML}{edf8b1}
-% \definecolor{cc32}{HTML}{7fcdbb}
-% \definecolor{cc33}{HTML}{2c7fb8}
-% \pgfplotscreateplotcyclelist{cc3}{cc31, cc32, cc33}
-% % 
-% \definecolor{cc41}{HTML}{9b59b6}
-% \definecolor{cc42}{HTML}{3498db}
-% \definecolor{cc43}{HTML}{95a5a6}
-% \definecolor{cc44}{HTML}{e74c3c}
-% \pgfplotscreateplotcyclelist{cc4}{cc41, cc42, cc43, cc44}
-% % 
-% \definecolor{cc51}{HTML}{9b59b6}
-% \definecolor{cc52}{HTML}{3498db}
-% \definecolor{cc53}{HTML}{95a5a6}
-% \definecolor{cc54}{HTML}{e74c3c}
-% \definecolor{cc55}{HTML}{34495e}
-% \pgfplotscreateplotcyclelist{cc5}{cc51, cc52, cc53, cc54, cc55}
-% % 
-% \definecolor{cc61}{HTML}{9b59b6}
-% \definecolor{cc62}{HTML}{3498db}
-% \definecolor{cc63}{HTML}{95a5a6}
-% \definecolor{cc64}{HTML}{e74c3c}
-% \definecolor{cc65}{HTML}{34495e}
-% \definecolor{cc66}{HTML}{2ecc71}
-% \pgfplotscreateplotcyclelist{cc5}{cc61, cc62, cc63, cc64, cc65, cc66}
+% \makeatother
+% 
+
 % 
 \pgfplotsset{
 /pgfplots/colormap/viridis fix/.style={%
