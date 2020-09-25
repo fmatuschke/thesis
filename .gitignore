@@ -1,4 +1,5 @@
 thesis.*
+thesis_*
 !thesis.tex
 dev/
 tikz/*

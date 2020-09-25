@@ -9,6 +9,7 @@ fi
 if [ "$1" = "--clean" ]; then
    rm -rf output
    rm -rf tikz
+	rm -f thesis_.tex
    mkdir tikz
    touch tikz/dummy.tex
    find . -type f -iname "*.acr" -exec rm {} \;
@@ -34,6 +35,8 @@ if [ "$1" = "--clean" ]; then
    touch tikz/dummy.tex
    exit
 fi
+
+sed 's/% *mode=list/ mode=list/' thesis.tex > thesis_.tex
 
 if [ "$1" == "--tikz" ]; then
    mkdir -p tikz
@@ -66,21 +69,23 @@ fi
 # cp -r output/tikz output/tikz/output/
 
 if [ "$1" = "--single" ]; then
-   lualatex -interaction=nonstopmode -halt-on-error -shell-escape thesis.tex
-   eval "$open output/thesis.pdf &> /dev/null 2>&1"
+   lualatex -interaction=nonstopmode -halt-on-error -shell-escape thesis_.tex
+   mv thesis_.pdf thesis.pdf
+   eval "$open thesis.pdf &> /dev/null 2>&1"
    exit
 fi
 
 #find . -type f -exec sed -i.bak '/^%/!s/\([.!?]\) \([[:upper:]]\)/\1\n\2/g' {} \;
 
-lualatex -interaction=nonstopmode -halt-on-error -shell-escape thesis.tex
-if [ -f "thesis.makefile" ]; then
-   make -j4 -f thesis.makefile
+lualatex -interaction=nonstopmode -halt-on-error -shell-escape thesis_.tex
+if [ -f "thesis_.makefile" ]; then
+   make -j4 -f thesis_.makefile
 fi
-biber thesis
-lualatex -interaction=nonstopmode -halt-on-error -shell-escape thesis.tex
+biber thesis_
+lualatex -interaction=nonstopmode -halt-on-error -shell-escape thesis_.tex
 
 # find output/tikz -type f -iname "*.pdf" -exec echo cp {} /tikz/{} \;
 # rsync -avu --filter="- *" --filter="+ *.pdf" output/tikz .
 
+mv thesis_.pdf thesis.pdf
 eval "$open thesis.pdf &> /dev/null 2>&1"
