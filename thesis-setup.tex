@@ -413,8 +413,9 @@
 \setlength{\marginparwidth}{4cm}
 \newcommand{\itodo}[2][]{\todo[inline, #1]{#2}}
 \newcommand{\TODO}[2][]{\todo[color=red, #1]{#2}}
-\newcommand{\markus}[1]{\todo[color=orange]{#1}}
-\newcommand{\imarkus}[1]{\todo[inline, color=orange]{#1}}
+\newcommand{\markus}[1]{\textcolor{orange!90!black}{#1}}
+% \newcommand{\markus}[1]{\todo[color=orange]{#1}}
+% \newcommand{\imarkus}[1]{\todo[inline, color=orange]{#1}}
 % 
 % **************************************************
 % Debug LaTeX Information
@@ -460,6 +461,14 @@
 \colorlet{dred}{dark22}
 \colorlet{dgreen}{dark21}
 \colorlet{dblue}{dark23}
+% 
+\colorlet{ored}{red}
+\colorlet{ogreen}{green}
+\colorlet{oblue}{blue}
+% 
+\colorlet{red}{dred}
+\colorlet{green}{dgreen}
+\colorlet{blue}{dblue}
 % 
 % \makeatletter
 % \definecolor{cc21}{HTML}{A6CEE3}

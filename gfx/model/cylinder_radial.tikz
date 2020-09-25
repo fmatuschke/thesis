@@ -11,7 +11,7 @@
 \begin{axis}[view={210}{30}, hide axis]
 \addplot3 [domain=\alpha:\beta,samples=42,samples y=0, smooth, name path=b1,] ({sin(x)*\rin},{cos(x)*\rin},{0});
 \addplot3 [domain=\alpha:\beta,samples=42,samples y=0, smooth, name path=b2,] ({sin(x)*\rin},{cos(x)*\rin},{\h});
-\fill[green!50!black, intersection segments={of=b1 and b2,sequence={A* -- B*[reverse]}}, ] -- cycle;
+\fill[green, intersection segments={of=b1 and b2,sequence={A* -- B*[reverse]}}, ] -- cycle;
 % 
 \addplot3 [domain=\alpha:\beta,samples=42,samples y=0, smooth] ({sin(x)*\rout},{cos(x)*\rout},{0});
 \addplot3 [domain=\alpha:\beta,samples=42,samples y=0, smooth] ({sin(x)*\rout},{cos(x)*\rout},{\h});

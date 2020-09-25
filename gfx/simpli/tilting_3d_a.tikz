@@ -5,10 +5,6 @@
 \begin{tikzsize}{\tikzwidth}{\tikzheight}
 \begin{tikzpicture}[scale=\tikzscale]
 % 
-\colorlet{red}{dark22}
-\colorlet{green}{dark21}
-\colorlet{blue}{dark23}
-% 
 \path[] (-8.5, 8.75) rectangle (10, -7);
 \begin{scope}[
 3d view={\azimuth}{\elevation},
