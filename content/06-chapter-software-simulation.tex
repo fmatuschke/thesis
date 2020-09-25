@@ -177,21 +177,29 @@ For example, $\code=0.75$ means that from $0\leq r < 0.75$ of the radii are inte
 The value can even be set to values $>1$ if the user so wishes.
 Of course, a collision-free model is then no longer a guarantee that it is collision-free.
 % 
-At the end the DV-Generator returns the arrays \tissue, \opticalaxis and the \propertylist for the use of the simulation.
+At the end the DV-Generator returns the arrays \tissue{}, \opticalaxis{} and the \propertylist{} for the use of the simulation.
 % 
 \subsection{optimization}
 % 
-Two methods are used to parallel the algorithm on the \ac{CPU}.
-The first uses \openmp{} for the parallelisation of filling the \ac{AABB} volume of each object.
-The second uses \mpi{} to allow the distribution on multiple \ac{CPU} cores without the capability of shared memory. 
+Two methods are used to parallelize the algorithm on the \ac{CPU}.
+The first uses \openmp{} to parallelize the filling of the \ac{AABB} volume of each object.
+The second uses \mpi{} to allow distribution to multiple \ac{CPU} cores without sharing memory. 
 % 
-The parallelisation of the \ac{AABB} volume leads to a race condition if multiple threads want to write in the same memory address (or coordinate) (\eg{} two objects occupy the same space).
+The parallelization of the \ac{AABB} volume leads to a race condition if several threads want to write to the same memory address (or coordinate) (\eg{} two objects occupy the same space).
 A solution with a lock would be very slow.
-Since the loop is over all $(i,j,k)$ indices of the three space dimensions, the parallelisation can be done over the indices.
-However this leads to a slow implementation, since for every object new threads have to be spawned.
-Therefore the parallel call is spawning all threads before the first loop over all objects.
-Therefore all threads process all objects.
-When the threads then loop over all indices, thread $n$ only processes the memory for the first volume dimension $i$ if:
+Since the loop runs over all $(i,j,k)$ indices of the three space dimensions, the parallelization can be done using the indices.
+However, this leads to a slow implementation because new threads have to be created for each object.
+If was therefore decided, that the parallel call creates all threads before the first loop over all objects.
+This means all threads process all objects.
+If the threads then execute a loop over all indices (or coordinates), thread $n$ only processes the memory for the first volume dimension $i$ if (see \cref{fig:discVolThread}):
+% 
+\begin{figure}[!t]
+\centering
+\setlength{\tikzwidth}{0.5\textwidth}
+\inputtikz{gfx/simpli/disc_volume_thread}
+\caption{discretisation volume}
+\label{fig:discVolThread}
+\end{figure}
 % 
 \begin{align}
 \begin{split}
@@ -199,20 +207,18 @@ When the threads then loop over all indices, thread $n$ only processes the memor
 \end{split}
 \end{align}
 % 
-This operation results in a thread safe writable operation.
-The only disadvantage is, that all threads have to check, if the \ac{AABB} is inside the \ac{VOI}.
-However since with this configuration only one time threads are spawned, it is rather quick.
+This process results in a thread-safe writable operation.
+The only drawback is that all threads must check if the \ac{AABB} is inside the \ac{VOI}.
+However since with this configuration only once threads are spawned, and the \ac{AABB} collison check is very efficient in terms of computation time, it is quite fast.
 \\
 % 
-For large volumes bigger then the local shareable memory size the computation has to be split over multiple "nodes".
+For huge volumes that are larger than the locally optimal shared memory size, the calculation must be split into several physical \acp{CPU} or \name{computation nodes}.
 For this purpose \mpi{} is used.
-Its slices the volume along the $x$-axis and $y-axis$ into blocks with a minimal surface area.
-This is important for the next step (see \cref{sec:simulation}).
-The data is know spit into different process and cannot be easyli be exchanged.
-For the creation of the DV this is not necessary.
-Each \mpi{} process can then create a discreticised sub volume as if it would be the hole volume.
-However each sub volume has a additionally voxel along the $x$- and $y$-axis for later communication purpose (see \cref{sec:simulation}).
-Each \mpi{} process can use \openmp{} to spawn multiple threads to efficiently use shared memory if the architecture supports it.
+A method is implemented that automatically divides the volume along the $x$ axis and $y- axis$ into blocks with minimal surface area.
+This is important for the following simulation step (see \cref{sec:simulation}).
+Each \mpi{} process can then create a discretized sub-volume as if it were the hole volume.
+However, each sub-volume has an additional voxel along the $x$ and $y$ axis for later communication purposes as \name{halo}. (see \cref{sec:simulation}).
+Each \mpi{} process can additionally use \openmp{} to create multiple threads for efficient use of shared memory if the architecture supports it.
 % 
 % 
 % 
