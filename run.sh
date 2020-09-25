@@ -33,13 +33,14 @@ if [ "$1" = "--clean" ]; then
    find . -type f -iname "*:Zone.Identifier" -exec rm {} \;
    mkdir -p tikz
    touch tikz/dummy.tex
-   exit
+   exit 0
 fi
 
 sed 's/% *mode=list/ mode=list/' thesis.tex > thesis_.tex
 
 if [ "$1" == "--tikz" ]; then
    mkdir -p tikz
+   rm -rf tikz/*/
    for file in tikz/*.log; do
       # echo $file
       tikz=$(grep -e "\.tikz" -e "\.dpth" $file | grep -B 1 "tikz\/.*\.dpth" | tr ' ' '\n' | grep -o "(\.\/gfx.*\.tikz")
@@ -48,9 +49,13 @@ if [ "$1" == "--tikz" ]; then
       file_out="${file_out/(\.\//}"
       echo $file_in tikz/$file_out
       mkdir -p $(dirname tikz/$file_out)
+      if [ -f tikz/$file_out ]; then
+         echo tikz/$file_out EXISTS
+         exit 1
+      fi
       cp $file_in tikz/$file_out
    done
-   exit
+   exit 0
 fi
 
 if [ ! -f tikz/dummy.tex ]; then
@@ -72,7 +77,7 @@ if [ "$1" = "--single" ]; then
    lualatex -interaction=nonstopmode -halt-on-error -shell-escape thesis_.tex
    mv thesis_.pdf thesis.pdf
    eval "$open thesis.pdf &> /dev/null 2>&1"
-   exit
+   exit 0
 fi
 
 #find . -type f -exec sed -i.bak '/^%/!s/\([.!?]\) \([[:upper:]]\)/\1\n\2/g' {} \;

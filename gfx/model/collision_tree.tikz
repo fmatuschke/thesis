@@ -3,7 +3,7 @@
     % \draw (0,0) grid (10,10);
     % \path (0,0) -- (10,10);
     \begin{scope}[shift={(0.75,3)},local bounding box=BB1]
-        \draw[, green] (0:1cm) \foreach \x in {0,120,...,360} {-- (\x:1cm)} -- cycle {};
+        \draw[GREEN] (0:1cm) \foreach \x in {0,120,...,360} {-- (\x:1cm)} -- cycle {};
     \end{scope}
     \node[anchor=north east] at (BB1.south east) {$\mathit{obj}_1$};
     % 
@@ -26,13 +26,13 @@
         coordinate(J) at (\phi,-\a,0)
         coordinate(K) at (-\phi,\a,0)
         coordinate(L) at (-\phi,-\a,0); 
-        \draw[dashed, thick, green]
+        \draw[dashed, thick, GREEN]
         (B) -- (H) -- (F) 
         (L) -- (D) -- (H) --cycle 
         (K) -- (L) -- (H) --cycle
         (K) -- (L) -- (G) --cycle
         (C) -- (L) (B)--(K) (A)--(K);
-        \draw[green, rounded corners=1pt]
+        \draw[GREEN, rounded corners=1pt]
         (A) -- (I) -- (B) --cycle 
         (F) -- (I) -- (B) --cycle 
         (F) -- (I) -- (J) --cycle
@@ -47,13 +47,13 @@
     \node[anchor=north east] at (BB2.south east) {$\mathit{obj}_2$};
     % 
     \begin{scope}[shift={(5.5,8)},local bounding box=BB3]
-        \draw[, green] (0:1cm) \foreach \x in {0,90,...,360} {-- (\x:1cm)} -- cycle {};
+        \draw[GREEN] (0:1cm) \foreach \x in {0,90,...,360} {-- (\x:1cm)} -- cycle {};
     \end{scope}
     \node[anchor=north east] at (BB3.south east) {$\mathit{obj}_3$};
     % 
-    \draw[, red] (BB1.north west) rectangle (BB1.south east);
-    \draw[, red] (BB2.north west) rectangle (BB2.south east);
-    \draw[, red] (BB3.north west) rectangle (BB3.south east);
+    \draw[RED] (BB1.north west) rectangle (BB1.south east);
+    \draw[RED] (BB2.north west) rectangle (BB2.south east);
+    \draw[RED] (BB3.north west) rectangle (BB3.south east);
     % 
     \draw[thick] (0,0) rectangle (10,10);
     % 

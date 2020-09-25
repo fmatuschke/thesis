@@ -5,14 +5,14 @@
 % 
 \begin{scope}[shift={({0.5*cos(60)},{0.5*sin(60)})}, rotate=150]
 \node[cylinder, draw, shape aspect=.5, 
-  cylinder uses custom fill, cylinder end fill=green, 
-  minimum height=1cm, cylinder body fill=green!75, opacity=0.5,
+  cylinder uses custom fill, cylinder end fill=GREEN, 
+  minimum height=1cm, cylinder body fill=GREEN!75, opacity=0.5,
   scale=2, transform shape] at (-0.15,0) {};
 \end{scope}
 \begin{scope}[shift={({-0.5},{0})}, rotate=-90]
 \node[cylinder, draw, shape aspect=.5, 
-  cylinder uses custom fill, cylinder end fill=green!100, 
-  minimum height=1cm, cylinder body fill=green!75, opacity=0.5,
+  cylinder uses custom fill, cylinder end fill=GREEN!100, 
+  minimum height=1cm, cylinder body fill=GREEN!75, opacity=0.5,
   scale=2, transform shape] at (-0.15,0) {}; %, rotate=-135
 \end{scope}
 % 

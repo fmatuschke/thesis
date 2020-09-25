@@ -3,8 +3,8 @@
     scale=1,%\tikzscale,
     3d view={30}{30},
     cube/.style={white, double=black, double distance=.1mm, join=bevel},
-    arr/.style={-{latex[color=green!50!black]},
-        white, double=green!50!black, shorten <= 1pt, shorten >=1pt
+    arr/.style={-{latex[color=GREEN]},
+        white, double=GREEN, shorten <= 1pt, shorten >=1pt
       }
 ]
 % 

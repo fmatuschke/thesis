@@ -51,7 +51,7 @@
     %     samples=7,
     %     samples y=7,
     %     y domain=0:360,
-    %     scatter/use mapped color={ball color=blue!50!black},
+    %     scatter/use mapped color={ball color=BLUE!50!black},
     %     scatter,
     %     only marks,
     %     mark=ball,
@@ -63,7 +63,7 @@
         domain=0:1,
         samples=7,
         samples y=0,
-        draw=blue,
+        draw=BLUE,
         opacity=0.5,
         mark=ball,
         mark size=1.0pt,
@@ -77,7 +77,7 @@
         samples=7,
         samples y=0,
         only marks,
-        % draw=blue,
+        % draw=BLUE,
         % opacity=0.5,
         % mark=ball,
         % mark size=1.0pt,
@@ -87,7 +87,7 @@
     ]
     ({1*3.14159*x*100}, {cos(1*x*270)*100}, {0});
     % 
-    % \addplot[only marks,mark=*,mark options={scale=0.5, fill=red},text mark as node=true,point meta=explicit symbolic,nodes near coords] coordinates { (0,0) [A]   (2,4) [B]};
+    % \addplot[only marks,mark=*,mark options={scale=0.5, fill=RED},text mark as node=true,point meta=explicit symbolic,nodes near coords] coordinates { (0,0) [A]   (2,4) [B]};
     % 
     \end{axis}
 \end{tikzpicture}

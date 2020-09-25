@@ -3,15 +3,15 @@
 \pgfplotsset{table/search path={gfx/model},}
 \begin{scope}[shift={(0,0,0)}]
 \begin{axis}[hide axis, ymin=-1.4, ymax=1.6, width=0.8\textwidth,height=0.4\textwidth]
-\addplot[green!60!black, line width=20pt, line join=round] table [x index=0,y index=1] {tube.dat};
-\addplot[green!60!black, each nth point=50, only marks, mark size=10pt] table {tube.dat};
-\addplot[each nth point=10, only marks, mark size=3pt, blue!80!black] table {tube.dat};
+\addplot[GREEN, line width=20pt, line join=round] table [x index=0,y index=1] {tube.dat};
+\addplot[GREEN, each nth point=50, only marks, mark size=10pt] table {tube.dat};
+\addplot[each nth point=10, only marks, mark size=3pt, BLUE] table {tube.dat};
 \end{axis}
 \end{scope}
 %
 \begin{scope}[shift={(0,-3,0)}]
 \begin{axis}[hide axis, ymin=-1.4, ymax=1.6, width=0.8\textwidth,height=0.4\textwidth]
-\addplot[blue!80!black, mark=*, mark size=3pt, thick, each nth point=10] table {tube.dat};
+\addplot[BLUE, mark=*, mark size=3pt, thick, each nth point=10] table {tube.dat};
 \end{axis}
 \end{scope}
 %
@@ -19,7 +19,7 @@
 \begin{axis}[hide axis, ymin=-1.4, ymax=1.6, width=0.8\textwidth,height=0.4\textwidth, colormap/viridis]
 \addplot[mesh, point meta=x, line width=20pt, each nth point=10] table {tube.dat};
 \addplot[scatter, point meta=x, only marks, mark size=10pt, each nth point=10] table {tube.dat};
-\addplot[blue!80!black, mark=*, mark size=3pt, thick, each nth point=10] table {tube.dat};
+\addplot[BLUE, mark=*, mark size=3pt, thick, each nth point=10] table {tube.dat};
 \end{axis}
 \end{scope}
 \end{tikzpicture}

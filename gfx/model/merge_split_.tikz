@@ -52,7 +52,7 @@
 %     % 
 %     \foreach \i in {1,2}
 %     \foreach \k in {out}
-%     \draw[red] ($(t1\i\k)!-0cm!(t2\i\k)$) --  ($(t2\i\k)!-0cm!(t1\i\k)$);
+%     \draw[RED] ($(t1\i\k)!-0cm!(t2\i\k)$) --  ($(t2\i\k)!-0cm!(t1\i\k)$);
 %     % 
 %     % last circle
 %     \ifnum\ii=2
@@ -83,7 +83,7 @@
 %     % 
 %     \foreach \i in {1,2}
 %     \foreach \k in {out}
-%     \draw[red] ($(t1\i\k)!-0cm!(t2\i\k)$) --  ($(t2\i\k)!-0cm!(t1\i\k)$);
+%     \draw[RED] ($(t1\i\k)!-0cm!(t2\i\k)$) --  ($(t2\i\k)!-0cm!(t1\i\k)$);
 %     % 
 %     % last circle
 %     \ifnum\ii=1
@@ -124,7 +124,7 @@
     % 
     \foreach \i in {1,2}
     \foreach \k in {out}
-    \draw[red] ($(t1\i\k)!-0cm!(t2\i\k)$) --  ($(t2\i\k)!-0cm!(t1\i\k)$);
+    \draw[RED] ($(t1\i\k)!-0cm!(t2\i\k)$) --  ($(t2\i\k)!-0cm!(t1\i\k)$);
     % 
     % last circle
     \ifnum\ii=1
@@ -156,7 +156,7 @@
     % 
     \foreach \i in {1,2}
     \foreach \k in {out}
-    \draw[red] ($(t1\i\k)!-0cm!(t2\i\k)$) --  ($(t2\i\k)!-0cm!(t1\i\k)$);
+    \draw[RED] ($(t1\i\k)!-0cm!(t2\i\k)$) --  ($(t2\i\k)!-0cm!(t1\i\k)$);
     % 
     % last circle
     \ifnum\ii=2

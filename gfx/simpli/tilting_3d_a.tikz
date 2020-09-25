@@ -21,9 +21,9 @@ rotate around x=20,
 rotate around z=-45,]
 \draw[gray, dashed] (-6.5,-6.5,0) -- (6.5,6.5,0) node[pos=0.99, sloped, above] (rot) {\scriptsize rotation};
 \draw[gray, ->] (rot.north) arc (170:-45:1){};
-\draw[red, thick] (-5, -5, \dz) -- (-5, 5, \dz) -- (5, 5, \dz) -- (5, -5, \dz) -- cycle;
-\draw[green, thick] (-5, -5, 0) -- (-5, 5, 0) -- (5, 5, 0) -- (5, -5, 0) -- cycle;
-\draw[blue, thick] (-5, -5, -\dz) -- (-5, 5, -\dz) -- (5, 5, -\dz) -- (5, -5, -\dz) -- cycle;
+\draw[RED, thick] (-5, -5, \dz) -- (-5, 5, \dz) -- (5, 5, \dz) -- (5, -5, \dz) -- cycle;
+\draw[GREEN, thick] (-5, -5, 0) -- (-5, 5, 0) -- (5, 5, 0) -- (5, -5, 0) -- cycle;
+\draw[BLUE, thick] (-5, -5, -\dz) -- (-5, 5, -\dz) -- (5, 5, -\dz) -- (5, -5, -\dz) -- cycle;
 \foreach \i in {-5, 5}{ \foreach \j in {-5, 5}{
 \draw[] (\i, \j, -\dz) -- (\i, \j, \dz);
 }}

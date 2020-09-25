@@ -3,9 +3,9 @@
     scale=\tikzscale,
     triangle/.style = {regular polygon, regular polygon sides=3}
     ]
-    \colorlet{red}{dred}
-    \colorlet{green}{dgreen}
-    \colorlet{blue}{dblue}
+    \colorlet{RED}{RED}
+    \colorlet{GREEN}{GREEN}
+    \colorlet{BLUE}{BLUE}
     % 
     \pgfmathsetmacro{\xa}{cos(35)}
     \pgfmathsetmacro{\ya}{sin(35)}
@@ -23,31 +23,31 @@
     % \pgfmathsetmacro{\r}{0.1}
     \foreach \i in {0,1,2,3,4,5,6}{
         \pgfmathsetmacro{\x}{1/6*\i}
-        \node[green,circle,fill,inner sep=2] at
+        \node[GREEN,circle,fill,inner sep=2] at
         ({\r*(((1-\x)*\xa+\x*\xb)/sqrt(((1-\x)*\xa+\x*\xb)*((1-\x)*\xa+\x*\xb)+((1-\x)*\ya+\x*\yb)*((1-\x)*\ya+\x*\yb)))},
         {\r*(((1-\x)*\ya+\x*\yb)/sqrt(((1-\x)*\xa+\x*\xb)*((1-\x)*\xa+\x*\xb)+((1-\x)*\ya+\x*\yb)*((1-\x)*\ya+\x*\yb)))}) {};
         \path[name path=P] (0,0) --        ({\r*(((1-\x)*\xa+\x*\xb)/sqrt(((1-\x)*\xa+\x*\xb)*((1-\x)*\xa+\x*\xb)+((1-\x)*\ya+\x*\yb)*((1-\x)*\ya+\x*\yb)))},
         {\r*(((1-\x)*\ya+\x*\yb)/sqrt(((1-\x)*\xa+\x*\xb)*((1-\x)*\xa+\x*\xb)+((1-\x)*\ya+\x*\yb)*((1-\x)*\ya+\x*\yb)))});
-        \draw[green, name intersections={of=P and AB, by=E}] (E) -- ({\r*(((1-\x)*\xa+\x*\xb)/sqrt(((1-\x)*\xa+\x*\xb)*((1-\x)*\xa+\x*\xb)+((1-\x)*\ya+\x*\yb)*((1-\x)*\ya+\x*\yb)))},
-        {\r*(((1-\x)*\ya+\x*\yb)/sqrt(((1-\x)*\xa+\x*\xb)*((1-\x)*\xa+\x*\xb)+((1-\x)*\ya+\x*\yb)*((1-\x)*\ya+\x*\yb)))}) node[pos=0.0,green,circle,fill,inner sep=2] (P\i) {};
+        \draw[GREEN, name intersections={of=P and AB, by=E}] (E) -- ({\r*(((1-\x)*\xa+\x*\xb)/sqrt(((1-\x)*\xa+\x*\xb)*((1-\x)*\xa+\x*\xb)+((1-\x)*\ya+\x*\yb)*((1-\x)*\ya+\x*\yb)))},
+        {\r*(((1-\x)*\ya+\x*\yb)/sqrt(((1-\x)*\xa+\x*\xb)*((1-\x)*\xa+\x*\xb)+((1-\x)*\ya+\x*\yb)*((1-\x)*\ya+\x*\yb)))}) node[pos=0.0,GREEN,circle,fill,inner sep=2] (P\i) {};
     }
     % 
     \foreach \i in {0,1,2,3,4,5,6}{
         \pgfmathsetmacro{\x}{1/6*\i}
-        \node[red,triangle,fill,inner sep={sqrt(1/2)*2}] at
+        \node[RED,triangle,fill,inner sep={sqrt(1/2)*2}] at
         ({\r*(sin((1-\x)*\theta)/sin(\theta)*\xa+sin(\x*\theta)/sin(\theta)*\xb)},
         {\r*(sin((1-\x)*\theta)/sin(\theta)*\ya+sin(\x*\theta)/sin(\theta)*\yb)}) {};
-        \draw[red] (0,0) --
+        \draw[RED] (0,0) --
         ({\r*(sin((1-\x)*\theta)/sin(\theta)*\xa+sin(\x*\theta)/sin(\theta)*\xb)},
         {\r*(sin((1-\x)*\theta)/sin(\theta)*\ya+sin(\x*\theta)/sin(\theta)*\yb)}); 
     }
-    \draw[green, thick] (P1) -- (P2) node[below, pos=0.75] {$s$};
-        \draw[red, thick] ({0.25*\r*\xa}, {0.25*\r*\ya}) arc(35:35+100/6:0.25*\r) node[right] {$\varphi$};
+    \draw[GREEN, thick] (P1) -- (P2) node[below, pos=0.75] {$s$};
+        \draw[RED, thick] ({0.25*\r*\xa}, {0.25*\r*\ya}) arc(35:35+100/6:0.25*\r) node[right] {$\varphi$};
     % 
     \coordinate (BB1) at (current bounding box.north east);
     \coordinate (BB2) at (current bounding box.south east);
-    \path (BB1) -- (BB2) node[right, green, pos=0.42] {linear};
-    \path (BB1) -- (BB2) node[right, red, pos=0.58] {spherical};
+    \path (BB1) -- (BB2) node[right, GREEN, pos=0.42] {linear};
+    \path (BB1) -- (BB2) node[right, RED, pos=0.58] {spherical};
     \path[] (-1.42*\r,0) -- (1.42*\r,0);
 \end{tikzpicture}
 \end{tikzsize}

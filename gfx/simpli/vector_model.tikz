@@ -1,8 +1,8 @@
 \begin{tikzsize}{\tikzwidth}{\tikzheight}
 \begin{tikzpicture}[scale=\tikzscale]
-\colorlet{red}{dred}
-\colorlet{green}{dgreen}
-\colorlet{blue}{dblue}
+\colorlet{RED}{RED}
+\colorlet{GREEN}{GREEN}
+\colorlet{BLUE}{BLUE}
 \def\xc{0.7}
 \def\yc{0.2}
 \def\rin{2}
@@ -18,20 +18,20 @@
         \pgfmathsetmacro{\d}{int(floor(sqrt((\x-\xc)*(\x-\xc)+(\y-\yc)*(\y-\yc))))}
         \ifnum\d>\rmin
         \ifnum\d<\rout
-        \draw[->, thick, green]  ($ (\x, \y) - 0.5*(\angle:0.5) $) -- ++(\angle:0.5);
+        \draw[->, thick, GREEN]  ($ (\x, \y) - 0.5*(\angle:0.5) $) -- ++(\angle:0.5);
         \fi\fi
     }
 }
-\path[blue,thick, ->] (\xc,\yc) -- ++(-30:\rin) node[midway, anchor=north, xshift=-0.75ex, preaction={fill, white}]{$r_{\text{min}}$}; 
-\draw[blue,thick, ->] (\xc,\yc) -- ++(-30:\rin);
+\path[BLUE,thick, ->] (\xc,\yc) -- ++(-30:\rin) node[midway, anchor=north, xshift=-0.75ex, preaction={fill, white}]{$r_{\text{min}}$}; 
+\draw[BLUE,thick, ->] (\xc,\yc) -- ++(-30:\rin);
 % 
-\path[blue,thick, ->] (\xc,\yc) -- ++(-150:\rout) node[pos=0.25, anchor=south, yshift=2mm, preaction={fill, white}]{$r_{\text{max}}$}; 
-\draw[blue,thick, ->] (\xc,\yc) -- ++(-150:\rout);
+\path[BLUE,thick, ->] (\xc,\yc) -- ++(-150:\rout) node[pos=0.25, anchor=south, yshift=2mm, preaction={fill, white}]{$r_{\text{max}}$}; 
+\draw[BLUE,thick, ->] (\xc,\yc) -- ++(-150:\rout);
 % 
-\path[red,thick, {Circle[length=1mm]}-{Circle[length=1mm]},
+\path[RED,thick, {Circle[length=1mm]}-{Circle[length=1mm]},
     shorten >=-.5mm, shorten <=-.50mm]
     (\xc,\yc) -- (2.5,1.5) node[midway, anchor=north west, xshift=-0.5mm, preaction={fill, white}]{$\vv{q}$};
-\draw[red,thick, {Circle[length=1mm]}-{Circle[length=1mm]},
+\draw[RED,thick, {Circle[length=1mm]}-{Circle[length=1mm]},
     shorten >=-.5mm, shorten <=-.50mm]
     (\xc,\yc) -- (2.5,1.5);
 \end{tikzpicture}

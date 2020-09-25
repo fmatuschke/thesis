@@ -15,30 +15,30 @@ scale=\tikzscale,
 % 
 \begin{scope}[rotate around y=-\varalpha]
     % \begin{scope}[canvas is yz plane at x=0.85]
-    % \draw[green!50!black, thick, ->] (0.1,0) arc (0:290:0.1);
+    % \draw[GREEN, thick, ->] (0.1,0) arc (0:290:0.1);
     % \end{scope}
     \begin{scope}[canvas is xy plane at z={0}]
-    \draw[blue, dashed, thick] (1,0) arc (0:\varomega:1);
+    \draw[BLUE, dashed, thick] (1,0) arc (0:\varomega:1);
     \end{scope}
     \begin{scope}[rotate around x=\varomega,canvas is xy plane at z={0}]
-    \draw[blue, dashed, thick] (1,0) arc (0:\varomega:1);
+    \draw[BLUE, dashed, thick] (1,0) arc (0:\varomega:1);
     \end{scope}
     \begin{scope}[canvas is yz plane at x=0.99]
-    \draw[blue,thick] (0.2,0) arc (0:\varomega:0.2) node [pos=1, anchor= west] () {$\Upsilon$};
+    \draw[BLUE,thick] (0.2,0) arc (0:\varomega:0.2) node [pos=1, anchor= west] () {$\Upsilon$};
     \end{scope}
     % 
-    \draw[very thick, green!50!black, ->] (0,0,0) -- (\r,0,0) node [pos=1, anchor = north east] () {$f_0$};
+    \draw[very thick, GREEN, ->] (0,0,0) -- (\r,0,0) node [pos=1, anchor = north east] () {$f_0$};
     % 
     \begin{scope}[rotate around x=30]
-        \draw[very thick, blue, ->] (0,0,0) -- ({\r*cos(\varomega)},{\r*sin(\varomega)},0) node [pos=1, anchor = west] () {$f_1$};
+        \draw[very thick, BLUE, ->] (0,0,0) -- ({\r*cos(\varomega)},{\r*sin(\varomega)},0) node [pos=1, anchor = west] () {$f_1$};
         \begin{scope}[canvas is xy plane at z=0]
             \draw[] (0.60,0) arc (0:\varomega:0.60) node [pos=0.55, anchor= east] () {$\Omega$};
         \end{scope}
     \end{scope}
     % 
     \begin{scope}[canvas is zy plane at x={cos(\varomega}]
-    \draw[blue, thick, dashed] (0,0) circle({sin(\varomega)});
-    \foreach \i in {-90,-60,...,90}{\node[circle,fill,blue,inner sep=1.25pt] at ({sin(\varomega)*sin(\i)},{sin(\varomega)*cos(\i)}) {};}
+    \draw[BLUE, thick, dashed] (0,0) circle({sin(\varomega)});
+    \foreach \i in {-90,-60,...,90}{\node[circle,fill,BLUE,inner sep=1.25pt] at ({sin(\varomega)*sin(\i)},{sin(\varomega)*cos(\i)}) {};}
     \end{scope}
 \end{scope}
 % \begin{scope}[canvas is xz plane at y=0]

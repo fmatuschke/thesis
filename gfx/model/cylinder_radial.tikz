@@ -11,7 +11,7 @@
 \begin{axis}[view={210}{30}, hide axis]
 \addplot3 [domain=\alpha:\beta,samples=42,samples y=0, smooth, name path=b1,] ({sin(x)*\rin},{cos(x)*\rin},{0});
 \addplot3 [domain=\alpha:\beta,samples=42,samples y=0, smooth, name path=b2,] ({sin(x)*\rin},{cos(x)*\rin},{\h});
-\fill[green, intersection segments={of=b1 and b2,sequence={A* -- B*[reverse]}}, ] -- cycle;
+\fill[GREEN, intersection segments={of=b1 and b2,sequence={A* -- B*[reverse]}}, ] -- cycle;
 % 
 \addplot3 [domain=\alpha:\beta,samples=42,samples y=0, smooth] ({sin(x)*\rout},{cos(x)*\rout},{0});
 \addplot3 [domain=\alpha:\beta,samples=42,samples y=0, smooth] ({sin(x)*\rout},{cos(x)*\rout},{\h});
@@ -35,12 +35,12 @@
 \foreach \ii in {1,2,...,142}{
 \pgfmathparse{rnd*(\beta-\alpha)+\alpha}\let\a=\pgfmathresult
 \pgfmathparse{rnd*\h}\let\hh=\pgfmathresult
-\addplot3 [no marks, blue] coordinates {({sin(\a)*\rin},{cos(\a)*\rin},{\hh}) ({sin(\a)*\rout},{cos(\a)*\rout},{\hh})};
+\addplot3 [no marks, BLUE] coordinates {({sin(\a)*\rin},{cos(\a)*\rin},{\hh}) ({sin(\a)*\rout},{cos(\a)*\rout},{\hh})};
 }
 % 
-\draw[red, ->] (axis cs:{sin(\alpha)*\rin},{cos(\alpha)*\rin},{0}) -- (axis cs:{sin(\alpha)*\rin+sin(\alpha+90)*2},{cos(\alpha)*\rin+cos(\alpha+90)*2},{0}) node[left] {$x$};
-\draw[red, ->] (axis cs:{sin(\alpha)*\rin},{cos(\alpha)*\rin},{0}) -- (axis cs:{sin(\alpha)*\rin},{cos(\alpha)*\rin},{2}) node[right, midway] {$y$};
-\draw[red, ->] (axis cs:{sin(\alpha)*\rin},{cos(\alpha)*\rin},{0}) -- (axis cs:{sin(\alpha)*\rin-sin(\alpha)*2},{cos(\alpha)*\rin-cos(\alpha)*2},{0}) node[below] {$z$};
+\draw[RED, ->] (axis cs:{sin(\alpha)*\rin},{cos(\alpha)*\rin},{0}) -- (axis cs:{sin(\alpha)*\rin+sin(\alpha+90)*2},{cos(\alpha)*\rin+cos(\alpha+90)*2},{0}) node[left] {$x$};
+\draw[RED, ->] (axis cs:{sin(\alpha)*\rin},{cos(\alpha)*\rin},{0}) -- (axis cs:{sin(\alpha)*\rin},{cos(\alpha)*\rin},{2}) node[right, midway] {$y$};
+\draw[RED, ->] (axis cs:{sin(\alpha)*\rin},{cos(\alpha)*\rin},{0}) -- (axis cs:{sin(\alpha)*\rin-sin(\alpha)*2},{cos(\alpha)*\rin-cos(\alpha)*2},{0}) node[below] {$z$};
 % 
 \end{axis}
 \path[] (2,0.5) -- (2,2.5);

@@ -24,7 +24,7 @@
     % \node at (t12) {t12};
     % \node at (t1) {t1};
     % \node at (t2) {t2};
-    % \draw[green] ($(t11)+(t11)-(PA)$)--(PA)--($(t12)+(t12)-(PA)$)--(t2)--(t1)--cycle;
+    % \draw[GREEN] ($(t11)+(t11)-(PA)$)--(PA)--($(t12)+(t12)-(PA)$)--(t2)--(t1)--cycle;
     \begin{pgfinterruptboundingbox}
     \clip ($(t11)+(t11)-(PA)$)--(PA)--($(t12)+(t12)-(PA)$)--(t2)--(t1)--cycle;
     \end{pgfinterruptboundingbox}
@@ -42,9 +42,9 @@
 \end{scope}
 % 
 \begin{pgfinterruptboundingbox}
-\node[red, above] at ($(bb.north west)!0.25!(bb.north east)$) {$aabb_{cone}$};
-\node[blue, above] at ($(PA) + (-0.65*\ra,\ra)$) {$aabb_{0}$};
-\node[blue, above] at ($(PB) + (0.75*\rb,-\rb)$) {$aabb_{1}$};
+\node[RED, above] at ($(bb.north west)!0.25!(bb.north east)$) {$aabb_{cone}$};
+\node[BLUE, above] at ($(PA) + (-0.65*\ra,\ra)$) {$aabb_{0}$};
+\node[BLUE, above] at ($(PB) + (0.75*\rb,-\rb)$) {$aabb_{1}$};
 \node[below] at (PA) {$\vv{p}_{i}$};
 \node[below] at (PB) {$\vv{p}_{i+1}$};
 \draw[black, thin] (PA) -- (t12) node[midway, right] {$r_{i}$};
@@ -57,9 +57,9 @@
 \draw[dashed] (PB) circle (\rmax);
 }
 \ifthenelse{\lengthtest{\ra pt < \rb pt}}
-{\draw[green!50!black, thick] ($(PA)-(\rmax,\rmax)$) rectangle ($(PB)+(\rmax,\rmax)$);}
-{\draw[green!50!black, thick] ($(PB)-(\rmax,\rmax)$) rectangle ($(PA)+(\rmax,\rmax)$);}
-\node[green!50!black, above] at ($(current bounding box.north west)!0.125!(current bounding box.north east)$) {$aabb_{capsule}$};
+{\draw[GREEN, thick] ($(PA)-(\rmax,\rmax)$) rectangle ($(PB)+(\rmax,\rmax)$);}
+{\draw[GREEN, thick] ($(PB)-(\rmax,\rmax)$) rectangle ($(PA)+(\rmax,\rmax)$);}
+\node[GREEN, above] at ($(current bounding box.north west)!0.125!(current bounding box.north east)$) {$aabb_{capsule}$};
 % 
 % 
 \begin{scope}[local bounding box=bbcapsule]
@@ -68,10 +68,10 @@
 \end{scope}
 % 
 % 
-\draw[red, thick, dashed] (bb.north west) -| (bb.south east);
-\draw[red, thick] (bb.north west) |- (bb.south east);
-\draw[blue, thick, dotted] ($(PA) - (\ra,\ra)$) rectangle ($(PA) + (\ra,\ra)$);
-\draw[blue, thick, dotted] ($(PB) - (\rb,\rb)$) rectangle ($(PB) + (\rb,\rb)$);
+\draw[RED, thick, dashed] (bb.north west) -| (bb.south east);
+\draw[RED, thick] (bb.north west) |- (bb.south east);
+\draw[BLUE, thick, dotted] ($(PA) - (\ra,\ra)$) rectangle ($(PA) + (\ra,\ra)$);
+\draw[BLUE, thick, dotted] ($(PB) - (\rb,\rb)$) rectangle ($(PB) + (\rb,\rb)$);
 \draw[dashed] (PA) circle (\ra);
 \draw[dashed] (PB) circle (\rb);
 % 
@@ -116,7 +116,7 @@
 %             \n1 = {veclen(\x1,\y1)}
 %             in 
 %             (0,0) -- (-90:\n1) coordinate (AR) {};
-% \draw[blue, dashed] let 
+% \draw[BLUE, dashed] let 
 %             \p1 = ($ (C) - (R) $),
 %             \p2 = ($ (0,0) - (R) $),
 %             \n1 = {veclen(\x1,\y1)},
@@ -126,7 +126,7 @@
 %             ++ (180:\n2) -- 
 %             ++ (0,0) arc (90:270:\n1) -- 
 %             cycle;
-% \draw[red, very thin, dash dot] let 
+% \draw[RED, very thin, dash dot] let 
 %             \p1 = ($ (C) - (R) $),
 %             \p2 = ($ (0,0) - (R) $),
 %             \n1 = {veclen(\x1,\y1)},
@@ -134,7 +134,7 @@
 %             in 
 %             ($(R) - (\n1,\n1)$) -- ++ ($(0,\n1)+(0,\n1)$) -- ++ ($(\n1,0)+(\n1,0)+(\n2,0)$) -- ++ ($(0,-\n1)+(0,-\n1)$) --
 %             cycle;
-% % \draw[red, very thin, dash dot] let 
+% % \draw[RED, very thin, dash dot] let 
 % %             \p1 = ($ (C) - (R) $),
 % %             \p2 = ($ (0,0) - (R) $),
 % %             \p3 = ($ (0,0) - (B) $),

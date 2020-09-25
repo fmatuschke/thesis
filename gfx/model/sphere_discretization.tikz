@@ -25,14 +25,14 @@
     samples y  = 0,
     % thick,
     smooth,
-    red,
+    RED,
     mark=*
     %mark=*, only marks
     }}
 % 
 \pgfmathsetmacro{\r}{1}
 % \pgfmathsetmacro{\alpha}{30}
-\addplot3[only marks,blue]
+\addplot3[only marks,BLUE]
     ({\r*cos(0)*cos(\alpha)},{0},{-\r*cos(0)*sin(\alpha)});
 \foreach \omega in {0,10,...,90}{
   \addplot3 [tikzDefaults]
@@ -73,14 +73,14 @@
 %     samples y  = 0,
 %     % thick,
 %     smooth,
-%     red,
+%     RED,
 %     mark=*
 %     %mark=*, only marks
 %     }}
 % % 
 % \pgfmathsetmacro{\r}{1}
 % % \pgfmathsetmacro{\alpha}{30}
-% \addplot3[only marks,blue]
+% \addplot3[only marks,BLUE]
 %     ({\r*cos(0)*cos(\alpha)},{0},{-\r*cos(0)*sin(\alpha)});
 % \foreach \omega in {0,10,...,90}{
 %   \addplot3 [tikzDefaults]

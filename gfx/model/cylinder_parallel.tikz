@@ -15,7 +15,7 @@
 \addplot3 [domain=\alpha:\beta,samples=42,samples y=0, smooth, name path=b2] ({sin(x)*\rout},{cos(x)*\rout},{0});
 \addplot3 [domain=\alpha:\beta,samples=42,samples y=0, smooth] ({sin(x)*\rout},{cos(x)*\rout},{\h});
 % 
-\fill[green, intersection segments={of=b1 and b2,sequence={A* -- B*[reverse]}}, ] -- cycle;
+\fill[GREEN, intersection segments={of=b1 and b2,sequence={A* -- B*[reverse]}}, ] -- cycle;
 % 
 \addplot3 [no marks, black] coordinates {({sin(\alpha)*\rin},{cos(\alpha)*\rin},{0}) ({sin(\alpha)*\rin},{cos(\alpha)*\rin},{\h})};
 \addplot3 [no marks, black] coordinates {({sin(\beta)*\rin},{cos(\beta)*\rin},{0}) ({sin(\beta)*\rin},{cos(\beta)*\rin},{\h})};
@@ -36,12 +36,12 @@
 \foreach \ii in {1,2,...,42}{
 \pgfmathparse{rnd*(\beta-\alpha)+\alpha}\let\a=\pgfmathresult
 \pgfmathparse{rnd*(\rout-\rin)+\rin}\let\rr=\pgfmathresult
-\addplot3 [no marks, blue] coordinates {({sin(\a)*\rr},{cos(\a)*\rr},{0}) ({sin(\a)*\rr},{cos(\a)*\rr},{\h})};
+\addplot3 [no marks, BLUE] coordinates {({sin(\a)*\rr},{cos(\a)*\rr},{0}) ({sin(\a)*\rr},{cos(\a)*\rr},{\h})};
 }
 % 
-\draw[red, ->] (axis cs:{0},{0},{0}) -- (axis cs:{2*cos(150+90)},{2*sin(150+90)},{0}) node[right] {$y$};
-\draw[red, ->] (axis cs:{0},{0},{0}) -- (axis cs:{2*cos(150)},{2*sin(150)},{0}) node[below] {$x$};
-\draw[red, ->] (axis cs:{0},{0},{0}) -- (axis cs:{0},{0},{2}) node[left, midway] {$z$};
+\draw[RED, ->] (axis cs:{0},{0},{0}) -- (axis cs:{2*cos(150+90)},{2*sin(150+90)},{0}) node[right] {$y$};
+\draw[RED, ->] (axis cs:{0},{0},{0}) -- (axis cs:{2*cos(150)},{2*sin(150)},{0}) node[below] {$x$};
+\draw[RED, ->] (axis cs:{0},{0},{0}) -- (axis cs:{0},{0},{2}) node[left, midway] {$z$};
 % 
 \end{axis}
 \path[] (2,0.5) -- (2,2.5);

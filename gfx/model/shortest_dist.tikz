@@ -38,7 +38,7 @@
 \coordinate (BB) at (2,2.4);
 \end{scope}
 % 
-\draw[red, thick, ->] (A) -- (B) node[pos=0.18, below, sloped] {$\vv{d}_{\mathit{short}}$};
+\draw[RED, thick, ->] (A) -- (B) node[pos=0.18, below, sloped] {$\vv{d}_{\mathit{short}}$};
 \node[below right] at (A) {$\vv{p}_a$};
 \node[below left] at (B) {$\vv{p}_b$};
 % \draw (A) arc (0:90:1);

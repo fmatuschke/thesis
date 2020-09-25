@@ -21,7 +21,7 @@
 \fi
 % 
 }}
-\draw[ogreen!50!black, thick] (0,0) -- ++(60:1) -- ++(-60:1) -- cycle;
+\draw[GREEN, thick] (0,0) -- ++(60:1) -- ++(-60:1) -- cycle;
 % 
 \path[] ($(0,-1.25*\r)$)--($(0,1.25*\r)$); %bb
 \end{tikzpicture}

@@ -1,9 +1,9 @@
 \begin{tikzsize}{\tikzwidth}{\tikzheight}
 \begin{tikzpicture}[scale=\tikzscale]
 %
-\colorlet{red}{dred}
-\colorlet{green}{dgreen}
-\colorlet{blue}{dblue}
+\colorlet{RED}{RED}
+\colorlet{GREEN}{GREEN}
+\colorlet{BLUE}{BLUE}
 % 
 \pgfmathsetseed{42}
 \begin{axis}[%
@@ -35,7 +35,7 @@
     \pgfmathparse{rand*0.125}\let\dya=\pgfmathresult
     \pgfmathparse{rand*0.125}\let\dxb=\pgfmathresult
     \pgfmathparse{rand*0.125}\let\dyb=\pgfmathresult
-    \edef\temp{\noexpand\draw [red] (axis cs:-4.2, \x+\dxa, \y+\dya) -- (axis cs:4.2, \x+\dxb, \y+\dyb);}\temp
+    \edef\temp{\noexpand\draw [RED] (axis cs:-4.2, \x+\dxa, \y+\dya) -- (axis cs:4.2, \x+\dxb, \y+\dyb);}\temp
     % }
     % 
     % \foreach \yValue in {0,1,...,42} {
@@ -47,7 +47,7 @@
     \pgfmathparse{rand*0.125}\let\dya=\pgfmathresult
     \pgfmathparse{rand*0.125}\let\dxb=\pgfmathresult
     \pgfmathparse{rand*0.125}\let\dyb=\pgfmathresult
-    \edef\temp{\noexpand\draw [green] (axis cs:\x+\dxa, -4.2, \y+\dya) -- (axis cs:\x+\dxb, 4.2, \y+\dyb);}\temp
+    \edef\temp{\noexpand\draw [GREEN] (axis cs:\x+\dxa, -4.2, \y+\dya) -- (axis cs:\x+\dxb, 4.2, \y+\dyb);}\temp
     }
     % 
     \addplot3[domain=1:3,y domain=-10:150, samples=20,surf,z buffer=sort, colormap/summer]

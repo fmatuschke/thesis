@@ -446,7 +446,7 @@ To reduce the number of collision checks to be performed, an octree structure is
 	\label{fig:octree}
 \end{figure}
 % 
-A \name{tree} is a data structure that consists of a collection of Say nodes that are connected to each other.
+A \name{tree} is a data structure that consists of a collection of \name{nodes} that are connected to each other.
 A node is connected in the direction of the \name{root} with a single parent node and in the direction of the \name{branches} with several \name{children} or \name{branches}.
 The nodes at the end of a branch are called \name{leaves}, which contain the data.
 Traversing an evenly distributed tree has the advantage that the cost of the traversing it is $\mathcal{O}(\log(n))$.
