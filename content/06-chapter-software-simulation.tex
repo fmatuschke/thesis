@@ -234,18 +234,19 @@ Each \mpi{} process can additionally use \openmp{} to create multiple threads fo
 \label{fig:vectorfield_disc}
 \end{figure}
 % 
-The simulation pipeline runs the M\"uller-Stokes calculus on the precious calculated discretised volume.
-Since no scattering effects or refraction effects inside the tissue volume are included, each light ray trajectory follows a straight line.
-The light matter interaction $\left( \prod_i R_i M_i R_i \times \vv{S} \right)$ is calculated. 
-After the light ray reaches the end of the tissue the final optical elements (\eg{} polariser) are applied.
-finally the light intensity is stored inside the resulting ccd-image array.\\
-% 
-The simulation allows a tiltable light beam.
-The \ac{LAP} uses for this purpose a tiltible specimen.
-The new designed microscop a tiltable light beam.
-Both methods result in the same light path.
-The tiltible specimen however results in a distorted view.
-This distortion can be described by an affine transformation (see \cref{fig::affine_transformation}).
+The simulation algorithm executes the M\"uller-Stokes calculus (see \cref{sec:Mueller-Stokes}) on the previously calculated discrete volume (see \cref{sec:dv_generator}) for a light beam along its path.
+Since no scattering or refraction effects are included within the tissue volume (except for the effective absorption), each light path follows a straight line.
+The interaction of light matter $\left( \prod_i R_i M_i R_i \times \vv{S} \right)$ is calculated. 
+After the light beam has reached the end of the tissue, the last optical elements (\eg{} polarizer) are taken into account.
+Finally, the light intensity is stored in the resulting \acs{CCD} image array. 
+\\
+%
+The simulation allows a tiltable light beam like the \ac{LAP} setup.
+For this purpose, the \ac{LAP} uses a tilting stage to which the tissue sections are attached (see \cref{fig:tilted_side_view}). 
+The newly designed microscope on the other hand has a tiltable light beam.
+Both methods yield identical light paths.
+However, the tiltable specimen leads to a distorted view, visible in the \ac{CCD} images.
+This distortion can be described by an affine transformation (see \cref{fig::affine_transformation}):
 % 
 \begin{figure}[!t]
 \centering
@@ -254,47 +255,24 @@ This distortion can be described by an affine transformation (see \cref{fig::aff
 \label{fig::affine_transformation}
 \end{figure}
 % 
-The simulation is able to calculate the distorted view (equivalent of the tiltible specimen) and the undistorted view (equivalent of the microscop. 
-For the distorted view a so called "untilting" can be applied, which is a affine back transformation of the simulated image with linear interpolation (same as in the experiment).
+\begin{align}
+f(\vv{x}) = \mat{A} \cdot \vv{x} + \vv{t}
+\end{align}
+where $\vv{x}$ the coordinate input, $\mat{A}$ and $\vv{t}$ the transformation values and $f(\vv{x}$ the transformed coordinate.
+\\
 % 
-The simulation takes the effect of refraction of the tissue-air border into account.\footnote{glass adds only a parallel shift}
+The simulation is able to take the distorted view into account.
+This leads to sampled light paths, which in turn are distorted so that the resulting \ac{CCD} image is undistorted.
+It is the same as distorting the \ac{CCD} sensor.
+However, this does not lead to the same experimental results because the light rays of the sample no longer correspond to the \ac{CCD} sensor.
+For this reason, the simulation pipeline supports a distorted view.
+To avoid distorting the view, the affine inverse transformation $f^{-1}(\vv{x}) = \mat{A}^{-1} \cdot \vv{x} - \vv{t}$ can be applied.
+However, this leads to interpolation artifacts.
+This is the reason for the existence of both techniques.
+The latter is the same as used within the \ac{LAP} experimental analysis.
+\\
 % 
-To always get the same dens of light rays per ccd-pixel, all light ray starting positions are calculated from the ccd-pixels.
-% 
-\subsection{algorithm}
-% 
-\paragraph{calculation of light ray starting position}
-% 
-\begin{figure}[!t]
-\def\tikzwidth{0.42\textwidth}
-% \centering
-% 
-\subcaptionbox{normal}[.495\textwidth]{
-\def\tilt{0}
-\def\nindex{2.25}
-\inputtikz{gfx/simpli/tilting_a}}
-% 
-\subcaptionbox{tilted}[.495\textwidth]{
-\inputtikz{gfx/simpli/tilting_b}}
-\caption{side view tilting}
-\label{fig:tilted_side_view}
-\end{figure}
-% 
-\begin{figure}[!t]
-% 
-\def\tikzheight{0.42\textwidth}
-% \centering
-\subcaptionbox{camera view}[.49\textwidth]{
-\inputtikz{gfx/simpli/tilting_3d_a}}
-% 
-\subcaptionbox{perspective view}[.49\textwidth]{
-\inputtikz{gfx/simpli/tilting_3d_b}}
-% 
-\tikzset{external/export=false}
-\caption[3d tilting]{3d tilting: around $xy$-axis, \raisebox{.25em}{\tikz \draw[red,thick](0,0)--(0.25,0);} top, \raisebox{.25em}{\tikz \draw[green,thick](0,0)--(0.25,0);} middle, \raisebox{.25em}{\tikz \draw[blue,thick](0,0)--(0.25,0);} bottom, \raisebox{.25em}{\tikz \draw[dash pattern=on 1.25pt off 1.25pt,thick](0,0)--(0.25,0);} original, \raisebox{.25em}{\tikz \draw[gray](0,0)--(0.25,0);} axis of rotation \itodo{test david und daniel}}
-\end{figure}
-% 
-Snell's law describes the refraction of light between two different isotropic media:
+The last effect is the refraction of the tissue-air border\footnote{glass adds only a parallel shift} which is simply a Parallax Effect well described by Snell's law for isotropic media:
 \begin{align}
 \begin{split}
     n_1 \sin{\Theta_1} = n_2 \sin{\Theta_2}
@@ -302,10 +280,54 @@ Snell's law describes the refraction of light between two different isotropic me
 \label{equ:snell}
 \end{align}
 % 
-The simulation uses as input parameter the refraction index of the tissue and the tilting angle to calculate the inner light angle.
-From this the starting position of the light beam can be calculated (see \cref{fig:tilted_side_view}):
+% To always get the same dens of light rays per ccd-pixel, all light ray starting positions are calculated from the ccd-pixels.
 % 
-First the light ray is backwords traversed starting at each ccd "pixel" (2).
+\subsection{algorithm}
+% 
+\paragraph{calculation of light ray starting position}
+% 
+\begin{figure}[!t]
+\def\tikzwidth{0.42\textwidth}
+\subcaptionbox{normal}[.495\textwidth]{
+\def\tilt{0}
+\def\nindex{2.25}
+\inputtikz[true]{gfx/simpli/tilting_a}}\hfill
+\subcaptionbox{tilted}[.495\textwidth]{
+\inputtikz[true]{gfx/simpli/tilting_b}}
+\caption{side view tilting}
+\label{fig:tilted_side_view}
+\end{figure}
+% 
+First, the light path of each light beam that hits a \ac{CCD} sensor pixel has to be calculated.
+For the trivial case that the sample is not tilted, this is simply the \ac{CCD} pixel centering.\todo{supersampling}
+For any type of tilted sample (not only north, south, east and west) the light distortion described above must be taken into account.
+Since it is always known where the light paths end in the \ac{CCD} pixel, one can start here and go backwards to the lower level of the tissue section (see \cref{fig:tilted_side_view}).
+First the first refraction is calculated, which changes the direction of the light rays from $\vv{l}_0$ to $\vv{l}_1$, which happens in the upper tissue section $\mathfrak{S}_{top}$.
+After the light beam $\vv{l}_1$ to plane $\mathfrak{S}_{bottom}$ the intersection is calculated by a simple triangle with the mesh thickness.
+This point is the corresponding starting point.
+No further crossing of the light beam needs to be calculated, because the optical elements previously only change the polarization state, but not the light position.
+Once calculated, the same transformation can be applied to all pixels of the \ac{CCD} sensor.
+% 
+\begin{figure}[!t]
+\def\tikzheight{0.42\textwidth}
+\subcaptionbox{camera view}[.49\textwidth]{
+\inputtikz{gfx/simpli/tilting_3d_a}}\hfill
+\subcaptionbox{perspective view}[.49\textwidth]{
+\inputtikz{gfx/simpli/tilting_3d_b}}
+\tikzset{external/export=false}
+\caption[3d tilting]{3d tilting: around $xy$-axis, \raisebox{.25em}{\tikz \draw[red,thick](0,0)--(0.25,0);} top, \raisebox{.25em}{\tikz \draw[green,thick](0,0)--(0.25,0);} middle, \raisebox{.25em}{\tikz \draw[blue,thick](0,0)--(0.25,0);} bottom, \raisebox{.25em}{\tikz \draw[dash pattern=on 1.25pt off 1.25pt,thick](0,0)--(0.25,0);} original, \raisebox{.25em}{\tikz \draw[gray](0,0)--(0.25,0);} axis of rotation \itodo{test david und daniel}}
+\end{figure}
+% 
+\vspace{5pt}
+\hrule
+\vspace{6pt}
+% 
+\newpage
+% 
+% The simulation uses as input parameter the refraction index of the tissue and the tilting angle to calculate the inner light angle.
+% From this the starting position of the light beam can be calculated (see \cref{fig:tilted_side_view}):
+% 
+First the light ray is backwards traversed starting at each ccd "pixel" (2).
 Here the pixel size is equivalent to the voxel size.
 Later the camera pixel size will be applied.
 The light ray first hits the (tilted) tissue plane (2).

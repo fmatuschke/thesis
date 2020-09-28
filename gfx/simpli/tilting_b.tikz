@@ -15,7 +15,10 @@
 \draw[step=\gridsize,line width=0.1pt,shift={(\gridshift,0)}] (-\gridshift-\dx,\dccd-1e-4) grid (-\gridshift+\dx,\dccd+\gridsize);
 % 
 \begin{scope}[rotate=-\tilt]
-\draw[thick] (-\dx,\dy) -- (\dx,\dy) -- (\dx,-\dy) -- (-\dx,-\dy) -- cycle;
+\draw[ultra thick, RED] (-\dx,\dy) -- (\dx,\dy) node[pos=1, anchor=south east, rotate=-\tilt]  {$\mathfrak{S}_{top}$};
+\draw[ultra thick, BLUE] (-\dx,-\dy) -- (\dx,-\dy) node[pos=1, anchor=north east, rotate=-\tilt] {$\mathfrak{S}_{bottom}$};
+\draw[semithick] (\dx,\dy) -- (\dx,-\dy);
+\draw[semithick] (-\dx,\dy) -- (-\dx,-\dy);
 \draw[step=\gridsize,line width=0.1pt,shift={(\gridshift,0)}] (-\gridshift-\dx,-\dy) grid (-\gridshift+\dx,\dy);
 \path[name path global=line1] (-\dx,\dy) -- (\dx,\dy);
 \path[name path global=line2] (-\dx,-\dy) -- (\dx,-\dy);
@@ -23,9 +26,9 @@
 % 
 \coordinate (I) at (0,\dccd);
 \path[name path=light1] (I) -- (0,-2*\dy);
-\draw[<-,name intersections={of=line1 and light1, by={X}}] (I) -- (X);
+\draw[<-,name intersections={of=line1 and light1, by={X}}] (I) -- (X) node[midway, anchor=east] {$\vv{l}_0$};
 \path[name path=light2] (X) -- ++(-90-\refracted:3*\dy);
-\draw[name intersections={of=light2 and line2, by={Y}}] (X) -- (Y);
+\draw[name intersections={of=light2 and line2, by={Y}}] (X) -- (Y) node[midway, anchor=east, preaction={fill, white}, rotate=-\refracted, xshift=0ex] {$\vv{l}_1$};
 \draw[] (Y) -- (Y |- {,-\dccd});
 % 
 \ifthenelse{\equal{\tilt}{0}}{}{
