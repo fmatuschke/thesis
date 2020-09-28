@@ -17,19 +17,19 @@
 % 
     \node (tissue)      [activity]                                          {tissue generation};
     \node (simulation)  [activity, below of=tissue]                         {simulation};
-    \node (sim_single)  [activitySingle, below of=simulation, xshift=-4cm]  {single};
-    \node (sim_all)     [activityLoop, below of=simulation, xshift=4cm]     {tilting};
-    \node (sim_save)    [save, right of=sim_all, xshift=4cm]                {save()};
+    \node (sim_single)  [activitySingle, below of=simulation, xshift=-3cm]  {single};
+    \node (sim_all)     [activityLoop, below of=simulation, xshift=3cm]     {tilting};
+    \node (sim_save)    [save, right of=sim_all, xshift=3cm]                {save()};
     \node (sim_center)  [draw=none, below of=simulation] {};
     % 
     \node (optic)       [activity, below of=sim_center]                     {optic};
-    \node (optic_save)  [save, right of=optic, xshift=8cm]                  {save()};
+    \node (optic_save)  [save, right of=optic, xshift=6cm]                  {save()};
     % 
     \node (analysis)    [activity, below of=optic]                          {analysis};
     % 
-    \node (ana_epa)     [activitySingle, below of=analysis, xshift=-4cm]    {fourie};
-    \node (ana_rofl)    [activityLoop, below of=analysis, xshift=4cm]       {ROFL};
-    \node (ana_save)    [save, right of=ana_rofl, xshift=4cm]               {save()};
+    \node (ana_epa)     [activitySingle, below of=analysis, xshift=-3cm]    {fourie};
+    \node (ana_rofl)    [activityLoop, below of=analysis, xshift=3cm]       {ROFL};
+    \node (ana_save)    [save, right of=ana_rofl, xshift=3cm]               {save()};
 %   
     \draw[->]     (tissue) -- (simulation);
     \draw[->]     (simulation) -- (sim_single);
