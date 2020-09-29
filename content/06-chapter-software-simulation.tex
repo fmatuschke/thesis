@@ -236,9 +236,11 @@ Each \mpi{} process can additionally use \openmp{} to create multiple threads fo
 % 
 The simulation algorithm executes the M\"uller-Stokes calculus (see \cref{sec:Mueller-Stokes}) on the previously calculated discrete volume (see \cref{sec:dv_generator}) for a light beam along its path.
 Since no scattering or refraction effects are included within the tissue volume (except for the effective absorption), each light path follows a straight line.
-The interaction of light matter $\left( \prod_i R_i M_i R_i \times \vv{S} \right)$ is calculated. 
+The interaction of light matter $\left( \prod_i R_i M_i R_i \cdot \vv{S} \right)$ is calculated. 
 After the light beam has reached the end of the tissue, the last optical elements (\eg{} polarizer) are taken into account.
-Finally, the light intensity is stored in the resulting \acs{CCD} image array. 
+Finally, the light intensity is stored in the \acs{CCD} image array.
+The \ac{CCD} image array however has a size of $int(round((\voi_x,\voi_y)/\voxelsize))$.
+The corresponding physical \ac{CCD} pixels will afterwards be resampled from this array.
 \\
 %
 The simulation allows a tiltable light beam like the \ac{LAP} setup.
@@ -272,13 +274,14 @@ This is the reason for the existence of both techniques.
 The latter is the same as used within the \ac{LAP} experimental analysis.
 \\
 % 
-The last effect is the refraction of the tissue-air border\footnote{glass adds only a parallel shift} which is simply a Parallax Effect well described by Snell's law for isotropic media:
+The last effect is the refraction of the tissue-air border\footnote{glass adds only a parallel shift} which is simply a parallax effect well described by Snell's law for isotropic media:
 \begin{align}
 \begin{split}
     n_1 \sin{\Theta_1} = n_2 \sin{\Theta_2}
 \end{split}
 \label{equ:snell}
 \end{align}
+where $n$ is the refractive index and $\Theta$ the angle of the light inside the medium perpendicular to its surface 
 % 
 % To always get the same dens of light rays per ccd-pixel, all light ray starting positions are calculated from the ccd-pixels.
 % 
@@ -298,15 +301,15 @@ The last effect is the refraction of the tissue-air border\footnote{glass adds o
 \label{fig:tilted_side_view}
 \end{figure}
 % 
-First, the light path of each light beam that hits a \ac{CCD} sensor pixel has to be calculated.
-For the trivial case that the sample is not tilted, this is simply the \ac{CCD} pixel centering.\todo{supersampling}
+First, the light path of each light beam that hits a \ac{CCD} sensor array has to be calculated.
+For the trivial case that the sample is not tilted, this is simply the \ac{CCD} array element centered.\todo{supersampling}
 For any type of tilted sample (not only north, south, east and west) the light distortion described above must be taken into account.
-Since it is always known where the light paths end in the \ac{CCD} pixel, one can start here and go backwards to the lower level of the tissue section (see \cref{fig:tilted_side_view}).
+Since it is always known where the light paths end in the \ac{CCD} array element, one can start here and go backwards to the lower level of the tissue section (see \cref{fig:tilted_side_view}).
 First the first refraction is calculated, which changes the direction of the light rays from $\vv{l}_0$ to $\vv{l}_1$, which happens in the upper tissue section $\mathfrak{S}_{top}$.
 After the light beam $\vv{l}_1$ to plane $\mathfrak{S}_{bottom}$ the intersection is calculated by a simple triangle with the mesh thickness.
 This point is the corresponding starting point.
 No further crossing of the light beam needs to be calculated, because the optical elements previously only change the polarization state, but not the light position.
-Once calculated, the same transformation can be applied to all pixels of the \ac{CCD} sensor.
+Once calculated, the same transformation can be applied to all light beams starting at each \ac{CCD} array element.
 % 
 \begin{figure}[!t]
 \def\tikzheight{0.42\textwidth}
@@ -318,56 +321,23 @@ Once calculated, the same transformation can be applied to all pixels of the \ac
 \caption[3d tilting]{3d tilting: around $xy$-axis, \raisebox{.25em}{\tikz \draw[red,thick](0,0)--(0.25,0);} top, \raisebox{.25em}{\tikz \draw[green,thick](0,0)--(0.25,0);} middle, \raisebox{.25em}{\tikz \draw[blue,thick](0,0)--(0.25,0);} bottom, \raisebox{.25em}{\tikz \draw[dash pattern=on 1.25pt off 1.25pt,thick](0,0)--(0.25,0);} original, \raisebox{.25em}{\tikz \draw[gray](0,0)--(0.25,0);} axis of rotation \itodo{test david und daniel}}
 \end{figure}
 % 
-\vspace{5pt}
-\hrule
-\vspace{6pt}
-% 
-\newpage
-% 
-% The simulation uses as input parameter the refraction index of the tissue and the tilting angle to calculate the inner light angle.
-% From this the starting position of the light beam can be calculated (see \cref{fig:tilted_side_view}):
-% 
-First the light ray is backwards traversed starting at each ccd "pixel" (2).
-Here the pixel size is equivalent to the voxel size.
-Later the camera pixel size will be applied.
-The light ray first hits the (tilted) tissue plane (2).
-There its path is refrected according to Snells Law (\cref{equ:snell}).
-From this the possition of the light at the bottom tissue plane (3) is calculated.
-This is also the starting position of the light beam, since previous interactions do not require spatial information (\ie{} pol filter and $\lambda/4$-retarder).\\
-% 
-The ccd sensor and the tissue volume gets each their own coordinate system.
-The ccd-sensor is described as a 2d plane.
-The plane is rastered with a grid where each grid cell coresponds to a "pixel".
-The light ray starts in the center of each "pixel", therefore a offset of $(\num{0.5}, \num{0.5})$ is added to the coordinate system for the geometric calculation.
-The ccd-sensor index will be stored for each light ray in in case of a \mpi{} communication each process knows where to store the light intensity.\\
-% 
-The tissue coordinate system begins at the first array element with the index $(i=0, j=0, k=0)$.
-The volume itself is specified by a dim-variable $(N_x, N_y, N_z)$.
-Each voxel takes the space $[(i,j,k),(i+1,j+1,k+1))$ in space.
-Therefore there is again a shift of \num{0.5} between the index and the center of each volume voxel.
-
-% 
-\paragraph{matrix calculus}
-From the starting position the light tissue interaction will be calculated according to $\left( \prod_i R_i M_i R_i \times \vv{S} \right)$ (see \dummy{}).
-Since the starting point is at the bottom of the tissue plain, and a light beam takes the step $s$ the physical property from $(x,y,z) + \frac{s}{2}$ is used (ZEICHNUNG).
-For a non tilted view with a stept size equal to the voxel size this results in the indices values.
-As long the light beam is inside the local (\mpi{}) tissue volume, everything can be calculated.
-As soon as the light beam leaves the local volume it will be transfered to the appropriate mpi process.
-If a linear interpolation of the properties is needed, the local volume gets in $x$ and $y$ direction an additional voxel.
-With this "halo" the neighboring mpi process can also interpolate (with a distance of 1) the value.
-Light which leaves the tissue / starts outside the tissue will be calculated with the background property.
-% 
-If the birefringence is 0 the multiplication of the M\"uller matrices is skipped and only the absorption is taken into account.
-Since the M\"uller matrices are spasly (in this case), the calculation is optimized for this.
-% 
 \begin{lstfloat}[!t]
 	\lstinputlisting[style=cpp,basicstyle=\scriptsize\ttfamily,]{code/simulation.cpp}
 	\caption{Pseudocode simulation}
 	\label{alg:simulation}
 \end{lstfloat}
-%
+% 
 % 
 \subsection{parallelisation}
+% 
+\begin{figure}[!t]
+\centering
+\def\tikzwidth{0.75\textwidth}
+\inputtikz{gfx/simpli/com_halo}
+\caption{comunication halos. The volume is split into six subvolumes, distributed to 6 mpi ranks. The coloured voxels have the same tissue information.}
+\label{fig:com_halo}
+\end{figure}
+% 
 There are several optimizations used inside this pipeline.\\
 % 
 First the order of the tissue stored inside the memory is along the z-axis.
@@ -393,12 +363,5 @@ Therefore after each main loop the ommunication has to be done.
 Then the main loop is repeated with all incomming light rays.
 When no light rays are communicated anymore, the simulation is finished.
 This is a rather small cost considering the saving of memory and for tissue section commenly thin tissue sections of \SI{60}{\micro\meter}.
-% 
-% 
-% \lstinputlisting[language=c++, name=mpi_comm, caption={MPI code simulation}, label={alg:mpi_comm}]{code/mpi_comm.cpp}
-% \begin{lstfloat}[!h]
-% 	\caption{Pseudocode simulation}
-% 	\label{alg:mpi_comm}
-% \end{lstfloat}
 % 
 \itodo{smart sampling spæter diskutieren}

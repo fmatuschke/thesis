@@ -3,7 +3,7 @@
 \pgfmathsetmacro{\size}{10}
 \pgfmathsetmacro{\scale}{0.19}
 % 
-\subcaptionbox{translation}[.225\textwidth]{
+\subcaptionbox{translation}[.245\textwidth]{
 \begin{tikzpicture}[scale=\scale]
 \pgfmathsetmacro{\dx}{2.25}
 \pgfmathsetmacro{\dy}{1.5}
@@ -14,9 +14,9 @@
 	\draw [] (0+\dx, \i+\dy) -- (\size+\dx, \i+\dy);
 }
 \end{tikzpicture}
-}
+}\hfill
 % 
-\subcaptionbox{scaling}[.225\textwidth]{
+\subcaptionbox{scaling}[.245\textwidth]{
 \begin{tikzpicture}[scale=\scale]
 \pgfmathsetmacro{\sx}{1.5}
 \pgfmathsetmacro{\sy}{0.75}
@@ -27,9 +27,9 @@
 	\draw [] (0, {\i*\sy}) -- ({\size*\sx}, {\i*\sy});
 }
 \end{tikzpicture}
-}
+}\hfill
 %
-\subcaptionbox{shears}[.225\textwidth]{
+\subcaptionbox{shears}[.245\textwidth]{
 \begin{tikzpicture}[scale=\scale]
 \pgfmathsetmacro{\cx}{0.5}
 \pgfmathsetmacro{\cy}{0}
@@ -40,9 +40,9 @@
 	\draw [] (0+\i*\cx, \i+0*\cy) -- (\size+\i*\cx, \i+\size*\cy);
 }
 \end{tikzpicture}
-}
+}\hfill
 % 
-\subcaptionbox{rotation}[.225\textwidth]{
+\subcaptionbox{rotation}[.245\textwidth]{
 \begin{tikzpicture}[scale=\scale]
 \path[use as bounding box] (0,-1) grid (\size,\size+1);
 \draw[help lines] (0,0) grid (\size,\size);
