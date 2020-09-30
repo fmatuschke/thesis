@@ -28,11 +28,22 @@
 \DeclareAcronym{OpenMP}{short = OpenMP, long = Open Multi-Processing, short-format = \itshape}
 \DeclareAcronym{simPLI}{short = simPLI, long = simulation method for 3D-PLI, short-format = \itshape}
 %
+% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Helper
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\name}[1]{\textit{#1}}
+\newcommand{\code}[1]{\texttt{#1}}
+\newcommand{\pymodule}[1]{\code{#1}}
 %
+% 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Parameter
 %%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newcommand{\voxelsize}{\code{voxel\_size}}
+\newcommand{\stepsize}{\code{step\_size}}
+\newcommand{\voxels}{\textnormal{$\mathit{v_{s}}$}}
+\newcommand{\steps}{\textnormal{$\mathit{s_{s}}$}}
 \newcommand{\voi}{\code{voi}}
 \newcommand{\tissue}{\code{tissue}}
 \newcommand{\opticalaxis}{\code{optical\_axis}}
@@ -69,11 +80,7 @@
 % 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Other
-%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\newcommand{\name}[1]{\textit{#1}}
-\newcommand{\code}[1]{\texttt{#1}}
-\newcommand{\pymodule}[1]{\code{#1}}
-% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%% 
 \newcommand{\cc}{\name{C}}
 \newcommand{\cpp}{\name{C\texttt{++}}}
 \newcommand{\ccpp}{\cc/\cpp}

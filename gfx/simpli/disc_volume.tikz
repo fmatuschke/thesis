@@ -21,6 +21,6 @@
     } 
     \draw[fill, inner sep=0.1pt] (0,0,0) circle (4.2pt) node[anchor=north east] {$\mathit{voi}_{\mathit{min}}$};
     \draw[fill, inner sep=0.1pt] (\lx,\ly,\lz) circle (4.2pt) node[anchor=south west, xshift=0.5ex, yshift=0.5ex]  {$\mathit{voi}_{\mathit{max}}$};
-    \draw[<->] (3,-0.25,0) -- (4,-0.25,0) node[below]  {\voxelsize};
+    \draw[<->] (3,-0.25,0) -- (4,-0.25,0) node[midway, below]  {\voxels};
 \end{tikzpicture}
 \end{tikzsize}
