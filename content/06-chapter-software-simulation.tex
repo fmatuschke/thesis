@@ -243,6 +243,17 @@ The corresponding physical \ac{CCD} pixels will afterwards be resampled from thi
 \\
 %
 \subsection{Path of light}
+% 
+\begin{figure}[!t]
+\def\tikzheight{0.42\textwidth}
+\subcaptionbox{camera view}[.49\textwidth]{
+\inputtikz{gfx/simpli/tilting_3d_a}}\hfill
+\subcaptionbox{perspective view}[.49\textwidth]{
+\inputtikz{gfx/simpli/tilting_3d_b}}
+\tikzset{external/export=false}
+\caption[3d tilting]{3d tilting: around $xy$-axis, \raisebox{.25em}{\tikz \draw[red,thick](0,0)--(0.25,0);} top, \raisebox{.25em}{\tikz \draw[green,thick](0,0)--(0.25,0);} middle, \raisebox{.25em}{\tikz \draw[blue,thick](0,0)--(0.25,0);} bottom, \raisebox{.25em}{\tikz \draw[dash pattern=on 1.25pt off 1.25pt,thick](0,0)--(0.25,0);} original, \raisebox{.25em}{\tikz \draw[gray](0,0)--(0.25,0);} axis of rotation \itodo{test david und daniel}}
+\end{figure}
+% 
 The simulation allows a tiltable light beam like the \ac{LAP} setup.
 For this purpose, the \ac{LAP} uses a tilting stage to which the tissue sections are attached (see \cref{fig:tilted_side_view}). 
 The newly designed microscope on the other hand has a tiltable light beam.
@@ -331,7 +342,7 @@ All methods will be analysed in \dummy{}.
 \end{figure}
 % 
 First, the light path of each light beam that hits a \ac{CCD} sensor array has to be calculated.
-For the trivial case that the sample is not tilted, this is simply the \ac{CCD} array element centered.\todo{supersampling}
+For the trivial case that the sample is not tilted, this is simply the \ac{CCD} array element centered.
 For any type of tilted sample (not only north, south, east and west) the light distortion described above must be taken into account.
 Since it is always known where the light paths end in the \ac{CCD} array element, one can start here and go backwards to the lower level of the tissue section (see \cref{fig:tilted_side_view}).
 First the first refraction is calculated, which changes the direction of the light rays from $\vv{l}_0$ to $\vv{l}_1$, which happens in the upper tissue section $\mathfrak{S}_{top}$.
@@ -339,16 +350,6 @@ After the light beam $\vv{l}_1$ to plane $\mathfrak{S}_{bottom}$ the intersectio
 This point is the corresponding starting point.
 No further crossing of the light beam needs to be calculated, because the optical elements previously only change the polarization state, but not the light position.
 Once calculated, the same transformation can be applied to all light beams starting at each \ac{CCD} array element.
-% 
-\begin{figure}[!t]
-\def\tikzheight{0.42\textwidth}
-\subcaptionbox{camera view}[.49\textwidth]{
-\inputtikz{gfx/simpli/tilting_3d_a}}\hfill
-\subcaptionbox{perspective view}[.49\textwidth]{
-\inputtikz{gfx/simpli/tilting_3d_b}}
-\tikzset{external/export=false}
-\caption[3d tilting]{3d tilting: around $xy$-axis, \raisebox{.25em}{\tikz \draw[red,thick](0,0)--(0.25,0);} top, \raisebox{.25em}{\tikz \draw[green,thick](0,0)--(0.25,0);} middle, \raisebox{.25em}{\tikz \draw[blue,thick](0,0)--(0.25,0);} bottom, \raisebox{.25em}{\tikz \draw[dash pattern=on 1.25pt off 1.25pt,thick](0,0)--(0.25,0);} original, \raisebox{.25em}{\tikz \draw[gray](0,0)--(0.25,0);} axis of rotation \itodo{test david und daniel}}
-\end{figure}
 % 
 \begin{lstfloat}[!t]
 	\lstinputlisting[style=cpp,basicstyle=\scriptsize\ttfamily,]{code/simulation.cpp}
@@ -359,30 +360,47 @@ Once calculated, the same transformation can be applied to all light beams start
 % 
 \subsection{parallelisation}
 % 
-There are several optimizations used inside this pipeline.\\
+There are several optimizations used inside this pipeline.
+\\
 % 
 First the order of the tissue stored inside the memory is along the z-axis.
-This allows the light for the non tilted case along the z-axis and therfore along the memory.
+This allows the light for the non tilted case along the z-axis and therefore along the memory.
 therefore the data can be transferred linear to the cache and the prefetcher\footnote{A prefetcher get not only the data of the memory address i but also its neighbours i+1 and i-1 (depending on the order).
 This means the data is already in cache, if the next step is calculated.
 For linear traversions this means effectively a infinitive cache size.} of (modern) \ac{CPU} architectures hits its full potential.
 This is also noticeable in the tilted view, since the tilting angle in the \ac{3D-PLI}-experiment is rather small.
-This reduces secnificantly the acces time of the \ac{CPU} and the \ac{RAM}.\\
+This reduces significantly the access time of the \ac{CPU} and the \ac{RAM}.\\
 % 
 Secondly the main for loop for each light ray is parallized with \openmp{}.
 This threads are completely separated and no race conditions exists.\\
 % 
 Additionally the same mpi topography is used from the DV-Generator (see \cref{sec:dv_generator}).
 This is the reason the volume gets split into smaller parts with minimal surface area, since then the number of needed communications is also minimal.
-In the previous \simpli{} implementatio the communication was not needed because the halo was as big that the light beam was never leaving the local volume.
+In the previous \simpli{} implementation the communication was not needed because the halo was as big that the light beam was never leaving the local volume.
 This however meant, that for each tilted image the local volume had to be recalculated.
 Also the memory consumption was much larger.
-This yields in a quite big reduction of processing time. \footnote{so much, that the local memory is the bootlenek, not the cpu power.}\\
+This yields in a quite big reduction of processing time.
+\\
 % 
 At corners the light beam can travel through several \mpi{} volumes.
-Therefore after each main loop the ommunication has to be done.
-Then the main loop is repeated with all incomming light rays.
+Therefore after each main loop the communication has to be done.
+Then the main loop is repeated with all incoming light rays.
 When no light rays are communicated anymore, the simulation is finished.
-This is a rather small cost considering the saving of memory and for tissue section commenly thin tissue sections of \SI{60}{\micro\meter}.
+This is a rather small cost considering the saving of memory and for tissue section commonly thin tissue sections of \SI{60}{\micro\meter}.
 % 
-\itodo{smart sampling spæter diskutieren}
+\itodo{smart sampling spaeter diskutieren}
+% 
+\subsection{Optic}
+\paragraph{Sampling}
+mean value
+% 
+\paragraph{Noise}
+gain, 
+% 
+\section{Analysis}
+% 
+The same algorithms are implemented as in the \ac{3D-PLI} routine pipeline.
+From simple
+% 
+\section{Pipeline}
+% 
