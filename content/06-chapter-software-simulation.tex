@@ -62,19 +62,19 @@ Inside is everything to perform a pipeline code as well as full control about ev
 \begin{figure}[!t]
 \centering
 \setlength{\tikzwidth}{0.5\textwidth}
-\inputtikz{gfx/simpli/disc_volume}
+\inputtikz[true]{gfx/simpli/disc_volume}
 \caption{discretisation volume}
 \label{fig:discVol}
 \end{figure}
 % 
 First, the volume to be created must be defined.
 The simulated/discretized volume is limited by an \ac{AABB} or \ac{VOI}, which is defined by a minimal and maximal value $\voi = [(x_{\mathit{min}}, y_{\mathit{min}}, z_{\mathit{min}}),(x_{\mathit{max}}, y_{\mathit{max}}, z_{\mathit{max}})]$.
-Additionally the \voxelsize{} parameter is set to a floating point number and defines the edge length of the discretized voxels.
+Additionally the \voxelsize{} parameter \voxels{} is set to a floating point number and defines the edge length of the discretized voxels.
 If the division of the \voi{} by the \voxelsize{} is not an integer, the \voi{} is automatically increased to the next possible integer value.
 \\
 % 
 There are two arrays with information about the discrete volume.
-First the \tissue array.
+First the \tissue{} array.
 It contains an index value to the corresponding list of physical properties (see \cref{alg:fiberbundleprops}). \todo{has immense potential for zipping.}
 Second, the \opticalaxis-array.
 It contains sliding values of the $x,y,z$ values of the optical axis orientation (see \cref{fig:vectormodel}).
@@ -82,7 +82,7 @@ Additionally, there will be a \code{distance} array for the generation algorithm
 \\
 % 
 All arrays are implemented as contiguous c-arrays, which are accessible as \name{Numpy}-arrays.
-Since these arrays grow with $\mathcal{O}(n^3)$, the aim was to make them movable through the \cpp libraries as well as in \python.
+Since these arrays grow with $\mathcal{O}(n^3)$, the aim was to make them movable through the \cpp{} libraries as well as in \python{}.
 The memory order of the arrays is in $x-y-z$ direction, so the largest memory shift is in $x$ and the smallest in $z$.
 This was chosen so that later in the simulation, where light usually travels mainly in $z$-direction, the memory is aligned to the required information and thus the cache prefetcher can be used.
 \\
@@ -122,7 +122,7 @@ For each voxel in the volume of the \ac{AABB} the smallest distance to the line 
 \def\tikzwidth{0.42\textwidth}
 \inputtikz{gfx/simpli/indexing}
 \caption{indexing of arrays.
-The vector inside the array at index position $[i,j,k]$ will correspond to the vector at position $p=(i+0.5,j+0.5,k+0.5)\cdot \mathit{\voxelsize}$}
+The vector inside the array at index position $[i,j,k]$ will correspond to the vector at position $p=(i+0.5,j+0.5,k+0.5) \cdot \voxels$}
 \label{fig:indexing_array}
 \end{figure}
 % 
@@ -212,9 +212,17 @@ The only drawback is that all threads must check if the \ac{AABB} is inside the 
 However since with this configuration only once threads are spawned, and the \ac{AABB} collison check is very efficient in terms of computation time, it is quite fast.
 \\
 % 
+\begin{figure}[!t]
+\centering
+\def\tikzwidth{0.75\textwidth}
+\inputtikz{gfx/simpli/com_halo}
+\caption{comunication halos. The volume is split into six subvolumes, distributed to 6 mpi ranks. The coloured voxels have the same tissue information.}
+\label{fig:com_halo}
+\end{figure}
+% 
 For huge volumes that are larger than the locally optimal shared memory size, the calculation must be split into several physical \acp{CPU} or \name{computation nodes}.
 For this purpose \mpi{} is used.
-A method is implemented that automatically divides the volume along the $x$ axis and $y- axis$ into blocks with minimal surface area.
+A method is implemented that automatically divides the volume along the $x$ axis and $y- axis$ into blocks with minimal surface area (see \cref{fig:com_halo}).
 This is important for the following simulation step (see \cref{sec:simulation}).
 Each \mpi{} process can then create a discretized sub-volume as if it were the hole volume.
 However, each sub-volume has an additional voxel along the $x$ and $y$ axis for later communication purposes as \name{halo}. (see \cref{sec:simulation}).
@@ -222,27 +230,19 @@ Each \mpi{} process can additionally use \openmp{} to create multiple threads fo
 % 
 % 
 % 
-\section{simulation}
+\section{Simulation}
 \label{sec:simulation}
-% 
-\begin{figure}[!t]
-\centering
-\def\tikzwidth{0.75*\textwidth}
-\inputtikz{gfx/simpli/vector_interpolation}
-\tikzset{external/export=false}
-\caption[Illustration linear and spherical interpolation.]{Illustration of difference between linear and spherical interpolation. Linear interpolation has a constant distance $s$ between each point, spherical interpolation a constant angle $\varphi$ for the same $dt$.}
-\label{fig:vectorfield_disc}
-\end{figure}
 % 
 The simulation algorithm executes the M\"uller-Stokes calculus (see \cref{sec:Mueller-Stokes}) on the previously calculated discrete volume (see \cref{sec:dv_generator}) for a light beam along its path.
 Since no scattering or refraction effects are included within the tissue volume (except for the effective absorption), each light path follows a straight line.
 The interaction of light matter $\left( \prod_i R_i M_i R_i \cdot \vv{S} \right)$ is calculated. 
 After the light beam has reached the end of the tissue, the last optical elements (\eg{} polarizer) are taken into account.
 Finally, the light intensity is stored in the \acs{CCD} image array.
-The \ac{CCD} image array however has a size of $int(round((\voi_x,\voi_y)/\voxelsize))$.
+The \ac{CCD} image array however has a size of $\integer{}(\round((\voi_x,\voi_y)/\voxels))$.
 The corresponding physical \ac{CCD} pixels will afterwards be resampled from this array.
 \\
 %
+\subsection{Path of light}
 The simulation allows a tiltable light beam like the \ac{LAP} setup.
 For this purpose, the \ac{LAP} uses a tilting stage to which the tissue sections are attached (see \cref{fig:tilted_side_view}). 
 The newly designed microscope on the other hand has a tiltable light beam.
@@ -274,16 +274,45 @@ This is the reason for the existence of both techniques.
 The latter is the same as used within the \ac{LAP} experimental analysis.
 \\
 % 
-The last effect is the refraction of the tissue-air border\footnote{glass adds only a parallel shift} which is simply a parallax effect well described by Snell's law for isotropic media:
+The last effect is the refraction of the tissue-air border, which is simply a parallax effect well described by Snell's law for isotropic media:
 \begin{align}
 \begin{split}
     n_1 \sin{\Theta_1} = n_2 \sin{\Theta_2}
 \end{split}
 \label{equ:snell}
 \end{align}
-where $n$ is the refractive index and $\Theta$ the angle of the light inside the medium perpendicular to its surface 
+where $n$ is the refractive index and $\Theta$ the angle of the light inside the medium perpendicular to its surface.
+The glass of the specimen adds only a parallel shift, which can be modeled by shifting the fiber model itself if necessary.
 % 
 % To always get the same dens of light rays per ccd-pixel, all light ray starting positions are calculated from the ccd-pixels.
+% 
+Each light ray takes its calculated path beginning at $z=\SI{0.5}{\steps}$ with $\steps$ as \stepsize{} for the light inside the tissue.
+The light ray starts of course at the bottom plane of the tissue, however with one step $\steps$ the light interacts along the whole path.
+This is approximated that the light interacts with the tissue at the center point of its step path with the physical properties at that point, which is also used as coordinate $(x,y,z)$.
+For a untilted path with a \stepsize{} equal to \voxelsize{}, the physical properties to be taken are exactly the one save inside the \opticalaxis{} array.
+% 
+\subsection{Optical axis interpolation}
+% 
+\begin{figure}[!t]
+\centering
+\def\tikzwidth{0.75*\textwidth}
+\inputtikz[true]{gfx/simpli/vector_interpolation}
+\tikzset{external/export=false}
+\caption[Illustration linear and spherical interpolation.]{Illustration of difference between linear and spherical interpolation. Linear interpolation has a constant distance $s$ between each point, spherical interpolation a constant angle $\varphi$ for the same $dt$.}
+\label{fig:vectorfield_disc}
+\end{figure}
+% 
+For a \stepsize{} unequal to the \voxelsize{} or a tilted light path the midpoint does not math any center point of the \opticalaxis{}.
+Therefore the value has to be estimated.
+There are currently three interpolation methods for this purpose implemented: \textit{nearest neighbor}, \textit{linear interpolation} and \textit{spherical interpolation}. 
+The voxels taken into account for the interpolation are only the current and the nearest 7 adjacent voxels, so array indices $(\floor{x\pm0.5},\floor{y\pm0.5},\floor{y\pm0.5})$.
+% 
+The \textit{nearest neighbor} is clearly the most error-prone of the three methods and should be not to be used. 
+However it is also the fastest method.
+The \textit{linear interpolation} method is commenly used.
+However since the data contain orientation data, the \textit{spherical interpolation} method should be used.
+All methods will be analysed in \dummy{}.
+% 
 % 
 \subsection{algorithm}
 % 
@@ -329,14 +358,6 @@ Once calculated, the same transformation can be applied to all light beams start
 % 
 % 
 \subsection{parallelisation}
-% 
-\begin{figure}[!t]
-\centering
-\def\tikzwidth{0.75\textwidth}
-\inputtikz{gfx/simpli/com_halo}
-\caption{comunication halos. The volume is split into six subvolumes, distributed to 6 mpi ranks. The coloured voxels have the same tissue information.}
-\label{fig:com_halo}
-\end{figure}
 % 
 There are several optimizations used inside this pipeline.\\
 % 
