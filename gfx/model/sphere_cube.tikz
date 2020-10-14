@@ -1,4 +1,4 @@
-% \begin{tikzsize}{\tikzwidth}{\tikzheight}
+\begin{tikzsize}{\tikzwidth}{\tikzheight}
 \begin{tikzpicture}[%
     scale=1,%\tikzscale,
     3d view={30}{30},
@@ -54,4 +54,4 @@ scale=0.5,
 \end{scope}
 % 
 \end{tikzpicture}
-% \end{tikzsize}
+\end{tikzsize}

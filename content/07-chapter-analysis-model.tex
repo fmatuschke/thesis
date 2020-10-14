@@ -1,32 +1,54 @@
 \setcounter{chapter}{6}
-\chapter{Model Analysis}
+\chapter{Dense \acs{WM} modelling analysis}
 \label{cha:model_analysis}
+% 
+% 
+\todo{erstmal nur beschreiben, diskussion dann so wie es seien muss}
+\todo{veroffentlichung in intro}
+\todo{steffi email}
+% 
 % 
 \section{Introduction}
 % 
-This chapter aims to build as reusable nerve fiber models for \ac{3D-PLI}.
-Since as later described, the most time consuming process is the collision solving algorithm, reusability for accurate phantoms is very pressures.
-\\
+After describing the functionality of the \pymodule{fastpli.model}, the next task is to use these methods not only to create realistic dense \ac{WM} models, but to keep them as simple as possible due to the complexity of the tissue.
+This is due to the fact that \ac{WM} contains individual nerve fibers that typically have a size in the order of about $\SI{1}{\micro\meter}$.
+Therefore, in a \SI{60}{\micro\meter} voxel of a \ac{LAP} measured \ac{3D-PLI} can be image within the \ac{WM} several thousand individual nerve fibers are already present.
+Considering that each nerve fiber has a unique trajectory through this volume, this means that theoretically an absurd variety of possible configurations exists.
+However, due to the nature of the \ac{3D-PLI} structure, previous studies have shown that the result of the signal depends on much less degrees of freedom than each individual nerve fiber has.
+\\[\baselineskip]
 % 
-At the end the generated models will be evaluated by their resulting shape (after the collosion solving step).
+Therefore, as the very first study, this thesis focuses mainly on two randomly interwoven fiber populations for \ac{3D-PLI} simulations.
+Another focus is the generation of such models, whereby the computational time effort shall be kept as low as possible.
+The analysis refers to the setting of the parameters for the model generation and their influence on the resulting collision-free configurations.
 % 
-\section{Model parameter}
 % 
-In this thesis a universal sets of eigen-cubes shall be analysed/ created.
-This sets of eigen-cubes should be usable to test hypothosis for the experimental setups \ac{LAP} and \ac{PM}.
-\paragraph{fiber population orientation}
+\section{Brain tissue model}
+% 
+To create universal reusable \ac{WM} tissue models, a feasable approuch is to minimize the number of parameters to a minimum.
+The approach chosen here is to build and later analyse volumes up to two fiber populations with individual characterisation.
+
+% 
+\vspace{5pt}
+\hrule
+\vspace{6pt}
+% 
+In this thesis a universal sets of \say{eigen-cubes} shall be analysed/ created.
+This sets of eigen-cubes should be usable to test hypothesis for the experimental setups \ac{LAP} and \ac{PM}
+
+
+\paragraph{single fiber population orientation}
 Furthermore it is necesarry, to get a resanable amount of possible fiber configurations.
 Since the number of theoretical possible configurations is infinity, this has to be downsized.
 Beginning with a single fiber population the main orientation $\modelOri$ can be anything on the orientationsphere.
 However, since $f(\varphi,\alpha) = f(\varphi+\pi,-\alpha)$ only the orienatations of a halph spere are neceressy.
 Furthermore the experimental setup lets no distingis bewten a fiber population with $\varphi = \varphi_0$ and $\varphi = \varphi_1$, if the initial optical elements are rotated be $\varphi_1-\varphi_0$ (expect camera pixel, will be neglected here).
-Therefore it is not necesarry to create any single fiber population with a direction other than $varphi = 0$.
-The inclination however has to be sample between the hole range $[0,90]\si{\degree}$. But since we can simple rotate a fiber population from $\varphi=0, \alpha=0$ to $\varphi=\varphi_{\text{rot}}, \alpha=\alpha_{\text{rot}}$, it is not necessary to build individual fiber configurations.
+Therefore it is not necesarry to create any single fiber population with a direction other than $\varphi = \SI{0}{\degree}$.
+The inclination however has to be sample between the hole range $[0,90]\si{\degree}$. But since we can simple rotate a fiber population from $\varphi=\SI{0}{\degree}, \alpha=\SI{0}{\degree}$ to $\varphi=\varphi_{\text{rot}}, \alpha=\alpha_{\text{rot}}$, it is not necessary to build individual fiber configurations.
 % 
 \paragraph{two fiber bundle populations}
-The same eigenschaften as above are true for the individual two fiber populations. This means, that only a differential angle between the two orientations, so called crossing angle $\modelOmega$, is needed as well as a density change between both populations \modelPsi in:
+The same properties as above are true for the individual two fiber populations. This means, that only a differential angle between the two orientations, so called crossing angle $\modelOmega$, is needed as well as a density change between both populations \modelPsi in:
 \begin{align}
-    F_G = \modelPsi \cdot F_0 + (1-\modelPsi) \cdot F_1
+    F_G = [\modelPsi \cdot F_0] \circ [(1-\modelPsi) \cdot F_1]
 \end{align}
 % 
 Since the direction of the first fiber bundle population can be again neglected, only the direction and inclination of the second fiber polulation rletaive to the first is importend. Therefore it was decided to build models with \modelOmega from ${0,10,...,90}$ and afterwords rotating the fiber orientations around the x axis (\cref{subfig:Test1})
@@ -40,10 +62,12 @@ As described in \cref{chap5:ShapeControl} the choice of shape parameters \segLen
 % 
 \begin{figure}[!t]
 \centering
-% \def\tikzwidth{0.5\textwidth}
-\resizebox{0.5\textwidth}{!}{
-\inputtikz{gfx/model/sphere_cube}}
-\caption[]{A spherical volume with diameter $d$ is used as boundry for a fiber model, so that a cube of side length $1/1.5 \cdot d$ can be cut in any orientation inside the sphere.}
+\def\tikzwidth{0.5*\textwidth}
+\subcaptionbox{\label{fig:modelrotcube}A spherical volume with diameter $d$ is used as boundary, so that a cube of side length $1/1.5 \cdot d$ can be cut in any orientation inside the sphere.}[.49\textwidth]{
+\inputtikz{gfx/model/sphere_cube}}\hfill
+\subcaptionbox{\label{fig:modelinit}Initial orientation for two fiber populations $F_0$ and $F_1$. The angle between both populations is $\Omega$. The remaining degree of freedom are taken into account by rotating the whole volume (see \cref{fig:modelrotcube})}[.49\textwidth]{
+\inputtikz{gfx/model/sphere_models}}
+\caption[]{Init Models}
 % \label{fig:}
 \end{figure}
 % 
@@ -144,24 +168,31 @@ legend cell align={left},
 % 
 \todo{STRANGE behaviour in parameter\_statistic for smaller radii. probably because of rnd seeds}
 % 
-\begin{figure}[!t]
-\centering
-\includegraphics[width=\textwidth, page=1]{dev/gfx/2/parameter_statistic_box_plot.pdf}
-\caption{Model (\fiberRadius) characteristic for different parameters}
-% \label{fig:}
-\end{figure}
+% \begin{figure}[!t]
+% \centering
+% \includegraphics[width=\textwidth, page=1]{dev/gfx/2/parameter_statistic_box_plot.pdf}
+% \caption{Model (\fiberRadius) characteristic for different parameters}
+% % \label{fig:}
+% \end{figure}
 % 
-\begin{figure}[!t]
+\begin{figure}[p]
 \centering
-\includegraphics[width=\textwidth, page=2]{dev/gfx/2/parameter_statistic_box_plot.pdf}
-\caption{Model characteristic for different parameters}
+\includegraphics[width=\textwidth, page=1]{dev/gfx/2/parameter_statistic_box_plot_volume.pdf}
+\caption[Model characteristics]{Model characteristic for $\fiberRadius = \SI{1}{\micro\meter}$ different parameters. Additional \fiberRadius are listed in Appendix \dummy{}}
 % \label{fig:}
 \end{figure}
 
-\begin{figure}[!t]
+\begin{figure}[p]
 \centering
-\includegraphics[width=\textwidth]{dev/gfx/2/parameter_statistic_time_evolve.pdf}
-\caption[Time development of the model generation process.]{Time development of the model generation process.}
+\includegraphics[width=\textwidth, page=1]{dev/gfx/2/parameter_statistic_time_evolve.pdf}
+\caption[Time development crossing.]{Time development of the model generation process of crossing fibers populations.}
+% \label{fig:}
+\end{figure}
+% 
+\begin{figure}[p]
+\centering
+\includegraphics[width=\textwidth, page=2]{dev/gfx/2/parameter_statistic_time_evolve.pdf}
+\caption[Time development parallel]{Time development of the model generation process of parallel fiber populations.}
 % \label{fig:}
 \end{figure}
 % 

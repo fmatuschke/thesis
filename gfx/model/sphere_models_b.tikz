@@ -28,10 +28,10 @@ scale=\tikzscale,
     \draw[BLUE,thick] (0.2,0) arc (0:\varomega:0.2) node [pos=1, anchor= west] () {$\Upsilon$};
     \end{scope}
     % 
-    \draw[very thick, GREEN, ->] (0,0,0) -- (\r,0,0) node [pos=1, anchor = north east] () {$f_0$};
+    \draw[very thick, GREEN, ->] (0,0,0) -- (\r,0,0) node [pos=1, anchor = north east] () {$F_0$};
     % 
     \begin{scope}[rotate around x=30]
-        \draw[very thick, BLUE, ->] (0,0,0) -- ({\r*cos(\varomega)},{\r*sin(\varomega)},0) node [pos=1, anchor = south west] () {$f_1$};
+        \draw[very thick, BLUE, ->] (0,0,0) -- ({\r*cos(\varomega)},{\r*sin(\varomega)},0) node [pos=1, anchor = south west] () {$F_1$};
         \begin{scope}[canvas is xy plane at z=0]
             \draw[] (0.60,0) arc (0:\varomega:0.60) node [pos=0.25, anchor= east] () {$\Omega$};
         \end{scope}
