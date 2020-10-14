@@ -6,6 +6,8 @@ scale=\tikzscale,
 \pgfmathsetmacro{\r}{1}
 \pgfmathsetmacro{\varomega}{40}
 % 
+\path[] (-1,-1, -1.5) -- (1.25, 1.25, 1.5);
+% 
 \foreach \i in {60,70,...,90}{\node[circle,fill,BLUE,inner sep=1.25pt] at ({cos(\i)},{sin(\i)}) {};}
 % 
 \shade[ball color = lightgray, opacity = 0.5] (0,0,0) circle (1cm);

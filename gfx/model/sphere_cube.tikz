@@ -1,37 +1,42 @@
 \begin{tikzsize}{\tikzwidth}{\tikzheight}
 \begin{tikzpicture}[%
-    scale=1,%\tikzscale,
-    3d view={30}{30},
-    cube/.style={white, double=black, double distance=.1mm, join=bevel},
+    scale=\tikzscale,
+    3d view={52}{22},
+    cube/.style={white, line width=1pt, double=black, double distance=0.75mm, join=bevel},
     arr/.style={-{latex[color=GREEN]},
-        white, double=GREEN, shorten <= 1pt, shorten >=1pt
+        white, double=GREEN, line width=1pt, double distance=0.75mm,  shorten <= 2pt, shorten >=2pt
       }
 ]
 % 
+\path[] (-1,-1, -1.5) -- (1.25, 1.25, 1.5);
+% 
 \begin{scope}[%
-rotate around x={45},
-rotate around z={45},
-scale=0.5,
+% rotate around x={45},
+% rotate around z={45},
 ]
-\shade[ball color = lightgray, opacity = 0.5] (0,0,0) circle (1.75cm);
-\coordinate (A1) at (-1,-1,-1);
-\coordinate (A2) at (-1,1,-1);
-\coordinate (A3) at (1,1,-1);
-\coordinate (A4) at (1,-1,-1);
-\coordinate (B1) at (-1,-1,1);
-\coordinate (B2) at (-1,1,1);
-\coordinate (B3) at (1,1,1);
-\coordinate (B4) at (1,-1,1);
-\draw[cube] (B1) -- (B2) -- (B3) -- (B4) -- cycle
-  (A2) -- (B2)
-  (A3) -- (B3);
-\end{scope}
+% 
+\shade[ball color = lightgray, opacity = 0.5] (0,0,0) circle (1cm);
+% 
+\pgfmathsetmacro\d{1/sqrt(3)}
 
+\coordinate (A1) at (-\d,-\d,-\d);
+\coordinate (A2) at (-\d,\d,-\d);
+\coordinate (A3) at (\d,\d,-\d);
+\coordinate (A4) at (\d,-\d,-\d);
+\coordinate (B1) at (-\d,-\d,\d);
+\coordinate (B2) at (-\d,\d,\d);
+\coordinate (B3) at (\d,\d,\d);
+\coordinate (B4) at (\d,-\d,\d);
+% 
+\draw[cube] (A2) -- (B2) -- (B3) -- (A3) -- cycle;
+\draw[cube] (A2) -- (B2) -- (B1) -- (A1) -- cycle;
+% 
+\end{scope}
+% 
 \begin{scope}[%,
 rotate around z={42},
-rotate around x={50},
-rotate around y={-120},
-scale=0.75,
+rotate around y={-42},
+rotate around x={-22},
 ]
 \draw[arr, canvas is zx plane at y=0] (0,0,0) +(0:0.5) arc (0:-180:0.5);
 \draw[arr, canvas is yz plane at x=0] (0,0,0) +(0:0.5) arc (0:180:0.5);
@@ -42,15 +47,12 @@ scale=0.75,
 \end{scope}
 % 
 \begin{scope}[%
-rotate around y={-1},
 rotate around y={0},
 rotate around x={45},
 rotate around z={45},
-scale=0.5,
 ]
-\draw[cube] (A1) -- (A2) -- (A3) -- (A4) -- cycle
-  (A1) -- (B1)
-  (A4) -- (B4);
+\draw[cube] (A4) -- (B4) -- (B3) -- (A3) -- cycle;
+\draw[cube] (A4) -- (B4) -- (B1) -- (A1) -- cycle;
 \end{scope}
 % 
 \end{tikzpicture}
