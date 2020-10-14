@@ -301,14 +301,15 @@ S_3 &= I p \sin 2\chi
 \end{figure}
 %
 \begin{figure}[!t]
-\def\tikzwidth{0.49*\textwidth}
+    % \captionsetup[sub]{position=top}
+    \def\tikzwidth{0.49*\textwidth}
 	\centering
-	\subcaptionbox{}[.49\textwidth]{
-			\inputtikz{gfx/pli/pli_detail}}
-	\subcaptionbox{}[.49\textwidth]{
+	\subcaptionbox{\ac{LAP}}[.49\textwidth]{
+			\inputtikz{gfx/pli/pli_detail}}\hfill
+	\subcaptionbox{\ac{PM}}[.49\textwidth]{
 			\inputtikz{gfx/pli/pli_detail_pm}}
 	\label{fig:pli_detail}
-	\caption{Illustration of detail PLI setup. (a) LAP, (b) PM.}
+	\caption{Illustration of detail PLI setup.}
 \end{figure}
 %
 % 
@@ -322,7 +323,7 @@ Following the sequence notation, we denote a streamline as $\Gamma = (p_0, p_1, 
 
 \begin{align}
 \begin{split}
-A \sin(\omega t + \alpha) + B \sin(\omega t + \beta) &= \sqrt{C^2 + D^2} \cdot \sin \, \left( \omega t + \tan^-1 \left( \frac{D}{C} \right) \right)
+A \sin(\omega t + \alpha) + B \sin(\omega t + \beta) &= \sqrt{C^2 + D^2} \cdot \sin \, \left( \omega t + \tan^{-1} \left( \frac{D}{C} \right) \right)
 \end{split}
 \\
 \begin{split}
