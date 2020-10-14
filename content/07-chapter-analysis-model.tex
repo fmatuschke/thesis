@@ -17,41 +17,65 @@ Considering that each nerve fiber has a unique trajectory through this volume, t
 However, due to the nature of the \ac{3D-PLI} structure, previous studies have shown that the result of the signal depends on much less degrees of freedom than each individual nerve fiber has.
 \\[\baselineskip]
 % 
-Therefore, as the very first study, this thesis focuses mainly on two randomly interwoven fiber populations for \ac{3D-PLI} simulations.
+Therefore, this work, being the first study of its kind, focuses mainly on two randomly interwoven fiber populations for \ac{3D-PLI} simulations.
 Another focus is the generation of such models, whereby the computational time effort shall be kept as low as possible.
 The analysis refers to the setting of the parameters for the model generation and their influence on the resulting collision-free configurations.
 % 
 % 
 \section{Brain tissue model}
 % 
-To create universal reusable \ac{WM} tissue models, a feasable approuch is to minimize the number of parameters to a minimum.
-The approach chosen here is to build and later analyse volumes up to two fiber populations with individual characterisation.
-
+To create universal reusable \ac{WM} tissue models, a practical approach is to reduce the number of parameters to a minimum.
+The approach chosen here is to build cubic volumes of up to two fiber populations with individual characterization.
+The most important parameter for \ac{3D-PLI} is orientation.
+% 
+\subsection{single fiber bundle population}
+% 
+A single fiber bundle population can have any orientation $O(\varphi,\alpha)$ in 3d space.
+However, since $O(\varphi,\alpha) = O(\varphi+\pi,-\alpha)$ only the orientations of a hemisphere are required.
+Furthermore, the experimental setup does not allow a difference between a fiber bundle population with $\varphi = \varphi_0$ and $\varphi = \varphi_1$ when the initial optical elements are rotated by $\varphi_1-\varphi_0$, unless one considers the effect of the physical expansion of the camera pixels, which is neglected here.
+Therefore it is not necessary to create a single fiber population with a direction other than $\varphi = \SI{0}{\degree}$.
+However, the inclination must be sampled in the range of $[0,90]\si{\degree}$.
+Since the fiber bundle populations can easily be rotate from $\varphi=\SI{0}{\degree}, \alpha=\SI{0}{\degree}$ to $\varphi=\varphi_{\text{target}}, \alpha=\alpha_{\text{target}}$, it is not necessary to create individual fiber bundle configurations.
+\\
+%
+Each fiber will have an individual radii, sampled from a \name{log normal} distribution $\mathrm{LogNorm(
+\mu,\sigma)}$ (see \cref{fig:logNormal}).
+Its probability desity function looks like this:
+\begin{align}
+\mathrm{LogNorm}(x,\mu,\sigma)=\frac{1}{\sigma x \sqrt{2\pi}}\exp\left(-\frac{(\ln(x)-\mu)^2}{2 \sigma^2}\right)
+\end{align}
+% 
+Its property allows to multiply by a logarithmic mean value $\fiberRadiusMu=0$ to sample values which are not allowed to have negative values like a length and keeping the desired mean value $\fiberRadiusMean$:
+\begin{align}
+\fiberRadius = \fiberRadiusMean \cdot \mathrm{sample}\left(\mathrm{LogNorm}(\mu=0,\sigma=0.1)\right)
+\end{align}
+% 
+To initialize the trajectories the previous introduced method for building a cubic volume is be used (see \cref{sec:cubeModelBuilding}) along the fiber bundle population orientation $F = O(\varphi, \alpha)$.
+The seeding along the fiber bundle population will be randomly set with.
+% 
+\begin{align}
+\begin{split}
+p &= p + \mathrm{sample}\left(\mathrm{Gaus}(\mu=0,\sigma=0.05 \cdot \fiberRadiusMean)\right)\\
+r &= \fiberRadius \cdot \mathrm{sample}\left(\mathrm{LogNorm}(\mu=0,\sigma=0.05)\right)
+\end{split}
+\end{align}
+% 
+After the initial seeding process, and after applying the model segment length, each \name{sphere} of a fiber will be randomly changed.
+The point will be randomly displaced by a normal distribution and the radii with the log normal distribution $(\mu=0,\sigma=0.05)$.
+This will produce a pseudo random collision free configuration.
 % 
 \vspace{5pt}
 \hrule
 \vspace{6pt}
 % 
-In this thesis a universal sets of \say{eigen-cubes} shall be analysed/ created.
-This sets of eigen-cubes should be usable to test hypothesis for the experimental setups \ac{LAP} and \ac{PM}
-
-
-\paragraph{single fiber population orientation}
-Furthermore it is necesarry, to get a resanable amount of possible fiber configurations.
-Since the number of theoretical possible configurations is infinity, this has to be downsized.
-Beginning with a single fiber population the main orientation $\modelOri$ can be anything on the orientationsphere.
-However, since $f(\varphi,\alpha) = f(\varphi+\pi,-\alpha)$ only the orienatations of a halph spere are neceressy.
-Furthermore the experimental setup lets no distingis bewten a fiber population with $\varphi = \varphi_0$ and $\varphi = \varphi_1$, if the initial optical elements are rotated be $\varphi_1-\varphi_0$ (expect camera pixel, will be neglected here).
-Therefore it is not necesarry to create any single fiber population with a direction other than $\varphi = \SI{0}{\degree}$.
-The inclination however has to be sample between the hole range $[0,90]\si{\degree}$. But since we can simple rotate a fiber population from $\varphi=\SI{0}{\degree}, \alpha=\SI{0}{\degree}$ to $\varphi=\varphi_{\text{rot}}, \alpha=\alpha_{\text{rot}}$, it is not necessary to build individual fiber configurations.
-% 
-\paragraph{two fiber bundle populations}
-The same properties as above are true for the individual two fiber populations. This means, that only a differential angle between the two orientations, so called crossing angle $\modelOmega$, is needed as well as a density change between both populations \modelPsi in:
+\paragraph{dual fiber bundle populations}
+The same mathematical properties as above are true for any fiber population inside a superposition.
+This means, that only a differential angle between the two orientations, so called crossing angle $\modelOmega$, is needed as well as a density change between both populations \modelPsi{} in:
 \begin{align}
     F_G = [\modelPsi \cdot F_0] \circ [(1-\modelPsi) \cdot F_1]
 \end{align}
 % 
-Since the direction of the first fiber bundle population can be again neglected, only the direction and inclination of the second fiber polulation rletaive to the first is importend. Therefore it was decided to build models with \modelOmega from ${0,10,...,90}$ and afterwords rotating the fiber orientations around the x axis (\cref{subfig:Test1})
+Since the direction of the first fiber bundle population can be again neglected, only the direction and inclination of the second fiber population relative to the first is important. Therefore it was decided to build models with \modelOmega{} from ${0,10,...,90}$ and afterwords rotating the fiber orientations around the x axis (\cref{subfig:Test1})
 % 
 \paragraph{fiber population additional parameters}
 density, dispersion, radii, change of radii, ...
@@ -160,8 +184,8 @@ legend cell align={left},
 \addplot[red,thick,domain=0.6:1.4, samples=1000]{1/(\sigmaValue*x*sqrt(2*pi))*exp(-(ln(x)-\muValue)^2/(2*\sigmaValue^2))}; \addlegendentry{$\mu=0.0,\sigma=0.1$}
 \end{axis}
 \end{tikzpicture}
-\caption[]{\itodo{check values in literatur}}
-% \label{fig:}
+\caption[]{\itodo{check values in literatur} Probability density function of a multiplicative \name{log normal} distribution.}
+\label{fig:logNormal}
 \end{figure}
 % 
 \subsection{Results}
@@ -198,7 +222,7 @@ legend cell align={left},
 % 
 \subsection{Discussion}
 % 
-The goal is to choice a set of parameters, which allow a) fast, b) collision free and c)a high volume fraction for densely fibers. 
+The goal is to choice a set of parameters, which allow a) fast, b) collision free and c) a high volume fraction for densely fibers. 
 %  
 \subsubsection{timeing}
 % 
