@@ -8,7 +8,10 @@
       }
 ]
 % 
-\path[] (-1,-1, -1.5) -- (1.25, 1.25, 1.5);
+% \path[] (-1,-1, -1.5) -- (1.25, 1.25, 1.5);
+\path[->] (-1.30,0,0)-- (1.75,0,0)node[pos=1, anchor = north west]{\hphantom{x}};
+\path[->] (0,-1.25,0)-- (0,1.4,0)node[pos=1, anchor = west]{\hphantom{y}};
+\path[->] (0,0,-1.35)-- (0,0,1.25)node[pos=1, anchor = west]{\hphantom{z}};
 % 
 \begin{scope}[%
 % rotate around x={45},
