@@ -38,6 +38,12 @@ However, the inclination must be sampled in the range of $[0,90]\si{\degree}$.
 Since the fiber bundle populations can easily be rotate from $\varphi=\SI{0}{\degree}, \alpha=\SI{0}{\degree}$ to $\varphi=\varphi_{\text{target}}, \alpha=\alpha_{\text{target}}$, it is not necessary to create individual fiber bundle configurations.
 \\
 %
+\paragraph{fiber distribution}
+To initialize the trajectories the previous introduced method for building a cubic volume is be used (see \cref{sec:cubeModelBuilding}) along the fiber bundle population orientation $F = O(\varphi, \alpha)$.
+The seeding along the fiber bundle population will be randomly set with:
+\begin{align}
+p = \mathrm{sample}\left(\mathrm{Uniform}(\sqrt{3}*\mathit{cube\_size})\right)
+\end{align}
 Each fiber will have an individual radii, sampled from a \name{log normal} distribution $\mathrm{LogNorm(
 \mu,\sigma)}$ (see \cref{fig:logNormal}).
 Its probability desity function looks like this:
@@ -50,8 +56,15 @@ Its property allows to multiply by a logarithmic mean value $\fiberRadiusMu=0$ t
 \fiberRadius = \fiberRadiusMean \cdot \mathrm{sample}\left(\mathrm{LogNorm}(\mu=0,\sigma=0.1)\right)
 \end{align}
 % 
-To initialize the trajectories the previous introduced method for building a cubic volume is be used (see \cref{sec:cubeModelBuilding}) along the fiber bundle population orientation $F = O(\varphi, \alpha)$.
-The seeding along the fiber bundle population will be randomly set with.
+% 
+\paragraph{fiber segmentation}
+%
+To split the current straight fibers into segments for the next step, the \pymodule{fastpli.model.solver} process is used.
+Each fiber is split into a mean length of $\segLength$.
+%
+\paragraph{fiber deformation}
+After the initial seeding process, and after applying the model segment length, each \name{sphere} of a fiber will be randomly changed.
+The point will be randomly displaced by a normal distribution and the radii with the log normal distribution $(\mu=0,\sigma=0.05)$.
 % 
 \begin{align}
 \begin{split}
@@ -60,51 +73,43 @@ r &= \fiberRadius \cdot \mathrm{sample}\left(\mathrm{LogNorm}(\mu=0,\sigma=0.05)
 \end{split}
 \end{align}
 % 
-After the initial seeding process, and after applying the model segment length, each \name{sphere} of a fiber will be randomly changed.
-The point will be randomly displaced by a normal distribution and the radii with the log normal distribution $(\mu=0,\sigma=0.05)$.
-This will produce a pseudo random collision free configuration.
+This will produce a pseudo random initial configuration for the collision solving process.
+% 
+\subsection{dual fiber bundle populations}
+The same mathematical properties as above are true for any fiber population $F$ inside a superposition.
+This means, that only a differential angle between the two orientations, so called crossing angle $\modelOmega$, is needed as well as a proportion change between both populations $\modelPsi{} = N(F_0)/N(F_G)$.
+% in:
+% \begin{align}
+%     F_G = [\modelPsi \cdot F_0] \circ [(1-\modelPsi) \cdot F_1]
+% \end{align}
+% 
+Since the direction of the first fiber bundle population can be again neglected, only the direction and inclination of the second fiber population relative to the first is important. Therefore it was decided to build models with \modelOmega{} from ${0,10,...,90}$ and afterwords rotating the fiber orientations around the x axis (\cref{fig:twomodelpop})
+% 
+% \paragraph{rest}
+% % 
+% As described in \cref{chap5:ShapeControl} the choice of shape parameters \segLength and \segRadius are quite important. For a realistic fiber radius distribution of around \SI{0.5}{\micro\meter} the time for a \SI{60}{\micro\meter} usable cube (\SI{105}{\micro\meter} sphere) varies from several hours up to \SI{24}{\hour}.
+% 
+\begin{figure}[p]
+\centering
+\def\tikzwidth{0.45*\textwidth}
+\subcaptionbox{\label{fig:modelrotcube}A spherical volume with diameter $d$ is used as boundary, so that a cube of side length $1/1.5 \cdot d$ can be cut in any orientation inside the sphere.}
+[.49\textwidth]{\inputtikz{gfx/model/sphere_cube}}\hfill
+\subcaptionbox{\label{fig:modelinit}Initial orientation for two fiber populations $F_0$ and $F_1$. The angle between both populations is $\Omega$. The remaining degree of freedom are taken into account by rotating the whole volume (see \cref{fig:modelrotcube})}
+[.49\textwidth]{\inputtikz{gfx/model/sphere_models}}
+% 
+\\
+% 
+\subcaptionbox{fixed first fiber population; half rotation of second fiber population}
+[.49\textwidth]{\inputtikz[true]{gfx/model/sphere_models_a}}\hfill
+\subcaptionbox{\label{subfig:Test1}increasing inclination for first fiber population}
+[.49\textwidth]{\inputtikz[true]{gfx/model/sphere_models_b}}
+\caption{two population model library}
+\label{fig:twomodelpop}
+\end{figure}
 % 
 \vspace{5pt}
 \hrule
 \vspace{6pt}
-% 
-\paragraph{dual fiber bundle populations}
-The same mathematical properties as above are true for any fiber population inside a superposition.
-This means, that only a differential angle between the two orientations, so called crossing angle $\modelOmega$, is needed as well as a density change between both populations \modelPsi{} in:
-\begin{align}
-    F_G = [\modelPsi \cdot F_0] \circ [(1-\modelPsi) \cdot F_1]
-\end{align}
-% 
-Since the direction of the first fiber bundle population can be again neglected, only the direction and inclination of the second fiber population relative to the first is important. Therefore it was decided to build models with \modelOmega{} from ${0,10,...,90}$ and afterwords rotating the fiber orientations around the x axis (\cref{subfig:Test1})
-% 
-\paragraph{fiber population additional parameters}
-density, dispersion, radii, change of radii, ...
-% 
-\paragraph{rest}
-% 
-As described in \cref{chap5:ShapeControl} the choice of shape parameters \segLength and \segRadius are quite important. For a realistic fiber radius distribution of around \SI{0.5}{\micro\meter} the time for a \SI{60}{\micro\meter} usable cube (\SI{105}{\micro\meter} sphere) varies from several hours up to \SI{24}{\hour}.
-% 
-\begin{figure}[!t]
-\centering
-\def\tikzwidth{0.5*\textwidth}
-\subcaptionbox{\label{fig:modelrotcube}A spherical volume with diameter $d$ is used as boundary, so that a cube of side length $1/1.5 \cdot d$ can be cut in any orientation inside the sphere.}[.49\textwidth]{
-\inputtikz{gfx/model/sphere_cube}}\hfill
-\subcaptionbox{\label{fig:modelinit}Initial orientation for two fiber populations $F_0$ and $F_1$. The angle between both populations is $\Omega$. The remaining degree of freedom are taken into account by rotating the whole volume (see \cref{fig:modelrotcube})}[.49\textwidth]{
-\inputtikz{gfx/model/sphere_models}}
-\caption[]{Init Models}
-% \label{fig:}
-\end{figure}
-% 
-\begin{figure}[!t]
-\centering
-\def\tikzwidth{0.5*\textwidth}
-\subcaptionbox{fixed first fiber population; half rotation of second fiber population}[.49\textwidth]{
-\inputtikz{gfx/model/sphere_models_a}}\hfill
-\subcaptionbox{\label{subfig:Test1}increasing inclination for first fiber population}[.49\textwidth]{
-\inputtikz{gfx/model/sphere_models_b}}
-\caption{two population model library}
-\label{fig:twomodelpop}
-\end{figure}
 % 
 % 
 \subsection{Setup}
