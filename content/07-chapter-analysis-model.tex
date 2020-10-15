@@ -106,15 +106,11 @@ Since the direction of the first fiber bundle population can be again neglected,
 \caption{two population model library}
 \label{fig:twomodelpop}
 \end{figure}
+%  
 % 
-\vspace{5pt}
-\hrule
-\vspace{6pt}
+\subsection{Algorithmic setup}
 % 
-% 
-\subsection{Setup}
-% 
-The library \say{cube\_2pop} is build with the parameter listed in \cref{tab:cube2pop, tab:cube2popSoftware}.
+To find a usable library of two fiber populations researched main attributes are listed in \cref{tab:cube2pop} \cref{tab:cube2popSoftware} contains the parameters of the additional \pymodule{fastpli.model.solver} algorithm.
 % 
 \begin{table}[!b]
 \sisetup{parse-numbers=false,open-bracket={\{}, close-bracket={\}}, list-final-separator={,},list-pair-separator={,}}%
@@ -132,11 +128,11 @@ The library \say{cube\_2pop} is build with the parameter listed in \cref{tab:cub
     % string type,
 ]
 {name & variable & values\\
-mean fiber radius & $\fiberRadiusMean$ & $\SIlist{0.5;1;2;5;10}{\micro\meter}$\\
-mean segment length factor & $\segLengthFactor$ & $\SIlist{1;2;4;8}{\micro\meter}$\\
-min segment bending radii factor & $\segRadiusFactor$ & $\SIlist{1;2;4;8}{\micro\meter}$\\
-fiber bundle distribution value & $\modelPsi$ & $\SIlist{0.1;0.2;...;1.0}{}$ \\
-fiber bundle crossing angle & $\modelOmega$ & $\SIlist{0;10;...;90}{\degree}$\\
+mean fiber radius & $\textcolor{violet}{\fiberRadiusMean}$ & $\SIlist{0.5;1;2;5;10}{\micro\meter}$\\
+mean segment length factor & $\textcolor{violet}{\segLengthFactor}$ & $\numlist{1;2;4;8}$\\
+min segment bending radii factor & $\textcolor{violet}{\segRadiusFactor}$ & $\numlist{1;2;4;8}$\\
+fiber bundle distribution value & $\textcolor{violet}{\modelPsi}$ & $\numlist{0.1;0.2;...;1.0}$ \\
+fiber bundle crossing angle & $\textcolor{violet}{\modelOmega}$ & $\SIlist{0;10;...;90}{\degree}$\\
 }
 \caption{parameter\_statistic setup and \textcolor{violet}{variables}.}
 \label{tab:cube2pop}
@@ -163,8 +159,8 @@ seed.distance & $2 \cdot \textcolor{violet}{\fiberRadiusMean}$\\
 seed.size & $2 \cdot \mathit{volume}$\\
 bundle distribution & $\textcolor{violet}{\modelPsi}$\\
 bundle crossing & $\textcolor{violet}{\modelOmega}$\\
-solver.obj\_mean\_length & $\fiberRadiusMean \cdot \textcolor{violet}{\segLengthFactor}$\\
-solver.obj\_min\_radius & $\fiberRadiusMean \cdot \textcolor{violet}{\segRadiusFactor}$\\
+solver.obj\_mean\_length & $\textcolor{violet}{\fiberRadiusMean} \cdot \textcolor{violet}{\segLengthFactor}$\\
+solver.obj\_min\_radius & $\textcolor{violet}{\fiberRadiusMean} \cdot \textcolor{violet}{\segRadiusFactor}$\\
 solver.max\_steps & $\SI{100000}{}$\\
 max runtime & $\SI{24}{\hour}$\\
 }
@@ -197,6 +193,12 @@ legend cell align={left},
 % 
 \todo{STRANGE behaviour in parameter\_statistic for smaller radii. probably because of rnd seeds}
 % 
+% 
+% 
+\vspace{5pt}
+\hrule
+\vspace{6pt}
+% 
 % \begin{figure}[!t]
 % \centering
 % \includegraphics[width=\textwidth, page=1]{dev/gfx/2/parameter_statistic_box_plot.pdf}
@@ -207,23 +209,25 @@ legend cell align={left},
 \begin{figure}[p]
 \centering
 \includegraphics[width=\textwidth, page=1]{dev/gfx/2/parameter_statistic_box_plot_volume.pdf}
-\caption[Model characteristics]{Model characteristic for $\fiberRadius = \SI{1}{\micro\meter}$ different parameters. Additional \fiberRadius are listed in Appendix \dummy{}}
+\caption[Model characteristics]{Model characteristic for $\fiberRadius = \SI{1}{\micro\meter}$ different parameters. Additional \fiberRadius are listed in Appendix \dummy{}. \itodo{\segLengthFactor and \segRadiusFactor}}
 % \label{fig:}
 \end{figure}
 
 \begin{figure}[p]
 \centering
 \includegraphics[width=\textwidth, page=1]{dev/gfx/2/parameter_statistic_time_evolve.pdf}
-\caption[Time development crossing.]{Time development of the model generation process of crossing fibers populations.}
+\caption[Time development crossing.]{Time development of the model generation process of crossing fibers populations.\itodo{\segLengthFactor and \segRadiusFactor}}
 % \label{fig:}
 \end{figure}
 % 
 \begin{figure}[p]
 \centering
 \includegraphics[width=\textwidth, page=2]{dev/gfx/2/parameter_statistic_time_evolve.pdf}
-\caption[Time development parallel]{Time development of the model generation process of parallel fiber populations.}
+\caption[Time development parallel]{Time development of the model generation process of parallel fiber populations.\itodo{\segLengthFactor and \segRadiusFactor}}
 % \label{fig:}
 \end{figure}
+% 
+
 % 
 \subsection{Discussion}
 % 
@@ -266,7 +270,7 @@ Also more then 8 cores \dummy{}.
 % \resizebox{1.0\textwidth}{!}{
 \includegraphics[width=\textwidth, page=1]{dev/gfx/2/cube_2pop_orientation_hist.pdf}
 % }
-\caption{}
+\caption[Model histograms]{Distribution of fiber segment orientation in initial and resulting models. The left half circle contains the inclination $\alpha$ value, the right half the direction $\varphi$}
 % \label{fig:}
 \end{figure}
 % 
