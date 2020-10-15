@@ -10,16 +10,12 @@ arr/.style={-{latex[color=GREEN]},
     white, double=GREEN, line width=1pt, double distance=0.75mm,  shorten <= 2pt, shorten >=2pt
   }
 ]
-\pgfmathsetmacro{\r}{1}
-\pgfmathsetmacro{\varomega}{30}
-\pgfmathsetmacro{\varalpha}{0}
 % 
 \path[->] (-1.30,0,0)-- (1.75,0,0)node[pos=1, anchor = north west]{\phantom{x}};
 \path[->] (0,-1.25,0)-- (0,1.4,0)node[pos=1, anchor = west]{\phantom{y}};
 \path[->] (0,0,-1.35)-- (0,0,1.25)node[pos=1, anchor = west]{\phantom{z}};
 % 
 \shade[ball color = lightgray, opacity = 0.5] (0,0,0) circle (1cm);
-\draw[very thick, BLUE, ->] (0,0,0) -- ({\r*cos(\varomega)},{\r*sin(\varomega)},0);
 % 
 \pgfmathsetmacro\d{1/sqrt(3)}
 
