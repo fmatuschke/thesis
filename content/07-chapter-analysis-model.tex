@@ -56,6 +56,25 @@ Its property allows to multiply by a logarithmic mean value $\fiberRadiusMu=0$ t
 \fiberRadius = \fiberRadiusMean \cdot \mathrm{sample}\left(\mathrm{LogNorm}(\mu=0,\sigma=0.1)\right)
 \end{align}
 % 
+\begin{figure}[!t]
+\centering
+\tikzset{external/export=false}
+\begin{tikzpicture}[scale=1, trim axis left, trim axis right]
+\begin{axis}[height=0.46\textwidth, width=0.75\textwidth,enlargelimits=false, xlabel={$x$}, ylabel={$f(x,\mu,\sigma)$}, title=${f(x,\mu,\sigma)=\frac{1}{\sigma x \sqrt{2\pi}}\exp\left(-\frac{(\ln(x)-\mu)^2}{2 \sigma^2}\right)}$,
+legend style={at={(1,1)},anchor=north east},
+legend cell align={left},
+]
+\pgfmathsetmacro{\muValue}{0}
+\pgfmathsetmacro{\sigmaValue}{0.05}
+\addplot[blue,thick,domain=0.6:1.4, samples=1000]{1/(\sigmaValue*x*sqrt(2*pi))*exp(-(ln(x)-\muValue)^2/(2*\sigmaValue^2))}; \addlegendentry{$\mu=0.0,\sigma=0.05$}
+\pgfmathsetmacro{\muValue}{0}
+\pgfmathsetmacro{\sigmaValue}{0.1}
+\addplot[red,thick,domain=0.6:1.4, samples=1000]{1/(\sigmaValue*x*sqrt(2*pi))*exp(-(ln(x)-\muValue)^2/(2*\sigmaValue^2))}; \addlegendentry{$\mu=0.0,\sigma=0.1$}
+\end{axis}
+\end{tikzpicture}
+\caption[]{\itodo{check values in literatur} Probability density function of a multiplicative \name{log normal} distribution.}
+\label{fig:logNormal}
+\end{figure}
 % 
 \paragraph{fiber segmentation}
 %
@@ -110,7 +129,8 @@ Since the direction of the first fiber bundle population can be again neglected,
 % 
 \subsection{Algorithmic setup}
 % 
-To find a usable library of two fiber populations researched main attributes are listed in \cref{tab:cube2pop} \cref{tab:cube2popSoftware} contains the parameters of the additional \pymodule{fastpli.model.solver} algorithm.
+To find a usable library of two fiber populations researched main attributes are listed in \cref{tab:cube2pop} \cref{tab:cube2popSoftware} contains the parameters of the additional \pymodule{fastpli.model.solver} algorithm. All \dummy{} will be repeated five times.
+AT THE END OF EACH STEP THE VOLUME TO SOLVE IS ALWAYS CUTTED TO 105.
 % 
 \begin{table}[!b]
 \sisetup{parse-numbers=false,open-bracket={\{}, close-bracket={\}}, list-final-separator={,},list-pair-separator={,}}%
@@ -168,70 +188,90 @@ max runtime & $\SI{24}{\hour}$\\
 \label{tab:cube2popSoftware}
 \end{table}
 % 
-% 
-\begin{figure}[!t]
-\centering
-\tikzset{external/export=false}
-\begin{tikzpicture}[scale=1, trim axis left, trim axis right]
-\begin{axis}[height=0.46\textwidth, width=0.75\textwidth,enlargelimits=false, xlabel={$x$}, ylabel={$f(x,\mu,\sigma)$}, title=${f(x,\mu,\sigma)=\frac{1}{\sigma x \sqrt{2\pi}}\exp\left(-\frac{(\ln(x)-\mu)^2}{2 \sigma^2}\right)}$,
-legend style={at={(1,1)},anchor=north east},
-legend cell align={left},
-]
-\pgfmathsetmacro{\muValue}{0}
-\pgfmathsetmacro{\sigmaValue}{0.05}
-\addplot[blue,thick,domain=0.6:1.4, samples=1000]{1/(\sigmaValue*x*sqrt(2*pi))*exp(-(ln(x)-\muValue)^2/(2*\sigmaValue^2))}; \addlegendentry{$\mu=0.0,\sigma=0.05$}
-\pgfmathsetmacro{\muValue}{0}
-\pgfmathsetmacro{\sigmaValue}{0.1}
-\addplot[red,thick,domain=0.6:1.4, samples=1000]{1/(\sigmaValue*x*sqrt(2*pi))*exp(-(ln(x)-\muValue)^2/(2*\sigmaValue^2))}; \addlegendentry{$\mu=0.0,\sigma=0.1$}
-\end{axis}
-\end{tikzpicture}
-\caption[]{\itodo{check values in literatur} Probability density function of a multiplicative \name{log normal} distribution.}
-\label{fig:logNormal}
-\end{figure}
-% 
 \subsection{Results}
 % 
 \todo{STRANGE behaviour in parameter\_statistic for smaller radii. probably because of rnd seeds}
 % 
-% 
-% 
-\vspace{5pt}
-\hrule
-\vspace{6pt}
-% 
-% \begin{figure}[!t]
-% \centering
-% \includegraphics[width=\textwidth, page=1]{dev/gfx/2/parameter_statistic_box_plot.pdf}
-% \caption{Model (\fiberRadius) characteristic for different parameters}
-% % \label{fig:}
-% \end{figure}
+\paragraph{Volume fraction}
 % 
 \begin{figure}[p]
 \centering
 \includegraphics[width=\textwidth, page=1]{dev/gfx/2/parameter_statistic_box_plot_volume.pdf}
 \caption[Model characteristics]{Model characteristic for $\fiberRadius = \SI{1}{\micro\meter}$ different parameters. Additional \fiberRadius are listed in Appendix \dummy{}. \itodo{\segLengthFactor and \segRadiusFactor}}
-% \label{fig:}
+\label{fig:psbp1}
 \end{figure}
-
-\begin{figure}[p]
-\centering
-\includegraphics[width=\textwidth, page=1]{dev/gfx/2/parameter_statistic_time_evolve.pdf}
-\caption[Time development crossing.]{Time development of the model generation process of crossing fibers populations.\itodo{\segLengthFactor and \segRadiusFactor}}
-% \label{fig:}
-\end{figure}
+% 
+\cref{fig:psbp1} show the resulting volume fraction $V/V_0$ for the parameter series.
+Non crossing angles $||$ achive clearly a higher fraction of $V/V_0 > 0.75$ than their counter crossing parts $cross$.
+Their value also is for fibers with radii $\fiberRadius <= \SI{5}{\micro\meter}$ very stable for all five repeats.
+Further the volume fraction is stable for changes along the parameter $\segLengthFactor$ and $\segRadiusFactor$. 
+Only the fibers with a radius of $\fiberRadius = \SI{10}{\micro\meter}$ achive smaler fractions and slighty unstable results with Values around \dummy{}.
+\\
+The crossing \dummy{} show a clear decrease volume fraction along a increase of the $\segLengthFactor$ as well as a slightly decrease with increasing $\segRadiusFactor$ for all fiber radii.
+The decrease with the change of $\segLengthFactor$ stabilises around $\segLengthFactor = \num{8}$.
+For smaller fiber radii the repeating process is more stable as for larger radii.
+\\
+Overall the volume fraction stays above 0.75 for parallel and fr > 2.
+For crossing fibers in this range the value stays above around 0.5.
+% 
+\paragraph{Time development}
 % 
 \begin{figure}[p]
 \centering
 \includegraphics[width=\textwidth, page=2]{dev/gfx/2/parameter_statistic_time_evolve.pdf}
-\caption[Time development parallel]{Time development of the model generation process of parallel fiber populations.\itodo{\segLengthFactor and \segRadiusFactor}}
-% \label{fig:}
+\caption[Time development parallel]{Time development of the model generation process of parallel fiber populations. non crossing\itodo{\segLengthFactor and \segRadiusFactor}\itodo{title}\itodo{units}}
+\label{fig:timeDevelopmentNone}
 \end{figure}
 % 
-
+\begin{figure}[p]
+\centering
+\includegraphics[width=\textwidth, page=1]{dev/gfx/2/parameter_statistic_time_evolve.pdf}
+\caption[Time development parallel]{Time development of the model generation process of parallel fiber populations. crossing \itodo{\segLengthFactor and \segRadiusFactor}\itodo{title}\itodo{units}}
+\label{fig:timeDevelopmentCross}
+\end{figure}
+% 
+The change in time of the properties are shown in \cref{fig:timeDevelopmentNone;fig:timeDevelopmentCross}.
+Looking at only the non crossing models \cref{fig:timeDevelopmentNone} shows a linear correlation between the number of steps and the time.
+All models have a step size smaller than the maximal step size, therefore are completely solved and the last plotted value corresponds to the total time consumption for each parameter set.
+The change of $\segLengthFactor$ has no significant influence.
+An increase in $\segRadiusFactor$ on the other side clearly increases the log(time) consumption up to several order of magnitudes.
+\\
+% 
+Looking at the number of colliding objects they correlate with the time (non log!). 
+Again a change in $\segLengthFactor$ has no significant effect and an increase in $\segRadiusFactor$ increases the time consumption up to several order of magnitudes.
+\\
+% 
+The overlap fraction coresponts to the overlapping distance/distance in total of all remaining colliding objects.
+Its value at the start is non higher of \SI{8}{\percent} \dummy{}.
+The values are decreasing similar to the number of colliding objects, however not as fast.
+As before, a change in $\segLengthFactor$ has no significant effect and an increase in $\segRadiusFactor$ increases the time consumption up to several order of magnitudes.
+% 
+The comparison to crossing models in \cref{fig:timeDevelopmentCross} shows for all parameters a very similar behavior.
+The development of the number of steps is exactly as for the linear case, expect that the number of steps are higher.
+fl=\dummy{} and fl= \dummy{} reach the maximal number of steps, but not the maximal time value.
+\todo{human time values in plot}.
+The number of objects and overlapping fraction value show a splitting behavior for a change in $\segLengthFactor$.
+For smaller values the time consumption is significantly (log!) smaller.
+larger values show a stagnant behavior for the parameters, however already for small values (log!).
+A change in $\segRadiusFactor$  increases the time consumption up to several order of magnitudes as in the linear bundle case.
+% 
+% 
 % 
 \subsection{Discussion}
 % 
-The goal is to choice a set of parameters, which allow a) fast, b) collision free and c) a high volume fraction for densely fibers. 
+The goal is to choice a set of parameters, which allow a) fast, b) collision free and c) a high volume fraction for densely fibers.
+In the case of parallel fibers, the solving process is always faster than for crossing bundles.
+Even thow that the number of colliding objects is more or less \dummy{} the same \comment{(ein plot?)} the needed volume to have enough space to not collide with each other is larger \dummy{}.
+Therefore the distance the fiber segments have to travel is higher und the number of steps to achive this increases as well.
+\\
+% 
+The behavier in change of $segLengthFactor$ is clearly a time advantage, since also the number ob objects is smaller.
+In a log plot the change is not clearly visible, since the reduction is only linear.
+However the number of collsions is clearly 
+% 
+\vspace{5pt}
+\hrule
+\vspace{6pt}
 %  
 \subsubsection{timeing}
 % 
@@ -241,7 +281,7 @@ analog analysis like voxelsize -> simulation?
 % 
 \section{CPU Acceleration}
 % 
-As described in \dummy{} \openmp is used for acceleration.
+As described in \dummy{} \openmp{} is used for acceleration.
 This means no usage of multiple computer nodes is currently available.
 Since the Code traverses an octree, This would not be feasable.
 Also more then 8 cores \dummy{}.
