@@ -127,7 +127,7 @@ Since the direction of the first fiber bundle population can be again neglected,
 \end{figure}
 %  
 % 
-\subsection{Algorithmic setup}
+\subsection{Algorithmic setup}\label{sec:modelSetup}
 % 
 To find a usable library of two fiber populations researched main attributes are listed in \cref{tab:cube2pop} \cref{tab:cube2popSoftware} contains the parameters of the additional \pymodule{fastpli.model.solver} algorithm. All \dummy{} will be repeated five times.
 AT THE END OF EACH STEP THE VOLUME TO SOLVE IS ALWAYS CUTTED TO 105.
@@ -226,7 +226,7 @@ For crossing fibers in this range the value stays above around 0.5.
 \begin{figure}[p]
 \centering
 \includegraphics[width=\textwidth, page=1]{dev/gfx/2/parameter_statistic_time_evolve.pdf}
-\caption[Time development parallel]{Time development of the model generation process of parallel fiber populations. crossing \itodo{\segLengthFactor and \segRadiusFactor}\itodo{title}\itodo{units}}
+\caption[Time development parallel]{Time development of the model generation process of parallel fiber populations. crossing \itodo{\segLengthFactor and \segRadiusFactor}\itodo{title}\itodo{units}\itodo{restlichen parameter anhang}}
 \label{fig:timeDevelopmentCross}
 \end{figure}
 % 
@@ -265,43 +265,77 @@ Even thow that the number of colliding objects is more or less \dummy{} the same
 Therefore the distance the fiber segments have to travel is higher und the number of steps to achive this increases as well.
 \\
 % 
-The behavier in change of $segLengthFactor$ is clearly a time advantage, since also the number ob objects is smaller.
-In a log plot the change is not clearly visible, since the reduction is only linear.
-However the number of collsions is clearly 
+The behavior in change of the length factor \segLengthFactor{} is clearly a time advantage, since also the number ob objects is smaller.
+However a larger \segLengthFactor{} results for crossing fibers as to be expected in a smaller volume fraction.
+For parallel fiber is is reasonable that the volume fraction das not change, since the direction of movement for all fiber segments is radial symmetric along their main orientation axis.
+Up to a fiber radii of \SI{2}{\micro\meter} the repeating measurements are stable.
+Above it the resulting orientations starts to divers.
+This has to to with that the volume has a fixed size of \SI{60}{\micro\meter}.
+This means the number of segments is quite small, individual and the model is therefore diverge.
+\\
+The fiber semgent bending radii factor \segRadiusFactor{} yield to less diverse results.
+Since it restrict the bending radii, it is expected, and visible in the results, that the volume fraction is very influenced, since the volume can't be optimal filled anymore.
+Again changes parallel fiber orientation are almost not visible, for all analysed values.
+Crossing fibers however are as expected influenced.
+This is especial visible in the number of colliding objects, where the \segRadiusFactor{} splits the data into individual branches over time.
+Since smaller values of \segRadiusFactor{} allow more curved geometries, this is as expected.
+However this can lead to \say{strange looking} results and has to be set with an anatomical perspective. \todo{images}
+\\[\baselineskip]
 % 
-\vspace{5pt}
-\hrule
-\vspace{6pt}
-%  
-\subsubsection{timeing}
+Overall the choice of the parameters can be narrowed.
+The main decision come from the crossing results.
+Since most basic parameter is the length length factor \segLengthFactor{}.
+Looking at the volume fraction results it should be as small as possible.
+However since the difference between $\segLengthFactor=\SI{1}{}$ and $\segLengthFactor=\SI{2}{}$ is small, and a big leap is visible for $\segLengthFactor=\SI{4}{}$ one can use $\segLengthFactor=\SI{2}{}$.
+The only reason to increase this value further would be a reduction in computational time.
+\\
 % 
-\paragraph{is overlap important?}
+The fiber radii should be as realistic to real \acs{WM} brain tissue as possible.
+However to reduce the computational time further, a reduction to $r = \SI{1}{\micro\meter}$ is feasible.
+It is still in the same order of magnitude to the real values (\SI{0.5}{\micro\meter}).
+The \ac{3D-PLI} simulation results will show more effective metric to further restrict these parameters.
 % 
-analog analysis like voxelsize -> simulation?
+The choice of the fiber banding factor is as already mentioned, more a anatomical restriction.
+However it can be resend, that it has no benefit to reduce its value more then 1 or fibers can (with a small fiber segment length) move perfectly around another fiber, like horseshoe shaped.
+To work against this, but not to further restrict the model geometry a value of 2 is chosen.
+Therefore $\segLengthFactor = \SI{2}{}, \segLengthFactor=\SI{2}{}$ and $\fiberRadius=\SI{1}{\micro\meter}$.
+\\
+% 
+A last remark.
+An additional property to reduce the computational time is to not completely solve the model. 
+Looking at the overlap fraction of the remaining overlapping segments, a value of $<\SI{1}{\percent}$ can be feasible.
+This this an additional order of magnitude can be potential saved.
+However, the effect inside the simulation has to be studied.
 % 
 \section{CPU Acceleration}
-% 
-As described in \dummy{} \openmp{} is used for acceleration.
-This means no usage of multiple computer nodes is currently available.
-Since the Code traverses an octree, This would not be feasable.
-Also more then 8 cores \dummy{}.
-% 
-\subsection{Setup}
-% 
-\subsection{Results}
-% 
-\subsection{Discussion}
 % 
 \begin{figure}[!t]
 \centering
 \includegraphics[]{dev/gfx/4/model_solver_cubes.pdf}
-\caption{}
-% \label{fig:}
+\caption[speedup]{\itodo{cores, not threads}, \itodo{farben?}}
+\label{fig:solverSpeedup}
 \end{figure}
+% 
+As described in \dummy{} \openmp{} is used for acceleration.
+This means no usage of multiple computer nodes is currently available.
+\cref{fig:solverSpeedup} shows a speedup up to eight cores.
+A number of two cores gives a good speedup of around $1.8$, three cores around $2.5$ and four cores around $3$.
+A further incresse of core numbers does not benefit the computational time much.
+This has most likely to do with the fact, that the data has to transvered between all the cores and this takes quite some time.
+Even if the algorithm is especially optimized to reduce the amount of data to be copied, the paralysed instructions are often very short (\eg{} move positions), with the exception of the distance calculation.
+Since all data is linear in memory, the cpu can use the full potential of the prefetcher and calculate very fast.
+\\[\baselineskip]
+% 
+The results show, that especially to increase the volume size, other algorithms are needed. 
+Here the \ac{GPU} seems to be the hardware of choice.
 % 
 \section{Building models for simulation}
 % 
-\subsection{Setup}
+With the upper chosen model parameters the final models can be build.
+To be able to study the effect of the fiber radii on the simulation, all radii are generated.
+In this section the resulting orientation inside the volume, \ie{} the orientation of the fiber segments, will be analysed.
+The same setup as above (see \cref{sec:modelSetup}) is chosen with fix $\segLengthFactor=\SI{2}{}$ and $\segRadiusFactor = \SI{2}{}$.
+Using the rotational model from above, only fibers with a $\Psi =  0...90$ and $\Omega = 0.1...1.0$ are generated.
 % 
 \subsection{Results}
 % 
@@ -311,7 +345,22 @@ Also more then 8 cores \dummy{}.
 \includegraphics[width=\textwidth, page=1]{dev/gfx/2/cube_2pop_orientation_hist.pdf}
 % }
 \caption[Model histograms]{Distribution of fiber segment orientation in initial and resulting models. The left half circle contains the inclination $\alpha$ value, the right half the direction $\varphi$}
-% \label{fig:}
+\label{fig:modelOrientation}
 \end{figure}
 % 
+The results are visualized in two polar axis plots in \cref{fig:modelOrientation}. On the right hemisphere the direction histogram is shown.
+The left hemisphere shows the inclination distribution.
+Both plots are decoupled from each other. \todo{histograms mit line plots?}
+Each value is normed to the maximum of that curve so that the shape is visible.
+A 3d visualized model is printed in the corner of each parameterset.
+% 
+The subset of results show that for all radii the fibers rich the same resuling distribution of orientations. 
+These distributions are broder than the inital values and are centered around their initial orientations.
+The resulting 3d visualized models show all an interwoven structure, where both fiber population orientations are clearly visible.
+%  
 \subsection{Discussion}
+% 
+\vspace{5pt}
+\hrule
+\vspace{6pt}
+% 
