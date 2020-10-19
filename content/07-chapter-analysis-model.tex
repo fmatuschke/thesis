@@ -2,10 +2,7 @@
 \chapter{Dense \acs{WM} modelling analysis}
 \label{cha:model_analysis}
 % 
-% 
-\todo{erstmal nur beschreiben, diskussion dann so wie es seien muss}
 \todo{veroffentlichung in intro}
-\todo{steffi email}
 % 
 % 
 \section{Introduction}
@@ -66,10 +63,10 @@ legend cell align={left},
 ]
 \pgfmathsetmacro{\muValue}{0}
 \pgfmathsetmacro{\sigmaValue}{0.05}
-\addplot[blue,thick,domain=0.6:1.4, samples=1000]{1/(\sigmaValue*x*sqrt(2*pi))*exp(-(ln(x)-\muValue)^2/(2*\sigmaValue^2))}; \addlegendentry{$\mu=0.0,\sigma=0.05$}
+\addplot[BLUE,thick,domain=0.6:1.4, samples=2*42, smooth]{1/(\sigmaValue*x*sqrt(2*pi))*exp(-(ln(x)-\muValue)^2/(2*\sigmaValue^2))}; \addlegendentry{$\mu=0.0,\sigma=0.05$}
 \pgfmathsetmacro{\muValue}{0}
 \pgfmathsetmacro{\sigmaValue}{0.1}
-\addplot[red,thick,domain=0.6:1.4, samples=1000]{1/(\sigmaValue*x*sqrt(2*pi))*exp(-(ln(x)-\muValue)^2/(2*\sigmaValue^2))}; \addlegendentry{$\mu=0.0,\sigma=0.1$}
+\addplot[GREEN,thick,domain=0.6:1.4, samples=2*42, smooth]{1/(\sigmaValue*x*sqrt(2*pi))*exp(-(ln(x)-\muValue)^2/(2*\sigmaValue^2))}; \addlegendentry{$\mu=0.0,\sigma=0.1$}
 \end{axis}
 \end{tikzpicture}
 \caption[]{\itodo{check values in literatur} Probability density function of a multiplicative \name{log normal} distribution.}
@@ -130,7 +127,7 @@ Since the direction of the first fiber bundle population can be again neglected,
 \subsection{Algorithmic setup}\label{sec:modelSetup}
 % 
 To find a usable library of two fiber populations researched main attributes are listed in \cref{tab:cube2pop} \cref{tab:cube2popSoftware} contains the parameters of the additional \pymodule{fastpli.model.solver} algorithm. All \dummy{} will be repeated five times.
-AT THE END OF EACH STEP THE VOLUME TO SOLVE IS ALWAYS CUTTED TO 105.
+\itodo{AT THE END OF EACH STEP THE VOLUME TO SOLVE IS ALWAYS CUTTED TO 105.}
 % 
 \begin{table}[!b]
 \sisetup{parse-numbers=false,open-bracket={\{}, close-bracket={\}}, list-final-separator={,},list-pair-separator={,}}%
@@ -189,8 +186,6 @@ max runtime & $\SI{24}{\hour}$\\
 \end{table}
 % 
 \subsection{Results}
-% 
-\todo{STRANGE behaviour in parameter\_statistic for smaller radii. probably because of rnd seeds}
 % 
 \paragraph{Volume fraction}
 % 
@@ -312,9 +307,11 @@ However, the effect inside the simulation has to be studied.
 \begin{figure}[!t]
 \centering
 \includegraphics[]{dev/gfx/4/model_solver_cubes.pdf}
-\caption[speedup]{\itodo{cores, not threads}, \itodo{farben?}}
+\caption[speedup]{\itodo{cores, not threads} \itodo{farben?}}
 \label{fig:solverSpeedup}
 \end{figure}
+% 
+\itodo{Welche Parameter ...}
 % 
 As described in \dummy{} \openmp{} is used for acceleration.
 This means no usage of multiple computer nodes is currently available.
@@ -342,9 +339,18 @@ Using the rotational model from above, only fibers with a $\Psi =  0...90$ and $
 \begin{figure}[!t]
 \centering
 % \resizebox{1.0\textwidth}{!}{
+\includegraphics[width=\textwidth, page=1]{dev/gfx/2/cube_2pop_orientation_hist2d.pdf}
+% }
+\caption[Model orientation histograms]{distribution of fiber segment orientation in initial and resulting models for $\fiberRadius = \SI{1}{\micro\meter}$.}
+\label{fig:modelOrientation}
+\end{figure}
+% 
+\begin{figure}[p]
+\centering
+% \resizebox{1.0\textwidth}{!}{
 \includegraphics[width=\textwidth, page=1]{dev/gfx/2/cube_2pop_orientation_hist.pdf}
 % }
-\caption[Model histograms]{Distribution of fiber segment orientation in initial and resulting models. The left half circle contains the inclination $\alpha$ value, the right half the direction $\varphi$}
+\caption[Model orientation histograms]{Maximum normed distribution of fiber segment orientation in initial and resulting models. The left half circle contains the inclination $\alpha$ value, the right half the direction $\varphi$. \itodo{which norm?}}
 \label{fig:modelOrientation}
 \end{figure}
 % 
@@ -354,9 +360,9 @@ Both plots are decoupled from each other. \todo{histograms mit line plots?}
 Each value is normed to the maximum of that curve so that the shape is visible.
 A 3d visualized model is printed in the corner of each parameterset.
 % 
-The subset of results show that for all radii the fibers rich the same resuling distribution of orientations. 
+The subset of results show that for all radii the fibers rich the same resulting distribution of orientations. 
 These distributions are broder than the inital values and are centered around their initial orientations.
-The resulting 3d visualized models show all an interwoven structure, where both fiber population orientations are clearly visible.
+The resulting 3d visualized models show all an interwoven structure, where both fiber population orientations are clearly visible. \todo{anhang}
 %  
 \subsection{Discussion}
 % 
