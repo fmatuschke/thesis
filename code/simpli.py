@@ -53,7 +53,7 @@ with h5py.File(
     # Simulate PLI Measurement
     simpli.filter_rotations = np.deg2rad([0, 30, 60, 90, 120, 150])
     simpli.light_intensity = 26000  # a.u.
-    simpli.interpolate = True
+    simpli.interpolate = "Slerp"
     simpli.wavelength = 525  # in nm
     simpli.resolution = 20  # in mu meter
     TILTS = [(0, 0), (5.5, 0), (5.5, 90), (5.5, 180), (5.5, 270)]
