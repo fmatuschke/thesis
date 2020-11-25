@@ -83,6 +83,22 @@ rowem={20},rowem={23},rowem={26},
 ]{data/axon_distribution.csv}
 \caption{axon diameter distribution of the human brain in \si{\micro\meter} \cite{Liewald2014}}
 \end{table}
+% 
+\begin{table}[!b]
+\centering
+\pgfplotstabletypeset[
+thesisTableStyle,
+font=\footnotesize,
+col sep=semicolon,
+columns={article,cite,gratio},
+columns/article/.style={string type, column name=name, column type = {l}},
+columns/cite/.style={string type, column name=cite, column type = {l}},
+columns/gratio/.style={string type, column name=$g_{\mathit{ratio}}$},
+]{data/gratio.csv}
+\caption{human $g_{\mathit{ratio}}$ from invivo mri studies.}
+\label{tab:gratio}
+\end{table}
+% 
 axon = 0.5-1.0 diameter (most frequent
 thickness of myelin mean = 0.09, median 0.08
 -> g-ratio 0.9 (electron microscop, upper boundry)
