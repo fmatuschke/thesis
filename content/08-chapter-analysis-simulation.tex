@@ -92,7 +92,7 @@ PM -> ...
 % 
 \paragraph{artificial downsampling}
 Analog to \cite{Menzel:155964} - 5.1.3.2 Artificial Downsampling, the optical resolution wa sdetermand for the different experimental setups:
-0.7 LAP, 0.78 PM, 0.84 Taorad.
+0.7 LAP, 0.78 PM, 0.84 Taorad. (only 0.75 is used)
 % 
 % 
 \begin{figure}[!t]
@@ -129,7 +129,7 @@ colormap/blackwhite,colorbar,
 \end{tikzpicture}
 \label{fig:brain_ret}
 }\hspace*{\fill}
-\caption[]{\dummy{} human brain}
+ \caption[]{\dummy{} human brain}
 \label{fig:brain_ret_trans}
 \end{figure}
 % 
@@ -138,6 +138,64 @@ colormap/blackwhite,colorbar,
 % 
 % 
 \section{voxel size}
+% 
+% ../../1_model/1_cubes/output/cube_2pop_120/cube_2pop_psi_1.00_omega_0.00_r_5.00_v0_120_.solve[65/927]
+% 0 [1536] [0] [-6. -6.] [ 4  4 96] [ -6.  -6. -30.]
+% /data/PLI-Group/felix/data/thesis/env-ime263/lib/python3.6/site-packages/fastpli/simulation/_simpli.p
+% y:76: UserWarning: All labels are 0. Usually this means, that the VOI contains no
+%  fiber_bundles or that the voxel_size is to large.
+%   UserWarning)
+% ../../1_model/1_cubes/output/cube_2pop_120/cube_2pop_psi_1.00_omega_0.00_r_5.00_v0_120_.solved.h5 90
+% 0 [1536] [0] [-6. -6.] [ 4  4 96] [ -6.  -6. -30.]
+% /data/PLI-Group/felix/data/thesis/env-ime263/lib/python3.6/site-packages/fastpli/simulation/_simpli.p
+% y:76: UserWarning: All labels are 0. Usually this means, that the VOI contains no
+%  fiber_bundles or that the voxel_size is to large.
+%   UserWarning)
+% ../../1_model/1_cubes/output/cube_2pop_120/cube_2pop_psi_1.00_omega_0.00_r_5.00_v0_120_.solved.h5 90
+% 0 [1536] [0] [-6. -6.] [ 4  4 96] [ -6.  -6. -30.]
+% /data/PLI-Group/felix/data/thesis/env-ime263/lib/python3.6/site-packages/fastpli/simulation/_simpli.p
+% y:76: UserWarning: All labels are 0. Usually this means, that the VOI contains no
+%  fiber_bundles or that the voxel_size is to large.
+%   UserWarning)
+% ../../1_model/1_cubes/output/cube_2pop_120/cube_2pop_psi_1.00_omega_0.00_r_5.00_v0_120_.solved.h5 90
+% 0 [1536] [0] [-6. -6.] [ 4  4 96] [ -6.  -6. -30.]
+% /data/PLI-Group/felix/data/thesis/env-ime263/lib/python3.6/site-packages/fastpli/simulation/_simpli.p
+% y:76: UserWarning: All labels are 0. Usually this means, that the VOI contains no
+%  fiber_bundles or that the voxel_size is to large.
+%   UserWarning)
+% ../../1_model/1_cubes/output/cube_2pop_120/cube_2pop_psi_1.00_omega_0.00_r_5.00_v0_120_.solved.h5 90
+% 0 [192] [0] [-6. -6.] [ 2  2 48] [ -6.  -6. -30.]
+% /data/PLI-Group/felix/data/thesis/env-ime263/lib/python3.6/site-packages/fastpli/simulation/_simpli.p
+% y:76: UserWarning: All labels are 0. Usually this means, that the VOI contains no
+%  fiber_bundles or that the voxel_size is to large.
+%   UserWarning)
+% ../../1_model/1_cubes/output/cube_2pop_120/cube_2pop_psi_1.00_omega_0.00_r_5.00_v0_120_.solved.h5 90
+% 0 [192] [0] [-6. -6.] [ 2  2 48] [ -6.  -6. -30.]
+% /data/PLI-Group/felix/data/thesis/env-ime263/lib/python3.6/site-packages/fastpli/simulation/_simpli.p
+% y:76: UserWarning: All labels are 0. Usually this means, that the VOI contains no
+%  fiber_bundles or that the voxel_size is to large.
+%   UserWarning)
+% ../../1_model/1_cubes/output/cube_2pop_120/cube_2pop_psi_1.00_omega_0.00_r_5.00_v0_120_.solved.h5 90
+% 0 [192] [0] [-6. -6.] [ 2  2 48] [ -6.  -6. -30.]
+% /data/PLI-Group/felix/data/thesis/env-ime263/lib/python3.6/site-packages/fastpli/simulation/_simpli.p
+% y:76: UserWarning: All labels are 0. Usually this means, that the VOI contains no
+%  fiber_bundles or that the voxel_size is to large.
+%   UserWarning)
+% ../../1_model/1_cubes/output/cube_2pop_120/cube_2pop_psi_1.00_omega_0.00_r_5.00_v0_120_.solved.h5 90
+% 0 [192] [0] [-6. -6.] [ 2  2 48] [ -6.  -6. -30.]
+% /data/PLI-Group/felix/data/thesis/env-ime263/lib/python3.6/site-packages/fastpli/simulation/_simpli.p
+% y:76: UserWarning: All labels are 0. Usually this means, that the VOI contains no
+%  fiber_bundles or that the voxel_size is to large.
+%   UserWarning)
+% ../../1_model/1_cubes/output/cube_2pop_120/cube_2pop_psi_1.00_omega_0.00_r_5.00_v0_120_.solved.h5 90
+% 0 [192] [0] [-6. -6.] [ 2  2 48] [ -6.  -6. -30.]
+% /data/PLI-Group/felix/data/thesis/env-ime263/lib/python3.6/site-packages/fastpli/simulation/_simpli.p
+% y:76: UserWarning: All labels are 0. Usually this means, that the VOI contains no
+%  fiber_bundles or that the voxel_size is to large.
+%   UserWarning)
+% ../../1_model/1_cubes/output/cube_2pop_120/cube_2pop_psi_1.00_omega_0.00_r_5.00_v0_120_.solved.h5 90
+% 0 [192] [0] [-6. -6.] [ 2  2 48] [ -6.  -6. -30.]
+
 % 
 \begin{figure}[!t]
 \centering
