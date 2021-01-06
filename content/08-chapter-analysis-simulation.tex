@@ -1,16 +1,22 @@
 \setcounter{chapter}{7}
-\chapter{Simulation Analysis}
+\chapter{Simulation}
 \label{cha:simulation_analysis}
 % \minitoc
 % 
 % 
+This chapter contains focuses on the simulation of \ac{3D-PLI}. For this the first part i about measuring every parameter from the experimental setup needed for the simulation. The second part analysis the different bhaviers of the simulation parameters, such as the internal voxel size, and guids to a operating values. The last parts takes a closer look at the results with the previous modeled 2two population fiber bundels.
 % 
 \section{Experimental Parameters}
 % 
 % 
 % 
-\subsection{optical resolution / convolution \texorpdfstring{\opticsigma}{sigma\_optic}}
+\subsection{optical resolution / convolution \texorpdfstring{\opticsigma{}}{}}
 % 
+Every optical microscope has imaging errors. The most common are lens aberration, chromatic aberration, ...
+All these errors lead to a reduced resolution. The resolution for each experimental setup must therefore be determined. For this purpose, the USAF test chart is very often used to characterize the resolution of an optical image setup. It consists of multiple patterns, which have three slits with defined distances and widths. The resolution can then be determined e.g. with the help of the Rayleigh criterion.
+% 
+\\
+%
 \begin{figure}[!t]
 \centering
 \begin{tikzpicture}
@@ -23,16 +29,11 @@
     % \draw[green,ultra thick] (0,0) grid (5,5);
 \end{scope}
 \end{tikzpicture}
-\caption[USAF test chart measurement]{taorad pm. Line width: magenta: \SI{2.19}{\micro\meter}, yellow \SI{1.95}{\micro\meter} and cyan \SI{1.74}{\micro\meter}. Resolution at about \SI{1.95}{\micro\meter} yielding to an optical convolution of $\opticsigma = \SI{0.75}{\pixel}$. \itodo{show three line plots}}
+\caption[USAF test chart measurement]{taorad pm. Line width: magenta: $\SI{2.19}{\micro\meter}$, yellow $\SI{1.95}{\micro\meter}$ and cyan $\SI{1.74}{\micro\meter}$. Resolution at about $\SI{1.95}{\micro\meter}$ yielding to an optical convolution of $\opticsigma = \SI{0.75}{\pixel}$. \itodo{show three line plots}}
 \label{fig:USAF}
 \end{figure}
 % 
-Every optical microscope has imaging errors. The most common are lens aberration, chromatic aberration, ...
-All these errors lead to a reduced resolution. The resolution for each experimental setup must therefore be determined. For this purpose, the USAF test chart is very often used to characterize the resolution of an optical image setup. It consists of multiple patterns, which have three slits with defined distances and widths. The resolution can then be determined e.g. with the help of the Rayleigh criterion.
-% 
-\\
-% 
-\cref{fig:USAF} shows a section from a captured PM image. The highlighted areas show the key areas. A resolution of about \SI{1.95}{\micro\meter} is estimated. Therefore the convolution to be applied has to be $\opticsigma = \SI{0.75}{\pixel}$ in the size of the resulting image pixel.
+\cref{fig:USAF} shows a section from a captured PM image. The highlighted areas show the key areas. A resolution of about $\SI{1.95}{\micro\meter}$ is estimated. Therefore the convolution to be applied has to be $\opticsigma = \SI{0.75}{\pixel}$ in the size of the resulting image pixel.
 % 
 % 
 % 
@@ -45,38 +46,11 @@ All these errors lead to a reduced resolution. The resolution for each experimen
 % \subcaptionbox{retardation}[.49\textwidth]{
 \includegraphics[width=0.75\textwidth]{dev/gfx/2/PM_noise.png}
 % }
-\caption[Noise analysis]{Noise analysis PM. Gain = 0.1175. \itodo{replot}}
+\caption[Noise analysis]{Noise analysis PM. $\opticgain_{\mathit{PM}} = \SI{0.1175}{}(?)$. \itodo{replot, also show microscope image}}
 \label{fig:parameterModelSimGain}
 \end{figure}
 % 
-% 
-% 
-\subsection{voxel size}
-% 
-\begin{figure}[!t]
-\centering
-\resizebox{1.0\textwidth}{!}{
-\tikzset{external/export=false}
-\input{gfx/simpli/vector_error}}
-\caption[Discretization error]{Discretization error.
-This behavior is much stronger with myelin layers}
-\label{fig:vectorfield_disc_error}
-\end{figure}
-% 
-% TODO: anhang?
-% \begin{figure}[p]
-% \centering
-% \includegraphics[width=\textwidth, page=4]{dev/gfx/2/voxel_size_plots_data_0.pdf}
-% \caption[voxel size model without noise]{without noise \dummy{}}
-% \label{fig:voxelsize}
-% \end{figure}
-% 
-\begin{figure}[p]
-\centering
-\includegraphics[width=\textwidth, page=4]{dev/gfx/2/voxel_size_plots_data_1.pdf}
-\caption[voxel size model with noise]{with noise \dummy{}}
-\label{fig:voxelsizeNoise}
-\end{figure}
+As described in \cref{sec:ccdOptic} the optical oise has to be applied by a noise model. In a former PhD Dissertation \cite{Wiese:887678} Hendrik Wiese measured the noise gain factor of the \ac{LAP} setup by measuring multiple times an image with a varieties of intensity values. The same type of measurement and analysis is performed here on the \ac{PM} setup. The results are shown in \cref{fig:parameterModelSimGain} and show a gain value of $\opticgain_{\mathit{PM}} = \SI{0.1175}{}(?)$ which is agreement to the hardware specifics \todo{check}.
 % 
 % 
 % 
@@ -131,121 +105,27 @@ colormap/blackwhite,colorbar,
 \end{figure}
 % 
 % 
-% \section{Parameter narrowing}
 % 
-% \TODO[inline]{siehe liste}
-% \begin{itemize}
-%     \item optical sigma
-%     \item sensor gain
-%     \item tilt angle
-%     \item micro oder macro -> simulation
-%     \item dn -> trel? different density?
-%     \item voxelsize -> simulation
-%     \item intensity/noise ->fixed with sigma noise
-%     \item LAP pixel size / which density, fiber configuration, ... can be identified
-% \end{itemize}
+\subsection{voxel size \texorpdfstring{\voxels{}}{}}
+% 
 % % 
-% % 
-% \subsection{predict/measure/literature parameters}
-% % 
-% \itodo{in prev chapter}
-% To simulate \ac{3D-PLI} with nerve fiber models as realistic as possible specific parameters for the absorption and birefringence has to be choosen.
-% From the literatur the birefringence of \ac{WM} nerve fibers lies around \dummy{}.
-% However since the nerve fiber models are stiff, the density of myelin in a section will be most probably lower then in the experiments.
-% To be able to predict the influence of noice it was decided to increase the birefringence on a level, so that the retardation value reaches a reasonable value.
-% \\
-% Looking for the human tissue section \cref{fig:human:transmittance} one can see, that the retardation value does not over 0.83\todo{retardation in PM higher, but not in homogenious regions}.
-% This is choices by the tissue section, so that the signal as described in \dummy{} is not \dummy{}.
-% A reagion with very high retardation, and therefore most probably flat fibers, has values about $\SI{0.71\pm0.02}{}$.
-% To reach these values for a flat dense mode one has to set the birefringence to $\SI{-0.003}{}$ or $\SI{0.006}{}$ depending on the chosen model \cref{fig:parameterModelSim}. Higher values lead for large fiber radii to \dummy{}. This is still in the range of the literature \dummy{} \todo{check again}.
-% % 
-% % 
-% \paragraph{intensity}
-% % 
-% multiple images, background, 
-% LAP-> ...
-% PM -> ...
-% % 
-% \paragraph{gratio}
-% %
-% % 
-% % X
-% \paragraph{birefringence}
-% \cref{fig:brain_ret}
-% % 
-% \paragraph{absorption}
-% \cref{fig:brain_trans}
-% % 
-% \paragraph{artificial downsampling}
-% Analog to \cite{Menzel:155964} - 5.1.3.2 Artificial Downsampling, the optical resolution wa sdetermand for the different experimental setups:
-% 0.7 LAP, 0.78 PM, 0.84 Taorad. (only 0.75 is used)
-% % 
-% % 
-% \begin{figure}[!t]
-% \captionsetup[sub]{position=top}
-% \subcaptionbox{\label{fig:human:transmittance}}[0.84\textwidth]{
-% % \fbox{
-% \begin{tikzpicture}[trim axis left, trim axis right]
-% \begin{axis}[%
-% width=0.84\textwidth,
-% % title = {$B_1^{equ}$ in $\mu T$},
-% xmin=0.5,xmax=1525.5,ymin=0.5,ymax=995.5,y dir=reverse,
-% point meta min=6567,point meta max=14085,
-% hide axis,
-% colormap/blackwhite,colorbar,
-% ]
-% \addplot [forget plot] graphics [xmin=0.5,xmax=1525.5,ymin=0.5,ymax=995.5] {dev/gfx/data/MSA0309_M8_70mu_70ms_s0666_a00_d000_Transmittance.png};
-% \end{axis}
-% \end{tikzpicture}
-% \label{fig:brain_trans}
-% }
-% \\[2em]
-% \subcaptionbox{}[0.84\textwidth]{
-% \begin{tikzpicture}[trim axis left, trim axis right]
-% \begin{axis}[%
-% width=0.84\textwidth,
-% % title = {$B_1^{equ}$ in $\mu T$},
-% xmin=0.5,xmax=1525.5,ymin=0.5,ymax=995.5,y dir=reverse,
-% point meta min=0,point meta max=0.8377,
-% hide axis,
-% colormap/blackwhite,colorbar,
-% ]
-% \addplot [forget plot] graphics [xmin=0.5,xmax=1525.5,ymin=0.5,ymax=995.5] {dev/gfx/data/MSA0309_M8_70mu_70ms_s0666_a00_d000_Retardation.png};
-% \end{axis}
-% \end{tikzpicture}
-% \label{fig:brain_ret}
-% }\hspace*{\fill}
-%  \caption[]{\dummy{} human brain}
-% \label{fig:brain_ret_trans}
-% \end{figure}
-% % 
-% % 
-% % 
-% % 
-% % 
-% \subsection{voxel size}
-% % 
-% \begin{figure}[!t]
-% \centering
-% \resizebox{1.0\textwidth}{!}{
-% \tikzset{external/export=false}
-% \input{gfx/simpli/vector_error}}
-% \caption[Discretization error]{Discretization error.
-% This behavior is much stronger with myelin layers}
-% \label{fig:vectorfield_disc_error}
-% \end{figure}
-% % 
+In \cref{sec:dv_generator} the \voxelsize{} parameter $\voxels$ was introduced.
+% This parameter has a major role in the accuracy of the results.
+% It does not only account for the discretization accuracy of the 3d model, but also for the number of light rays.
+% The impact is visualie shown in \cref{fig:vectorfield_disc_error}.
+% It is cleare that 
+% 
+% TODO: anhang?
 % \begin{figure}[p]
 % \centering
 % \includegraphics[width=\textwidth, page=4]{dev/gfx/2/voxel_size_plots_data_0.pdf}
-% \caption[]{\dummy{}}
+% \caption[voxel size model without noise]{without noise \dummy{}}
 % \label{fig:voxelsize}
 % \end{figure}
-% % 
-% \begin{figure}[p]
-% \centering
-% \includegraphics[width=\textwidth, page=4]{dev/gfx/2/voxel_size_plots_data_1.pdf}
-% \caption[]{\dummy{}}
-% \label{fig:voxelsize}
-% \end{figure}
-% % 
+% 
+\begin{figure}[p]
+\centering
+\includegraphics[width=\textwidth, page=4]{dev/gfx/2/voxel_size_plots_data_1.pdf}
+\caption[voxel size model with noise]{with noise \dummy{}}
+\label{fig:voxelsizeNoise}
+\end{figure}

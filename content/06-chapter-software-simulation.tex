@@ -67,6 +67,16 @@ Inside is everything to perform a pipeline code as well as full control about ev
 \label{fig:discVol}
 \end{figure}
 % 
+\begin{figure}[!t]
+\centering
+\resizebox{1.0\textwidth}{!}{
+\tikzset{external/export=false}
+\input{gfx/simpli/vector_error}}
+\caption[Discretization error]{Discretization error.
+This behavior is much stronger with myelin layers}
+\label{fig:vectorfield_disc_error}
+\end{figure}
+% 
 First, the volume to be created must be defined.
 The simulated/discretized volume is limited by an \ac{AABB} or \ac{VOI}, which is defined by a minimal and maximal value $\voi = [(x_{\mathit{min}}, y_{\mathit{min}}, z_{\mathit{min}}),(x_{\mathit{max}}, y_{\mathit{max}}, z_{\mathit{max}})]$.
 Additionally the \voxelsize{} parameter \voxels{} is set to a floating point number and defines the edge length of the discretized voxels.
@@ -87,8 +97,14 @@ The memory order of the arrays is in $x-y-z$ direction, so the largest memory sh
 This was chosen so that later in the simulation, where light usually travels mainly in $z$-direction, the memory is aligned to the required information and thus the cache prefetcher can be used.
 \\
 % 
+The \voxelsize{} has a major role in the accuracy of the results (as shown later).
+It does not only account for the discretization accuracy of the 3d model, but also for the number of light rays.
+The impact is visual shown in \cref{fig:vectorfield_disc_error}.
+% 
+\\
+% 
 Next, each voxel of those arrays have to be filled with its correct properties.
-\\[\baselineskip]
+\\%[\baselineskip]
 % 
 \paragraph{Iteration cycle}
 To calculate a discrete volume of optical properties from a fiber configuration, the same fiber representation as in \cref{sec:nerve_fiber_representation} is used, \ie{} a list of lists of 4d coordinates.
@@ -243,6 +259,7 @@ The corresponding physical \ac{CCD} pixels will afterwards be resampled from thi
 \\
 %
 \subsection{Path of light}
+\label{sec:pathOfLight}
 % 
 \begin{figure}[!t]
 \def\tikzheight{0.42\textwidth}
@@ -391,16 +408,48 @@ This is a rather small cost considering the saving of memory and for tissue sect
 \itodo{smart sampling spaeter diskutieren}
 % 
 \subsection{Optic}
+\label{sec:ccdOptic}
+% 
+The image sensor is a \ac{CCD} image sensor.
+A general \ac{CCD} sensor consits out of an array of capacitors.
+In each capacitor an electric charge will be stored, setted free by an incoming photons.
+After a read out process, which also contains a electric gain, the resulting values can be stored as an image.
+This process has two major noise parts. The first is the electic charge.
+Its value is, as long as it is not saturated, linear correlated with the number of photons.
+However internal noise like thermal, and a each photon statistically charges a number of electrons, the resulting capacity varies.
+The second major noise comes from the gain process.
+Here the electric voltage will be gained before a analog digital read out.
+This process is also strong linear correlated around a operational point.
+However due to the nature of the underlining circuit, i.e. usually transistors and their power source, the resulting value can vary.
+All noise sources combined yield to an poison distributed noise, to too the nature of digital values.
+%
+\\
+%
+To account for the optical setup, three things have to be done.
+\paragraph{Bluring}
+The optical resolution the light rays have to be blurred.
+This is classically done via a 2d gaussian convolution.
 \paragraph{Sampling}
-mean value
+Since the number and final position of the light rays is according to the voxels, all intensities of an image pixel have to be combined.
+Here it is done via a mean value sampling.
+This in contrast to resizing, does not interpolates the image.
 % 
 \paragraph{Noise}
-gain, 
+The last step is to replicate the noise of the image setup. To account for this a noise model has to be applied to each image pixel. \cite{Wiese:887678} showed that this can be done via a poisson/gaus model.
 % 
 \section{Analysis}
 % 
-The same algorithms are implemented as in the \ac{3D-PLI} routine pipeline.
-From simple
+The same algorithms are implemented as in the \ac{3D-PLI} routine pipeline \dummy[-> theory]{}.
+This are the following.
+% 
+\begin{itemize}
+  \item Fourie Analysis: resulting in the three image modalities: transmittance, direction and retardation \dummy{}. 
+  \item Tilting Analysis: implementation of the \ac{ROFL} algorithm by \cite{Schmitz2018} \dummy{}. 
+  \item \ac{FOM} \dummy{}. 
+\end{itemize}
 % 
 \section{Pipeline}
+% 
+A pipeline code is implemented which combines all steps above.
+\todo{Show code}.
 % 
