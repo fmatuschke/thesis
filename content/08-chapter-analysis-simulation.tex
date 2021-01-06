@@ -9,18 +9,10 @@
 % 
 % 
 % 
-\subsection{optical resolution / filtering \opticsigma}
-% 
-Every optical microscope has imaging errors. The most common are lens aberration, chromatic aberration, ...
-All these errors lead to a reduced resolution. The resolution for each experimental setup must therefore be determined. For this purpose, the USAF test chart is very often used, which has slits in defined distances and widths. The resolution can then be determined e.g. with the help of the rayleigh criterion.
-% 
-\\
-% 
-\cref{fig:USA} shows a section from a captured PM image. The highlighted areas show the key areas.
+\subsection{optical resolution / convolution \texorpdfstring{\opticsigma}{sigma\_optic}}
 % 
 \begin{figure}[!t]
 \centering
-\subcaptionbox{taorad pm. Line width: magenta: \SI{2.19}{\micro\meter}, yellow \SI{1.95}{\micro\meter} and cyan \SI{1.74}{\micro\meter}}[.49\textwidth]{
 \begin{tikzpicture}
     \node[anchor=south east,inner sep=0] at (0,0) {
     \scalebox{-1}[1]{\includegraphics[width=0.49\textwidth, trim = 919 1205 1029 743, clip, interpolate=false, ]{data/Taorad_USAF_AB4_LB85_5pct_5ms_a00_t000_1.png}}};
@@ -31,10 +23,16 @@ All these errors lead to a reduced resolution. The resolution for each experimen
     % \draw[green,ultra thick] (0,0) grid (5,5);
 \end{scope}
 \end{tikzpicture}
-}
-\caption{USAF}
+\caption[USAF test chart measurement]{taorad pm. Line width: magenta: \SI{2.19}{\micro\meter}, yellow \SI{1.95}{\micro\meter} and cyan \SI{1.74}{\micro\meter}. Resolution at about \SI{1.95}{\micro\meter} yielding to an optical convolution of $\opticsigma = \SI{0.75}{\pixel}$. \itodo{show three line plots}}
 \label{fig:USAF}
 \end{figure}
+% 
+Every optical microscope has imaging errors. The most common are lens aberration, chromatic aberration, ...
+All these errors lead to a reduced resolution. The resolution for each experimental setup must therefore be determined. For this purpose, the USAF test chart is very often used to characterize the resolution of an optical image setup. It consists of multiple patterns, which have three slits with defined distances and widths. The resolution can then be determined e.g. with the help of the Rayleigh criterion.
+% 
+\\
+% 
+\cref{fig:USAF} shows a section from a captured PM image. The highlighted areas show the key areas. A resolution of about \SI{1.95}{\micro\meter} is estimated. Therefore the convolution to be applied has to be $\opticsigma = \SI{0.75}{\pixel}$ in the size of the resulting image pixel.
 % 
 % 
 % 
@@ -47,7 +45,7 @@ All these errors lead to a reduced resolution. The resolution for each experimen
 % \subcaptionbox{retardation}[.49\textwidth]{
 \includegraphics[width=0.75\textwidth]{dev/gfx/2/PM_noise.png}
 % }
-\caption{Noise analysis PM. Gain = 0.1175. \itodo{replot}}
+\caption[Noise analysis]{Noise analysis PM. Gain = 0.1175. \itodo{replot}}
 \label{fig:parameterModelSimGain}
 \end{figure}
 % 
@@ -65,18 +63,19 @@ This behavior is much stronger with myelin layers}
 \label{fig:vectorfield_disc_error}
 \end{figure}
 % 
-\begin{figure}[p]
-\centering
-\includegraphics[width=\textwidth, page=4]{dev/gfx/2/voxel_size_plots_data_0.pdf}
-\caption[]{without noise \dummy{}}
-\label{fig:voxelsize}
-\end{figure}
+% TODO: anhang?
+% \begin{figure}[p]
+% \centering
+% \includegraphics[width=\textwidth, page=4]{dev/gfx/2/voxel_size_plots_data_0.pdf}
+% \caption[voxel size model without noise]{without noise \dummy{}}
+% \label{fig:voxelsize}
+% \end{figure}
 % 
 \begin{figure}[p]
 \centering
 \includegraphics[width=\textwidth, page=4]{dev/gfx/2/voxel_size_plots_data_1.pdf}
-\caption[]{with noise \dummy{}}
-\label{fig:voxelsize}
+\caption[voxel size model with noise]{with noise \dummy{}}
+\label{fig:voxelsizeNoise}
 \end{figure}
 % 
 % 
@@ -117,7 +116,7 @@ colormap/blackwhite,colorbar,
 \end{tikzpicture}
 \label{fig:brain_ret}
 }\hspace*{\fill}
- \caption[]{\dummy{} human brain}
+ \caption[human brain transmittance and retardation]{\dummy{} human brain. \itodo{Vervet with histograms}}
 \label{fig:brain_ret_trans}
 \end{figure}
 % 

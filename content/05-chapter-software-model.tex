@@ -110,7 +110,7 @@ Each tubular segment can then be approximated as a cylindrical object.
 However, since the radius of the nerve fibers can vary quite a lot along their path, the tube (or the fiber segments) must also be allowed to change.
 If this is done via a cylindrical approximation, the boundary effects between two segments can lead to an unusual appearance/behavior.
 It was therefore decided to approximate a fiber segment with a \ac{CC}, a 3D cone on which end spheres with the required radii are attached (see \cref{fig:conical_capsule}).
-This has the advantage that between two fiber segments there is a smooth transition along the fiber axis (for reasonable curvature) (see \cref{fig:fiberReb, fig:model_length}).
+This has the advantage that between two fiber segments there is a smooth transition along the fiber axis (for reasonable curvature) (see \cref{fig:fiberReb, fig:modelLength}).
 % 
 \begin{figure}[!t]
     \setlength{\tikzwidth}{0.85\textwidth}
@@ -366,7 +366,7 @@ But to give the user as much control as possible, the user has to go through eac
 After each step, the user is now able to change parameters, fiber paths, add/remove fibers from the \say{scene} and so on.
 In addition, the user can decide whether a completely solved volume is required and e.g. break out of the loop before the final step (see \dummy{}).
 %
-A stand alone Algorithm is already publish in \cite{matuschke2019}.
+A stand alone Algorithm is already publish in \cite{Matuschke2019}.
 At this point it is integrated inside the \ac{fastPLI} package under \pymodule{fastpli.model.solver}.
 Before going into the details of the algorithm, the collision detection algorithm is described.
 % 
@@ -392,7 +392,7 @@ Before going into the details of the algorithm, the collision detection algorith
 % \end{sideways}
 }
 \caption{Collision detection between two capsule objects. The distance as well as the points on the line segments is returned. A collision takes place if the distance is smaller than $\mathit{cone_a.r}+\mathit{cone_b.r} > d$.}
-\label{pseudocodeCollisionDetection}
+\label{alg:pseudocodeCollisionDetection}
 \end{lstfloat}
 % 
 As described in \cref{sec:nerve_fiber_representation}, nerve fibers are represented as a chain of spheres, where two adjacent spheres are combined to form a fiber segment that has a \ac{CC} (see \cref{fig:conical_capsule}).
@@ -564,7 +564,7 @@ It was decided to use the following two conditions.
     \subcaptionbox{split}[.49\textwidth]{
     \inputtikz{gfx/model/model_split}}
 	\caption{Length control for fibers $f$ and $f'$}
-	\label{fig:merge_split}
+	\label{fig:mergeSplit}
 \end{figure}
 % 
 % 
@@ -574,7 +574,7 @@ It was decided to use the following two conditions.
     \tikzset{external/export next=false}
     \inputtikz{gfx/model/model_length}
 	\caption{different fiber segment length.}
-	\label{fig:model_length}
+	\label{fig:modelLength}
 \end{figure}
 % 
 The mean segment length is the distance between the two points of an object.
@@ -602,7 +602,7 @@ r_{new} = \frac{r_{i} + r_{i+1}}{2},\enspace
     \subcaptionbox{\label{fig:boundaryLength}Boundary segment radii: lower bound $r_{min} \geq \fiberRadiusMean $}[.45\textwidth]{
     \inputtikz{gfx/model/model_circular}}
 	\caption{Geometrical boundry condition for fiber segment length \segLength and fiber bending radius \segRadius.}
-	\label{fig:model_circle}
+	\label{fig:modelCircle}
 \end{figure}
 % 
 The bending radius is defined as the circle radius corresponding to the circle defined by three adjacent points $\vv{p}_{i-1}, \vv{p}_{i}, \vv{p}_{i+1}$ (see \cref{fig:boundaryLength}). 
