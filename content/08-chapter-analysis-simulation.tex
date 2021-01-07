@@ -165,6 +165,15 @@ colormap/blackwhite,colorbar,
 \label{fig:parameterModelSim}
 \end{figure}
 % 
+The physical proerty of the absorption coefficient  and the birefingence strenth \dn{} has to be estimated from the tissue to use fisable values inside the simulation.
+This is easyest to be done from areas of flat fiber regions.
+In a coronal section the corpus calosum is suited for this, since it is the main fiber connection between both brain hemispheres.
+Problematic is in the transmittance that with this setup the scattering cant be distinguishable from the actual absorption.
+However since this property is mathematically the same, a reduction of intensity along the tissue, it can be still used, but keeping in mind, that it is the overhaul "absorption" and not only the loos of energy inside the tissue.
+Additionally one has to be keep in mind, that the scattering is not constant for all fiber configurations and orientations.
+Therefore the measured value here is only valid for the same fiber configurations, as the region.
+However it should be a good estimate ofthe order of absorption in the tissue, which will later shown in the simulation is already sufficient.
+% 
 % 
 % 
 \subsection{voxel size \texorpdfstring{\voxels{}}{}}
