@@ -451,10 +451,13 @@ This are the following.
 \section{Pipeline}
 % 
 \begin{lstfloat}[!tb]
+\begin{minipage}{.3\textwidth}  
 \lstinputlisting[style=python]{code/pipeline.py.tex}
+\end{minipage}%  
 \caption[simpli pipeline]{Pipeline}
 \label{alg:Pipeline}
 \end{lstfloat}
 % 
 A pipeline code is implemented which combines all steps above (see \cref{alg:Pipeline}).
 It allows by minimal ... a fully run of the simulation as close to the \ac{3D-PLI} setup and its analysis pipeline.
+All results can be accessed and be stored inside a \textit{h5} container file.
