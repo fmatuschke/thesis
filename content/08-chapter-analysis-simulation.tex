@@ -115,7 +115,7 @@ The results are shown in \cref{fig:parameterModelSimGain} and show a gain value 
 % 
 \subsection{Tissue}
 % 
-\begin{figure}[!t]
+\begin{figure}[!tp]
 \captionsetup[sub]{}%position=top
 \subcaptionbox{\label{fig:human:transmittance}}[0.84\textwidth]{
 % \fbox{
@@ -179,7 +179,7 @@ colormap/blackwhite,colorbar,
 \label{fig:brain_ret_trans}
 \end{figure}
 % 
-\begin{figure}[!t]
+\begin{figure}[!tp]
 \centering
 \subcaptionbox{transmittance}[.95\textwidth]{
 \includegraphics[width=0.95\textwidth]{dev/gfx/2/transmittance_PM_Vervet.pdf}} %\hfill
@@ -199,15 +199,20 @@ Therefore the measured value here is only valid for the same fiber configuration
 However it should be a good estimate of the order of absorption in the tissue, which will later shown in the simulation is already sufficient.
 % \\
 % 
+% 
+% 
 \subsubsection{absorption}
 % 
-A relative transmittance of about $\SIrange{20}{30}{\percent}$ is inside the \ac{CC}. 
+A relative transmittance of about $\SIrange{20}{30}{\percent}$ is inside the \ac{CC} \todo{show histogram}. 
 The simulation parameter has to be set such as that for the models a similar transmittance value is reached.
 To find this values the model of r=0.5 radii is used since it is closed to the real values.
 % 
-\itodo{transmittance is twice as high as it should be !!!}
+\ITODO{transmittance is twice as high as it should be !!! -> increase absorption coeeficient}
+
+For r=0.5 and a Vfraction of 0.75 mu\_vervet = 30, mu\_human = 65, mu\_roden = 8
 % 
 % This yield to a absoprtion coefficient $\absorp_\textit{Vervet} = \SI{20}{\per\micro\meter}$. For the human and mouse a value of $\absorp_\textit{human} = \SI{50}{\per\micro\meter}$ and $\absorp_\textit{mouse} = \SI{10}{\per\micro\meter}$ is measured.
+% 
 % 
 % 
 \subsubsection{birefringence}
@@ -215,11 +220,15 @@ To find this values the model of r=0.5 radii is used since it is closed to the r
 Literature measured a birefringence of nerve fibers of around \dummy{}. 
 Scince for this simulations the models are rigide and therefore are spatially farer away from each other, this means that the tissue density is lower than in reality.
 Therefore to reach similar retardation values the birefringence value has to be increased.
-For this purpuse retardation values with different birefringence values is simulated at a high voxel size \todo{check}.
+For this purpuse retardation values with different birefringence values is simulated at a voxel size of \SI{0.125}{\micro\meter}.
 The results shown in \cref{fig:retValues} show that to reach a retardation value similar to the experimental setup of around $\SI{0.8}{}$ a birefringence value of $\SI{-0.004}{}$ for a macroscopic and $\SI{0.008}{}$ for the microscopic model should be choosen.
 Looking at the different model nerve fiber radii the variance of the retardation values increase strong.
 This is to be expected since the simulated tissue section has a hight of $\SI{60}{\micro\meter}$.
 Therefore for a radii of $\SI{10}{\micro\meter}$ the number of tissue voxels has to varry depending on where the fibers are positioned in the volume.
+% 
+\ITODO{effect of 0.75 radii?}
+% 
+% 
 % 
 \subsection{voxel size \texorpdfstring{\voxels{}}{}}
 % 
@@ -238,7 +247,7 @@ Therefore for a radii of $\SI{10}{\micro\meter}$ the number of tissue voxels has
 % \label{fig:voxelsize}
 % \end{figure}
 % 
-\begin{figure}[!t]%p
+\begin{figure}[!tp]%p
 \centering
 \includegraphics[width=\textwidth, page=4]{dev/gfx/2/voxel_size_plots_data_1.pdf}
 \caption[voxel size model with noise]{with noise \dummy{}}
@@ -260,6 +269,8 @@ The results shown in \cref{fig:voxelsizeNoise} indicate that with noise a voxel 
 This however is only true for a pixel size of $\SI{1.25}{\micro\meter}$.
 % 
 % 
+% 
+\newpage
 % 
 \section{Simulation}
 % 
@@ -295,7 +306,81 @@ gain & $\SI{0.1175}{}$\\
 % simpli.noise\_model & \texttt{lambda x:np.round(np.random.normal(x,np.sqrt(gain * x))).astype(np.uint16)}\\
 simpli.noise\_model & \texttt{lambda x:np.round(np.random.normal(}\\
  & \ \ \ \ \ \texttt{x,np.sqrt(gain * x))).astype(np.uint16)}\\
-}\\
-\caption{simpli parameters.}
+fiber absorption & ('Roden', 10), ('Vervet', 20), ('Human', 50)\\
+fiber model & 'p' and 'r'\\
+fiber birefringence & -0.004 and 0.008\\
+fiber radii & 0.75 and  1\\
+}
+\caption{simpli parameters. \ITODO{to low because of tissue spacing}}
 \label{tab:simParameters}
 \end{table}
+% 
+% 
+% 
+\subsection{expected results}
+% 
+\begin{itemize}
+\item second orientation (lower portion fiber) eventuel visible in PM
+\item inclination $\propto$ accuracy
+\end{itemize}
+% 
+% 
+% 
+\subsection{Results}
+% 
+\itodo{other results?}
+\begin{itemize}
+\item noise(omega, gamma, ...)
+\item second orientation visible?
+\item absolute birefringence, transmittance, absorption as a f(omega)
+\item trel? abnahme der doppelbrechnung in flachen faser, bzw gegenüber f0?
+\end{itemize}
+% 
+% 
+% 
+\subsubsection{Rofl diff}
+% 
+\begin{figure}[!t]
+\centering
+\includegraphics[width=\textwidth, page=1]{dev/gfx/sim_cube/simulation_analysis_hist_0.5_PM_Vervet_r_R.pdf}
+\caption[simulation results mean diff]{0.5, PM, Vervet, r, R-distance: \dummy{}. \say{SPOTS only a interpolation artefact!} \itodo{does it make sense that the first row is one color?, YES because f0 is flat! really?}}
+\label{fig:sim_05_PM_Vervet_r_r}
+\end{figure}
+% 
+% \begin{figure}[!t]
+% \centering
+% \includegraphics[width=\textwidth, page=1]{dev/gfx/sim_cube/simulation_analysis_hist_0.5_PM_Vervet_r_R2.pdf}
+% \caption[simulation results mean diff]{0.5, PM, Vervet, r, R2-distance: \dummy{}}
+% \label{fig:sim_05_PM_Vervet_r_r2}
+% \end{figure}
+% % 
+% \begin{figure}[!t]
+% \centering
+% \includegraphics[width=\textwidth, page=1]{dev/gfx/sim_cube/simulation_analysis_hist_0.5_PM_Vervet_r_acc.pdf}
+% \caption[simulation results mean diff]{0.5, PM, Vervet, r, acc: \dummy{}}
+% \label{fig:sim_05_PM_Vervet_r_acc}
+% \end{figure}
+% 
+\cref{fig:sim_05_PM_Vervet_r_r} shows the \say{accuracy} of the orientation analysis with the ... \ac{ROFL}.
+\begin{align}
+R = \frac{\sum_i f(\theta_i, \varphi_i) -  f(\theta_{\mathit{rofl},i}, \varphi_{\mathit{rofl},i})}{\sum_i f_0(\theta_i, \varphi_i) -  f_0(\theta_{\mathit{rofl},i}, \varphi_{\mathit{rofl},i})}
+\end{align}
+The values are normed to the f0 position.
+The highest accuracy is always at the omega=0 degree position. 
+Additionally to that the neighboring omega=30 degree positions show high accuracy as well.
+
+For 30 and 60 percent f1 
+
+\itodo{abosulte accurracy}
+% 
+% 
+% 
+\subsubsection{different species / transmittance}
+% 
+% 
+% 
+\subsubsection{parallel model}
+% 
+% 
+% 
+\subsubsection{LAP}
