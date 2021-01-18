@@ -3,6 +3,16 @@
 \label{cha:simulation_analysis}
 % \minitoc
 % 
+\begin{itemize}
+\item vergleich der radien: ab wann ist das signal anders sichtbar
+\item simuliertes bild zeigen (fom, ret, ...). sind strukturen sichtbar?
+\item historamm des bildes zeigen, wie siet die ground trooth im vergleich aus?
+\item ab wann ist in lap bei radien eine signal änderung bemerkbar?
+\item 
+
+\end{itemize}
+% 
+% 
 % 
 This chapter contains focuses on the simulation of \ac{3D-PLI}.
 For this the first part i about measuring every parameter from the experimental setup needed for the simulation.
@@ -338,7 +348,7 @@ fiber radii & 0.75 and  1\\
 % 
 % 
 % 
-\subsubsection{Rofl diff}
+\subsection{Orientation comparison}
 % 
 \begin{figure}[!t]
 \centering
@@ -349,38 +359,42 @@ fiber radii & 0.75 and  1\\
 \end{figure}
 \itodo{show sinus plot of single pixel}
 % 
-\begin{figure}[!t]
+\begin{figure}[!tp]
 \centering
-\includegraphics[width=\textwidth, page=1]{dev/gfx/sim_cube/simulation_analysis_hist_0.5_PM_Vervet_r_R_True.pdf}
-\caption[simulation results mean diff]{0.5, PM, Vervet, r, R-distance: \dummy{}. \say{SPOTS only a interpolation artefact!} \itodo{does it make sense that the first row is one color?, YES because f0 is flat! really?}}
+\includegraphics[width=\textwidth]{dev/gfx/sim_cube/simulation_analysis_hist_0.5_PM_Vervet_r_acc_False.pdf}
+% 
+\begin{tikzpicture}
+ \begin{axis}[
+ scale only axis, width=0pt, height=0pt, hide axis,
+ tick label style={/pgf/number format/.cd, fixed},
+ colorbar,colormap/viridis high res,
+ point meta min=0,
+ point meta max=1,
+  colorbar horizontal,
+  colorbar style={width=0.75\textwidth,},
+  ]%
+  {};
+ \end{axis}
+\end{tikzpicture}
+% 
+\caption[simulation results mean diff]{0.5, PM, Vervet, r, acc-distance: interpolated grid,  \dummy{}. \say{SPOTS only a interpolation artefact!}}
 \label{fig:sim_05_PM_Vervet_r_r}
 \end{figure}
 % 
-% \begin{figure}[!t]
-% \centering
-% \includegraphics[width=\textwidth, page=1]{dev/gfx/sim_cube/simulation_analysis_hist_0.5_PM_Vervet_r_R2.pdf}
-% \caption[simulation results mean diff]{0.5, PM, Vervet, r, R2-distance: \dummy{}}
-% \label{fig:sim_05_PM_Vervet_r_r2}
-% \end{figure}
+% \cref{fig:sim_05_PM_Vervet_r_r} shows the \say{accuracy} of the orientation analysis with the ... \ac{ROFL}.
+% \begin{align}
+% R = \frac{\sum_i f(\theta_i, \varphi_i) -  f(\theta_{\mathit{rofl},i}, \varphi_{\mathit{rofl},i})}{\sum_i f_0(\theta_i, \varphi_i) -  f_0(\theta_{\mathit{rofl}sd,i}, \varphi_{\mathit{rofl},i})}
+% \end{align}
 % % 
-% \begin{figure}[!t]
-% \centering
-% \includegraphics[width=\textwidth, page=1]{dev/gfx/sim_cube/simulation_analysis_hist_0.5_PM_Vervet_r_acc.pdf}
-% \caption[simulation results mean diff]{0.5, PM, Vervet, r, acc: \dummy{}}
-% \label{fig:sim_05_PM_Vervet_r_acc}
-% \end{figure}
+% The highest accuracy for all models is at the $\omega=\SI{0}{\degree}$ position.
+% The overall accuracy is higher for $\Psi = 0.3$.
+% For higher $\Psi$ values the accuracy seems to localise around the f0 vector \todo{WHY?} \TODO{MAKES NO SENSE?}.
+
 % 
-\cref{fig:sim_05_PM_Vervet_r_r} shows the \say{accuracy} of the orientation analysis with the ... \ac{ROFL}.
-\begin{align}
-R = \frac{\sum_i f(\theta_i, \varphi_i) -  f(\theta_{\mathit{rofl},i}, \varphi_{\mathit{rofl},i})}{\sum_i f_0(\theta_i, \varphi_i) -  f_0(\theta_{\mathit{rofl},i}, \varphi_{\mathit{rofl},i})}
-\end{align}
-The values are normed to the f0 position.
-The highest accuracy is always at the omega=0 degree position. 
-Additionally to that the neighboring omega=30 degree positions show high accuracy as well.
+\itodo{unterschied rofl ungenauigkeit mit einer faser zu 2 fasern}
 
-For 30 and 60 percent f1 
-
-\itodo{abosulte accurracy}
+% 
+% \itodo{abosulte accurracy}
 % 
 % 
 % 
