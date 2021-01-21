@@ -3,15 +3,6 @@
 \label{cha:simulation_analysis}
 % \minitoc
 % 
-\begin{itemize}
-\item vergleich der radien: ab wann ist das signal anders sichtbar
-\item simuliertes bild zeigen (fom, ret, ...). sind strukturen sichtbar?
-\item historamm des bildes zeigen, wie siet die ground trooth im vergleich aus?
-\item ab wann ist in lap bei radien eine signal änderung bemerkbar?
-\item 
-
-\end{itemize}
-% 
 % 
 % 
 This chapter contains focuses on the simulation of \ac{3D-PLI}.
@@ -240,6 +231,47 @@ Therefore for a radii of $\SI{10}{\micro\meter}$ the number of tissue voxels has
 % 
 % 
 % 
+\subsection{noise}
+% 
+\begin{figure}[!t]
+\centering
+% 
+\begin{tikzpicture}[trim axis left, trim axis right]
+\begin{loglogaxis}[%
+xlabel={intensity},
+ylabel={rel $\sigma$},
+log ticks with fixed point,
+]
+\addplot [%
+BLUE, thick, smooth,
+] coordinates {
+(9.701e+01, 3.480e-02)
+(2.048e+03, 7.574e-03)
+};
+\addplot+[%
+RED, only marks, mark=*,
+nodes near coords, node near coords style={anchor=south west},
+point meta=explicit symbolic,
+]
+table[meta=label]{
+x y label
+115 0.0319 Human
+574 0.01430 Vervet
+1608 0.008548 Roden
+};
+\end{loglogaxis}
+\end{tikzpicture}
+% 
+\caption[noise plot]{noise \dummy{}}
+\label{fig:noiseplot}
+\end{figure}
+% 
+Looking at the relative noise level for different species or absorptions, the relative noixe is between 1 and 4 percent for typical tissue sections.
+For low intensity values however the digital discretication will be noticable.
+This results can be transfert into retardation, meaning, that a retardation about the size of the realtive noise level cant be noticed.
+% 
+% 
+% 
 \subsection{voxel size \texorpdfstring{\voxels{}}{}}
 % 
 % % 
@@ -280,9 +312,51 @@ This however is only true for a pixel size of $\SI{1.25}{\micro\meter}$.
 % 
 % 
 % 
+\subsection{Fiber radii}
+% 
+\begin{figure}[!t]
+\centering
+\includegraphics[width=0.75\textwidth]{dev/gfx/sim_cube/sim_acc_gt_r.pdf}
+% \includegraphics[width=0.75\textwidth]{dev/gfx/sim_cube/sim_acc_gt_p.pdf}
+\caption[sim acc]{sim\_acc \dummy{}}
+\label{fig:parameterModelSimGain}
+\end{figure}
+% 
+% \itodo{zeige acc zwischen model r und p von simulationen an}
+% 
+\subsection{Fiber model}
+% 
+\itodo{warum eigentlich überhaupt p und r, warum nicht einfach nur r, und nur bei LAP r und p diskutieren? -> analysen (tilting) basieren auf p}
+% 
+% 
+% 
 \newpage
 % 
 \section{Simulation}
+% 
+\begin{enumerate}
+\item anfang
+    \begin{enumerate}
+    \item Welchen einflu\ss hat mu? theoretisch abhandelbar
+    \item wie verh\"alt sich retardation als $f(\Psi, \Omega, ...)$
+    \item ab welchem radius sind unterschiede bemerkbar? als erstes? welches kriterium?
+    \end{enumerate}
+% 
+\item mitte
+    \begin{enumerate}
+    \item sekund\"are richtung sichtbar?
+    \item Fom und modalit\"aten zeigen
+    \item Histogramm der Modelle im vergleich zur Messung
+    \item einfluss der inklination bei kreuzungen?
+    \item Rofl abweichend bei starker Retardierung?
+    \end{enumerate}
+% 
+\item ende?
+    \begin{enumerate}
+    \item einfluss von model p auf tilt analyse?
+    \item filled fibers?
+    \end{enumerate}
+\end{enumerate}
 % 
 % 
 % 
@@ -328,11 +402,6 @@ fiber radii & 0.75 and  1\\
 % 
 % 
 \subsection{expected results}
-% 
-\begin{itemize}
-\item second orientation (lower portion fiber) eventuel visible in PM
-\item inclination $\propto$ accuracy
-\end{itemize}
 % 
 % 
 % 
