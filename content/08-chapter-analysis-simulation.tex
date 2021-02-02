@@ -432,27 +432,27 @@ fiber radii & 0.75 and  1\\
 \end{figure}
 \itodo{show sinus plot of single pixel}
 % 
-\begin{figure}[!tp]
-\centering
-\includegraphics[width=\textwidth]{dev/gfx/sim_cube/simulation_retardation_PM_Vervet_r.pdf}
-% 
-\begin{tikzpicture}
- \begin{axis}[
- scale only axis, width=0pt, height=0pt, hide axis,
- tick label style={/pgf/number format/.cd, fixed},
- colorbar,colormap/viridis high res,
- point meta min=0,
- point meta max=1,
-  colorbar horizontal,
-  colorbar style={width=0.75\textwidth},
-  ]%
-  {};
- \end{axis}
-\end{tikzpicture}
-% 
-\caption[simulation results retardation]{0.5, PM, Vervet, r, retardation  \dummy{}}
-\label{fig:sim_retardation_05_PM_Vervet_r}
-\end{figure} 
+% \begin{figure}[!tp]
+% \centering
+% \includegraphics[width=\textwidth]{dev/gfx/sim_cube/simulation_retardation_PM_Vervet_r.pdf}
+% % 
+% \begin{tikzpicture}
+%  \begin{axis}[
+%  scale only axis, width=0pt, height=0pt, hide axis,
+%  tick label style={/pgf/number format/.cd, fixed},
+%  colorbar,colormap/viridis high res,
+%  point meta min=0,
+%  point meta max=1,
+%   colorbar horizontal,
+%   colorbar style={width=0.75\textwidth},
+%   ]%
+%   {};
+%  \end{axis}
+% \end{tikzpicture}
+% % 
+% \caption[simulation results retardation]{0.5, PM, Vervet, r, retardation  \dummy{}}
+% \label{fig:sim_retardation_05_PM_Vervet_r}
+% \end{figure} 
 % 
 % 
 % 
@@ -467,67 +467,67 @@ fiber radii & 0.75 and  1\\
 % 
 % 
 % 
-\begin{figure}[!t]
-\begin{tikzpicture}[trim axis left, baseline]
-\begin{axis}[%
-    axis equal,
-    axis lines = center,
-    axis line style={opacity=0.0},
-    ticks=none,
-    view/h=145,
-    scale uniformly strategy=units only,
-    clip=false, % hide axis,
-    width=10cm,
-    height=10cm,
-    xmin=-1,xmax=1,
-    ymin=-1,ymax=1,
-    zmin=-1,zmax=1,
-    point meta min=0, point meta max=1,
-    colormap/viridis,
-]
-\addplot3[%
-    surf,
-    shader=interp,
-    z buffer=sort,
-    mesh/color input=explicit,
-    ]
- table[x=x,y=y,z=z,
-        meta=rgb,
-        ] {dev/gfx/sim_cube/cube_2pop_psi_0.60_omega_60.00_r_10.00_v0_120_.solved_vs_0.1250_inc_30.00_rot_0.00_PM_Vervet_r.gt.dat};
-\end{axis}
-\end{tikzpicture}
-\begin{tikzpicture}[trim axis left, baseline]
-\begin{axis}[%
-    axis equal,
-    axis lines = center,
-    axis line style={opacity=0.0},
-    ticks=none,
-    view/h=145,
-    scale uniformly strategy=units only,
-    clip=false, % hide axis,
-    width=10cm,
-    height=10cm,
-    xmin=-1,xmax=1,
-    ymin=-1,ymax=1,
-    zmin=-1,zmax=1,
-    point meta min=0, point meta max=1,
-    colormap/viridis,
-]
-\addplot3[%
-    surf,
-    shader=interp,
-    z buffer=sort,
-    mesh/color input=explicit,
-    ]
- table[x=x,y=y,z=z,
-        meta=rgb,
-        ] {dev/gfx/sim_cube/cube_2pop_psi_0.60_omega_60.00_r_10.00_v0_120_.solved_vs_0.1250_inc_30.00_rot_0.00_PM_Vervet_r.rofl.dat};
-\end{axis}
-\end{tikzpicture}
-% 
-\caption[odf]{\dummy{}}
-\label{fig:sim_fyjsrg}
-\end{figure}
+% \begin{figure}[!t]
+% \begin{tikzpicture}[trim axis left, baseline]
+% \begin{axis}[%
+%     axis equal,
+%     axis lines = center,
+%     axis line style={opacity=0.0},
+%     ticks=none,
+%     view/h=145,
+%     scale uniformly strategy=units only,
+%     clip=false, % hide axis,
+%     width=10cm,
+%     height=10cm,
+%     xmin=-1,xmax=1,
+%     ymin=-1,ymax=1,
+%     zmin=-1,zmax=1,
+%     point meta min=0, point meta max=1,
+%     colormap/viridis,
+% ]
+% \addplot3[%
+%     surf,
+%     shader=interp,
+%     z buffer=sort,
+%     mesh/color input=explicit,
+%     ]
+%  table[x=x,y=y,z=z,
+%         meta=rgb,
+%         ] {dev/gfx/sim_cube/cube_2pop_psi_0.60_omega_60.00_r_10.00_v0_120_.solved_vs_0.1250_inc_30.00_rot_0.00_PM_Vervet_r.gt.dat};
+% \end{axis}
+% \end{tikzpicture}
+% \begin{tikzpicture}[trim axis left, baseline]
+% \begin{axis}[%
+%     axis equal,
+%     axis lines = center,
+%     axis line style={opacity=0.0},
+%     ticks=none,
+%     view/h=145,
+%     scale uniformly strategy=units only,
+%     clip=false, % hide axis,
+%     width=10cm,
+%     height=10cm,
+%     xmin=-1,xmax=1,
+%     ymin=-1,ymax=1,
+%     zmin=-1,zmax=1,
+%     point meta min=0, point meta max=1,
+%     colormap/viridis,
+% ]
+% \addplot3[%
+%     surf,
+%     shader=interp,
+%     z buffer=sort,
+%     mesh/color input=explicit,
+%     ]
+%  table[x=x,y=y,z=z,
+%         meta=rgb,
+%         ] {dev/gfx/sim_cube/cube_2pop_psi_0.60_omega_60.00_r_10.00_v0_120_.solved_vs_0.1250_inc_30.00_rot_0.00_PM_Vervet_r.rofl.dat};
+% \end{axis}
+% \end{tikzpicture}
+% % 
+% \caption[odf]{\dummy{}}
+% \label{fig:sim_fyjsrg}
+% \end{figure}
 % 
 % 
 % 
@@ -550,23 +550,104 @@ fiber radii & 0.75 and  1\\
  \end{axis}
 \end{tikzpicture}
 % 
-\caption[simulation results mean diff]{0.5, PM, Vervet, r, acc-distance: interpolated grid,  \dummy{}. \say{SPOTS only a interpolation artefact!}}
+\caption[simulation results acc]{0.5, PM, Vervet, r, acc-distance}
 \label{fig:sim_05_PM_Vervet_r_r}
 \end{figure}
 % 
-\itodo{unterschied rofl ungenauigkeit mit einer faser zu 2 fasern}
-
 % 
-% \itodo{abosulte accurracy}
+\begin{figure}[!tp]
+\centering
+\includegraphics[width=\textwidth]{dev/gfx/sim_cube/simulation_analysis_hist_0.5_setup_PM_s_Vervet_m_r_trans_mean.pdf}
+% 
+\begin{tikzpicture}
+ \begin{axis}[
+ scale only axis, width=0pt, height=0pt, hide axis,
+ tick label style={/pgf/number format/.cd, fixed},
+ colorbar,colormap/viridis high res,
+ point meta min=1000.24,
+ point meta max=1109.23,
+  colorbar horizontal,
+  colorbar style={width=0.75\textwidth,},
+  ]%
+  {};
+ \end{axis}
+\end{tikzpicture}
+% 
+\caption[simulation results transmittance]{0.5, PM, Vervet, r, transmittance}
+\label{fig:sim_05_PM_Vervet_r_r}
+\end{figure}
+% 
+% 
+\begin{figure}[!tp]
+\centering
+\includegraphics[width=\textwidth]{dev/gfx/sim_cube/simulation_analysis_hist_0.5_setup_PM_s_Vervet_m_r_ret_mean.pdf}
+% 
+\begin{tikzpicture}
+ \begin{axis}[
+ scale only axis, width=0pt, height=0pt, hide axis,
+ tick label style={/pgf/number format/.cd, fixed},
+ colorbar,colormap/viridis high res,
+ point meta min=0,
+ point meta max=1,
+  colorbar horizontal,
+  colorbar style={width=0.75\textwidth,},
+  ]%
+  {};
+ \end{axis}
+\end{tikzpicture}
+% 
+\caption[simulation results ret]{0.5, PM, Vervet, r, retardation}
+\label{fig:sim_05_PM_Vervet_r_r}
+\end{figure}
+%
+% 
+\begin{figure}[!tp]
+\centering
+\includegraphics[width=\textwidth]{dev/gfx/sim_cube/simulation_analysis_hist_0.5_setup_PM_s_Vervet_m_r_trel_mean.pdf}
+% 
+\begin{tikzpicture}
+ \begin{axis}[
+ scale only axis, width=0pt, height=0pt, hide axis,
+ tick label style={/pgf/number format/.cd, fixed},
+ colorbar,colormap/viridis high res,
+ point meta min=0,
+ point meta max=1,
+  colorbar horizontal,
+  colorbar style={width=0.75\textwidth,},
+  ]%
+  {};
+ \end{axis}
+\end{tikzpicture}
+% 
+\caption[simulation results trel]{0.5, PM, Vervet, r, trel}
+\label{fig:sim_05_PM_Vervet_r_r}
+\end{figure}
+% 
+% 
+\begin{figure}[!tp]
+\centering
+\includegraphics[width=\textwidth]{dev/gfx/sim_cube/test_PM_Vervet_r_0.50_90.00_0.50_0.00_0.00_.pdf}
+\caption[simulation analysis]{\dummy{}}
+\label{fig:sim_ana_1}
+\end{figure}
+% 
+% 
+\begin{figure}[!tp]
+\centering
+\includegraphics[width=\textwidth]{dev/gfx/sim_cube/test_PM_Vervet_r_0.50_90.00_0.50_0.00_90.00_.pdf}
+\caption[simulation analysis]{\dummy{}}
+\label{fig:sim_ana_2}
+\end{figure}
 % 
 % 
 % 
-\subsubsection{different species / transmittance}
+% \subsubsection{LAP}
+% % 
+% -> discussion
 % 
 % 
 % 
-\subsubsection{parallel model}
+\section{Computational speed}
 % 
 % 
 % 
-\subsubsection{LAP}
