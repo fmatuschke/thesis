@@ -151,32 +151,30 @@ The results are shown in \cref{fig:parameterModelSimGain} and show a gain value 
 % 
 % 
 % 
-\\ \noindent\rule{\textwidth}{1pt}
-% 
-\subsection{Tissue}
+\subsection{Tissue properties}
 % 
 \begin{figure}[!tp]
 \captionsetup[sub]{}%position=top
-\subcaptionbox{\label{fig:human:transmittance}}[0.84\textwidth]{
+\subcaptionbox{\label{fig:human:transmittance} transmittance\itodo{check crange}}[0.84\textwidth]{
 % \fbox{
 \begin{tikzpicture}[trim axis left, trim axis right]
 \begin{axis}[%
 width=0.84\textwidth,
 % title = {$B_1^{equ}$ in $\mu T$},
 xmin=0.5,xmax=1109.5,ymin=0.5,ymax=848.5,y dir=reverse,
-% point meta min=0,point meta max=6370.19,
+point meta min=0,point meta max=6370.19,
 hide axis,
 colormap/blackwhite,colorbar,
 ]
 \addplot [forget plot] graphics [xmin=0.5,xmax=1109.5,ymin=0.5,ymax=848.5] {dev/gfx/data/Vervet1818a_60mu_70ms_s0549_x00-25_y00-33_thumbnail_Transmittance-1.png};
-\draw[yellow, very thick, ->] (axis cs: 650,175) -- (axis cs: 586,265);
-\draw[yellow, very thick]
+\draw[magenta, very thick, ->] (axis cs: 650,175) -- (axis cs: 586,265);
+\draw[magenta, very thick]
 (axis cs: 645.75,	295.575) --
 (axis cs: 636.45,	272.375) --
 (axis cs: 625.65,	275.975) --
 (axis cs: 611.325,	275.175) --
 (axis cs: 611.725,	300.275) -- cycle;
-\draw[yellow, very thick]
+\draw[magenta, very thick]
 (axis cs:551.9,290.75) --
 (axis cs:561.05,269.6) --
 (axis cs:548.45,265.7) --
@@ -187,7 +185,7 @@ colormap/blackwhite,colorbar,
 \label{fig:brain_trans}
 }
 \\[2em]
-\subcaptionbox{}[0.84\textwidth]{
+\subcaptionbox{retardation}[0.84\textwidth]{
 \begin{tikzpicture}[trim axis left, trim axis right]
 \begin{axis}[%
 width=0.84\textwidth,
@@ -198,14 +196,14 @@ hide axis,
 colormap/blackwhite,colorbar,
 ]
 \addplot [forget plot] graphics [xmin=0.5,xmax=1109.5,ymin=0.5,ymax=848.5] {dev/gfx/data/Vervet1818a_60mu_70ms_s0549_x00-25_y00-33_thumbnail_Retardation-1.png};
-\draw[yellow, very thick, ->] (axis cs: 650,175) -- (axis cs: 586,265);
-\draw[yellow, very thick]
+\draw[magenta, very thick, ->] (axis cs: 650,175) -- (axis cs: 586,265);
+\draw[magenta, very thick]
 (axis cs: 645.75,	295.575) --
 (axis cs: 636.45,	272.375) --
 (axis cs: 625.65,	275.975) --
 (axis cs: 611.325,	275.175) --
 (axis cs: 611.725,	300.275) -- cycle;
-\draw[yellow, very thick]
+\draw[magenta, very thick]
 (axis cs:551.9,290.75) --
 (axis cs:561.05,269.6) --
 (axis cs:548.45,265.7) --
@@ -215,60 +213,79 @@ colormap/blackwhite,colorbar,
 \end{tikzpicture}
 \label{fig:brain_ret}
 }\hspace*{\fill}
- \caption[Vervet coronal section transmittance and retardation]{Vervet coronal section. a) Transmittane, b) Retardation. The absorption coefficient and birefingence strength can be estimated from flat fibers. The corpus calusum is in a coronal section suited for this. \itodo{histograms?}}
+ \caption[Vervet monkey coronal section transmittance and retardation]{%
+ Vervet monkey coronal section $\SI{549}{}$.
+ a) transmittance, b) retardation.
+ The absorption coefficient and birefingence strength can be estimated from flat fibers.
+ Two \acsp{ROI} with \dummy{} pixels are annotated for this purpose.
+ \itodo{histograms?, why these two rois?}}
 \label{fig:brain_ret_trans}
 \end{figure}
 % 
 \begin{figure}[!tp]
 \centering
-\subcaptionbox{transmittance}[.95\textwidth]{
-\includegraphics[width=0.95\textwidth]{dev/gfx/2/transmittance_PM_Vervet.pdf}} %\hfill
-\subcaptionbox{retardation\label{fig:retValues}}[.95\textwidth]{
-\includegraphics[width=0.95\textwidth]{dev/gfx/2/retardation_PM_Vervet.pdf}}
+% \subcaptionbox{\label{fig:simTransValues}transmittance\itodo{WRONG IMAGE}}[.95\textwidth]{
+% \includegraphics[width=0.95\textwidth]{dev/gfx/2/transmittance_PM_Vervet.pdf}} %\hfill
+% \subcaptionbox{\label{fig:simRetValues}retardation}[.95\textwidth]{
+\includegraphics[width=0.95\textwidth]{dev/gfx/2/retardation_PM_Vervet.pdf}
+% }
 \caption{simulations for Vervet PM tissue for different absorption coef and birefringence values.}
 \label{fig:parameterModelSim}
 \end{figure}
 % 
-The physical proerty of the absorption coefficient  and the birefingence strenth \dn{} has to be estimated from the tissue to use fisable values inside the simulation.
-This is easiest to be done from areas of flat fiber regions.
-In a coronal section the corpus calosum is suited for this, since it is the main fiber connection between both brain hemispheres.
-Problematic is in the transmittance that with this setup the scattering cant be distinguishable from the actual absorption.
-However since this property is mathematically the same, a reduction of intensity along the tissue, it can be still used, but keeping in mind, that it is the overhaul "absorption" and not only the loos of energy inside the tissue.
-Additionally one has to be keep in mind, that the scattering is not constant for all fiber configurations and orientations.
-Therefore the measured value here is only valid for the same fiber configurations, as the region.
-However it should be a good estimate of the order of absorption in the tissue, which will later shown in the simulation is already sufficient.
-% \\
+The absorption coefficient $\absorp{}$ and the birefringence $\dn{}$ have to be estimated from the tissue to use suitable values within the simulation.
+As the literature shows, these values are in the range of ... $\d{}$.
+However, since the models generated here use stiff fiber segments, the volume density cannot reach as high values as in the elastic tissue.
+To overcome this effect, the absorption and birefringence strengths must be increased to achieve comparable results.
+\\
+To achieve this, the two components are measured in the experiment.
+It is important to ensure that a homogeneous region is chosen.
+In a coronal section, the corpus callosum is suitable for this purpose. It is the main fiber connection between the two cerebral hemispheres.
+A problem with transmission is that scattering cannot be distinguished from actual absorption in this setup.
+However, since this property is mathematically the same, namely a reduction in intensity along the tissue, it can still be used, but it must be remembered that it is the outdated "absorption" and not just the loss of energy in the tissue.
+Additionally, the scattering is not constant for all fiber configurations and orientations \dummy{}.
+Therefore, the value measured here is only valid for the same fiber configurations as the region.
+However, it should be a good estimate for the magnitude of absorption in the tissue, which, as will be shown later in the simulation, is sufficient.
+% 
+\Cref{fig:parameterModelSim} shows a coronal section of the Vervet monkey brain \dummy(section number 549, aber was ist zu sehen, ist es in der mitte?, ...).
+% 
+To get a approximation of the parameters the models with a radius of $r=\SI{0.5}{\micro\meter}$ are used, which is closed to the real tissue.
 % 
 % 
 % 
-\subsubsection{absorption}
+\paragraph{absorption}
 % 
-A relative transmittance of about $\SIrange{20}{30}{\percent}$ is inside the \ac{CC} \todo{show histogram}. 
+A relative transmittance of about $\SIrange{20}{30}{\percent}$ is present inside the \ac{ROI} of the corpus callosum \todo{show histogram}. 
 The simulation parameter has to be set such as that for the models a similar transmittance value is reached.
-To find this values the model of r=0.5 radii is used since it is closed to the real values.
+This means, that for a $\SI{60}{\micro\meter}$ thick section the absorption coefficient $\absorp{}$ is about \dummy{}. However considering, that statistically only $\SI{75}{\percent}$ of the volume is filled, the simulation parameter has to be \dummy{}.
+% \Cref{fig:simTransValues} shows different transmittance vales for different types of radii.
 % 
-\ITODO{transmittance is twice as high as it should be !!! -> increase absorption coeeficient}
+% \ITODO{transmittance is twice as high as it should be !!! -> increase absorption coeeficient, ich glaube ich habe das bereits ersetzt}
 
-For r=0.5 and a Vfraction of 0.75 mu\_vervet = 30, mu\_human = 65, mu\_roden = 8
+% For r=0.5 and a Vfraction of 0.75 mu\_vervet = 30, mu\_human = 65, mu\_roden = 8
+% % 
+% % This yield to a absoprtion coefficient $\absorp_\textit{Vervet} = \SI{20}{\per\micro\meter}$. For the human and mouse a value of $\absorp_\textit{human} = \SI{50}{\per\micro\meter}$ and $\absorp_\textit{mouse} = \SI{10}{\per\micro\meter}$ is measured.
 % 
-% This yield to a absoprtion coefficient $\absorp_\textit{Vervet} = \SI{20}{\per\micro\meter}$. For the human and mouse a value of $\absorp_\textit{human} = \SI{50}{\per\micro\meter}$ and $\absorp_\textit{mouse} = \SI{10}{\per\micro\meter}$ is measured.
+%
 % 
-% 
-% 
-\subsubsection{birefringence}
+\paragraph{birefringence}
 % 
 Literature measured a birefringence of nerve fibers of around \dummy{}. 
-Scince for this simulations the models are rigide and therefore are spatially farer away from each other, this means that the tissue density is lower than in reality.
-Therefore to reach similar retardation values the birefringence value has to be increased.
-For this purpuse retardation values with different birefringence values is simulated at a voxel size of \SI{0.125}{\micro\meter}.
-The results shown in \cref{fig:retValues} show that to reach a retardation value similar to the experimental setup of around $\SI{0.8}{}$ a birefringence value of $\SI{-0.004}{}$ for a macroscopic and $\SI{0.008}{}$ for the microscopic model should be choosen.
+% Scince for this simulations the models are rigide and therefore are spatially farer away from each other, this means that the tissue density is lower than in reality.
+% Therefore to reach similar retardation values the birefringence value has to be increased.
+To analyse the effect of the lower desity inside the models, the birefringence values is simulated at a voxel size of $\SI{0.125}{\micro\meter}$ at different values.
+The results in \cref{fig:parameterModelSim} show that to reach a retardation value similar to the experimental setup of around $\SI{0.8}{}$ a birefringence value of $\SI{-0.004}{}$ for a macroscopic and $\SI{0.008}{}$ for the microscopic model should be chosen.
+This is around factor 2 \todo{check} higher than literatur.
+However keeping the lower density in mind and the effect of a fixed myelin radii model of $\SI{75}{\percent}$ this is still in agreement.
 Looking at the different model nerve fiber radii the variance of the retardation values increase strong.
 This is to be expected since the simulated tissue section has a hight of $\SI{60}{\micro\meter}$.
-Therefore for a radii of $\SI{10}{\micro\meter}$ the number of tissue voxels has to varry depending on where the fibers are positioned in the volume.
+Therefore for a radii of $\SI{10}{\micro\meter}$ the number of tissue voxels has to vary depending on where the fibers are positioned in the volume.
+For larger radii this can lead to an reduction of retardation due to the $\sin(...)$ ambiguity.
+That is also the reason why the values are non normal distributed between $\si{0}$ and $\si{1}$.
+%  
 % 
-\ITODO{effect of 0.75 radii?}
-% 
-% 
+% \\ 
+\noindent\rule{\textwidth}{4.2pt}
 % 
 \subsection{noise}
 % 
