@@ -48,15 +48,16 @@ The resolution can then be determined using the Rayleigh criterion, for example.
 % 
 \begin{figure}[!t]
 \centering
+\def\tikzwidth{0.5\textwidth}
 \begin{tabular}{cc}
 \inputtikz{dev/gfx/chap8/usaf_image}
 &
 \inputtikz{dev/gfx/chap8/usaf_line_plots}
 \\
-\begin{minipage}{.45\textwidth}
+\begin{minipage}{0.45\textwidth}
 \leavevmode\subcaption{\label{fig:usaf_image}microscopic image}
 \end{minipage}&
-\begin{minipage}{.45\textwidth}
+\begin{minipage}{0.45\textwidth}
 \leavevmode\subcaption{\label{fig:usaf_lines}line plots. \itodo{single line plots not good}}
 \end{minipage}
 \end{tabular}
@@ -358,7 +359,7 @@ This however is only true for a pixel size of $\SI{1.25}{\micro\meter}$.
 \centering
 \includegraphics[width=1\textwidth]{dev/gfx/sim_cube/radius_acc_compare_Vervet_PM_r.pdf}
 \caption[sim acc]{sim\_acc, r0 = 0.5 \dummy{}. hypothese: abweichungen in GtSim bei kleinen radien dadurch, dass zwei richtungen nicht sichtbar sind? schaue dir die histogramme und odfs an.}
-\label{fig:parameterModelSimGain}
+\label{fig:accVervetPMr}
 \end{figure}
 % 
 % \itodo{zeige acc zwischen model r und p von simulationen an}
@@ -466,7 +467,7 @@ fiber radii & 0.75 and  1\\
 \inputtikz{dev/gfx/sim_cube/data_rofl}
 % \includegraphics[width=0.75\textwidth]{example-image} 
 \caption[data vs rofl]{data vs rofl}
-\label{fig:sim_05_PM_Vervet_r_r}
+\label{fig:dataVsRofl}
 \end{figure}
 \itodo{show sinus plot of single pixel}
 % 
@@ -589,7 +590,7 @@ fiber radii & 0.75 and  1\\
 \end{tikzpicture}
 % 
 \caption[simulation results acc]{0.5, PM, Vervet, r, acc-distance}
-\label{fig:sim_05_PM_Vervet_r_r}
+\label{fig:hist_0.5_setup_PM_s_Vervet_m_r_acc}
 \end{figure}
 % 
 % 
@@ -612,7 +613,7 @@ fiber radii & 0.75 and  1\\
 \end{tikzpicture}
 % 
 \caption[simulation results transmittance]{0.5, PM, Vervet, r, transmittance}
-\label{fig:sim_05_PM_Vervet_r_r}
+\label{fig:hist_0.5_setup_PM_s_Vervet_m_r_trans_mean}
 \end{figure}
 % 
 % 
@@ -635,7 +636,7 @@ fiber radii & 0.75 and  1\\
 \end{tikzpicture}
 % 
 \caption[simulation results ret]{0.5, PM, Vervet, r, retardation}
-\label{fig:sim_05_PM_Vervet_r_r}
+\label{fig:hist_0.5_setup_PM_s_Vervet_m_r_ret_mean}
 \end{figure}
 %
 % 
@@ -658,7 +659,7 @@ fiber radii & 0.75 and  1\\
 \end{tikzpicture}
 % 
 \caption[simulation results trel]{0.5, PM, Vervet, r, trel}
-\label{fig:sim_05_PM_Vervet_r_r}
+\label{fig:hist_0.5_setup_PM_s_Vervet_m_r_trel_mean}
 \end{figure}
 % 
 % 
@@ -666,7 +667,7 @@ fiber radii & 0.75 and  1\\
 \centering
 \includegraphics[width=\textwidth]{dev/gfx/sim_cube/test_PM_Vervet_r_0.50_90.00_0.50_0.00_0.00_.pdf}
 \caption[simulation analysis]{\dummy{}}
-\label{fig:sim_ana_1}
+\label{fig:PM_Vervet_r_0.50_90.00_0.50_0.00_0.00}
 \end{figure}
 % 
 % 
@@ -674,7 +675,7 @@ fiber radii & 0.75 and  1\\
 \centering
 \includegraphics[width=\textwidth]{dev/gfx/sim_cube/test_PM_Vervet_r_0.50_90.00_0.50_0.00_90.00_.pdf}
 \caption[simulation analysis]{\dummy{}}
-\label{fig:sim_ana_2}
+\label{fig:PM_Vervet_r_0.50_90.00_0.50_0.00_90.00}
 \end{figure}
 % 
 % 
