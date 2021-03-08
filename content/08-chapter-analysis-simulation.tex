@@ -6,30 +6,49 @@
 % 
 % 
 This chapter contains focuses on the simulation of \ac{3D-PLI}.
-For this the first part i about measuring every parameter from the experimental setup needed for the simulation.
-The second part analysis the different bhaviers of the simulation parameters, such as the internal voxel size, and guids to a operating values.
-The last parts takes a closer look at the results with the previous modeled two population fiber bundels.
+The first part focuses on the definition of all necessary parameters.
+A part of this is to determined how accurate the simulation has to be, i.e. the voxel size.
+Following this, these parameters are used to simulate the previously generated models.
+A focus is placed on the accuracy of tilt analyses for different orientations and crossing configurations.
+% 
+% 
+% 
+\itodo{reproduzieren von modellen}
+% 
+% 
 % 
 \section{Experimental Parameters}
 % 
+\subsection{optical resolution}
 % 
-% 
-\subsection{optical resolution / convolution \texorpdfstring{\opticsigma{}}{}}
-% 
+An optical microscope has a certain resolution. This is often defined in the literature by Abbe diffraction limit. Ernst Abbe found out that the resolution of a light microscope is related to the wavelength of the light $\lambda$:
+\begin{align}
+d=\frac{ \lambda}{2 n \sin \theta} = \frac{\lambda}{2\mathrm{NA}}
+\end{align}
+.
+$d$ is the minimal resolvable distance, $n$ the refcative index, $\theta$ the angle of a spot light. Further $n \sin \theta$ is better known as the numerical aperture $\mathrm{NA}$.
+However, this only sets the maximum resolution. 
 Every optical microscope has imaging errors.
 The most common are lens aberration, chromatic aberration, ...
 All these errors lead to a reduced resolution.
-The resolution for each experimental setup must therefore be determined.
+In addition, the sensor that captures the image also plays a role.
+For a ccd sensor, this is the configuration of the pixels and their size.
+% 
+Mathematically, a resolution reduction of an image is modeled by a convolution with a Gaussian function of width $\sigma$.
+It effectively blends the information into its roundness and thus onto the neighboring pixels.
+It is also known as point spread function.
+%
+Therefore, the resolution must be determined for each experimental setup.
 For this purpose, the USAF test chart is very often used to characterize the resolution of an optical image setup.
-It consists of multiple patterns, which have three slits with defined distances and widths.
-The resolution can then be determined e.g. with the help of the Rayleigh criterion.
+It consists of several patterns which have three slits with defined distances and widths.
+The resolution can then be determined using the Rayleigh criterion, for example.
 % 
 \\
-%
+% 
+% 
 \begin{figure}[!t]
 \centering
-
-\subcaptionbox{microscopig image}[.45\textwidth]{
+\subcaptionbox{\label{fig:usaf_image}microscopig image}[.45\textwidth]{
 \begin{tikzpicture}[baseline]
     \node[anchor=south east,inner sep=0] at (0,0) {
     \scalebox{-1}[1]{\includegraphics[width=0.45\textwidth, trim = 919 1205 1029 743, clip, interpolate=false, ]{data/Taorad_USAF_AB4_LB85_5pct_5ms_a00_t000_1.png}}};
@@ -44,7 +63,7 @@ The resolution can then be determined e.g. with the help of the Rayleigh criteri
 \end{scope}
 \end{tikzpicture}
 \hfill}
-\subcaptionbox{line plots. \itodo{single line plots not good}}[.45\textwidth]{
+\subcaptionbox{\label{fig:usaf_lines}line plots. \itodo{single line plots not good}}[.45\textwidth]{
 \begin{tikzpicture}[baseline]
 \begin{axis}[%
 axis x line = center,
@@ -94,7 +113,16 @@ axis line style={white},
 \label{fig:USAF}
 \end{figure}
 % 
-\cref{fig:USAF} shows a section from a captured PM image. The highlighted areas show the key areas. A resolution of about $\SI{1.95}{\micro\meter}$ is estimated. Therefore the convolution to be applied has to be $\opticsigma = \SI{0.75}{\pixel}$ in the size of the resulting image pixel.
+\Cref{fig:usaf_image} shows a section of a captured PM image.
+The highlighted areas show the key regions.
+The first region corresponding to group \textrm{7-6} \raisebox{.25em}{\tikz \draw[magenta,ultra thick,dashed](0,0)--(0.25,0);} has a line width of $\SI{2.19}{\micro\meter}$.
+The second group \textrm{8-1} \raisebox{.25em}{\tikz \draw[yellow,ultra thick,dashed](0,0)--(0.25,0);} has a line width of $\SI{1.95}{\micro\meter}$.
+The final group \textrm{8-2} \raisebox{.25em}{\tikz \draw[cyan,ultra thick,dashed](0,0)--(0.25,0);} has a line width of $\SI{1.74}{\micro\meter}$.
+The intensity line profiles are shown in \cref{fig:usaf_lines}.
+% 
+Using the Rayleigh criterion, the resolution is in the range of the second group and thus around $\SI{1.95}{\micro\meter}$.
+This reproduces the previous measurements in \cite{menzel_finite-difference_2018} \todo{master thesis?}.
+As a result, the convolution to be applied is set to $\opticsigma = \SI{0.75}{\pixel}$ in the size of the resulting image pixel.
 % 
 % 
 % 
@@ -102,17 +130,76 @@ axis line style={white},
 %
 \begin{figure}[!t]
 \centering
+\def\tikzwidth{0.75\textwidth}
+\inputtikz{gfx/pli/pli_focus}
+\caption[intensity setup]{intensity setup. \itodo{check schematic}}
+\label{fig:intensityFocus}
+\end{figure}
+% 
+\begin{figure}[!t]
+\centering
+% 
+\subcaptionbox{\label{fig:intensityImage}single microscopic image}[.4\textwidth]{
+% 
+\begin{tikzpicture}
+\begin{axis}[
+width=0.4\textwidth,
+height=0.4\textwidth,
+axis lines=center,
+axis line style={white},
+yticklabels={,,},
+axis line style={draw=none},
+tick style={draw=none},
+tick label style={white},
+]
+\addplot graphics [
+xmin=0,xmax=2000,
+ymin=0,ymax=1,
+] {dev/gfx/2/pm_000.png};
+\end{axis}
+\end{tikzpicture}
+}
+% 
+\subcaptionbox{\label{fig:intensityProfile}intensity profile}[.4\textwidth]{
+\begin{tikzpicture}
+\begin{axis}[%
+width=0.4\textwidth,
+height=0.4\textwidth,
+axis on top,
+axis lines=center,
+xlabel={x-pos},
+ylabel={intensity},
+]
+\addplot[mark=none, blue] table[x index=0, y index=1] {dev/gfx/2/pm_000.dat};
+\end{axis}
+\end{tikzpicture}
+}
+% 
+\caption[intensity image]{intensity variation}
+\label{fig:intensityImage}
+\end{figure}
+% 
+% 
+\begin{figure}[!t]
+\centering
 \includegraphics[width=0.75\textwidth]{dev/gfx/2/PM_noise.png}
 \caption[Noise analysis]{Noise analysis PM. $\opticgain_{\mathit{PM}} = \SI{0.1175}{}(?)$. \itodo{replot, also show microscope image}}
 \label{fig:parameterModelSimGain}
 \end{figure}
 % 
-As described in \cref{sec:ccdOptic} the optical oise has to be applied by a noise model.
-In a former PhD Dissertation \cite{Wiese:887678} Hendrik Wiese measured the noise gain factor of the \ac{LAP} setup by measuring multiple times an image with a varieties of intensity values.
+As described in \cref{sec:ccdOptic} the optical noise has to be applied by a noise model.
+In \cite{Wiese:887678} Hendrik Wiese measured the noise gain factor of the \ac{LAP} setup by measuring multiple times an image with a varieties of intensity values.
 The same type of measurement and analysis is performed here on the \ac{PM} setup.
-The results are shown in \cref{fig:parameterModelSimGain} and show a gain value of $\opticgain_{\mathit{PM}} = \SI{0.1175}{}(?)$ which is agreement to the hardware specifics \todo{check}.
+
+The measurements consist out of multiple images $(N=?)$. The specimen stage is covered with a fully absorbing cover, so that half of the image is dark.
+Additionally the focal length is change in such a way, that the light is spread over the hole image sensor depide of the cover.
+This allows to measure the full variance of intensities (see \cref{fig:intensityImage}).
+
+The results are shown in \cref{fig:parameterModelSimGain} and show a gain value of $\opticgain_{\mathit{PM}} = \SI{0.1175}{}(?)$ which is agreement to the hardware specifics \todo{check and ref}.
 % 
 % 
+% 
+\\ \noindent\rule{\textwidth}{1pt}
 % 
 \subsection{Tissue}
 % 
@@ -587,8 +674,8 @@ fiber radii & 0.75 and  1\\
  scale only axis, width=0pt, height=0pt, hide axis,
  tick label style={/pgf/number format/.cd, fixed},
  colorbar,colormap/viridis high res,
- point meta min=0,
- point meta max=1,
+ point meta min=0.016,
+ point meta max=0.798,
   colorbar horizontal,
   colorbar style={width=0.75\textwidth,},
   ]%
@@ -611,7 +698,7 @@ fiber radii & 0.75 and  1\\
  tick label style={/pgf/number format/.cd, fixed},
  colorbar,colormap/viridis high res,
  point meta min=0,
- point meta max=1,
+ point meta max=0.55,
   colorbar horizontal,
   colorbar style={width=0.75\textwidth,},
   ]%
