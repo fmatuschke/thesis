@@ -1,0 +1,27 @@
+\begin{tikzpicture}[trim axis left, trim axis right]
+\begin{loglogaxis}[%
+xlabel={intensity},
+ylabel={rel $\sigma$},
+log ticks with fixed point,
+ytick={0.01, 0.02, 0.03, 0.04},
+]
+% np.sqrt(x * 0.1175)/x
+\addplot [%
+BLUE, thick, smooth,
+] coordinates {
+(9.701e+01, 3.480e-02)
+(2.048e+03, 7.574e-03)
+};
+\addplot+[%
+RED, only marks, mark=*,
+nodes near coords, node near coords style={anchor=south west},
+point meta=explicit symbolic,
+]
+table[meta=label]{
+x y label
+115 0.0319 Human
+574 0.01430 Vervet
+1608 0.008548 Roden
+};
+\end{loglogaxis}
+\end{tikzpicture}

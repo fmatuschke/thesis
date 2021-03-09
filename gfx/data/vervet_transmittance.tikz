@@ -1,0 +1,25 @@
+\begin{tikzpicture}[trim axis left, trim axis right]
+\begin{axis}[%
+width=0.84\textwidth,
+% title = {$B_1^{equ}$ in $\mu T$},
+xmin=0.5,xmax=1109.5,ymin=0.5,ymax=848.5,y dir=reverse,
+point meta min=0,point meta max=6370.19,
+hide axis,
+colormap/blackwhite,colorbar,
+]
+\addplot [forget plot] graphics [xmin=0.5,xmax=1109.5,ymin=0.5,ymax=848.5] {dev/gfx/data/Vervet1818a_60mu_70ms_s0549_x00-25_y00-33_thumbnail_Transmittance-1.png};
+\draw[magenta, very thick, ->] (axis cs: 650,175) -- (axis cs: 586,265);
+\draw[magenta, very thick]
+(axis cs: 645.75,	295.575) --
+(axis cs: 636.45,	272.375) --
+(axis cs: 625.65,	275.975) --
+(axis cs: 611.325,	275.175) --
+(axis cs: 611.725,	300.275) -- cycle;
+\draw[magenta, very thick]
+(axis cs:551.9,290.75) --
+(axis cs:561.05,269.6) --
+(axis cs:548.45,265.7) --
+(axis cs:537.35,257) --
+(axis cs:523.4,278.3) -- cycle;
+\end{axis}
+\end{tikzpicture}
