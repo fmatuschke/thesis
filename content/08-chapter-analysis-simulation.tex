@@ -42,8 +42,7 @@ Therefore, the resolution must be determined for each experimental setup.
 For this purpose, the USAF test chart is very often used to characterize the resolution of an optical image setup.
 It consists of several patterns which have three slits with defined distances and widths.
 The resolution can then be determined using the Rayleigh criterion, for example.
-% 
-\\
+\par
 % 
 % 
 \begin{figure}[!t]
@@ -58,7 +57,7 @@ The resolution can then be determined using the Rayleigh criterion, for example.
 \leavevmode\subcaption{\label{fig:usaf_image}microscopic image}
 \end{minipage}&
 \begin{minipage}{0.45\textwidth}
-\leavevmode\subcaption{\label{fig:usaf_lines}line plots. \itodo{single line plots not good}}
+\leavevmode\subcaption{\label{fig:usaf_lines}centered line plots. \itodo{single line plots not good}}
 \end{minipage}
 \end{tabular}
 \caption[USAF test chart measurement]{taorad pm. Line width: magenta: $\SI{2.19}{\micro\meter}$, yellow $\SI{1.95}{\micro\meter}$ and cyan $\SI{1.74}{\micro\meter}$. Resolution at about $\SI{1.95}{\micro\meter}$ yielding to an optical convolution of $\opticsigma = \SI{0.75}{\pixel}$.}
@@ -67,9 +66,9 @@ The resolution can then be determined using the Rayleigh criterion, for example.
 % 
 \Cref{fig:usaf_image} shows a section of a captured PM image.
 The highlighted areas show the key regions.
-The first region corresponding to group \textrm{7-6} \raisebox{.25em}{\tikz \draw[magenta,ultra thick,dashed](0,0)--(0.25,0);} has a line width of $\SI{2.19}{\micro\meter}$.
-The second group \textrm{8-1} \raisebox{.25em}{\tikz \draw[yellow,ultra thick,dashed](0,0)--(0.25,0);} has a line width of $\SI{1.95}{\micro\meter}$.
-The final group \textrm{8-2} \raisebox{.25em}{\tikz \draw[cyan,ultra thick,dashed](0,0)--(0.25,0);} has a line width of $\SI{1.74}{\micro\meter}$.
+The first region corresponding to group \textrm{7\text{-}6} \raisebox{.25em}{\tikz \draw[magenta,ultra thick,dashed](0,0)--(0.25,0);} has a line width of $\SI{2.19}{\micro\meter}$.
+The second group \textrm{8\text{-}1} \raisebox{.25em}{\tikz \draw[yellow,ultra thick,dashed](0,0)--(0.25,0);} has a line width of $\SI{1.95}{\micro\meter}$.
+The final group \textrm{8\text{-}2} \raisebox{.25em}{\tikz \draw[cyan,ultra thick,dashed](0,0)--(0.25,0);} has a line width of $\SI{1.74}{\micro\meter}$.
 The intensity line profiles are shown in \cref{fig:usaf_lines}.
 % 
 Using the Rayleigh criterion, the resolution is in the range of the second group and thus around $\SI{1.95}{\micro\meter}$.
@@ -78,7 +77,7 @@ As a result, the convolution to be applied is set to $\opticsigma = \SI{0.75}{\p
 % 
 % 
 % 
-\subsection{sensor gain}
+\subsection{sensor gain}\label{sec:sensorGain}
 %
 \begin{figure}[!t]
 \centering
@@ -151,76 +150,35 @@ The results are shown in \cref{fig:parameterModelSimGain} and show a gain value 
 % 
 % 
 % 
-\subsection{Tissue properties}
+\subsection{Tissue properties}\label{sec:tissueProp}
 % 
-\begin{figure}[!tp]
-\captionsetup[sub]{}%position=top
-\subcaptionbox{\label{fig:human:transmittance} transmittance\itodo{check crange}}[0.84\textwidth]{
-% \fbox{
-\begin{tikzpicture}[trim axis left, trim axis right]
-\begin{axis}[%
-width=0.84\textwidth,
-% title = {$B_1^{equ}$ in $\mu T$},
-xmin=0.5,xmax=1109.5,ymin=0.5,ymax=848.5,y dir=reverse,
-point meta min=0,point meta max=6370.19,
-hide axis,
-colormap/blackwhite,colorbar,
-]
-\addplot [forget plot] graphics [xmin=0.5,xmax=1109.5,ymin=0.5,ymax=848.5] {dev/gfx/data/Vervet1818a_60mu_70ms_s0549_x00-25_y00-33_thumbnail_Transmittance-1.png};
-\draw[magenta, very thick, ->] (axis cs: 650,175) -- (axis cs: 586,265);
-\draw[magenta, very thick]
-(axis cs: 645.75,	295.575) --
-(axis cs: 636.45,	272.375) --
-(axis cs: 625.65,	275.975) --
-(axis cs: 611.325,	275.175) --
-(axis cs: 611.725,	300.275) -- cycle;
-\draw[magenta, very thick]
-(axis cs:551.9,290.75) --
-(axis cs:561.05,269.6) --
-(axis cs:548.45,265.7) --
-(axis cs:537.35,257) --
-(axis cs:523.4,278.3) -- cycle;
-\end{axis}
-\end{tikzpicture}
-\label{fig:brain_trans}
-}
-\\[2em]
-\subcaptionbox{retardation}[0.84\textwidth]{
-\begin{tikzpicture}[trim axis left, trim axis right]
-\begin{axis}[%
-width=0.84\textwidth,
-% title = {$B_1^{equ}$ in $\mu T$},
-xmin=0.5,xmax=1109.5,ymin=0.5,ymax=848.5,y dir=reverse,
-% point meta min=0,point meta max=1.0,
-hide axis,
-colormap/blackwhite,colorbar,
-]
-\addplot [forget plot] graphics [xmin=0.5,xmax=1109.5,ymin=0.5,ymax=848.5] {dev/gfx/data/Vervet1818a_60mu_70ms_s0549_x00-25_y00-33_thumbnail_Retardation-1.png};
-\draw[magenta, very thick, ->] (axis cs: 650,175) -- (axis cs: 586,265);
-\draw[magenta, very thick]
-(axis cs: 645.75,	295.575) --
-(axis cs: 636.45,	272.375) --
-(axis cs: 625.65,	275.975) --
-(axis cs: 611.325,	275.175) --
-(axis cs: 611.725,	300.275) -- cycle;
-\draw[magenta, very thick]
-(axis cs:551.9,290.75) --
-(axis cs:561.05,269.6) --
-(axis cs:548.45,265.7) --
-(axis cs:537.35,257) --
-(axis cs:523.4,278.3) -- cycle;
-\end{axis}
-\end{tikzpicture}
-\label{fig:brain_ret}
-}\hspace*{\fill}
- \caption[Vervet monkey coronal section transmittance and retardation]{%
- Vervet monkey coronal section $\SI{549}{}$.
- a) transmittance, b) retardation.
- The absorption coefficient and birefingence strength can be estimated from flat fibers.
- Two \acsp{ROI} with \dummy{} pixels are annotated for this purpose.
- \itodo{histograms?, why these two rois?}}
+\begin{figure}[!t]
+\centering
+\def\tikzwidth{0.5\textwidth}
+\begin{tabular}{l}
+% 
+\multicolumn{1}{c}{\inputtikz{gfx/data/vervet_transmittance}}
+\\
+\begin{minipage}{\textwidth}
+\leavevmode\subcaption{\label{fig:brain_trans}transmittance}
+\end{minipage}
+\\
+\multicolumn{1}{c}{\inputtikz{gfx/data/vervet_retardation}}
+\\
+\begin{minipage}{\textwidth}
+\leavevmode\subcaption{\label{fig:brain_ret}retardation}
+\end{minipage}
+% 
+\end{tabular}
+\caption[Vervet monkey coronal section transmittance and retardation]{%
+Vervet monkey coronal section $\SI{549}{}$.
+a) transmittance, b) retardation.
+The absorption coefficient and birefingence strength can be estimated from flat fibers.
+Two \acsp{ROI} with \dummy{} pixels are annotated for this purpose.
+\itodo{histograms?, why these two rois?}}
 \label{fig:brain_ret_trans}
 \end{figure}
+% 
 % 
 \begin{figure}[!tp]
 \centering
@@ -237,7 +195,8 @@ The absorption coefficient $\absorp{}$ and the birefringence $\dn{}$ have to be 
 As the literature shows, these values are in the range of ... $\d{}$.
 However, since the models generated here use stiff fiber segments, the volume density cannot reach as high values as in the elastic tissue.
 To overcome this effect, the absorption and birefringence strengths must be increased to achieve comparable results.
-\\
+\par
+% 
 To achieve this, the two components are measured in the experiment.
 It is important to ensure that a homogeneous region is chosen.
 In a coronal section, the corpus callosum is suitable for this purpose. It is the main fiber connection between the two cerebral hemispheres.
@@ -284,68 +243,29 @@ For larger radii this can lead to an reduction of retardation due to the $\sin(.
 That is also the reason why the values are non normal distributed between $\si{0}$ and $\si{1}$.
 %  
 % 
-% \\ 
-\noindent\rule{\textwidth}{4.2pt}
 % 
 \subsection{noise}
 % 
 \begin{figure}[!t]
 \centering
-% 
-\begin{tikzpicture}[trim axis left, trim axis right]
-\begin{loglogaxis}[%
-xlabel={intensity},
-ylabel={rel $\sigma$},
-log ticks with fixed point,
-ytick={0.01, 0.02, 0.03, 0.04},
-]
-% np.sqrt(x * 0.1175)/x
-\addplot [%
-BLUE, thick, smooth,
-] coordinates {
-(9.701e+01, 3.480e-02)
-(2.048e+03, 7.574e-03)
-};
-\addplot+[%
-RED, only marks, mark=*,
-nodes near coords, node near coords style={anchor=south west},
-point meta=explicit symbolic,
-]
-table[meta=label]{
-x y label
-115 0.0319 Human
-574 0.01430 Vervet
-1608 0.008548 Roden
-};
-\end{loglogaxis}
-\end{tikzpicture}
-% 
+\inputtikz{gfx/data/theo_noise}
 \caption[noise plot]{noise \dummy{}}
 \label{fig:noiseplot}
 \end{figure}
 % 
-Looking at the relative noise level for different species or absorptions, the relative noixe is between 1 and 4 percent for typical tissue sections.
-For low intensity values however the digital discretication will be noticable.
-This results can be transfert into retardation, meaning, that a retardation about the size of the realtive noise level cant be noticed.
+From \cref{sec:sensorGain,sec:tissueProp} the noise level can be calculated.
+However, when considering the different species, it is important to note that transmittance levels vary.
+Rodents typically have the highest transmittance, monkeys have a lower transmittance, and humans have the lowest transmittance.
+The reason for the rather low transmission of the human sections is probably due to the long post-mortem period.
+\Cref{fig:noiseplot} shows a log-log plot for this purpose.
+To run the simulation, a relative error of \dummy{} is used for a midrange analysis.
 % 
 % 
+\par
+\noindent\rule{\textwidth}{2pt}
 % 
 \subsection{voxel size \texorpdfstring{\voxels{}}{}}
 % 
-% % 
-% In \cref{sec:dv_generator} the \voxelsize{} parameter $\voxels$ was introduced.
-% This parameter has a major role in the accuracy of the results.
-% It does not only account for the discretization accuracy of the 3d model, but also for the number of light rays.
-% The impact is visualie shown in \cref{fig:vectorfield_disc_error}.
-% It is cleare that 
-% 
-% TODO: anhang?
-% \begin{figure}[p]
-% \centering
-% \includegraphics[width=\textwidth, page=4]{dev/gfx/2/voxel_size_plots_data_0.pdf}
-% \caption[voxel size model without noise]{without noise \dummy{}}
-% \label{fig:voxelsize}
-% \end{figure}
 % 
 \begin{figure}[!tp]%p
 \centering
@@ -354,19 +274,24 @@ This results can be transfert into retardation, meaning, that a retardation abou
 \label{fig:voxelsizeNoise}
 \end{figure}
 % 
-The voxel size \voxelsize{} is the main parameter for the simulation accuracy.
-Smaller values mean more details, accurater optical axis, more light rays.
-However this also mean an increas of memory of $O(n^3)$.
-Therefore it is feasable to choose a voxel size as small as passible, with tolleratable results.
-\\
+The voxel size \voxelsize{} is the main parameter for simulation accuracy.
+Smaller values mean more details, more accurate optical axes, more light rays.
+However, it also means an increase in memory by $O(n^3)$.
+Therefore, it is advisable to choose the voxel size as small as possible, with reasonable results.
+\par
 % 
-To investigate this effect a simulation is done with different kinds of voxel sizes from \SIrange{0.0125}{1.25}{\micro\meter}.
-As \say{ground truth} the smallest voxel size \SI{0.0125}{\micro\meter} is used. 
-However this voxel size is so small, this is done only for a single tissue section \itodo{which one?}.
-\\
+To investigate this effect, a simulation is performed with different types of voxel sizes from the $\SIrange{0.0125}{1.25}{\micro\meter}$.
+The smallest voxel size $\SI{0.0125}{\micro\meter}$ is used as ground truth or comparison. 
+However, this voxel size is so small that this is only performed for a single tissue section \itodo{which?, how much memory, ...}.
+The pixel size \pixelsize{} will be set to $\SI{1.25}{\micro\meter}$\itodo{other parameters}.
+\par
 %
-The results shown in \cref{fig:voxelsizeNoise} indicate that with noise a voxel size smaller than $\SI{0.125}{\micro\meter}$ does not increase the accuracy with respect to the noise model choosen here.
-This however is only true for a pixel size of $\SI{1.25}{\micro\meter}$.
+The results  in \cref{fig:voxelsizeNoise} show that the relative difference to the smallest \voxelsize{} increase strastically after a value of \SI{0.125}{\micro\meter}.
+The variance of the relativ difference increses with the radius of the models as well as with the \voxelsize{}.\todo{was sind die vier unterschiedlichen plots?}
+% 
+In summary:
+The results shown in \cref{fig:voxelsizeNoise} indicate that for noise, a voxel size smaller than $\SI{0.125}{\micro\meter}$ does not increase the accuracy with respect to the noise model chosen here.
+However, this is only true for a pixel size of $\SI{1.25}{\micro\meter}$.
 % 
 % 
 % 
