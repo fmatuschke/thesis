@@ -261,16 +261,15 @@ The reason for the rather low transmission of the human sections is probably due
 To run the simulation, a relative error of \dummy{} is used for a midrange analysis.
 % 
 % 
-\par
-\noindent\rule{\textwidth}{2pt}
 % 
 \subsection{voxel size \texorpdfstring{\voxels{}}{}}
 % 
 % 
 \begin{figure}[!tp]%p
+% 2_simulation/0_parameter/fiber_radii.py
 \centering
 \includegraphics[width=\textwidth, page=4]{dev/gfx/2/voxel_size_plots_data_1.pdf}
-\caption[voxel size model with noise]{with noise \dummy{}}
+\caption[voxel size model with noise]{with noise \dummy{}, 1. $(\modelOmega=0, \modelPsi=1, \modelInc=0)$, 2. $(\modelOmega=0, \modelPsi=1, \modelInc=90)$, 3. $(\modelOmega=90, \modelPsi=0.5, \modelInc=0)$, 4. $(\modelOmega=90, \modelPsi=0.5, \modelInc=90)$ \itodo{labels}}
 \label{fig:voxelsizeNoise}
 \end{figure}
 % 
@@ -282,8 +281,8 @@ Therefore, it is advisable to choose the voxel size as small as possible, with r
 % 
 To investigate this effect, a simulation is performed with different types of voxel sizes from the $\SIrange{0.0125}{1.25}{\micro\meter}$.
 The smallest voxel size $\SI{0.0125}{\micro\meter}$ is used as ground truth or comparison. 
-However, this voxel size is so small that this is only performed for a single tissue section \itodo{which?, how much memory, ...}.
-The pixel size \pixelsize{} will be set to $\SI{1.25}{\micro\meter}$\itodo{other parameters}.
+However, this voxel size is so small that this is only performed for a single tissue section. \todo{which?, how much memory, ...}
+The pixel size \pixelsize{} will be set to $\SI{1.25}{\micro\meter}$. \todo{other parameters}
 \par
 %
 The results  in \cref{fig:voxelsizeNoise} show that the relative difference to the smallest \voxelsize{} increase strastically after a value of \SI{0.125}{\micro\meter}.
@@ -300,18 +299,41 @@ However, this is only true for a pixel size of $\SI{1.25}{\micro\meter}$.
 \begin{figure}[!t]
 \centering
 \includegraphics[width=1\textwidth]{dev/gfx/sim_cube/radius_acc_compare_Vervet_PM_r.pdf}
-\caption[sim acc]{sim\_acc, r0 = 0.5 \dummy{}. hypothese: abweichungen in GtSim bei kleinen radien dadurch, dass zwei richtungen nicht sichtbar sind? schaue dir die histogramme und odfs an.}
+\caption[sim acc]{ $\acc{}(GT,GT_{0.5})$, $\acc{}(SIM,GT_{0.5})$ and $\acc{}(SIM,SIM_{0.5})$. hypothese: abweichungen in GtSim bei kleinen radien dadurch, dass zwei richtungen nicht sichtbar sind? schaue dir die histogramme und odfs an.}
 \label{fig:accVervetPMr}
 \end{figure}
 % 
-% \itodo{zeige acc zwischen model r und p von simulationen an}
+The last parameter to investigate is the fiber radius $\fiberRadius{}$ of the models.
+The anatomical closes value is of course $\fiberRadius{} = \SI{0.5}{\micro\meter}$.
+However to allow faster modelling processen it is feasable to analyse with which radius a difference is visiable in the microscopic setup.
+To investigate this behavior the distribution of the orientation of the fiber segments was analysed.
+\par
 % 
-\subsection{Fiber model}
+\paragraph{results}
+\Cref{fig:accVervetPMr} shows the ACC(GT0.5 to GT difference between the orientation of the models of different radii (always to $\fiberRadius{} = \SI{0.5}{\micro\meter}$).
+the second shows the ACC(GT0.5 to SIM) and the last $\acc{}(SIM,SIM_{0.5})$.
 % 
-\itodo{warum eigentlich überhaupt p und r, warum nicht einfach nur r, und nur bei LAP r und p diskutieren? -> analysen (tilting) basieren auf p}
-p ist bei grosen \say{fasern}, also FB sinnvoller, da hier auch steile fasern das signal verlieren. Bei radialen axen hingegen wäre das signal stark sichtbar.
+The first plot shows a very close correspondence between the GT of different radii (see y scala).
+For more intermixed fiber populations (\modelPsi{} closer to $\SI{0.5}{\micro\meter}$) as well as crossing angle \modelOmega{} the \acc{} decreases slightly.
+Overall the difference is almost negligible.
+\par
+%
+Plot 2 shows a different result for the comparison between the $GT$ and $SIM$.
+Here only fiber populations \modelPsi{} close to $\SI{0}{}$ or $\SI{1}{}$ have a high agreement for smaller fiber radii \fiberRadius{}.
+The \acc{} decreeses with incrasing radii \fiberRadius{} down to a value of $\approx \SI{0.7}{}$.
+Fiber populations with \modelPsi{} closer to 0.5 have a very low ACC parameter. For the 0.6 case the \acc{} increases slightly for increasing radii up to acc=0.6.
+The crossing angle has a high impact on the acc value. 
 % 
+\paragraph{...}
+Looking at the results from the $acc(GT,GT_{0.5})$ and $\acc{}(SIM,SIM_{0.5})$ of course $\fiberRadius=\SI{0.5}{\micro\meter}$ has a \acc{} of $\SI{0}{}$ since they are identical.
+On the other hand $acc(GT,SIM_{0.5})$ shows for $\fiberRadius=\SI{0.5}{\micro\meter}$ the smallest values and highest variance for \acc{} since the fiber crossing leads to a low retardation and therefore signal lost and the analysis can't measure the in... signal.
 % 
+From the first and last plot show that a fiber radii of \SI{1}{\micro\meter} seems to have a little impact on the model and simulation side.
+After that the simulation comparison \acc{}\todo{check if acc is defined.} value sinks drastically for fiber populations close to %\fiberPsi=\SI{0.5}{}$.
+% 
+The behavior between the ground truth $GT$ and and simulation $SIM$ will be closely examined in the next section.
+\par
+\noindent\rule{\textwidth}{2pt}
 % 
 \newpage
 % 
