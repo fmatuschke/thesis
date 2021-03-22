@@ -1,0 +1,50 @@
+\begin{tikzsize}{\tikzwidth}{\tikzheight}
+\begin{tikzpicture}[scale=\tikzscale]
+\begin{polaraxis}[
+    width=\tikzwidth, height=\tikzwidth,
+    scale only axis=true,
+    xtick={0,45,...,315},
+    ytick={60,30},
+    xlabel style={overlay},
+    xticklabel style={overlay},
+    yticklabels={30,60},
+    ylabel style={overlay},
+    yticklabel style={black, overlay},
+    colormap/viridis,
+    point meta min = 0,
+    point meta max = 1,
+    tickwidth=0,
+    xtick distance = 45,
+    separate axis lines,
+    y axis line style= { draw opacity=0 },
+    ymin=0, ymax=90,
+    axis on top=true,
+]
+\addplot [ only marks, mark=o, thin, dash pattern=on 1pt off 1pt] coordinates {%
+(50.19, 77.50)
+(132.70, 36.10)
+(49.11, 41.41)
+(25.56, 55.02)
+(70.27, 22.06)
+(25.71, 86.67)
+(73.90, 64.34)
+(99.46, 49.49)
+(352.15, 0.00)
+(0.00, 90.00)
+(180.00, 30.00)
+(0.00, 30.00)
+(0.00, 60.00)
+(154.44, 62.49)
+(180.00, 60.00)
+(180.00, 90.00)
+(109.73, 78.97)
+(90.00, 90.00)
+(130.89, 69.30)
+}; %, contour filled={number=9}
+\addplot [only marks, mark=o, very thick] coordinates {%
+(0, 30.0)
+}; %, contour filled={number=9}
+\end{polaraxis}
+% 
+\end{tikzpicture}
+\end{tikzsize}
