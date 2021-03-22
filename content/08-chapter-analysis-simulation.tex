@@ -17,7 +17,7 @@ A focus is placed on the accuracy of tilt analyses for different orientations an
 % 
 % 
 % 
-\section{Experimental Parameters}
+\section{Experimental Parameters}\label{sec:sim_choose_parameters}
 % 
 \subsection{optical resolution}
 % 
@@ -269,7 +269,7 @@ To run the simulation, a relative error of \dummy{} is used for a midrange analy
 % 2_simulation/0_parameter/fiber_radii.py
 \centering
 \includegraphics[width=\textwidth, page=4]{dev/gfx/2/voxel_size_plots_data_1.pdf}
-\caption[voxel size model with noise]{with noise \dummy{}, 1. $(\modelOmega=0, \modelPsi=1, \modelInc=0)$, 2. $(\modelOmega=0, \modelPsi=1, \modelInc=90)$, 3. $(\modelOmega=90, \modelPsi=0.5, \modelInc=0)$, 4. $(\modelOmega=90, \modelPsi=0.5, \modelInc=90)$ \itodo{labels}}
+\caption[voxel size model with noise]{1. $(\modelOmega=0, \modelPsi=1, \modelInc=0)$, 2. $(\modelOmega=0, \modelPsi=1, \modelInc=90)$, 3. $(\modelOmega=90, \modelPsi=0.5, \modelInc=0)$, 4. $(\modelOmega=90, \modelPsi=0.5, \modelInc=90)$: the mean difference between the Signal $\mean(\intensity(\voxels_{\mathit{ref} = \SI{0.0125}{\micro\meter}, \fiberRadius})- \intensity(\voxels, \fiberRadius))$. The mean difference is constant for smaller voxel sizes and does not start to grow significantly before $\voxels=\SI{0.125}{\micro\meter}$. \itodo{labels}}
 \label{fig:voxelsizeNoise}
 \end{figure}
 % 
@@ -285,8 +285,8 @@ However, this voxel size is so small that this is only performed for a single ti
 The pixel size \pixelsize{} will be set to $\SI{1.25}{\micro\meter}$. \todo{other parameters}
 \par
 %
-The results  in \cref{fig:voxelsizeNoise} show that the relative difference to the smallest \voxelsize{} increase strastically after a value of \SI{0.125}{\micro\meter}.
-The variance of the relativ difference increses with the radius of the models as well as with the \voxelsize{}.\todo{was sind die vier unterschiedlichen plots?}
+The results  in \cref{fig:voxelsizeNoise} show that the relative difference to the smallest \voxelsize{} increase statically after a value of \SI{0.125}{\micro\meter}.
+The variance of the relative difference increases with the radius of the models as well as with the \voxelsize{}.\todo{was sind die vier unterschiedlichen plots?}
 % 
 In summary:
 The results shown in \cref{fig:voxelsizeNoise} indicate that for noise, a voxel size smaller than $\SI{0.125}{\micro\meter}$ does not increase the accuracy with respect to the noise model chosen here.
@@ -299,7 +299,7 @@ However, this is only true for a pixel size of $\SI{1.25}{\micro\meter}$.
 \begin{figure}[!t]
 \centering
 \includegraphics[width=1\textwidth]{dev/gfx/sim_cube/radius_acc_compare_Vervet_PM_r.pdf}
-\caption[sim acc]{ $\acc{}(GT,GT_{0.5})$, $\acc{}(SIM,GT_{0.5})$ and $\acc{}(SIM,SIM_{0.5})$. hypothese: abweichungen in GtSim bei kleinen radien dadurch, dass zwei richtungen nicht sichtbar sind? schaue dir die histogramme und odfs an.}
+\caption[sim acc]{ $\acc{}(GT,GT_{0.5})$, $\acc{}(SIM,GT_{0.5})$ and $\acc{}(SIM,SIM_{0.5})$. hypothese: abweichungen in GtSim bei kleinen radien dadurch, dass zwei richtungen nicht sichtbar sind? schaue dir die histogramme und odfs an. \itodo{komplett neu machen}}
 \label{fig:accVervetPMr}
 \end{figure}
 % 
@@ -340,34 +340,46 @@ The behavior between the ground truth $GT$ and and simulation $SIM$ will be clos
 \section{Simulation}
 % 
 \begin{enumerate}
-\item anfang
-    \begin{enumerate}
-    \item Welchen einflu\ss hat mu? theoretisch abhandelbar und unsicherheiten im vergleich.
-    \item wie verh\"alt sich retardation als $f(\Psi, \Omega, ...)$
-    \item ab welchem radius sind unterschiede bemerkbar? als erstes? welches kriterium?
-    \end{enumerate}
-% 
-\item mitte
-    \begin{enumerate}
-    \item sekund\"are richtung sichtbar?
-    \item Fom und modalit\"aten zeigen
-    \item Histogramm der Modelle im vergleich zur Messung
-    \item einfluss der inklination bei kreuzungen?
-    \item Rofl abweichend bei starker Retardierung? Messungen ohne Rauschen ... auch Flache Messungen
-    \item Rofl trel vergleich mit theo trel von gewebe dicke
-    \end{enumerate}
-% 
-\item ende?
-    \begin{enumerate}
-    \item einfluss von model p auf tilt analyse?
-    \item filled fibers?
-    \item faser radien bei LAP(20 um)?
-    \end{enumerate}
+\item $r=0.5$ or fabric tissue 
+\begin{enumerate}
+\item eine population:
+\begin{enumerate}
+    \item verhalten von transmittance, direction und retardierung wie model
+    \item verteilung von orientierung SIM zu GT
 \end{enumerate}
 % 
+\item zwei population:
+\begin{enumerate}
+    \item verhalten von transmittance, direction und retardierung wie model
+    \item analyse signal ohne rauschen, zeigt rofl eine abweichung?
+    \item verteilung von orientierung SIM zu GT (odf oder histogram?)
+    \item groese "dunkler" Bereich
+\end{enumerate}
+\end{enumerate}
 % 
+\item $r > 0.5$ oder "fiberbundle":
+\begin{enumerate}
+\item zwei populationen
+\begin{enumerate}
+    \item verhalten von seeded fiber bundles zu solid fiber bundles
+    \item sichtbarkeit von zwei orientierungen
+\end{enumerate}
+\end{enumerate}
 % 
-\subsection{Parameters}
+\item misc
+\begin{enumerate}
+    \item speed test
+\end{enumerate}
+% 
+\item future discussions
+\begin{enumerate}
+    \item n-fiber populations
+    \item fiber bundles of different radii
+    \item fiber bundles with volume compressing solving steps
+\end{enumerate}
+\end{enumerate}
+% 
+\subsection{Parameters and execution}
 % 
 \begin{table}[!b]
 \centering
@@ -398,14 +410,53 @@ gain & $\SI{0.1175}{}$\\
 simpli.noise\_model & \texttt{lambda x:np.round(np.random.normal(}\\
  & \ \ \ \ \ \texttt{x,np.sqrt(gain * x))).astype(np.uint16)}\\
 fiber absorption & ('Roden', 10), ('Vervet', 20), ('Human', 50)\\
-fiber model & 'p' and 'r'\\
-fiber birefringence & -0.004 and 0.008\\
-fiber radii & 0.75 and  1\\
+fiber model & 'r'\\
+fiber birefringence & 0.008 for 'r'\\
+fiber radii & (0.75, 1)\\
 }
 \caption{simpli parameters. \ITODO{to low because of tissue spacing}}
 \label{tab:simParameters}
 \end{table}
 % 
+% 
+\Cref{tab:simParameters} lists the parameters of the simulation inside the \fastpli{} variable notation.
+The values are chosen due to the discussion of \cref{sec:sim_choose_parameters}.
+% 
+\subsubsection{Execution}
+% 
+As described in \cref{Software} \fastpli{} contains a pipeline implementation. \dummy{}.
+This implementation is used to calculate the discretized volumes (from generator), simulate the signal, performing the optical noise and analysis the resulting signal with \rofl{}\footnote{Source code is available in appendix \dummy{}.}.
+\\
+% 
+The simulation were performed with a single compute node (\texttt{2x Intel(R) Xeon(R) CPU E5-4657L v2}).
+
+% 
+\subsection{single fiber population}
+% 
+In the case of a single fiber population only the inclination parameter $\modelInc{}$ is ... since no rotation and crossing angle exists.
+\itodo{mehr inclination winkel fier diesen Fall? -> JA}.
+% 
+\subsubsection{orientation distribution}
+% 
+\begin{figure}[!tp]
+\centering
+\includegraphics[height=0.8\textheight]{dev/gfx/sim_cube/sim_plots_single_pop_hist.pdf} 
+\caption[sim]{left: 2d log histogramm orientation from rofl analysis of simulation, right: 2d log histogramm of orientation of model segemnts. \dummy[auch als odf moeglich, aber schlechter vergeichbar; vieleicht contourplots von GT]{}}
+\label{fig:single_fiber_pop_hist}
+\end{figure}
+% 
+\Cref{fig:single_fiber_pop_hist} shows the 3d fiber orientation distribution of the simulated (left) and the model ground truth (right) as a 2d polar log histogram.
+The number of pixels is $48\cdot48=\SI{2304}{\pixel}$.
+Looking at the simulation distribution for inclinations lower than $\SI{60}{\degree}$ the variance is very small.
+It is similar to the variance of the ground truth \todo{number of segments in 60µm cube}.
+However since the number of segments is much higher, and the simulation results from the "mean" signal of the light path, its distribution contains also many more orientations (keeping in mind the log scale).
+Only for the steep fibers with an inclination of $\modelInc{}=\SI{90}{\degree}$ different orientation are visible for the simulation results.
+The variance is similar to the ground truth of the model segments.
+% 
+% 
+\subsubsection{pli-modalities}
+% 
+
 % 
 % 
 \subsection{expected results}
@@ -466,6 +517,26 @@ fiber radii & 0.75 and  1\\
 \includegraphics[width=\textwidth, trim = 115 50 115 0, clip]{dev/gfx/sim_cube/tissue_overlay_PM_Vervet_r_0.60_60.00_10.00_30.00_0.00_.pdf} 
 \caption[sim]{\dummy{}}
 \label{fig:sim_fyjsrg}
+\end{figure}
+% 
+% 
+% 
+% 
+\begin{figure}[!tp]
+\centering
+\includegraphics[height=0.8\textheight]{dev/gfx/sim_cube/test_r_0.5_species_Vervet_microscope_PM_model_r_inc_0.00_rot_0.00.pdf} 
+\caption[sim]{\dummy{}}
+\label{fig:sim_matrix_0}
+\end{figure}
+% 
+% 
+% 
+% 
+\begin{figure}[!tp]
+\centering
+\includegraphics[height=0.8\textheight]{dev/gfx/sim_cube/test_r_0.5_species_Vervet_microscope_PM_model_r_inc_90.00_rot_0.00.pdf} 
+\caption[sim]{\dummy{}}
+\label{fig:sim_matrix_90}
 \end{figure}
 % 
 % 
