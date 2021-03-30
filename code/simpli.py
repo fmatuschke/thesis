@@ -21,6 +21,8 @@ FILE_BASE = os.path.basename(FILE_NAME)
 
 np.random.seed(42)
 
+# TODO; OLD!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
 with h5py.File(
         '/tmp/fastpli.example.' + FILE_BASE + '.' + fastpli.__git__hash__ +
         '.h5', 'w') as h5f:
