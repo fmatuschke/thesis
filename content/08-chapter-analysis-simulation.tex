@@ -216,7 +216,10 @@ To get a approximation of the parameters the models with a radius of $r=\SI{0.5}
 % 
 A relative transmittance of about $\SIrange{20}{30}{\percent}$ is present inside the \ac{ROI} of the corpus callosum \todo{show histogram}. 
 The simulation parameter has to be set such as that for the models a similar transmittance value is reached.
-This means, that for a $\SI{60}{\micro\meter}$ thick section the absorption coefficient $\absorp{}$ is about \dummy{}. However considering, that statistically only $\SI{75}{\percent}$ of the volume is filled, the simulation parameter has to be \dummy{}.
+This means, that for a $\SI{60}{\micro\meter}$ thick section the absorption coefficient $\absorp{}$ is about $\SI{30}{}$. 
+Since the absorption shell be the same for larger fibers to yield the same noise and it cannot be distingioust between "no fiber matter i.e. background" and fibers the absorption coeeficient cannot be measured, and therefore the absorption will be multiplied after the simulation on the hole image. The absorption for the Roden is $\SI{8}{}$, and the human $\SI{65}{}$.
+
+% However considering, that statistically only $\SI{75}{\percent}$ of the volume is filled, the simulation parameter has to be \dummy{}.
 % \Cref{fig:simTransValues} shows different transmittance vales for different types of radii.
 % 
 % \ITODO{transmittance is twice as high as it should be !!! -> increase absorption coeeficient, ich glaube ich habe das bereits ersetzt}
@@ -413,12 +416,12 @@ gain & $\SI{0.1175}{}$\\
 % simpli.noise\_model & \texttt{lambda x:np.round(np.random.normal(x,np.sqrt(gain * x))).astype(np.uint16)}\\
 simpli.noise\_model & \texttt{lambda x:np.round(np.random.normal(}\\
  & \ \ \ \ \ \texttt{x,np.sqrt(gain * x))).astype(np.uint16)}\\
-fiber absorption & ('Roden', 10), ('Vervet', 20), ('Human', 50)\\
+fiber absorption & ('Roden', 8), ('Vervet', 30), ('Human', 65)\\
 fiber model & 'r'\\
 fiber birefringence & 0.008 for 'r'\\
 fiber radii & (0.75, 1)\\
 }
-\caption{simpli parameters.}
+\caption{simpli parameters. \itodo{absorption ist volumenweit, nicht nur in faser}}
 \label{tab:simParameters}
 \end{table}
 % 
@@ -439,7 +442,7 @@ The simulation were performed with a single compute node (\texttt{2x Intel(R) Xe
 \subsection{single fiber population}
 % 
 In the case of a single fiber population only the inclination parameter $\modelInc{}$ is ... since no rotation and crossing angle exists.
-\itodo{mehr inclination winkel fuer diesen Fall? -> JA}.
+\itodo{mehr inclination winkel fuer diesen Fall? -> JA}
 % 
 % 
 % 
