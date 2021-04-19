@@ -38,21 +38,41 @@ clean_tikz() {
 }
 
 mv_tikz() {
+   echo "Dont forget to disable 'inputtikz[true]'"
+
    mkdir -p tikz
    rm -rf tikz/*/
-   for file in tikz/*.log; do
-      # echo $file
-      tikz=$(grep -e "\.tikz" -e "\.dpth" $file | grep -B 1 "tikz\/.*\.dpth" | tr ' ' '\n' | grep -o "(\.\/gfx.*\.tikz")
-      file_in="${file/log/pdf}"
-      file_out="${tikz/tikz/pdf}"
-      file_out="${file_out/(\.\//}"
-      echo $file_in tikz/$file_out
-      mkdir -p $(dirname tikz/$file_out)
-      if [ -f tikz/$file_out ]; then
-         echo tikz/$file_out EXISTS
+   for file_in in tikz/*.pdf; do
+      # echo $file_in
+      file=${file_in%.pdf}
+
+      if [ $(grep ${file}.dpth ${file}.log | wc -l) != 1 ]; then
+         echo ".dpth not 1 time"
          exit 1
       fi
+
+      line=$(grep -n ${file}.dpth ${file}.log | cut -d : -f 1)
+
+      # name=$(head -n $line $file.log | tac | grep -m 1 -o 'gfx.*\.tikz') WHY DOES THIS NOT WORK ?????
+      name=$(head -n $line $file.log | tac | grep -o '(\..*\.tikz')
+      name=$(echo "$name" | head -n 1)
+      name=$(echo $name | rev | cut -d "(" -f1 | rev)
+      name="${name:2}"
+
+      file_out=${name%.tikz}.pdf
+
+      # echo "TEST"
+      if [ -f tikz/$file_out ]; then
+         echo "$file_in" "tikz/$file_out" EXISTS
+         continue
+         # exit 1
+      fi
+
+      echo "$file_in" "tikz/$file_out"
+
+      mkdir -p $(dirname tikz/$file_out)
       cp $file_in tikz/$file_out
+      # echo ""
    done
 }
 
