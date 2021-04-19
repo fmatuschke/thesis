@@ -63,6 +63,12 @@
 %
 %
 % **************************************************
+% Pre cleanthesis imports
+% **************************************************
+\RequirePackage[dvipsnames]{xcolor}
+\usepackage{tikz}
+% 
+% **************************************************
 % Load and Configure Packages
 % **************************************************
 \usepackage[english]{babel} % babel system, adjust the language of the content
@@ -231,7 +237,7 @@
 % Tikz & PGFplots
 % **************************************************
 \usepackage{shellesc}
-\usepackage{tikz}
+% \usepackage{tikz} before hyperref
 % \usepackage{tikz-uml}
 % \usepackage{tikz-3dplot}
 \usetikzlibrary{math}
@@ -282,11 +288,12 @@
 % 
 \makeatletter
 \newcommand{\inputtikzext}[1]{%
-	\IfFileExists{#1.tikz}{
+	% \IfFileExists{#1.tikz}{
 		\input{#1.tikz}
-	}{
-		\noindent\includegraphics[width=\tikzwidth]{example-image}
-	}
+	% }{
+  %   \@latex@warning{.....#1.tikz..... not found. Using example-image.}
+	% 	\noindent\includegraphics[width=\tikzwidth]{example-image}
+	% }
 }
 \makeatother
 % 

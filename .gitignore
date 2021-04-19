@@ -2,6 +2,7 @@ thesis.pdf
 thesis_*
 !thesis.tex
 dev/
+old/
 tikz/*
 tikz/**/*
 output/

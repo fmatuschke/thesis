@@ -84,7 +84,7 @@
 	\path [black!75, plate] 
 	(-1,1,0) -- (-1,1,-0.125) -- (1,1,-0.125) -- (1,1, 0) -- cycle;
 	\node[yslant=tan(\xangle)] () at (0,0,0)
-	{\includegraphics[width=1cm]{gfx/neuroanatomy/human-brain-section-filled}};
+	{\includegraphics[width=1cm]{gfx/neuroanatomy/human-brain-section-filled.pdf}};
 	\foreach \i in {-1,-0.75,...,1}{
 		\draw [black!50] (\i, -1, 0) -- (\i, 1, 0);
 		\draw [black!50] (-1, \i, 0) -- (1, \i, 0);
