@@ -82,56 +82,91 @@ As a result, the convolution to be applied is set to $\opticsigma = \SI{0.75}{\p
 \begin{figure}[!t]
 \centering
 \def\tikzwidth{0.75\textwidth}
-\inputtikz{gfx/pli/pli_focus}
+\inputtikz[true]{gfx/pli/pli_focus}
 \caption[intensity setup]{intensity setup. \itodo{check schematic}}
 \label{fig:intensityFocus}
 \end{figure}
 % 
 \begin{figure}[!t]
+% thesis/2_simulation/0_parameter/sensor_gain.py
 \centering
 % 
-\subcaptionbox{\label{fig:intensityImage}single microscopic image}[.4\textwidth]{
+
+
+
+
+
+\begin{tabular}{cc}
 % 
-\begin{tikzpicture}
+% 1. IMAGE
+\begin{tikzpicture}[baseline, trim axis left, trim axis right]
 \begin{axis}[
-width=0.4\textwidth,
-height=0.4\textwidth,
-axis lines=center,
-axis line style={white},
-yticklabels={,,},
-axis line style={draw=none},
-tick style={draw=none},
-tick label style={white},
-]
-\addplot graphics [
-xmin=0,xmax=2000,
+width=0.45\textwidth,
+height=0.45\textwidth,
+point meta min=0,
+point meta max=1670,
+xmin=0,xmax=1,
 ymin=0,ymax=1,
-] {dev/gfx/2/pm_000.png};
-\end{axis}
-\end{tikzpicture}
+% 
+hide axis,
+% axis lines=center,
+% % yticklabels={,,},
+% axis line style={draw=none},
+% tick style={draw=none},
+% tick label style={gray},
+% 
+colorbar left,
+colormap/gray,
+colorbar style={%
+    % axis line style={draw=none},
+    % tick style={},
+    % tick label style={black},
+    every y tick label/.append style={font=\small},
 }
 % 
-\subcaptionbox{\label{fig:intensityProfile}intensity profile}[.4\textwidth]{
-\begin{tikzpicture}
+]
+\addplot [forget plot] graphics [
+xmin=0,xmax=1,
+ymin=0,ymax=1,
+] {dev/gfx/2/PM_000_vmin_0_vmax_1670.png};
+\end{axis}
+\end{tikzpicture}
+&
+% 
+% 2. IMAGE
+\begin{tikzpicture}[baseline, trim axis left, trim axis right]
 \begin{axis}[%
-width=0.4\textwidth,
-height=0.4\textwidth,
-axis on top,
+width=0.45\textwidth,
+height=0.45\textwidth,
+% axis on top,
 axis lines=center,
 xlabel={x-pos},
 ylabel={intensity},
 ]
-\addplot[mark=none, blue] table[x index=0, y index=1] {dev/gfx/2/pm_000.dat};
+\addplot[mark=none, blue] table[x index=0, y index=1] {dev/gfx/2/PM_000.dat};
 \end{axis}
 \end{tikzpicture}
-}
+\\
 % 
-\caption[intensity image]{intensity variation}
+% SUBCAPTIONS
+\multicolumn{1}{l}{
+\begin{minipage}{0.45\textwidth}
+\leavevmode\subcaption{\label{fig:intensityImage}single microscopic image}
+\end{minipage}}
+&
+\multicolumn{1}{l}{
+\begin{minipage}{0.45\textwidth}
+\leavevmode\subcaption{\label{fig:intensityProfile}intensity profile.}
+\end{minipage}}
+\end{tabular}
+% 
+\caption[intensity image]{y-mean intensity profile}
 \label{fig:intensityMeasurement}
 \end{figure}
 % 
 % 
 \begin{figure}[!t]
+% thesis/2_simulation/0_parameter/sensor_gain.py
 \centering
 \includegraphics[width=0.75\textwidth]{dev/gfx/2/PM_noise.png}
 \caption[Noise analysis]{Noise analysis PM. $\opticgain_{\mathit{PM}} = \SI{0.1175}{}(?)$. \itodo{replot, also show microscope image}}
