@@ -1,10 +1,13 @@
 \begin{tikzsize}{\tikzwidth}{\tikzheight}
 \begin{tikzpicture}[scale=\tikzscale]
 %
+% \path (-5,0)--(5,0);
+% \draw (-7.5,0)--(7.5,0);
+% 
 \colorlet{led}{green!70!black}
 % camera
-\begin{scope}[shift={(0,-0)}]
-\begin{scope}[shift={(0,-0)}]
+\begin{scope}[shift={(-3,0)}]
+\begin{scope}[shift={(0,0)}]
 	\def\wbody{1}
 	\def\hbody{0.5}
 	\shade[left color=black!10!white,right color=black!40!white] (-\wbody,-\hbody) rectangle  (\wbody,\hbody);
@@ -31,7 +34,7 @@
 \end{scope}
 % 
 % 
-\begin{scope}[shift={(5,0)}]
+\begin{scope}[shift={(3,0)}]
 \begin{scope}[shift={(0,0)}]
 	\def\wbody{1}
 	\def\hbody{0.5}
@@ -52,7 +55,7 @@
 \def\w{2}
 %
 \begin{scope}[shift={(0,-5)}]
-\draw[dotted] (-\w,0) -- (\w,0) node[right,xshift=0.25cm] {specimen};
+% \draw[dotted] (-\w,0) -- (\w,0) node[right,xshift=0.25cm] {specimen};
 \draw[very thick, black] (0,0) -- (-\w,0);
 \end{scope}
 \end{scope}
