@@ -215,6 +215,27 @@ Two \acsp{ROI} with \dummy{} pixels are annotated for this purpose.
 \end{figure}
 % 
 % 
+% 
+\begin{figure}[!t]
+% 2_simulation/0_parameter/measure_vervet.ipy
+\centering
+\hspace*{\fill}
+\subcaptionbox{zoom transmittance}{\includegraphics[width=0.45\textwidth]{dev/gfx/data/transmittance_vervet_cc_0_8339.png}}\hfill
+\subcaptionbox{hist transmittance}{\includegraphics[width=0.45\textwidth]{dev/gfx/data/transmittance_vervet_cc_hist.png}}
+\hspace*{\fill}
+\\
+\hspace*{\fill}
+\subcaptionbox{zoom retardation}{\includegraphics[width=0.45\textwidth]{dev/gfx/data/retardation_vervet_cc_0.000_0.996.png}}\hfill
+\subcaptionbox{hist retardation}{\includegraphics[width=0.45\textwidth]{dev/gfx/data/retardation_vervet_cc_hist.png}}
+\hspace*{\fill}
+\caption[zoom ret and trans]{%
+left trans: 1168+-501, right trans: 1175+-511, left ret: 0.83+-0.07, right ret: 0.80+-0.07
+\itodo{new fig-> path as vector; what happens in the center; check lr flip with images above, histogramm?}}
+\label{fig:brain_ret_trans_zoom}
+\end{figure}
+% 
+% 
+% 
 \begin{figure}[!tp]
 \centering
 % \subcaptionbox{\label{fig:simTransValues}transmittance\itodo{WRONG IMAGE}}[.95\textwidth]{
@@ -418,6 +439,8 @@ The behavior between the ground truth $GT$ and and simulation $SIM$ will be clos
     \item fiber bundles with volume compressing solving steps
 \end{enumerate}
 \end{enumerate}
+% 
+Verhalten von transmittance von steilheit?
 % 
 % 
 % 
