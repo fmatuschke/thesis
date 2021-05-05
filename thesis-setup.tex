@@ -179,7 +179,7 @@
 % **************************************************
 \DeclarePairedDelimiter\abs{\lvert}{\rvert}
 \DeclarePairedDelimiter\norm{\lVert}{\rVert}
-\let\vv\mathbf
+\let\vec\mathbf
 \let\mat\mathcal
 \newcommand{\overbar}[1]{\mkern 1.5mu\overline{\mkern-1.5mu#1\mkern-1.5mu}\mkern 1.5mu}
 %
@@ -192,6 +192,7 @@
 \floatname{lstfloat}{Alg.}
 \crefname{lstfloat}{alg.}{alg.}
 \Crefname{lstfloat}{Alg.}{Alg.}
+\crefname{pluralequation}{eqs.}{eqs.}
 \renewcommand{\lstlistingname}{Alg.}
 \renewcommand{\lstlistlistingname}{List of Algorithm}
 % 
@@ -238,8 +239,6 @@
 % **************************************************
 \usepackage{shellesc}
 % \usepackage{tikz} before hyperref
-% \usepackage{tikz-uml}
-% \usepackage{tikz-3dplot}
 \usetikzlibrary{math}
 \usetikzlibrary{shapes, arrows}
 \usetikzlibrary{mindmap, backgrounds}
