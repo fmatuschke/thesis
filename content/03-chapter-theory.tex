@@ -8,7 +8,7 @@
     \item analysen
 \end{itemize}}
 %
-The following section lists the physical theories needed to describe the mathematics behind \ac{3D-PLI}. This includes the basic properties of light with the description of their polarization state, the optical models of the tissue, i.e. the nerve fibers and the mathematical description of the experimental setup of \ac{3D-PLI}. The first part of this chapter was written with the help of \cite{demtroeder2}.
+The following section lists the physical theories needed to describe the mathematics behind \ac{3D-PLI}. This includes the basic properties of light with the description of their polarization state, the optical models of the tissue, i.e. the nerve fibers and the mathematical description of the experimental setup of \ac{3D-PLI}. The first part of this chapter was written with the help of \cite{demtroeder2, Fliebach2012}.
 % 
 % 
 % 
@@ -30,11 +30,11 @@ Light is an electromagnetic wave. Electromagnetism is first fully described by J
     \nabla \cdot \vec{E} &= \frac {\rho} {\varepsilon_0}\\
     \nabla \cdot \vec{B} &= 0\\
     \nabla \times \vec{E} &= -\frac{\partial \vec{B}} {\partial t}\\
-    \nabla \times \vec{B} &= \mu_0\left(\vec{J} + \varepsilon_0 \frac{\partial \vec{E}} {\partial t} \right)
+    \nabla \times \vec{B} &= \mu_0\left(\vec{j} + \varepsilon_0 \frac{\partial \vec{E}} {\partial t} \right)
 \end{split}
 \end{align}
 % 
-with $\nabla \coloneqq \left({\partial \over \partial x}, {\partial \over \partial y}, {\partial \over \partial z} \right)$ as vector differential operator, $\vec{E}$ as eletric field, $\rho$ as electric charge density, $\varepsilon_0$ as permittivity of free space, $\vec{B}$ as magnetic field, $\mu_0$ as permeability of free space and $\vec{J}$ as electric current density. 
+with $\nabla \coloneqq \left({\partial \over \partial x}, {\partial \over \partial y}, {\partial \over \partial z} \right)$ as vector differential operator, $\vec{E}$ as eletric field, $\rho$ as electric charge density, $\varepsilon_0$ as permittivity of free space, $\vec{B}$ as magnetic field, $\mu_0$ as permeability of free space and $\vec{j}$ as electric current density. 
 % 
 The first equation states no electric field can be generated without an electric charge (charge conservation).
 The second equation states, magnetic monopoles does not exists. The basic entity of an magnetic field is a dipole.
@@ -81,7 +81,7 @@ with the help of the d'Alembert operator $\Box \coloneqq \partial^a\partial_a = 
 % 
 This also shows $c^2  \frac{\partial B} {\partial z} = \frac{\partial E}{\partial t} \Rightarrow \vec{E} \cdot \vec{B} = 0$ that the electric and magnetic field components are perpendicular to each other.
 % 
-\subsection{Solving MW Equ}
+\subsection{Solving MW Equ in vacuum}
 % 
 \Cref{eq::maxwell_wave_equations} have the shape of a wave equation and can therefore as known be solved by
 % 
@@ -102,7 +102,7 @@ With the help of
 k = \mathopen| \vec{k} \mathclose| = \frac{\omega}{c} =  \frac{2 \pi}{\lambda}
 \end{align}
 % 
-a planar wave can be desciped by
+a planar wave can be descriped by
 % 
 \begin{align}
 \begin{split} \label{eq::plane_wave}
@@ -110,6 +110,8 @@ a planar wave can be desciped by
  \vec{B}(\vec{r}) &= \vec{B}_0 \cdot e^{ -i \, \vec{k} \cdot \vec{r} }
 \end{split}
 \end{align}
+% 
+% 
 % 
 \subsection{Polarization}
 % 
@@ -146,6 +148,20 @@ Additionally the states can be describe by the Jones or Stokes calculus, later d
 % 
 % 
 % 
+\subsection{Light in medium}
+% 
+The maxwell equations in ... are described above. They can be solved analog to ... . This yields to some special behavier, \eg the magnetic and electic field component get out of phase.
+However here only the two properties of absorptiona and difraction are described.
+They derivation can be found \eg \cite{demtroeder2, Fliebach2012}.
+% 
+\subsection{Absorption}
+% 
+\begin{align}
+    I = I_0 \exp(-\mu x)
+\end{align}
+% 
+Beersche law of absorption with $\mu = \frac{4\pi \kappa}{\lambda_0}$ where $\kappa$ is the imaginary part of the complex refractive index.
+% 
 \subsection{Refraction}
 % 
 \begin{figure}[!t]
@@ -156,7 +172,12 @@ Additionally the states can be describe by the Jones or Stokes calculus, later d
 \caption{Illustration of refraction.}
 \end{figure}
 % 
-Refraction is the property of light to change direction as it passes from one medium to another.
+Refraction is the property of light to change direction as it passes from one medium to another. This can be shown by using the full Maxwell equations  for non-conductive material, \ie $\vec{j} = 0, \rho = 0$, that the dgl consit out of a primary wave with from atomic medim induced secundary waves, which leads to a reduction of the velocity of the resulting wave. Mathematically this can be described by a complex number $n = c' / c$.
+Using this relationship at a boundary surface between two media, one can show that the incident light beam splits into a reflecting and transmittang light wave. The reflecting light wave has the same angle as the incident light beam relativ the the surface normal. The transmitting light beam however due to the reduction of the velocity, changes its direction described by the snellius ...
+\begin{align}
+    n_0 \sin \alpha = n_1 \sin \beta
+\end{align}
+
 % 
 \begin{align}
 \underline{n} = n + i\kappa
@@ -169,18 +190,6 @@ Refraction is the property of light to change direction as it passes from one me
 &= e^{-2\pi \kappa z/\lambda_0} \operatorname{Re}\! \left[\vec{E}_0 \cdot e^{i\, (kz - \omega t)}\right]
 \end{split}
 \end{align}
-%
-\begin{figure}[!t]
-\centering
-\subcaptionbox{}[.49\textwidth]{
-\def\tikzwidth{0.49*\textwidth}
-\inputtikz{gfx/pli/ellipsoid_a}}
-%
-\subcaptionbox{}[.49\textwidth]{
-\def\tikzwidth{0.49*\textwidth}
-\inputtikz{gfx/pli/ellipsoid_b}}
-\caption{birefringence elipsoid}
-\end{figure}
 % 
 % 
 % 
@@ -190,24 +199,69 @@ Refraction is the property of light to change direction as it passes from one me
 \centering
 \def\tikzwidth{\textwidth}
 \inputtikz{gfx/pli/retardation}
-\label{fig:optic_retardation}
 \caption{Illustration of retardation.}
+\label{fig:optic_retardation}
 \end{figure}
+% 
+\begin{figure}[!t]
+\centering
+\subcaptionbox{}[.49\textwidth]{
+\def\tikzwidth{0.49*\textwidth}
+\inputtikz{gfx/pli/ellipsoid_a}}
+\subcaptionbox{}[.49\textwidth]{
+\def\tikzwidth{0.49*\textwidth}
+\inputtikz{gfx/pli/ellipsoid_b}}
+\caption{birefringence elipsoid}
+\label{fig:index_elipsoid}
+\end{figure}
+% 
+Material can have a different refractive index depending on the relative orientation and polarization of the light beam.
+This property is known as birefringence.
+The refractive index can be described as the refractive index $n_o$ and extraordinary  $n_e$.
+Since these two are perpendicular to each other, one can split the light beam into the same perpendicular parts and describe each by its own.
+These two light beams, except for the trivial case of a light beam is perpendicular to the surfave, have a different direction.
+However for small relative length (hängt von n ab, bzw der phasenänderung) the two light beams leave the material at the same point and recombined at the end.
+The change of phase is called birefringence and is described by the difference between the .. and ...
+% 
+\begin{align}
+    \Delta n = n_e - n_o \, .
+\end{align}
+% 
+This .. can be visualized by the index ellipsoid \cref{fig:index_elipsoid}.
+The change of the amplitude and phase can be described by the following techniques.
+% 
+% 
 % 
 \subsection{Jones}
 \label{sec:jones}
 % 
+The Jones calculus, introduced by Robert Clark Jones in 1941, describes the polarization state of a light beam by a complex vector $J$:
+% 
+\begin{align}
+    \vec{J} = \begin{pmatrix} E_x \exp(i \phi_x) \\ E_y \exp(i \phi_y) \end{pmatrix}
+\end{align}
+% 
+The amplitude of the perpendicular components are $E_x$ and $E_y$ with their phase $\phi_x$ and $\phi_y$.
+Optical elements, which changes the polarization state, such as a polarization filter and retarder, can be desribed by a matrix:
+% 
 \begin{align}
 \begin{split}
-\begin{pmatrix}
-0 & 0 \\ 0 & 1
-\end{pmatrix}
+\mat{P}_x = 
 \begin{pmatrix}
 1 & 0 \\ 0 & 0
 \end{pmatrix}
+, \,
+\mat{P}_y = 
 \begin{pmatrix}
-e^{i\, \varphi_x} & 0 \\ 0 & e^{i\, \varphi_y}
+0 & 0 \\ 0 & 1
 \end{pmatrix}
+, \,
+\mat{M} =
+\begin{pmatrix}
+e^{i \varphi_x} & 0 \\ 0 & e^{i \varphi_y}
+\end{pmatrix}
+, \,
+\Lambda_{1/4}=
 e^{\frac{i \pi}{4}}
 \begin{pmatrix}
 1 & 0 \\ 0 & -i
@@ -215,10 +269,13 @@ e^{\frac{i \pi}{4}}
 \end{split}
 \end{align}
 % 
+A rotation of the axis can be achieved by a 2d rotation matrix $\mat{R}$:
+% 
 \begin{align}
 \begin{split}
-M(\theta )=R(\theta )\,M\,R(-\theta )\\
-R(\theta ) = 
+\mat{M}(\theta )=\mat{R}(\theta )\cdot\mat{M}\cdot\mat{R}(-\theta )
+, \,
+\mat{R}(\theta ) = 
 \begin{pmatrix}
 \cos \theta & -\sin \theta \\
 \sin \theta & \cos \theta
@@ -226,8 +283,13 @@ R(\theta ) =
 \end{split}
 \end{align}
 % 
+% 
+% 
 \subsection{M\"uller-Stokes}\label{sec:Mueller-Stokes}
 \label{sec:mueller_stokes}
+% 
+Analog to \cref{sec:jones} the M\"uller-Stokes formalism, described by George Gabriel Stokes in 1852, also describes the polarication state of a light beam.
+However it does not use the absolute .. but the relative polarication between both components:
 % 
 \paragraph{Stokes vector}
 \begin{align}
@@ -245,7 +307,7 @@ S_3 &= I p \sin 2\chi
 & \equiv \langle E_a^{2} \rangle - \langle E_b^{2} \rangle \\
 & \equiv  \langle E_l^{2} \rangle - \langle E_r^{2} \rangle
 \end{split}
-\hspace{2em}
+, \,
 \vec{S} =
 \begin{pmatrix} S_0 \\ S_1 \\ S_2 \\ S_3\end{pmatrix}
 \end{align}
@@ -261,8 +323,45 @@ S_3 &= I p \sin 2\chi
 % \end{split}
 % \end{align}
 % 
+Therefore the phase can not be described anymore.
+However the relative phase information is stored and can be used to describe also polarization states of polarization filters, which can not be described by Jones.
+Aanlog to Jones one can formulate the matrices for the optical components:
+% 
+\paragraph{Linear Polarizer}
+\begin{align}
+\mat{P}_x=\frac{1}{2}
+\begin{pmatrix}
+    1 & 1 & 0 & 0 \\
+    1 & 1 & 0 & 0 \\
+    0 & 0 & 0 & 0 \\
+    0 & 0 & 0 & 0
+  \end{pmatrix}
+, \,
+\mat{P}_y=\frac{1}{2}
+\begin{pmatrix}
+     1 & -1 & 0 & 0 \\
+    -1 &  1 & 0 & 0 \\
+     0 &  0 & 0 & 0 \\
+     0 &  0 & 0 & 0
+\end{pmatrix}
+\end{align}
+% 
+\todo{allgemeiner retarder}
+% 
+\paragraph{Quarter-wave plate (fast-axis vertical)}
+\begin{align}
+\Lambda_{1/4}=\
+\begin{pmatrix}
+    1 & 0 & 0 &  0 \\
+    0 & 1 & 0 &  0 \\
+    0 & 0 & 0 & -1 \\
+    0 & 0 & 1 &  0
+\end{pmatrix}
+\end{align}
+% 
 \paragraph{Rotation Matrix}
 \begin{align}
+\mat{R}(\theta)=
 \begin{split}
 \begin{pmatrix}
     1 &                0 &               0 & 0 \\
@@ -273,58 +372,49 @@ S_3 &= I p \sin 2\chi
 \end{split}
 \end{align}
 % 
-\paragraph{Rotation Matrix}
-\begin{align}
-\frac{1}{2}
-\begin{pmatrix}
-    1 &                0 &               0 & 0 \\
-    0 &  \cos{(2\theta)} & \sin{(2\theta)} & 0 \\
-    0 & -\sin{(2\theta)} & \cos{(2\theta)} & 0 \\
-    0 &                0 &               0 & 1
-\end{pmatrix}
-\end{align}
-% 
-\paragraph{Linear Polarizer}
-\begin{align}
-\frac{1}{2}
-\begin{pmatrix}
-    1 & 1 & 0 & 0 \\
-    1 & 1 & 0 & 0 \\
-    0 & 0 & 0 & 0 \\
-    0 & 0 & 0 & 0
-  \end{pmatrix}
-\end{align}
-\begin{align}
-\frac{1}{2}
-\begin{pmatrix}
-     1 & -1 & 0 & 0 \\
-    -1 &  1 & 0 & 0 \\
-     0 &  0 & 0 & 0 \\
-     0 &  0 & 0 & 0
-\end{pmatrix}
-\end{align}
-% 
-\paragraph{Quarter-wave plate (fast-axis vertical)}
-\begin{align}
-\begin{pmatrix}
-    1 & 0 & 0 &  0 \\
-    0 & 1 & 0 &  0 \\
-    0 & 0 & 0 & -1 \\
-    0 & 0 & 1 &  0
-\end{pmatrix}
-\end{align}
-% 
+% \paragraph{Rotation Matrix}
+% \begin{align}
+% \frac{1}{2}
+% \begin{pmatrix}
+%     1 &                0 &               0 & 0 \\
+%     0 &  \cos{(2\theta)} & \sin{(2\theta)} & 0 \\
+%     0 & -\sin{(2\theta)} & \cos{(2\theta)} & 0 \\
+%     0 &                0 &               0 & 1
+% \end{pmatrix}
+% \end{align}
 \todo{matrix multi}
 % 
-\section{Discretization}
-\paragraph{Micro vs Macro:}
+\section{Tissue Discretization}
 % 
+By deviding the volume into small diskreticed subvolumes, one can multiply the .. all together and ... (analog Riemann sum)
 \begin{align}
-    % \frac{\oint \vec{v}_z \mathrm{d}A}{\oint \vec{v}_x \mathrm{d}A} = 
-    % \frac{\int_{-1}^{1}\abs{\vec{v}} \mathrm{d}x}{\int_{-\frac{\pi}{2}}^{\frac{\pi}{2}} \abs{\vec{v}} \cos(\varphi) \mathrm{d}\varphi} =
-    % \frac{2}{1}
-    \frac{A_{\Box}}{A_{\circ}} = \frac{4}{\pi}
+    \int F \, dt \approx \sum_n F \, \Delta t
 \end{align}
+see simulation?
+% 
+%  see simulation
+% \paragraph{Micro vs Macro:}
+% % 
+% % \begin{align}
+% %   \int_{y_\textit{min}}^{y_\textit{max}} \vec{v}(y) \,dy\\
+% %   x = const
+% %   y = y(\alpha,x) = tan(\alpha) \cdot x\\
+% %   \vec{v}_r = \begin{pmatrix} \cos(\alpha)\\ \sin(\alpha)\\0\end{pmatrix}, \, \vec{v}_p = \begin{pmatrix} 0\\ 0\\1\end{pmatrix}\\
+% %   \vec{v}_r = \begin{pmatrix} \cos(\arctan(y/x))\\ \sin(\arctan(y/x))\\0\end{pmatrix}\\
+% %   \int_{y_\textit{min}}^{y_\textit{max}} \vec{v}_p(y) \,dy = (y_\textit{max} - y_\textit{min}) \cdot e_z\\
+% %   \int_{y_\textit{min}}^{y_\textit{max}} \vec{v}_r(y) \,dy = \int_{y_\textit{min}}^{y_\textit{max}} \cos(\arctan(y/x)) dy \cdot e_x \\
+% %   = x\left(\sinh^{-1}(y_\textit{max}/x) - \sinh^{-1}(y_\textit{min}/x)\right) \\
+% %   = 2x \left(\sinh^{-1}\left(\frac{2\sqrt{R-x^2}}{x}\right)\right)
+% % \end{align}
+% % 
+% % \begin{align}
+% %     % \frac{\oint \vec{v}_z \mathrm{d}A}{\oint \vec{v}_x \mathrm{d}A} = 
+% %     % \frac{\int_{-1}^{1}\abs{\vec{v}} \mathrm{d}x}{\int_{-\frac{\pi}{2}}^{\frac{\pi}{2}} \abs{\vec{v}} \cos(\varphi) \mathrm{d}\varphi} =
+% %     % \frac{2}{1}
+% %     \frac{A_{\Box}}{A_{\circ}} = \frac{4}{\pi}
+% % \end{align}
+% % 
+% \todo{why 2*dn?}
 % 
 \section{Experimental Setup}
 %
