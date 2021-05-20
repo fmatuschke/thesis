@@ -422,17 +422,17 @@ see simulation?
     \captionsetup[sub]{position=top}
     \def\tikzwidth{\textwidth}
 	\centering
-	\subcaptionbox{}[\textwidth]{
+	\subcaptionbox{\label{setup-lap} \ac{LAP}}[\textwidth]{
 % 		\resizebox{0.95\textwidth}{!}{
 		\inputtikz{gfx/pli/pli_setup}
 % 	}
 	}\\
-	\subcaptionbox{}[\textwidth]{
+	\subcaptionbox{\label{setup-pm} \ac{PM}}[\textwidth]{
 % 		\resizebox{0.95\textwidth}{!}{
 		\inputtikz{gfx/pli/pli_setup_pm}
 % 	}
 	}
-	\caption{Illustration of PLI setup. (a) LAP, (b) PM.}
+	\caption{Illustration of PLI setup.}
 	\label{fig:pli_setup}
 \end{figure}
 %
@@ -444,19 +444,45 @@ see simulation?
 			\inputtikz{gfx/pli/pli_detail}}\hfill
 	\subcaptionbox{\ac{PM}}[.49\textwidth]{
 			\inputtikz{gfx/pli/pli_detail_pm}}
-	\label{fig:pli_detail}
 	\caption{Illustration of detail PLI setup.}
+	\label{fig:pli_detail}
 \end{figure}
 %
+The \ac{3D-PLI} setup is described in \cite{Axer2011} with the tiltable light beam microscope (LMP) in \cite{Wiese:887678}.
+For the routine measurements two (three) microscope systems are currently in use.
+The first use of a high throughput microscope is the \ac{LAP} with a pixel size of about \SI{60}{\micro\meter}. \footnote{can be change by the optic also to $\SI{40}{\micro\meter}$ and $\SI{20}{\micro\meter}$, but remains for the routine measurements with $\SI{60}{\micro\meter}$.}
+It consist out of a led light source (\SI{525}{\nano\meter}), a rotatable polarization filter, a rotatable quarter wave retarder, the specimen stage, which can be tilted for oblique views, a rotatable polarizer. Both polarizer and quarter wave retarder are rotated at the same time. The both polarizers have a phase offset of $\SI{\pi/2}{}$, the first polarizer and the quarter wave retarder of $\SI{\pi/4}{}$ (see (see \cref{setup-lap}).
+The second system \ac{LMP3D} microscope fullfills the same measurments, however the retarder is placed after the tissue specimen and fixed with the polarizer without any rotations (see \cref{setup-pm}).
+Mathematically it measures the same signal.
+\footnote{The rotatable filters of the \ac{LAP} has the advantage, that noise like dust particles can be easy identified and removed. Since the microscop is in a more confined "box" this is not necesarry.}
+A difference is that the optical path is in reverse to the \ac{LAP} system.
+Since there is a mirror in the path, the image is flipped again so that the coordinate systems stays the same (see \cref{fig:pli_detail}).
+% 
+\subsubsection{Signal}
+% 
+From the M\"{u}ller Matrices (\cref{sec:Mueller-Stokes}) as shown in \cite{MenzelMaster,MenzelDissertation}, that the intensity signal, measured by the \ac{CCD}-sensor, follows a sinusiodal curve:
+% 
+% \begin{align}
+% I = \underbrace{\frac{I_0}{2}}_{\mathclap{\mathit{transmittance}}}
+%     \bigl[ \sin\bigl(2\rho - 2{\underbrace{\vphantom{\frac{I_0}{2}} \varphi}_{\mathclap{\mathit{direction}}}} \bigr)
+%     \cdot \sin \bigl( {\underbrace{\vphantom{\frac{I_0}{2}} 2\pi\frac{d \dn}{\lambda} \cos^2\left( \alpha \right)}_{\mathclap{\delta \, \coloneqq \, \mathit{retardation}}}} \bigr) \bigr]
+% \end{align}
+\begin{align}
+\begin{split}
+I =\frac{I_0}{2}\bigl[ \sin\bigl(2\rho - 2\varphi \bigr)\cdot \sin \bigl( 2\pi\frac{d \dn}{\lambda} \cos^2\left( \alpha \right) \bigr) \bigr] \\
+\text{with} \enspace \delta \coloneqq 2\pi\frac{d \dn}{\lambda} \cos^2\left( \alpha \right) \enspace 
+\text{and} \enspace \trel \coloneqq \frac{d \dn}{\lambda}
+\end{split}
+\end{align}
+% 
+\subsubsection{Tilted signal}
+% 
+To be able to analyse the inclination $\alpha$ one has to distiguish the relative strength of the birefringence from the $\cos^2(\alpha)$
+% 
+% 
 % 
 \section{Signal Analysis}
 % 
-\begin{quote}
-Definition 1 (Streamline).
-A streamline is a finite sequence of points that is used to represent a connection in the brain obtained using dMRI based tractography.
-Following the sequence notation, we denote a streamline as $\Gamma = (p_0, p_1, p_2, \cdots )$ where $p_i \in \mathbb{R}^3$. % https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6139055/
-\end{quote}
-
 \begin{align}
 \begin{split}
 A \sin(\omega t + \alpha) + B \sin(\omega t + \beta) &= \sqrt{C^2 + D^2} \cdot \sin \, \left( \omega t + \tan^{-1} \left( \frac{D}{C} \right) \right)
@@ -481,8 +507,8 @@ D &= A \sin(\alpha)+ B \sin(\beta)
 % 
 % 
 % 
-\section{signal}
+% \section{signal}
 % 
-\begin{align}
-I = \frac{I_0}{2} \left[ \sin\left(2\rho - 2\varphi\right) \cdot \left( 2\pi\frac{d \dn}{\lambda} \cos^2\left( \alpha \right) \right)  \right]
-\end{align}
+% \begin{align}
+% I = \frac{I_0}{2} \left[ \sin\left(2\rho - 2\varphi\right) \cdot \left( 2\pi\frac{d \dn}{\lambda} \cos^2\left( \alpha \right) \right)  \right]
+% \end{align}
