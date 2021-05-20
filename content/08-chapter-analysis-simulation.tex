@@ -72,7 +72,7 @@ The final group \textrm{8\text{-}2} \raisebox{.25em}{\tikzset{external/export ne
 The intensity line profiles are shown in \cref{fig:usaf_lines}.
 % 
 Using the Rayleigh criterion, the resolution is in the range of the second group and thus around $\SI{1.95}{\micro\meter}$.
-This reproduces the previous measurements in \cite{menzel_finite-difference_2018} \todo{master thesis?}.
+This reproduces the previous measurements in \cite{MenzelMaster} \todo{master thesis?}.
 As a result, the convolution to be applied is set to $\opticsigma = \SI{0.75}{\pixel}$ in the size of the resulting image pixel.
 % 
 % 
@@ -220,20 +220,36 @@ Two \acsp{ROI} with \dummy{} pixels are annotated for this purpose.
 % 2_simulation/0_parameter/measure_vervet.ipy
 \centering
 \hspace*{\fill}
-\subcaptionbox{zoom transmittance}{\includegraphics[width=0.45\textwidth]{dev/gfx/data/transmittance_vervet_cc_0_8339.png}}\hfill
-\subcaptionbox{hist transmittance}{\includegraphics[width=0.45\textwidth]{dev/gfx/data/transmittance_vervet_cc_hist.png}}
+\subcaptionbox{zoom transmittance}{\includegraphics[width=0.45\textwidth]{dev/rc1/transmittance_vervet_cc_0_8339.png}}\hfill
+\subcaptionbox{hist transmittance}{\includegraphics[width=0.45\textwidth]{dev/rc1/transmittance_vervet_cc_hist.png}}
 \hspace*{\fill}
 \\
 \hspace*{\fill}
-\subcaptionbox{zoom retardation}{\includegraphics[width=0.45\textwidth]{dev/gfx/data/retardation_vervet_cc_0.000_0.996.png}}\hfill
-\subcaptionbox{hist retardation}{\includegraphics[width=0.45\textwidth]{dev/gfx/data/retardation_vervet_cc_hist.png}}
+\subcaptionbox{zoom retardation}{\includegraphics[width=0.45\textwidth]{dev/rc1/retardation_vervet_cc_0.000_0.996.png}}\hfill
+\subcaptionbox{hist retardation}{\includegraphics[width=0.45\textwidth]{dev/rc1/retardation_vervet_cc_hist.png}}
 \hspace*{\fill}
 \caption[zoom ret and trans]{%
-left trans: 1168+-501, right trans: 1175+-511, left ret: 0.83+-0.07, right ret: 0.80+-0.07
+trans left: $1200 \pm 500$,
+trans right: $1200 \pm 500$,
+bg: $4530 \pm 240$,
+fuellgrad $0.75: \mu \approx 30 \pm 10$,
+fuellgrad $0.75: \mu \approx 30 \pm 10$,
+ret left: $0.83 \pm0.07$,
+ret right: $0.80 \pm0.07$
 \itodo{new fig-> path as vector; what happens in the center; check lr flip with images above, histogramm?}}
 \label{fig:brain_ret_trans_zoom}
 \end{figure}
 % 
+% analog roden:
+% trans: $2100 \pm 600$,
+% bg: $4000 \pm 50$,
+% fuellgrad $0.75: \mu \approx 14 \pm 7$,
+% ret: $0.40 \pm 0.11$,
+% and human:
+% trans: $170 \pm 80$,
+% bg: $2700 \pm 110$,
+% fuellgrad $0.75: \mu \approx 61 \pm 11$,
+% ret: $0.68 \pm 0.11$,
 % 
 % 
 \begin{figure}[!tp]
@@ -327,7 +343,7 @@ To run the simulation, a relative error of \dummy{} is used for a midrange analy
 \begin{figure}[!tp]%p
 % 2_simulation/0_parameter/fiber_radii.py
 \centering
-\includegraphics[width=\textwidth, page=4]{dev/gfx/2/voxel_size_plots_data_1.pdf}
+\includegraphics[width=\textwidth, page=1]{dev/rc1/voxel_size_plots_data_output_vs_135_0.01_6_25_vervet_r_rc1.pdf}
 \caption[voxel size model with noise]{1. $(\modelOmega=0, \modelPsi=1, \modelInc=0)$, 2. $(\modelOmega=0, \modelPsi=1, \modelInc=90)$, 3. $(\modelOmega=90, \modelPsi=0.5, \modelInc=0)$, 4. $(\modelOmega=90, \modelPsi=0.5, \modelInc=90)$: the mean difference between the Signal $\mean(\intensity(\voxels_{\mathit{ref} = \SI{0.0125}{\micro\meter}, \fiberRadius})- \intensity(\voxels, \fiberRadius))$. The mean difference is constant for smaller voxel sizes and does not start to grow significantly before $\voxels=\SI{0.125}{\micro\meter}$. \itodo{labels}}
 \label{fig:voxelsizeNoise}
 \end{figure}
