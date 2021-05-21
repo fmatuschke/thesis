@@ -458,7 +458,7 @@ Mathematically it measures the same signal.
 A difference is that the optical path is in reverse to the \ac{LAP} system.
 Since there is a mirror in the path, the image is flipped again so that the coordinate systems stays the same (see \cref{fig:pli_detail}).
 % 
-\subsubsection{Signal}
+\subsection{Signal}
 % 
 From the M\"{u}ller Matrices (\cref{sec:Mueller-Stokes}) as shown in \cite{MenzelMaster,MenzelDissertation}, that the intensity signal, measured by the \ac{CCD}-sensor, follows a sinusiodal curve:
 % 
@@ -468,6 +468,7 @@ From the M\"{u}ller Matrices (\cref{sec:Mueller-Stokes}) as shown in \cite{Menze
 %     \cdot \sin \bigl( {\underbrace{\vphantom{\frac{I_0}{2}} 2\pi\frac{d \dn}{\lambda} \cos^2\left( \alpha \right)}_{\mathclap{\delta \, \coloneqq \, \mathit{retardation}}}} \bigr) \bigr]
 % \end{align}
 \begin{align}
+\label{eq:pli_signal}
 \begin{split}
 I =\frac{I_0}{2}\bigl[ \sin\bigl(2\rho - 2\varphi \bigr)\cdot \sin \bigl( 2\pi\frac{d \dn}{\lambda} \cos^2\left( \alpha \right) \bigr) \bigr] \\
 \text{with} \enspace \delta \coloneqq 2\pi\frac{d \dn}{\lambda} \cos^2\left( \alpha \right) \enspace 
@@ -475,33 +476,100 @@ I =\frac{I_0}{2}\bigl[ \sin\bigl(2\rho - 2\varphi \bigr)\cdot \sin \bigl( 2\pi\f
 \end{split}
 \end{align}
 % 
-\subsubsection{Tilted signal}
+Since \cref{eq:pli_signal} describes a sinosoidal signal, the fourier analysis is a obvious choise.
+For a discrete, aquidistant measurement of the rotation angles $\rho$, one can use the fourier series with the three coefficients to describe the signal:
 % 
-To be able to analyse the inclination $\alpha$ one has to distiguish the relative strength of the birefringence from the $\cos^2(\alpha)$
-% 
-% 
-% 
-\section{Signal Analysis}
-% 
+% \begin{align}
+% \begin{split}
+% A \sin(\omega t + \alpha) + B \sin(\omega t + \beta) &= \sqrt{C^2 + D^2} \cdot \sin \, \left( \omega t + \tan^{-1} \left( \frac{D}{C} \right) \right)
+% \end{split}
+% \\
+% \begin{split}
+% C &= A \cos(\alpha)+ B \cos(\beta)\\
+% D &= A \sin(\alpha)+ B \sin(\beta)
+% \end{split} \nonumber 
+% \end{align}
+
 \begin{align}
 \begin{split}
-A \sin(\omega t + \alpha) + B \sin(\omega t + \beta) &= \sqrt{C^2 + D^2} \cdot \sin \, \left( \omega t + \tan^{-1} \left( \frac{D}{C} \right) \right)
+\rho &= [0, 20, ..., 180) \> \text{for 9 measurements}\\
+a_0 &= \frac{1}{N} \sum(\mathit{data})\\
+a_1 &= \frac{2}{N} \sum(\mathit{data} \cdot \sin(2 \cdot \rho)\\
+b_1 &= \frac{2}{N} \sum(\mathit{data} \cdot \cos(2 \cdot \rho)
 \end{split}
-\\
-\begin{split}
-C &= A \cos(\alpha)+ B \cos(\beta)\\
-D &= A \sin(\alpha)+ B \sin(\beta)
-\end{split} \nonumber 
 \end{align}
+
+With these the final \ac{3D-PLI} modalities are calculated:
+
+\begin{align}
+\begin{split}
+\mathit{transmittance} &= 2 \cdot a_0\\
+\mathit{direction} &= 0.5 \cdot \atantwo(-b_1 / a_1)\\
+\mathit{retardation} &= \frac{\sqrt{a_1^2 + b_1^2}}{a_0}
+\end{split}
+\end{align}
+
+
+
+% 
+\subsection{Tilted signal}
+% 
+To be able to analyse the inclination $\alpha$ one has to distiguish the relative strength of the birefringence from the $\cos^2(\alpha)$.
+For this purpose a tiltable specimen was developed, which allows measuring the light signal through the tissue with a different angle of incidenc.
+This mean, that tissue and therefore the nerve fibers also change their orientation by the tilting angles $\theta, \varphi$.
+Additionally the distance the light travels through the tissue, elongigates by $1/\cos(\theta)$ \cref{fig:tilted_side_view}.
+% 
+Depending on the \pixelsize{}, in the case of the \ac{LAP} system, this light travels though the same volume, but with another orientation.
+Therefore a measurement of multiple light paths can be ... and the resulting signals can be used to analyse the inclination and relative birefrigente tissue thickness \trel{}.
+In the case of a tiltible specimen, the angle of incidence on the glass ... and the tissue also changes the angle of the light by snellius law.
+All angles mentiont here are if not specified always the change of angle of the light inside the tissue (see \cref{fig:tilting_camera_view}). 
+This also leads to a perspective shift, which has to be corrected by a registration process.
+In this case an affine transformation.
+% 
+In \cite{Schmitz2018} this analys published under the name of \ac{ROFL}, which builds up on the work of \cite{Wiese:887678}.
+The idea is to fit the measured signals of all light paths simultaniously.
+Because the change of signal is proportional to the $\cos(\alpha)$ this however means, that for steep fibers, the changes are not only small, but also the amplitude of the signal is very small.
+This leads to the problem of increasing uncertanty with increasing inclination angle.
+\\
+A further problem is that for a smaller \pixelsize{} the light path cannot be neglected anymore.
+For the \ac{LMP3D} system this means, that with a maximal tilting angle of about $\SI{3}{\degree}$ and a usually tissue thickness of $\SI{60}{\micro\meter}$ the light path is measured in n pixels away from the non tilting case, if the rotation point is in the center of the tissue.
+\\
+However for homoginoius tissue, like the \ac{WM} may be some regions, the analysis technique can still be applied.
+A change in density, orientation or dispersion however will lead to a false result.
+% 
+% 
+% 
+\section{Orientation}
 % 
 \begin{figure}[!t]
 \centering
-\def\tikzwidth{0.45*\textwidth}
-\subcaptionbox{rgb}[.49\textwidth]{
-\inputtikz{gfx/pli/rgb_sphere}}
-\subcaptionbox{hsv}[.49\textwidth]{
-\inputtikz{gfx/pli/hsv_sphere}}
-\caption{collr spheres, \itodo{resolution}}
+\setlength{\tikzwidth}{0.4\textwidth}
+% \begin{tabular}{cc}
+\begin{center}
+\begin{tabular}{m{6cm}m{6cm}}
+\includegraphics[width=\tikzwidth]{gfx/pli/color_sphere.png}
+&
+\inputtikz{gfx/pli/hsv_sphere}
+\\
+\begin{minipage}{0.45\textwidth}
+\leavevmode\subcaption{2d hsv sphere}
+\end{minipage}&
+\begin{minipage}{0.45\textwidth}
+\leavevmode\subcaption{3d hsv sphere}
+\end{minipage}
+\end{tabular}
+\end{center}
+% 
+% \setlength{\tikzwidth}{0.42\textwidth}
+% \subcaptionbox{2d sphere}[.49\textwidth]{
+% \includegraphics[width=\tikzwidth]{gfx/pli/color_sphere.png}
+% }
+% \setlength{\tikzwidth}{0.45\textwidth}
+% \subcaptionbox{hsv}[.49\textwidth]{
+% \inputtikz{gfx/pli/hsv_sphere}
+% }
+% 
+\caption{collr spheres, \itodo{centering}}
 \label{fig:spheres}
 \end{figure}
 % 
