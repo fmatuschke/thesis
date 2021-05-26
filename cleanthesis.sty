@@ -225,7 +225,14 @@
 % **************************************************
 % Font Definitions (see http://www.tug.dk/FontCatalogue/)
 % **************************************************
-\RequirePackage[T1]{fontenc}	% font types and character verification
+\ifPDFTeX
+% \RequirePackage[T1]{fontenc}	% font types and character verification
+\else
+    \usepackage{fontspec}
+    \setsansfont{CMU Sans Serif}%{Arial}
+    \setmainfont{CMU Serif}%{Times New Roman}
+    \setmonofont{CMU Typewriter Text}%{Consolas}
+\fi
 
 \ifct@cthesis@sansserif
 	% Using sans-serif fonts
