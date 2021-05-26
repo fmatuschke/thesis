@@ -5,6 +5,7 @@
 % **************************************************
 \PassOptionsToPackage{utf8}{inputenc}
 \usepackage{inputenc}
+\usepackage{iftex}
 %
 % **************************************************
 % Information and Commands for Reuse
@@ -128,14 +129,15 @@
 \usepackage[bottom]{footmisc}
 % 
 \usepackage{siunitx}
-\sisetup{detect-mode=true,detect-family=false,
-        detect-display-math=false,detect-shape=false,
-        list-units=brackets, range-units=brackets,
-        range-phrase = {\text{~to~}},
-        math-micro=\muup,
-        binary-units = true} %\mathrm{\mu}}
+% depricated in newer versions, clean thesis breaks math symbols
+% \sisetup{detect-mode=true,detect-family=false,
+%         detect-display-math=false,detect-shape=false,
+%         list-units=brackets, range-units=brackets,
+%         range-phrase = {\text{~to~}},
+%         % math-micro=\muup,
+%         binary-units = true} %\mathrm{\mu}}
 \DeclareSIUnit{\arbitraryunit}{\mathit{arb. unit}}
-\AtBeginDocument{\sisetup{math-rm=\mathrm, text-rm=\sffamily}}
+% \AtBeginDocument{\sisetup{math-rm=\mathrm, text-rm=\sffamily}}
 % 
 % \usepackage{caption}
 \usepackage[nameinlink]{cleveref}

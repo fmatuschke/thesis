@@ -373,7 +373,7 @@ However, this is only true for a pixel size of $\SI{1.25}{\micro\meter}$.
 % 
 \begin{figure}[!t]
 \centering
-\includegraphics[width=1\textwidth]{dev/gfx/sim_cube/radius_acc_compare_Vervet_PM_r.pdf}
+\includegraphics[width=1\textwidth]{dev/rc1/cube_2pop_135_rc1_radius_acc_compare_Vervet_PM_r.pdf}
 \caption[sim acc]{ $\acc{}(GT,GT_{0.5})$, $\acc{}(SIM,GT_{0.5})$ and $\acc{}(SIM,SIM_{0.5})$. hypothese: abweichungen in GtSim bei kleinen radien dadurch, dass zwei richtungen nicht sichtbar sind? schaue dir die histogramme und odfs an. \itodo{komplett neu machen}}
 \label{fig:accVervetPMr}
 \end{figure}
@@ -464,7 +464,7 @@ Verhalten von transmittance von steilheit?
 % 
 \begin{table}[!b]
 \centering
-\sisetup{open-bracket={\{}, close-bracket={\}}, list-final-separator={,},list-pair-separator={,}}%
+% \sisetup{open-bracket={\{}, close-bracket={\}}, list-final-separator={,},list-pair-separator={,}}%
 \pgfplotstabletypeset[%
     thesisTableStyle,
     column type=l,
@@ -486,7 +486,7 @@ simpli.wavelength & $\SI{525}{\nano\meter}$\\
 simpli.optical\_sigma & $\SI{0.75}{\pixel}$\\
 tilt & $\SI{3.9}{\degree}$\\
 simpli.light\_intensity & $\SI{8000}{}$\\
-gain & $\SI{0.1175}{}$\\
+gain & \SI{0.1175}{}\\
 % simpli.noise\_model & \texttt{lambda x:np.round(np.random.normal(x,np.sqrt(gain * x))).astype(np.uint16)}\\
 simpli.noise\_model & \texttt{lambda x:np.round(np.random.normal(}\\
  & \ \ \ \ \ \texttt{x,np.sqrt(gain * x))).astype(np.uint16)}\\
@@ -524,7 +524,7 @@ In the case of a single fiber population only the inclination parameter $\modelI
 % 
 \begin{figure}[!tp]
 \centering
-\includegraphics[height=0.8\textheight]{dev/gfx/sim_cube/sim_plots_single_pop_hist.pdf} 
+\includegraphics[height=0.8\textheight]{dev/rc1/cube_2pop_135_rc1_r_0.5_plots_single_pop_hist.pdf} 
 \caption[sim]{left: 2d log histogramm orientation from rofl analysis of simulation, right: 2d log histogramm of orientation of model segemnts. \dummy[auch als odf moeglich, aber schlechter vergeichbar; vieleicht contourplots von GT]{}}
 \label{fig:single_fiber_pop_hist}
 \end{figure}
@@ -534,11 +534,11 @@ In the case of a single fiber population only the inclination parameter $\modelI
 \begin{figure}[!tp]
 \centering
 \subcaptionbox{\label{fig:single_fiber_pop_epa_trans}transmittance}[.32\textwidth]{
-\includegraphics[width=0.3\textwidth]{dev/gfx/sim_cube/sim_plots_single_pop_epa_trans.pdf}}\hfill
+\includegraphics[width=0.3\textwidth]{dev/rc1/cube_2pop_135_rc1_r_0.5_plots_single_pop_epa_trans.pdf}}\hfill
 \subcaptionbox{\label{fig:single_fiber_pop_epa_dir}direction}[.32\textwidth]{
-\includegraphics[width=0.3\textwidth]{dev/gfx/sim_cube/sim_plots_single_pop_epa_dir.pdf}}\hfill
+\includegraphics[width=0.3\textwidth]{dev/rc1/cube_2pop_135_rc1_r_0.5_plots_single_pop_epa_dir.pdf}}\hfill
 \subcaptionbox{\label{fig:single_fiber_pop_epa_ret}retardation}[.32\textwidth]{
-\includegraphics[width=0.3\textwidth]{dev/gfx/sim_cube/sim_plots_single_pop_epa_ret.pdf}}
+\includegraphics[width=0.3\textwidth]{dev/rc1/cube_2pop_135_rc1_r_0.5_plots_single_pop_epa_ret.pdf}}
 \caption[]{\dummy[single population modalities; colors left to right: 0, 30, 60, 90 degree inclination; line: theoretical curve]{}}
 \label{fig:single_fiber_pop_epa}
 \end{figure}
@@ -546,11 +546,11 @@ In the case of a single fiber population only the inclination parameter $\modelI
 \begin{figure}[!tp]
 \centering
 \subcaptionbox{\label{fig:single_fiber_pop_rofl_dir}rofl direction}[.32\textwidth]{
-\includegraphics[width=0.3\textwidth]{dev/gfx/sim_cube/sim_plots_single_pop_rofl_dir.pdf}}\hfill
+\includegraphics[width=0.3\textwidth]{dev/rc1/cube_2pop_135_rc1_r_0.5_plots_single_pop_rofl_dir.pdf}}\hfill
 \subcaptionbox{\label{fig:single_fiber_pop_rofl_inc}rofl inclination}[.32\textwidth]{
-\includegraphics[width=0.3\textwidth]{dev/gfx/sim_cube/sim_plots_single_pop_rofl_inc.pdf}}\hfill
+\includegraphics[width=0.3\textwidth]{dev/rc1/cube_2pop_135_rc1_r_0.5_plots_single_pop_rofl_inc.pdf}}\hfill
 \subcaptionbox{\label{fig:single_fiber_pop_rofl_trel}rofl trel}[.32\textwidth]{
-\includegraphics[width=0.3\textwidth]{dev/gfx/sim_cube/sim_plots_single_pop_rofl_trel.pdf}}
+\includegraphics[width=0.3\textwidth]{dev/rc1/cube_2pop_135_rc1_r_0.5_plots_single_pop_rofl_trel.pdf}}
 \caption[]{\dummy[single population rofl analysis; colors left to right: 0, 30, 60, 90 degree inclination; line: theoretical curve]{}}
 \label{fig:single_fiber_pop_rofl}
 \end{figure}
