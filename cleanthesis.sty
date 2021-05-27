@@ -226,29 +226,36 @@
 % Font Definitions (see http://www.tug.dk/FontCatalogue/)
 % **************************************************
 \ifPDFTeX
-% \RequirePackage[T1]{fontenc}	% font types and character verification
-\else
-    \usepackage{fontspec}
-    \setsansfont{CMU Sans Serif}%{Arial}
-    \setmainfont{CMU Serif}%{Times New Roman}
-    \setmonofont{CMU Typewriter Text}%{Consolas}
+    \RequirePackage[T1]{fontenc}	% font types and character verification
+\else % xelatex or lualatex
+    \RequirePackage{fontspec}
+    \setromanfont{Latin Modern Roman} % not sure yet
+    \setsansfont{TeX Gyre Heros}
+    \setmainfont{CMU Serif} % not sure yet
+    \setmonofont{CMU Typewriter Text} % not sure yet
 \fi
 
 \ifct@cthesis@sansserif
 	% Using sans-serif fonts
 	%
-	%\RequirePackage{helvet}	% Font:	Helvetica
-	%\RequirePackage{nimbus}	% Font:	Nimbus Sans, a clone of the Helvetica
-	\RequirePackage{tgheros}	% Font:	TEX Gyre Heros
-	%\RequirePackage{libertine}	% Font:	Biolinum, the standard sans serif typeface with the Libertine package
-	%\RequirePackage[scaled]{berasans} % Font:	Bera Sans, a a version of Bitstream Vera Sans slightly enhanced
+	\ifPDFTeX
+    	%\RequirePackage{helvet}	% Font:	Helvetica
+    	%\RequirePackage{nimbus}	% Font:	Nimbus Sans, a clone of the Helvetica
+    	\RequirePackage{tgheros}	% Font:	TEX Gyre Heros
+    	%\RequirePackage{libertine}	% Font:	Biolinum, the standard sans serif typeface with the Libertine package
+    	%\RequirePackage[scaled]{berasans} % Font:	Bera Sans, a a version of Bitstream Vera Sans slightly enhanced
+	\fi
 	\renewcommand*\familydefault{\sfdefault}%
 \else
 	% Using serif fonts
 	%
-	\RequirePackage{lmodern}	% font set: Latin Modern
-	\RequirePackage{charter}	% font set: Charter
-	%\RequirePackage{fourier}	% font set: (basically improved utopia)
+	\ifPDFTeX
+    	\RequirePackage{lmodern}	% font set: Latin Modern
+    	\RequirePackage{charter}	% font set: Charter
+    	%\RequirePackage{fourier}	% font set: (basically improved utopia)
+    \else
+        \notCheckedYet
+    \fi
 \fi
 
 % **************************************************
@@ -396,7 +403,7 @@
 \renewcommand{\descriptionlabel}[1]{%
 	\hspace*{\labelsep}%
 	\color{ctcolorlistlabel}%
-	\tgherosfont\textbf{#1}%
+	\textbf{#1}% \tgherosfont
 }
 \newenvironment{my_list_desc}
 	{\begin{description}[%
@@ -499,60 +506,6 @@
     \ctfooterrightpagenumber%
 }
 
-
-% **************************************************
-% New Commands
-% **************************************************
-% % TODO command
-% \definecolor{color_todo}{rgb}{.6,.8,.2}
-% \newcommand{\TODO}[1]{{\color{color_todo}\textbf{[TODO #1]}}}
-%
-%
-% ref commands, e.g. for images, tables and text labels
-% --------------------------------------------------
-% RESULT = (siehe Tab. 12.4)
-\newcommand{\tabref}[1]{(siehe Tab.~\ref{#1})}
-%
-% RESULT = (siehe Tab. 12.4)
-\newcommand{\tableref}[1]{(siehe Tab.~\ref{#1} Seite~\pageref{#1})}
-%
-% --------------------------------------------------
-% RESULT = (siehe 3.4)
-\newcommand{\tref}[1]{(siehe \ref{#1})}
-%
-% RESULT = Abschnitt 3.4
-\newcommand{\treft}[1]{Abschnitt~\ref{#1}}
-%
-% RESULT = (siehe 3.4, Seite 12)
-\newcommand{\textref}[1]{(siehe \ref{#1}, Seite~\pageref{#1})}
-%
-% RESULT = Abschnitt 3.4 (siehe Seite 12)
-\newcommand{\textreft}[1]{Abschnitt~\ref{#1} (siehe Seite~\pageref{#1})}
-%
-% --------------------------------------------------
-% RESULT = (siehe Abb. 10.4)
-\newcommand{\fref}[1]{(siehe Abb.~\ref{#1})}
-%
-% RESULT = (siehe Abb. 10.4 b)
-\newcommand{\frefadd}[2]{(siehe Abb.~\ref{#1}~#2)}
-%
-% RESULT = (siehe Abb. 10.4, Seite 12)
-\newcommand{\figref}[1]{(siehe Abb.~\ref{#1}, Seite~\pageref{#1})}
-%
-% RESULT = (siehe Abb. 10.4 b, Seite 12)
-\newcommand{\figrefadd}[2]{(siehe Abb.~\ref{#1}~#2, Seite~\pageref{#1})}
-%
-% RESULT = Abbildung 10.4
-\newcommand{\figreft}[1]{Abbildung~\ref{#1}}
-%
-% RESULT = Abbildung 10.4 b
-\newcommand{\figrefaddt}[2]{Abbildung~\ref{#1}~#2}
-%
-% --------------------------------------------------
-% RESULT = (siehe Seite 12)
-\newcommand{\seepage}[1]{(siehe Seite~\pageref{#1})}
-
-
 % **************************************************
 % Sectioning Commands
 % **************************************************
@@ -562,26 +515,34 @@
 }
 
 % own font definitions
-\newcommand{\helv}{\fontfamily{phv}\fontsize{9}{11}\selectfont}
-\newcommand{\book}{\fontfamily{pbk}\fontseries{m}\fontsize{11}{13}\selectfont}
-\newcommand{\tgherosfont}{\fontfamily{qhv}\selectfont}
+\ifPDFTeX
+    \newcommand{\helv}{\fontfamily{phv}\fontsize{9}{11}\selectfont}
+    \newcommand{\book}{\fontfamily{pbk}\fontseries{m}\fontsize{11}{13}\selectfont}
+    \newcommand{\tgherosfont}{\fontfamily{qhv}\selectfont}
+\else
+    % \newfontfamily\helv{TeX Gyre Heros}[]
+    \newfontfamily\book{QTBookmann}[]
+    \newfontfamily\tgherosfont{TeX Gyre Heros}[]
+\fi
 
 \newcommand{\thesispartlabelfont}{\color{ctcolorpartnum}\nobreak\book\fontsize{60}{60}\selectfont}
 \newcommand{\thesispartfont}{\color{ctcolorparttext}\nobreak\normalfont\huge \tgherosfont\selectfont}
-\newcommand{\thesischapterfont}{\color{ctcolorblack}\nobreak\normalfont\huge \fontfamily{phv}\selectfont}
+\newcommand{\thesischapterfont}{\color{ctcolorblack}\nobreak\normalfont\huge \tgherosfont\selectfont}
 %\newcommand{\thesissectionfont}{\color{ctcolormain}\nobreak\LARGE\bfseries \tgherosfont}
 \newcommand{\thesissectionfont}{\color{ctcolorsection}\nobreak\normalfont\LARGE \tgherosfont}
 \newcommand{\thesissubsectionfont}{\color{ctcolorsubsection}\nobreak\normalfont\Large \tgherosfont}
 \newcommand{\thesisparagraphfont}{\color{ctcolorparagraph}\nobreak\tgherosfont\small\bfseries}
+    
 
 \newcommand{\ctfontfooterpagenumber}{%
     \color{ctcolorfooterpage}%
-    \normalfont\normalsize\bfseries \tgherosfont%
+    \normalfont\normalsize\bfseries\tgherosfont%
 }
 \newcommand{\ctfontfootertext}{%
     \color{ctcolorfootertitle}%
-    \normalfont\footnotesize \tgherosfont%
-}
+    \normalfont\footnotesize\tgherosfont%
+    }
+
 %
 % headings
 \setkomafont{part}{\thesispartfont} % for chapter entries
