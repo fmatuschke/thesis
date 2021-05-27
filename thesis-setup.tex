@@ -128,8 +128,11 @@
 \ifPDFTeX
     % \usepackage{newtxsf} ???
     \usepackage{newtxmath} % new math fonts\usepackage[libertine, vvarbb]{newtxmath}
+    
 \else
+    \usepackage{fontspec}
     \usepackage{unicode-math}
+    \setmathfont{Latin Modern Math}
 \fi
 % 
 \usepackage{dirtree}
@@ -188,10 +191,12 @@
 % **************************************************
 \DeclarePairedDelimiter\abs{\lvert}{\rvert}
 \DeclarePairedDelimiter\norm{\lVert}{\rVert}
-\AtBeginDocument{\renewcommand*{\vec}[1]{\mathbf{#1}}}
+\AtBeginDocument{\renewcommand{\vec}[1]{\mathbf{#1}}}
 \newcommand{\mat}[1]{\mathcal{#1}}
-\newcommand{\overbar}[1]{\mkern 1.5mu\overline{\mkern-1.5mu#1\mkern-1.5mu}\mkern 1.5mu}
-\usepackage{MnSymbol}
+\ifPDFTeX
+    \newcommand{\overbar}[1]{\mkern 1.5mu\overline{\mkern-1.5mu#1\mkern-1.5mu}\mkern 1.5mu}
+\fi
+% \usepackage{MnSymbol} defines to many math symbols for pdflatex
 %
 % **************************************************
 % Syntax Highlighting
@@ -410,6 +415,7 @@
 \DeclarePairedDelimiter\ceil{\lceil}{\rceil}
 \DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
 \DeclareMathOperator{\atantwo}{atan2}
+\DeclareMathOperator{\divergence}{div}
 \newcommand{\integer}[1]{\textnormal{$\mathrm{int}$}}
 \newcommand{\round}[1]{\textnormal{$\mathrm{round}$}}
 \newcommand{\comment}[1]{\textcolor{gray}{\textit{#1}}}
