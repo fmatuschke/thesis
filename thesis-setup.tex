@@ -1,11 +1,12 @@
 % !TEX root = thesis.tex
 %
+\usepackage{iftex}
 % **************************************************
 % Files' Character Encoding
 % **************************************************
-\PassOptionsToPackage{utf8}{inputenc}
-\usepackage{inputenc}
-\usepackage{iftex}
+\ifPDFTeX
+    \usepackage[utf8]{inputenc}
+\fi
 %
 % **************************************************
 % Information and Commands for Reuse
@@ -122,9 +123,15 @@
 \usepackage{pdfpages}
 \usepackage{subcaption}
 \usepackage{minitoc}
+% 
 \usepackage{amsmath, amssymb, amsthm, mathtools}
-% \usepackage{newtxsf}
-\usepackage{newtxmath}          % new math fonts\usepackage[libertine, vvarbb]{newtxmath}
+\ifPDFTeX
+    % \usepackage{newtxsf} ???
+    \usepackage{newtxmath} % new math fonts\usepackage[libertine, vvarbb]{newtxmath}
+\else
+    \usepackage{unicode-math}
+\fi
+% 
 \usepackage{dirtree}
 \usepackage[bottom]{footmisc}
 % 
@@ -181,8 +188,8 @@
 % **************************************************
 \DeclarePairedDelimiter\abs{\lvert}{\rvert}
 \DeclarePairedDelimiter\norm{\lVert}{\rVert}
-\let\vec\mathbf
-\let\mat\mathcal
+\AtBeginDocument{\renewcommand*{\vec}[1]{\mathbf{#1}}}
+\newcommand{\mat}[1]{\mathcal{#1}}
 \newcommand{\overbar}[1]{\mkern 1.5mu\overline{\mkern-1.5mu#1\mkern-1.5mu}\mkern 1.5mu}
 \usepackage{MnSymbol}
 %
