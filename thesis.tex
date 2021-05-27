@@ -1,7 +1,7 @@
-% !TeX program = lualatex                                   
+% !TeX program = lualatex
 % !TeX encoding = utf8
 % !TeX spellcheck = english
-% 
+%
 % **************************************************
 % Document Class Definition
 % **************************************************
@@ -34,19 +34,19 @@
 % 
 %\ifshellescape
 \usetikzlibrary{external}
-% \tikzexternalize[%
-%                  optimize command away=\includepdf,
-%                  prefix=tikz/,
-%                  figure name=\thesubsection-,
-%                 %  mode=list and make, 
-%                  ]
+\tikzexternalize[%
+                 optimize command away=\includepdf,
+                 prefix=tikz/,
+                 figure name=\thesubsection-,
+                %  mode=list and make,q
+                 ]
 % 
 \includeonly{
 % content/titlepages,
 % content/abstract,
 % content/acknowledgment,
-content/01-chapter-introduction,
-content/02-chapter-neuroanatomy,
+% content/01-chapter-introduction,
+% content/02-chapter-neuroanatomy,
 content/03-chapter-theory,
 % content/04-chapter-software,
 % content/05-chapter-software-model,
