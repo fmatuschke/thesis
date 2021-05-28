@@ -131,9 +131,9 @@
     
 \else
     \usepackage{fontspec}
-    \usepackage{unicode-math}
-    \setmathfont{Latin Modern Math}
+    \usepackage[warnings-off={mathtools-colon,mathtools-overbracket}]{unicode-math}
     \usepackage{lualatex-math}
+    \setmathfont{Latin Modern Math}
 \fi
 % 
 \usepackage{dirtree}
@@ -275,6 +275,7 @@
 \usetikzlibrary{patterns}
 \usetikzlibrary{bending} % bend arrow heads
 \usetikzlibrary{decorations.pathreplacing}
+\tikzset{>=latex}
 % 
 % \usepackage{pdftexcmds} % for hased externalized names
 % \makeatletter
@@ -369,16 +370,6 @@
 	}
 }
 \makeatother
-% 
-% COMMANDS:
-% pdflatex -shell-escape %.tex
-% mkdir build
-% mkdir build/content
-% mkdir build/tikz
-% mkdir build/build
-% mkdir build/build/tikz
-%
-\tikzset{>=latex}
 % 
 % **************************************************
 % PGFplotsTable
