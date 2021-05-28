@@ -39,7 +39,7 @@
 % **************************************************
 % Debug LaTeX Information
 % **************************************************
-%\listfiles
+% \listfiles
 % 
 % **************************************************
 % User Commands
@@ -133,19 +133,22 @@
     \usepackage{fontspec}
     \usepackage{unicode-math}
     \setmathfont{Latin Modern Math}
+    \usepackage{lualatex-math}
 \fi
 % 
 \usepackage{dirtree}
 \usepackage[bottom]{footmisc}
 % 
 \usepackage{siunitx} 
-% depricated in newer versions, clean thesis breaks math symbols
-% \sisetup{detect-mode=true,detect-family=false,
-%         detect-display-math=false,detect-shape=false,
-%         list-units=brackets, range-units=brackets,
-%         range-phrase = {\text{~to~}},
-%         % math-micro=\muup,
-%         binary-units = true} %\mathrm{\mu}}
+\usepackage{upgreek}
+\sisetup{
+        detect-mode=true,detect-family=false,
+        detect-display-math=false,detect-shape=false,
+        list-units=brackets, range-units=brackets,
+        range-phrase = {\text{~to~}},
+        math-micro=µ,
+        binary-units = true
+        } %\mathrm{\mu}} %math-micro=\muup,
 \DeclareSIUnit{\arbitraryunit}{\mathit{arb. unit}}
 % \AtBeginDocument{\sisetup{math-rm=\mathrm, text-rm=\sffamily}}
 % 
@@ -189,14 +192,21 @@
 % **************************************************
 %  Math
 % **************************************************
-\DeclarePairedDelimiter\abs{\lvert}{\rvert}
-\DeclarePairedDelimiter\norm{\lVert}{\rVert}
+% \AtBeginDocument{\renewcommand{\minus}{\scalebox{0.75}[1.0]{$-$}}} % different height than -
 \AtBeginDocument{\renewcommand{\vec}[1]{\mathbf{#1}}}
 \newcommand{\mat}[1]{\mathcal{#1}}
 \ifPDFTeX
     \newcommand{\overbar}[1]{\mkern 1.5mu\overline{\mkern-1.5mu#1\mkern-1.5mu}\mkern 1.5mu}
 \fi
 % \usepackage{MnSymbol} defines to many math symbols for pdflatex
+\DeclarePairedDelimiter\abs{\lvert}{\rvert}
+\DeclarePairedDelimiter\norm{\lVert}{\rVert}
+\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+\DeclareMathOperator{\atantwo}{atan2}
+\DeclareMathOperator{\divergence}{div}
+\AtBeginDocument{\newcommand{\integer}[1]{\textnormal{$\mathrm{int}$}}}
+\AtBeginDocument{\newcommand{\round}[1]{\textnormal{$\mathrm{round}$}}}
 %
 % **************************************************
 % Syntax Highlighting
@@ -412,12 +422,6 @@
 % **************************************************
 % User Macros
 % **************************************************
-\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
-\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
-\DeclareMathOperator{\atantwo}{atan2}
-\DeclareMathOperator{\divergence}{div}
-\newcommand{\integer}[1]{\textnormal{$\mathrm{int}$}}
-\newcommand{\round}[1]{\textnormal{$\mathrm{round}$}}
 \newcommand{\comment}[1]{\textcolor{gray}{\textit{#1}}}
 \newcommand{\dummy}[2][...]{\textcolor{ProcessBlue}{\textbf{\{#1\}}}}
 % \usepackage{soul}

@@ -225,12 +225,14 @@
 % **************************************************
 % Font Definitions (see http://www.tug.dk/FontCatalogue/)
 % **************************************************
+% https://tug.org/FontCatalogue/sansseriffonts.html
+\def\mysansfont{TeX Gyre Heros} % TeX Gyre Heros, Open Sans, Latin Modern Sans
 \ifPDFTeX
     \RequirePackage[T1]{fontenc}	% font types and character verification
 \else % xelatex or lualatex
     \RequirePackage{fontspec}
     \setromanfont{Latin Modern Roman} % not sure yet
-    \setsansfont{TeX Gyre Heros}
+    \setsansfont{\mysansfont}
     \setmainfont{CMU Serif} % not sure yet
     \setmonofont{CMU Typewriter Text} % not sure yet
 \fi
@@ -522,12 +524,12 @@
 \else
     % \newfontfamily\helv{TeX Gyre Heros}[]
     \newfontfamily\book{QTBookmann}[]
-    \newfontfamily\tgherosfont{TeX Gyre Heros}[]
+    \newfontfamily\tgherosfont{\mysansfont}[]
 \fi
 
 \newcommand{\thesispartlabelfont}{\color{ctcolorpartnum}\nobreak\book\fontsize{60}{60}\selectfont}
-\newcommand{\thesispartfont}{\color{ctcolorparttext}\nobreak\normalfont\huge \tgherosfont\selectfont}
-\newcommand{\thesischapterfont}{\color{ctcolorblack}\nobreak\normalfont\huge \tgherosfont\selectfont}
+\newcommand{\thesispartfont}{\color{ctcolorparttext}\nobreak\normalfont\Huge \tgherosfont\selectfont}
+\newcommand{\thesischapterfont}{\color{ctcolorblack}\nobreak\normalfont\Huge \tgherosfont\selectfont}
 %\newcommand{\thesissectionfont}{\color{ctcolormain}\nobreak\LARGE\bfseries \tgherosfont}
 \newcommand{\thesissectionfont}{\color{ctcolorsection}\nobreak\normalfont\LARGE \tgherosfont}
 \newcommand{\thesissubsectionfont}{\color{ctcolorsubsection}\nobreak\normalfont\Large \tgherosfont}
