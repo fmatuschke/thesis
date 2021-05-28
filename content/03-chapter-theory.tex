@@ -8,6 +8,7 @@
     \item analysen
 \end{itemize}}
 %
+3D-PLI
 The following section lists the physical theories needed to describe the mathematics behind \ac{3D-PLI}. This includes the basic properties of light with the description of their polarization state, the optical models of the tissue, i.e. the nerve fibers and the mathematical description of the experimental setup of \ac{3D-PLI}. The first part of this chapter was written with the help of \cite{demtroeder2, Fliebach2012}.
 % 
 % 
@@ -54,8 +55,8 @@ In a vacuum this simplifies with $\rho = 0$ and $\vec{J} = \vec{0}$ to:
 With 
 \begin{align}
 \begin{split} 
-    \nabla \times \nabla \times \vec{E} = - \nabla \times \frac{\partial \vec{B}} {\partial t} &= -\frac{\partial} {\partial t} \left( \nabla \times  \vec{B} \right)\\
-    &= - \varepsilon_0 \cdot \mu_0 \frac{\partial^2 \vec{E}}{\partial t^2}
+    \nabla \times \nabla \times \vec{E} = -\nabla \times \frac{\partial \vec{B}} {\partial t} &= -\frac{\partial} {\partial t} \left( \nabla \times  \vec{B} \right)\\
+    &= -\varepsilon_0 \cdot \mu_0 \frac{\partial^2 \vec{E}}{\partial t^2}
 \end{split}
 \end{align}
 % 
@@ -274,7 +275,7 @@ A rotation of the axis can be achieved by a 2d rotation matrix $\mat{R}$:
 \begin{align}
 \begin{split}
 \mat{M}(\theta )=\mat{R}(\theta )\cdot\mat{M}\cdot\mat{R}(-\theta )
-, \,
+, \>
 \mat{R}(\theta ) = 
 \begin{pmatrix}
 \cos \theta & -\sin \theta \\
