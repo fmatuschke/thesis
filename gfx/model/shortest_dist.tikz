@@ -38,9 +38,9 @@
 \coordinate (BB) at (2,2.4);
 \end{scope}
 % 
-\draw[RED, thick, ->] (A) -- (B) node[pos=0.18, below, sloped] {$\vv{d}_{\mathit{short}}$};
-\node[below right] at (A) {$\vv{p}_a$};
-\node[below left] at (B) {$\vv{p}_b$};
+\draw[RED, thick, ->] (A) -- (B) node[pos=0.18, below, sloped] {$\vec{d}_{\mathit{short}}$};
+\node[below right] at (A) {$\vec{p}_a$};
+\node[below left] at (B) {$\vec{p}_b$};
 % \draw (A) arc (0:90:1);
 \draw[] (AA) to[bend right] ($(A)!0.075!(B)$);
 \draw[] ($(B)!0.1!(A)$) to[bend right] (BB);

@@ -26,9 +26,9 @@
 % 
 \coordinate (I) at (0,\dccd);
 \path[name path=light1] (I) -- (0,-2*\dy);
-\draw[<-,name intersections={of=line1 and light1, by={X}}] (I) -- (X) node[midway, anchor=east] {$\vv{l}_0$};
+\draw[<-,name intersections={of=line1 and light1, by={X}}] (I) -- (X) node[midway, anchor=east] {$\vec{l}_0$};
 \path[name path=light2] (X) -- ++(-90-\refracted:3*\dy);
-\draw[name intersections={of=light2 and line2, by={Y}}] (X) -- (Y) node[midway, anchor=east, fill=white, rounded corners=1pt, inner sep=1pt, rotate=-\refracted, xshift=-0.25ex] {$\vv{l}_1$};
+\draw[name intersections={of=light2 and line2, by={Y}}] (X) -- (Y) node[midway, anchor=east, fill=white, rounded corners=1pt, inner sep=1pt, rotate=-\refracted, xshift=-0.25ex] {$\vec{l}_1$};
 \fill (X) circle (3pt);
 \fill[name intersections={of=light2 and line2, by={Y}}] (Y) circle (3pt);
 \draw[] (Y) -- (Y |- {,-\dccd});

@@ -125,10 +125,10 @@ A nerve fiber can therefore be represented as a list of 4d coordinates (or spher
 % z
 \begin{align}
 \begin{split}
-% \vv{p} &= (x_i,y_i,z_i) \mid x,y,z \in \mathbb{R}\\
+% \vec{p} &= (x_i,y_i,z_i) \mid x,y,z \in \mathbb{R}\\
 % r &\mid r \in \mathbb{R}\\
-\mathit{fiber} &= \left\{ \vv{p}_i=(x_i,y_i,z_i), r_i \mid x,y,z \in \mathbb{R}, \, r \in \mathbb{R^+}, \, i \in \{0,1,...,N_{\mathit{points}}-1\}\right\} \\
-\mathit{fiber\_segment}_i &= (\vv{p}_i, \vv{p}_{i+1}, r_i, r_{i+1}), \, i \in \{0,1,...,N_{\mathit{points}}-2\}
+\mathit{fiber} &= \left\{ \vec{p}_i=(x_i,y_i,z_i), r_i \mid x,y,z \in \mathbb{R}, \, r \in \mathbb{R^+}, \, i \in \{0,1,...,N_{\mathit{points}}-1\}\right\} \\
+\mathit{fiber\_segment}_i &= (\vec{p}_i, \vec{p}_{i+1}, r_i, r_{i+1}), \, i \in \{0,1,...,N_{\mathit{points}}-2\}
 \end{split}
 \end{align}
 % 
@@ -172,7 +172,7 @@ Starting with seed points at the beginning of the bundle.
 % 
 Seed points are stored as a list of 3D points:
 \begin{align}
-\mathit{seeds} = \left\{ \vv{p}_i=(x_i,y_i,z_i) \mid x,y,z \in \mathbb{R} , \, i \in \{0,1,N_{\mathit{seed\_points}}-1\}\right\}
+\mathit{seeds} = \left\{ \vec{p}_i=(x_i,y_i,z_i) \mid x,y,z \in \mathbb{R} , \, i \in \{0,1,N_{\mathit{seed\_points}}-1\}\right\}
 \end{align}
 % 
 In order to form particularly dense fiber bundles, a method for generating an isosceles triangular grid was implemented.
@@ -218,24 +218,24 @@ A common one is the use of torsion of the curve. This is achieved by the followi
 % 
 \begin{align}
 \begin{split}
-\vv{f}(s) &= (x(s),y(s),z(s)) \\
-\vv{t}(s) &= \vv{f}\,'(s) \\
-\vv{n}(s) &= \frac{\vv{t}\,'(s)}{|\vv{t}\,'(s)|} = \frac{\vv{r}\,''(s)}{|\vv{r}\,''(s)|} \\
-\vv{b}(s) &= \vv{t}(s) \times \vv{n}(s),
+\vec{f}(s) &= (x(s),y(s),z(s)) \\
+\vec{t}(s) &= \vec{f}\,'(s) \\
+\vec{n}(s) &= \frac{\vec{t}\,'(s)}{|\vec{t}\,'(s)|} = \frac{\vec{r}\,''(s)}{|\vec{r}\,''(s)|} \\
+\vec{b}(s) &= \vec{t}(s) \times \vec{n}(s),
 \end{split}
 \end{align}
 % 
-where $\vv{f}(s)$ is a parameterized trajectory of the parametric variable $s$, $\vv{t}(s)$ is the tangential vector, $\vv{n}(s)$ is the principal normal vector and $\vv{b}(s)$ is the binormal vector (see \cref{fig:torsionCurve}).
-One could use this idea to rotate the seed points into the coordinate system of $\vv{t}(s),\vv{n}(s),\vv{b}(s)$.
-However, this can lead to an arbitrary rotation of the fibers, \eg{} if the curve is described in such a way that $\vv{n}(s),\vv{b}(s)$ would continuously rotate around $\vv{t}(s)$.
+where $\vec{f}(s)$ is a parameterized trajectory of the parametric variable $s$, $\vec{t}(s)$ is the tangential vector, $\vec{n}(s)$ is the principal normal vector and $\vec{b}(s)$ is the binormal vector (see \cref{fig:torsionCurve}).
+One could use this idea to rotate the seed points into the coordinate system of $\vec{t}(s),\vec{n}(s),\vec{b}(s)$.
+However, this can lead to an arbitrary rotation of the fibers, \eg{} if the curve is described in such a way that $\vec{n}(s),\vec{b}(s)$ would continuously rotate around $\vec{t}(s)$.
 \\
 % 
 Since it is plausible that nerve fiber bundles would not do this, a different approach was chosen.
 The idea is to minimize the rotation from one step to the next step.
-When defining a plane, within the vectors $\vv{n}(s),\vv{b}(s)$ defined above, the plane is rotated from one step $i$ to the next step $i+1$ by the same amount by which the curve bends.
-However, the rotation along the vector $\vv{t}(s)$ should be $0$.
-Since a discrete point exists, the plane can be rotated by the same amount as the vector $\vv{t}(s)$.
-However, to obtain a plane in the center of the points $\vv{p}_{i-1}, \vv{p}_{i}, \vv{p}_{i}, \vv{p}_{i+1}$ the middle orientation of these points will be used.
+When defining a plane, within the vectors $\vec{n}(s),\vec{b}(s)$ defined above, the plane is rotated from one step $i$ to the next step $i+1$ by the same amount by which the curve bends.
+However, the rotation along the vector $\vec{t}(s)$ should be $0$.
+Since a discrete point exists, the plane can be rotated by the same amount as the vector $\vec{t}(s)$.
+However, to obtain a plane in the center of the points $\vec{p}_{i-1}, \vec{p}_{i}, \vec{p}_{i}, \vec{p}_{i+1}$ the middle orientation of these points will be used.
 An example is shown in \cref{fig:filledBundle}.
 \\
 \todo{explain and check algorithm}
@@ -248,14 +248,14 @@ Now the bundle can easily be populated by starting at the beginning of the fiber
     \centering
     \setlength{\tikzwidth}{0.5\textwidth}
     \inputtikz{gfx/model/cube_build}
-	\caption{Populating a cuboid with straight fibers initialized by seed points along the direction $\vv{v}$.}
+	\caption{Populating a cuboid with straight fibers initialized by seed points along the direction $\vec{v}$.}
     \label{fig:cubeBuild}%
 \end{figure}
 % 
 To be able to create a model with a main fiber orientation, a method was also developed to populate a cuboid volume.
-This method allows to create fibers within the cuboid volume that are oriented along a user-defined main orientation $\vv{v}$ (see \cref{fig:cubeBuild}). 
+This method allows to create fibers within the cuboid volume that are oriented along a user-defined main orientation $\vec{v}$ (see \cref{fig:cubeBuild}). 
 The individual fibers are also initialized with seed points.
-An infinite line with the main orientation $\vv{v}$ is laid through each seed point.
+An infinite line with the main orientation $\vec{v}$ is laid through each seed point.
 If a line collides with the volume, the line inside the cube is returned as a fiber.
 % 
 \subsection{cylindric models}
@@ -530,7 +530,7 @@ Of course the user can change this hard coded value if necessary.
 With the resulting list of colliding object pairs, the next task is to perform the separation process.
 %
 \section{Separation Phase}
-To solve a collision between two \ac{CC} objects, each point $\vv{p}_i$ and $\vv{p}_{i+1}$ of both objects must be moved.
+To solve a collision between two \ac{CC} objects, each point $\vec{p}_i$ and $\vec{p}_{i+1}$ of both objects must be moved.
 The movement is parallel to the smallest distance line between the two objects.
 To take the 3D placement into account, the movement is weighted by the distance of each point from the intersection with the smallest distance line (see \cref{fig:shortDist}):
 \begin{align}
@@ -585,11 +585,11 @@ Therefore the mean value of the object is:
 \frac{d_{\min} + d_{\max}}{2} = \overline{d}
 \end{align}
 % 
-If a new point is created due to exceeding the maximum limitation, the new points $\vv{p}_{new}$ radius $r_{new}$ and velocity $\vv{v}_{new}$ are 
+If a new point is created due to exceeding the maximum limitation, the new points $\vec{p}_{new}$ radius $r_{new}$ and velocity $\vec{v}_{new}$ are 
 \begin{align}
-\vv{p}_{new} = \frac{\vv{p}_{i} + \vv{p}_{i+1}}{2},\enspace
+\vec{p}_{new} = \frac{\vec{p}_{i} + \vec{p}_{i+1}}{2},\enspace
 r_{new} = \frac{r_{i} + r_{i+1}}{2},\enspace
-\vv{v}_{new} = \frac{\vv{v}_{i} + \vv{v}_{i+1}}{2}
+\vec{v}_{new} = \frac{\vec{v}_{i} + \vec{v}_{i+1}}{2}
 \end{align}
 % 
 \subsection{Bending radius}
@@ -605,7 +605,7 @@ r_{new} = \frac{r_{i} + r_{i+1}}{2},\enspace
 	\label{fig:modelCircle}
 \end{figure}
 % 
-The bending radius is defined as the circle radius corresponding to the circle defined by three adjacent points $\vv{p}_{i-1}, \vv{p}_{i}, \vv{p}_{i+1}$ (see \cref{fig:boundaryLength}). 
+The bending radius is defined as the circle radius corresponding to the circle defined by three adjacent points $\vec{p}_{i-1}, \vec{p}_{i}, \vec{p}_{i+1}$ (see \cref{fig:boundaryLength}). 
 The limit is set as a minimum radius of $r_{\min}$.
 If a $p_{i}$ point in a fiber falls below this value, the three points are moved.
 $p_{i-1},p_{i+1}$ is moved \dummy{} and $p_{i}$ opposite each other.
@@ -620,7 +620,7 @@ Finally a volume is marked as collision free, if no collision are found and all 
 The boundary conditions can be set to 0 to ignore them.
 Additionally a drag value can be set, to reduce the velocity by its factor after each step.
 It can help to reach a collision free volume faster, however the density will be significantly reduced.
-Therefore the value is to 0 so that after each step the velocity is reset to $\vv{0}$. 
+Therefore the value is to 0 so that after each step the velocity is reset to $\vec{0}$. 
 % 
 \section{Optimization / Parallelisation}
 % 
@@ -753,7 +753,7 @@ Since all objects are represented as a collection of spheres (see \cref{fig:mode
 \begin{align}
 \begin{split}
 d<r_i+r_j\\
-d = \abs{\vv{p}_i - \vv{p}_j}
+d = \abs{\vec{p}_i - \vec{p}_j}
 \end{split}
 \end{align}
 % 
@@ -763,7 +763,7 @@ However since neighboring spheres in one fiber are colliding for a densly popula
 d(i,j) &\leq  r_i + r_j\\
 d(i,j) &= 
 \begin{cases}
-\sum_{n=i}^{j-1} \abs{\vv{p}_n - \vv{p}_{n+1}},& \text{if } j-i \geq 1\\
+\sum_{n=i}^{j-1} \abs{\vec{p}_n - \vec{p}_{n+1}},& \text{if } j-i \geq 1\\
 0 & \text{otherwise}
 \end{cases}
 \end{split}

@@ -30,7 +30,7 @@
 % 
 \path[RED,thick, {Circle[length=1mm]}-{Circle[length=1mm]},
     shorten >=-.5mm, shorten <=-.50mm]
-    (\xc,\yc) -- (2.5,1.5) node[midway, anchor=north west, xshift=-0.5mm, preaction={fill, white}]{$\vv{q}$};
+    (\xc,\yc) -- (2.5,1.5) node[midway, anchor=north west, xshift=-0.5mm, preaction={fill, white}]{$\vec{q}$};
 \draw[RED,thick, {Circle[length=1mm]}-{Circle[length=1mm]},
     shorten >=-.5mm, shorten <=-.50mm]
     (\xc,\yc) -- (2.5,1.5);
