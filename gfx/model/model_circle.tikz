@@ -16,9 +16,9 @@
   scale=2, transform shape] at (-0.15,0) {}; %, rotate=-135
 \end{scope}
 % 
-\draw[fill=black] ({-cos(60)},{sin(60)}) circle (0.05) node[left, xshift=-1em] {$\vv{p}_{i}$};
-\draw[fill=black] ({-cos(60)},{-sin(60)}) circle (0.05) node[below, yshift=-1em] {$\vv{p}_{i-1}$};
-\draw[fill=black] ({1},{0}) circle (0.05) node[right, xshift=1em] {$\vv{p}_{i+1}$};
+\draw[fill=black] ({-cos(60)},{sin(60)}) circle (0.05) node[left, xshift=-1em] {$\vec{p}_{i}$};
+\draw[fill=black] ({-cos(60)},{-sin(60)}) circle (0.05) node[below, yshift=-1em] {$\vec{p}_{i-1}$};
+\draw[fill=black] ({1},{0}) circle (0.05) node[right, xshift=1em] {$\vec{p}_{i+1}$};
 \draw[dashed] (0,0) circle (1);
 % \draw [] ({cos(210)},{sin(210)}) -- (-1.25,-0.8) node[anchor=east, pos=1] {$bending\_radius$};
 \draw [] ({cos(60)},{sin(60)}) -- (0,1.42) node[anchor=east, pos=1] {$bending\_radius$};

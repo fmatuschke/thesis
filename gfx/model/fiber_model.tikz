@@ -16,7 +16,7 @@
 \pgfmathsetmacro{\y}{(0.75*sin(\i)+0.5*sin(3*\i-90))}
 \pgfmathsetmacro{\r}{(5+1.5*sin(\i*4.2)) / 10}
 \ifnum \i = 40
-\draw (\x,\y) -- ++ (-1.5*0.62,1.5*0.42) node[pos=1.0, anchor=east] {$\vv{p}_i,r_i$};
+\draw (\x,\y) -- ++ (-1.5*0.62,1.5*0.42) node[pos=1.0, anchor=east] {$\vec{p}_i,r_i$};
 \fi
 \node at (\x,\y) [circle,fill,inner sep=1.0pt]{};
 \draw[thin,dashed] (\x,\y) circle (\r){};

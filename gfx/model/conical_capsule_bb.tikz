@@ -45,8 +45,8 @@
 \node[RED, above] at ($(bb.north west)!0.25!(bb.north east)$) {$aabb_{cone}$};
 \node[BLUE, above] at ($(PA) + (-0.65*\ra,\ra)$) {$aabb_{0}$};
 \node[BLUE, above] at ($(PB) + (0.75*\rb,-\rb)$) {$aabb_{1}$};
-\node[below] at (PA) {$\vv{p}_{i}$};
-\node[below] at (PB) {$\vv{p}_{i+1}$};
+\node[below] at (PA) {$\vec{p}_{i}$};
+\node[below] at (PB) {$\vec{p}_{i+1}$};
 \draw[black, thin] (PA) -- (t12) node[midway, right] {$r_{i}$};
 \draw[black, thin] (PB) -- (t22) node[midway, right] {$r_{i+1}$};
 \end{pgfinterruptboundingbox}
