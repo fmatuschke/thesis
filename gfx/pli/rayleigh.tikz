@@ -1,0 +1,31 @@
+\begin{tikzsize}{\tikzwidth}{\tikzheight}
+\begin{tikzpicture}[baseline, trim axis left]
+% 
+\begin{axis}[%
+    width=\tikzwidth,
+    height=\tikzwidth,
+    axis x line=center,
+    axis y line=center,
+    domain=-6:6,
+    samples=42,
+% 	xlabel=$x$,
+% 	ylabel={$f(x) = x^2 - x +4$}
+]
+% use TeX as calculator:
+\pgfmathsetmacro{\dx}{3.141/2}
+\addplot[BLUE, thick,
+    smooth
+    ] {(sin((x+\dx)/3.141*180)/(x+\dx))^2};
+\addplot[BLUE, thick,
+    smooth
+    ] {(sin((x-\dx)/3.141*180)/(x-\dx))^2};
+\addplot[GREEN, thick,
+    smooth
+    ] {(sin((x+\dx)/3.141*180)/(x+\dx))^2 +
+       (sin((x-\dx)/3.141*180)/(x-\dx))^2};
+\addplot[RED, thick, dashed,
+    ] coordinates{(-\dx,1)(-\dx,0)};
+\end{axis}
+% 
+\end{tikzpicture}
+\end{tikzsize}

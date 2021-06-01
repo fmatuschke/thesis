@@ -12,8 +12,7 @@ Following this, these parameters are used to simulate the previously generated m
 A focus is placed on the accuracy of tilt analyses for different orientations and crossing configurations.
 % 
 % 
-% 
-\itodo{reproduzieren von modellen}
+\itodo{reproduzieren von modellen und deren simulationen}
 % 
 % 
 % 
@@ -21,48 +20,70 @@ A focus is placed on the accuracy of tilt analyses for different orientations an
 % 
 \subsection{optical resolution}
 % 
-An optical microscope has a certain resolution. This is often defined in the literature by Abbe diffraction limit. Ernst Abbe found out that the resolution of a light microscope is related to the wavelength of the light $\lambda$:
+(first part in theory?)\\
+
+The optical resolution of an imaging system describes the minimal size of on object which can still be resolved.
+This property is limited by aberration and diffraction which both cause a blurring of the resulting image.
+Ernst Abbe described as on of the first that the resulition corrlates with the lightwave $\lambda$: 
 \begin{align}
-d=\frac{ \lambda}{2 n \sin \theta} = \frac{\lambda}{2\mathrm{NA}}
+d=\frac{ \lambda}{2 n \sin \theta} = \frac{\lambda}{2\mathrm{NA}} \> .
 \end{align}
-.
-$d$ is the minimal resolvable distance, $n$ the refcative index, $\theta$ the angle of a spot light. Further $n \sin \theta$ is better known as the numerical aperture $\mathrm{NA}$.
-However, this only sets the maximum resolution. 
-Every optical microscope has imaging errors.
-The most common are lens aberration, chromatic aberration, ...
-All these errors lead to a reduced resolution.
-In addition, the sensor that captures the image also plays a role.
-For a ccd sensor, this is the configuration of the pixels and their size.
-% 
-Mathematically, a resolution reduction of an image is modeled by a convolution with a Gaussian function of width $\sigma$.
-It effectively blends the information into its roundness and thus onto the neighboring pixels.
-It is also known as point spread function.
-%
-Therefore, the resolution must be determined for each experimental setup.
-For this purpose, the USAF test chart is very often used to characterize the resolution of an optical image setup.
-It consists of several patterns which have three slits with defined distances and widths.
-The resolution can then be determined using the Rayleigh criterion, for example.
-\par
-% 
+$d$ is the minimal resolvable distance, $n$ the refractive index, $\theta$ the angle of a spot light, which can be combined to the better known numerical aperture $\mathrm{NA}$.
+This results in an absolute threshold for a light microscope above which the resolution can no longer be improved.
+For the wavelength used in \ac{3D-PLI} with $\lambda = \SI{525}{\nano\meter}$ and a numerical apperatur of $\mathrm{NA} = \SI{}{}$ this yields to a limit of \dummy{}.
 % 
 \begin{figure}[!t]
+\setlength{\tikzwidth}{0.45\textwidth}
 \centering
-\setlength{\tikzwidth}{0.5\textwidth}
 \begin{tabular}{cc}
-\inputtikz{dev/gfx/chap8/usaf_image}
+% \subcaptionbox{\label{fig:rayleigh}rayleigh criteria. The minima of the one function is in the maxima of the other.}{
+\inputtikz{gfx/pli/rayleigh}
+% }
 &
-\inputtikz{dev/gfx/chap8/usaf_line_plots}
+% \subcaptionbox{\label{fig:usaf_image}microscopic image}{
+\inputtikz[]{dev/gfx/chap8/usaf_image}
+% }
 \\
 \begin{minipage}{0.45\textwidth}
-\leavevmode\subcaption{\label{fig:usaf_image}microscopic image}
+\leavevmode\subcaption{\label{fig:rayleigh}rayleigh criteria. The minima of the one function is in the maxima of the other.}
 \end{minipage}&
 \begin{minipage}{0.45\textwidth}
-\leavevmode\subcaption{\label{fig:usaf_lines}centered line plots. \itodo{single line plots not good}}
+\leavevmode\subcaption{\label{fig:usaf_image}microscopic image}
+\end{minipage}
+\\
+% \subcaptionbox{\label{fig:usaf_lines_lr}centered line plots lr}{
+% \tikzset{external/export next=false}
+\inputtikz{dev/gfx/chap8/usaf_line_plots_lr}
+% }
+&
+% \subcaptionbox{\label{fig:usaf_lines_lr}centered line plots ud}{
+% \tikzset{external/export next=false}
+\inputtikz{dev/gfx/chap8/usaf_line_plots_up}
+% }
+\\
+\begin{minipage}{0.45\textwidth}
+\leavevmode\subcaption{\label{fig:usaf_lines_lr}centered line plots lr}
+\end{minipage}&
+\begin{minipage}{0.45\textwidth}
+\leavevmode\subcaption{\label{fig:usaf_lines_lr}centered line plots ud}
 \end{minipage}
 \end{tabular}
 \caption[USAF test chart measurement]{taorad pm. Line width: magenta: $\SI{2.19}{\micro\meter}$, yellow $\SI{1.95}{\micro\meter}$ and cyan $\SI{1.74}{\micro\meter}$. Resolution at about $\SI{1.95}{\micro\meter}$ yielding to an optical convolution of $\opticsigma = \SI{0.75}{\pixel}$.}
 \label{fig:USAF}
 \end{figure}
+% 
+However the real resolution limit is because of multiple aberration and diffraction effects reduced.
+To measure the resolution limit one can use the Rayleigh criterion.
+It states, that two light points can be differed, if the the maximum of the first light point is in the first minimum of the second one (see \cref{fig:rayleigh}).
+% 
+To measure the resolution a \textrm{1951 \ac{USAF} resolution test chart}\footnote{U.S. Air Force MIL-STD-150A standard of 1951} is imaged.
+It consists of several patterns which have three slits with defined distances and widths.
+% 
+\par
+\noindent\rule{\textwidth}{2pt}
+% 
+\newpage
+% 
 % 
 \Cref{fig:usaf_image} shows a section of a captured PM image.
 The highlighted areas show the key regions.
@@ -75,6 +96,9 @@ Using the Rayleigh criterion, the resolution is in the range of the second group
 This reproduces the previous measurements in \cite{MenzelMaster} \todo{master thesis?}.
 As a result, the convolution to be applied is set to $\opticsigma = \SI{0.75}{\pixel}$ in the size of the resulting image pixel.
 % 
+Mathematically, a resolution reduction of an image is modeled by a convolution with a Gaussian function of width $\sigma$.
+It effectively blends the information into its roundness and thus onto the neighboring pixels.
+It is also known as point spread function.
 % 
 % 
 \subsection{sensor gain}\label{sec:sensorGain}
@@ -91,11 +115,8 @@ As a result, the convolution to be applied is set to $\opticsigma = \SI{0.75}{\p
 % thesis/2_simulation/0_parameter/sensor_gain.py
 \centering
 % 
-
-
-
-
-
+% 
+% 
 \begin{tabular}{cc}
 % 
 % 1. IMAGE
@@ -407,10 +428,6 @@ From the first and last plot show that a fiber radii of \SI{1}{\micro\meter} see
 After that the simulation comparison \acc{}\todo{check if acc is defined.} value sinks drastically for fiber populations close to %\fiberPsi=\SI{0.5}{}$.
 % 
 The behavior between the ground truth $GT$ and and simulation $SIM$ will be closely examined in the next section.
-\par
-\noindent\rule{\textwidth}{2pt}
-% 
-\newpage
 % 
 % 
 % 
