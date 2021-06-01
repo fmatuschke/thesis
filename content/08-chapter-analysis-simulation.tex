@@ -12,7 +12,7 @@ Following this, these parameters are used to simulate the previously generated m
 A focus is placed on the accuracy of tilt analyses for different orientations and crossing configurations.
 % 
 % 
-\itodo{reproduzieren von modellen und deren simulationen}
+\itodo{reproduzieren von modellen und deren simulationen?}
 % 
 % 
 % 
@@ -72,24 +72,19 @@ For the wavelength used in \ac{3D-PLI} with $\lambda = \SI{525}{\nano\meter}$ an
 \label{fig:USAF}
 \end{figure}
 % 
-However the real resolution limit is because of multiple aberration and diffraction effects reduced.
-To measure the resolution limit one can use the Rayleigh criterion.
-It states, that two light points can be differed, if the the maximum of the first light point is in the first minimum of the second one (see \cref{fig:rayleigh}).
+However, the actual resolution limit is reduced due to multiple aberration and diffraction effects.
+To measure the resolution limit, one can use the Rayleigh criterion.
+It states that two light points can be distinguished if the maximum of the first light point lies in the first minimum of the second (see \cref{fig:rayleigh}).
 % 
-To measure the resolution a \textrm{1951 \ac{USAF} resolution test chart}\footnote{U.S. Air Force MIL-STD-150A standard of 1951} is imaged.
-It consists of several patterns which have three slits with defined distances and widths.
-% 
-\par
-\noindent\rule{\textwidth}{2pt}
-% 
-\newpage
-% 
+To measure the resolution a \textrm{1951 \ac{USAF} resolution test chart}\footnote{U.S. Air Force MIL-STD-150A standard of 1951} is acquired.
+It consists of several patterns that have three slits with defined distances and widths.
+\\
 % 
 \Cref{fig:usaf_image} shows a section of a captured PM image.
 The highlighted areas show the key regions.
-The first region corresponding to group \textrm{7\text{-}6} \raisebox{.25em}{\tikzset{external/export next=false}\tikz \draw[magenta,ultra thick,dashed](0,0)--(0.25,0);} has a line width of $\SI{2.19}{\micro\meter}$.
-The second group \textrm{8\text{-}1} \raisebox{.25em}{\tikzset{external/export next=false}\tikz \draw[yellow,ultra thick,dashed](0,0)--(0.25,0);} has a line width of $\SI{1.95}{\micro\meter}$.
-The final group \textrm{8\text{-}2} \raisebox{.25em}{\tikzset{external/export next=false}\tikz \draw[cyan,ultra thick,dashed](0,0)--(0.25,0);} has a line width of $\SI{1.74}{\micro\meter}$.
+The first region corresponding to group \textrm{7\text{-}6} \raisebox{.25em}{\tikzset{external/export next=false}\tikz \draw[RED,ultra thick,dashed](0,0)--(0.25,0);} has a line width of $\SI{2.19}{\micro\meter}$.
+The second group \textrm{8\text{-}1} \raisebox{.25em}{\tikzset{external/export next=false}\tikz \draw[GREEN,ultra thick,dashed](0,0)--(0.25,0);} has a line width of $\SI{1.95}{\micro\meter}$.
+The final group \textrm{8\text{-}2} \raisebox{.25em}{\tikzset{external/export next=false}\tikz \draw[BLUE,ultra thick,dashed](0,0)--(0.25,0);} has a line width of $\SI{1.74}{\micro\meter}$.
 The intensity line profiles are shown in \cref{fig:usaf_lines}.
 % 
 Using the Rayleigh criterion, the resolution is in the range of the second group and thus around $\SI{1.95}{\micro\meter}$.
@@ -100,6 +95,10 @@ Mathematically, a resolution reduction of an image is modeled by a convolution w
 It effectively blends the information into its roundness and thus onto the neighboring pixels.
 It is also known as point spread function.
 % 
+\par
+\noindent\rule{\textwidth}{2pt}
+% 
+\newpage
 % 
 \subsection{sensor gain}\label{sec:sensorGain}
 %
