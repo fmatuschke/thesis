@@ -6,6 +6,8 @@
     height=\tikzwidth,
     axis x line=center,
     axis y line=center,
+    xmajorticks=false,
+    ymajorticks=false,
     domain=-6:6,
     samples=42,
 % 	xlabel=$x$,
