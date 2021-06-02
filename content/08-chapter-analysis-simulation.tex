@@ -65,7 +65,7 @@ For the wavelength used in \ac{3D-PLI} with $\lambda = \SI{525}{\nano\meter}$ an
 \leavevmode\subcaption{\label{fig:usaf_lines_lr}centered line plots lr}
 \end{minipage}&
 \begin{minipage}{0.45\textwidth}
-\leavevmode\subcaption{\label{fig:usaf_lines_lr}centered line plots ud}
+\leavevmode\subcaption{\label{fig:usaf_lines_ud}centered line plots ud}
 \end{minipage}
 \end{tabular}
 \caption[USAF test chart measurement]{taorad pm. Line width: magenta: $\SI{2.19}{\micro\meter}$, yellow $\SI{1.95}{\micro\meter}$ and cyan $\SI{1.74}{\micro\meter}$. Resolution at about $\SI{1.95}{\micro\meter}$ yielding to an optical convolution of $\opticsigma = \SI{0.75}{\pixel}$.}
@@ -76,19 +76,19 @@ However, the actual resolution limit is reduced due to multiple aberration and d
 To measure the resolution limit, one can use the Rayleigh criterion.
 It states that two light points can be distinguished if the maximum of the first light point lies in the first minimum of the second (see \cref{fig:rayleigh}).
 % 
-To measure the resolution a \textrm{1951 \ac{USAF} resolution test chart}\footnote{U.S. Air Force MIL-STD-150A standard of 1951} is acquired.
+To measure the resolution a \textit{1951 \ac{USAF} resolution test chart}\footnote{U.S. Air Force MIL-STD-150A standard of 1951} is acquired.
 It consists of several patterns that have three slits with defined distances and widths.
 \\
 % 
 \Cref{fig:usaf_image} shows a section of a captured PM image.
 The highlighted areas show the key regions.
-The first region corresponding to group \textrm{7\text{-}6} \raisebox{.25em}{\tikzset{external/export next=false}\tikz \draw[RED,ultra thick,dashed](0,0)--(0.25,0);} has a line width of $\SI{2.19}{\micro\meter}$.
-The second group \textrm{8\text{-}1} \raisebox{.25em}{\tikzset{external/export next=false}\tikz \draw[GREEN,ultra thick,dashed](0,0)--(0.25,0);} has a line width of $\SI{1.95}{\micro\meter}$.
-The final group \textrm{8\text{-}2} \raisebox{.25em}{\tikzset{external/export next=false}\tikz \draw[BLUE,ultra thick,dashed](0,0)--(0.25,0);} has a line width of $\SI{1.74}{\micro\meter}$.
-The intensity line profiles are shown in \cref{fig:usaf_lines}.
+The first region corresponding to group 7-6 \raisebox{.25em}{\tikzset{external/export next=false}\tikz \draw[RED,ultra thick,dashed](0,0)--(0.25,0);} has a line width of $\SI{2.19}{\micro\meter}$.
+The second group 8-1 \raisebox{.25em}{\tikzset{external/export next=false}\tikz \draw[GREEN,ultra thick,dashed](0,0)--(0.25,0);} has a line width of $\SI{1.95}{\micro\meter}$.
+The final group 8-2 \raisebox{.25em}{\tikzset{external/export next=false}\tikz \draw[BLUE,ultra thick,dashed](0,0)--(0.25,0);} has a line width of $\SI{1.74}{\micro\meter}$.
+The intensity line profiles are shown in \cref{fig:usaf_lines_lr,fig:usaf_lines_ud}.
 % 
 Using the Rayleigh criterion, the resolution is in the range of the second group and thus around $\SI{1.95}{\micro\meter}$.
-This reproduces the previous measurements in \cite{MenzelMaster} \todo{master thesis?}.
+This reproduces the measurements in \cite{MenzelMaster} \todo{master thesis?}.
 As a result, the convolution to be applied is set to $\opticsigma = \SI{0.75}{\pixel}$ in the size of the resulting image pixel.
 % 
 Mathematically, a resolution reduction of an image is modeled by a convolution with a Gaussian function of width $\sigma$.
@@ -495,7 +495,7 @@ Verhalten von transmittance von steilheit?
 % 
 simpli.voxel\_size & $\SI{0.125}{\micro\meter}$\\
 simpli.pixel\_size & $\SI{1.25}{\micro\meter}$\\
-simpli.voi & $[\SI{-30}{\micro\meter}, \SI{-30}{\micro\meter}, \SI{-30}{\micro\meter}], [\SI{30}{\micro\meter}, \SI{30}{\micro\meter}, \SI{30}{\micro\meter}]$\\
+simpli.voi & $[\SI{-35}{\micro\meter}, \SI{-35}{\micro\meter}, \SI{-30}{\micro\meter}], [\SI{30}{\micro\meter}, \SI{35}{\micro\meter}, \SI{35}{\micro\meter}]$\\
 simpli.filter\_rotations & $\SIlist{0;20;40;60;80;100;120;160}{\degree}$\\
 simpli.interpolate & \texttt{"Slerp"}\\
 simpli.wavelength & $\SI{525}{\nano\meter}$\\
@@ -545,7 +545,12 @@ In the case of a single fiber population only the inclination parameter $\modelI
 \label{fig:single_fiber_pop_hist}
 \end{figure}
 % 
-% 
+\begin{figure}[!tp]
+\centering
+\includegraphics[width=\textwidth]{dev/rc1/single/PM_Vervet_r_r_0.50_f0_0.00_f1_0.00_.init.pdf} 
+\caption[hist]{\dummy{}}
+\label{fig:single_fiber_hist_with_gt}
+\end{figure}
 % 
 \begin{figure}[!tp]
 \centering
