@@ -24,6 +24,41 @@
 \label{fig:human-brain}
 \end{figure}
 %
+\begin{figure}[!t]
+\centering
+\hspace*{\fill}
+\subcaptionbox{}[.45\textwidth]{\includegraphics[height=3cm]{dev/wiki/brain_lobes.png}\url{https://en.wikipedia.org/wiki/Frontal_lobe}}
+\hspace*{\fill}
+\subcaptionbox{\label{fig:nerveFiber}}[.45\textwidth]{\includegraphics[height=3cm]{dev/wiki/brain_fiber_paths.png}\url{https://en.wikipedia.org/wiki/Association_fiber}}
+\hspace*{\fill}
+\caption{(a) Illustration of human brain. (b) Illustration of a coronal human brain section.}
+\label{fig:human-fiber}
+\end{figure}
+% 
+\begin{figure}[!t]
+\centering
+% 
+\hspace*{\fill}
+\tikzset{external/export next=false}
+\subcaptionbox{BB 4201: Gray, White Matter, Coronal Section, Stained}[0.6\textwidth]{
+\begin{tikzpicture}[]
+    \node[inner sep=0pt, anchor = south west] (fig) at (0,0)
+    {\includegraphics[width=0.6\textwidth]{dev/brain/BB_4201.png}};
+    % \draw[] (0,0) grid (8,5);
+    \draw[RED, ultra thick, <-] (5,4) -- ++ (-42:0.75) node[pos=1, anchor=north] {\textbf{WM}};
+    \draw[GREEN, ultra thick, <-] (2.4,5) -- ++ (-65:0.75) node[pos=1, anchor=north] {\textbf{GM}};
+\end{tikzpicture}
+}
+\hspace*{\fill}
+\subcaptionbox{Cortical layers}[0.3\textwidth]{
+\includegraphics[width=0.3\textwidth]{dev/wiki/layers.png}
+}
+\hspace*{\fill}
+% 
+\caption[GM, WM, layers]{}
+\label{fig:BBrain}
+\end{figure}
+% 
 \section{Fiber Architecture} \label{sec:fiberArchitecture}
 %
 \section{Sectioning}
@@ -113,11 +148,11 @@ g-ratio
 	\begin{tikzpicture}[]   
      \node[inner sep=0pt, anchor = south west] (fig) at (0,0)
        {\includegraphics[width=\textwidth]{gfx/neuroanatomy/NeuralNet-BrainAtlasDotOrg.png}};
-     \draw[Goldenrod, ultra thick] (7.65,6.15) ellipse (1 and 0.5);
+     \draw[Orange, ultra thick] (7.65,6.15) ellipse (1 and 0.5);
      \draw[ProcessBlue, ultra thick] (10,4.5) ellipse (2 and 1);
      \draw[white, ultra thick] (0.5,0.5) -- ++ (0:1) node[pos=0.5, above] {\small $\SI{0}{\micro\meter}$};
     \end{tikzpicture}
 % 	\includegraphics[width=\textwidth]{gfx/neuroanatomy/NeuralNet-BrainAtlasDotOrg.png}
-	\caption{Myelin Staining. human thalamus, sagital section. \textcolor{Goldenrod}{nerve fiber bundles}. \textcolor{ProcessBlue}{neural net}}
+	\caption{Myelin Staining. human thalamus, sagital section. \textcolor{Orange}{nerve fiber bundles}. \textcolor{ProcessBlue}{neural net}}
 % 	\label{fig:brain_sectioning}
 \end{figure}
