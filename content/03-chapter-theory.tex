@@ -2,13 +2,6 @@
 \chapter{3D-PLI}
 \label{sec:theory}
 %
-\comment{\paragraph{Ziele:} 
-\begin{itemize}
-    \item physik
-    \item analysen
-\end{itemize}}
-%
-3D-PLI
 The following section lists the physical theories needed to describe the mathematics behind \ac{3D-PLI}. This includes the basic properties of light with the description of their polarization state, the optical models of the tissue, i.e. the nerve fibers and the mathematical description of the experimental setup of \ac{3D-PLI}. The first part of this chapter was written with the help of \cite{demtroeder2, Fliebach2012}.
 % 
 % 
@@ -495,7 +488,7 @@ For a discrete, aquidistant measurement of the rotation angles $\rho$, one can u
 
 \begin{align}
 \begin{split}
-\rho &= [0, 20, ..., 180) \> \text{for 9 measurements}\\
+\rho &= [\SI{0}{\degree}, \frac{1\cdot180}{N+1}\si{\degree}, \frac{2\cdot180}{N+1}\si{\degree}, ..., \frac{N\cdot180}{N+1}\si{\degree}]\\
 a_0 &= \frac{1}{N} \sum(\mathit{data})\\
 a_1 &= \frac{2}{N} \sum(\mathit{data} \cdot \sin(2 \cdot \rho)\\
 b_1 &= \frac{2}{N} \sum(\mathit{data} \cdot \cos(2 \cdot \rho)
@@ -547,39 +540,39 @@ A change in density, orientation or dispersion however will lead to a false resu
 \begin{figure}[!t]
 \centering
 \setlength{\tikzwidth}{0.4\textwidth}
-% \begin{tabular}{cc}
 \begin{center}
 \begin{tabular}{m{6cm}m{6cm}}
 \includegraphics[width=\tikzwidth]{gfx/pli/color_sphere.png}
 &
 \inputtikz{gfx/pli/hsv_sphere}
 \\
-\begin{minipage}{0.45\textwidth}
+\begin{minipage}{0.42\textwidth}
 \leavevmode\subcaption{2d hsv sphere}
-\end{minipage}&
-\begin{minipage}{0.45\textwidth}
-\leavevmode\subcaption{3d hsv sphere}
+\end{minipage}
+&
+\begin{minipage}{0.42\textwidth}
+\leavevmode\subcaption{\label{fig:sphere}3d hsv sphere}
 \end{minipage}
 \end{tabular}
 \end{center}
 % 
-% \setlength{\tikzwidth}{0.42\textwidth}
-% \subcaptionbox{2d sphere}[.49\textwidth]{
-% \includegraphics[width=\tikzwidth]{gfx/pli/color_sphere.png}
-% }
-% \setlength{\tikzwidth}{0.45\textwidth}
-% \subcaptionbox{hsv}[.49\textwidth]{
-% \inputtikz{gfx/pli/hsv_sphere}
-% }
-% 
-\caption{collr spheres, \itodo{centering}}
+\vspace{-1em} % because of tabular?
+\caption{collor spheres}
 \label{fig:spheres}
 \end{figure}
 % 
 % 
+The orientation of the birefringence axis is descibed by the direction angle $\varphi$ and inclination angle $\alpha$ (see \cref{fig:sphere}).
+To be able to show a 3d information, the \textit{hsv-black} is usually shown in \ac{3D-PLI}.
+It color code the orientation by:
+\begin{align}
+\begin{split}
+    H &= \varphi/\pi\\
+    S &= 1\\
+    V &= 1-\alpha / \pi/2
+\end{split}
+\end{align}
+This way the color corresponds to the direction, and the color value to the inclination.
+Since the orientation, unlike a vector, covers only a half sphere, the colors are point symmetric.
 % 
-% \section{signal}
-% 
-% \begin{align}
-% I = \frac{I_0}{2} \left[ \sin\left(2\rho - 2\varphi\right) \cdot \left( 2\pi\frac{d \dn}{\lambda} \cos^2\left( \alpha \right) \right)  \right]
-% \end{align}
+% fig:spheres
