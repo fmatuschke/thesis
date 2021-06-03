@@ -1,0 +1,45 @@
+% \tikzset{external/export=false}
+\begin{tikzpicture}
+    % 
+    \node[text width=5cm] (fastpli) at (-0.25,0.3) {
+        \begin{tcolorbox}[%
+            title={fastpli \vphantom{Mg}},
+            fonttitle=\bfseries,
+            colbacktitle=NavyBlue ,
+            width=9.25cm,
+            height=4cm
+        ]
+        \end{tcolorbox}
+    };
+    % 
+    \node[text width=5cm] (modelling) {
+        \begin{tcolorbox}[%
+            title={modelling \vphantom{Mg}},
+            fonttitle=\bfseries,
+            colbacktitle=Gray,
+            width=4.2cm,
+            height=3cm
+        ]
+        \begin{itemize}[leftmargin=1em]
+            \item sandbox
+            \item build
+            \item solver
+        \end{itemize}
+        \end{tcolorbox}
+    };
+    % 
+    \node[text width=5cm, right= -2em of modelling] (simulation) {
+        \begin{tcolorbox}[%
+            title={simulation \vphantom{Mg}},
+            fonttitle=\bfseries,
+            colbacktitle=Gray,
+            width=4.2cm,
+            height=3cm
+        ]
+        \begin{itemize}[leftmargin=1em]
+            \item generate tissue
+            \item simulate
+        \end{itemize}
+        \end{tcolorbox}
+    };
+\end{tikzpicture}
