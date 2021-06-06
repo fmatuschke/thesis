@@ -1,5 +1,5 @@
 \setcounter{chapter}{2}
-\chapter{3D-PLI}
+\chapter{Theory}
 \label{sec:theory}
 %
 The following section lists the physical theories needed to describe the mathematics behind \ac{3D-PLI}. This includes the basic properties of light with the description of their polarization state, the optical models of the tissue, i.e. the nerve fibers and the mathematical description of the experimental setup of \ac{3D-PLI}. The first part of this chapter was written with the help of \cite{demtroeder2, Fliebach2012}.
@@ -378,13 +378,13 @@ Aanlog to Jones one can formulate the matrices for the optical components:
 % \end{align}
 \todo{matrix multi}
 % 
-\section{Tissue Discretization}
-% 
-By deviding the volume into small diskreticed subvolumes, one can multiply the .. all together and ... (analog Riemann sum)
-\begin{align}
-    \int F \, dt \approx \sum_n F \, \Delta t
-\end{align}
-see simulation?
+% \section{Tissue Discretization}
+% % 
+% By deviding the volume into small diskreticed subvolumes, one can multiply the .. all together and ... (analog Riemann sum)
+% \begin{align}
+%     \int F \, dt \approx \sum_n F \, \Delta t
+% \end{align}
+% see simulation?
 % 
 %  see simulation
 % \paragraph{Micro vs Macro:}
@@ -546,11 +546,11 @@ A change in density, orientation or dispersion however will lead to a false resu
 &
 \inputtikz{gfx/pli/hsv_sphere}
 \\
-\begin{minipage}{0.42\textwidth}
+\begin{minipage}[t]{0.42\textwidth}
 \leavevmode\subcaption{2d hsv sphere}
 \end{minipage}
 &
-\begin{minipage}{0.42\textwidth}
+\begin{minipage}[t]{0.42\textwidth}
 \leavevmode\subcaption{\label{fig:sphere}3d hsv sphere}
 \end{minipage}
 \end{tabular}
@@ -576,3 +576,27 @@ This way the color corresponds to the direction, and the color value to the incl
 Since the orientation, unlike a vector, covers only a half sphere, the colors are point symmetric.
 % 
 % fig:spheres
+% 
+% 
+\section{optical resolution}
+\label{sec:opticalResolution}
+% 
+The optical resolution of an imaging system describes the minimal size of on object which can still be resolved.
+This property is limited by aberration and diffraction which both cause a blurring of the resulting image.
+Ernst Abbe described as on of the first that the resulition corrlates with the lightwave $\lambda$: 
+\begin{align}
+d=\frac{ \lambda}{2 n \sin \theta} = \frac{\lambda}{2\mathrm{NA}} \> .
+\end{align}
+$d$ is the minimal resolvable distance, $n$ the refractive index, $\theta$ the angle of a spot light, which can be combined to the better known numerical aperture $\mathrm{NA}$.
+This results in an absolute threshold for a light microscope above which the resolution can no longer be improved.
+For the wavelength used in \ac{3D-PLI} with $\lambda = \SI{525}{\nano\meter}$ and a numerical apperatur of $\mathrm{NA} = \SI{}{}$ this yields to a limit of \dummy{}.
+% 
+\begin{figure}[!t]
+\setlength{\tikzwidth}{0.45\textwidth}
+\centering
+% \subcaptionbox{}{
+\inputtikz{gfx/pli/rayleigh}
+\caption[Raylay criterium]{rayleigh criteria. The minima of the one function is in the maxima of the other.}
+\label{fig:rayleigh}
+\end{figure}
+% 

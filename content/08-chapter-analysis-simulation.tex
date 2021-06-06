@@ -7,47 +7,33 @@
 % 
 This chapter contains focuses on the simulation of \ac{3D-PLI}.
 The first part focuses on the definition of all necessary parameters.
-A part of this is to determined how accurate the simulation has to be, i.e. the voxel size.
+A part of this is to determined how accurate the simulation has to be, i.e. the \voxelsize{}.
 Following this, these parameters are used to simulate the previously generated models.
 A focus is placed on the accuracy of tilt analyses for different orientations and crossing configurations.
 % 
 % 
-\itodo{reproduzieren von modellen und deren simulationen?}
 % 
-% 
-% 
-\section{Experimental Parameters}\label{sec:sim_choose_parameters}
+\section{Experimental parameter characterisation}\label{sec:sim_choose_parameters}
 % 
 \subsection{optical resolution}
 % 
-(first part in theory?)\\
-
-The optical resolution of an imaging system describes the minimal size of on object which can still be resolved.
-This property is limited by aberration and diffraction which both cause a blurring of the resulting image.
-Ernst Abbe described as on of the first that the resulition corrlates with the lightwave $\lambda$: 
-\begin{align}
-d=\frac{ \lambda}{2 n \sin \theta} = \frac{\lambda}{2\mathrm{NA}} \> .
-\end{align}
-$d$ is the minimal resolvable distance, $n$ the refractive index, $\theta$ the angle of a spot light, which can be combined to the better known numerical aperture $\mathrm{NA}$.
-This results in an absolute threshold for a light microscope above which the resolution can no longer be improved.
-For the wavelength used in \ac{3D-PLI} with $\lambda = \SI{525}{\nano\meter}$ and a numerical apperatur of $\mathrm{NA} = \SI{}{}$ this yields to a limit of \dummy{}.
+As describe in \cref{sec:opticalResolution} the optical resolution depence on aberration and diffraction, which themselves depends on a wide range of factors.
+The optical resolution and resampling is modelled as described in \cref{sec:ccdOptic}. 
 % 
 \begin{figure}[!t]
 \setlength{\tikzwidth}{0.45\textwidth}
 \centering
 \begin{tabular}{cc}
-% \subcaptionbox{\label{fig:rayleigh}rayleigh criteria. The minima of the one function is in the maxima of the other.}{
-\inputtikz{gfx/pli/rayleigh}
-% }
+\includegraphics[width=0.72\tikzwidth]{dev/wiki/USAF-1951.pdf}
 &
 % \subcaptionbox{\label{fig:usaf_image}microscopic image}{
 \inputtikz[]{dev/gfx/chap8/usaf_image}
 % }
 \\
-\begin{minipage}{0.45\textwidth}
-\leavevmode\subcaption{\label{fig:rayleigh}rayleigh criteria. The minima of the one function is in the maxima of the other.}
+\begin{minipage}[t]{0.45\textwidth}
+\leavevmode\subcaption{\label{fig:usaf}USAF chart from group -2 to 1 \url{https://en.wikipedia.org/wiki/1951_USAF_resolution_test_chart}}
 \end{minipage}&
-\begin{minipage}{0.45\textwidth}
+\begin{minipage}[t]{0.45\textwidth}
 \leavevmode\subcaption{\label{fig:usaf_image}microscopic image}
 \end{minipage}
 \\
@@ -61,62 +47,59 @@ For the wavelength used in \ac{3D-PLI} with $\lambda = \SI{525}{\nano\meter}$ an
 \inputtikz{dev/gfx/chap8/usaf_line_plots_up}
 % }
 \\
-\begin{minipage}{0.45\textwidth}
+\begin{minipage}[t]{0.45\textwidth}
 \leavevmode\subcaption{\label{fig:usaf_lines_lr}centered line plots lr}
 \end{minipage}&
-\begin{minipage}{0.45\textwidth}
+\begin{minipage}[t]{0.45\textwidth}
 \leavevmode\subcaption{\label{fig:usaf_lines_ud}centered line plots ud}
 \end{minipage}
 \end{tabular}
 \caption[USAF test chart measurement]{taorad pm. Line width: magenta: $\SI{2.19}{\micro\meter}$, yellow $\SI{1.95}{\micro\meter}$ and cyan $\SI{1.74}{\micro\meter}$. Resolution at about $\SI{1.95}{\micro\meter}$ yielding to an optical convolution of $\opticsigma = \SI{0.75}{\pixel}$.}
 \label{fig:USAF}
 \end{figure}
-% 
-However, the actual resolution limit is reduced due to multiple aberration and diffraction effects.
-To measure the resolution limit, one can use the Rayleigh criterion.
-It states that two light points can be distinguished if the maximum of the first light point lies in the first minimum of the second (see \cref{fig:rayleigh}).
-% 
-To measure the resolution a \textit{1951 \ac{USAF} resolution test chart}\footnote{U.S. Air Force MIL-STD-150A standard of 1951} is acquired.
-It consists of several patterns that have three slits with defined distances and widths.
+%
+To measure the optical resolution of the microscop, the measurements and analysis analog to \cite{MenzelMaster} \todo{check ref} is done again.
+For this the \textit{1951 \ac{USAF} resolution test chart}\footnote{U.S. Air Force MIL-STD-150A standard of 1951} is aquired.
+It consists of several patterns that have three slits with defined distances and widths (see \cref{fig:usaf}.
+They are ordered in patches of three vertical and horizontal lines.
+The patches are ordered in a spiral like, which shrinks down from pattern to pattern by a factor of $\SI{0.5}{}$.
+To identify the line width, the patches are numerical orded by a main group $i$, and a subgroup $j$.
 \\
 % 
 \Cref{fig:usaf_image} shows a section of a captured PM image.
-The highlighted areas show the key regions.
+The highlighted areas show analysed groups 7-6 to 8-2.
 The first region corresponding to group 7-6 \raisebox{.25em}{\tikzset{external/export next=false}\tikz \draw[RED,ultra thick,dashed](0,0)--(0.25,0);} has a line width of $\SI{2.19}{\micro\meter}$.
 The second group 8-1 \raisebox{.25em}{\tikzset{external/export next=false}\tikz \draw[GREEN,ultra thick,dashed](0,0)--(0.25,0);} has a line width of $\SI{1.95}{\micro\meter}$.
 The final group 8-2 \raisebox{.25em}{\tikzset{external/export next=false}\tikz \draw[BLUE,ultra thick,dashed](0,0)--(0.25,0);} has a line width of $\SI{1.74}{\micro\meter}$.
-The intensity line profiles are shown in \cref{fig:usaf_lines_lr,fig:usaf_lines_ud}.
+The intensity line profiles for the vertical and horizontal case are shown in \cref{fig:usaf_lines_lr,fig:usaf_lines_ud}.
 % 
-Using the Rayleigh criterion, the resolution is in the range of the second group and thus around $\SI{1.95}{\micro\meter}$.
+Using the Rayleigh criterion, the resolution can be limited in the range of the second group and thus around $\SI{1.95}{\micro\meter}$.
 This reproduces the measurements in \cite{MenzelMaster} \todo{master thesis?}.
-As a result, the convolution to be applied is set to $\opticsigma = \SI{0.75}{\pixel}$ in the size of the resulting image pixel.
+As a result, the convolution to be applied (see \cref{sec:opticalResolution}) is set to $\opticsigma = \SI{0.75}{\pixel}$.
 % 
-Mathematically, a resolution reduction of an image is modeled by a convolution with a Gaussian function of width $\sigma$.
-It effectively blends the information into its roundness and thus onto the neighboring pixels.
-It is also known as point spread function.
 % 
-\par
-\noindent\rule{\textwidth}{2pt}
-% 
-\newpage
 % 
 \subsection{sensor gain}\label{sec:sensorGain}
 %
 \begin{figure}[!t]
 \centering
-\def\tikzwidth{0.75\textwidth}
-\inputtikz[true]{gfx/pli/pli_focus}
-\caption[intensity setup]{intensity setup. \itodo{check schematic}}
-\label{fig:intensityFocus}
-\end{figure}
-% 
-\begin{figure}[!t]
-% thesis/2_simulation/0_parameter/sensor_gain.py
-\centering
-% 
-% 
 % 
 \begin{tabular}{cc}
+% 
+\multicolumn{2}{c}{
+\def\tikzwidth{0.75\textwidth}
+\begin{minipage}{\tikzwidth}
+\tikzset{external/export next=false}
+\inputtikz{gfx/pli/pli_focus}
+\end{minipage}
+}
+\vspace{-1em}
+\\
+\multicolumn{2}{l}{
+\begin{minipage}[t]{\textwidth}
+\leavevmode\subcaption{\label{fig:intensityFocus}Intensity measurement setup. The focus of the microscop is changed so that the image is blured, resulting in a intensity variation at the border of the absorber material.\\[1em]}
+\end{minipage}}
+\\
 % 
 % 1. IMAGE
 \begin{tikzpicture}[baseline, trim axis left, trim axis right]
@@ -158,6 +141,7 @@ ymin=0,ymax=1,
 \begin{axis}[%
 width=0.45\textwidth,
 height=0.45\textwidth,
+% ymajorticks=false,
 % axis on top,
 axis lines=center,
 xlabel={x-pos},
@@ -167,15 +151,16 @@ ylabel={intensity},
 \end{axis}
 \end{tikzpicture}
 \\
+\vspace{-1em}
 % 
 % SUBCAPTIONS
 \multicolumn{1}{l}{
-\begin{minipage}{0.45\textwidth}
+\begin{minipage}[t]{0.45\textwidth}
 \leavevmode\subcaption{\label{fig:intensityImage}single microscopic image}
 \end{minipage}}
 &
 \multicolumn{1}{l}{
-\begin{minipage}{0.45\textwidth}
+\begin{minipage}[t]{0.45\textwidth}
 \leavevmode\subcaption{\label{fig:intensityProfile}intensity profile.}
 \end{minipage}}
 \end{tabular}
@@ -214,13 +199,13 @@ The results are shown in \cref{fig:parameterModelSimGain} and show a gain value 
 % 
 \multicolumn{1}{c}{\inputtikz{gfx/data/vervet_transmittance}}
 \\
-\begin{minipage}{\textwidth}
+\begin{minipage}[t]{\textwidth}
 \leavevmode\subcaption{\label{fig:brain_trans}transmittance}
 \end{minipage}
 \\
 \multicolumn{1}{c}{\inputtikz{gfx/data/vervet_retardation}}
 \\
-\begin{minipage}{\textwidth}
+\begin{minipage}[t]{\textwidth}
 \leavevmode\subcaption{\label{fig:brain_ret}retardation}
 \end{minipage}
 % 
