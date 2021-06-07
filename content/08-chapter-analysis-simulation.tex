@@ -178,14 +178,18 @@ ylabel={intensity},
 \end{figure}
 % 
 As described in \cref{sec:ccdOptic} the optical noise has to be applied by a noise model.
-In \cite{Wiese:887678} Hendrik Wiese measured the noise gain factor of the \ac{LAP} setup by measuring multiple times an image with a varieties of intensity values.
+In \cite{Wiese:887678} the gain factor was measured by measuring multiple times an image with a varieties of intensity values.
 The same type of measurement and analysis is performed here on the \ac{PM} setup.
-
-The measurements consist out of multiple images $(N=?)$. The specimen stage is covered with a fully absorbing cover, so that half of the image is dark.
-Additionally the focal length is change in such a way, that the light is spread over the hole image sensor depide of the cover.
-This allows to measure the full variance of intensities (see \cref{fig:intensityImage}).
-
+\\
+To aquire statistik for multiple a greate range of intensity values, the specimen stage is covered with a fully absorbing cover, so that half of the image is dark.
+Additionally the focal length is change in such a way, that the light is spread over the hole image sensor depide of the cover (see \cref{fig:intensityImage}).
+By measuring $N=\SI{500}{}$ images, the variance for the different intensity values is aquired.
 The results are shown in \cref{fig:parameterModelSimGain} and show a gain value of $\opticgain_{\mathit{PM}} = \SI{0.1175}{}(?)$ which is agreement to the hardware specifics \todo{check and ref}.
+This gain factor can be used by the model:
+\begin{align}
+f(x) = \mathrm{round}\left(\mathrm{normal}(\mu = x, \sigma=\sqrt{\opticgain \cdot x})\right)
+\end{align}
+\todo{only values > 0}
 % 
 % 
 % 
@@ -193,17 +197,17 @@ The results are shown in \cref{fig:parameterModelSimGain} and show a gain value 
 % 
 \begin{figure}[!t]
 \centering
-\def\tikzwidth{0.5\textwidth}
-\begin{tabular}{l}
+\def\tikzwidth{0.75\textwidth}
+\begin{tabular}{c}
 % 
-\multicolumn{1}{c}{\inputtikz{gfx/data/vervet_transmittance}}
-\\
+\inputtikz[true]{gfx/data/vervet_transmittance}
+\\[-1em]
 \begin{minipage}[t]{\textwidth}
 \leavevmode\subcaption{\label{fig:brain_trans}transmittance}
 \end{minipage}
 \\
-\multicolumn{1}{c}{\inputtikz{gfx/data/vervet_retardation}}
-\\
+\inputtikz[true]{gfx/data/vervet_retardation}
+\\[-1em]
 \begin{minipage}[t]{\textwidth}
 \leavevmode\subcaption{\label{fig:brain_ret}retardation}
 \end{minipage}
@@ -268,53 +272,69 @@ ret right: $0.80 \pm0.07$
 \end{figure}
 % 
 The absorption coefficient $\absorp{}$ and the birefringence $\dn{}$ have to be estimated from the tissue to use suitable values within the simulation.
-As the literature shows, these values are in the range of ... $\d{}$.
-However, since the models generated here use stiff fiber segments, the volume density cannot reach as high values as in the elastic tissue.
-To overcome this effect, the absorption and birefringence strengths must be increased to achieve comparable results.
+As the literature shows, these values are in the range of \dummy{}\TODO{!!!} $\dn{}$.
+However, since the models generated here use stiff fiber segments, the volume density cannot reach the high density, which is commonly present in the \ac{WM}.
+To overcome this problem, the absorption and birefringence strengths must be increased to achieve comparable results.
 \par
 % 
-To achieve this, the two components are measured in the experiment.
+Both properties can be measured by the \ac{3D-PLI} setup.
+Since the focus will be the Vervet monkey (since a large range of registered data is available at this moment), a coronal section will be used to analys both properties.
 It is important to ensure that a homogeneous region is chosen.
-In a coronal section, the corpus callosum is suitable for this purpose. It is the main fiber connection between the two cerebral hemispheres.
-A problem with transmission is that scattering cannot be distinguished from actual absorption in this setup.
-However, since this property is mathematically the same, namely a reduction in intensity along the tissue, it can still be used, but it must be remembered that it is the outdated "absorption" and not just the loss of energy in the tissue.
-Additionally, the scattering is not constant for all fiber configurations and orientations \dummy{}.
-Therefore, the value measured here is only valid for the same fiber configurations as the region.
-However, it should be a good estimate for the magnitude of absorption in the tissue, which, as will be shown later in the simulation, is sufficient.
+In a coronal section, the corpus callosum is suitable for this purpose. It is the main fiber connection between the two cerebral hemispheres (see \cref{fig:parameterModelSim}).
 % 
-\Cref{fig:parameterModelSim} shows a coronal section of the Vervet monkey brain \dummy(section number 549, aber was ist zu sehen, ist es in der mitte?, ...).
+% \Cref{fig:parameterModelSim} shows a coronal section of the Vervet monkey brain \dummy[section number 549, aber was ist zu sehen, ist es in der mitte?, ...]{}.
+% % 
+% To get a approximation of the parameters the models with a radius of $r=\SI{0.5}{\micro\meter}$ are used, which is closed to the real tissue.
 % 
-To get a approximation of the parameters the models with a radius of $r=\SI{0.5}{\micro\meter}$ are used, which is closed to the real tissue.
+\Cref{fig:brain_ret_trans} shows the transmittance and retardation maps of the coronal Cervet section, and \ref{fig:brain_ret_trans_zoom} a zommed version.
+The retartdation map shows a visible reduction of the retardation in the center of the corpus calosum.
+Because of the necesarry homoginity, this center region is therefore neglectet.
+This leaves a left and a right region, which in both transmittance and retardation is feasable homoginious (see histograms).
+The left region has $\SI{1125858}{}$ number of pixels, the right part $\SI{1064629}{}$
 % 
+The same measurements are also aquired for the human and roden section (see appendix). \todo{end of this subsection}
 % 
 % 
 \paragraph{absorption}
 % 
+A problem with transmission is that scattering cannot be distinguished from actual absorption in this setup.
+However, since this property is mathematically the same, namely a reduction in intensity along the tissue, it can still be used, but it must be remembered that it is the outdated "absorption" and not just the loss of energy in the tissue.
+Additionally, the scattering is not constant for all fiber configurations and orientations \dummy[see MM]{}.
+Therefore, the value measured here is only valid for the same fiber configurations as the region.
+However, it should be a good estimate for the magnitude of absorption in the tissue, which, as will be shown later in the simulation, is sufficient.
+\\
+% 
 A relative transmittance of about $\SIrange{20}{30}{\percent}$ is present inside the \ac{ROI} of the corpus callosum \todo{show histogram}. 
 The simulation parameter has to be set such as that for the models a similar transmittance value is reached.
 This means, that for a $\SI{60}{\micro\meter}$ thick section the absorption coefficient $\absorp{}$ is about $\SI{30}{}$. 
-Since the absorption shell be the same for larger fibers to yield the same noise and it cannot be distingioust between "no fiber matter i.e. background" and fibers the absorption coeeficient cannot be measured, and therefore the absorption will be multiplied after the simulation on the hole image. The absorption for the Roden is $\SI{8}{}$, and the human $\SI{65}{}$.
-
-% However considering, that statistically only $\SI{75}{\percent}$ of the volume is filled, the simulation parameter has to be \dummy{}.
-% \Cref{fig:simTransValues} shows different transmittance vales for different types of radii.
+The absorption for the Roden is $\SI{8}{}$, and the human $\SI{65}{}$.
+%
+\Cref{fig:simTransValues} shows the simulated transmittance values for different fiber radii. \todo{only one is necesarry, since the birefringence not chaning anythong}.
+For smaler radii the variance of the transmittance is very small \dummy{} and increases with the radii.
+This behavier is epected, since models with larger radii have more space where no tissue is present, and therefore the light can transmitt freely through the \say{section}.
+In comparison to the histogram \cref{fig:brain_ret_trans_zoom} the models with larger radii have more in common with the distribution.
+However from literature one can neglect, that this kind of fiber radii is present in corpus calosum \dummy{}. 
+Considering the neglection of light scattering one can come to the conclusion, that this beahvier was to be expected.
+At this point the here developed simulation is not ready to simulate scattered light.
+However, since in the analysis the transmittance is not presents (see \dummy{}) and its role only indicates, how large the nois distribution is (which is for this setup quite small), this ... should be ok.
+(Further simulation in the future have to show how large the impact of the transmittance is)
 % 
-% \ITODO{transmittance is twice as high as it should be !!! -> increase absorption coeeficient, ich glaube ich habe das bereits ersetzt}
-
-% For r=0.5 and a Vfraction of 0.75 mu\_vervet = 30, mu\_human = 65, mu\_roden = 8
-% % 
-% % This yield to a absoprtion coefficient $\absorp_\textit{Vervet} = \SI{20}{\per\micro\meter}$. For the human and mouse a value of $\absorp_\textit{human} = \SI{50}{\per\micro\meter}$ and $\absorp_\textit{mouse} = \SI{10}{\per\micro\meter}$ is measured.
 % 
 %
-% 
 \paragraph{birefringence}
 % 
-Literature measured a birefringence of nerve fibers of around \dummy{}. 
+To get an estimate of the birefringence of \ac{WM} it is essential in this setup configuration, that the measured nerve fibers have no inlcination.
+This of couse is impossible to ensure.
+However the corpus callosum again is because of its anatomical structure a good approximation in a coronal section for flat fibers.
+Literature measured a birefringence of nerve fibers of around \dummy{}\TODO{!!!}. 
 % Scince for this simulations the models are rigide and therefore are spatially farer away from each other, this means that the tissue density is lower than in reality.
 % Therefore to reach similar retardation values the birefringence value has to be increased.
 To analyse the effect of the lower desity inside the models, the birefringence values is simulated at a voxel size of $\SI{0.125}{\micro\meter}$ at different values.
 The results in \cref{fig:parameterModelSim} show that to reach a retardation value similar to the experimental setup of around $\SI{0.8}{}$ a birefringence value of $\SI{-0.004}{}$ for a macroscopic and $\SI{0.008}{}$ for the microscopic model should be chosen.
-This is around factor 2 \todo{check} higher than literatur.
-However keeping the lower density in mind and the effect of a fixed myelin radii model of $\SI{75}{\percent}$ this is still in agreement.
+Since the nerve fibers in this region are not perfectly flat and dense, this is a lower esitmation of the birefingence strength.
+However the same is true for the fiber models.
+% This is around factor 2 \todo{check} higher than literatur.
+% However keeping the lower density in mind and the effect of a fixed myelin radii model of $\SI{75}{\percent}$ this is still in agreement.
 Looking at the different model nerve fiber radii the variance of the retardation values increase strong.
 This is to be expected since the simulated tissue section has a hight of $\SI{60}{\micro\meter}$.
 Therefore for a radii of $\SI{10}{\micro\meter}$ the number of tissue voxels has to vary depending on where the fibers are positioned in the volume.
@@ -323,21 +343,21 @@ That is also the reason why the values are non normal distributed between $\si{0
 %  
 % 
 % 
-\subsection{noise}
-% 
-\begin{figure}[!t]
-\centering
-\inputtikz{gfx/data/theo_noise}
-\caption[noise plot]{noise \dummy{}}
-\label{fig:noiseplot}
-\end{figure}
-% 
-From \cref{sec:sensorGain,sec:tissueProp} the noise level can be calculated.
-However, when considering the different species, it is important to note that transmittance levels vary.
-Rodents typically have the highest transmittance, monkeys have a lower transmittance, and humans have the lowest transmittance.
-The reason for the rather low transmission of the human sections is probably due to the long post-mortem period.
-\Cref{fig:noiseplot} shows a log-log plot for this purpose.
-To run the simulation, a relative error of \dummy{} is used for a midrange analysis.
+% \subsection{noise} <--- why this section?
+% % 
+% \begin{figure}[!t]
+% \centering
+% \inputtikz{gfx/data/theo_noise}
+% \caption[noise plot]{noise \dummy{}}
+% \label{fig:noiseplot}
+% \end{figure}
+% % 
+% From \cref{sec:sensorGain,sec:tissueProp} the noise level can be calculated.
+% However, when considering the different species, it is important to note that transmittance levels vary.
+% Rodents typically have the highest transmittance, monkeys have a lower transmittance, and humans have the lowest transmittance.
+% The reason for the rather low transmission of the human sections is probably due to the long post-mortem period.
+% \Cref{fig:noiseplot} shows a log-log plot for this purpose.
+% To run the simulation, a relative error of \dummy{} is used for a midrange analysis.
 % 
 % 
 % 
