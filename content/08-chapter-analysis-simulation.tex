@@ -93,8 +93,8 @@ As a result, the convolution to be applied (see \cref{sec:opticalResolution}) is
 \inputtikz{gfx/pli/pli_focus}
 \end{minipage}
 }
-\vspace{-1em}
-\\
+\\[-1em]
+% 
 \multicolumn{2}{l}{
 \begin{minipage}[t]{\textwidth}
 \leavevmode\subcaption{\label{fig:intensityFocus}Intensity measurement setup. The focus of the microscop is changed so that the image is blured, resulting in a intensity variation at the border of the absorber material.\\[1em]}
@@ -150,8 +150,7 @@ ylabel={intensity},
 \addplot[mark=none, blue] table[x index=0, y index=1] {dev/gfx/2/PM_000.dat};
 \end{axis}
 \end{tikzpicture}
-\\
-\vspace{-1em}
+\\[-1em]
 % 
 % SUBCAPTIONS
 \multicolumn{1}{l}{
@@ -532,7 +531,7 @@ In the case of a single fiber population only the inclination parameter $\modelI
 % 
 \begin{figure}[!tp]
 \centering
-\includegraphics[width=\textwidth]{dev/rc1/single/PM_Vervet_r_r_0.50_f0_0.00_f1_0.00_.init.pdf} 
+\includegraphics[width=\textwidth]{dev/rc1/single/PM_Vervet_r_r_0.50_o_60_f0_0.00_f1_0.00_.init.pdf} 
 \caption[hist]{\dummy{}}
 \label{fig:single_fiber_hist_with_gt}
 \end{figure}
