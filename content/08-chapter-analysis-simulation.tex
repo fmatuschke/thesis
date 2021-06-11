@@ -64,8 +64,8 @@ It consists of several patterns that have three slits with defined distances and
 They are ordered in patches of three vertical and horizontal lines.
 The patches are ordered in a spiral like, which shrinks down from pattern to pattern by a factor of $\SI{0.5}{}$.
 To identify the line width, the patches are numerical orded by a main group $i$, and a subgroup $j$.
-\\
 % 
+\paragraph{results}
 \Cref{fig:usaf_image} shows a section of a captured PM image.
 The highlighted areas show analysed groups 7-6 to 8-2.
 The first region corresponding to group 7-6 \raisebox{.25em}{\tikzset{external/export next=false}\tikz \draw[RED,ultra thick,dashed](0,0)--(0.25,0);} has a line width of $\SI{2.19}{\micro\meter}$.
@@ -79,7 +79,7 @@ As a result, the convolution to be applied (see \cref{sec:opticalResolution}) is
 % 
 % 
 % 
-\subsection{sensor gain}\label{sec:sensorGain}
+\subsection{sensor gain and image noise}\label{sec:sensorGain}
 %
 \begin{figure}[!t]
 \centering
@@ -169,11 +169,30 @@ ylabel={intensity},
 \end{figure}
 % 
 % 
+% 
 \begin{figure}[!t]
 % thesis/2_simulation/0_parameter/sensor_gain.py
 \centering
-\includegraphics[width=0.75\textwidth]{dev/gfx/2/PM_noise.png}
-\caption[Noise analysis]{Noise analysis PM. $\opticgain_{\mathit{PM}} = \SI{0.1175}{}(?)$. \itodo{replot, also show microscope image}}
+% 
+\def\tikzwidth{0.45\textwidth}
+\begin{tabular}{cc}
+\includegraphics[width=0.45\textwidth]{dev/gfx/2/PM_noise.png}
+&
+\inputtikz[true]{gfx/data/theo_noise}
+\\
+% SUBCAPTIONS
+\multicolumn{1}{l}{
+\begin{minipage}[t]{0.45\textwidth}
+\leavevmode\subcaption{\label{fig:parameterModelSimGain} Noise analysis PM. $\opticgain_{\mathit{PM}} = \SI{0.1175}{}(?)$. \itodo{replot}}
+\end{minipage}}
+&
+\multicolumn{1}{l}{
+\begin{minipage}[t]{0.45\textwidth}
+\leavevmode\subcaption{\label{fig:noiseplot}noise \dummy{} \itodo{check values}}
+\end{minipage}}
+\end{tabular}
+% 
+\caption[Noise analysis]{intensity variance and noise plot}
 \label{fig:parameterModelSimGain}
 \end{figure}
 % 
@@ -184,6 +203,8 @@ The same type of measurement and analysis is performed here on the \ac{PM} setup
 To aquire statistik for multiple a greate range of intensity values, the specimen stage is covered with a fully absorbing cover, so that half of the image is dark.
 Additionally the focal length is change in such a way, that the light is spread over the hole image sensor depide of the cover (see \cref{fig:intensityImage}).
 By measuring $N=\SI{500}{}$ images, the variance for the different intensity values is aquired.
+% 
+\paragraph{results}
 The results are shown in \cref{fig:parameterModelSimGain} and show a gain value of $\opticgain_{\mathit{PM}} = \SI{0.1175}{}(?)$ which is agreement to the hardware specifics \todo{check and ref}.
 This gain factor can be used by the model:
 \begin{align}
@@ -295,15 +316,15 @@ The left region has $\SI{1125858}{}$ number of pixels, the right part $\SI{10646
 The same measurements are also aquired for the human and roden section (see appendix). \todo{end of this subsection}
 % 
 % 
-\paragraph{absorption}
+\subsubsection{absorption}
 % 
 A problem with transmission is that scattering cannot be distinguished from actual absorption in this setup.
 However, since this property is mathematically the same, namely a reduction in intensity along the tissue, it can still be used, but it must be remembered that it is the outdated "absorption" and not just the loss of energy in the tissue.
 Additionally, the scattering is not constant for all fiber configurations and orientations \dummy[see MM]{}.
 Therefore, the value measured here is only valid for the same fiber configurations as the region.
 However, it should be a good estimate for the magnitude of absorption in the tissue, which, as will be shown later in the simulation, is sufficient.
-\\
 % 
+\paragraph{results}
 A relative transmittance of about $\SIrange{20}{30}{\percent}$ is present inside the \ac{ROI} of the corpus callosum \todo{show histogram}. 
 The simulation parameter has to be set such as that for the models a similar transmittance value is reached.
 This means, that for a $\SI{60}{\micro\meter}$ thick section the absorption coefficient $\absorp{}$ is about $\SI{30}{}$. 
@@ -316,12 +337,14 @@ In comparison to the histogram \cref{fig:brain_ret_trans_zoom} the models with l
 However from literature one can neglect, that this kind of fiber radii is present in corpus calosum \dummy{}. 
 Considering the neglection of light scattering one can come to the conclusion, that this beahvier was to be expected.
 At this point the here developed simulation is not ready to simulate scattered light.
-However, since in the analysis the transmittance is not presents (see \dummy{}) and its role only indicates, how large the nois distribution is (which is for this setup quite small), this ... should be ok.
+However, since in the analysis the transmittance is not presents (see \dummy{}) and its role only indicates, how large the noise distribution is (which is for this setup quite small), this ... should be ok.
 (Further simulation in the future have to show how large the impact of the transmittance is)
+%  
+\Cref{fig:noiseplot} shows the intensity noise curve for the ...
 % 
 % 
 %
-\paragraph{birefringence}
+\subsubsection{birefringence}
 % 
 To get an estimate of the birefringence of \ac{WM} it is essential in this setup configuration, that the measured nerve fibers have no inlcination.
 This of couse is impossible to ensure.
@@ -330,6 +353,9 @@ Literature measured a birefringence of nerve fibers of around \dummy{}\TODO{!!!}
 % Scince for this simulations the models are rigide and therefore are spatially farer away from each other, this means that the tissue density is lower than in reality.
 % Therefore to reach similar retardation values the birefringence value has to be increased.
 To analyse the effect of the lower desity inside the models, the birefringence values is simulated at a voxel size of $\SI{0.125}{\micro\meter}$ at different values.
+% 
+% 
+\paragraph{results}
 The results in \cref{fig:parameterModelSim} show that to reach a retardation value similar to the experimental setup of around $\SI{0.8}{}$ a birefringence value of $\SI{-0.004}{}$ for a macroscopic and $\SI{0.008}{}$ for the microscopic model should be chosen.
 Since the nerve fibers in this region are not perfectly flat and dense, this is a lower esitmation of the birefingence strength.
 However the same is true for the fiber models.
@@ -344,13 +370,6 @@ That is also the reason why the values are non normal distributed between $\si{0
 % 
 % 
 % \subsection{noise} <--- why this section?
-% % 
-% \begin{figure}[!t]
-% \centering
-% \inputtikz{gfx/data/theo_noise}
-% \caption[noise plot]{noise \dummy{}}
-% \label{fig:noiseplot}
-% \end{figure}
 % % 
 % From \cref{sec:sensorGain,sec:tissueProp} the noise level can be calculated.
 % However, when considering the different species, it is important to note that transmittance levels vary.
@@ -372,18 +391,18 @@ That is also the reason why the values are non normal distributed between $\si{0
 \label{fig:voxelsizeNoise}
 \end{figure}
 % 
-The voxel size \voxelsize{} is the main parameter for simulation accuracy.
+The \voxelsize{} \voxels{} is the main parameter for simulation accuracy, since it determanse how acurate the models will be discreticed.
 Smaller values mean more details, more accurate optical axes, more light rays.
 However, it also means an increase in memory by $O(n^3)$.
-Therefore, it is advisable to choose the voxel size as small as possible, with reasonable results.
+therefore it is recommended to choose the \voxelsize{} so that it is as large as possible without generating a significant error from the discretiziation.
 \par
 % 
 To investigate this effect, a simulation is performed with different types of voxel sizes from the $\SIrange{0.0125}{1.25}{\micro\meter}$.
 The smallest voxel size $\SI{0.0125}{\micro\meter}$ is used as ground truth or comparison. 
 However, this voxel size is so small that this is only performed for a single tissue section. \todo{which?, how much memory, ...}
 The pixel size \pixelsize{} will be set to $\SI{1.25}{\micro\meter}$. \todo{other parameters}
-\par
-%
+% 
+\paragraph{results}
 The results  in \cref{fig:voxelsizeNoise} show that the relative difference to the smallest \voxelsize{} increase statically after a value of \SI{0.125}{\micro\meter}.
 The variance of the relative difference increases with the radius of the models as well as with the \voxelsize{}.\todo{was sind die vier unterschiedlichen plots?}
 % 
@@ -393,44 +412,46 @@ However, this is only true for a pixel size of $\SI{1.25}{\micro\meter}$.
 % 
 % 
 % 
-\subsection{Fiber radii}
-% 
-\begin{figure}[!t]
-\centering
-\includegraphics[width=1\textwidth]{dev/rc1/cube_2pop_135_rc1_radius_acc_compare_Vervet_PM_r.pdf}
-\caption[sim acc]{ $\acc{}(GT,GT_{0.5})$, $\acc{}(SIM,GT_{0.5})$ and $\acc{}(SIM,SIM_{0.5})$. hypothese: abweichungen in GtSim bei kleinen radien dadurch, dass zwei richtungen nicht sichtbar sind? schaue dir die histogramme und odfs an. \itodo{komplett neu machen}}
-\label{fig:accVervetPMr}
-\end{figure}
-% 
-The last parameter to investigate is the fiber radius $\fiberRadius{}$ of the models.
-The anatomical closes value is of course $\fiberRadius{} = \SI{0.5}{\micro\meter}$.
-However to allow faster modelling processen it is feasable to analyse with which radius a difference is visiable in the microscopic setup.
-To investigate this behavior the distribution of the orientation of the fiber segments was analysed.
-\par
-% 
-\paragraph{results}
-\Cref{fig:accVervetPMr} shows the ACC(GT0.5 to GT difference between the orientation of the models of different radii (always to $\fiberRadius{} = \SI{0.5}{\micro\meter}$).
-the second shows the ACC(GT0.5 to SIM) and the last $\acc{}(SIM,SIM_{0.5})$.
-% 
-The first plot shows a very close correspondence between the GT of different radii (see y scala).
-For more intermixed fiber populations (\modelPsi{} closer to $\SI{0.5}{\micro\meter}$) as well as crossing angle \modelOmega{} the \acc{} decreases slightly.
-Overall the difference is almost negligible.
-\par
-%
-Plot 2 shows a different result for the comparison between the $GT$ and $SIM$.
-Here only fiber populations \modelPsi{} close to $\SI{0}{}$ or $\SI{1}{}$ have a high agreement for smaller fiber radii \fiberRadius{}.
-The \acc{} decreeses with incrasing radii \fiberRadius{} down to a value of $\approx \SI{0.7}{}$.
-Fiber populations with \modelPsi{} closer to 0.5 have a very low ACC parameter. For the 0.6 case the \acc{} increases slightly for increasing radii up to acc=0.6.
-The crossing angle has a high impact on the acc value. 
-% 
-\paragraph{...}
-Looking at the results from the $acc(GT,GT_{0.5})$ and $\acc{}(SIM,SIM_{0.5})$ of course $\fiberRadius=\SI{0.5}{\micro\meter}$ has a \acc{} of $\SI{0}{}$ since they are identical.
-On the other hand $acc(GT,SIM_{0.5})$ shows for $\fiberRadius=\SI{0.5}{\micro\meter}$ the smallest values and highest variance for \acc{} since the fiber crossing leads to a low retardation and therefore signal lost and the analysis can't measure the in... signal.
-% 
-From the first and last plot show that a fiber radii of \SI{1}{\micro\meter} seems to have a little impact on the model and simulation side.
-After that the simulation comparison \acc{}\todo{check if acc is defined.} value sinks drastically for fiber populations close to %\fiberPsi=\SI{0.5}{}$.
-% 
-The behavior between the ground truth $GT$ and and simulation $SIM$ will be closely examined in the next section.
+% \subsection{Fiber radii}
+% % 
+% \begin{figure}[!t]
+% \centering
+% \includegraphics[width=1\textwidth]{dev/rc1/cube_2pop_135_rc1_radius_acc_compare_Vervet_PM_r.pdf}
+% \caption[sim acc]{ $\acc{}(GT,GT_{0.5})$, $\acc{}(SIM,GT_{0.5})$ and $\acc{}(SIM,SIM_{0.5})$. hypothese: abweichungen in GtSim bei kleinen radien dadurch, dass zwei richtungen nicht sichtbar sind? schaue dir die histogramme und odfs an. \itodo{komplett neu machen}}
+% \label{fig:accVervetPMr}
+% \end{figure}
+% % 
+% The last parameter to investigate is the fiber radius $\fiberRadius{}$ of the models.
+% The anatomical fiber radii is around $\fiberRadius{} = \SI{0.5}{\micro\meter}$.
+% However to allow faster modelling process it is feasible to analyse with which radius a difference is visible in the microscopic setup.
+% To investigate this behavior the distribution of the orientation of the fiber segments was analysed, because the models differ in there geometries. \todo{auf signal angucken?}
+% % 
+% \paragraph{results}
+% \Cref{fig:accVervetPMr} shows the ACC(GT0.5 to GT difference between the orientation of the models of different radii (always to $\fiberRadius{} = \SI{0.5}{\micro\meter}$).
+% the second shows the ACC(GT0.5 to SIM) and the last $\acc{}(SIM,SIM_{0.5})$.
+% % 
+% The first plot shows a very close correspondence between the GT of different radii (see y scala).
+% For more intermixed fiber populations (\modelPsi{} closer to $\SI{0.5}{\micro\meter}$) as well as crossing angle \modelOmega{} the \acc{} decreases slightly.
+% Overall the difference is almost negligible.
+% \par
+% %
+% Plot 2 shows a different result for the comparison between the $GT$ and $SIM$.
+% Here only fiber populations \modelPsi{} close to $\SI{0}{}$ or $\SI{1}{}$ have a high agreement for smaller fiber radii \fiberRadius{}.
+% The \acc{} decreeses with incrasing radii \fiberRadius{} down to a value of $\approx \SI{0.7}{}$.
+% Fiber populations with \modelPsi{} closer to 0.5 have a very low ACC parameter. For the 0.6 case the \acc{} increases slightly for increasing radii up to acc=0.6.
+% The crossing angle has a high impact on the acc value. 
+% % 
+% \par
+% Looking at the results from the $acc(GT,GT_{0.5})$ and $\acc{}(SIM,SIM_{0.5})$ of course $\fiberRadius=\SI{0.5}{\micro\meter}$ has a \acc{} of $\SI{0}{}$ since they are identical.
+% On the other hand $acc(GT,SIM_{0.5})$ shows for $\fiberRadius=\SI{0.5}{\micro\meter}$ the smallest values and highest variance for \acc{} since the fiber crossing leads to a low retardation and therefore signal lost and the analysis can't measure the in... signal.
+% % 
+% From the first and last plot show that a fiber radii of \SI{1}{\micro\meter} seems to have a little impact on the model and simulation side.
+% After that the simulation comparison \acc{}\todo{check if acc is defined.} value sinks drastically for fiber populations close to %\fiberPsi=\SI{0.5}{}$.
+% % 
+% The behavior between the ground truth $GT$ and and simulation $SIM$ will be closely examined in the next section.
+% % 
+% Since the models exists at this point already for $\fiberRadius = \SI{0.5}{\micro\meter}$ these will be used.
+% For future modelling the fibre radii however should be decreased (at this resolution) to allow for faster modelling\footnote{It should also be checked, if the \voxelsize{} can be increased then.}.
 % 
 % 
 % 
@@ -497,8 +518,8 @@ Verhalten von transmittance von steilheit?
 ]
 {variable & value\\
 % 
-simpli.voxel\_size & $\SI{0.125}{\micro\meter}$\\
-simpli.pixel\_size & $\SI{1.25}{\micro\meter}$\\
+simpli.voxel\_size & $\SI{0.1}{\micro\meter}$\\
+simpli.pixel\_size & $\SI{1.3}{\micro\meter}$\\
 simpli.voi & $[\SI{-35}{\micro\meter}, \SI{-35}{\micro\meter}, \SI{-30}{\micro\meter}], [\SI{30}{\micro\meter}, \SI{35}{\micro\meter}, \SI{35}{\micro\meter}]$\\
 simpli.filter\_rotations & $\SIlist{0;20;40;60;80;100;120;160}{\degree}$\\
 simpli.interpolate & \texttt{"Slerp"}\\
@@ -515,7 +536,7 @@ fiber model & 'r'\\
 fiber birefringence & 0.008 for 'r'\\
 fiber radii & (0.75, 1)\\
 }
-\caption{simpli parameters. \itodo{absorption ist volumenweit, nicht nur in faser}}
+\caption{simpli parameters. \itodo{absorption ist volumenweit, nicht nur in faser} \ITODO{correct my values!!!}}
 \label{tab:simParameters}
 \end{table}
 % 
@@ -523,10 +544,12 @@ fiber radii & (0.75, 1)\\
 \Cref{tab:simParameters} lists the parameters of the simulation inside the \fastpli{} variable notation.
 The values are chosen due to the discussion of \cref{sec:sim_choose_parameters}.
 % 
+This configuration results in 
+% 
 \subsubsection{Execution}
 % 
 As described in \cref{Software} \fastpli{} contains a pipeline implementation. \dummy{}.
-This implementation is used to calculate the discretized volumes (from generator), simulate the signal, performing the optical noise and analysis the resulting signal with \rofl{}\footnote{Source code is available in appendix \dummy{}.}.
+This implementation is used to calculate the discretized volumes (from generator), simulate the signal, performing the optical noise and inclination analysis of the resulting signal with \rofl{}\footnote{Source code is available in appendix \dummy{}.}.
 \\
 % 
 The simulation were performed with a single compute node (\texttt{2x Intel(R) Xeon(R) CPU E5-4657L v2}).
@@ -534,62 +557,100 @@ The simulation were performed with a single compute node (\texttt{2x Intel(R) Xe
 % 
 % 
 \subsection{single fiber population}
-% 
-In the case of a single fiber population only the inclination parameter $\modelInc{}$ is ... since no rotation and crossing angle exists.
 \itodo{mehr inclination winkel fuer diesen Fall? -> JA}
-% 
-% 
-% 
-\subsubsection{orientation distribution}
 % 
 \begin{figure}[!tp]
 \centering
-\includegraphics[height=0.8\textheight]{dev/rc1/cube_2pop_135_rc1_r_0.5_plots_single_pop_hist.pdf} 
+\newlength{\width}
+\setlength{\width}{0.4\textwidth}
+\begin{tabular}{cc}
+    \includegraphics[width=\width]{dev/rc1/single/cube_2pop_135_rc1_single_plots_single_pop_hist_0.0.pdf} & \includegraphics[width=\width]{dev/rc1/single/cube_2pop_135_rc1_single_plots_single_pop_hist_50.0.pdf} \\
+    \includegraphics[width=\width]{dev/rc1/single/cube_2pop_135_rc1_single_plots_single_pop_hist_10.0.pdf} & \includegraphics[width=\width]{dev/rc1/single/cube_2pop_135_rc1_single_plots_single_pop_hist_60.0.pdf} \\
+    \includegraphics[width=\width]{dev/rc1/single/cube_2pop_135_rc1_single_plots_single_pop_hist_20.0.pdf} & \includegraphics[width=\width]{dev/rc1/single/cube_2pop_135_rc1_single_plots_single_pop_hist_70.0.pdf} \\
+    \includegraphics[width=\width]{dev/rc1/single/cube_2pop_135_rc1_single_plots_single_pop_hist_30.0.pdf} & \includegraphics[width=\width]{dev/rc1/single/cube_2pop_135_rc1_single_plots_single_pop_hist_80.0.pdf} \\
+    \includegraphics[width=\width]{dev/rc1/single/cube_2pop_135_rc1_single_plots_single_pop_hist_40.0.pdf} & \includegraphics[width=\width]{dev/rc1/single/cube_2pop_135_rc1_single_plots_single_pop_hist_90.0.pdf}
+\end{tabular}
+% 
 \caption[sim]{left: 2d log histogramm orientation from rofl analysis of simulation, right: 2d log histogramm of orientation of model segemnts. \dummy[auch als odf moeglich, aber schlechter vergeichbar; vieleicht contourplots von GT]{}}
 \label{fig:single_fiber_pop_hist}
 \end{figure}
 % 
-\begin{figure}[!tp]
-\centering
-\includegraphics[width=\textwidth]{dev/rc1/single/PM_Vervet_r_r_0.50_o_60_f0_0.00_f1_0.00_.init.pdf} 
-\caption[hist]{\dummy{}}
-\label{fig:single_fiber_hist_with_gt}
-\end{figure}
+First only a single fiber population will be analysed.
+Since for a single population the direction is neglectable, only the inclination parameter $\modelInc{}$ remains.
 % 
-\begin{figure}[!tp]
+\par
+\Cref{fig:single_fiber_pop_hist} shows the orientation distribution of a single fiber population for dirrecent inclinations $\modelInc{}$.
+On the left side are the distributions of the model segments orientations, on the right side the ones of the inclination analysis of the simulated images.
+The plot are logithimic and weighet by the surface area of the 2d bin.
+% For $\modelInc= \SI{90}{\degree}$
+The comparison between both distributions show a agreement of the inclination analysis with the models orientations.
+The variance however is for the inclination analysis a little bit higher than for the models orientations.\todo{messen}
+Since these are log plots, the \say{visible variance} is almost neglectable.
+% 
+% 
+% 
+\begin{figure}[!p]
 \centering
-\subcaptionbox{\label{fig:single_fiber_pop_epa_trans}transmittance}[.32\textwidth]{
-\includegraphics[width=0.3\textwidth]{dev/rc1/cube_2pop_135_rc1_r_0.5_plots_single_pop_epa_trans.pdf}}\hfill
-\subcaptionbox{\label{fig:single_fiber_pop_epa_dir}direction}[.32\textwidth]{
-\includegraphics[width=0.3\textwidth]{dev/rc1/cube_2pop_135_rc1_r_0.5_plots_single_pop_epa_dir.pdf}}\hfill
-\subcaptionbox{\label{fig:single_fiber_pop_epa_ret}retardation}[.32\textwidth]{
-\includegraphics[width=0.3\textwidth]{dev/rc1/cube_2pop_135_rc1_r_0.5_plots_single_pop_epa_ret.pdf}}
+\setlength{\width}{0.45\textwidth}
+\subcaptionbox{\label{fig:single_fiber_pop_epa_trans}transmittance}[\width]{
+\includegraphics[width=\width]{dev/rc1/single/cube_2pop_135_rc1_single_plots_single_pop_epa_trans.pdf}}\hfill
+\subcaptionbox{\label{fig:single_fiber_pop_epa_dir}direction}[\width]{
+\includegraphics[width=\width]{dev/rc1/single/cube_2pop_135_rc1_single_plots_single_pop_epa_dir.pdf}}
 \\[2em]
-\subcaptionbox{\label{fig:single_fiber_pop_rofl_dir}rofl direction}[.32\textwidth]{
-\includegraphics[width=0.3\textwidth]{dev/rc1/cube_2pop_135_rc1_r_0.5_plots_single_pop_rofl_dir.pdf}}\hfill
-\subcaptionbox{\label{fig:single_fiber_pop_rofl_inc}rofl inclination}[.32\textwidth]{
-\includegraphics[width=0.3\textwidth]{dev/rc1/cube_2pop_135_rc1_r_0.5_plots_single_pop_rofl_inc.pdf}}\hfill
-\subcaptionbox{\label{fig:single_fiber_pop_rofl_trel}rofl trel}[.32\textwidth]{
-\includegraphics[width=0.3\textwidth]{dev/rc1/cube_2pop_135_rc1_r_0.5_plots_single_pop_rofl_trel.pdf}}
+\subcaptionbox{\label{fig:single_fiber_pop_epa_ret}retardation}[\width]{
+\includegraphics[width=\width]{dev/rc1/single/cube_2pop_135_rc1_single_plots_single_pop_epa_ret.pdf}}\hfill
+\subcaptionbox{\label{fig:single_fiber_pop_rofl_dir}rofl direction}[\width]{
+\includegraphics[width=\width]{dev/rc1/single/cube_2pop_135_rc1_single_plots_single_pop_rofl_dir.pdf}}
+\\[2em]
+\subcaptionbox{\label{fig:single_fiber_pop_rofl_inc}rofl inclination}[\width]{
+\includegraphics[width=\width]{dev/rc1/single/cube_2pop_135_rc1_single_plots_single_pop_rofl_inc.pdf}}\hfill
+\subcaptionbox{\label{fig:single_fiber_pop_rofl_trel}rofl trel}[\width]{
+\includegraphics[width=\width]{dev/rc1/single/cube_2pop_135_rc1_single_plots_single_pop_rofl_trel.pdf}}
 \caption[]{\dummy[single population rofl analysis; colors left to right: 0, 30, 60, 90 degree inclination; line: theoretical curve]{}}
 \label{fig:single_fiber_pop_rofl}
 \end{figure}
 % 
-\Cref{fig:single_fiber_pop_hist} shows the 3d fiber orientation distribution of the simulated (left) and the model ground truth (right) as a 2d polar log histogram.
-The number of pixels is $48\cdot48=\SI{2304}{\pixel}$.
-Looking at the simulation distribution for inclinations lower than $\SI{60}{\degree}$ the variance is very small.
-It is similar to the variance of the ground truth \todo{number of segments in 60µm cube}.
-However since the number of segments is much higher, and the simulation results from the "mean" signal of the light path, its distribution contains also many more orientations (keeping in mind the log scale).
-Only for the steep fibers with an inclination of $\modelInc{}=\SI{90}{\degree}$ different orientation are visible for the simulation results.
-The variance is similar to the ground truth of the model segments.
-% 
-% 
-\subsubsection{pli-modalities}
-% 
+\par
+\Cref{fig:fig:single_fiber_pop_rofl} show the different modalities after analysing the raw measurements for all inclinations.
+The transmittance is for inclinations $\modelInc<\SI{90}{\degree}$ almost identical\footnote{not as in the experiment!}.
+For $\modelInc= \SI{90}{\degree}$ however the transmittance increases, \ie{} the absorption decreses.
+Tje dorectopm va;ies varoamce os wotj \dummy{} very small.
+Only for high inclination values its increases.
+One must take note, that because the boxplot does not take the periodic signal into account, the values are for the $\modelInc= \SI{90}{\degree}$ actually along the hole range.
+The retardation follows for all inclinaten the theoretical model (blue curve).
+Its variance stays almost constant with about \dummy{}.
+The direction from the inclination analysis is indistinquistable from the fourie analysis.
+The inclination follows the models inclination.
+Its variance increases for high values significant.
+Trel is up to \dummy{} relativ const.
+For higher inclination values however its values exceeds 1 which leads to the conclusion, that the model could not fit the data anymore apropiatly.
 % 
 % 
 % 
 \subsection{two fiber populations}
+% 
+\subsubsection{flat fiber configurations}
+% 
+\begin{figure}[!tp]
+\centering
+\includegraphics[width=\textwidth]{dev/rc1/single/PM_Vervet_r_r_0.50_o_60_f0_0.00_f1_0.00_.init.pdf} 
+\caption[hist]{\dummy[warum variance von sim so klein gegenueber single fiber pop?]{}}
+\label{fig:flat_crossing_hist}
+\end{figure}
+% 
+\Cref{fig:flat_crossing_hist} shows the histogram distribution for two fiber popilations with a inclination of $\SI{0}{\degree}$.
+Lookiing at the distribtiuon the cariance is slightly increases in comparison to the single fiber population case.
+The intensity of the log plot follows the models population density \modelPsi{} \todo{check}.
+The inclination of the inclination analysis in the mean with $\SI{0}{\degree}$.
+The variance is \dummy{}.
+The resulting direction of the analysis is between the models direction distribution:
+\begin{align}
+    \varphi = \omega_0 \varphi_0 + \omega_1 \varphi_1
+\end{align}
+\itodo{check this formular. also theoretical!}
+% 
+% 
+% 
 \subsection{filled fiber populations}
 \subsection{misc}
 \section{summary/discussion}
@@ -862,3 +923,10 @@ The variance is similar to the ground truth of the model segments.
 % % 
 % % 
 % % 
+\begin{figure}[!p]
+\centering
+\includegraphics[width=1\textwidth]{dev/rc1/cube_2pop_135_rc1_radius_acc_compare_Vervet_PM_r.pdf}
+\caption[sim acc]{ $\acc{}(GT,GT_{0.5})$, $\acc{}(SIM,GT_{0.5})$ and $\acc{}(SIM,SIM_{0.5})$. hypothese: abweichungen in GtSim bei kleinen radien dadurch, dass zwei richtungen nicht sichtbar sind? schaue dir die histogramme und odfs an. \itodo{komplett neu machen}}
+\label{fig:accVervetPMr}
+\end{figure}
+% 
