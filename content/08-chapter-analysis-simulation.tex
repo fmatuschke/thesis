@@ -571,7 +571,7 @@ The simulation were performed with a single compute node (\texttt{2x Intel(R) Xe
     \includegraphics[width=\width]{dev/rc1/single/cube_2pop_135_rc1_single_plots_single_pop_hist_40.0.pdf} & \includegraphics[width=\width]{dev/rc1/single/cube_2pop_135_rc1_single_plots_single_pop_hist_90.0.pdf}
 \end{tabular}
 % 
-\caption[sim]{left: 2d log histogramm orientation from rofl analysis of simulation, right: 2d log histogramm of orientation of model segemnts. \dummy[auch als odf moeglich, aber schlechter vergeichbar; vieleicht contourplots von GT]{}}
+\caption[sim]{left: 2d log histogramm orientation from rofl analysis of simulation, right: 2d log histogramm of orientation of model segemnts.}
 \label{fig:single_fiber_pop_hist}
 \end{figure}
 % 
@@ -629,13 +629,80 @@ For higher inclination values however its values exceeds 1 which leads to the co
 % 
 \subsection{two fiber populations}
 % 
-\subsubsection{flat fiber configurations}
+\subsubsection{flat crossing fiber configurations}
 % 
-\begin{figure}[!tp]
+\begin{figure}[!p]
 \centering
-\includegraphics[width=\textwidth]{dev/rc1/single/PM_Vervet_r_r_0.50_o_60_f0_0.00_f1_0.00_.init.pdf} 
-\caption[hist]{\dummy[warum variance von sim so klein gegenueber single fiber pop?]{}}
-\label{fig:flat_crossing_hist}
+\setlength{\width}{0.4\textwidth}
+\begin{tabular}{cc}
+    \includegraphics[width=\width]{dev/rc1/flat/cube_2pop_135_rc1_flat_plots_flat_pop_hist_omega_0.0_psi_0.3.pdf} &
+    \includegraphics[width=\width]{dev/rc1/flat/cube_2pop_135_rc1_flat_plots_flat_pop_hist_omega_50.0_psi_0.3.pdf} \\
+    \includegraphics[width=\width]{dev/rc1/flat/cube_2pop_135_rc1_flat_plots_flat_pop_hist_omega_10.0_psi_0.3.pdf} & \includegraphics[width=\width]{dev/rc1/flat/cube_2pop_135_rc1_flat_plots_flat_pop_hist_omega_60.0_psi_0.3.pdf} \\
+    \includegraphics[width=\width]{dev/rc1/flat/cube_2pop_135_rc1_flat_plots_flat_pop_hist_omega_20.0_psi_0.3.pdf} & \includegraphics[width=\width]{dev/rc1/flat/cube_2pop_135_rc1_flat_plots_flat_pop_hist_omega_70.0_psi_0.3.pdf} \\
+    \includegraphics[width=\width]{dev/rc1/flat/cube_2pop_135_rc1_flat_plots_flat_pop_hist_omega_30.0_psi_0.3.pdf} & \includegraphics[width=\width]{dev/rc1/flat/cube_2pop_135_rc1_flat_plots_flat_pop_hist_omega_80.0_psi_0.3.pdf} \\
+    \includegraphics[width=\width]{dev/rc1/flat/cube_2pop_135_rc1_flat_plots_flat_pop_hist_omega_40.0_psi_0.3.pdf} & \includegraphics[width=\width]{dev/rc1/flat/cube_2pop_135_rc1_flat_plots_flat_pop_hist_omega_90.0_psi_0.3.pdf}
+\end{tabular}
+% 
+\caption[sim]{psi=0.3; left: 2d log histogramm orientation from rofl analysis of simulation, right: 2d log histogramm of orientation of model segemnts.}
+\label{fig:flat_03_fiber_pop_hist}
+\end{figure}
+% 
+\begin{figure}[!p]
+\centering
+\setlength{\width}{0.45\textwidth}
+\subcaptionbox{\label{fig:flat_03_fiber_pop_epa_trans}transmittance}[\width]{
+\includegraphics[width=\width]{dev/rc1/flat/cube_2pop_135_rc1_flat_plots_flat_pop_psi_0.3_epa_trans.pdf}}\hfill
+\subcaptionbox{\label{fig:flat_03_fiber_pop_epa_dir}direction}[\width]{
+\includegraphics[width=\width]{dev/rc1/flat/cube_2pop_135_rc1_flat_plots_flat_pop_psi_0.3_epa_dir.pdf}}
+\\[2em]
+\subcaptionbox{\label{fig:flat_03_fiber_pop_epa_ret}retardation}[\width]{
+\includegraphics[width=\width]{dev/rc1/flat/cube_2pop_135_rc1_flat_plots_flat_pop_psi_0.3_epa_ret.pdf}}\hfill
+\subcaptionbox{\label{fig:flat_03_fiber_pop_rofl_dir}rofl direction}[\width]{
+\includegraphics[width=\width]{dev/rc1/flat/cube_2pop_135_rc1_flat_plots_flat_pop_psi_0.3_rofl_dir.pdf}}
+\\[2em]
+\subcaptionbox{\label{fig:flat_03_fiber_pop_rofl_inc}rofl inclination}[\width]{
+\includegraphics[width=\width]{dev/rc1/flat/cube_2pop_135_rc1_flat_plots_flat_pop_psi_0.3_rofl_inc.pdf}}\hfill
+\subcaptionbox{\label{fig:flat_03_fiber_pop_rofl_trel}rofl trel}[\width]{
+\includegraphics[width=\width]{dev/rc1/flat/cube_2pop_135_rc1_flat_plots_flat_pop_psi_0.3_rofl_trel.pdf}}
+\caption[]{\dummy[flat population psi=0.3 rofl analysis; colors left to right: 0, 30, 60, 90 degree inclination; line: theoretical curve]{}}
+\label{fig:flat_03_fiber_pop_rofl}
+\end{figure}
+% 
+\begin{figure}[!p]
+\centering
+\setlength{\width}{0.4\textwidth}
+\begin{tabular}{cc}
+    \includegraphics[width=\width]{dev/rc1/flat/cube_2pop_135_rc1_flat_plots_flat_pop_hist_omega_0.0_psi_0.5.pdf} &
+    \includegraphics[width=\width]{dev/rc1/flat/cube_2pop_135_rc1_flat_plots_flat_pop_hist_omega_50.0_psi_0.5.pdf} \\
+    \includegraphics[width=\width]{dev/rc1/flat/cube_2pop_135_rc1_flat_plots_flat_pop_hist_omega_10.0_psi_0.5.pdf} & \includegraphics[width=\width]{dev/rc1/flat/cube_2pop_135_rc1_flat_plots_flat_pop_hist_omega_60.0_psi_0.5.pdf} \\
+    \includegraphics[width=\width]{dev/rc1/flat/cube_2pop_135_rc1_flat_plots_flat_pop_hist_omega_20.0_psi_0.5.pdf} & \includegraphics[width=\width]{dev/rc1/flat/cube_2pop_135_rc1_flat_plots_flat_pop_hist_omega_70.0_psi_0.5.pdf} \\
+    \includegraphics[width=\width]{dev/rc1/flat/cube_2pop_135_rc1_flat_plots_flat_pop_hist_omega_30.0_psi_0.5.pdf} & \includegraphics[width=\width]{dev/rc1/flat/cube_2pop_135_rc1_flat_plots_flat_pop_hist_omega_80.0_psi_0.5.pdf} \\
+    \includegraphics[width=\width]{dev/rc1/flat/cube_2pop_135_rc1_flat_plots_flat_pop_hist_omega_40.0_psi_0.5.pdf} & \includegraphics[width=\width]{dev/rc1/flat/cube_2pop_135_rc1_flat_plots_flat_pop_hist_omega_90.0_psi_0.5.pdf}
+\end{tabular}
+% 
+\caption[sim]{psi=0.5; left: 2d log histogramm orientation from rofl analysis of simulation, right: 2d log histogramm of orientation of model segemnts.}
+\label{fig:flat_05_fiber_pop_hist}
+\end{figure}
+% 
+\begin{figure}[!p]
+\centering
+\setlength{\width}{0.45\textwidth}
+\subcaptionbox{\label{fig:flat_05_fiber_pop_epa_trans}transmittance}[\width]{
+\includegraphics[width=\width]{dev/rc1/flat/cube_2pop_135_rc1_flat_plots_flat_pop_psi_0.5_epa_trans.pdf}}\hfill
+\subcaptionbox{\label{fig:flat_05_fiber_pop_epa_dir}direction}[\width]{
+\includegraphics[width=\width]{dev/rc1/flat/cube_2pop_135_rc1_flat_plots_flat_pop_psi_0.5_epa_dir.pdf}}
+\\[2em]
+\subcaptionbox{\label{fig:flat_05_fiber_pop_epa_ret}retardation}[\width]{
+\includegraphics[width=\width]{dev/rc1/flat/cube_2pop_135_rc1_flat_plots_flat_pop_psi_0.5_epa_ret.pdf}}\hfill
+\subcaptionbox{\label{fig:flat_05_fiber_pop_rofl_dir}rofl direction}[\width]{
+\includegraphics[width=\width]{dev/rc1/flat/cube_2pop_135_rc1_flat_plots_flat_pop_psi_0.5_rofl_dir.pdf}}
+\\[2em]
+\subcaptionbox{\label{fig:flat_05_fiber_pop_rofl_inc}rofl inclination}[\width]{
+\includegraphics[width=\width]{dev/rc1/flat/cube_2pop_135_rc1_flat_plots_flat_pop_psi_0.5_rofl_inc.pdf}}\hfill
+\subcaptionbox{\label{fig:flat_05_fiber_pop_rofl_trel}rofl trel}[\width]{
+\includegraphics[width=\width]{dev/rc1/flat/cube_2pop_135_rc1_flat_plots_flat_pop_psi_0.5_rofl_trel.pdf}}
+\caption[]{\dummy[flat population psi=0.5 rofl analysis; colors left to right: 0, 30, 60, 90 degree inclination; line: theoretical curve]{}}
+\label{fig:flat_05_fiber_pop_rofl}
 \end{figure}
 % 
 \Cref{fig:flat_crossing_hist} shows the histogram distribution for two fiber popilations with a inclination of $\SI{0}{\degree}$.
