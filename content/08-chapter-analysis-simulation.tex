@@ -561,7 +561,16 @@ The simulation were performed with a single compute node (\texttt{2x Intel(R) Xe
 % 
 \begin{figure}[!tp]
 \centering
-\includegraphics[height=0.8\textheight]{dev/rc1/cube_2pop_135_rc1_r_0.5_plots_single_pop_hist.pdf} 
+\newlength{\width}
+\setlength{\width}{0.4\textwidth}
+\begin{tabular}{cc}
+    \includegraphics[width=\width]{dev/rc1/single/cube_2pop_135_rc1_single_plots_single_pop_hist_0.0.pdf} & \includegraphics[width=\width]{dev/rc1/single/cube_2pop_135_rc1_single_plots_single_pop_hist_50.0.pdf} \\
+    \includegraphics[width=\width]{dev/rc1/single/cube_2pop_135_rc1_single_plots_single_pop_hist_10.0.pdf} & \includegraphics[width=\width]{dev/rc1/single/cube_2pop_135_rc1_single_plots_single_pop_hist_60.0.pdf} \\
+    \includegraphics[width=\width]{dev/rc1/single/cube_2pop_135_rc1_single_plots_single_pop_hist_20.0.pdf} & \includegraphics[width=\width]{dev/rc1/single/cube_2pop_135_rc1_single_plots_single_pop_hist_70.0.pdf} \\
+    \includegraphics[width=\width]{dev/rc1/single/cube_2pop_135_rc1_single_plots_single_pop_hist_30.0.pdf} & \includegraphics[width=\width]{dev/rc1/single/cube_2pop_135_rc1_single_plots_single_pop_hist_80.0.pdf} \\
+    \includegraphics[width=\width]{dev/rc1/single/cube_2pop_135_rc1_single_plots_single_pop_hist_40.0.pdf} & \includegraphics[width=\width]{dev/rc1/single/cube_2pop_135_rc1_single_plots_single_pop_hist_90.0.pdf}
+\end{tabular}
+% 
 \caption[sim]{left: 2d log histogramm orientation from rofl analysis of simulation, right: 2d log histogramm of orientation of model segemnts. \dummy[auch als odf moeglich, aber schlechter vergeichbar; vieleicht contourplots von GT]{}}
 \label{fig:single_fiber_pop_hist}
 \end{figure}
@@ -580,21 +589,23 @@ Since these are log plots, the \say{visible variance} is almost neglectable.
 % 
 % 
 % 
-\begin{figure}[!t]
+\begin{figure}[!p]
 \centering
-\subcaptionbox{\label{fig:single_fiber_pop_epa_trans}transmittance}[.32\textwidth]{
-\includegraphics[width=0.3\textwidth]{dev/rc1/cube_2pop_135_rc1_r_0.5_plots_single_pop_epa_trans.pdf}}\hfill
-\subcaptionbox{\label{fig:single_fiber_pop_epa_dir}direction}[.32\textwidth]{
-\includegraphics[width=0.3\textwidth]{dev/rc1/cube_2pop_135_rc1_r_0.5_plots_single_pop_epa_dir.pdf}}\hfill
-\subcaptionbox{\label{fig:single_fiber_pop_epa_ret}retardation}[.32\textwidth]{
-\includegraphics[width=0.3\textwidth]{dev/rc1/cube_2pop_135_rc1_r_0.5_plots_single_pop_epa_ret.pdf}}
+\setlength{\width}{0.45\textwidth}
+\subcaptionbox{\label{fig:single_fiber_pop_epa_trans}transmittance}[\width]{
+\includegraphics[width=\width]{dev/rc1/single/cube_2pop_135_rc1_single_plots_single_pop_epa_trans.pdf}}\hfill
+\subcaptionbox{\label{fig:single_fiber_pop_epa_dir}direction}[\width]{
+\includegraphics[width=\width]{dev/rc1/single/cube_2pop_135_rc1_single_plots_single_pop_epa_dir.pdf}}
 \\[2em]
-\subcaptionbox{\label{fig:single_fiber_pop_rofl_dir}rofl direction}[.32\textwidth]{
-\includegraphics[width=0.3\textwidth]{dev/rc1/cube_2pop_135_rc1_r_0.5_plots_single_pop_rofl_dir.pdf}}\hfill
-\subcaptionbox{\label{fig:single_fiber_pop_rofl_inc}rofl inclination}[.32\textwidth]{
-\includegraphics[width=0.3\textwidth]{dev/rc1/cube_2pop_135_rc1_r_0.5_plots_single_pop_rofl_inc.pdf}}\hfill
-\subcaptionbox{\label{fig:single_fiber_pop_rofl_trel}rofl trel}[.32\textwidth]{
-\includegraphics[width=0.3\textwidth]{dev/rc1/cube_2pop_135_rc1_r_0.5_plots_single_pop_rofl_trel.pdf}}
+\subcaptionbox{\label{fig:single_fiber_pop_epa_ret}retardation}[\width]{
+\includegraphics[width=\width]{dev/rc1/single/cube_2pop_135_rc1_single_plots_single_pop_epa_ret.pdf}}\hfill
+\subcaptionbox{\label{fig:single_fiber_pop_rofl_dir}rofl direction}[\width]{
+\includegraphics[width=\width]{dev/rc1/single/cube_2pop_135_rc1_single_plots_single_pop_rofl_dir.pdf}}
+\\[2em]
+\subcaptionbox{\label{fig:single_fiber_pop_rofl_inc}rofl inclination}[\width]{
+\includegraphics[width=\width]{dev/rc1/single/cube_2pop_135_rc1_single_plots_single_pop_rofl_inc.pdf}}\hfill
+\subcaptionbox{\label{fig:single_fiber_pop_rofl_trel}rofl trel}[\width]{
+\includegraphics[width=\width]{dev/rc1/single/cube_2pop_135_rc1_single_plots_single_pop_rofl_trel.pdf}}
 \caption[]{\dummy[single population rofl analysis; colors left to right: 0, 30, 60, 90 degree inclination; line: theoretical curve]{}}
 \label{fig:single_fiber_pop_rofl}
 \end{figure}
