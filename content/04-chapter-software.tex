@@ -1,6 +1,8 @@
 \setcounter{chapter}{5}
-\chapter{\acs{fastPLI} package}
+\chapter{\acs{fastPLI}}
 \label{chap:Software}
+% 
+\cleanchapterquote{There are only two kinds of languages: the ones people complain about and the ones nobody uses.}{Bjarne Stroustrup}{The \cpp{} Programming Language}
 % 
 % \includegraphics[width=.075\textwidth]{gfx/Scihub_raven.png}
 % \cleanchapterquote{Journal paywalls are an example of something that works in the reverse direction, making communication less open and efficient.}{Alexandra Elbakyan}{}
@@ -11,22 +13,47 @@
 % 
 % 
 %  
-\section{Package}
+\section{Introduction}
 % 
-The previous chapters descried algorithms for building dense \ac{WM} fiber models (see \cref{chap:sof:modelling}) and the simulation of \ac{3D-PLI} (see \cref{cha:sof:simulation}).
-Both algorithm are open source available and published \cite{fastpli,Matuschke2021} as a python package \ac{fastPLI}.
+In the previous chapters, the algorithms for creating dense \ac{WM} fiber models (see \cref{chap:sof:modeling}) and simulating \ac{3D-PLI} (see \cref{cha:sof:simulation}) are described.
+Both algorithms are designed to work without knowledge of the other.
+This allows \eg{} to be useful for models in other domains, such as \ac{dMRI} (\cite{Ginsburger2019,ginsburgerDis2019}).
+However, in addition to providing algorithms that are intended to be very fast and thus as in this case at a very low level, it is also necessary to provide an \ac{API} that provides an interface to the user.
+This interface must be designed in such a way that the user has a good experience when working with the algorithms.
+Among other things, this means a high level of abstraction with logical and easy-to-use naming systems.
+A high level of abstraction in software design means that unnecessary systems and generalizations of functionalities are hidden.
 % 
-Additionally the software package inheretence functionalities for analysing and visualizing the nerve fiber models as well as analysind the simulation analog to the current experimental routine measurements. (\eg{} inclination analysis with \ac{ROFL}).
+\par
+% 
+In addition, the algorithms should be accessible to a wide audience.
+Among other things, this means that the program must be installable and easy to understand, even if no programming knowledge is available.
+The latter is of course a problem, however, in the last decades more and more higher programming languages have been designed to be easily understandable.
+% 
+\par
+% 
+For the above reasons, the \python{} programming language was chosen.
+It has become increasingly popular in the last decade, especially in data science.
+The core algorithms remain in \cpp{} as described in their chapters to ensure efficiency, speed and parallelization.
+%
+\section{Toolbox}
 % 
 \begin{figure}[!ht]
 \centering
-\resizebox{0.95\textwidth}{!}{
- \inputtikz{gfx/fastpli/fastpli_pipeline}}
+% \resizebox{0.95\textwidth}{!}{
+% \setlength{\tikzwidth}{0.75\textwidth}
+\inputtikz{gfx/fastpli/fastpli_pipeline}
+% }
 \caption[\acs{fastPLI}]{\ac{fastPLI} package structure}
 \label{fig:fastpli}
 \end{figure}
 % 
-As is common in the software community, all methods are provided with docstrings (dosumentation string) to help the user understand how they function.
+The \python{} package is called \ac{fastPLI}.
+Its source code is publicly available and \cite{fastpli,Matuschke2021} published.
+The software package includes functionalities for the analysis and visualization of the nerve fiber models as well as for the analysis of the simulation analogous to the current routine experimental measurements, \eg{} inclination analysis.
+% 
+% 
+% 
+\subsection{Documentation}
 % 
 \begin{figure}[!t]
     \centering
@@ -36,24 +63,66 @@ As is common in the software community, all methods are provided with docstrings
  	\includegraphics[valign=T,trim=0 0 0 1580, clip]{gfx/fastpli/fastpli_wiki.png} \\
     \end{tabular}
     }}
-	\caption{\dummy{}}
+	\caption[Documentation]{Documentation Wiki Page of the Github repository \url{https://github.com/3d-pli/fastpli/wiki}.}
 	\label{fig:fastpli_wiki}
 \end{figure}
 % 
-These docstrings also are used for an automatic release of a \ac{API} documentation\footnote{\url{https://3d-pli.github.io/fastpli/}}.
-Additionally a wiki page describing the main funcionalities is available, which was also part of the review process for the publication in \textit{the Journal of Open Source Software (JOSS)} \cite{Matuschke2021} \footnote{Review open accessible under \url{https://github.com/openjournals/joss-reviews/issues/3042}}.
+As is common in software development, all methods are provided with docstrings (documentation string) to help the user understand how they work.
+These are displayed e.g. by modern editors automatically wäres during programming, in order to give assistance.
+These docstrings are also used for an automatic release of a \ac{API} documentation\footnote{\url{https://3d-pli.github.io/fastpli/}}.
+In addition, a wiki page (see \cref{fig:fastpli_wiki}) describing the main features is available, which is an essential part of the review process for publication in \textit{the Journal of Open Source Software (JOSS)} \cite{Matuschke2021} \footnote{review openly accessible at \url{https://github.com/openjournals/joss-reviews/issues/3042}}.
+To help users get started quickly, both executable \python{} scripts and Jupyter notebooks are available as tutorials.
+A combined example for the whole package based on the optical chiasm\footnote{the nerve fiber crossing of the optical path from eyes to occipital lobe} is accessible as the last part.
 % 
-To help the user with a fast ... process, executable python scribs as well as jupyter notebooks are as tutorials available.
-A combined example of the overall package based on the optical chiasm is accessible as the last part.
-\\
 % 
-To provide a fully tested software, each package and its main methods is automatic tested for each push with the automatic github action\footnote{They are \eg{} used for automatic build, test and deployment of the software and documentations.}.
-These use the two latest Ubuntu long term support version (18.04 LTS and 20.04 LTS) and the most commonly used python3 version (3.6 and 3.8) to provide a wide range of automatic tested version.
-Additionally the \textit{Github actions} run all tests, check the tutorial files, check the codes format and linting to be consistent and publish the documentations.
 % 
-Currently only Linux builds are supported, however for current windows version the \ac{WSL} probides a fully functional Linux Kernel inside Windows which can run the same ...
-Current MacOS version are not automatic supported, however due to the minimalistic style of the \ac{fastPLI} package, the ... should be functional with minimal changes.
+\subsection{Dependencies}
 % 
+\paragraph{Python:}
+\begin{description}
+\item[numpy:] Base N-dimensional array package \cite{2019arXiv190710121V}\\
+\url{https://numpy.org/}
+\item[scipy:] Fundamental library for scientific computing \cite{2019arXiv190710121V}\\
+\url{https://www.scipy.org/} 
+\item[numba:] Acceleration of Python Functions \cite{Lam2015}\\
+\url{https://numba.pydata.org/}
+\item[mpi4py:] MPI for Python \cite{Dalcn2005, Dalcn2008, Dalcin2011}\\
+\url{https://bitbucket.org/mpi4py/mpi4py/src/master/}
+\item[h5py:] HDF5 for Python \cite{collette_python_hdf5_2014, hdf5}\\
+\url{https://www.h5py.org/}
+\end{description}
+% 
+\paragraph{C++:}
+\begin{description}
+\item[MPI:] Message Passing Interface \cite{message2015mpi}\\
+\url{https://www.mpi-forum.org/}
+\item[OpenMP:] Open Multi-Processing, API for multi-platform shared memory multiprocessing programming \cite{dagum1998openmp}\\
+\url{https://www.openmp.org/}
+\item[OpenGL:] Open Graphics Library \cite{khronos}\\
+\url{www.opengl.org}
+\item[Pybind11:] Seamless operability between C++11 and Python \cite{pybind11}\\ \url{https://github.com/pybind/pybind11} 
+\end{description}
+%
+% 
+At this point, only Linux builds are supported.
+However, for current Windows versions, the \ac{WSL} provides a fully functional Linux kernel inside Windows.
+This makes it possible to run the same software as under native linux distributions.
+Current macOS versions are not supported, but due to the minimalistic style of the \ac{fastPLI} package, the required changes should be feasible with minimal modifications.
+% 
+% 
+\subsection{Tests/Verification/...}
+% 
+To provide fully tested software, each module with its main methods is automatically tested after each push\footnote{uploud of an \textit{git} commit} with a Github action\footnote{they are commenly used for automatic build, test and deployment of the software and documentation}. tested.
+This action runs the two latest Ubuntu Long Term Support versions (18.04 LTS and 20.04 LTS) and the most commonly used Python3 versions (3.6 and 3.8) to provide a wide range of supported common versions.
+In addition, the \textit{Github actions} run all test scripts, check tutorial files, check code format and linting for consistency, and publish the latest documentation.
+% 
+% 
+% 
+\par
+\noindent\rule{\textwidth}{2pt}
+\newpage
+%
+%  
 % 
 %  
 \section{modules}
@@ -269,30 +338,3 @@ fastpli.tools.rotation
 % 
 % 
 % 
-\section{Dependencies}
-% 
-\paragraph{Python:}
-\begin{description}
-\item[numpy:] Base N-dimensional array package \cite{2019arXiv190710121V}\\
-\url{https://numpy.org/}
-\item[scipy:] Fundamental library for scientific computing \cite{2019arXiv190710121V}\\
-\url{https://www.scipy.org/} 
-\item[numba:] Acceleration of Python Functions \cite{Lam2015}\\
-\url{https://numba.pydata.org/}
-\item[mpi4py:] MPI for Python \cite{Dalcn2005, Dalcn2008, Dalcin2011}\\
-\url{https://bitbucket.org/mpi4py/mpi4py/src/master/}
-\item[h5py:] HDF5 for Python \cite{collette_python_hdf5_2014, hdf5}\\
-\url{https://www.h5py.org/}
-\end{description}
-% 
-\paragraph{C++:}
-\begin{description}
-\item[MPI:] Message Passing Interface \cite{message2015mpi}\\
-\url{https://www.mpi-forum.org/}
-\item[OpenMP:] Open Multi-Processing, API for multi-platform shared memory multiprocessing programming \cite{dagum1998openmp}\\
-\url{https://www.openmp.org/}
-\item[OpenGL:] Open Graphics Library \cite{khronos}\\
-\url{www.opengl.org}
-\item[Pybind11:] Seamless operability between C++11 and Python \cite{pybind11}\\ \url{https://github.com/pybind/pybind11} 
-\end{description}
-%
