@@ -1,13 +1,13 @@
 % \tikzset{external/export=false}
 \begin{tikzpicture}
     % 
-    \node[text width=5cm] (fastpli) at (-0.25,0.3) {
+    \node[text width=5cm] (fastpli) at (-0.25,-1.35) {
         \begin{tcolorbox}[%
             title={fastpli \vphantom{Mg}},
             fonttitle=\bfseries,
             colbacktitle=NavyBlue ,
             width=9.25cm,
-            height=4cm
+            height=7.25cm
         ]
         \end{tcolorbox}
     };
@@ -39,6 +39,34 @@
         \begin{itemize}[leftmargin=1em]
             \item generate tissue
             \item simulate
+        \end{itemize}
+        \end{tcolorbox}
+    };
+    % 
+    \node[text width=5cm, below= -1em of modelling] (io) {
+        \begin{tcolorbox}[%
+            title={IO \vphantom{Mg}},
+            fonttitle=\bfseries,
+            colbacktitle=Gray,
+            width=4.2cm,
+            height=3cm
+        ]
+        \begin{itemize}[leftmargin=1em]
+            \item dummy
+        \end{itemize}
+        \end{tcolorbox}
+    };
+    % 
+    \node[text width=5cm, below= -1em of simulation] (analysis) {
+        \begin{tcolorbox}[%
+            title={analysis \vphantom{Mg}},
+            fonttitle=\bfseries,
+            colbacktitle=Gray,
+            width=4.2cm,
+            height=3cm
+        ]
+        \begin{itemize}[leftmargin=1em]
+            \item dummy
         \end{itemize}
         \end{tcolorbox}
     };

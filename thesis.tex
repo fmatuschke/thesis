@@ -35,12 +35,12 @@
 % 
 %\ifshellescape
 \usetikzlibrary{external}
-% \tikzexternalize[%
-%                  optimize command away=\includepdf,
-%                  prefix=tikz/,
-%                  figure name=\thesubsection-,
-%                 %  mode=list and make,
-%                  ]
+\tikzexternalize[%
+                 optimize command away=\includepdf,
+                 prefix=tikz/,
+                 figure name=\thesubsection-,
+                %  mode=list and make,
+                 ]
 % 
 \includeonly{
 % content/titlepages,
@@ -51,9 +51,9 @@
 % content/03-chapter-theory,
 % content/05-chapter-software-model,
 % content/06-chapter-software-simulation,
-% content/04-chapter-software,
+content/04-chapter-software,
 % content/07-chapter-analysis-model,
-content/08-chapter-analysis-simulation,
+% content/08-chapter-analysis-simulation,
 % content/09-chapter-discussion,
 % content/10-chapter-conclusion,
 % content/declaration
