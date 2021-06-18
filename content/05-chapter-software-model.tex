@@ -24,7 +24,7 @@ Another challenge is to build a geometric configuration where no nerve fibers ov
 Collision detection plays an important role in this process.
 While other simulations that use geometric models (\eg{} protein folding \dummy{}) may use something like electric potentials where the actual geometric boundary is not so important.
 In the case of \ac{3D-PLI} (and \ac{dMRI}) it will be shown to be different.
-\\[\baselineskip]
+\par
 % 
 The following procedures are described in this chapter:
 \begin{itemize}[nosep]
@@ -325,7 +325,6 @@ Therefore an object could be approximated like a stone by a sphere(s).
 %
 But since here the goal is to create models that are as large, complex and precise as possible, a new algorithm has to be developed that is specialized in this task.
 % 
-\\[\baselineskip]
 \todo{next sections as subsections?}
 %
 \section{World/main}
@@ -504,7 +503,7 @@ The recursion also means that the next function call must contain a list of the 
 This means either that the objects must be copied, which is time-consuming, or they must be moved, which is also time-consuming depending on the structure, and they must be moved back, or a pointer or index must be traversed.
 The last option was chosen because it proved to be the fastest in a speed test during the implementation process.
 The next question is, which is the desired goal to stop the branching process and characterize the node as a leaf.
-\\[\baselineskip]
+\par
 % 
 The goal is of course the reduction of the computing time.
 However, this means that there is no simple answer for complex models and thus for unique octrees.
