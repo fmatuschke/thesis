@@ -13,7 +13,7 @@ This is due to the fact that \ac{WM} contains individual nerve fibers that typic
 Therefore, in a \SI{60}{\micro\meter} voxel of a \ac{LAP} measured \ac{3D-PLI} can be image within the \ac{WM} several thousand individual nerve fibers are already present.
 Considering that each nerve fiber has a unique trajectory through this volume, this means that theoretically an absurd variety of possible configurations exists.
 However, due to the nature of the \ac{3D-PLI} structure, previous studies have shown that the result of the signal depends on much less degrees of freedom than each individual nerve fiber has.
-\\[\baselineskip]
+\par
 % 
 Therefore, this work, being the first study of its kind, focuses mainly on two randomly interwoven fiber populations for \ac{3D-PLI} simulations.
 Another focus is the generation of such models, whereby the computational time effort shall be kept as low as possible.
@@ -290,7 +290,7 @@ Crossing fibers however are as expected influenced.
 This is especial visible in the number of colliding objects, where the \segRadiusFactor{} splits the data into individual branches over time.
 Since smaller values of \segRadiusFactor{} allow more curved geometries, this is as expected.
 However this can lead to \say{strange looking} results and has to be set with an anatomical perspective. \todo{images}
-\\[\baselineskip]
+\par
 % 
 Overall the choice of the parameters can be narrowed.
 The main decision come from the crossing results.
@@ -336,7 +336,7 @@ A further incresse of core numbers does not benefit the computational time much.
 This has most likely to do with the fact, that the data has to transvered between all the cores and this takes quite some time.
 Even if the algorithm is especially optimized to reduce the amount of data to be copied, the paralysed instructions are often very short (\eg{} move positions), with the exception of the distance calculation.
 Since all data is linear in memory, the cpu can use the full potential of the prefetcher and calculate very fast.
-\\[\baselineskip]
+\par
 % 
 The results show, that especially to increase the volume size, other algorithms are needed. 
 Here the \ac{GPU} seems to be the hardware of choice.

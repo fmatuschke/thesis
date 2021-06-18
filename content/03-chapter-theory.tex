@@ -1,7 +1,10 @@
 \setcounter{chapter}{2}
 \chapter{Theory}
 \label{sec:theory}
+% 
+\cleanchapterquote{The first principle is that you must not fool yourself and you are the easiest person to fool.}{Richard P. Feynman}{}%\newline
 %
+\section{Introduction}
 The following section lists the physical theories needed to describe the mathematics behind \ac{3D-PLI}. This includes the basic properties of light with the description of their polarization state, the optical models of the tissue, i.e. the nerve fibers and the mathematical description of the experimental setup of \ac{3D-PLI}. The first part of this chapter was written with the help of \cite{demtroeder2, Fliebach2012}.
 % 
 % 
@@ -111,7 +114,7 @@ a planar wave can be descriped by
 % 
 \begin{figure}[!t]
 \centering
-\def\tikzwidth{\textwidth}
+\setlength{\tikzwidth}{\textwidth}
 \inputtikz{gfx/pli/polarization_state}
 \label{fig:polarization_state}
 \caption{Illustration of light polarization state.}
@@ -160,7 +163,7 @@ Beersche law of absorption with $\mu = \frac{4\pi \kappa}{\lambda_0}$ where $\ka
 % 
 \begin{figure}[!t]
 \centering
-\def\tikzwidth{\textwidth}
+\setlength{\tikzwidth}{\textwidth}
 \inputtikz{gfx/pli/refraction}
 \label{fig:optic_refraction}
 \caption{Illustration of refraction.}
@@ -191,7 +194,7 @@ Using this relationship at a boundary surface between two media, one can show th
 %
 \begin{figure}[!t]
 \centering
-\def\tikzwidth{\textwidth}
+\setlength{\tikzwidth}{\textwidth}
 \inputtikz{gfx/pli/retardation}
 \caption{Illustration of retardation.}
 \label{fig:optic_retardation}
@@ -200,10 +203,10 @@ Using this relationship at a boundary surface between two media, one can show th
 \begin{figure}[!t]
 \centering
 \subcaptionbox{}[.49\textwidth]{
-\def\tikzwidth{0.49*\textwidth}
+\setlength{\tikzwidth}{0.49\textwidth}
 \inputtikz{gfx/pli/ellipsoid_a}}
 \subcaptionbox{}[.49\textwidth]{
-\def\tikzwidth{0.49*\textwidth}
+\setlength{\tikzwidth}{0.49\textwidth}
 \inputtikz{gfx/pli/ellipsoid_b}}
 \caption{birefringence elipsoid}
 \label{fig:index_elipsoid}
@@ -423,7 +426,7 @@ Aanlog to Jones one can formulate the matrices for the optical components:
 %
 \begin{figure}[!t]
     \captionsetup[sub]{position=top}
-    \def\tikzwidth{\textwidth}
+    \setlength{\tikzwidth}{\textwidth}
 	\centering
 	\subcaptionbox{\label{setup-lap} \ac{LAP}}[\textwidth]{
 % 		\resizebox{0.95\textwidth}{!}{
@@ -441,7 +444,7 @@ Aanlog to Jones one can formulate the matrices for the optical components:
 %
 \begin{figure}[!t]
     % \captionsetup[sub]{position=top}
-    \def\tikzwidth{0.42*\textwidth}
+    \setlength{\tikzwidth}{0.3\textwidth}
 	\centering
 	\subcaptionbox{\ac{LAP}}[.49\textwidth]{
 			\inputtikz{gfx/pli/pli_detail}}\hfill
