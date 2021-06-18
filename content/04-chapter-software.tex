@@ -13,7 +13,7 @@
 % 
 % 
 %  
-\section{Introduction}
+\section{Introduction}\label{sec:fastpliIntro}
 % 
 In the previous chapters, the algorithms for creating dense \ac{WM} fiber models (see \cref{chap:sof:modeling}) and simulating \ac{3D-PLI} (see \cref{cha:sof:simulation}) are described.
 Both algorithms are designed to work without knowledge of the other.
@@ -71,6 +71,7 @@ As is common in software development, all methods are provided with docstrings (
 These are displayed e.g. by modern editors automatically wäres during programming, in order to give assistance.
 These docstrings are also used for an automatic release of a \ac{API} documentation\footnote{\url{https://3d-pli.github.io/fastpli/}}.
 In addition, a wiki page (see \cref{fig:fastpli_wiki}) describing the main features is available, which is an essential part of the review process for publication in \textit{the Journal of Open Source Software (JOSS)} \cite{Matuschke2021} \footnote{review openly accessible at \url{https://github.com/openjournals/joss-reviews/issues/3042}}.
+The wiki page is structured as a guide leading through the aspect of designing nerve fiber models, applying the collision solving algorithm, the visualization of nerve fibers, a simple guide to \ac{3D-PLI} and finally the application of the models in the simulation.
 To help users get started quickly, both executable \python{} scripts and Jupyter notebooks are available as tutorials.
 A combined example for the whole package based on the optical chiasm\footnote{the nerve fiber crossing of the optical path from eyes to occipital lobe} is accessible as the last part.
 % 
@@ -172,16 +173,16 @@ Two fibers are seperated via an empty line while two fiber bundles are seperated
 This dataformat is provided to allow a very easy format to manipulate, exchange and read the files \eg{} into other programms.
 % 
 \begin{lstfloat}[!ht]
-\lstset{style=common,morecomment=[l][\color{syntax_green}]{<-},}
+\lstset{style=common,morecomment=[l][\color{syntax_green}]{##},}
 \begin{lstlisting}
--6.55 -18.93 -64.98 3.75 <- x y z r
+-6.55 -18.93 -64.98 3.75 # x y z r
 -5.73 -14.89 -63.37 3.4
 -4.42 -13.66 -58.95 3.05
-    <- empty line indicates new fiber
+    # empty line indicates new fiber
 -1.96 -10.07 -52.5 2.92
 -1.03 -9.4 -48.62 2.93
 
-    <- two empty lines indicates new fiber bundle
+    # two empty lines indicates new fiber bundle
 3.4 -4.02 -44.76 3.11
 6.22 -1.04 -42.45 3.26
 \end{lstlisting}
@@ -197,7 +198,7 @@ The \hdf{} groups are used to store the \code{fiber} into \code{fiber\_bundle} a
 The $(x,y,z,r)$ informations of each fiber is then stored as 2d array (see \cref{alg:hdf5}). 
 % 
 \begin{lstfloat}[!ht]
-\lstset{style=common}
+\lstset{style=common,morecomment=[l][\color{syntax_green}]{##},}
 \begin{lstlisting}
 GROUP "/" { # fiber_bundles path
   GROUP "0" { # id of fiber_bundle
@@ -214,8 +215,8 @@ GROUP "/" { # fiber_bundles path
          DATATYPE  H5T_IEEE_F64LE
          DATASPACE  SIMPLE { ( 2, 4 ) / ( 2, 4 ) }
          DATA {
-         (3,0): -1.96, -10.07, -52.5, 2.92,
-         (4,0): -1.03, -9.4, -48.62, 2.93,
+         (0,0): -1.96, -10.07, -52.5, 2.92,
+         (1,0): -1.03, -9.4, -48.62, 2.93,
          }
       }
   }
@@ -231,179 +232,80 @@ GROUP "/" { # fiber_bundles path
   }
 }
 \end{lstlisting}
-\caption{exemplary hdf5-file format.} \label{alg:hdf5}
+\caption{exemplary fiber format in \hdf{}.} \label{alg:hdf5}
 \end{lstfloat}
 % 
 % 
 % 
-\par
-\noindent\rule{\textwidth}{2pt}
-\newpage
-% 
 \subsection{\code{fastpli.model.sandbox}}
-building of simple 3d nerve fiber models
-\subsection{\code{fastpli.model.solver}}
-generation of non intersection nerve fiber models
-\subsection{\code{fastpli.objects}}
-manipulation of fastpli objects (e.g. rotation)
-\subsection{\code{fastpli.tools}}
-mathematical tools and helper function
-\subsection{\code{fastpli.simulation}}
-simulation of fiber models inside a virtual 3D-PLI microscope
 % 
-% \begin{lstfloat}[!ht]
-% \lstset{style=python}
-% \begin{lstlisting}
-% import fastpli
-% ''' __version__
-% '''
-
-% import fastpli.analysis
-% ''' affine_transformation
-%     epa
-%     images
-%     rofl
-% '''
-
-% import fastpli.io
-% ''' fiber_bundles
-% '''
-
-% import fastpli.model.sandbox
-% ''' fill
-%     shape
-% '''
-
-% import fastpli.model.solver
-% ''' class Solver
-%     __solver.cpython.so
-%     _solver.py
-% '''
-
-% import fastpli.objects
-% ''' fiber
-%     fiber_bundle
-%     fiber_bundles
-% '''
-
-% import fastpli.simulation
-% ''' class Simpli
-%     __generation.cpython.so
-%     __simulation.cpython.so
-%     _simpli.py
-%     optic
-% '''
-
-% import fastpli.tools
-% ''' label_converter
-%     rotation
-% '''
-% \end{lstlisting}
-% \caption[Overview \fastpli{} package]{Overview \fastpli{} package with containing modules}
-% % 	\label{alg:simulation}
-% \end{lstfloat}
-% % 
-% % 
-% %  
-% \subsection{fastpli.analysis}
-% \begin{lstfloat}[!ht]
-% \lstset{style=python}
-% \begin{lstlisting}
-% import fastpli.analysis
-% fastpli.analysis.affine_transformation
-%     # apply affine transformations to images (e.g. untilt)
-% fastpli.analysis.epa
-%     # analysis of 2d PLI images
-% fastpli.analysis.images
-%     # analysis/generation of color images (FOM, VectorImages, ...)
-% fastpli.analysis.rofl
-%     # analysis tilted PLI images
-% \end{lstlisting}
-% \caption{\code{fastpli.analysis}}
-% % 	\label{alg:simulation}
-% \end{lstfloat}
-% % 
-% % 
-% %  
-% \subsection{fastpli.io}
-% \begin{lstfloat}[!ht]
-% \lstset{style=python}
-% \begin{lstlisting}
-% import fastpli.io
-% fastpli.io.fiber_bundles
-%     # io operations for dat-files and hdf5-files
-%     # for the fiber_bundles format.
-% \end{lstlisting}
-% \caption{\code{fastpli.io}}\label{alg:fastpli.io}
-% \end{lstfloat}
-% % 
-% \paragraph{fiber\_bundles.py} 
-% % 
-% % 
-% % 
-% \subsection{fastpli.model.sandbox}
-% \begin{lstfloat}[!ht]
-% \lstset{style=python}
-% \begin{lstlisting}
-% import fastpli.model.sandbox
-% fastpli.model.sandbox.fill
-%     # filling of trajectaries with seed points as fiber_bundles
-% fastpli.model.sandbox.build
-%     # building of geometries
-% \end{lstlisting}
-% \caption{\code{fastpli.model.sandbox}}
-% % 	\label{alg:simulation}
-% \end{lstfloat}
-% % 
-% % 
-% % 
-% \subsection{fastpli.model.solver}
-% \begin{lstfloat}[!ht]
-% \lstset{style=python}
-% \begin{lstlisting}
-% import fastpli.model.solver
-% fastpli.model.solver.Solver
-%     # Class wrapper for C++ class.
-%     # Solves any 3d configurations of fibers to a non colliding ...
-% \end{lstlisting}
-% \caption{\code{fastpli.model.solver}}
-% % 	\label{alg:simulation}
-% \end{lstfloat}
-% % 
-% % 
-% % 
-% \subsection{fastpli.simulation}
-% \begin{lstfloat}[!ht]
-% \lstset{style=python}
-% \begin{lstlisting}
-% import fastpli.simulation
-% fastpli.simulation.Simpli
-%     # Class wrapper for C++ class.
-%     # Generatoes:
-%     #   - discretisied Tissue Volume
-%     #   - 3D PLI images
-%     #   - analysis of resultss
-% \end{lstlisting}
-% \caption{\code{fastpli.simulation}}
-% % 	\label{alg:simulation}
-% \end{lstfloat}
-% % 
-% % 
-% % 
-% \subsection{fastpli.tools}
-% \begin{lstfloat}[!ht]
-% \lstset{style=python}
-% \begin{lstlisting}
-% import fastpli.tools
-% fastpli.tools.label_converter
-%     # conversion of discretisied tissue to 
-%     # maxwell-solver input format
-% fastpli.tools.rotation
-%     # rotation matricies for 3d rotaions
-% \end{lstlisting}
-% \caption{\code{fastpli.tools}}
-% % 	\label{alg:simulation}
-% \end{lstfloat}
-% % 
-% % 
-% % 
+This module provides all the functionalities described in \cref{sec:sandbox}.
+The module is split in two submodules: \code{fastpli.sandbox.build} and \code{fastpli.sandbox.seeds}.
+The \code{fastpli.sandbox.seeds} includes all methods to populate a 2d-plane as described in \cref{sec:seeds}.
+To populate the fiber from the seeds, the module \code{sandbox.build} provides the methods.
+This include all described functions from \cref{sec:fillBundle}.
+% 
+% 
+% 
+\subsection{\code{fastpli.model.solver}}
+% 
+The \code{fastpli.model.solver} module contains the compiled solving algorithm explained in detail in \crefrange{sec:Solver}{sec:modelOpt}.
+Additionally the solver algorithm is wrapped inside the class \code{fastpli.model.solver.Solver}.
+This wrapper class provides a higher level of abstraction (see \cref{sec:fastpliIntro}).
+It contains all necessary variables as attributes and provides therefore an read/write access via class properties, \eg{} \code{Solver.obj\_mean\_length = ...}.
+Every write method checks the input for user errors and provides a error message.
+This class also contains a \code{Solver.get\_dict()} method, which returns a \python{} dictionary containing all variables and there values for reproducability.
+It is also possible to save the class state, with the current state of the \code{fiber\_bundles}, as a \hdf{} object.
+Finally this class also provides an easy use of a simple visualization (see \cref{sec:visualization}) of the solving process.
+% 
+% 
+% 
+\subsection{\code{fastpli.objects}}
+%
+This modules provides wrapper class for \code{fastpli.objects.fibers} and \code{fastpli.objects.layers}.
+Essentially \code{layers} are a \code{list} of \code{layer}, which themself are a \code{tuple} of the 4 attributes \code{absorption}, \code{birefringence}, \code{model} and \code{scale} (see \cref{sec:dv_generator}).
+This wrapper class contains attributes which allows the user to acces this values by there name, instead of the \code{tuple} index \code{[i]}.
+This is helpful to reduce user errors.
+\\
+The same is acomblished for \code{fastpli.objects.fibers}, which contain \code{fastpli.objects.FiberBundles}, \code{fastpli.objects.FiberBundle} and \code{fastpli.objects.Fiber} classes with the same purpase.
+\code{FiberBundles} are a \code{list} of \code{FiberBundle}, which are a list of \code{Fiber}.
+The data of a fiber is stored in a \code{numpy.ndarray}, which stores the values contiguous in memory.
+Manipulation methods are provided for each class to allow the user to \code{translate}, \code{rotate}, \code{scale} and \code{cut} the model.
+The letter helps especially in the solving process to reduce the number of objects, if only a certain volume shell be generated (since the solving process pushes the fiber objects apart and therefore increasing the volume).
+% 
+% 
+% 
+\subsection{\code{fastpli.simulation}}
+Like the \code{fastpli.model.solver.Solver} class this method provides a wrapper for the simulation called \code{fastpli.simulation.Simpli} based on the original algorithm \cite{Dohmen2015,Lucksch2016}.
+It contains both algorithms \code{Generator} and \code{Simulation} described in \cref{sec:dv_generator,sec:simulation}.
+These two algorithms work seperatly, however since they share quite a few parameters, they coexists inside the class.
+As in the \code{fastpli.model.solver.Solver} class, all necessary attributes are available and are checked for input errors.
+Since the analysis is usually always performed on the resulting simulations, they are also available in this class and performed with the same defined parameters as in the simulation.
+Methods to save the variables as \code{dict} or \hdf{} files are available as well.
+\\
+As in the experiment, the simulations can run the same routine.
+This means, that many parameters and the simulation pipeline usually does not change.
+For this purpose \code{pipeline} methods exists (see \cref{alg:Pipeline}), to provide a high level abstraction.
+Here all data is automatically analysed and saved and only the parameters have to be specified.
+% 
+\begin{lstfloat}[!tb]
+\centering
+\scalebox{0.75}{
+\begin{minipage}{\the\textwidth}
+\lstinputlisting[style=python]{code/pipeline.py.tex}
+\end{minipage}}
+\caption{Simulation pipeline}
+\label{alg:Pipeline}
+\end{lstfloat}
+% 
+% 
+\subsection{\code{fastpli.tools}}
+The last module contains a variety of helper functions.
+They provide acces to the current version as well as to the git hash, so that any calculations can be reproduced.
+For the fiber modelling rotation matrices are provided, to allow the usage of linear algebra.
+% 
+% 
+% 
+% \par
+% \noindent\rule{\textwidth}{2pt}
+% \newpage
