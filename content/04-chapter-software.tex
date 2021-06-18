@@ -110,110 +110,66 @@ This makes it possible to run the same software as under native linux distributi
 Current macOS versions are not supported, but due to the minimalistic style of the \ac{fastPLI} package, the required changes should be feasible with minimal modifications.
 % 
 % 
-\subsection{Tests/Verification/...}
+% 
+\subsection{Installation}
+% 
+The installation is handled by a \name{Makefile}.
+It first starts a \name{CMake} routine, which searches for all necessary libraries and programms.
+Then the \cpp{} code will be compiled and the resulting \name{shared object libraries} will stored inside the \python{} routines.
+This allows \python{} to install the package into the users environment.
+% 
+\begin{lstfloat}[!ht]
+\lstset{style=common}
+\begin{lstlisting}
+make fastpli
+pip3 install .
+\end{lstlisting}
+\end{lstfloat}
+% 
+% 
+% 
+\subsection{Tests/Verification/Issues}
 % 
 To provide fully tested software, each module with its main methods is automatically tested after each push\footnote{uploud of an \textit{git} commit} with a Github action\footnote{they are commenly used for automatic build, test and deployment of the software and documentation}. tested.
 This action runs the two latest Ubuntu Long Term Support versions (18.04 LTS and 20.04 LTS) and the most commonly used Python3 versions (3.6 and 3.8) to provide a wide range of supported common versions.
 In addition, the \textit{Github actions} run all test scripts, check tutorial files, check code format and linting for consistency, and publish the latest documentation.
 % 
-% 
-% 
 \par
-\noindent\rule{\textwidth}{2pt}
-\newpage
+% 
+Github allows to track \name{Issues}.
+This feature originally is used to document bugs.
+However it is also used to discuss ideas, new features and so on.
+In context of the open source publication, it was also used to discuss the review.
+This allows to always additionally with the git \name{commits} to trace back the development process and code changes.
 %
 %  
 % 
 %  
 \section{modules}
 % 
-\begin{lstfloat}[!ht]
-\lstset{style=python}
-\begin{lstlisting}
-import fastpli
-''' __version__
-'''
-
-import fastpli.analysis
-''' affine_transformation
-    epa
-    images
-    rofl
-'''
-
-import fastpli.io
-''' fiber_bundles
-'''
-
-import fastpli.model.sandbox
-''' fill
-    shape
-'''
-
-import fastpli.model.solver
-''' class Solver
-    __solver.cpython.so
-    _solver.py
-'''
-
-import fastpli.objects
-''' fiber
-    fiber_bundle
-    fiber_bundles
-'''
-
-import fastpli.simulation
-''' class Simpli
-    __generation.cpython.so
-    __simulation.cpython.so
-    _simpli.py
-    optic
-'''
-
-import fastpli.tools
-''' label_converter
-    rotation
-'''
-\end{lstlisting}
-\caption[Overview \fastpli{} package]{Overview \fastpli{} package with containing modules}
-% 	\label{alg:simulation}
-\end{lstfloat}
+A \python{} package consist out of modules, which contain the definitions of functions, classes and so on.
+In the following the different modules will be listed alphabetically.
 % 
 % 
-%  
-\subsection{fastpli.analysis}
-\begin{lstfloat}[!ht]
-\lstset{style=python}
-\begin{lstlisting}
-import fastpli.analysis
-fastpli.analysis.affine_transformation
-    # apply affine transformations to images (e.g. untilt)
-fastpli.analysis.epa
-    # analysis of 2d PLI images
-fastpli.analysis.images
-    # analysis/generation of color images (FOM, VectorImages, ...)
-fastpli.analysis.rofl
-    # analysis tilted PLI images
-\end{lstlisting}
-\caption{\code{fastpli.analysis}}
-% 	\label{alg:simulation}
-\end{lstfloat}
 % 
+\subsection{\code{fastpli.analysis}}
 % 
-%  
-\subsection{fastpli.io}
-\begin{lstfloat}[!ht]
-\lstset{style=python}
-\begin{lstlisting}
-import fastpli.io
-fastpli.io.fiber_bundles
-    # io operations for dat-files and hdf5-files
-    # for the fiber_bundles format.
-\end{lstlisting}
-\caption{\code{fastpli.io}}\label{alg:fastpli.io}
-\end{lstfloat}
+This module contains all functionalities to analyse the \ac{3D-PLI} simulations analog to the routine measurements.
+This includes the analysis of the signal to the three image modalities transmittance, direcion and retardadation.
+Further it provides the inclination analysis known as \ac{ROFL} \cite{Schmitz2018}.
+The final helper functions provides methods to convert the direction and inclination results into a \ac{FOM}.
+\\
+For the analysis of fiber models, the module providing a few simple helper functions.
+This for example allow the user to generate a histogramm of the orientations of the fiber segments like the ones shown in this thesis.
 % 
-\paragraph{fiber\_bundles.py} contains io routines (see \cref{alg:fastpli.io}) for reading and saving fiber\_bundles into dat-files or hdf5-files. dat-files are text files which have to following structure as in \cref{alg:dat-file}. This dataformat is used to be as exchange friendly as possible for new users. \hdf{} files on the other hand are a binary dataformat \cite{hdf5}, where the individual datasets are arange in datacontainers, like the file explorer (see \cref{alg:hdf5}). The data contains 4d arrays, which are explained in \cref{sec:nerve_fiber_representation}.
+\subsection{\code{fastpli.io}}
+% 
+This methods provides the reading and writing routines to allow the user to read and save fiber models (\ie{} \code{fiber\_bundles}) to or from the disk.
+There are two formats available.
+The first one is a simple text file with the extension \code{.dat} (see \cref{alg:dat-file}).
+Here each $(x,y,z,r)$ tuple of a fiber point is stored as a single line in the file.
+Two fibers are seperated via an empty line while two fiber bundles are seperated via two empty lines.
+This dataformat is provided to allow a very easy format to manipulate, exchange and read the files \eg{} into other programms.
 % 
 \begin{lstfloat}[!ht]
 \lstset{style=common,morecomment=[l][\color{syntax_green}]{<-},}
@@ -231,6 +187,14 @@ fastpli.io.fiber_bundles
 \end{lstlisting}
 \caption{exemplary dat-file format. Commets are currently not allowed and are only for the readers eyes.}\label{alg:dat-file}
 \end{lstfloat}
+% 
+% 
+\par
+The second format uses \hdf{} \cite{hdf5}, which uses a binary dataformat.
+\hdf{} allows to store the data as \code{datasets} into \code{groups}.
+This is analog to a file in a operating systems, which is stored into folders.
+The \hdf{} groups are used to store the \code{fiber} into \code{fiber\_bundle} and \code{fiber\_bundles}.
+The $(x,y,z,r)$ informations of each fiber is then stored as 2d array (see \cref{alg:hdf5}). 
 % 
 \begin{lstfloat}[!ht]
 \lstset{style=common}
@@ -272,69 +236,174 @@ GROUP "/" { # fiber_bundles path
 % 
 % 
 % 
-\subsection{fastpli.model.sandbox}
-\begin{lstfloat}[!ht]
-\lstset{style=python}
-\begin{lstlisting}
-import fastpli.model.sandbox
-fastpli.model.sandbox.fill
-    # filling of trajectaries with seed points as fiber_bundles
-fastpli.model.sandbox.build
-    # building of geometries
-\end{lstlisting}
-\caption{\code{fastpli.model.sandbox}}
-% 	\label{alg:simulation}
-\end{lstfloat}
+\par
+\noindent\rule{\textwidth}{2pt}
+\newpage
 % 
+\subsection{\code{fastpli.model.sandbox}}
+building of simple 3d nerve fiber models
+\subsection{\code{fastpli.model.solver}}
+generation of non intersection nerve fiber models
+\subsection{\code{fastpli.objects}}
+manipulation of fastpli objects (e.g. rotation)
+\subsection{\code{fastpli.tools}}
+mathematical tools and helper function
+\subsection{\code{fastpli.simulation}}
+simulation of fiber models inside a virtual 3D-PLI microscope
 % 
-% 
-\subsection{fastpli.model.solver}
-\begin{lstfloat}[!ht]
-\lstset{style=python}
-\begin{lstlisting}
-import fastpli.model.solver
-fastpli.model.solver.Solver
-    # Class wrapper for C++ class.
-    # Solves any 3d configurations of fibers to a non colliding ...
-\end{lstlisting}
-\caption{\code{fastpli.model.solver}}
-% 	\label{alg:simulation}
-\end{lstfloat}
-% 
-% 
-% 
-\subsection{fastpli.simulation}
-\begin{lstfloat}[!ht]
-\lstset{style=python}
-\begin{lstlisting}
-import fastpli.simulation
-fastpli.simulation.Simpli
-    # Class wrapper for C++ class.
-    # Generatoes:
-    #   - discretisied Tissue Volume
-    #   - 3D PLI images
-    #   - analysis of resultss
-\end{lstlisting}
-\caption{\code{fastpli.simulation}}
-% 	\label{alg:simulation}
-\end{lstfloat}
-% 
-% 
-% 
-\subsection{fastpli.tools}
-\begin{lstfloat}[!ht]
-\lstset{style=python}
-\begin{lstlisting}
-import fastpli.tools
-fastpli.tools.label_converter
-    # conversion of discretisied tissue to 
-    # maxwell-solver input format
-fastpli.tools.rotation
-    # rotation matricies for 3d rotaions
-\end{lstlisting}
-\caption{\code{fastpli.tools}}
-% 	\label{alg:simulation}
-\end{lstfloat}
-% 
-% 
-% 
+% \begin{lstfloat}[!ht]
+% \lstset{style=python}
+% \begin{lstlisting}
+% import fastpli
+% ''' __version__
+% '''
+
+% import fastpli.analysis
+% ''' affine_transformation
+%     epa
+%     images
+%     rofl
+% '''
+
+% import fastpli.io
+% ''' fiber_bundles
+% '''
+
+% import fastpli.model.sandbox
+% ''' fill
+%     shape
+% '''
+
+% import fastpli.model.solver
+% ''' class Solver
+%     __solver.cpython.so
+%     _solver.py
+% '''
+
+% import fastpli.objects
+% ''' fiber
+%     fiber_bundle
+%     fiber_bundles
+% '''
+
+% import fastpli.simulation
+% ''' class Simpli
+%     __generation.cpython.so
+%     __simulation.cpython.so
+%     _simpli.py
+%     optic
+% '''
+
+% import fastpli.tools
+% ''' label_converter
+%     rotation
+% '''
+% \end{lstlisting}
+% \caption[Overview \fastpli{} package]{Overview \fastpli{} package with containing modules}
+% % 	\label{alg:simulation}
+% \end{lstfloat}
+% % 
+% % 
+% %  
+% \subsection{fastpli.analysis}
+% \begin{lstfloat}[!ht]
+% \lstset{style=python}
+% \begin{lstlisting}
+% import fastpli.analysis
+% fastpli.analysis.affine_transformation
+%     # apply affine transformations to images (e.g. untilt)
+% fastpli.analysis.epa
+%     # analysis of 2d PLI images
+% fastpli.analysis.images
+%     # analysis/generation of color images (FOM, VectorImages, ...)
+% fastpli.analysis.rofl
+%     # analysis tilted PLI images
+% \end{lstlisting}
+% \caption{\code{fastpli.analysis}}
+% % 	\label{alg:simulation}
+% \end{lstfloat}
+% % 
+% % 
+% %  
+% \subsection{fastpli.io}
+% \begin{lstfloat}[!ht]
+% \lstset{style=python}
+% \begin{lstlisting}
+% import fastpli.io
+% fastpli.io.fiber_bundles
+%     # io operations for dat-files and hdf5-files
+%     # for the fiber_bundles format.
+% \end{lstlisting}
+% \caption{\code{fastpli.io}}\label{alg:fastpli.io}
+% \end{lstfloat}
+% % 
+% \paragraph{fiber\_bundles.py} 
+% % 
+% % 
+% % 
+% \subsection{fastpli.model.sandbox}
+% \begin{lstfloat}[!ht]
+% \lstset{style=python}
+% \begin{lstlisting}
+% import fastpli.model.sandbox
+% fastpli.model.sandbox.fill
+%     # filling of trajectaries with seed points as fiber_bundles
+% fastpli.model.sandbox.build
+%     # building of geometries
+% \end{lstlisting}
+% \caption{\code{fastpli.model.sandbox}}
+% % 	\label{alg:simulation}
+% \end{lstfloat}
+% % 
+% % 
+% % 
+% \subsection{fastpli.model.solver}
+% \begin{lstfloat}[!ht]
+% \lstset{style=python}
+% \begin{lstlisting}
+% import fastpli.model.solver
+% fastpli.model.solver.Solver
+%     # Class wrapper for C++ class.
+%     # Solves any 3d configurations of fibers to a non colliding ...
+% \end{lstlisting}
+% \caption{\code{fastpli.model.solver}}
+% % 	\label{alg:simulation}
+% \end{lstfloat}
+% % 
+% % 
+% % 
+% \subsection{fastpli.simulation}
+% \begin{lstfloat}[!ht]
+% \lstset{style=python}
+% \begin{lstlisting}
+% import fastpli.simulation
+% fastpli.simulation.Simpli
+%     # Class wrapper for C++ class.
+%     # Generatoes:
+%     #   - discretisied Tissue Volume
+%     #   - 3D PLI images
+%     #   - analysis of resultss
+% \end{lstlisting}
+% \caption{\code{fastpli.simulation}}
+% % 	\label{alg:simulation}
+% \end{lstfloat}
+% % 
+% % 
+% % 
+% \subsection{fastpli.tools}
+% \begin{lstfloat}[!ht]
+% \lstset{style=python}
+% \begin{lstlisting}
+% import fastpli.tools
+% fastpli.tools.label_converter
+%     # conversion of discretisied tissue to 
+%     # maxwell-solver input format
+% fastpli.tools.rotation
+%     # rotation matricies for 3d rotaions
+% \end{lstlisting}
+% \caption{\code{fastpli.tools}}
+% % 	\label{alg:simulation}
+% \end{lstfloat}
+% % 
+% % 
+% % 
