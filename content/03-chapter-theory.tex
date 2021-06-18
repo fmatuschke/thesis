@@ -446,11 +446,11 @@ Aanlog to Jones one can formulate the matrices for the optical components:
     % \captionsetup[sub]{position=top}
     \setlength{\tikzwidth}{0.3\textwidth}
 	\centering
-	\subcaptionbox{\ac{LAP}}[.49\textwidth]{
-			\inputtikz{gfx/pli/pli_detail}}\hfill
-	\subcaptionbox{\ac{PM}}[.49\textwidth]{
-			\inputtikz{gfx/pli/pli_detail_pm}}
-	\caption{Illustration of detail PLI setup.}
+	\subcaptionbox{\ac{LAP}}[.45\textwidth]{\hfill
+			\inputtikz{gfx/pli/pli_detail}\hfill}\hfill
+	\subcaptionbox{\ac{PM}}[.45\textwidth]{\hfill
+			\inputtikz{gfx/pli/pli_detail_pm}\hfill}
+	\caption{Illustration of \acs{3D-PLI} setup.}
 	\label{fig:pli_detail}
 \end{figure}
 %
@@ -478,7 +478,7 @@ From the M\"{u}ller Matrices (\cref{sec:Mueller-Stokes}) as shown in \cite{Menze
 \begin{align}
 \label{eq:pli_signal}
 \begin{split}
-I =\frac{I_0}{2}\bigl[ \sin\bigl(2\rho - 2\varphi \bigr)\cdot \sin \bigl( 2\pi\frac{d \dn}{\lambda} \cos^2\left( \alpha \right) \bigr) \bigr] \\
+I(\rho, \varphi, \alpha, d) =\frac{I_0}{2}\bigl[ \sin\bigl(2\rho - 2\varphi \bigr)\cdot \sin \bigl( 2\pi\frac{d \dn}{\lambda} \cos^2\left( \alpha \right) \bigr) \bigr] \\
 \text{with} \enspace \delta \coloneqq 2\pi\frac{d \dn}{\lambda} \cos^2\left( \alpha \right) \enspace 
 \text{and} \enspace \trel \coloneqq \frac{d \dn}{\lambda}
 \end{split}
