@@ -8,6 +8,7 @@
     \node[anchor=north east] at (BB1.south east) {$\mathit{obj}_1$};
     % 
     \begin{scope}[shift={(7,4.8)},local bounding box=BB2,
+        rotate=42,
         3d view={85}{35},
         scale=0.25,
         ]

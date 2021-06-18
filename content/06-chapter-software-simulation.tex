@@ -40,8 +40,8 @@ The following procedures are described in this chapter:
     \item optimization
 \end{itemize}
 % 
-The computational heavy calculations of the discretization and simulation part are written in \cpp{} which are wrapped inside a \python class \code{simpli} for user friendly interactions.
-The additional algorithms of the optic are written in \python 3.
+The computational heavy calculations of the discretization and simulation part are written in \cpp{} which are wrapped inside a \python{} class \code{simpli} for user friendly interactions.
+The additional algorithms of the optic are written in \python{}.
 % 
 \\[\baselineskip]
 % 
@@ -449,18 +449,18 @@ This are the following.
   \item \ac{FOM} \dummy{}. 
 \end{itemize}
 % 
-\section{Pipeline}
-% 
-\begin{lstfloat}[!tb]
-\centering
-\scalebox{0.75}{
-\begin{minipage}{\the\textwidth}
-\lstinputlisting[style=python]{code/pipeline.py.tex}
-\end{minipage}}
-\caption[simpli pipeline]{Pipeline}
-\label{alg:Pipeline}
-\end{lstfloat}
-% 
-A pipeline code is implemented which combines all steps above (see \cref{alg:Pipeline}).
-It allows by minimal ... a fully run of the simulation as close to the \ac{3D-PLI} setup and its analysis pipeline.
-All results can be accessed and be stored inside a \textit{h5} container file.
+% \section{Pipeline}
+% % 
+% \begin{lstfloat}[!tb]
+% \centering
+% \scalebox{0.75}{
+% \begin{minipage}{\the\textwidth}
+% \lstinputlisting[style=python]{code/pipeline.py.tex}
+% \end{minipage}}
+% \caption[simpli pipeline]{Pipeline}
+% \label{alg:Pipeline}
+% \end{lstfloat}
+% % 
+% A pipeline code is implemented which combines all steps above (see \cref{alg:Pipeline}).
+% It allows by minimal ... a fully run of the simulation as close to the \ac{3D-PLI} setup and its analysis pipeline.
+% All results can be accessed and be stored inside a \textit{h5} container file.

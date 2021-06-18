@@ -132,7 +132,7 @@ A nerve fiber can therefore be represented as a list of 4d coordinates (or spher
 \end{split}
 \end{align}
 % 
-\section{Sandbox}
+\section{Sandbox}\label{sec:sandbox}
 % 
 Since the geometrical representation of the fibers is defined, the question arises how such fibers can be constructed.
 For this purpose the \ac{fastPLI} module \pymodule{fastpli.model.sandbox} was developed.
@@ -622,7 +622,7 @@ Additionally a drag value can be set, to reduce the velocity by its factor after
 It can help to reach a collision free volume faster, however the density will be significantly reduced.
 Therefore the value is to 0 so that after each step the velocity is reset to $\vec{0}$. 
 % 
-\section{Optimization / Parallelisation}
+\section{Optimization / Parallelisation}\label{sec:modelOpt}
 % 
 Among other techniques, two main optimisation techniques are used to speed up the process.
 % 
@@ -648,7 +648,7 @@ Furthermore, all instructions containing loops, such as the separation phase, ar
 % 
 % 
 % 
-\section{Visualization}
+\section{Visualization}\label{sec:visualization}
 % 
 A visualization tool was written to visualize the fiber configuration.
 This enables the user to get a direct feedback (\eg{} after each step) to adjust the initial fiber configuration or boundary condition.
@@ -667,7 +667,7 @@ To enable visualization of the inner axon, the myelin sheath can also be rendere
 % 
 \begin{figure}[!t]
     \setlength{\tikzwidth}{0.5\textwidth}
-    \subcaptionbox{\label{fig:mesh}mesh}[0.49\textwidth]{
+    \subcaptionbox{\label{fig:mesh}mesh \dummy[triangles are missing]{}}[0.49\textwidth]{
     \inputtikz{gfx/model/vis_a}}
     \subcaptionbox{vis}[0.49\textwidth]{
     \inputtikz{gfx/model/vis_b}
@@ -700,7 +700,7 @@ This process takes a certain amount of time and is therefore only recommended fo
 % 
 \newpage
 % 
-\section{Medusa}
+\section{Medusa - sphered nerve and cell modelling}
 % 
 \itodo{Section neu schreiben. Bisher nur Ideen.}
 % 

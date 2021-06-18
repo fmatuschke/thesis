@@ -260,6 +260,27 @@
     % procnamekeys={def,class},
 	tabsize=3,
 }
+% 
+% Hyphenate code
+\usepackage[htt]{hyphenat}
+% 
+\newcommand{\breakingperiod}{%
+  \penalty0 % allow a break before the period
+  .\nobreak\hspace{0pt}%
+}
+% 
+\ExplSyntaxOn
+% 
+\NewDocumentCommand{\code}{m}
+ {
+  \texttt
+   {
+    \seq_set_split:Nnn \l_michael_lw_seq { . } { #1 }
+    \seq_use:Nn \l_michael_lw_seq { \breakingperiod }
+   }
+ }
+% 
+\ExplSyntaxOff
 %
 % **************************************************
 % Tikz & PGFplots
