@@ -10,7 +10,7 @@
 \begin{tikzpicture}
 \pic at (0,0) {cross};
 \draw[] (0, 2) node[font=\small] () {linear, horizontal};
-\draw[thick, arrows={Latex[scale=1]-Latex[scale=1]}] (-1, 0) -- (1, 0);
+\draw[very thick, arrows={Latex[scale=1]-Latex[scale=1]}] (-1, 0) -- (1, 0);
 \draw[] (0, -2) node () {$\begin{pmatrix} 1&0 \end{pmatrix}$};
 \draw[] (0, -3) node () {$\begin{pmatrix} 1&1&0&0 \end{pmatrix}$};
 \end{tikzpicture}
@@ -19,7 +19,7 @@
 \begin{tikzpicture}
 \pic at (0,0) {cross};
 \draw[] (0, 2) node[font=\small] () {linear, vertical};
-\draw[thick, arrows={Latex[scale=1]-Latex[scale=1]}] (0, -1) -- (0, 1);
+\draw[very thick, arrows={Latex[scale=1]-Latex[scale=1]}] (0, -1) -- (0, 1);
 \draw[] (0, -2) node () {$\begin{pmatrix} 0&1 \end{pmatrix}$};
 \draw[] (0, -3) node () {$\begin{pmatrix} 1&-1&0&0 \end{pmatrix}$};
 \end{tikzpicture}
@@ -28,9 +28,11 @@
 \begin{tikzpicture}
 \pic at (0,0) {cross};
 \draw[] (0, 2) node[font=\small] () {linear, $\pi/4$};
-\draw[thick, arrows={Latex[scale=1]-Latex[scale=1]}] (-1, -1) -- (1, 1);
+\draw[very thick, arrows={Latex[scale=1]-Latex[scale=1]}] (-1, -1) -- (1, 1);
 \draw[] (0, -2) node () {$\begin{pmatrix} 1&1 \end{pmatrix}$};
 \draw[] (0, -3) node () {$\begin{pmatrix} 1&0&1&0 \end{pmatrix}$};
+\draw[] (2, -2) node () {Jones};
+\draw[] (2, -3) node () {Stokes};
 \end{tikzpicture}
 }
 \\[2em]
@@ -38,9 +40,9 @@
 \begin{tikzpicture}
 \pic at (0,0) {cross};
 \draw[] (0, 2) node[font=\small] () {left circular};
-\draw[thick] plot[domain=0:360,samples=90,smooth] ({cos(\x)},{sin(\x)});
-\draw[thick, arrows={-Latex[scale=1]}] plot[domain=44:45,samples=1] ({cos(\x)},{sin(\x)});
-\draw[thick, arrows={-Latex[scale=1]}] plot[domain=224:225,samples=1] ({cos(\x)},{sin(\x)});
+\draw[very thick] plot[domain=0:360,samples=90,smooth] ({cos(\x)},{sin(\x)});
+\draw[very thick, arrows={-Latex[scale=1]}] plot[domain=44:45,samples=1] ({cos(\x)},{sin(\x)});
+\draw[very thick, arrows={-Latex[scale=1]}] plot[domain=224:225,samples=1] ({cos(\x)},{sin(\x)});
 \draw[] (0, -2) node () {$\begin{pmatrix} 1&i \end{pmatrix}$};
 \draw[] (0, -3) node () {$\begin{pmatrix} 1&0&0&-1 \end{pmatrix}$};
 \end{tikzpicture}
@@ -49,9 +51,9 @@
 \begin{tikzpicture}
 \pic at (0,0) {cross};
 \draw[] (0, 2) node[font=\small] () {right circular};
-\draw[thick] plot[domain=0:360,samples=90,smooth] ({cos(\x)},{sin(\x)});
-\draw[thick, arrows={-Latex[scale=1]}] plot[domain=46:45,samples=1] ({cos(\x)},{sin(\x)});
-\draw[thick, arrows={-Latex[scale=1]}] plot[domain=226:225,samples=1] ({cos(\x)},{sin(\x)});
+\draw[very thick] plot[domain=0:360,samples=90,smooth] ({cos(\x)},{sin(\x)});
+\draw[very thick, arrows={-Latex[scale=1]}] plot[domain=46:45,samples=1] ({cos(\x)},{sin(\x)});
+\draw[very thick, arrows={-Latex[scale=1]}] plot[domain=226:225,samples=1] ({cos(\x)},{sin(\x)});
 \draw[] (0, -2) node () {$\begin{pmatrix} 1&-i \end{pmatrix}$};
 \draw[] (0, -3) node () {$\begin{pmatrix} 1&0&0&1 \end{pmatrix}$};
 \end{tikzpicture}
@@ -61,6 +63,8 @@
 \pic at (0,0) {cross};
 \draw[] (0, 2) node[font=\small] () {unpolarized};
 \draw[] (0, -3) node () {$\begin{pmatrix} 1&0&0&0 \end{pmatrix}$};
+\draw[] (2, -2) node () {Jones};
+\draw[] (2, -3) node () {Stokes};
 \end{tikzpicture}
 }
 }
