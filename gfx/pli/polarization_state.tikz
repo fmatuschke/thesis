@@ -20,9 +20,9 @@ pics/plate/.style args={#1}{code={
 \begin{tikzpicture}[scale=\tikzscale,
                     3d view={\azimuth}{\elevation}]
 % 
-\draw[thick, ->] (0,0,0) -- (1,0,0) node[anchor=north]{x};
+\draw[thick, ->] (0,0,0) -- (1,0,0) node[anchor=north]{z};
 \draw[thick, ->] (0,0,0) -- (0,1,0) node[anchor=south]{y};
-\draw[thick, ->] (0,0,0) -- (0,0,1) node[anchor=south]{z};
+\draw[thick, ->] (0,0,0) -- (0,0,1) node[anchor=south]{x};
 %
 \begin{scope}[shift={(0,0,0)}]
 \draw [axis] (0,0,0) -- (2*\n,0,0);

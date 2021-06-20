@@ -5,13 +5,13 @@
 \cleanchapterquote{The first principle is that you must not fool yourself and you are the easiest person to fool.}{Richard P. Feynman}{}%\newline
 %
 \section{Introduction}
-The following section lists the physical theories needed to describe the mathematics behind \ac{3D-PLI}. This includes the basic properties of light with the description of their polarization state, the optical models of the tissue, i.e. the nerve fibers and the mathematical description of the experimental setup of \ac{3D-PLI}. The first part of this chapter was written with the help of \cite{demtroeder2, Fliebach2012}.
+The following section lists the physical theories needed to describe the mathematics behind \ac{3D-PLI}. This includes the basic properties of light with the description of their polarization state, the optical models of the tissue, i.e. the nerve fibers and the mathematical description of the experimental setup of \ac{3D-PLI} and the analysis of its signal. The first part of this chapter was written with the help of \cite{demtroeder2, Fliebach2012}.
 % 
 % 
 % 
 \section{Electromagnetic Wave}
 % 
-Light is an electromagnetic wave. Electromagnetism is first fully described by James Clerk Maxwell. He formulated the Maxwell-Equations \cref{eq::maxwell_general}, generalized from the previous work of Johann Carl Friedrich Gau{\ss}, Michael Faraday and Andr\'{e}-Marie Amp\`{e}re and others. 
+Light is an electromagnetic wave. Electromagnetism is first fully described by James Clerk Maxwell. He formulated the Maxwell-Equations \cref{eq::maxwell_general}, generalized from the previous work of Johann Carl Friedrich Gau{\ss}, Michael Faraday and Andr\'{e}-Marie Amp\`{e}re and others:
 % 
 % \begin{align} 
 % \begin{split} \label{eq::maxwell_macro}
@@ -35,9 +35,17 @@ with $\nabla \coloneqq \left({\frac{\partial}{\partial x}}, {\frac{\partial}{\pa
 % 
 The first equation states no electric field can be generated without an electric charge (charge conservation).
 The second equation states, magnetic monopoles does not exists. The basic entity of an magnetic field is a dipole.
-The third and forth equation show the interconnection of the electric and magnetic fields in space and time. A change in the electric field yields to a magnetic field and vice versa. Equation forth additional indicates the creation of a magnetic field from a electric current. The maxwell equation fullfill the continoiut ... $\divergence j + \frac{\partial \rho}{\partial t} = 0$
+The third and forth equation show the interconnection of the electric and magnetic fields in space and time.
+A change in the electric field yields to a magnetic field and vice versa.
+Equation forth additional indicates the creation of a magnetic field from a electric current $\vec{j}$.
+The maxwell equation fullfill the continoiut ... $\divergence j + \frac{\partial \rho}{\partial t} = 0$.
+This means that neither an electric of magnetc field can be created without either an electric current or a change of electric potential.
+%
+% \par
 % 
-In a vacuum this simplifies with $\rho = 0$ and $\vec{J} = \vec{0}$ to:
+\subsection{EM in a vacuum}
+% 
+In a vacuum this simplifies with $\rho = 0$ and $\vec{j} = \vec{0}$ to:
 % 
 \begin{align}
 \begin{split} \label{eq::maxwell_vacuum}
@@ -52,7 +60,7 @@ With
 \begin{align}
 \begin{split} 
     \nabla \times \nabla \times \vec{E} = -\nabla \times \frac{\partial \vec{B}} {\partial t} &= -\frac{\partial} {\partial t} \left( \nabla \times  \vec{B} \right)\\
-    &= -\varepsilon_0 \cdot \mu_0 \frac{\partial^2 \vec{E}}{\partial t^2}
+    &= -\varepsilon_0 \cdot \mu_0 \frac{\partial^2 \vec{E}}{\partial t^2} \, ,
 \end{split}
 \end{align}
 % 
@@ -65,18 +73,19 @@ the identity $\nabla \times \left( \nabla \times \vec{A} \right) = \nabla(\nabla
 \end{split}
 \end{align}
 % 
-Another common representation is
+% Another common representation is
+% % 
+% \begin{align}
+% \begin{split} \label{eq::maxwell_wave_equations_box}
+%   \Box \ \vec{E} &= 0 \\
+%   \Box \ \vec{B} &= 0
+% \end{split}
+% \end{align}
 % 
-\begin{align}
-\begin{split} \label{eq::maxwell_wave_equations_box}
-  \Box \ \vec{E} &= 0 \\
-  \Box \ \vec{B} &= 0
-\end{split}
-\end{align}
+% with the help of the d'Alembert operator $\Box \coloneqq \partial^a\partial_a = \nabla^2 - \frac{1}{c^2} \frac{\partial^2}{\partial t^2}$.
 % 
-with the help of the d'Alembert operator $\Box \coloneqq \partial^a\partial_a = \nabla^2 - \frac{1}{c^2} \frac{\partial^2}{\partial t^2}$.
-% 
-This also shows $c^2  \frac{\partial B} {\partial z} = \frac{\partial E}{\partial t} \Rightarrow \vec{E} \cdot \vec{B} = 0$ that the electric and magnetic field components are perpendicular to each other.
+This also shows that $c^2  \frac{\partial B} {\partial z} = \frac{\partial E}{\partial t} \Rightarrow \vec{E} \cdot \vec{B} = 0$ and therefore the electric and magnetic field components are perpendicular to each other.
+Additionally it also means, that space and time are interconnected and that light travels in vacuum with the speed of light $c$.
 % 
 \subsection{Solving MW Equ in vacuum}
 % 
@@ -91,7 +100,7 @@ This also shows $c^2  \frac{\partial B} {\partial z} = \frac{\partial E}{\partia
 \end{split}
 \end{align}
 % 
-where $g$ is any well behaved function and therefore also their superposition.
+where $g$ is any well behaved function (continuous and differentiable) and therefore also their superposition.
 % 
 With the help of
 % 
@@ -108,6 +117,7 @@ a planar wave can be descriped by
 \end{split}
 \end{align}
 % 
+with $\vec{k}$ as Wave vector pointing into the travel direction of the light wave.
 % 
 % 
 \subsection{Polarization}
@@ -117,14 +127,13 @@ a planar wave can be descriped by
 \setlength{\tikzwidth}{\textwidth}
 \inputtikz{gfx/pli/polarization_state}
 \label{fig:polarization_state}
-\caption{Illustration of light polarization state.}
+\caption{Illustration of light polarization state. Unpolarized light goes throug a linear polarizer which polarizes the light in one direction (w.l.o.g. $E_x$ and $E_y$ in phase). Afterwords it travels though a quarter wave retarder, which turn linear polarized light (of a specific wave length) into circular polarized light, where w.l.o.g. $E_x$ and $E_y$ are $\pi/2$ phase}
 \end{figure}
 % 
-This shows, that the light wave travels in direction of $\vec{k}$ (no it does not, you have to show, that k is perpendicular to E and B).
-Therefore the light has a property called polarization.
-Polarization is the direction of the, usually, electric field component.
+Since the light wave travels into one direction, and the electric field and magnetic field are perpendicular to $\vec{k}$ as well to each other, there orientation is a fundamental property of light called polarization.
+Without any additional info, the polarization orientation is conventional in the direction of the electric field component.
 % 
-A superposition of x and y wave with z equal to direction of propagation yield to the general form
+A superposition of x and y wave with z equal to direction of propagation yield w.l.o.g. to the general form
 \begin{align}
 \vec{E}(z,t) &= \begin{pmatrix} E_{0x} \cdot e^{ -i \phi_x } \\ E_{0y} \cdot e^{ -i \phi_y } \\ 0 \end{pmatrix}
 e^{ -i (kz - \omega t)}
@@ -141,14 +150,14 @@ e^{ -i (kz - \omega t)}
 \Cref{fig:polarization_state_vectors} shows another representation of the polarization sate of a light wave.
 It show the component perpendicular to the travelling direction.
 Therefore the time variation can be shown on the xy-plane.
-Additionally the states can be describe by the Jones or Stokes calculus, later described in \cref{sec:jones,,sec:mueller_stokes}.
+Additionally the states can be describe by the Jones or Stokes calculus, later described in \cref{sec:jones,sec:mueller_stokes}.
 % 
 % 
 % 
 \subsection{Light in medium}
 % 
-The maxwell equations in ... are described above. They can be solved analog to ... . This yields to some special behavier, \eg{} the magnetic and electic field component get out of phase.
-However here only the two properties of absorptiona and difraction are described.
+The Maxwell equations in \dummy{} are described above. They can be solved analog to \dummy{}. This yields to some special behavior, \eg{} the magnetic and electric field component get out of phase.
+However here only the two properties of absorption and diffraction are described.
 They derivation can be found \eg{} \cite{demtroeder2, Fliebach2012}.
 % 
 \subsection{Absorption}
@@ -156,6 +165,7 @@ They derivation can be found \eg{} \cite{demtroeder2, Fliebach2012}.
 \begin{align}
     I = I_0 \exp(-\mu x)
 \end{align}
+\todo{herleiten}
 % 
 Beersche law of absorption with $\mu = \frac{4\pi \kappa}{\lambda_0}$ where $\kappa$ is the imaginary part of the complex refractive index.
 % 
@@ -169,8 +179,8 @@ Beersche law of absorption with $\mu = \frac{4\pi \kappa}{\lambda_0}$ where $\ka
 \caption{Illustration of refraction.}
 \end{figure}
 % 
-Refraction is the property of light to change direction as it passes from one medium to another. This can be shown by using the full Maxwell equations  for non-conductive material, \ie{} $\vec{j} = 0, \rho = 0$, that the dgl consit out of a primary wave with from atomic medim induced secundary waves, which leads to a reduction of the velocity of the resulting wave. Mathematically this can be described by a complex number $n = c' / c$.
-Using this relationship at a boundary surface between two media, one can show that the incident light beam splits into a reflecting and transmittang light wave. The reflecting light wave has the same angle as the incident light beam relativ the the surface normal. The transmitting light beam however due to the reduction of the velocity, changes its direction described by the snellius ...
+Refraction is the property of light to change direction as it passes from one medium to another. This can be shown by using the full Maxwell equations  for non-conductive material, \ie{} $\vec{j} = 0, \rho = 0$, that the differential equating consist out of a primary wave with from atomic medium induced secondary waves, which leads to a reduction of the velocity of the resulting wave. Mathematically this can be described by a complex number $n = c' / c$.
+Using this relationship at a boundary surface between two media, one can show that the incident light beam splits into a reflecting and transmitting light wave. The reflecting light wave has the same angle as the incident light beam relative the the surface normal. The transmitting light beam however due to the reduction of the velocity, changes its direction described by the Snellius law
 \begin{align}
     n_0 \sin \alpha = n_1 \sin \beta
 \end{align}
@@ -186,7 +196,7 @@ Using this relationship at a boundary surface between two media, one can show th
 &= \operatorname{Re}\! \left[\vec{E}_0 \cdot e^{i\, (2\pi(n + i\kappa)z/\lambda_0 - \omega t)}\right] \\
 &= e^{-2\pi \kappa z/\lambda_0} \operatorname{Re}\! \left[\vec{E}_0 \cdot e^{i\, (kz - \omega t)}\right]
 \end{split}
-\end{align}
+\end{align}\todo{?}
 % 
 % 
 % 
@@ -225,11 +235,11 @@ The change of phase is called birefringence and is described by the difference b
 \end{align}
 % 
 This .. can be visualized by the index ellipsoid \cref{fig:index_elipsoid}.
-The change of the amplitude and phase can be described by the following techniques.
+The change of the amplitude and phase can be described by the following two vector matrices descriptions.
 % 
 % 
 % 
-\subsection{Jones}
+\subsection{Jones calculus}
 \label{sec:jones}
 % 
 The Jones calculus, introduced by Robert Clark Jones in 1941, describes the polarization state of a light beam by a complex vector $J$:
@@ -266,7 +276,7 @@ e^{\frac{i \pi}{4}}
 \end{split}
 \end{align}
 % 
-A rotation of the axis can be achieved by a 2d rotation matrix $\mat{R}$:
+A rotation of an optical element can be achieved by a 2d rotation matrix $\mat{R}$:
 % 
 \begin{align}
 \begin{split}
@@ -285,8 +295,8 @@ A rotation of the axis can be achieved by a 2d rotation matrix $\mat{R}$:
 \subsection{M\"uller-Stokes}\label{sec:Mueller-Stokes}
 \label{sec:mueller_stokes}
 % 
-Analog to \cref{sec:jones} the M\"uller-Stokes formalism, described by George Gabriel Stokes in 1852, also describes the polarication state of a light beam.
-However it does not use the absolute .. but the relative polarication between both components:
+Analog to \cref{sec:jones} the M\"uller-Stokes formalism, described by George Gabriel Stokes in 1852, also describes the polarization state (how good is it \dummy{}) of a light beam.
+However it does not use the absolute .. but the relative polarization between both components:
 % 
 \paragraph{Stokes vector}
 \begin{align}
@@ -378,17 +388,10 @@ Aanlog to Jones one can formulate the matrices for the optical components:
 \end{split}
 \end{align}
 % 
-% \paragraph{Rotation Matrix}
-% \begin{align}
-% \frac{1}{2}
-% \begin{pmatrix}
-%     1 &                0 &               0 & 0 \\
-%     0 &  \cos{(2\theta)} & \sin{(2\theta)} & 0 \\
-%     0 & -\sin{(2\theta)} & \cos{(2\theta)} & 0 \\
-%     0 &                0 &               0 & 1
-% \end{pmatrix}
-% \end{align}
-\todo{matrix multi}
+Analog to \dummy{} rotations are applied by
+\begin{align}
+\mat{M}(\theta )=\mat{R}(\theta )\cdot\mat{M}\cdot\mat{R}(-\theta )
+\end{align}
 % 
 % \section{Tissue Discretization}
 % % 
@@ -428,31 +431,31 @@ Aanlog to Jones one can formulate the matrices for the optical components:
     \captionsetup[sub]{position=top}
     \setlength{\tikzwidth}{\textwidth}
 	\centering
-	\subcaptionbox{\label{setup-lap} \ac{LAP}}[\textwidth]{
-% 		\resizebox{0.95\textwidth}{!}{
-		\inputtikz{gfx/pli/pli_setup}
-% 	}
-	}\\
-	\subcaptionbox{\label{setup-pm} \ac{PM}}[\textwidth]{
-% 		\resizebox{0.95\textwidth}{!}{
+% 	\subcaptionbox{\label{setup-lap} \ac{LAP}}[\textwidth]{
+% % 		\resizebox{0.95\textwidth}{!}{
+% 		\inputtikz{gfx/pli/pli_setup}
+% % 	}
+% 	}\\
+% 	\subcaptionbox{\label{setup-pm} \ac{PM}}[\textwidth]{
+% % 		\resizebox{0.95\textwidth}{!}{
 		\inputtikz{gfx/pli/pli_setup_pm}
+% % 	}
 % 	}
-	}
 	\caption{Illustration of PLI setup.}
 	\label{fig:pli_setup}
 \end{figure}
 %
-\begin{figure}[!t]
-    % \captionsetup[sub]{position=top}
-    \setlength{\tikzwidth}{0.3\textwidth}
-	\centering
-	\subcaptionbox{\ac{LAP}}[.45\textwidth]{\hfill
-			\inputtikz{gfx/pli/pli_detail}\hfill}\hfill
-	\subcaptionbox{\ac{PM}}[.45\textwidth]{\hfill
-			\inputtikz{gfx/pli/pli_detail_pm}\hfill}
-	\caption{Illustration of \acs{3D-PLI} setup.}
-	\label{fig:pli_detail}
-\end{figure}
+% \begin{figure}[!t]
+%     % \captionsetup[sub]{position=top}
+%     \setlength{\tikzwidth}{0.3\textwidth}
+% 	\centering
+% 	\subcaptionbox{\ac{LAP}}[.45\textwidth]{\hfill
+% 			\inputtikz{gfx/pli/pli_detail}\hfill}\hfill
+% 	\subcaptionbox{\ac{PM}}[.45\textwidth]{\hfill
+% 			\inputtikz{gfx/pli/pli_detail_pm}\hfill}
+% 	\caption{Illustration of \acs{3D-PLI} setup.}
+% 	\label{fig:pli_detail}
+% \end{figure}
 %
 The \ac{3D-PLI} setup is described in \cite{Axer2011} with the tiltable light beam microscope (LMP) in \cite{Wiese:887678}.
 For the routine measurements two (three) microscope systems are currently in use.
@@ -516,38 +519,40 @@ With these the final \ac{3D-PLI} modalities are calculated:
 \mathit{retardation} &= \frac{\sqrt{a_1^2 + b_1^2}}{a_0}
 \end{split}
 \end{align}
-
-
-
 % 
-\subsection{Tilted signal}
+\itodo{Section Images}
 % 
-To be able to analyse the inclination $\alpha$ one has to distiguish the relative strength of the birefringence from the $\cos^2(\alpha)$.
-For this purpose a tiltable specimen was developed, which allows measuring the light signal through the tissue with a different angle of incidenc.
+% 
+% 
+\subsection{Inclination analysis}
+% 
+To be able to analyse the inclination $\alpha$ one has to distinguish the relative strength of the birefringence from the $\cos^2(\alpha)$.
+For this purpose a tiltable specimen was developed, which allows measuring the light signal through the tissue with a different angle of incidence.
 This mean, that tissue and therefore the nerve fibers also change their orientation by the tilting angles $\theta, \varphi$.
-Additionally the distance the light travels through the tissue, elongigates by $1/\cos(\theta)$ \cref{fig:tilted_side_view}.
+Additionally the distance the light travels through the tissue, elongates by $1/\cos(\theta)$ \cref{fig:tilted_side_view}.
 % 
-Depending on the \pixelsize{}, in the case of the \ac{LAP} system, this light travels though the same volume, but with another orientation.
+Depending on the \pixelsize{}, this light travels though the same volume, but with another orientation.
 Therefore a measurement of multiple light paths can be ... and the resulting signals can be used to analyse the inclination and relative birefrigente tissue thickness \trel{}.
-In the case of a tiltible specimen, the angle of incidence on the glass ... and the tissue also changes the angle of the light by snellius law.
-All angles mentiont here are if not specified always the change of angle of the light inside the tissue (see \cref{fig:tilting_camera_view}). 
+The angle of incidence on the glass ... and the tissue also changes the angle of the light by Snellius law.
+All angles mention here are if not specified always the change of angle of the light inside the tissue (see \cref{fig:tilting_camera_view}). 
 This also leads to a perspective shift, which has to be corrected by a registration process.
 In this case an affine transformation.
+This effect is however neglected in the simulation, since it only adds a parallel offset.
 % 
-In \cite{Schmitz2018} this analys published under the name of \ac{ROFL}, which builds up on the work of \cite{Wiese:887678}.
+In \cite{Schmitz2018} this analysis published under the name of \ac{ROFL}, which builds up on the work of \cite{Wiese:887678}.
 The idea is to fit the measured signals of all light paths simultaniously.
 Because the change of signal is proportional to the $\cos(\alpha)$ this however means, that for steep fibers, the changes are not only small, but also the amplitude of the signal is very small.
 This leads to the problem of increasing uncertanty with increasing inclination angle.
 \\
 A further problem is that for a smaller \pixelsize{} the light path cannot be neglected anymore.
-For the \ac{LMP3D} system this means, that with a maximal tilting angle of about $\SI{3}{\degree}$ and a usually tissue thickness of $\SI{60}{\micro\meter}$ the light path is measured in n pixels away from the non tilting case, if the rotation point is in the center of the tissue.
+For the \ac{LMP3D} system this means, that with a maximal tilting angle of about $\SI{3.9}{\degree}$ and a usually tissue thickness of $\SI{60}{\micro\meter}$ the light path is measured in n \dummy{} pixels away from the non tilting case, if the rotation point is in the center of the tissue.
 \\
-However for homoginoius tissue, like the \ac{WM} may be some regions, the analysis technique can still be applied.
-A change in density, orientation or dispersion however will lead to a false result.
+For homogeneous tissue regions like parts in the dense \ac{WM}, this can be ignored.
+For single fiber paths in the \ac{GM} however this is currently an unsolved problem.
 % 
 % 
 % 
-\section{Orientation}
+\section{Orientation visualization}
 % 
 \begin{figure}[!t]
 \centering
@@ -587,6 +592,7 @@ It color code the orientation by:
 This way the color corresponds to the direction, and the color value to the inclination.
 Since the orientation, unlike a vector, covers only a half sphere, the colors are point symmetric.
 % 
+\itodo{Section Images}
 % fig:spheres
 % 
 % 
