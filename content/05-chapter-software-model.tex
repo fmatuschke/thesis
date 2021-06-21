@@ -2,50 +2,61 @@
 \chapter{Nerve fiber modelling}
 \label{chap:sof:modelling}
 % 
-% \markus{This is an example.}
-% 
-Nerve fiber modelling is a unique technique often used in simulations like \ac{dMRI}-simulations \dummy{}.
-However, most \ac{dMRI} simulation tools use fast numeric simulation techniques like \dummy{}.
-These use analytical functions to describe the fiber paths in order to calculate very quickly and accurately.
-Current algorithms are able to use spline functions for single nerve fibers or fiber bundles \cite{Balls2009}.
-Recently, with the improvement of computer performance and algorithms, simulation techniques such as Monte Carlo \dummy{} are used.
-These simulate the random movement of individual water molecules within a volume.
-If the target are \ac{WM} phantoms nerve fibers can be modelled as a meshed tube.
-If \ac{WM} phantoms are involved, nerve fibers can be modeled as a meshed tube.
-These have the advantage that any complex configuration can be modeled \eg{} fibers \dummy{}.
-\\
-%
-A disadvantage, however, is that realistic model sizes require individual nerve fiber models in the order of $\SI{1}{\micro\meter}$.
-Experimental \ac{dMRI} system have voxel sizes in the range of $\SIrange{100}{1000}{\micro\meter}$.
-This means that for a signal the number of triangles in the mesh is quite large [\dummy{}].
-Another challenge is to build a geometric configuration where no nerve fibers overlap (\ie{}, take the same volume in space).
-\\
-% 
-Collision detection plays an important role in this process.
-While other simulations that use geometric models (\eg{} protein folding \dummy{}) may use something like electric potentials where the actual geometric boundary is not so important.
-In the case of \ac{3D-PLI} (and \ac{dMRI}) it will be shown to be different.
+% Interesse wecken: warum braucht man es, warum ist es kompliziert, lösbare probleme
+\par
+In \cref{chap:neuro} the structure of nerve fibers as well as the macroscopic structure of \ac{WM} was described.
+The question is, how to represent such a structure in a computer algorithm?
+Many solutions are already available.
+One common comes from visualization.
+A robe or fiber, \ie{} tube object, is defined by a trajectory with a radius.
+From this a surrounding mesh is generated.
+In visualization the mesh is used to apply textures. 
+However the same meshes are also used in Monte Carlo \ac{dMRI} simulations \cite{Ginsburger2019,ginsburgerDis2019}.
+Here the meshes help to calculate, if a water molecule travels through the surface of a nerve fiber, \ie{} the surface of the mesh.
+This representation is however very costly, since the number of triangles, which are decoded in the mesh, has to be quite high.
+Otherwise the accuracy is lost.
 \par
 % 
-The following procedures are described in this chapter:
-\begin{itemize}[nosep]
-    \item geometric representation of the nerve fiber (bundle)
-    \item user-friendly construction methods of models
-    \item how to ensure collision-free models
-\end{itemize}
+An quite more important task is that the nerve fibers does not overlap each other.
+For this purpose either the user has to define such structure in advance, or a computer algorithm has to build such structures from an input.
+Thinking of the immense amount of configuration possibilities nerve fiber can have, even in a small volume, the task is for a user except for trivial configurations nearly impossible to solve.
+\par
 % 
-All described methods can be used within the package \pymodule{fastpli.model}:
+The same is still true for a computer algorithm.
+One could \eg{} write an algorithm which define a single fiber in a volume, and then placing the next one but making sure that no one overlaps and so on.
+This works up to a certain point fine.
+Even if an algorithm finds always a solution to find a path through an already filled volume (which is probably not analytical possible), At some point the volume seems full, but still has a lot of free space in between the fibers.
+Of course one can minimise this behavier, \eg{} trying to place almost parallel fibers, however looking again at real tissue data (\cref{fig:brainTPFM} \dummy{}) this is not the case.
+Even for a fiber bundle the fibers are packed so densely, that one cannot simple add another fiber in such a way, that over time (\ie{} adding further fibers) volume is wasted.
+\par
 % 
-\begin{itemize}[nosep]
-    \item \pymodule{sandbox}
-    \item \pymodule{solver}
-\end{itemize}
+The solution found during this thesis is , place the nerve fibers in any way the user want to, without the constraint that they are not allowed to overlap each other.
+Subsequently, however, the overlap must be removed.
+The idea is quite forward.
+Check all fibers for collision with each other.
+If a collision occurs, try to remove it by moving the coliding parts slidly away from each other.
+Repeat this step until all collisions are solved.
+\par
 % 
-The first module \pymodule{sandbox} contains routines that help the user to create simple geometric configurations.
-These can then be used to build more complex structures of nerve fiber bundles.
-The second module \pymodule{solver} contains a \cpp{} framework wrapped in a \python{} class to allow the user to build simpler \ac{API} (see \dummy{}).
-\\
+This idea \cite{Matuschke2019} with all its necessary requirements is in detail described in the following chapter.
+First the representation of a nerve fiber is defined in such a way, that it already takes into account to be as performant as possible for the collision process.
+After this building functions, which help the user to define fastly a volume with fibers, are described.
+Last the solving algorithm is explained in detail with its parallel running components.
+Additionally another approach based on this idea and develop during this thesis with colleges from \ac{dMRI} is explained in detail as well.
+It has also a focus on placing nerve cells like astrocytes or olegodendrocytes with their (armen) in the volume.
+The cooperation is quite obvious since both simulation techniques investigate the same kind of tissue models.
+Since these kind of models are focused on non overlapping tube like structures, they can also applied to other fiber like structures like muscle tissue for example.
+\par
 % 
-First, however, it must be decided how a nerve fiber and a nerve bundle is to be represented.\todo{veroffentlichung in intro}
+All described algorithms here are part of the toolbox \ac{fastPLI} \cite{Matuschke2021}, which is described in detail in \cref{chap:Software}.
+% 
+\todo{focus von effizienz erwähnen}
+\todo{wichtigkeit von irregulariäten}
+\todo{kooperationen besser herrausarbeiten}
+% 
+\par
+\noindent\rule{\textwidth}{2pt}
+\par
 % 
 % 
 % 
