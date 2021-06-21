@@ -6,6 +6,11 @@
 \par
 In \cref{chap:neuro} the structure of nerve fibers as well as the macroscopic structure of \ac{WM} was described.
 The question is, how to represent such a structure in a computer algorithm?
+For simple fiber configurations, this can be rather simple.
+However it could already been shown, that in \dummy{} \cite{MenzelDissertation} irregular, non symmetrically nerve fiber configurations are essential to acquire a realistic results without diffraction pattern.
+This means, that any kind of pattern which can exists, should ideally be representable by an representation.
+\par
+% 
 Many solutions are already available.
 One common comes from visualization.
 A robe or fiber, \ie{} tube object, is defined by a trajectory with a radius.
@@ -54,57 +59,56 @@ All described algorithms here are part of the toolbox \ac{fastPLI} \cite{Matusch
 \todo{wichtigkeit von irregulariäten}
 \todo{kooperationen besser herrausarbeiten}
 % 
-\par
-\noindent\rule{\textwidth}{2pt}
-\par
-% 
 % 
 % 
 \section{Nerve fiber representation}
 \label{sec:nerve_fiber_representation}
 % 
-As described in \cref{sec:fiberArchitecture} \ac{WM} consist of densely packed bundles of nerve fibers.
-Nerve fibers in \ac{WM} consist of axons surrounded by myelin (see \cref{fig:nerveFiber}).
-The myelin is further split into several parts separated by Ranvier nodes to allow the spread of an action potential.
-In the central nervous system, myelin is produced by olegodendrocytes, i.e. cells that wrap their small \say{arms} around locally adjacent axons.
-The wrapping substance is called myelin and consists mainly of a lipid (fat) substance.
-The question is how this tissue can be modelled and represented.
-\\
+Nerve fibers themself are cabel like structures surrounded by an electric isolating lipid layer of meylin.
+The diameter of the axon as well as the myelin thickness can varry from fiber to fiber quite a bit (see \dummy{}).
+This means that the representation of nerve fiber models should be capable of representing such variations as well.\\
 % 
-The main focus of modeling is to ensure that these models can be used for \ac{3D-PLI} simulations.
-However, it is reasonable that these models can also be used for other tasks \eg{} for \ac{dMRI} simulations.
+As described in \cref{sec:fiberArchitecture} \ac{WM} consist out of nerve fibers, which are packed densly together in nerve fiber bundles.
+These bundles can merge/split with other bundles and traverse through the brain to connect one region with another region.
+The bundles are capable to cross each other, either by crossing of the individual nerve fibers, or fiber bundles bypassing each other in a interwoven kind of structure.
+This structures are also a key element to investigate in \ac{3D-PLI}.
+Therefore it is especially important that the models are capable of forming such structures without overlap of individual fibers.
+\par
 % 
-\paragraph{What means usable?}
-Since simulations are used, computer algorithms must be able to receive an input for a geometric fiber architecture.
-One possibility is to look into the field of visualization techniques.
-There, objects of different shapes have to be represented so that the computer algorithm can use the representation to visualize an image of the objects.
-An obvious model for a fiber is a tube.
-Usually objects like tubes are visualized with a surrounding mesh.
-Meshes have the advantage that a texture can be applied to the surface.
-However, since meshes usually consist of 3D triangles, this means a lot of points, \ie{} data and memory, for a good approximation to represent a model.
-But even in the visualization domain tubes are not modeled from initial meshes.
-They are initialized by a trajectory, which is then given an additional radius to obtain a volumetric representation.
-This representation can also be used for nerve fiber tissue.
-\\
+An obvious representation is a parametric function that describes a path in 3d space, \ie{} trajectory.
+Additionally a forth element could describe the radius of the fiber at the same point:
+\begin{align}
+f(t) \rightarrow (x(t),y(t), z(t), r(t))
+\end{align}
+However, this representation does not allow any simple changes afterwards, such as the resolving of collisions.
+For this purpose, there must be individual elements on which allow movement or deformation.
+The obvious step is to divide the function into discrete sections.
 % 
-Existing simulation techniques \dummy{} allow to represent such structures as analytical mathematical objects \eg{} a parametric function $f(t) -> (x,y,z,r)$ with $(x,y,z)$ as 3D coordinate and $r$ as radius.
-However, this drastically restricts the use of this function, since the user needs to know a parametric function in advance.
-For trivial structures such as parallel straight fibers this is quite easy and fast to process.
-However, if we want to model more complicated fabrics like densely interwoven fiber bundles, the task is almost impossible.
-One possibility would be not to care if two fibers overlap, \ie{} occupy the same space in the volume.
-This is done \eg{} for simulations such as protein folding, where the main interaction comes from electrodynamic forces.
-However, it has already been shown that for more complicated \ac{3D-PLI} Simulations non-overlapping fibers are essential [\dummy{}].
-\\
+\begin{figure}[!t]
+    \setlength{\tikzwidth}{0.85\textwidth}
+    \centering
+    % \tikzset{external/export next=false}
+    \inputtikz{gfx/model/fiber_model}
+	\caption[]{Representation of a nerve fiber from a list of spheres.}
+	\label{fig:fiberReb}
+\end{figure}
 % 
-For this reason, it was decided to represent fibers in such a way that they can be easily checked later whether colliding objects, \ie{} nerve fibers, are present.
-\\
+Therefore the fiber can be described by a list of 4d points $(x,y,z,r)$, which can be interpret as a chain of cylindrical fiber segments (see \cref{fig:fiberReb}):
+\begin{align}
+\begin{split}
+% \vec{p} &= (x_i,y_i,z_i) \mid x,y,z \in \mathbb{R}\\
+% r &\mid r \in \mathbb{R}\\
+\mathit{fiber} &= \left\{ \vec{p}_i=(x_i,y_i,z_i), r_i \mid x,y,z \in \mathbb{R}, \, r \in \mathbb{R^+}, \, i \in \{0,1,...,N_{\mathit{points}}-1\}\right\} \\
+\mathit{fiber\_segment}_i &= (\vec{p}_i, \vec{p}_{i+1}, r_i, r_{i+1}), \, i \in \{0,1,...,N_{\mathit{points}}-2\}
+\end{split}
+\end{align}
 % 
 \begin{figure}[!t]
     \centering
     \setlength{\tikzwidth}{0.75\textwidth}
     \inputtikz{gfx/model/conical_capsule_bb}
     \tikzset{external/export=false}
-	\caption[cc and co]{\Acf{CC}: \raisebox{.25em}{\tikz \draw[black](0,0)--(0.275,0);} \ac{CC}, \raisebox{.25em}{\tikz \draw[blue, dash pattern=on 2.5pt off 2.5pt](0,0)--(0.275,0);} capsule, \raisebox{.25em}{\tikz \draw[red, dash pattern={on 2.5pt off 0.9pt on 0.42pt off 0.9pt}](0,0)--(0.275,0);} bounding box}
+	\caption[cc and co]{\Acf{CC}: \raisebox{.25em}{\tikz \draw[black](0,0)--(0.275,0);} \ac{CC}, \raisebox{.25em}{\tikz \draw[blue, dash pattern=on 2.5pt off 2.5pt](0,0)--(0.275,0);} capsule, \raisebox{.25em}{\tikz \draw[red, dash pattern={on 2.5pt off 0.9pt on 0.42pt off 0.9pt}](0,0)--(0.275,0);} bounding box \itodo{better in collision solving part}}
 	\label{fig:conical_capsule}
 \end{figure}
 % 
@@ -116,32 +120,21 @@ For this reason, it was decided to represent fibers in such a way that they can 
 	\label{fig:conical}
 \end{figure}
 % 
-In order to enable any level of detail, a tubular fiber can be divided into a number of segments.
-Each tubular segment can then be approximated as a cylindrical object.
-However, since the radius of the nerve fibers can vary quite a lot along their path, the tube (or the fiber segments) must also be allowed to change.
-If this is done via a cylindrical approximation, the boundary effects between two segments can lead to an unusual appearance/behavior.
-It was therefore decided to approximate a fiber segment with a \ac{CC}, a 3D cone on which end spheres with the required radii are attached (see \cref{fig:conical_capsule}).
-This has the advantage that between two fiber segments there is a smooth transition along the fiber axis (for reasonable curvature) (see \cref{fig:fiberReb, fig:modelLength}).
+Since the fiber radius can change from one point to an adjacent point, the segment can be conical (see \cref{fig:conical_capsule}).
+Therefore the fiber segments describes a \ac{CC}.
+\par
 % 
-\begin{figure}[!t]
-    \setlength{\tikzwidth}{0.85\textwidth}
-    \centering
-    % \tikzset{external/export next=false}
-    \inputtikz{gfx/model/fiber_model}
-	\caption[]{Representation of a nerve fiber from a list of spheres.}
-	\label{fig:fiberReb}
-\end{figure}
+Additionally later multiple radii could be interpreted as multiple myelin layers.
+However at this point it was more feasible to define one radii per point, and to define a "scale" parameter, which divides the radii between 0 to 1 times the radii into N layers.
+At the model building and solving process, only the outer layer is important.
+\par
 % 
-A nerve fiber can therefore be represented as a list of 4d coordinates (or spheres) (see \cref{fig:fiberReb}):
-% z
-\begin{align}
-\begin{split}
-% \vec{p} &= (x_i,y_i,z_i) \mid x,y,z \in \mathbb{R}\\
-% r &\mid r \in \mathbb{R}\\
-\mathit{fiber} &= \left\{ \vec{p}_i=(x_i,y_i,z_i), r_i \mid x,y,z \in \mathbb{R}, \, r \in \mathbb{R^+}, \, i \in \{0,1,...,N_{\mathit{points}}-1\}\right\} \\
-\mathit{fiber\_segment}_i &= (\vec{p}_i, \vec{p}_{i+1}, r_i, r_{i+1}), \, i \in \{0,1,...,N_{\mathit{points}}-2\}
-\end{split}
-\end{align}
+This representation has the advantage over a mesh representation of a hull, that it takes much less data to represent it.
+This will hopefully increase the computational speed, which will be crucial for a collision solving algorithm.
+% 
+\par
+\noindent\rule{\textwidth}{2pt}
+\par
 % 
 \section{Sandbox}\label{sec:sandbox}
 % 
