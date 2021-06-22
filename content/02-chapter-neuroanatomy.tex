@@ -130,16 +130,26 @@ The outer cell bodies layer are called \ac{GM}.
 In a nissle stained image, where the nerve cells are absorbing light, this is even more visible (see \cref{fig:coronalStained}).
 \par
 % 
+% \begin{figure}[!t]
+% 	\centering
+% 	\includegraphics{gfx/neuroanatomy/human_wm_after_klinger_dissection.png}
+% 	\caption{Electron microscopy image after klinger dissection \cite{destrieux:hal-01261930}. Fiber bundle structures are visible, following the same direction}
+% % 	\label{fig:brain_sectioning}
+% \end{figure}
+% 
 \begin{figure}[!t]
 	\centering
-	\includegraphics{gfx/neuroanatomy/human_wm_after_klinger_dissection.png}
-	\caption{Electron microscopy image after klinger dissection \cite{destrieux:hal-01261930}. Fiber bundle structures are visible, following the same direction}
+	\subcaptionbox{}[.49\textwidth]{
+	    \includegraphics[width=0.45\textwidth]{dev/brain/auto_seg_axon_0.png}}\hfill
+    \subcaptionbox{}[.49\textwidth]{
+        \includegraphics[width=0.45\textwidth]{dev/brain/auto_seg_axon_1.png}}
+	\caption{Automatic segmentet nerve fiber tissue from an electron microscopy \cite{Abdollahzadeh2019}. }
 % 	\label{fig:brain_sectioning}
 \end{figure}
 % 
 Since this \ac{WM} has such a high density of fibers (up to billion in the corpus calosum) it is even under a microscope nearly impossible to investigate single fiber tracts through the brain.
 One approach is a myelin staining (see \cref{fig:brainMyelinStain}).
-Here nerve fibers which are meyelinated are absorbing light (contrast).
+Here nerve fibers which are myelinated are absorbing light (contrast).
 Individual nerve fibers can be tracked inside the section.
 However already for "smaller" nerve fiber bundles individual nerve fibers are lost.
 Especially for dense white matter, no more information can be obtained.
@@ -149,6 +159,8 @@ It shows different kind of organisations of the nerve fibers.
 Nerve fiber bundles are visible (orange) as well as net structures inside the \ac{GM}.
 Latter are present to connect the nerve cells with each other inside the \ac{GM}, while the nerve fiber bundles let the axons reach there target area.
 \par
+% 
+\todo{klinger section}
 % 
 \begin{figure}[!t]
 	\centering

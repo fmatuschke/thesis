@@ -32,19 +32,19 @@
 \begin{tikzpicture}[scale=\tikzscale, rotate=90]
 \pgfmathsetmacro{\h}{6}
 % 
-\draw[thick] (0,0) -- (0,\h);
-\draw[thick] (4,0) -- (4,\h);
+\draw[thick] (0,0) -- (0.5,\h);
+\draw[thick] (4,0) -- (3.5,\h);
 % 
-\draw[thick] (4,\h) arc (0:-180:2 and 1);
-\draw[thick, dashed] (4,\h) arc (0:180:2 and 1);
-\draw[thick] (4,\h) arc (0:180:2 and 1.75);
+\draw[thick] (3.5,\h) arc (0:-180:1.5 and 1);
+\draw[thick, dashed] (3.5,\h) arc (0:180:1.5 and 1);
+\draw[thick] (3.5,\h) arc (0:180:1.5 and 1.5);
 % 
 \draw[thick] (4,0) arc (0:-180:2 and 1);
 \draw[thick, dashed] (4,0) arc (0:180:2 and 1); 
 \draw[thick] (4,0) arc (0:-180:2 and 1.75);
 % 
 \draw[<->] (2,0) -- (2,\h) node[midway, above] {$h$};
-\draw[->] (2,\h) -- (4,\h) node[midway, left] {$r_0$};
+\draw[->] (2,\h) -- (3.5,\h) node[midway, left] {$r_0$};
 \draw[->] (2,0) -- (4,0) node[midway, right] {$r_1$};
 % 
 \end{tikzpicture}
