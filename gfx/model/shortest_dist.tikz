@@ -19,7 +19,7 @@
 \coordinate (AA) at (2,3.4);
 \end{scope}
 % 
-\begin{scope}[shift={(2,2)}, rotate around x=30, yscale=0.6, rotate around y=20, rotate=70]
+\begin{scope}[shift={(2,2)}, rotate around x=30, yscale=0.6, rotate around y=20, rotate=75]
 \pgfmathsetmacro{\h}{6}
 % 
 \draw[thick] (0,0) -- (0,\h);
