@@ -132,32 +132,17 @@ At the model building and solving process, only the outer layer is important.
 This representation has the advantage over a mesh representation of a hull, that it takes much less data to represent it.
 This will hopefully increase the computational speed, which will be crucial for a collision solving algorithm.
 % 
-\par
-\noindent\rule{\textwidth}{2pt}
-\par
-% 
 \section{Sandbox}\label{sec:sandbox}
 % 
-Since the geometrical representation of the fibers is defined, the question arises how such fibers can be constructed.
-For this purpose the \ac{fastPLI} module \pymodule{fastpli.model.sandbox} was developed.
-It contains a variety of methods that allow the user to create complex phantoms with fast construction algorithms.
-\\
+In computer game terminology, a \textit{sandbox game} is a game that allows the player to build and design anything at no cost.
+Analogous to this feature the \pymodule{fastpli.model.sandbox} exists to allow the user to easily and quickly design standard geometric configurations of nerve fibers and bundles.
+Since nerve fibers are usually clustered in bundles, construction methods focus on generating nerve fiber bundles from a 2d pattern (seed points) and a nerve fiber bundle trajectory.
+In other words, when the finished nerve fiber bundle is cut along its path, the cut plane would show the pattern of the germination points where the cut fibers are located.
 % 
-These algorithms can be divided into two parts.
-This toolbox focuses on constructing phantoms for the \ac{WM}.
-Since \ac{WM} nerve fiber bundles are usually combined to nerve fiber bundles (see \dummy{}), the \pymodule{sandbox} module contains two main parts, which can contain exactly such structures.
-%
-Representation of nerve fiber bundles is very similar to that of nerve fibers: tube-like structures that are equipped with individual nerve fibers.
-Representation of tubular structures has already been achieved (see \cref{sec:nerve_fiber_representation}).
-\\
-If nerve fiber bundles are imagined as a trajectory through the 3D coordinate systems, we can use the same Representation as for nerve fibers.
-In addition, the radii contained can be used to scale a nerve fiber along its trajectory, i.e. inflate it.
-\\
+\par
 % 
-The question remains how to populate such bundles.
-To populate a trajectory, we can use a similar approach as in tractography (see \cref{sec:fillBundle}).
-Starting with seed points at the beginning of the bundle.
-\todo{improve transition}
+This module is split into two consecutive submodules.
+The first module handles the seeding process, whereas the second part build from seed points a nerve fiber bundle or volume, filled with individual fibers.
 % 
 \subsection{Seeding fiber bundles}\label{sec:seeds}
 % 
@@ -174,77 +159,100 @@ Starting with seed points at the beginning of the bundle.
 % 	\label{fig:}
 \end{figure}
 % 
-Seed points are stored as a list of 3D points:
+Seed points are stored as a list of 2d points:
 \begin{align}
-\mathit{seeds} = \left\{ \vec{p}_i=(x_i,y_i,z_i) \mid x,y,z \in \mathbb{R} , \, i \in \{0,1,N_{\mathit{seed\_points}}-1\}\right\}
+\mathit{seeds} = \left\{ \vec{p}_i=(x_i,y_i) \mid x,y \in \mathbb{R} , \, i \in \{0,1,...,N_{\mathit{seed\_points}}-1\}\right\}
 \end{align}
 % 
-In order to form particularly dense fiber bundles, a method for generating an isosceles triangular grid was implemented.
-Mathematically, a 2d packed circle contains the maximum packing density when arranged in a triangular grid\footnote{also referred to as hexagonal grid} for circles with equal radii (see \ref{fig:triGrid}).
-However, this highly regular symmetrical grid can lead to strange results as will be shown later (\eg{} maxwell, simplified).
-\todo{why rnd necesarry -> see simulation}
-It should therefore only be used as an initial configuration. 
-The positions can easily be changed.
-A useful method was to add a boundary value to the initial starting points, \eg{} $\mathit{shift} = norm(0,\sigma)$.
-However, since the initial configuration is often unknown, it is probably best to choose a random distribution (see \cref{fig:rndGrid}).
-For a circle, this is done using:
+In order to form particularly dense fiber bundles, a method for generating an equilateral triangular grid was implemented (see \ref{fig:triGrid}).
+Mathematically this provides the most densely packed pattern for a 2d circle of same radii packed area.
+However, this highly regular symmetrical grid can lead to non realistic results (\eg{} diffraction patterns in maxwell simulation).
+It should therefore only be used as an initial configuration.
+Since the initial configurations are often unknown, it is probably best to choose a random distribution (see \cref{fig:rndGrid}).
+For a circular boundary, this is done using:
 \begin{equation}
-\begin{aligned}
- \varphi &= \mathrm{uniform}(0,2 \pi) \hspace{4.2ex} && x = r \cos(\varphi)\\
- r &= R \sqrt{\mathrm{uniform}(0,1)} && y = r \sin(\varphi)
-\end{aligned}
+\begin{split}
+\varphi &= \mathrm{uniform}(0,2 \pi) \\
+r &= R \sqrt{\mathrm{uniform}(0,1)}
+\end{split}
+\quad\Rightarrow\quad
+\begin{split}
+x = r \cos(\varphi)\\
+y = r \sin(\varphi)
+\end{split}
 \end{equation}
+% 
+As helper functions cutting methods do exists, which will crop the seed points into a rectangular or circular shape.
+% 
+% 
 % 
 \subsection{Populating fiber bundles}\label{sec:fillBundle}
 % 
 \begin{figure}[!t]
     \centering
-    \subcaptionbox{\label{fig:torsionCurve}Torsion along trajectory. The 
-	\textcolor{green!50!black}{binormal}, \textcolor{red}{principal normal} vector and \textcolor{blue}{tangent vector} vector at each step are also the coordinate system for the seed points.}[.5\textwidth-4.3pt]{
-    \setlength{\tikzwidth}{0.5\textwidth - 4.3pt}
-    \inputtikz{gfx/model/min_torsion}}\hfill
+%     \subcaptionbox{\label{fig:torsionCurve}Torsion along trajectory. The 
+% 	\textcolor{green!50!black}{binormal}, \textcolor{red}{principal normal} vector and \textcolor{blue}{tangent vector} vector at each step are also the coordinate system for the seed points.}[.5\textwidth-4.3pt]{
+%     \setlength{\tikzwidth}{0.5\textwidth - 4.3pt}
+%     \inputtikz{gfx/model/min_torsion}}\hfill
     % 
-    \subcaptionbox{\label{fig:filledBundle}Bending fiber along trajectory $f(t) = \left(\cos(t), \sin(t), 0 \right)$}[.5\textwidth-4.3pt]{
-    \resizebox{.5\textwidth-4.3pt}{!}{
-    \includegraphics{dev/gfx/circle_bundle.png}}}
-	\caption{}
-% 	\label{fig:}
+    % \subcaptionbox{\label{fig:filledBundle}Bending fiber along trajectory $f(t) = \left(\cos(t), \sin(t), 0 \right)$}[.5\textwidth-4.3pt]{
+    \resizebox{.75\textwidth}{!}{
+    \includegraphics{dev/gfx/circle_bundle.png}}
+    % }
+	\caption[Bending filled fiber bundle]{Bending fiber along trajectory $\vec{f}(t) = \left(\cos(t), \sin(t), 0 \right)$ \itodo{more interesting example}}
+	\label{fig:bendingFiberBundle}
 \end{figure}
 % 
-To populate a nerve fiber bundle, the same idea is used as in tractography.
-There seed points are initialized and then \dummy{} methods are used to calculate the next step.
-However, we do not need to calculate the next step, because it is already defined by its trajectory.
-But the bending of the bundle has to be considered.
+\begin{figure}[!t]
+    \centering
+    \setlength{\tikzwidth}{0.75\textwidth}
+    \inputtikz[true]{gfx/model/min_torsion}
+	\caption[]{Left initial seed point plane. Right plane rotating and placed along the path. At the end, the plane has the same normal vector as the initial plane, however due to the minimal rotation principle, the plane paradoxically is rotated along the normal vector.}
+	\label{fig:torsion}
+\end{figure}
+% 
+To populate a fiber bundle, the plane with seed points will be placed at each fiber bundle point $\vec{fb}_i$ along the trajectory.
+Essentially this means for each resulting $\mathit{fiber}_j$:
+\begin{align}
+    \mathit{fiber}_j = \left\{ \mat{R} \cdot (x_j, y_j, 0) + \vec{fb}_i \, | \, i \in \{0,1,...,N_{\mathit{seed\_points}}-1\}\right\}
+\end{align}
+The question however is, which rotation matrix has to be applied.
+Since the trajectory is only a 2d object, \ie{} a line, no ... are perpendicular to its tangential vector.
+In mathematics the torsion of a curve can defined with a principal normal vector and a binormal vector.
+This however has the problem, that the line has a torsion for a helical function, \ie{} the line \say{rotates} along its path.
+This would mean, that if the seed point plane would be places according to the principal and binormal vector, that also the individual fibers would rotate around the fiber bundle trajectory.
+This is in principle possible, however practical not existent in real tissue.
 \\
-% 
-There are already various techniques available.
-A common one is the use of torsion of the curve. This is achieved by the following method:
-% 
+A more sensible solution would be to apply a rotation in such a way, that the rotation along the fiber bundle trajectory is minimal.
+This can be achieved by calculating the rotation matrix, which would rotate the current tangential vector $\vec{t}(i)$ to the one of the next point $\vec{t}(i+1)$.
+The rotation matrix $\mat{R}(\vec{a}, \vec{b}$ between two vectors $\vec{a}$ and $\vec{b}$, if $\vec{a} \nparallel \vec{b}$ can be calculated via
 \begin{align}
 \begin{split}
-\vec{f}(s) &= (x(s),y(s),z(s)) \\
-\vec{t}(s) &= \vec{f}\,'(s) \\
-\vec{n}(s) &= \frac{\vec{t}\,'(s)}{|\vec{t}\,'(s)|} = \frac{\vec{r}\,''(s)}{|\vec{r}\,''(s)|} \\
-\vec{b}(s) &= \vec{t}(s) \times \vec{n}(s),
+    \vec{a} =& \vec{a} / |\vec{a}|\\
+    \vec{b} =& \vec{b} / |\vec{b}|\\
+    \vec{v} =& \vec{a} \times \vec{b}\\
+    c =& \vec{a} \cdot \vec{b}
+\end{split}
+\quad
+\begin{split}
+    \mat{U} =& \begin{pmatrix} 0 & \vec{v}_z & -\vec{v}_y\\ -\vec{v}_z & 0 & \vec{v}_x\\ \vec{v}_y & -\vec{v}_x & 0\end{pmatrix}\\
+    \mat{R} =& \mathbb{1} + \mat{U} + (\mat{U} \cdot \mat{U}) \cdot (1 - c) / |\vec{v}|^2
 \end{split}
 \end{align}
-% 
-where $\vec{f}(s)$ is a parameterized trajectory of the parametric variable $s$, $\vec{t}(s)$ is the tangential vector, $\vec{n}(s)$ is the principal normal vector and $\vec{b}(s)$ is the binormal vector (see \cref{fig:torsionCurve}).
-One could use this idea to rotate the seed points into the coordinate system of $\vec{t}(s),\vec{n}(s),\vec{b}(s)$.
-However, this can lead to an arbitrary rotation of the fibers, \eg{} if the curve is described in such a way that $\vec{n}(s),\vec{b}(s)$ would continuously rotate around $\vec{t}(s)$.
+The parallel case is trivial.
 \\
+This tool allows the following procedure:
+First place the seed point plane at the first fiber bundle point $\vec{fb}_0$ and rotate it with $\mat{R}(\hat{\vec{e}}_z, \vec{t}_0)$.
+Then for each step, rotate the plane at it original origin according to $\mat{R}(\vec{t}_i, \vec{t}_{i+1})$ and place it at $\vec{fb}_{i+1}$.
+To smooth the transition, the tangential vector at step $i$ is calculated by
+\begin{align}
+    \vec{t} = \frac{1}{2} \frac{\vec{fb}_{i-1} + \vec{fb}_{i+1}}{|\vec{fb}_{i-1} + \vec{fb}_{i+1}|}
+\end{align}
 % 
-Since it is plausible that nerve fiber bundles would not do this, a different approach was chosen.
-The idea is to minimize the rotation from one step to the next step.
-When defining a plane, within the vectors $\vec{n}(s),\vec{b}(s)$ defined above, the plane is rotated from one step $i$ to the next step $i+1$ by the same amount by which the curve bends.
-However, the rotation along the vector $\vec{t}(s)$ should be $0$.
-Since a discrete point exists, the plane can be rotated by the same amount as the vector $\vec{t}(s)$.
-However, to obtain a plane in the center of the points $\vec{p}_{i-1}, \vec{p}_{i}, \vec{p}_{i}, \vec{p}_{i+1}$ the middle orientation of these points will be used.
-An example is shown in \cref{fig:filledBundle}.
-\\
-\todo{explain and check algorithm}
+Finally all points according to one fiber can be stored inside the fiber bundle object.
+An example is shown in \cref{fig:bendingFiberBundle}
 % 
-Now the bundle can easily be populated by starting at the beginning of the fiber, placing the seed points at the starting point and rotating the seed point for each step $i$ along the trajectory by rotating only along a vector perpendicular to the bend of the curve.
+% 
 % 
 \subsection{cube models} \label{sec:cubeModelBuilding}
 % 
@@ -256,11 +264,14 @@ Now the bundle can easily be populated by starting at the beginning of the fiber
     \label{fig:cubeBuild}%
 \end{figure}
 % 
-To be able to create a model with a main fiber orientation, a method was also developed to populate a cuboid volume.
-This method allows to create fibers within the cuboid volume that are oriented along a user-defined main orientation $\vec{v}$ (see \cref{fig:cubeBuild}). 
-The individual fibers are also initialized with seed points.
-An infinite line with the main orientation $\vec{v}$ is laid through each seed point.
-If a line collides with the volume, the line inside the cube is returned as a fiber.
+As later will be shown, cubical models are quite interesting to investigate due to the fact, that a pixel in the \ac{3D-PLI} setup is a cube with the height of the tissue thickness.
+Therefore a method exists, which fills such a volume with a fiber population of orientation $\vec{v}$ (see \cref{fig:cubeBuild}).
+The individual fibers are as usually initialized with a seed point plain.
+This plane is virtually placed before the cubic volumen end behind it in the direction of the orientation such that the origins of the seed point planes line up with the origin of the cube.
+Next the seed points are virtually connected.
+If a line hits the volume, the entry and exit point is calculated and saved as a fiber of the fiber bundle.
+% 
+% 
 % 
 \subsection{cylindric models}
 % 
@@ -281,57 +292,66 @@ If a line collides with the volume, the line inside the cube is returned as a fi
         Parallel population.
     }[.33\textwidth-1ex]{
     \inputtikz{gfx/model/cylinder_parallel}}
-	\caption{Populating of cylindrical objects. The green area shows the area corresponding to the seed points xy-plane. The coordinate system \textcolor{red}{red} indicates the coordinate origin for the seed points.}
+	\caption{Populating of cylindrical objects. The green area shows the area corresponding to the seed points xy-plane. The coordinate system \textcolor{RED}{red} indicates the coordinate origin for the seed points.}
 % 	\label{fig:}
 \end{figure}
 % 
-Finally, a method for building cylindrical structures was implemented.
-Since a cylinder has three \say{symmetries}, all three were implemented to provide an option to populate the volume.
-First we define the coordinate system.
-The cylinder of an outer radius $r_{\mathit{out}}$ and an inner radius $r_{\mathit{in}}$ is oriented along the z-axis with a height $h$, starting at $(0,0,0)$.
-Additionally, the cylinder can be cut radially from a directional angle $\alpha$ to $\beta$.
+The last method allows, among other things, to create arcs of circles of fibers.
+It uses a cylindrical volume as template.
 % 
-\paragraph{a) circular} mimics a path on the $xy$ level of a cylinder (see \cref{fig:cylCircular}).
-The seed points are used along the surface of the cross section, starting at the first $\alpha$ direction angle.
+Since a cylinder has three \say{coordinates}, a radial, a angular and the length, all three were implemented to provide an option to populate the volume.
+\\
+% 
+First the coordinate system has to be defined.
+The cylinder of an outer radius $r_{\mathit{out}}$ and an inner radius $r_{\mathit{in}}$ is oriented along the z-axis with a height $h$, starting at $(0,0,0)$.
+Additionally, the cylinder can be cut radially from a directional angle $\alpha$ to $\beta$, to only fill a part of it.
+\\
+% 
+For all methods applied, if the seed point plane leaves the cross section plane to be filled, the seed points lying outside are ignored.
+% 
+\paragraph{a) circular} mimics a radial path of the cylinder (see \cref{fig:cylCircular}).
+The seed points are placed along the surface of the cross section of the first $\alpha$ direction angle.
+The origin of the seed point plane is placed on the origin of the cylinder.
 From there, the fiber runs in a circular pattern to the second directional angle $\beta$.
 The step size of the circular path can be changed.
 % 
-\paragraph{b) radial} cylindrical fibers are oriented from the center of the $xy$ plane to the outside of the cylinder (see \cref{fig:cylRadial}).
-The seed points are located along the inner radial plane.
+\paragraph{b) radial} The fibers will be placed fromm the iner wall to the outer wall of the cylinder.
+The seed point plane is therefore placed at the inner wall, with the origin at the lower corner of the first angle $\alpha$ (see \cref{fig:cylRadial}).
+The fibers are then generated radial until they hit the outer wall of the cylinder.
 Thus, the fiber density decreases along its path.
-Here, the shape is also only populated inside the boundaries of the radii and angles.
 % 
 \paragraph{c) parallel} fibers are oriented along the cylinder (see \cref{fig:cylParallel}).
-Here the seed points are located in the $xy$-plane (see \cref{fig:cylParallel}). Only fibers that collide with the cylinder are used. The borders are unchanged.
+Here the seed points are located in bottom plane, with the both origins at the same point (see \cref{fig:cylParallel}). The orientation of the plane is with the x-axis at $\SI{0}{\degree}$
 % 
 % 
 % 
 \section{Solving fiber collisions}
 \label{sec:Solver}
+\todo{own chapter?}
 % 
-A major disadvantage of all previous methods is that the user has to make sure that his fiber path leaves enough space so that the fibers (paths + radii) have enough room and do not overlap.
-This can be achieved for fibers with constant radii along their course in the upper designs.
-However, for more complex structures, \eg{} crossing fiber bundles, this is almost impossible.
-Therefore, a method has been developed that takes the user-defined fibers and checks for collisions.
-If a collision is found, it will try to move the colliding objects slightly apart so that the collision starts to disappear.
+% 
+The focus of this method is to allow the user to define any given fiber path way the way he/she wants it.
+This allows the most freedom on initialization.
+Of course in most cases, fiber since they are 3d volumetric objects, will overlapp with each other.
+It is the goal of the following algorithm, to find such collisions and solve them by moving the involved fiber segment in such a way, that a collision free volume will be generated by minimal movement.
+% 
+This allows the user to specify complex interwoven structures like nerve fiber crossing in a quite simplistic way.
+% 
+The algorithm also allows the user to specify certain boundr condition, \eg{} the mean value of the fiber segments, since during the solving process the shape can depending on the intial condition change quite a bit.
 \\
+An important feature is the visualization of the solving process.
+This allows the user to see what happens and therefore intervene if necesarry as as early as possible.
+This is very important since the solving process, depending on the volume sice and number of collidable objects, can take a lot of time.
+\par
 % 
-This concept is quite simple.
-Collision detection algorithms have been used for centuries, especially in the gaming environment where \eg{} a character should not be able to walk through a wall.
-Another wide range of algorithms is used in visualization.
-There the problem is usually to detect the collision between a light path (mathematical line) and an object, usually a triangular surface.
-Also known as raytracing.
-The disadvantage in both areas is that the computing time is limited.
-Therefore, algorithms there use abbreviations that come as close as possible to reality, but still produce useful data \eg{} in computer games it is very important to have a stable framerate of over 60 \ac{fps} (or with current technology even over 120 \ac{fps}).
-For the gaming experience, however, it is not important whether the character can easily run against an object or not.
-Therefore an object could be approximated like a stone by a sphere(s).
-\\
-%
-But since here the goal is to create models that are as large, complex and precise as possible, a new algorithm has to be developed that is specialized in this task.
+The following parts of this chapter describe the main algorithm, \ie{} the collision detection process and the movement phase, as well as the visualization.
 % 
-\todo{next sections as subsections?}
+\par
+\noindent\rule{\textwidth}{2pt}
+\par
+% 
 %
-\section{World/main}
+\subsection{solver-main}
 % 
 \begin{lstfloat}[!tb]
 \lstset{style=python}
