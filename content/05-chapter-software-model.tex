@@ -327,7 +327,6 @@ Here the seed points are located in bottom plane, with the both origins at the s
 % 
 \section{Solving fiber collisions}
 \label{sec:Solver}
-\todo{own chapter?}
 % 
 % 
 The focus of this method is to allow the user to define any given fiber path way the way he/she wants it.
@@ -341,7 +340,7 @@ The algorithm also allows the user to specify certain boundr condition, \eg{} th
 \\
 An important feature is the visualization of the solving process.
 This allows the user to see what happens and therefore intervene if necesarry as as early as possible.
-This is very important since the solving process, depending on the volume sice and number of collidable objects, can take a lot of time.
+This is very important since the solving process, depending on the volume slice and number of objects, can take a lot of time.
 \par
 % 
 The following parts of this chapter describe the main algorithm, \ie{} the collision detection process and the movement phase, as well as the visualization.
@@ -369,8 +368,6 @@ def step():
         colliding_list.insert(colliding_objs)
 	
     # Seperation Process
-    AddSpeed(colliding_list)
-    NormalizeSpeed(colliding_list)
     MoveObject(colliding_list)
 	
     # Shape Control
@@ -383,14 +380,14 @@ def step():
 \label{alg:pseudocode_solver}
 \end{lstfloat}
 % 
-The world/main function is the \code{loop}, which is executed to calculate the collision, move the objects and check the boundary collision (see \cref{alg:pseudocode_solver}).
-The loop procedure is similar to a game loop or a visualization loop (\eg{} in glut \code{glutMainLoop}).
-But to give the user as much control as possible, the user has to go through each step in a separate loop like in one of the examples within the packages.
-After each step, the user is now able to change parameters, fiber paths, add/remove fibers from the \say{scene} and so on.
-In addition, the user can decide whether a completely solved volume is required and e.g. break out of the loop before the final step (see \dummy{}).
+Apart from the initialization of parameters the main function of the solver algorithm is one \code{step} of the solving process.
+The algorithm is with reasons not a loop for its self, so that the user can interact at each step with the data or parameters if necessary.
+This \code{step} function (see \cref{alg:pseudocode_solver}) can be split into the following consecutive parts:
+ordering the objects into an octree, checking each branch of the octree for colliding objects, seperating the colliding objects and controlling the shape of the fibers.
+The return value of the function is the check, if no colliding objects were founds.
 %
-A stand alone Algorithm is already publish in \cite{Matuschke2019}.
-At this point it is integrated inside the \ac{fastPLI} package under \pymodule{fastpli.model.solver}.
+A stand alone algorithm is publish in \cite{Matuschke2019}.
+At this point it is integrated inside the \ac{fastPLI} package under \pymodule{fastpli.model.solver.Solver}.
 Before going into the details of the algorithm, the collision detection algorithm is described.
 % 
 % 
@@ -552,7 +549,7 @@ Of course the user can change this hard coded value if necessary.
 % 
 With the resulting list of colliding object pairs, the next task is to perform the separation process.
 %
-\section{Separation Phase}
+\subsection{Separation Phase}
 To solve a collision between two \ac{CC} objects, each point $\vec{p}_i$ and $\vec{p}_{i+1}$ of both objects must be moved.
 The movement is parallel to the smallest distance line between the two objects.
 To take the 3D placement into account, the movement is weighted by the distance of each point from the intersection with the smallest distance line (see \cref{fig:shortDist}):
@@ -577,7 +574,7 @@ The movement of individual points can lead to a distorted fiber model, \eg{} two
 Therefore boundary conditions must be specified.
 It was decided to use the following two conditions.
 % 
-\subsection{Mean segment length}
+\subsubsection{Mean segment length}
 % 
 \begin{figure}[!t]
     \centering
@@ -615,7 +612,7 @@ r_{new} = \frac{r_{i} + r_{i+1}}{2},\enspace
 \vec{v}_{new} = \frac{\vec{v}_{i} + \vec{v}_{i+1}}{2}
 \end{align}
 % 
-\subsection{Bending radius}
+\subsubsection{Bending radius}
 % 
 \begin{figure}[!t]
     \centering
@@ -635,7 +632,7 @@ $p_{i-1},p_{i+1}$ is moved \dummy{} and $p_{i}$ opposite each other.
 This reduces the curvature.
 \\
 % 
-\section{Movement Phase}
+\subsection{Movement Phase}
 All movements are added to the velocity vector before performing the overall movement.
 The algorithm performs each step sequentially (see \cref{alg:pseudocode_solver}).
 % 
@@ -645,7 +642,7 @@ Additionally a drag value can be set, to reduce the velocity by its factor after
 It can help to reach a collision free volume faster, however the density will be significantly reduced.
 Therefore the value is to 0 so that after each step the velocity is reset to $\vec{0}$. 
 % 
-\section{Optimization / Parallelisation}\label{sec:modelOpt}
+\subsection{Optimization / Parallelisation}\label{sec:modelOpt}
 % 
 Among other techniques, two main optimisation techniques are used to speed up the process.
 % 
