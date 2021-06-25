@@ -459,7 +459,7 @@ Analog to \dummy{} rotations are applied by
 %
 The \ac{3D-PLI} setup is described in \cite{Axer2011} with the tiltable light beam microscope (LMP) in \cite{Wiese:887678}.
 For the routine measurements two (three) microscope systems are currently in use.
-The first use of a high throughput microscope is the \ac{LAP} with a pixel size of about \SI{60}{\micro\meter}. \footnote{can be change by the optic also to $\SI{40}{\micro\meter}$ and $\SI{20}{\micro\meter}$, but remains for the routine measurements with $\SI{60}{\micro\meter}$.}
+The first use of a high throughput microscope is the \ac{LAP} with a pixel size of about \SI{60}{\micro\meter}.\footnote{can be change by the optic also to $\SI{40}{\micro\meter}$ and $\SI{20}{\micro\meter}$, but remains for the routine measurements with $\SI{60}{\micro\meter}$.}
 It consist out of a led light source (\SI{525}{\nano\meter}), a rotatable polarization filter, a rotatable quarter wave retarder, the specimen stage, which can be tilted for oblique views, a rotatable polarizer.
 Both polarizer and quarter wave retarder are rotated at the same time.
 The both polarizers have a phase offset of $\SI{90}{\degree}$, the first polarizer and the quarter wave retarder of $\SI{45}{\degree}$ (see (see \cref{setup-lap}).
@@ -617,4 +617,23 @@ For the wavelength used in \ac{3D-PLI} with $\lambda = \SI{525}{\nano\meter}$ an
 \caption[Raylay criterium]{rayleigh criteria. The minima of the one function is in the maxima of the other.}
 \label{fig:rayleigh}
 \end{figure}
+% 
+% 
+% 
+% 
+\section{Computational speedup techniques}
+% 
+Among other already mentioned techniques, \eg{} the use of an octree, two main optimisation techniques are used to speed up the process., be placed before a dash. Whe
+% 
+\paragraph{Memory alignment}\todo{more general, myby fastpli package}
+The \code{std::vector} has the advantage that the data is linear in memory.
+Modern \acp{CPU} have a built-in method called \say{ache prefetching}.
+Data must be prepared and sent from the \ac{RAM} to the cache of the \acp{CPU}.
+This takes time.
+The main advantage of the cache is that it is very fast.
+However, since it must be very close to the \ac{CPU}, the cache is very fast. (in modern systems the speed is already limited by the speed of light) its size is very limited (usually around $\si{\mega\byte}$).
+The prefetcher is an ingenious directive, which not only obtains the item at address $i$ in memory, but also the item next to it ($i+1$ or $i-1$ depending on the algorithm).
+Since many algorithms pass through arrays, the next item to be calculated is usually the next (or previous) item.
+Therefore the time needed to copy the data into the cache and prepare it is reduced.
+It can be shown that for linear operations on the memory the cache prefetcher reduces the time so much that it behaves as if the \ac{CPU} has an infinite cache.
 % 
