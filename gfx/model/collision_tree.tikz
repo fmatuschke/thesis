@@ -2,10 +2,10 @@
 \begin{tikzpicture}[scale=\tikzscale]
     % \draw (0,0) grid (10,10);
     % \path (0,0) -- (10,10);
-    \begin{scope}[shift={(0.75,3)},local bounding box=BB1]
-        \draw[GREEN] (0:1cm) \foreach \x in {0,120,...,360} {-- (\x:1cm)} -- cycle {};
+    \begin{scope}[shift={(1.15,3)},rotate=42,local bounding box=BB1]
+        \draw[GREEN, thick] (0:1cm) \foreach \x in {0,120,...,360} {-- (\x:1cm)} -- cycle {};
     \end{scope}
-    \node[anchor=north east] at (BB1.south east) {$\mathit{obj}_1$};
+    \node[anchor=north] at (BB1.south) {$\mathit{obj}_1$};
     % 
     \begin{scope}[shift={(7,4.8)},local bounding box=BB2,
         rotate=42,
@@ -33,7 +33,7 @@
         (K) -- (L) -- (H) --cycle
         (K) -- (L) -- (G) --cycle
         (C) -- (L) (B)--(K) (A)--(K);
-        \draw[GREEN, rounded corners=1pt]
+        \draw[GREEN, thick, rounded corners=1pt]
         (A) -- (I) -- (B) --cycle 
         (F) -- (I) -- (B) --cycle 
         (F) -- (I) -- (J) --cycle
@@ -45,12 +45,12 @@
         (G) -- (E) -- (A) --cycle
         (G) -- (E) -- (C) --cycle; 
     \end{scope}
-    \node[anchor=north east] at (BB2.south east) {$\mathit{obj}_2$};
+    \node[anchor=north] at (BB2.south) {$\mathit{obj}_2$};
     % 
-    \begin{scope}[shift={(5.5,8)},local bounding box=BB3]
-        \draw[GREEN] (0:1cm) \foreach \x in {0,90,...,360} {-- (\x:1cm)} -- cycle {};
+    \begin{scope}[shift={(5.5,8)},rotate=21,local bounding box=BB3]
+        \draw[thick, GREEN] (0:1cm) \foreach \x in {0,90,...,360} {-- (\x:1cm)} -- cycle {};
     \end{scope}
-    \node[anchor=north east] at (BB3.south east) {$\mathit{obj}_3$};
+    \node[anchor=north] at (BB3.south) {$\mathit{obj}_3$};
     % 
     \draw[RED] (BB1.north west) rectangle (BB1.south east);
     \draw[RED] (BB2.north west) rectangle (BB2.south east);

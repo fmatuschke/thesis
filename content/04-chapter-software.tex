@@ -69,11 +69,11 @@ The software package includes functionalities for the analysis and visualization
 % 
 As is common in software development, all methods are provided with docstrings (documentation string) to help the user understand how they work.
 These are displayed e.g. by modern editors automatically wäres during programming, in order to give assistance.
-These docstrings are also used for an automatic release of a \ac{API} documentation\footnote{\url{https://3d-pli.github.io/fastpli/}}.
-In addition, a wiki page (see \cref{fig:fastpli_wiki}) describing the main features is available, which is an essential part of the review process for publication in \textit{the Journal of Open Source Software (JOSS)} \cite{Matuschke2021} \footnote{review openly accessible at \url{https://github.com/openjournals/joss-reviews/issues/3042}}.
+These docstrings are also used for an automatic release of a \ac{API} documentation.\footnote{\url{https://3d-pli.github.io/fastpli/}}
+In addition, a wiki page (see \cref{fig:fastpli_wiki}) describing the main features is available, which is an essential part of the review process for publication in \textit{the Journal of Open Source Software (JOSS)} \cite{Matuschke2021}. \footnote{review openly accessible at \url{https://github.com/openjournals/joss-reviews/issues/3042}}
 The wiki page is structured as a guide leading through the aspect of designing nerve fiber models, applying the collision solving algorithm, the visualization of nerve fibers, a simple guide to \ac{3D-PLI} and finally the application of the models in the simulation.
 To help users get started quickly, both executable \python{} scripts and Jupyter notebooks are available as tutorials.
-A combined example for the whole package based on the optical chiasm\footnote{the nerve fiber crossing of the optical path from eyes to occipital lobe} is accessible as the last part.
+A combined example for the whole package based on the optical chiasm, the nerve fiber crossing of the optical path from eyes to occipital lobe, is accessible as the last part.
 % 
 % 
 % 
@@ -131,7 +131,7 @@ pip3 install .
 % 
 \subsection{Tests/Verification/Issues}
 % 
-To provide fully tested software, each module with its main methods is automatically tested after each push\footnote{uploud of an \textit{git} commit} with a Github action\footnote{they are commenly used for automatic build, test and deployment of the software and documentation}. tested.
+To provide fully tested software, each module with its main methods is automatically tested after each push\footnote{uploud of an \textit{git} commit} with a Github actiontested. \footnote{Github actions are commenly used for automatic build, test and deployment of the software and documentation} 
 This action runs the two latest Ubuntu Long Term Support versions (18.04 LTS and 20.04 LTS) and the most commonly used Python3 versions (3.6 and 3.8) to provide a wide range of supported common versions.
 In addition, the \textit{Github actions} run all test scripts, check tutorial files, check code format and linting for consistency, and publish the latest documentation.
 % 
