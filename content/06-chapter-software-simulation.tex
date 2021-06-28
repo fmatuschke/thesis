@@ -4,59 +4,89 @@
 % 
 % Interesse wecken: warum braucht man es, warum ist es kompliziert, lösbare probleme
 % 
-Simulation are a technique which are getting more commonly used in this century.
-In literature it is knows as \name{in silico} meaning \say{performed on computer} where silicon stands for the silicon in computer chips.
-It is a analogy to \name{in vivo} (within the living), \name{in vitro} (in the glass) and \name{in sito} (on site), which are commonly used in biology and medicine.
-Simulations can be a cheaper and faster approach to doing experiments.
-However since the knowlege increases over time, the experiments and simulations bekome more and more compilacted.
-For simulations this usually means, more precise calculations and more effects have to be considered when doing predictions of the real world.
-If no mathematical shortcuts are developed or even exists this leads to more calculation intense and time consuming procedures.
-In the past Moores Law was a good thriver to be able to do more expensive calculations.
-However currently the computer chips are physically at there limit with a few nanometer at scale (at least in 2d).
-Also the clock frequency is almost at its limits since at that scale the \say{wires} inside the chips become more conductive because they behave as a capacitor.
-Additionally quantum effects like tunneling become another barrier since they introduce error currents.
+% 
+% \textcolor{gray}{
+% Simulation are a technique which are getting more commonly used in this century.
+% In literature it is knows as \name{in silico} meaning \say{performed on computer} where silicon stands for the silicon in computer chips.
+% It is a analogy to \name{in vivo} (within the living), \name{in vitro} (in the glass) and \name{in sito} (on site), which are commonly used in biology and medicine.
+% Simulations can be a cheaper and faster approach to doing experiments.
+% However since the knowlege increases over time, the experiments and simulations bekome more and more compilacted.
+% For simulations this usually means, more precise calculations and more effects have to be considered when doing predictions of the real world.
+% If no mathematical shortcuts are developed or even exists this leads to more calculation intense and time consuming procedures.
+% In the past Moores Law was a good thriver to be able to do more expensive calculations.
+% However currently the computer chips are physically at there limit with a few nanometer at scale (at least in 2d).
+% Also the clock frequency is almost at its limits since at that scale the \say{wires} inside the chips become more conductive because they behave as a capacitor.
+% Additionally quantum effects like tunneling become another barrier since they introduce error currents.
+% \\
+% % 
+% Since about one decade \acs{GPU} become more and more commonly used in simulations and other algorithms.
+% They have the advantage of calculate a lot of parallel instructions at the same time.
+% However they come with the cost of being (at least for now) slower than a \ac{CPU}.
+% \\
+% % 
+% Further then that only super computers can help to solve the high demand on computer power needed.
+% }
+% \par
+% 
+% 
+In the past simulation of \ac{3D-PLI} already shown their capabilities \cite{Dohmen2015,Menzel2015,Menzel2016,Menzel2020,Menzel2021,MenzelMaster,MenzelDissertation}.
+In the case of scattering finite-difference time-domain simulations the here presented algorithm to design new collision free fiber models allowed for the first time to simulate the effect of scattering light without any superposed interference signals.
+This allowed the understanding of scattering effects due to the configurations of fiber bundles and crossings as well as the transmittance change for inclined fiber configurations.\cite{MenzelDissertation,Menzel2020,Menzel2021}.
+%  
+In the case of the simulation of linear optics the optical system could repoduse the experimental results with \eg{} the optical resampling process \cite{Dohmen2015,Menzel2016}.
+However this algorithm is very computational heavy and due to the precalculations of a discretised tissue volume, very memory intense.
+The foundations of a more ffitient parallel algorithm for the use of supercomputer was already elaborated \cite{Lucksch2016}.
+However, the new tilting design resulted in a simplification of the former simulation that could not be easily integrated.
+Therefore the algorithm was completely redesigned and rewritten.
+Additionally the here presented fiber models had to be Incorporated as well.
+Finally the descision was made, to switch to the M\"uller Stokes calculus to allow the \dummy{} of filter \dummy{}.
+% 
+\par
+% 
+The Simulation is split into two consecutive parts: the volume discretizer and the simulation.
+The volume discretizer discretises the virtual nerve fiber models onto a cartesian grid, which is then in the second step used to calculate the light matter interaction.
+One parallelization technique allows to split the volume onto different \acp{CPU} or nodes.
+Due to the tilting approach, the light vector needed to be able to leave the current volume of a single \ac{CPU} and traverse to the next volume/\ac{CPU}.
+This simulation as well as the optical \dummy{} of the system and the inclination analysis will be \dummy{} here.
 \\
 % 
-Since about one decade \acs{GPU} become more and more commonly used in simulations and other algorithms.
-They have the advantage of calculate a lot of parallel instructions at the same time.
-However they come with the cost of being (at least for now) slower than a \ac{CPU}.
-\\
+The code is as the former written in \cpp{} with a user friendly wrapper function in \python{}.
 % 
-Further then that only super computers can help to solve the high demand on computer power needed.
-\par
+\dummy[wohin mit den zukunftsplaenen?]{}.
 % 
-The here presented \fastpli{} software package allows to predict \ac{3D-PLI} experiments within the \python package \pymodule{fastpli.simulation} by means of linear optics \cite{} and 3d fiber models \cite{}.
-It is based on the previous develop tool \simpli{} \cite{Dohmen2015}, which was then further developed and already parallel for the use on the super computers by multiple \acp{CPU} by Sonja Lucksch \cite{Lucksch2016}.
-This version however uses M\"uller matrices \cite{} to define the optical elements and the Stokes vector \cite{} for describing the light \cref{sec:Mueller-Stokes}.
-%
-The further development of the algorithm will be described in the following.
-\par
 % 
-The following procedures are described in this chapter:
-\begin{itemize}[nosep]
-    % \item overview
-    \item model discretization technique
-    \item simulation
-    \item optic imitation 
-    \item analysis
-    \item optimization
-\end{itemize}
-% 
-The computational heavy calculations of the discretization and simulation part are written in \cpp{} which are wrapped inside a \python{} class \code{simpli} for user friendly interactions.
-The additional algorithms of the optic are written in \python{}.
-% 
-\par
-% 
-The \ac{3D-PLI} Simulation is in its \ac{CPU} version\footnote{At the end of the dissertation Alexander Kobush developed a GPUsimPLI approach under my supervision \cite{}.} split into two parts.
-The first part called \name{Generation} \todo{name} generates a discretizied 3d volume of the nerve fiber models from \cref{chap:modelling}.
-This means that all properties \eg{} optical axis are saved in a 3d array.
-This \say{volume} is then later be used to perform the light matter interaction by means of linear optic described in \cref{sec:theory}.
-Last but not least the light interaction with the \ac{CCD}-Sensor will be performed inside the \pymodule{fastpli.simulation.optic} module.
-The resulting data correspond the a \ac{3D-PLI} row data image.
-Further analysis algorithms are implemented
-With these the same type of analysis as in the \ac{3D-PLI} experimental analysis can be achieved.
-All Algorithms are combined inside a \python{} class called \pymodule{fastpli.simulation.simpli}.
-Inside is everything to perform a pipeline code as well as full control about every step inside the pipeline.\todo{veroffentlichung in intro}
+% The here presented \fastpli{} software package allows to predict \ac{3D-PLI} experiments within the \python package \pymodule{fastpli.simulation} by means of linear optics \cite{} and 3d fiber models \cite{}.
+% It is based on the previous develop tool \simpli{} \cite{Dohmen2015}, which was then further developed and already parallel for the use on the super computers by multiple \acp{CPU} \cite{Lucksch2016}.
+% This version however uses M\"uller matrices \cite{} to define the optical elements and the Stokes vector \cite{} for describing the light \cref{sec:Mueller-Stokes}.
+% %
+% The further development of the algorithm will be described in the following.
+% \par
+% % 
+% The following procedures are described in this chapter:
+% \begin{itemize}[nosep]
+%     % \item overview
+%     \item model discretization technique
+%     \item simulation
+%     \item optic imitation 
+%     \item analysis
+%     \item optimization
+% \end{itemize}
+% % 
+% The computational heavy calculations of the discretization and simulation part are written in \cpp{} which are wrapped inside a \python{} class \code{simpli} for user friendly interactions.
+% The additional algorithms of the optic are written in \python{}.
+% % 
+% \par
+% % 
+% The \ac{3D-PLI} Simulation is in its \ac{CPU} version\footnote{At the end of the dissertation Alexander Kobush developed a GPUsimPLI approach under my supervision \cite{}.} split into two parts.
+% The first part called \name{Generation} \todo{name} generates a discretizied 3d volume of the nerve fiber models from \cref{chap:modelling}.
+% This means that all properties \eg{} optical axis are saved in a 3d array.
+% This \say{volume} is then later be used to perform the light matter interaction by means of linear optic described in \cref{sec:theory}.
+% Last but not least the light interaction with the \ac{CCD}-Sensor will be performed inside the \pymodule{fastpli.simulation.optic} module.
+% The resulting data correspond the a \ac{3D-PLI} row data image.
+% Further analysis algorithms are implemented
+% With these the same type of analysis as in the \ac{3D-PLI} experimental analysis can be achieved.
+% All Algorithms are combined inside a \python{} class called \pymodule{fastpli.simulation.simpli}.
+% Inside is everything to perform a pipeline code as well as full control about every step inside the pipeline.\todo{veroffentlichung in intro}
 % 
 \section{DV-Generator}
 \label{sec:dv_generator}
@@ -65,7 +95,7 @@ Inside is everything to perform a pipeline code as well as full control about ev
 \centering
 \setlength{\tikzwidth}{0.5\textwidth}
 \inputtikz[true]{gfx/simpli/disc_volume}
-\caption{discretisation volume}
+\caption[discreticed tissue volume]{discretized tissue volume: Its \dummy{} is defined by a \ac{AABB}, which is defined by two variables. \itodo{show x,y,z resulting volume?}\itodo{show fiber model inside?}}
 \label{fig:discVol}
 \end{figure}
 % 
@@ -74,30 +104,90 @@ Inside is everything to perform a pipeline code as well as full control about ev
 \resizebox{1.0\textwidth}{!}{
 \tikzset{external/export=false}
 \input{gfx/simpli/vector_error}}
-\caption[Discretization error]{Discretization error.
-This behavior is much stronger with myelin layers}
+\caption[Discretization error]{Discretization error. Cross section of single fiber with one myelin layer inside discretized tissue volume. The couloured pattern show the resulting voxels which corresponds to the fiber. The smaller the \voxelsize{}, the smaller the representation error.}
 \label{fig:vectorfield_disc_error}
 \end{figure}
 % 
-First, the volume to be created must be defined.
-The simulated/discretized volume is limited by an \ac{AABB} or \ac{VOI}, which is defined by a minimal and maximal value $\voi = [(x_{\mathit{min}}, y_{\mathit{min}}, z_{\mathit{min}}),(x_{\mathit{max}}, y_{\mathit{max}}, z_{\mathit{max}})]$.
-Additionally the \voxelsize{} parameter \voxels{} is set to a floating point number and defines the edge length of the discretized voxels.
-If the division of the \voi{} by the \voxelsize{} is not an integer, the \voi{} is automatically increased to the next possible integer value.
+\itodo{better name}
+% 
+The idea of the simulation is to first calculate a so called \say{discretised tissue volume}.
+It represents a discrete constant voxel model of the tissue.
+This helps to drastically speed up the light matter interaction of the next step (see \cref{sec:simulation}).
+\par
+% 
+The discreticed tissue volume represents a cuboid sliced into equal sized smaller cubes called voxels, \ie 3d pixels (see \cref{fig:discVol}).
+Each voxel contains the physical properties of the tissue inside its current position.
+The overall volume is limited by an \ac{AABB} or \ac{VOI}, which is defined by a minimal and maximal value $\voi = [(x_{\mathit{min}}, y_{\mathit{min}}, z_{\mathit{min}}),(x_{\mathit{max}}, y_{\mathit{max}}, z_{\mathit{max}})]$.
+Additionally the \voxelsize{} parameter \voxels{} is set to a floating point number and defines the edge length of the voxels.
+If the division of the \voi{} by the \voxelsize{} is not an integer, the \voi{} is automatically increased to the next possible integer value to avoid boundary effects.
+% 
+\subsection{Discretizing a nerve fiber model}
+% 
+\textcolor{gray}{
+\begin{itemize}
+    \item what is a dis. volume
+    \item how to represent a fiber segment
+    \item layer
+    \item optical axis
+    \item loop over voxels
+    \item loop over all segemnts
+    \item parallelization
+\end{itemize}
+}
+% 
+\par
+\noindent\rule{\textwidth}{2pt}
+\par
+% 
+To discretice the previous defined nerve fiber models (see \cref{chap:sof:modelling}), the problem can be reduced to a single nerve fiber segment (except the boundry effects).
+% 
+A nerve fiber segment is a \ac{CC}.
+This means, that at each voxel it has to be checked, if the voxel is inside the \ac{CC} or not.
+If it is, the current physical properties of this point, \ie{} the orientation of the optical axis and the current layer, from which the absorption and birefringence strength can be derived, has to be saved.
+Therefore two a 3d representation exists: a \code{optical\tu axis}, which $(x,y,z)$ value of the optical axis, and a \code{tissue} which stores the integer to the fibers property (see \cref{fig:fiber_discretisation}).
+Last can also be used to render a voxel image of the tissue (hence the name).
+% 
+\begin{lstfloat}[!tb]
+\lstset{style=python}
+\begin{lstlisting}[]
+for i,j,k in voxels:
+    min_dist, min_point = calculate_min_distance((i,j,k), cc)
+    if min_dist < cc.radius:
+        if min_dist < current_distance[i,j,k]:
+            optical_axis[i,j,k,:] = get_axis_orientation((i,j,k), min_dist, min_point)
+            tissue[i,j,k] = get_layer_id(min_dist)
+            current_distance[i,j,k] = min_dist
+\end{lstlisting}
+\caption{single \ac{CC} checking algorithm.}
+\label{alg:fiberbundleprops}
+\end{lstfloat}
+% 
+\par
+% 
+To be able to calculate that a given point $\vec{p} = (i,j,k)$ is inside the \ac{CC}, the shortest line from the point $\vec{p}$ to the \ac{CC} has to be calculated analog to \cref{sec:collisionDetection}.
+Of course in this case this is a little bit more simpler, since one point is already known.
 \\
 % 
-There are two arrays with information about the discrete volume.
-First the \tissue{} array.
-It contains an index value to the corresponding list of physical properties (see \cref{alg:fiberbundleprops}). \todo{has immense potential for zipping.}
-Second, the \opticalaxis-array.
-It contains sliding values of the $x,y,z$ values of the optical axis orientation (see \cref{fig:vectormodel}).
-Additionally, there will be a \code{distance} array for the generation algorithm, which contains information about how far away the next currently found object is to the center of its voxel.
-\\
+After the shortest distance and point is calculated, it can be used to identify the layer in which it is.
+However the conic shape has to be taken into account (see \cref{fig:conical_capsule}.
+This can simply be done by interpolating the radii of the \ac{CC} at the found minimal distance point on the \ac{CC}.
+From there the physical properties and optical axis is calculated according to the user defined optical model (background, parallel or radial).
+\par
 % 
-All arrays are implemented as contiguous c-arrays, which are accessible as \name{Numpy}-arrays.
+But a necessary step is to check, if the current voxel is already occupied.
+This happens \eg{} at the border of nerve fiber segments, since there are linked to the next segment.
+Therefore a for the user non accessible additional array exists, which stores the last min distance information.
+Only if a min distance at this point is calculated, which is smaller then the old one, the information will be overwritten.
+\par
+% 
+% 
+All arrays are implemented as contiguous c-arrays, which are accessible as \name{Numpy}-arrays from outside without the need to copy the data.
 Since these arrays grow with $\mathcal{O}(n^3)$, the aim was to make them movable through the \cpp{} libraries as well as in \python{}.
-The memory order of the arrays is in $x-y-z$ direction, so the largest memory shift is in $x$ and the smallest in $z$.
-This was chosen so that later in the simulation, where light usually travels mainly in $z$-direction, the memory is aligned to the required information and thus the cache prefetcher can be used.
+The memory order of the arrays is in $x\text{-}y\text{-}z$ direction, so the largest memory shift is in $x$ and the smallest in $z$.
+This was chosen so that later in the simulation part, where the light travels mainly in $z$-direction, the memory is aligned to the required information and thus the \acp{CPU} cache prefetcher can be used.
 \\
+% 
+\itodo{INTEGRATE WITH NEXT PARAGRAPH}
 % 
 The \voxelsize{} has a major role in the accuracy of the results (as shown later).
 It does not only account for the discretization accuracy of the 3d model, but also for the number of light rays.
@@ -127,7 +217,7 @@ For each voxel in the volume of the \ac{AABB} the smallest distance to the line 
 \begin{figure}[!t]
 \centering
 \setlength{\tikzwidth}{0.45\textwidth}
-\subcaptionbox{\label{fig:vectormodel}vector\_model with microscopic birefringence myelin layer}[.49\textwidth]{
+\subcaptionbox{\label{fig:vectormodel}vector\tu model with microscopic birefringence myelin layer}[.49\textwidth]{
 \inputtikz{gfx/simpli/vector_model}} \hfill
 \subcaptionbox{\label{fig:fiberLayer}additional fiber layers}[.49\textwidth]{
 \inputtikz{gfx/simpli/fiber_layer}}
@@ -197,6 +287,8 @@ Of course, a collision-free model is then no longer a guarantee that it is colli
 % 
 At the end the DV-Generator returns the arrays \tissue{}, \opticalaxis{} and the \propertylist{} for the use of the simulation.
 % 
+\itodo{the length of the stored optical axis vector is interpreted as strength. In this model the length is always 1. If the user wishes to add variability, he/she can do this by changing the length of the vectors inside the arrays.}
+% 
 \subsection{optimization}
 % 
 Two methods are used to parallelize the algorithm on the \ac{CPU}.
@@ -205,7 +297,7 @@ The second uses \mpi{} to allow distribution to multiple \ac{CPU} cores without 
 % 
 The parallelization of the \ac{AABB} volume leads to a race condition if several threads want to write to the same memory address (or coordinate) (\eg{} two objects occupy the same space).
 A solution with a lock would be very slow.
-Since the loop runs over all $(i,j,k)$ indices of the three space dimensions, the parallelization can be done using the indices.
+Since the loop runs over all $(i,j,k)$ indices of the three space dimensions, the parallelization can be done using the indices. \todo{a shared cache can be used}
 However, this leads to a slow implementation because new threads have to be created for each object.
 If was therefore decided, that the parallel call creates all threads before the first loop over all objects.
 This means all threads process all objects.
