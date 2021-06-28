@@ -99,18 +99,9 @@ Therefore the fiber can be described by a list of 4d points $(x,y,z,r)$, which c
 % \vec{p} &= (x_i,y_i,z_i) \mid x,y,z \in \mathbb{R}\\
 % r &\mid r \in \mathbb{R}\\
 \mathit{fiber} &= \left\{ \vec{p}_i=(x_i,y_i,z_i), r_i \mid x,y,z \in \mathbb{R}, \, r \in \mathbb{R^+}, \, i \in \{0,1,...,N_{\mathit{points}}-1\}\right\} \\
-\mathit{fiber\_segment}_i &= (\vec{p}_i, \vec{p}_{i+1}, r_i, r_{i+1}), \, i \in \{0,1,...,N_{\mathit{points}}-2\}
+\mathit{fiber\tu segment}_i &= (\vec{p}_i, \vec{p}_{i+1}, r_i, r_{i+1}), \, i \in \{0,1,...,N_{\mathit{points}}-2\}
 \end{split}
 \end{align}
-% 
-\begin{figure}[!t]
-    \centering
-    \setlength{\tikzwidth}{0.75\textwidth}
-    \inputtikz{gfx/model/conical_capsule_bb}
-    \tikzset{external/export=false}
-	\caption[cc and co]{\Acf{CC}: \raisebox{.25em}{\tikz \draw[black](0,0)--(0.275,0);} \ac{CC}, \raisebox{.25em}{\tikz \draw[blue, dash pattern=on 2.5pt off 2.5pt](0,0)--(0.275,0);} capsule, \raisebox{.25em}{\tikz \draw[red, dash pattern={on 2.5pt off 0.9pt on 0.42pt off 0.9pt}](0,0)--(0.275,0);} bounding box \itodo{better in collision solving part}}
-	\label{fig:conical_capsule}
-\end{figure}
 % 
 \begin{figure}[!t]
     \centering
@@ -118,6 +109,15 @@ Therefore the fiber can be described by a list of 4d points $(x,y,z,r)$, which c
     \inputtikz{gfx/model/capsule}
 	\caption{schematic \acreset{CC} \ac{CC}}
 	\label{fig:conical}
+\end{figure}
+% 
+\begin{figure}[!t]
+    \centering
+    \setlength{\tikzwidth}{0.75\textwidth}
+    \inputtikz{gfx/model/conical_capsule_bb}
+    \tikzset{external/export=false}
+	\caption[cc and co]{Fiber segment representations with there \acp{AABB}: \raisebox{.25em}{\tikz \draw[black](0,0)--(0.275,0);} \ac{CC}, \raisebox{.25em}{\tikz \draw[blue, dash pattern=on 2.5pt off 2.5pt](0,0)--(0.275,0);} capsule, \raisebox{.25em}{\tikz \draw[red, dash pattern={on 2.5pt off 0.9pt on 0.42pt off 0.9pt}](0,0)--(0.275,0);} bounding box.}
+	\label{fig:conical_capsule}
 \end{figure}
 % 
 Since the fiber radius can change from one point to an adjacent point, the segment can be conical (see \cref{fig:conical_capsule}).
@@ -161,7 +161,7 @@ The first module handles the seeding process, whereas the second part build from
 % 
 Seed points are stored as a list of 2d points:
 \begin{align}
-\mathit{seeds} = \left\{ \vec{p}_i=(x_i,y_i) \mid x,y \in \mathbb{R} , \, i \in \{0,1,...,N_{\mathit{seed\_points}}-1\}\right\}
+\mathit{seeds} = \left\{ \vec{p}_i=(x_i,y_i) \mid x,y \in \mathbb{R} , \, i \in \{0,1,...,N_{\mathit{seed\tu points}}-1\}\right\}
 \end{align}
 % 
 In order to form particularly dense fiber bundles, a method for generating an equilateral triangular grid was implemented (see \ref{fig:triGrid}).
@@ -214,7 +214,7 @@ As helper functions cutting methods do exists, which will crop the seed points i
 To populate a fiber bundle, the plane with seed points will be placed at each fiber bundle point $\vec{fb}_i$ along the trajectory.
 Essentially this means for each resulting $\mathit{fiber}_j$:
 \begin{align}
-    \mathit{fiber}_j = \left\{ \mat{R} \cdot (x_j, y_j, 0) + \vec{fb}_i \, | \, i \in \{0,1,...,N_{\mathit{seed\_points}}-1\}\right\}
+    \mathit{fiber}_j = \left\{ \mat{R} \cdot (x_j, y_j, 0) + \vec{fb}_i \, | \, i \in \{0,1,...,N_{\mathit{seed\tu points}}-1\}\right\}
 \end{align}
 The question however is, which rotation matrix has to be applied.
 Since the trajectory is only a 2d object, \ie{} a line, no ... are perpendicular to its tangential vector.
@@ -413,13 +413,33 @@ Before going into the details of the algorithm, the collision detection algorith
 % 
 % 
 As described in \cref{sec:nerve_fiber_representation}, nerve fibers are represented as a chain of spheres, where two adjacent spheres are combined to form a fiber segment that represents a \ac{CC} (see \cref{fig:conical_capsule}).
-Therefore an algorithm is necessary to calculate a collision between up to \ac{CC}.
-This is a non-trivial task and very computationally intensive.
+% 
+To simplify the calculation first only there \acp{AABB} will be checked for a collision.
+% 
+\begin{lstfloat}[!tb]
+\lstset{style=python}
+\begin{lstlisting}[]
+def aabb_collide(aabb_0, aabb_1):
+  for i in dim(aabb):
+      if aabb_0[i].min > aabb_1[i].max:
+         return false
+      if aabb_0[i].max < aabb_1[i].min:
+         return false
+  return true
+\end{lstlisting}
+\caption{Pseudocode collision between \acp{AABB}.}
+\label{alg:collisionAABB}
+\end{lstfloat}
+% 
+This test is rather simple and only has a few steps (see \cref{alg:collisionAABB}).
+If a collision between both \acp{AABB} occurs, the next more accurate collision check will be performed.
+% 
+However this is a non-trivial task and very computationally intensive.
 Therefore it was decided to change the object representation for the collision detection part from a \ac{CC} to a capsule (see \cref{fig:conical_capsule}).
 This means that the radii of the \ac{CC} for both spheres grow to the maximum of the two spheres $r_{\mathit{capsule}} = \mathrm{max}(r_0, r_1)$.
 This has the obvious disadvantage, that space is lost. However, for small changes of radii this is a big advantage regarding the computational cost.
 \par
-% 
+%  
 The algorithm for detecting collisions between two capsules is shown in \cref{alg:pseudocodeCollisionDetection}.\footnote{\href{https://www.john.geek.nz/2009/03/code-shortest-distance-between-any-two-line-segments/}{https://www.john.geek.nz/2009/03/code-shortest-distance-between-any-two-line-segments/}}
 % 
 \begin{figure}[!t]
@@ -492,25 +512,25 @@ The idea of the \name{tree} generation is the following:
 At the beginning all objects must be sorted into the eight leaves of the current node (if the number of objects is not to small).
 This means that for each object it must be checked whether there is a collision with one or more of the eight leaves, \ie the cubic sub volumes.
 However, since this already means a high test effort, the test function should be as fast as possible.
-For this purpose only the \ac{AABB} of the object is checked if it collides with the sheet volume (which is its own \ac{AABB}) (see \cref{fig:collision2D}).
+For this purpose only the \ac{AABB} of the object is checked if it collides with the sheet volume (which is its own \ac{AABB}) analog to the object collision check (see \cref{fig:collision2D}).
 This means, that there are possible cases, where an object is put into a sub-volume, with it does not collide.
 However the increasing speed of the testing procedure is more beneficial in this case.
-A collision detection of two \acp{AABB} is rather simple (see \cref{alg:collisionAABB}).
-% 
-\begin{lstfloat}[!tb]
-\lstset{style=python}
-\begin{lstlisting}[]
-def aabb_collide(aabb_0, aabb_1):
-  for i in dim(aabb):
-      if aabb_0[i].min > aabb_1[i].max:
-         return false
-      if aabb_0[i].max < aabb_1[i].min:
-         return false
-  return true
-\end{lstlisting}
-\caption{Pseudocode collision between \acp{AABB}.}
-\label{alg:collisionAABB}
-\end{lstfloat}
+% A collision detection of two \acp{AABB} is rather simple (see \cref{alg:collisionAABB}).
+% % 
+% \begin{lstfloat}[!tb]
+% \lstset{style=python}
+% \begin{lstlisting}[]
+% def aabb_collide(aabb_0, aabb_1):
+%   for i in dim(aabb):
+%       if aabb_0[i].min > aabb_1[i].max:
+%          return false
+%       if aabb_0[i].max < aabb_1[i].min:
+%          return false
+%   return true
+% \end{lstlisting}
+% \caption{Pseudocode collision between \acp{AABB}.}
+% \label{alg:collisionAABB}
+% \end{lstfloat}
 % 
 When all objects are sorted into their respective sub-volumes, the recursion can begin.
 Since a \name{branch} can be considered a node, the same algorithm can be executed again until a desired limit or property is reached.
@@ -522,7 +542,7 @@ The next question is, which is the desired goal to stop the branching process an
 \par
 % 
 The goal is the reduction of computing time.
-Unfortunately there is no simple answer to a structure like an octree which can provide an definit answer.
+Unfortunately there is no simple answer to a structure like an octree which can provide an definite answer.
 It depends on the volume and the contained objects themself.
 For example, if all objects would overlap each other, all objects would sorted into all leafs and therefore tested unesecarry 8 times as much.
 This is of course an extreme case, however depending on the users input like in crossing regions, many objects could be positioned at the same point in space.
@@ -542,7 +562,7 @@ This number has to be checked at runtime, since it depends on many factors like 
 In the development phase of this algorithm a value of \dummy{20} could be identified for the involved computer architectures.
 \par
 % 
-At this point the colliding objects can be identified.
+At this point the colliding objects can be performed (see \cref{sec:collisionDetection}) and identified.
 The next step is to change their positions in such a way, that their collision is reduced or completely separated.
 %
 \subsection{Separation Phase}
