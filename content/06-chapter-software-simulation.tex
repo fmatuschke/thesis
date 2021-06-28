@@ -125,8 +125,7 @@ If the division of the \voi{} by the \voxelsize{} is not an integer, the \voi{} 
 % 
 \textcolor{gray}{
 \begin{itemize}
-    \item what is a dis. volume
-    \item how to represent a fiber segment
+    \item how to represent a fiber segment in a disc volume
     \item layer
     \item optical axis
     \item loop over voxels
@@ -135,17 +134,11 @@ If the division of the \voi{} by the \voxelsize{} is not an integer, the \voi{} 
 \end{itemize}
 }
 % 
-\par
-\noindent\rule{\textwidth}{2pt}
-\par
-% 
-To discretice the previous defined nerve fiber models (see \cref{chap:sof:modelling}), the problem can be reduced to a single nerve fiber segment (except the boundry effects).
-% 
-A nerve fiber segment is a \ac{CC}.
-This means, that at each voxel it has to be checked, if the voxel is inside the \ac{CC} or not.
-If it is, the current physical properties of this point, \ie{} the orientation of the optical axis and the current layer, from which the absorption and birefringence strength can be derived, has to be saved.
-Therefore two a 3d representation exists: a \code{optical\tu axis}, which $(x,y,z)$ value of the optical axis, and a \code{tissue} which stores the integer to the fibers property (see \cref{fig:fiber_discretisation}).
-Last can also be used to render a voxel image of the tissue (hence the name).
+the question how to discretize the previous defined nerve fiber models (see \cref{chap:sof:modelling}) can be simplified in how to discretize a single nerve fiber segment, since a fiber is a chain of consecutive segment.
+The idea is, that if a voxel is inside a fiber segment, it will be marked as a tissue with the physical properties (absorption, optical axis and birefringece) at the voxels center position.
+Here a voxel inside a fiber segment means, that its center point is inside the volume of the fiber segment.
+A voxel at the array position $[i,j,k]$ takes up the space of $(i,j,k)$ to $(i+1,j+1,k+1)$ in the unit of \voxelsize{}.
+The overall idea can be represented in the pseudocode \cref{alg:fiberbundleprops}.
 % 
 \begin{lstfloat}[!tb]
 \lstset{style=python}
@@ -161,6 +154,39 @@ for i,j,k in voxels:
 \caption{single \ac{CC} checking algorithm.}
 \label{alg:fiberbundleprops}
 \end{lstfloat}
+% 
+\par
+% 
+% Two coordinate systems exists.
+% The first is the array indices $(i,j,k)$ which corresponds to the $\mathit{array}[i,j,k]$ position inside the array.
+% % 
+% \begin{figure}[!t]
+% \centering
+% \def\tikzwidth{0.42\textwidth}
+% \inputtikz{gfx/simpli/indexing}
+% \caption{indexing of arrays.
+% The vector inside the array at index position $[i,j,k]$ will correspond to the vector at position $p=(i+0.5,j+0.5,k+0.5) \cdot \voxels$}
+% \label{fig:indexing_array}
+% \end{figure}
+% % 
+% The second is the coordinate system is in the unit of \code{voxel\tu sizes}.
+% This means, that a voxel $(i,j,k)$ takes up the space of $(i,j,k)$ to $(i+1,j+1,k+1)$ in the second coordinate system (see \cref{fig:indexing_array}).
+% The second coordinate system multiplied by the \code{voxel\tu size} \voxels{} corresponds to the world in \si{\micro\meter}, and therefore the same as the fiber models.
+% The transformation is a simple linear function $p=(i+0.5,j+0.5,k+0.5) \cdot \voxels$.
+% % 
+
+% 
+\par
+\noindent\rule{\textwidth}{2pt}
+\par
+% 
+The next step is to fill the voxels of the volume with the fiber segment.
+A nerve fiber segment is a \ac{CC}.
+This means, that at each voxel it has to be checked, if the voxel is inside the \ac{CC} or not.
+If it is, the current physical properties of this point, \ie{} the orientation of the optical axis and the current layer, from which the absorption and birefringence strength can be derived, has to be saved.
+Therefore two a 3d representation exists: a \code{optical\tu axis}, which $(x,y,z)$ value of the optical axis, and a \code{tissue} which stores the integer to the fibers property (see \cref{fig:fiber_discretisation}).
+Last can also be used to render a voxel image of the tissue (hence the name).
+% 
 % 
 \par
 % 
@@ -225,15 +251,6 @@ For each voxel in the volume of the \ac{AABB} the smallest distance to the line 
 \label{fig:fiber_discretisation}
 \end{figure}
 % 
-\begin{figure}[!t]
-\centering
-\def\tikzwidth{0.42\textwidth}
-\inputtikz{gfx/simpli/indexing}
-\caption{indexing of arrays.
-The vector inside the array at index position $[i,j,k]$ will correspond to the vector at position $p=(i+0.5,j+0.5,k+0.5) \cdot \voxels$}
-\label{fig:indexing_array}
-\end{figure}
-% 
 Using the smallest distance from the current position, the actual physical property of the current fiber segment can be calculated and stored.
 Since the birefringent orientation within a fiber can be represented either with the micro- or the maroscopic model (see \dummy{}), the radial or parallel orientation for a point $q$ in the volume (see \cref{fig:vectormodel}) to the fiber segment must be calculated.
 In case of a parallel orientation, the orientation is $o$:
@@ -293,7 +310,7 @@ At the end the DV-Generator returns the arrays \tissue{}, \opticalaxis{} and the
 % 
 Two methods are used to parallelize the algorithm on the \ac{CPU}.
 The first uses \openmp{} to parallelize the filling of the \ac{AABB} volume of each object.
-The second uses \mpi{} to allow distribution to multiple \ac{CPU} cores without sharing memory. 
+The second uses \mpi{} to allow distribution to multiple \ac{CPU} cores without sharing memory. \todo{openmp in the section, mpi at the end of the chapter}
 % 
 The parallelization of the \ac{AABB} volume leads to a race condition if several threads want to write to the same memory address (or coordinate) (\eg{} two objects occupy the same space).
 A solution with a lock would be very slow.
