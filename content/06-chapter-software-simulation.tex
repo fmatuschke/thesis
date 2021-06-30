@@ -52,7 +52,7 @@ This simulation as well as the optical \dummy{} of the system and the inclinatio
 % 
 The code is as the former written in \cpp{} with a user friendly wrapper function in \python{}.
 % 
-\dummy[wohin mit den zukunftsplaenen?]{}.
+\dummy[wohin mit den zukunftsplaenen? -> ende]{}.
 % 
 % 
 % The here presented \fastpli{} software package allows to predict \ac{3D-PLI} experiments within the \python package \pymodule{fastpli.simulation} by means of linear optics \cite{} and 3d fiber models \cite{}.
@@ -99,15 +99,6 @@ The code is as the former written in \cpp{} with a user friendly wrapper functio
 \label{fig:discVol}
 \end{figure}
 % 
-\begin{figure}[!t]
-\centering
-\resizebox{1.0\textwidth}{!}{
-\tikzset{external/export=false}
-\input{gfx/simpli/vector_error}}
-\caption[Discretization error]{Discretization error. Cross section of single fiber with one myelin layer inside discretized tissue volume. The couloured pattern show the resulting voxels which corresponds to the fiber. The smaller the \voxelsize{}, the smaller the representation error.}
-\label{fig:vectorfield_disc_error}
-\end{figure}
-% 
 \itodo{better name}
 % 
 The idea of the simulation is to first calculate a so called \say{discretised tissue volume}.
@@ -121,201 +112,160 @@ The overall volume is limited by an \ac{AABB} or \ac{VOI}, which is defined by a
 Additionally the \voxelsize{} parameter \voxels{} is set to a floating point number and defines the edge length of the voxels.
 If the division of the \voi{} by the \voxelsize{} is not an integer, the \voi{} is automatically increased to the next possible integer value to avoid boundary effects.
 % 
+% 
+% 
+\subsection{Nerve fiber layers}
+% 
+As described in \dummy{} nerve fibers are axons, which can be wrapped around by several windings of myelin (see \cref{fig:fiberLayer}).
+Especially for light wave simulations the myelin windings are a significant property \cite{MenzelDissertation}.
+This makes it necessary to be able to build such a structure.
+\par
+% 
+An easy implementation is to represent the windings as layers (see \cref{fig:myelinLayer}).
+This simplifies the creation process significantly.
+A layer can then simply defined by a factor between $0$ and $1$, which scales with the nerve fiber radius.
+For example, $\code=0.75$ means that from $0\leq r < 0.75$ of the radii are interpreted as the first layer.
+\par
+% 
+Each layer needs to its radius also a set of physical properties:
+% 
+\begin{itemize}[nosep]
+    \item birefringence value $\dn$
+    \item absorption coefficient $\mu$
+    \item optical axsis model $p=\mathit{parallel}$, $r=\mathit{radial}$, $b=\mathit{background}$
+\end{itemize}
+% 
+These properties are set as a list of tuples inside the algorithm (see \cref{alg:fiberbundleprops}).
+% 
+\begin{lstfloat}[!ht]
+\lstset{style=python}
+\begin{lstlisting}[]
+fbs_properties = [[(r, dn, mu, 'p'), (second layer), ...],
+                  [(first layer of second bundle), ...],
+                  [...]]
+\end{lstlisting}
+\caption[Fiber bundle properties]{Defining fiber bundle properties.}
+\label{alg:fiberbundleprops}
+\end{lstfloat}
+% 
+At the end the DV-Generator returns the arrays \tissue{}, \opticalaxis{} and the \propertylist{} for the use of the simulation.
+% 
 \subsection{Discretizing a nerve fiber model}
 % 
-\textcolor{gray}{
-\begin{itemize}
-    \item how to represent a fiber segment in a disc volume
-    \item layer
-    \item optical axis
-    \item loop over voxels
-    \item loop over all segemnts
-    \item parallelization
-\end{itemize}
-}
+\begin{figure}[!t]
+\centering
+\setlength{\tikzwidth}{0.32\textwidth}
+\subcaptionbox{\label{fig:myelinLayer}Schematic of nerve fiber with axon and wrapped around myelin}[.32\textwidth]{
+\resizebox{!}{0.32\textwidth}{
+\includegraphics[]{dev/brain/myelin_layers.pdf}}}
+\subcaptionbox{\label{fig:fiberLayer}Cross section nerve fiber with layerd structure definde by $n$ radii}[.32\textwidth]{
+\inputtikz[true]{gfx/simpli/fiber_layer}}
+\subcaptionbox{\label{fig:vectormodel}Cross section of discreticed nerve fiber with resulting vectors of optical axis}[.32\textwidth]{
+\inputtikz[true]{gfx/simpli/vector_model}} \hfill
+\caption{Discretisation of nerve fiber with layered structure.}
+\label{fig:fiber_discretisation}
+\end{figure}
 % 
-the question how to discretize the previous defined nerve fiber models (see \cref{chap:sof:modelling}) can be simplified in how to discretize a single nerve fiber segment, since a fiber is a chain of consecutive segment.
-The idea is, that if a voxel is inside a fiber segment, it will be marked as a tissue with the physical properties (absorption, optical axis and birefringece) at the voxels center position.
-Here a voxel inside a fiber segment means, that its center point is inside the volume of the fiber segment.
-A voxel at the array position $[i,j,k]$ takes up the space of $(i,j,k)$ to $(i+1,j+1,k+1)$ in the unit of \voxelsize{}.
-The overall idea can be represented in the pseudocode \cref{alg:fiberbundleprops}.
+To discretize nerve fiber models (see \cref{chap:sof:modelling}) one can start with the discretization of a single nerve fiber segment, since a fiber is a chain of consecutive segment.
+The idea is, that if a voxel is inside a fiber segment, it will be marked as a tissue with the physical properties (absorption, optical axis and birefringece) from the voxels center position $\vec{q}$ (see \cref{fig:fiber_discretisation}).
+In this context \say{a voxel inside a fiber segment} means, that its center point is inside the volume of the fiber segment.
+The discretized tissue is designed in such a way that, that the arrays position $[i,j,k]$ takes up the space of $(i,j,k)$ to $(i+1,j+1,k+1)$ in the unit of \voxelsize{}.
+\par
+% 
+Therefore the filling process can be integrated by looping over all voxels in the current volume.
+However since a single nerve fiber segment is usually much smaller than the volume, it makes sense to reduce the size of the iterating voxels.
+This is easily be done by only iterating over the voxels of the \ac{AABB} of the nerve fiber segment.
+\par
+% 
+Now each voxel will be checked, if it is inside the nerve fiber segment.
+This is analog calculated to the collision between two nerve fiber segment (see \cref{alg:pseudocodeCollisionDetection}) except that only one point of the closest distance has to be found.
+The other one is the voxels center position $\vec{q}$.
+From this calculation the not only the closes point \dummy{} will be returned, but also the distance vector \dummy{}. 
+This helps to calculate the the distance, which will be used to check if the voxel is inside the fiber segment, and if it is, in wich layer of the fiber segment it is.
+Additionally the distance vector can be used, if the optical axis inside the current layer is set to a microscopic \dummy{}, which means that the optical axis is orientated radial to the fiber segment.
+\par
+% 
+Two values have to be stored in the case of a valid entry.
+The first one is an index inside a \code{tissue} array, which is later used to retreve the properties from a list with the same index order.
+The second one is the orientation of the optical axis inside the current layer.
+The orientation is either parallel to the fiber segment in case of the macroscopic model, or radial in the case of the microscopic model.
+A layer can also be marked as \say{background}, which will allow the user to specify a region with absorption, but without a birefringence.
+\par
+% 
+Before looping over all fiber segments, an additional problem has to be solved.
+Since two consecutive fiber segments will take up the same space because they share a point, they also will fill the voxel of the tissue volume.
+This is a problem, since now the second fiber segment will overwrite the values of the first one.
+This can easily be solved by adding an additional array, which will store the smallest distance inside, which was calculated when filling the voxels space.
+The values will now be overwritten, if a new smallest distance was calculated, which is smaller then the already stored one.
+This also solves the problem, that at the end end points of a fiber segment in the case of a radial optical axis model, the optical axis would be \say{star like}.
+This of course will still be the same at the beginning and end of an fiber.
+\par
+% 
+This \say{filling} loop is represented in the pseudocode \cref{alg:fiberbundleprops}.
 % 
 \begin{lstfloat}[!tb]
 \lstset{style=python}
 \begin{lstlisting}[]
-for i,j,k in voxels:
-    min_dist, min_point = calculate_min_distance((i,j,k), cc)
-    if min_dist < cc.radius:
-        if min_dist < current_distance[i,j,k]:
-            optical_axis[i,j,k,:] = get_axis_orientation((i,j,k), min_dist, min_point)
-            tissue[i,j,k] = get_layer_id(min_dist)
-            current_distance[i,j,k] = min_dist
+for fiber_segment in fiber_bundle:
+    for i,j,k in fiber_segment.aabb().voxels():
+        min_dist, min_point = calculate_min_distance((i,j,k), cc)
+        if min_dist < cc.radius:
+            if min_dist < current_distance[i,j,k]:
+                optical_axis[i,j,k,:] = get_axis_orientation(
+                                            (i,j,k), min_dist,
+                                            min_point)
+                tissue[i,j,k] = get_layer_id(min_dist)
+                current_distance[i,j,k] = min_dist
 \end{lstlisting}
-\caption{single \ac{CC} checking algorithm.}
+\caption{Discretized volume filling algorithm}
 \label{alg:fiberbundleprops}
 \end{lstfloat}
-% 
-\par
-% 
-% Two coordinate systems exists.
-% The first is the array indices $(i,j,k)$ which corresponds to the $\mathit{array}[i,j,k]$ position inside the array.
-% % 
-% \begin{figure}[!t]
-% \centering
-% \def\tikzwidth{0.42\textwidth}
-% \inputtikz{gfx/simpli/indexing}
-% \caption{indexing of arrays.
-% The vector inside the array at index position $[i,j,k]$ will correspond to the vector at position $p=(i+0.5,j+0.5,k+0.5) \cdot \voxels$}
-% \label{fig:indexing_array}
-% \end{figure}
-% % 
-% The second is the coordinate system is in the unit of \code{voxel\tu sizes}.
-% This means, that a voxel $(i,j,k)$ takes up the space of $(i,j,k)$ to $(i+1,j+1,k+1)$ in the second coordinate system (see \cref{fig:indexing_array}).
-% The second coordinate system multiplied by the \code{voxel\tu size} \voxels{} corresponds to the world in \si{\micro\meter}, and therefore the same as the fiber models.
-% The transformation is a simple linear function $p=(i+0.5,j+0.5,k+0.5) \cdot \voxels$.
-% % 
-
-% 
-\par
-\noindent\rule{\textwidth}{2pt}
-\par
-% 
-The next step is to fill the voxels of the volume with the fiber segment.
-A nerve fiber segment is a \ac{CC}.
-This means, that at each voxel it has to be checked, if the voxel is inside the \ac{CC} or not.
-If it is, the current physical properties of this point, \ie{} the orientation of the optical axis and the current layer, from which the absorption and birefringence strength can be derived, has to be saved.
-Therefore two a 3d representation exists: a \code{optical\tu axis}, which $(x,y,z)$ value of the optical axis, and a \code{tissue} which stores the integer to the fibers property (see \cref{fig:fiber_discretisation}).
-Last can also be used to render a voxel image of the tissue (hence the name).
+%
+\itodo{the length of the stored optical axis vector is interpreted as strength. In this model the length is always 1. If the user wishes to add variability, he/she can do this by changing the length of the vectors inside the arrays.}
 % 
 % 
-\par
 % 
-To be able to calculate that a given point $\vec{p} = (i,j,k)$ is inside the \ac{CC}, the shortest line from the point $\vec{p}$ to the \ac{CC} has to be calculated analog to \cref{sec:collisionDetection}.
-Of course in this case this is a little bit more simpler, since one point is already known.
-\\
+\subsection{\voxelsize{}}
 % 
-After the shortest distance and point is calculated, it can be used to identify the layer in which it is.
-However the conic shape has to be taken into account (see \cref{fig:conical_capsule}.
-This can simply be done by interpolating the radii of the \ac{CC} at the found minimal distance point on the \ac{CC}.
-From there the physical properties and optical axis is calculated according to the user defined optical model (background, parallel or radial).
-\par
+\begin{figure}[!t]
+\centering
+\resizebox{1.0\textwidth}{!}{
+\tikzset{external/export=false}
+\input{gfx/simpli/vector_error}}
+\caption[Discretization error]{Discretization error. Cross section of single fiber with one myelin layer inside discretized tissue volume. The couloured pattern show the resulting voxels which corresponds to the fiber. The smaller the \voxelsize{}, the smaller the representation error.}
+\label{fig:vectorfield_disc_error}
+\end{figure}
 % 
-But a necessary step is to check, if the current voxel is already occupied.
-This happens \eg{} at the border of nerve fiber segments, since there are linked to the next segment.
-Therefore a for the user non accessible additional array exists, which stores the last min distance information.
-Only if a min distance at this point is calculated, which is smaller then the old one, the information will be overwritten.
-\par
+The \voxelsize{} parameter is the most important property of the simulation.
+It will determine, how accurate the simulation is \dummy{}. 
+This is first of all because it will change the number of voxels with which the nerve fiber model is discretized (see \cref{fig:vectorfield_disc_error}).
+Especially for the case of multiple layers this will have an major impact.
+Additionally it will also change the \stepsize{} of the light through the tissue.
+Usually the \stepsize{} is the same as the \voxelsize{}, but the user can change it if necessary.
+Also the number of light particels will increase with decreasing \voxelsize{} since for about each voxel at the bottom of the tissue a single light particle will be casted (see \cref{sec:pathOfLight}).
+Therefore the resulting intensity signal will also be more accurate.
 % 
+% 
+%  
+\subsection{optimization}
 % 
 All arrays are implemented as contiguous c-arrays, which are accessible as \name{Numpy}-arrays from outside without the need to copy the data.
 Since these arrays grow with $\mathcal{O}(n^3)$, the aim was to make them movable through the \cpp{} libraries as well as in \python{}.
 The memory order of the arrays is in $x\text{-}y\text{-}z$ direction, so the largest memory shift is in $x$ and the smallest in $z$.
 This was chosen so that later in the simulation part, where the light travels mainly in $z$-direction, the memory is aligned to the required information and thus the \acp{CPU} cache prefetcher can be used.
-\\
-% 
-\itodo{INTEGRATE WITH NEXT PARAGRAPH}
-% 
-The \voxelsize{} has a major role in the accuracy of the results (as shown later).
-It does not only account for the discretization accuracy of the 3d model, but also for the number of light rays.
-The impact is visual shown in \cref{fig:vectorfield_disc_error}.
-% 
-\\
-% 
-Next, each voxel of those arrays have to be filled with its correct properties.
-\\%[\baselineskip]
-% 
-\paragraph{Iteration cycle}
-To calculate a discrete volume of optical properties from a fiber configuration, the same fiber representation as in \cref{sec:nerve_fiber_representation} is used, \ie{} a list of lists of 4d coordinates.
-The first list inherits nerve fiber bundles.
-The second inner list lists the nerve fibers.
-Since all objects are \ac{CC}, the problem of discretization can therefore be reduced to the case of a single \ac{CC} object $(\vec{p_i}, \vec{p_{i+1}}, r_i, r_{i+1})$.
-% 
-To fill the arrays with their information, all voxels of the current \ac{AABB} of the \ac{CC} are iterated over.
-For each voxel in the volume of the \ac{AABB} the smallest distance to the line segment of the \ac{CC} is calculated (see \cref{alg:smallDistLinePoint}).
-\\
-% 
-\begin{lstfloat}[!tb]
-\lstinputlisting[style=python]{code/short_dist_line_seg_point.py}
-\caption[Calculating smallest distance between line segment and point]{Calculating smallest distance and point on line from line segment $p_0, p_1$ to point $q$.}
-\label{alg:smallDistLinePoint}
-\end{lstfloat}
-% 
-\begin{figure}[!t]
-\centering
-\setlength{\tikzwidth}{0.45\textwidth}
-\subcaptionbox{\label{fig:vectormodel}vector\tu model with microscopic birefringence myelin layer}[.49\textwidth]{
-\inputtikz{gfx/simpli/vector_model}} \hfill
-\subcaptionbox{\label{fig:fiberLayer}additional fiber layers}[.49\textwidth]{
-\inputtikz{gfx/simpli/fiber_layer}}
-\caption{Discretisation of fiber with layered properties.}
-\label{fig:fiber_discretisation}
-\end{figure}
-% 
-Using the smallest distance from the current position, the actual physical property of the current fiber segment can be calculated and stored.
-Since the birefringent orientation within a fiber can be represented either with the micro- or the maroscopic model (see \dummy{}), the radial or parallel orientation for a point $q$ in the volume (see \cref{fig:vectormodel}) to the fiber segment must be calculated.
-In case of a parallel orientation, the orientation is $o$:
-\begin{align}
-\begin{split}
-    o = \frac{\vec{p}_i - \vec{p}_{i+1}}{\abs{\vec{p}_i - \vec{p}_{i+1}}}
-\end{split}
-\end{align}
-% 
-Since a fiber can have multiple layers, \eg{} axon or myelin, the layer must be identified at the  position $q$ (see \cref{fig:fiberLayer}).
-This is achieved by comparing the smallest distance from this point to the layer size.
-However, since the layer size scales with the fiber radii, it must be taken into account.
-This simply means that the current layer is $l$, which satisfies the following condition: 
-\begin{align}
-    \left(\fiberRadius_i \cdot b + \fiberRadius_{i+1} \cdot(1-b)\right) \cdot \code{layer}_l <= \code{distance} < \left(\fiberRadius_i \cdot b + \fiberRadius_{i+1} \cdot(1-b)\right) \cdot \code{layer}_{l+1} \ 
-\end{align}
-% 
-If a current voxel already has an entry stored, its value within the \code{distance}-array is compared to the current distance.
-If the current distance is smaller, the values are overwritten.
-This also accounts for the race condition, when two objects take up the same voxel, \eg{} neighboring fiber segments.
-At this point all voxels of all fiber segments must be iterated over.
-% 
-\paragraph{Fiber layers and their properties}
-Each nerve fiber bundle needs to be characterized by the corresponding physical parameters.
-These parameters are 
-\begin{itemize}[nosep]
-    \item absorption coefficient $\mu$
-    \item birefringence value $\dn$
-    \item optical axsis model $p=\mathit{parallel}$, $r=\mathit{radial}$, $b=\mathit{background}$
-\end{itemize}
-%
-\begin{lstfloat}[!tb]
-\lstset{style=python}
-\begin{lstlisting}[]
-fbs_properties = [[(layer, dn, mu, 'p'), (second layer), ...],
-                  [(first layer of second bundle), ...],
-                  [...]]
-\end{lstlisting}
-\caption{Definig fiber bundle properties}
-\label{alg:fiberbundleprops}
-\end{lstfloat}
-% 
-These parameters must be set for each layer (see \cref{fig:fiberLayer}) within the fiber.
-A \code{layer} is a concept that allows the differentiation between axon and myelin or multiple myelin layers with intracellular fluid between the coils (see \cref{fig:fiberLayer}).
-This requires the parameters to be set (see \cref{alg:pseudocode_octree}).
-% 
-The \code{layer} is a factor for how large the proportion of the radius of this layer is.
-For example, $\code=0.75$ means that from $0\leq r < 0.75$ of the radii are interpreted as the first layer.
-The value can even be set to values $>1$ if the user so wishes.
-Of course, a collision-free model is then no longer a guarantee that it is collision-free.
-% 
-At the end the DV-Generator returns the arrays \tissue{}, \opticalaxis{} and the \propertylist{} for the use of the simulation.
-% 
-\itodo{the length of the stored optical axis vector is interpreted as strength. In this model the length is always 1. If the user wishes to add variability, he/she can do this by changing the length of the vectors inside the arrays.}
-% 
-\subsection{optimization}
+\par
 % 
 Two methods are used to parallelize the algorithm on the \ac{CPU}.
 The first uses \openmp{} to parallelize the filling of the \ac{AABB} volume of each object.
-The second uses \mpi{} to allow distribution to multiple \ac{CPU} cores without sharing memory. \todo{openmp in the section, mpi at the end of the chapter}
+The second uses \mpi{} to allow distribution to multiple \ac{CPU} cores without sharing memory (detailed description in \cref{sec:mpiSim}).
+\par
 % 
-The parallelization of the \ac{AABB} volume leads to a race condition if several threads want to write to the same memory address (or coordinate) (\eg{} two objects occupy the same space).
-A solution with a lock would be very slow.
-Since the loop runs over all $(i,j,k)$ indices of the three space dimensions, the parallelization can be done using the indices. \todo{a shared cache can be used}
-However, this leads to a slow implementation because new threads have to be created for each object.
+The parallelization of filling the voxels of the discretized volume leads to a race condition if several threads want to write or read to the same memory address (or coordinate) (\eg{} two objects occupy the same space).
+A solution with a lock would be very slow since, depending on the fiber segment length and orientation, most voxels of the \ac{AABB} have to be written to.
+Also since many of the voxels don't need to be overwritten, most locks would be unnecessary.
+\\
+Since the loop runs over all $(i,j,k)$ indices of the three space dimensions, the parallelization can be done using the iteration over the voxels themself per fiber segment.
+However, this leads to a slow implementation because new threads have to be spawn for each fiber segment, which takes quite some time.
 If was therefore decided, that the parallel call creates all threads before the first loop over all objects.
 This means all threads process all objects.
 If the threads then execute a loop over all indices (or coordinates), thread $n$ only processes the memory for the first volume dimension $i$ if (see \cref{fig:discVolThread}):
@@ -324,41 +274,34 @@ If the threads then execute a loop over all indices (or coordinates), thread $n$
 \centering
 \setlength{\tikzwidth}{0.5\textwidth}
 \inputtikz{gfx/simpli/disc_volume_thread}
-\caption{discretisation volume}
+\caption[discretized volume parallelization]{discretisation volume parallelization with \openmp{}. Each thread handles every n-th yz-section. This ensures both thread safety and that the workload is more balanced, even with an inhomogeneous.}
 \label{fig:discVolThread}
 \end{figure}
 % 
 \begin{align}
 \begin{split}
-    i \bmod N_{\text{Threads}} == n
+    i \bmod N_{\mathit{Threads}} == \mathit{thread}_{\mathit{id}}
 \end{split}
 \end{align}
 % 
 This process results in a thread-safe writable operation.
 The only drawback is that all threads must check if the \ac{AABB} is inside the \ac{VOI}.
 However since with this configuration only once threads are spawned, and the \ac{AABB} collison check is very efficient in terms of computation time, it is quite fast.
-\\
-% 
-\begin{figure}[!t]
-\centering
-\def\tikzwidth{0.75\textwidth}
-\inputtikz{gfx/simpli/com_halo}
-\caption{comunication halos. The volume is split into six subvolumes, distributed to 6 mpi ranks. The coloured voxels have the same tissue information.}
-\label{fig:com_halo}
-\end{figure}
-% 
-For huge volumes that are larger than the locally optimal shared memory size, the calculation must be split into several physical \acp{CPU} or \name{computation nodes}.
-For this purpose \mpi{} is used.
-A method is implemented that automatically divides the volume along the $x$ axis and $y- axis$ into blocks with minimal surface area (see \cref{fig:com_halo}).
-This is important for the following simulation step (see \cref{sec:simulation}).
-Each \mpi{} process can then create a discretized sub-volume as if it were the hole volume.
-However, each sub-volume has an additional voxel along the $x$ and $y$ axis for later communication purposes as \name{halo}. (see \cref{sec:simulation}).
-Each \mpi{} process can additionally use \openmp{} to create multiple threads for efficient use of shared memory if the architecture supports it.
+Additionally the shared cache of the \acp{CPU} can speed up the memory retrieving process as well, if the \acp{CPU} workload do not differ that much.
+\par
+\paragraph{Note}
+Depending on the scice of the volume and the acessable memory, the user is adviced to distribute the \openmp{} parallelization and \mpi{} distribution \dummy{}.
+The \openmp{} speedup is usually as fastest if the spawend threads are located on the same physical \ac{CPU} or even inside the same \acp{CPU} which uses the same cache.
+It can therefore be that the speedup is increased by reducing the \openmp{} threads and by increasing the \mpi{} threads instead \todo{better mpi implementation?}.
 % 
 % 
 % 
 \section{Simulation}
 \label{sec:simulation}
+% 
+\par
+\noindent\rule{\textwidth}{2pt}
+\par
 % 
 The simulation algorithm executes the M\"uller-Stokes calculus (see \cref{sec:Mueller-Stokes}) on the previously calculated discrete volume (see \cref{sec:dv_generator}) for a light beam along its path.
 Since no scattering or refraction effects are included within the tissue volume (except for the effective absorption), each light path follows a straight line.
@@ -548,6 +491,27 @@ This in contrast to resizing, does not interpolates the image.
 % 
 \paragraph{Noise}
 The last step is to replicate the noise of the image setup. To account for this a noise model has to be applied to each image pixel. \cite{Wiese:887678} showed that this can be done via a poisson/gaus model.
+% 
+% 
+% 
+\section{\mpi{} parallelization}\label{sec:mpiSim}
+\begin{figure}[!t]
+\centering
+\def\tikzwidth{0.75\textwidth}
+\inputtikz{gfx/simpli/com_halo}
+\caption{comunication halos. The volume is split into six subvolumes, distributed to 6 mpi ranks. The coloured voxels have the same tissue information.}
+\label{fig:com_halo}
+\end{figure}
+% 
+For huge volumes that are larger than the locally optimal shared memory size, the calculation must be split into several physical \acp{CPU} or \name{computation nodes}.
+For this purpose \mpi{} is used.
+A method is implemented that automatically divides the volume along the $x$ axis and $y- axis$ into blocks with minimal surface area (see \cref{fig:com_halo}).
+This is important for the following simulation step (see \cref{sec:simulation}).
+Each \mpi{} process can then create a discretized sub-volume as if it were the hole volume.
+However, each sub-volume has an additional voxel along the $x$ and $y$ axis for later communication purposes as \name{halo}. (see \cref{sec:simulation}).
+Each \mpi{} process can additionally use \openmp{} to create multiple threads for efficient use of shared memory if the architecture supports it.
+% 
+% 
 % 
 \section{Analysis}
 % 
