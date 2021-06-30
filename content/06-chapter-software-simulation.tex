@@ -247,7 +247,7 @@ Therefore the resulting intensity signal will also be more accurate.
 % 
 % 
 %  
-\subsection{optimization}
+\subsection{optimization}\label{sec:dvOpti}
 % 
 All arrays are implemented as contiguous c-arrays, which are accessible as \name{Numpy}-arrays from outside without the need to copy the data.
 Since these arrays grow with $\mathcal{O}(n^3)$, the aim was to make them movable through the \cpp{} libraries as well as in \python{}.
@@ -386,6 +386,9 @@ In the case of already simulating an undistored view, the light paths have to sp
 % 
 \subsection{Tissue voxel interpolation}
 % 
+For a \stepsize{} unequal to the \voxelsize{} or a tilted light path the midpoint does not match the center point of the voxel anymore.
+This means, that the physical properties stored in the arrays have to be interpolated.
+% 
 \begin{figure}[!t]
 \centering
 \def\tikzwidth{0.75*\textwidth}
@@ -395,8 +398,6 @@ In the case of already simulating an undistored view, the light paths have to sp
 \label{fig:vectorfield_disc}
 \end{figure}
 % 
-For a \stepsize{} unequal to the \voxelsize{} or a tilted light path the midpoint does not match the center point of the voxel anymore.
-This means, that the physical properties stored in the arrays have to be interpolated.
 There are currently three interpolation methods for this purpose implemented: \textit{nearest neighbor}, \textit{linear interpolation} and \textit{spherical interpolation}. 
 The voxels taken into account for the interpolation are the nearest 8 adjacent voxels, so array indices $(\floor{x\pm0.5},\floor{y\pm0.5},\floor{y\pm0.5})$.
 % 
@@ -416,84 +417,105 @@ However since the data contain orientation data, the \textit{spherical interpola
 To interpolate the data the trilinear interpolation will be performed (see \cref{fig:triInterp}).
 % 
 % 
-\subsection{algorithm}
 % 
-\par
-\noindent\rule{\textwidth}{2pt}
-\par
+\subsection{algorithm}
 % 
 First the starting points of all light beams will be calculated.
 hen each light beam can be traversed inside the tissue.
 To calculate the light matter interaction, the ... will be calculated after each light beam step.
 As soon as the light hits the boarder of the tissue, the light beam will be the last optical elements and the intensity will be stored inside the \ac{CCD} array.
+The pseudocode is shown in \cref{alg:simulationLoop}.
+% 
+\begin{lstfloat}[!tb]
+\lstset{style=python}
+\begin{lstlisting}[]
+light_beams = calculate_light_starting_positions()
+
+for light in light_beams:
+    light = optical_elemts_start * light
+    while light.pos in volume:
+        properties = get_properties(light.pos)
+        light.intensity *= exp(-step_size * properties.absorbtion)
+        light = matrix(properties) * light
+        light.pos += step_size
+    
+    light = optical_elemts_end * light
+    ccd_array[light.ccd_pos] = light.intensity
+\end{lstlisting}
+\caption{Discretized volume filling algorithm}
+\label{alg:simulationLoop}
+\end{lstfloat}
 % 
 % 
 % 
-\subsection{parallelisation}
+\subsection{Optimizations}
 % 
-There are several optimizations used inside this pipeline.
-\\
-% 
-First the order of the tissue stored inside the memory is along the z-axis.
-This allows the light for the non tilted case along the z-axis and therefore along the memory.
-therefore the data can be transferred linear to the cache and the prefetcher\footnote{A prefetcher get not only the data of the memory address i but also its neighbours i+1 and i-1 (depending on the order).
-This means the data is already in cache, if the next step is calculated.
-For linear traversions this means effectively a infinitive cache size.} of (modern) \ac{CPU} architectures hits its full potential.
-This is also noticeable in the tilted view, since the tilting angle in the \ac{3D-PLI}-experiment is rather small.
-This reduces significantly the access time of the \ac{CPU} and the \ac{RAM}.\\
-% 
+There are several optimizations used inside this pipeline. 
+First the order of the tissue stored inside the memory is along the z-axis (as described in \cref{sec:dvOpti}). 
 Secondly the main for loop for each light ray is parallized with \openmp{}.
-This threads are completely separated and no race conditions exists.\\
+This threads are completely separated and no race conditions exists.
 % 
-Additionally the same mpi topography is used from the DV-Generator (see \cref{sec:dv_generator}).
-This is the reason the volume gets split into smaller parts with minimal surface area, since then the number of needed communications is also minimal.
-In the previous \simpli{} implementation the communication was not needed because the halo was as big that the light beam was never leaving the local volume.
-This however meant, that for each tilted image the local volume had to be recalculated.
-Also the memory consumption was much larger.
-This yields in a quite big reduction of processing time.
-\\
 % 
-At corners the light beam can travel through several \mpi{} volumes.
-Therefore after each main loop the communication has to be done.
-Then the main loop is repeated with all incoming light rays.
-When no light rays are communicated anymore, the simulation is finished.
-This is a rather small cost considering the saving of memory and for tissue section commonly thin tissue sections of \SI{60}{\micro\meter}.
-% 
-\itodo{smart sampling spaeter diskutieren}
 % 
 \subsection{Optic}
 \label{sec:ccdOptic}
 % 
-The image sensor is a \ac{CCD} image sensor.
-A general \ac{CCD} sensor consits out of an array of capacitors.
-In each capacitor an electric charge will be stored, setted free by an incoming photons.
-After a read out process, which also contains a electric gain, the resulting values can be stored as an image.
-This process has two major noise parts. The first is the electic charge.
-Its value is, as long as it is not saturated, linear correlated with the number of photons.
-However internal noise like thermal, and a each photon statistically charges a number of electrons, the resulting capacity varies.
-The second major noise comes from the gain process.
-Here the electric voltage will be gained before a analog digital read out.
-This process is also strong linear correlated around a operational point.
-However due to the nature of the underlining circuit, i.e. usually transistors and their power source, the resulting value can vary.
-All noise sources combined yield to an poison distributed noise, to too the nature of digital values.
-%
-\\
-%
-To account for the optical setup, three things have to be done.
-\paragraph{Bluring}
-The optical resolution the light rays have to be blurred.
-This is classically done via a 2d gaussian convolution.
-\paragraph{Sampling}
-Since the number and final position of the light rays is according to the voxels, all intensities of an image pixel have to be combined.
-Here it is done via a mean value sampling.
-This in contrast to resizing, does not interpolates the image.
+The image sensor as described in \cref{sec:expSetup} is a \ac{CCD} sensor.
+The calculations, \ie resolution \dummy{}, resampling and noise modelling, are implemented according to \cref{sec:opticalResolution}.
+These calculations are performed on the python side of the algorithm and can be parallized with the \code{multiprocessing} library of \python{}.
 % 
-\paragraph{Noise}
-The last step is to replicate the noise of the image setup. To account for this a noise model has to be applied to each image pixel. \cite{Wiese:887678} showed that this can be done via a poisson/gaus model.
+% A general \ac{CCD} sensor consits out of an array of capacitors.
+% In each capacitor an electric charge will be stored, setted free by an incoming photons.
+% After a read out process, which also contains a electric gain, the resulting values can be stored as an image.
+% This process has two major noise parts. The first is the electic charge.
+% Its value is, as long as it is not saturated, linear correlated with the number of photons.
+% However internal noise like thermal, and a each photon statistically charges a number of electrons, the resulting capacity varies.
+% The second major noise comes from the gain process.
+% Here the electric voltage will be gained before a analog digital read out.
+% This process is also strong linear correlated around a operational point.
+% However due to the nature of the underlining circuit, i.e. usually transistors and their power source, the resulting value can vary.
+% All noise sources combined yield to an poison distributed noise, to too the nature of digital values.
+%
+% \\
+%
+% To account for the optical setup, three things have to be done.
+% \paragraph{Bluring}
+% The optical resolution the light rays have to be blurred.
+% This is classically done via a 2d gaussian convolution:
+
+% \paragraph{Sampling}
+% Since the number and final position of the light rays is according to the voxels, all intensities of an image pixel have to be combined.
+% Here it is done via a mean value sampling.
+% This in contrast to resizing, does not interpolates the image.
+% % 
+% \paragraph{Noise}
+% The last step is to replicate the noise of the image setup. To account for this a noise model has to be applied to each image pixel. \cite{Wiese:887678} showed that this can be done via a poisson/gaus model.
+% 
+% 
+% 
+\section{Analysis}
+% 
+The same algorithms are implemented as in the \ac{3D-PLI} routine pipeline \dummy[-> theory]{}.
+This include the modalities analysis transmittance, direction and retardatation as well as the inclination analysis performend by \ac{ROFL}.
 % 
 % 
 % 
 \section{\mpi{} parallelization}\label{sec:mpiSim}
+% 
+Both algorithms, the DV generator and the simulation can use an additionally parallelization technique.
+% 
+For huge volumes that are larger than the locally memory size, the calculation must be split onto several physical \acp{CPU} and \name{computation nodes}\footnote{A computing node is a processing unit in a computer network}.
+For this purpose \acreset{MPI} \ac{MPI} is used.
+A method is implemented that automatically divides the volume along the $x$-axis and $y$-axis into blocks with minimal surface area (see \cref{fig:com_halo}).
+The minimization of the $xy$ surface area is important for the simulation algorithm.
+\\
+Once the volume is split into euqal parts, with respect to the nature of integers, the above mentioned algorithms can be performend completly analog on the \mpi{} ranks, as if they only would know about there volume.
+The only exception is the simulation for tilted light beams.
+This means, that at the boarder of the volume, when a light beam travels through the tissue, the light can leave the local volume of the \mpi{} rank.
+\mpi{} provides several methods to send information to another rank.
+Since this volume splitting is cartesion, the cartesion implementations of \mpi{} are used (\eg{} \code{MPI\tu Cart\tu create}).
+However since the light beam also needs in the case of interpolation the information of the sorounding 8 voxels, this would mean that the missing voxels had to be tranfered to the neighboring ranks.
+% 
 \begin{figure}[!t]
 \centering
 \def\tikzwidth{0.75\textwidth}
@@ -502,39 +524,28 @@ The last step is to replicate the noise of the image setup. To account for this 
 \label{fig:com_halo}
 \end{figure}
 % 
-For huge volumes that are larger than the locally optimal shared memory size, the calculation must be split into several physical \acp{CPU} or \name{computation nodes}.
-For this purpose \mpi{} is used.
-A method is implemented that automatically divides the volume along the $x$ axis and $y- axis$ into blocks with minimal surface area (see \cref{fig:com_halo}).
-This is important for the following simulation step (see \cref{sec:simulation}).
-Each \mpi{} process can then create a discretized sub-volume as if it were the hole volume.
-However, each sub-volume has an additional voxel along the $x$ and $y$ axis for later communication purposes as \name{halo}. (see \cref{sec:simulation}).
+This would mean a huge amount of communications, which are relativly slow.
+The solution is a so called \name{halo}.
+This is a commenly used concept, where the borders (in this case a volume) are enlarged by a a specific size (in this case 1 voxel) so that the same information of the shared reagions is available everywhere (see \cref{fig:com_halo}).
+% 
+\begin{figure}[!t]
+\centering
+\includegraphics[width=0.5\textwidth]{example-image-a}
+\caption{light send to another node}
+\label{fig:com_halo_light}
+\end{figure}
+Now the light beam can be communicated when it leaves the local volume to the next one (see \cref{fig:com_halo_light}).
+This is also the reason, why the surface area is minimized, so that the number of communications is also minimized.
+\\
+To even more speed up the communication process, all leaving light beams are first stored locally in a communication buffer, and only after all local light beams were processed, the buffer will be communicated to the neighbors.
+This ensure a minimal communication cost.
+The main light beam algorithm loop is then started again on all \mpi{} ranks for the communicated light beams.
+This is repeated until no more communications were necessary.
+\par
+% 
 Each \mpi{} process can additionally use \openmp{} to create multiple threads for efficient use of shared memory if the architecture supports it.
 % 
+\par
+\noindent\rule{\textwidth}{2pt}
+\par
 % 
-% 
-\section{Analysis}
-% 
-The same algorithms are implemented as in the \ac{3D-PLI} routine pipeline \dummy[-> theory]{}.
-This are the following.
-% 
-\begin{itemize}
-  \item Fourie Analysis: resulting in the three image modalities: transmittance, direction and retardation \dummy{}. 
-  \item Tilting Analysis: implementation of the \ac{ROFL} algorithm by \cite{Schmitz2018} \dummy{}. 
-  \item \ac{FOM} \dummy{}. 
-\end{itemize}
-% 
-% \section{Pipeline}
-% % 
-% \begin{lstfloat}[!tb]
-% \centering
-% \scalebox{0.75}{
-% \begin{minipage}{\the\textwidth}
-% \lstinputlisting[style=python]{code/pipeline.py.tex}
-% \end{minipage}}
-% \caption[simpli pipeline]{Pipeline}
-% \label{alg:Pipeline}
-% \end{lstfloat}
-% % 
-% A pipeline code is implemented which combines all steps above (see \cref{alg:Pipeline}).
-% It allows by minimal ... a fully run of the simulation as close to the \ac{3D-PLI} setup and its analysis pipeline.
-% All results can be accessed and be stored inside a \textit{h5} container file.
