@@ -469,6 +469,22 @@ Mathematically it measures the same signal.
 A difference is that the optical path is in reverse to the \ac{LAP} system.
 Since there is a mirror in the path, the image is flipped again so that the coordinate systems stays the same (see \cref{fig:pli_detail}).
 % 
+\par
+% 
+\todo{check}
+The final image is taken by a camera, which \dummy{} a \ac{CCD} sensor.
+Generaly \ac{CCD} sensor consits out of an array of capacitors.
+In each capacitor an electric charge will be stored, set free by an incoming photons.
+After a read out process, which also contains a electric gain, the resulting values can be stored as an image.
+This process has two major noise parts. The first is the electic charge.
+Its value is, as long as it is not saturated, linear correlated with the number of photons.
+However internal noise like thermal, and a each photon statistically charges a number of electrons, the resulting capacity varies.
+The second major noise comes from the gain process.
+Here the electric voltage will be gained before a analog digital read out.
+This process is also strong linear correlated around a operational point.
+However due to the nature of the underlining circuit, i.e. usually transistors and their power source, the resulting value can vary.
+All noise sources combined yield to an poison distributed noise, to too the nature of digital values.
+% 
 \subsection{Signal}
 % 
 From the M\"{u}ller Matrices (\cref{sec:Mueller-Stokes}) as shown in \cite{MenzelMaster,MenzelDissertation}, that the intensity signal, measured by the \ac{CCD}-sensor, follows a sinusiodal curve:
@@ -618,6 +634,20 @@ For the wavelength used in \ac{3D-PLI} with $\lambda = \SI{525}{\nano\meter}$ an
 \label{fig:rayleigh}
 \end{figure}
 % 
+\itodo{check} 
+% 
+To account for the optical setup, three things have to be done.
+\paragraph{Bluring}
+The optical resolution the light rays have to be blurred.
+This is classically done via a 2d gaussian convolution:
+
+\paragraph{Sampling}
+Since the number and final position of the light rays is according to the voxels, all intensities of an image pixel have to be combined.
+Here it is done via a mean value sampling.
+This in contrast to resizing, does not interpolates the image.
+% 
+\paragraph{Noise}
+The last step is to replicate the noise of the image setup. To account for this a noise model has to be applied to each image pixel. \cite{Wiese:887678} showed that this can be done via a poisson/gaus model.
 % 
 % 
 % 
