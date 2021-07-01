@@ -118,7 +118,7 @@ Among other things, connections that are not needed are also deleted during earl
 % 
 Density of axons \dummy{}.
 Its diameter ranges from about $\SI{0.5}{\micro\meter}$ to several $\si{\micro\meter}$ (see \cref{tag:axonDiameter}).
-The axon is surrounded by a myelin layer, a lipid layer structure composed of nearby olegodendrides.
+The axon is surrounded by a myelin layer, a lipid layer structure composed of nearby olegodendrides (see \cref{fig:human-brain}).
 This environment electrically insulates the axon.
 This improves the speed of propagation of the electrical action potential along the axon and also its signal strength.
 There are many different types of axons.
@@ -127,10 +127,6 @@ The high density of axons and myelin makes the brain, where the axons are locate
 This is where this structure of the brain gets its name \ac{WM} from.
 The outer cell body layer is called \ac{GM}.
 This is even more visible in a Nissle stain, where the neurons absorb light (see \cref{fig:coronalStained}).
-\par
-% 
-\par
-\noindent\rule{\textwidth}{2pt}
 \par
 % 
 % 
@@ -148,20 +144,20 @@ This is even more visible in a Nissle stain, where the neurons absorb light (see
     \subcaptionbox{}[.49\textwidth]{
         \includegraphics[width=0.45\textwidth]{dev/brain/auto_seg_axon_1.png}}
 	\caption{Automatic segmentet nerve fiber tissue from an electron microscopy \cite{Abdollahzadeh2019}. }
-% 	\label{fig:brain_sectioning}
+	\label{fig:elecMic}
 \end{figure}
 % 
-Since this \ac{WM} has such a high density of fibers (up to billion in the corpus calosum) it is even under a microscope nearly impossible to investigate single fiber tracts through the brain.
-One approach is a myelin staining (see \cref{fig:brainMyelinStain}).
-Here nerve fibers which are myelinated are absorbing light (contrast).
-Individual nerve fibers can be tracked inside the section.
-However already for "smaller" nerve fiber bundles individual nerve fibers are lost.
-Especially for dense white matter, no more information can be obtained.
-It has also the disadvantage that no 3d orientation information can be easily mapped.
-\Cref{fig:brainMyelinStain} shows a section with this technique inside the human thalamus.
-It shows different kind of organisations of the nerve fibers.
-Nerve fiber bundles are visible (orange) as well as net structures inside the \ac{GM}.
-Latter are present to connect the nerve cells with each other inside the \ac{GM}, while the nerve fiber bundles let the axons reach there target area.
+Because this \ac{WM} has such a high density of fibers, up to billions in the corpus calosum, which connects the left and right brain hemisphere, it is almost impossible, even under the microscope, to examine individual fiber tracts through the brain without additional aids.
+One approach is myelin staining (see \cref{fig:brainMyelinStain}).
+Here, nerve fibers that are myelinated absorb more light than their surroundings, resulting in high contrast.
+Thus, even individual nerve fibers can be followed in section.
+However, individual nerve fibers are already lost in smaller nerve fiber bundles.
+Especially in dense white matter, information about the individual nerves can no longer be obtained.
+It also has the disadvantage that no 3d orientation information can be easily determined.
+\cref{fig:brainMyelinStain} shows a section using this technique in the human thalamus.
+It shows different ways of organizing the nerve fibers.
+Both nerve fiber bundles (orange) and network structures within the \ac{GM} are visible.
+The latter are present to connect the nerve cells within the \ac{GM}, while the nerve fiber bundles allow the axons to reach their target area.
 \par
 % 
 \todo{klinger section}
@@ -188,28 +184,31 @@ Latter are present to connect the nerve cells with each other inside the \ac{GM}
 	\label{fig:brainMyelinStain}
 \end{figure}
 % 
-Another tequnique is \ac{TPFM}. 
-\cref{fig:brainTPFM} shows a measurement after \ac{3D-PLI} with the \ac{MAGIC} protocol.
-This allows fluorescence measurments of the myelin which appears in \ac{3D-PLI} sections after PBS washing \cite{Costantini2021}.
+Another technique is \ac{TPFM}. 
+\cref{fig:brainTPFM} shows a measurement after \ac{3D-PLI} using the \ac{MAGIC} protocol.
+This allows fluorescence measurements of myelin. The fluorescence arises after the \ac{3D-PLI} sections are \cite{Costantini2021} washed with \ac{PBS}.
 The figure shows the 3d structure of (species, region).
-In the lower left part of the volume \ac{WM} is present. 
-The border between \ac{WM} and \ac{GM} is in the upper left to the lower right image.
-In the upper right corner \ac{GM} is present with individual nerve fibers as well as nerve fiber bundles.
+\ac{WM} is present in the lower left part of the volume. 
+The boundary between \ac{WM} and \ac{GM} is in the upper left to lower right figure.
+In the upper right corner, \ac{GM} is present with both single nerve fibers and nerve fiber bundles.
 \par
 % 
-These exemplary data indicate the extreme complexity.
-There are a lot more data available.
-One comon teqchnique are electorn microscope data.
-However the necesarry of a vacuum let the nerve fibers dry out and deform their structure significantly.
+Another technique is electron microscopy (see \cref{fig:elecMic}).
+It shows the tissue with a very high resolution, because the electrons have a much smaller wavelength.
+The problem with this technique with tissue is that the measurement must take place in a vaccum, which allows the tissue to dry out.
+This causes deformations.
+Nevertheless, \cref{fig:elecMic} shows in high detail the layered structure that occurs in the white matter with nerve fibers of different myelin thickness.
 \par
 % 
-For different species with smaller brains, like rodents, imaging techniques like \textit{clearing} have a high potential and could already been used to map an (entire?) brain with axons.
-However for a more complex and larger brain, this is up to this point not achieved.
-Polarized light imaging, which uses the birefringence property of myelin, is a promising technique, already developed around the 1900, which allows to map the orientation of axons in a brain section.
-This technique has, as all microscopic techniques which are using sections, the disadvantage, that the brain has to be cut and measured afterwards.
-There are alternative methods like (OCT? \cite{Aumann2019}), which measures the brain section first, and then cuts the upper layer away, and measures the next section afterwards. It uses the reflection of the light than rather the transmitted light through the tissue.
-However up to this point no entire large brain like a human brain was measured in its entirety.
-Since \ac{3D-PLI} uses the already known sectioning techniques, which are developed since several decades, it can use this knowledge to its advantage.
+For different species with smaller brains, such as rodents, imaging techniques like \textit{clearing} [\dummy{}] have a high potential and could already be used to image a (whole?) brain with axons.
+However, this has not yet been achieved for a more complex and larger brain.
+Polarized light imaging (PLI), which uses the birefringence property of myelin, is a promising technique developed as early as 1900 that allows the orientation of axons to be mapped in a brain slice [\dummy{}].
+This technique, like most microscopic techniques that use sections, has the disadvantage that the brain must be sectioned and then measured.
+The cutting distorts the tissue and it must later be aligned in a nontrivial way to restore a complete brain dataset.
+This process is also known as image registration.
+There are alternative methods such as (OCT? \cite{Aumann2019}), which first measures the brain slice, then cuts away the top layer, and then measures the next slice. It uses the reflection of light rather than the light transmitted through the tissue.
+However, no whole cerebrum such as a human brain has been measured in its entirety up to this point.
+Since \ac{3D-PLI} uses the already known sectioning techniques that have been developed for several decades, it can use this knowledge to its advantage.
 % 
 %
 \section{Sectioning}
@@ -222,9 +221,13 @@ Since \ac{3D-PLI} uses the already known sectioning techniques, which are develo
 	\label{fig:brain_sectioning}
 \end{figure}
 % 
+\par
+\noindent\rule{\textwidth}{2pt}
+\par
+% 
 For the cutting process, the tissue, \ie{} the brain, has to be frozen and imbedded into a solid material.
 One commen material is parafine, however this is not possible for \ac{3D-PLI} \dummy[why?]{}.
-For \ac{3D-PLI} it very is important, that the tissue does not build up crystal structures, because these are also birefringence.
+For \ac{3D-PLI} it very is important, that the tissue does not build up crystal structures, \eg{} from sugar mole cules, because these are also birefringence.
 Therefore the tissue is first ... into a ... liquid ...
 After a time of a few months the tissue will then be frozen into a \SI{-70}{\degree}.
 Then the frozen tissue can be fixated with a liquid glue on a cutting plate.
@@ -304,3 +307,7 @@ g-ratio
 % % 	\label{fig:brain_sectioning}
 % \end{figure}
 %
+% 
+% \par
+% \noindent\rule{\textwidth}{2pt}
+% \par
