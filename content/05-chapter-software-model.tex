@@ -2,62 +2,58 @@
 \chapter{Nerve fiber modelling}
 \label{chap:sof:modelling}
 % 
-% Interesse wecken: warum braucht man es, warum ist es kompliziert, lösbare probleme
 \par
-In \cref{chap:neuro} the structure of nerve fibers as well as the macroscopic structure of \ac{WM} was described.
-The question is, how to represent such a structure in a computer algorithm?
-For simple fiber configurations, this can be rather simple.
-However it could already been shown, that in \dummy{} \cite{MenzelDissertation} irregular, non symmetrically nerve fiber configurations are essential to acquire a realistic results without diffraction pattern.
-This means, that any kind of pattern which can exists, should ideally be representable by an representation.
+In \cref{chap:neuro}, both the structure of nerve fibers and the macroscopic structure of \ac{WM} were described.
+The question is how to represent such a structure in a computer algorithm.
+For simple fiber configurations, \eg{} parallel straight nerve fiber, this may be quite straightforward.
+However, it has already been shown that in \dummy{} \cite{MenzelDissertation} irregular, non-symmetric nerve fiber configurations are necessary to obtain a realistic result without diffraction patterns.
+This means that any type of pattern that may exist should ideally be representable.
 \par
 % 
 Many solutions are already available.
-One common comes from visualization.
-A robe or fiber, \ie{} tube object, is defined by a trajectory with a radius.
-From this a surrounding mesh is generated.
-In visualization the mesh is used to apply textures. 
-However the same meshes are also used in Monte Carlo \ac{dMRI} simulations \cite{Ginsburger2019,ginsburgerDis2019}.
-Here the meshes help to calculate, if a water molecule travels through the surface of a nerve fiber, \ie{} the surface of the mesh.
-This representation is however very costly, since the number of triangles, which are decoded in the mesh, has to be quite high.
-Otherwise the accuracy is lost.
+A common one originates from visualization.
+A robe or fiber, \ie{} pipe object, is defined by a trajectory with a radius.
+From this, a surrounding mesh is generated.
+In visualization, the mesh is used to apply textures and thus represent a surface. 
+The same meshes are also used in Monte Carlo simulations \ac{dMRI} \cite{Ginsburger2019,ginsburgerDis2019}, among others.
+In this simulation, the meshes help to calculate whether a water molecule travels through the surface of a nerve fiber, i.e., the surface of the mesh.
+However, this representation is very computationally expensive because the number of triangles that must be present in the mesh are quite high for usable accuracy.
 \par
 % 
-An quite more important task is that the nerve fibers does not overlap each other.
-For this purpose either the user has to define such structure in advance, or a computer algorithm has to build such structures from an input.
-Thinking of the immense amount of configuration possibilities nerve fiber can have, even in a small volume, the task is for a user except for trivial configurations nearly impossible to solve.
+An even more important task is that the nerve fibers do not overlap each other.
+
+In simulations where the wave nature of light is modeled, this leads to unreliable results \cite{MenzelDissertation}.
+To achieve this, either the user must define such a structure in advance, or a computer algorithm must build such structures from input parameters.
+Considering the immense amount of configuration possibilities that nerve fibers can have even in a small volume, the task is almost impossible for a user to solve except for trivial configurations.
 \par
 % 
-The same is still true for a computer algorithm.
-One could \eg{} write an algorithm which define a single fiber in a volume, and then placing the next one but making sure that no one overlaps and so on.
-This works up to a certain point fine.
-Even if an algorithm finds always a solution to find a path through an already filled volume (which is probably not analytical possible), At some point the volume seems full, but still has a lot of free space in between the fibers.
-Of course one can minimise this behavier, \eg{} trying to place almost parallel fibers, however looking again at real tissue data (\cref{fig:brainTPFM} \dummy{}) this is not the case.
-Even for a fiber bundle the fibers are packed so densely, that one cannot simple add another fiber in such a way, that over time (\ie{} adding further fibers) volume is wasted.
+The same is true for a computer algorithm.
+An algorithm could be written that defines a single fiber in a volume and then places the next one, but makes sure that none overlaps and so forth.
+This works well up to a point.
+Even if an algorithm always finds a solution to find a path through an already filled volume (which is probably not analytically possible), at some point the volume appears to be full, but still has a lot of free space between fibers.
+Of course, you can minimize this behavior by trying to place nearly parallel fibers, but again, if you look at real tissue data (\cref{fig:brainTPFM} \dummy{}), this does not reflect reality.
+Even in a fiber bundle, the fibers are so densely packed that one cannot simply add another fiber in a way that wastes volume over time (\ie{} adding more fibers).
 \par
 % 
-The solution found during this thesis is , place the nerve fibers in any way the user want to, without the constraint that they are not allowed to overlap each other.
-Subsequently, however, the overlap must be removed.
-The idea is quite forward.
-Check all fibers for collision with each other.
-If a collision occurs, try to remove it by moving the coliding parts slidly away from each other.
-Repeat this step until all collisions are solved.
+The solution found in this work is to place the nerve fibers in an arbitrary manner, without the restriction that they must not overlap each other.
+However, the overlap must then be removed.
+The idea is quite simple.
+Check all the fibers for collisions with each other.
+If a collision occurs, try to remove it by moving the colliding pieces slightly away from each other.
+Repeat this step until all collisions are resolved.
 \par
 % 
-This idea \cite{Matuschke2019} with all its necessary requirements is in detail described in the following chapter.
-First the representation of a nerve fiber is defined in such a way, that it already takes into account to be as performant as possible for the collision process.
-After this building functions, which help the user to define fastly a volume with fibers, are described.
-Last the solving algorithm is explained in detail with its parallel running components.
-Additionally another approach based on this idea and develop during this thesis with colleges from \ac{dMRI} is explained in detail as well.
-It has also a focus on placing nerve cells like astrocytes or olegodendrocytes with their (armen) in the volume.
-The cooperation is quite obvious since both simulation techniques investigate the same kind of tissue models.
-Since these kind of models are focused on non overlapping tube like structures, they can also applied to other fiber like structures like muscle tissue for example.
+This idea \cite{Matuschke2019} with all its necessary requirements is described in detail in the following chapter.
+First, the representation of a nerve fiber is defined in a way that it already takes into account to be as performant as possible for the collision process.
+Then, building functions that help the user to quickly define a volume with nerve fibers are described.
+Lastly, the solution algorithm for resolving the collisions with its parallel components is explained in detail.
+In addition, another approach based on this idea and developed in this work with colleagues from \ac{dMRI} is also explained in detail.
+This one also focuses on placing neurons such as astrocytes or olegodendrocytes with their (arms) in the volume.
+The collaboration is quite obvious since both simulation techniques study the same type of tissue models.
+Since these types of models are focused on non-overlapping tubular structures, they can also be applied to other fibrous structures such as muscle tissue.
 \par
 % 
 All described algorithms here are part of the toolbox \ac{fastPLI} \cite{Matuschke2021}, which is described in detail in \cref{chap:Software}.
-% 
-\todo{focus von effizienz erwähnen}
-\todo{wichtigkeit von irregulariäten}
-\todo{kooperationen besser herrausarbeiten}
 % 
 % 
 % 
