@@ -38,14 +38,14 @@ The second equation states, magnetic monopoles does not exists. The basic entity
 The third and forth equation show the interconnection of the electric and magnetic fields in space and time.
 A change in the electric field yields to a magnetic field and vice versa.
 Equation forth additional indicates the creation of a magnetic field from a electric current $\vec{j}$.
-The maxwell equation fullfill the continoiut ... $\divergence j + \frac{\partial \rho}{\partial t} = 0$.
-This means that neither an electric of magnetc field can be created without either an electric current or a change of electric potential.
+The maxwell equation fullfill the continuity equation $\divergence j + \frac{\partial \rho}{\partial t} = 0$.
+This means that neither an electric of magnetic field can be created without either an electric current or a change of electric potential.
 %
 % \par
 % 
 \subsection{EM in a vacuum}
 % 
-In a vacuum this simplifies with $\rho = 0$ and $\vec{j} = \vec{0}$ to:
+In a vacuum \cref{eq::maxwell_general} simplifies with $\rho = 0$ and $\vec{j} = \vec{0}$ to:
 % 
 \begin{align}
 \begin{split} \label{eq::maxwell_vacuum}
@@ -64,7 +64,7 @@ With
 \end{split}
 \end{align}
 % 
-the identity $\nabla \times \left( \nabla \times \vec{A} \right) = \nabla(\nabla \cdot \vec{A}) - \nabla^{2}\vec{A}$ and $\mu_0\varepsilon_0 = \frac{1}{c^2}$, with $c$ as the speed of light\footnote{can be derived from Maxwells equation and Lorentz force in a vacuum}, this further simplifies to:
+the identity $\nabla \times \left( \nabla \times \vec{A} \right) = \nabla(\nabla \cdot \vec{A}) - \nabla^{2}\vec{A}$, $\mu_0\varepsilon_0 = \frac{1}{c^2}$ and $c$ as the speed of light\footnote{can be derived from Maxwells equation and Lorentz force in a vacuum}, this further simplifies to:
 % 
 \begin{align}
 \begin{split} \label[pluralequation]{eq::maxwell_wave_equations}
@@ -125,7 +125,7 @@ with $\vec{k}$ as Wave vector pointing into the travel direction of the light wa
 \begin{figure}[!t]
 \centering
 \setlength{\tikzwidth}{\textwidth}
-\inputtikz{gfx/pli/polarization_state}
+\inputtikz[true]{gfx/pli/polarization_state}
 \label{fig:polarization_state}
 \caption{Illustration of light polarization state. Unpolarized light goes throug a linear polarizer which polarizes the light in one direction (w.l.o.g. $E_x$ and $E_y$ in phase). Afterwords it travels though a quarter wave retarder, which turn linear polarized light (of a specific wave length) into circular polarized light, where w.l.o.g. $E_x$ and $E_y$ are $\pi/2$ phase}
 \end{figure}
@@ -156,6 +156,7 @@ Additionally the states can be describe by the Jones or Stokes calculus, later d
 % 
 \subsection{Light in medium}
 % 
+\todo{herleiten}
 The Maxwell equations in \dummy{} are described above. They can be solved analog to \dummy{}. This yields to some special behavior, \eg{} the magnetic and electric field component get out of phase.
 However here only the two properties of absorption and diffraction are described.
 They derivation can be found \eg{} \cite{demtroeder2, Fliebach2012}.
@@ -179,8 +180,12 @@ Beersche law of absorption with $\mu = \frac{4\pi \kappa}{\lambda_0}$ where $\ka
 \caption{Illustration of refraction.}
 \end{figure}
 % 
-Refraction is the property of light to change direction as it passes from one medium to another. This can be shown by using the full Maxwell equations  for non-conductive material, \ie{} $\vec{j} = 0, \rho = 0$, that the differential equating consist out of a primary wave with from atomic medium induced secondary waves, which leads to a reduction of the velocity of the resulting wave. Mathematically this can be described by a complex number $n = c' / c$.
-Using this relationship at a boundary surface between two media, one can show that the incident light beam splits into a reflecting and transmitting light wave. The reflecting light wave has the same angle as the incident light beam relative the the surface normal. The transmitting light beam however due to the reduction of the velocity, changes its direction described by the Snellius law
+Refraction is the change of direction of light as it passes from one medium to another.
+This can be shown by using the full Maxwell equations  for non-conductive material, \ie{} $\vec{j} = 0, \rho = 0$, that the differential equating consist out of a primary wave with from atomic medium induced secondary waves, which leads to a reduction of the velocity of the resulting wave.
+Mathematically this can be described by a complex number $n = c' / c$.
+Using this relationship at a boundary surface between two media, one can show that the incident light beam splits into a reflecting and transmitting light wave.
+The reflecting light wave has the same angle as the incident light beam relative the the surface normal.
+The transmitting light beam however due to the reduction of the velocity, changes its direction described by the Snellius law
 \begin{align}
     n_0 \sin \alpha = n_1 \sin \beta
 \end{align}
@@ -196,7 +201,7 @@ Using this relationship at a boundary surface between two media, one can show th
 &= \operatorname{Re}\! \left[\vec{E}_0 \cdot e^{i\, (2\pi(n + i\kappa)z/\lambda_0 - \omega t)}\right] \\
 &= e^{-2\pi \kappa z/\lambda_0} \operatorname{Re}\! \left[\vec{E}_0 \cdot e^{i\, (kz - \omega t)}\right]
 \end{split}
-\end{align}\todo{?}
+\end{align}\todo{?, was macht das hier}
 % 
 % 
 % 
@@ -205,37 +210,37 @@ Using this relationship at a boundary surface between two media, one can show th
 \begin{figure}[!t]
 \centering
 \setlength{\tikzwidth}{\textwidth}
-\inputtikz{gfx/pli/retardation}
-\caption{Illustration of retardation.}
+\inputtikz[true]{gfx/pli/retardation}
+\caption{Illustration of retardation. The linear $\SI{45}{\degree}$ polarized light wave is decomposed into the $x$ and $y$ component in the birefringend medium. The y compoinent travels faster than the x component. Therefore a pahse shift $\phi$ betwen both components occure. This leads in the case of a $\lambda/4$ retarder to a circulalar polarized light wave. }
 \label{fig:optic_retardation}
 \end{figure}
 % 
-\begin{figure}[!t]
-\centering
-\subcaptionbox{}[.49\textwidth]{
-\setlength{\tikzwidth}{0.49\textwidth}
-\inputtikz{gfx/pli/ellipsoid_a}}
-\subcaptionbox{}[.49\textwidth]{
-\setlength{\tikzwidth}{0.49\textwidth}
-\inputtikz{gfx/pli/ellipsoid_b}}
-\caption{birefringence elipsoid}
-\label{fig:index_elipsoid}
-\end{figure}
+% \begin{figure}[!t]
+% \centering
+% \subcaptionbox{}[.49\textwidth]{
+% \setlength{\tikzwidth}{0.49\textwidth}
+% \inputtikz{gfx/pli/ellipsoid_a}}
+% \subcaptionbox{}[.49\textwidth]{
+% \setlength{\tikzwidth}{0.49\textwidth}
+% \inputtikz{gfx/pli/ellipsoid_b}}
+% \caption{birefringence elipsoid}
+% \label{fig:index_elipsoid}
+% \end{figure}
 % 
 Material can have a different refractive index depending on the relative orientation and polarization of the light beam.
 This property is known as birefringence.
 The refractive index can be described as the refractive index $n_o$ and extraordinary  $n_e$.
 Since these two are perpendicular to each other, one can split the light beam into the same perpendicular parts and describe each by its own.
-These two light beams, except for the trivial case of a light beam is perpendicular to the surfave, have a different direction.
-However for small relative length (hängt von n ab, bzw der phasenänderung) the two light beams leave the material at the same point and recombined at the end.
+These two light beams have a different direction, except for the trivial case of a light beam is perpendicular to the surface.
+For small relative length (hängt von n ab, bzw der phasenänderung) the two light beams leave the material at the same point and recombined at the end.
 The change of phase is called birefringence and is described by the difference between the .. and ...
 % 
 \begin{align}
     \Delta n = n_e - n_o \> .
 \end{align}
 % 
-This .. can be visualized by the index ellipsoid \cref{fig:index_elipsoid}.
-The change of the amplitude and phase can be described by the following two vector matrices descriptions.
+% This .. can be visualized by the index ellipsoid \cref{fig:index_elipsoid}.
+% The change of the amplitude and phase can be described by the following two vector matrices descriptions.
 % 
 % 
 % 
@@ -257,17 +262,17 @@ Optical elements, which changes the polarization state, such as a polarization f
 \begin{pmatrix}
 1 & 0 \\ 0 & 0
 \end{pmatrix}
-, \,
+, \enspace
 \mat{P}_y = 
 \begin{pmatrix}
 0 & 0 \\ 0 & 1
 \end{pmatrix}
-, \,
+, \enspace
 \mat{M} =
 \begin{pmatrix}
 e^{i \varphi_x} & 0 \\ 0 & e^{i \varphi_y}
 \end{pmatrix}
-, \,
+, \enspace
 \Lambda_{1/4}=
 e^{\frac{i \pi}{4}}
 \begin{pmatrix}
@@ -281,7 +286,7 @@ A rotation of an optical element can be achieved by a 2d rotation matrix $\mat{R
 \begin{align}
 \begin{split}
 \mat{M}(\theta )=\mat{R}(\theta )\cdot\mat{M}\cdot\mat{R}(-\theta )
-, \>
+, \enspace
 \mat{R}(\theta ) = 
 \begin{pmatrix}
 \cos \theta & -\sin \theta \\
@@ -295,7 +300,7 @@ A rotation of an optical element can be achieved by a 2d rotation matrix $\mat{R
 \subsection{M\"uller-Stokes}\label{sec:Mueller-Stokes}
 \label{sec:mueller_stokes}
 % 
-Analog to \cref{sec:jones} the M\"uller-Stokes formalism, described by George Gabriel Stokes in 1852, also describes the polarization state (how good is it \dummy{}) of a light beam.
+Analog to \cref{sec:jones} the M\"uller-Stokes formalism, described by George Gabriel Stokes in 1852, also describes the polarization state of a light beam.
 However it does not use the absolute .. but the relative polarization between both components:
 % 
 \paragraph{Stokes vector}
@@ -314,7 +319,7 @@ S_3 &= I p \sin 2\chi
 & \equiv \langle E_a^{2} \rangle - \langle E_b^{2} \rangle \\
 & \equiv  \langle E_l^{2} \rangle - \langle E_r^{2} \rangle
 \end{split}
-, \,
+, \enspace
 \vec{S} =
 \begin{pmatrix} S_0 \\ S_1 \\ S_2 \\ S_3\end{pmatrix}
 \end{align}
@@ -330,9 +335,9 @@ S_3 &= I p \sin 2\chi
 % \end{split}
 % \end{align}
 % 
-Therefore the phase can not be described anymore.
+Therefore the phase can not be described anymore. \todo{variablen definieren}
 However the relative phase information is stored and can be used to describe also polarization states of polarization filters, which can not be described by Jones.
-Aanlog to Jones one can formulate the matrices for the optical components:
+Analog to Jones one can formulate the matrices for the optical components:
 % 
 \paragraph{Linear Polarizer}
 \begin{align}
@@ -343,7 +348,7 @@ Aanlog to Jones one can formulate the matrices for the optical components:
     0 & 0 & 0 & 0 \\
     0 & 0 & 0 & 0
   \end{pmatrix}
-, \,
+, \;
 \mat{P}_y=\frac{1}{2}
 \begin{pmatrix}
      1 & -1 & 0 & 0 \\
@@ -425,7 +430,7 @@ Analog to \dummy{} rotations are applied by
 % % 
 % \todo{why 2*dn?}
 % 
-\section{Experimental Setup}\label{sec:expSetup}
+\section{3D-PLI setup}\label{sec:expSetup}
 %
 \begin{figure}[!t]
     \captionsetup[sub]{position=top}
@@ -457,37 +462,50 @@ Analog to \dummy{} rotations are applied by
 % 	\label{fig:pli_detail}
 % \end{figure}
 %
-The \ac{3D-PLI} setup is described in \cite{Axer2011} with the tiltable light beam microscope (LMP) in \cite{Wiese:887678}.
-For the routine measurements two (three) microscope systems are currently in use.
-The first use of a high throughput microscope is the \ac{LAP} with a pixel size of about \SI{60}{\micro\meter}.\footnote{can be change by the optic also to $\SI{40}{\micro\meter}$ and $\SI{20}{\micro\meter}$, but remains for the routine measurements with $\SI{60}{\micro\meter}$.}
-It consist out of a led light source (\SI{525}{\nano\meter}), a rotatable polarization filter, a rotatable quarter wave retarder, the specimen stage, which can be tilted for oblique views, a rotatable polarizer.
-Both polarizer and quarter wave retarder are rotated at the same time.
-The both polarizers have a phase offset of $\SI{90}{\degree}$, the first polarizer and the quarter wave retarder of $\SI{45}{\degree}$ (see (see \cref{setup-lap}).
-The second system \ac{LMP3D} microscope fullfills the same measurments, however the retarder is placed after the tissue specimen and fixed with the polarizer without any rotations (see \cref{setup-pm}).
-Mathematically it measures the same signal.
-\footnote{The rotatable filters of the \ac{LAP} has the advantage, that noise like dust particles can be easy identified and removed. Since the microscop is in a more confined "box" this is not necesarry.}
-A difference is that the optical path is in reverse to the \ac{LAP} system.
-Since there is a mirror in the path, the image is flipped again so that the coordinate systems stays the same (see \cref{fig:pli_detail}).
-% 
+Three microscopic setup exists, which are based on the same physical principle \cite{Axer2011} (see \cref{fig:pli_setup}).
+Polarized light of a wavelength of \SI{525}{\nano\meter} is shine through a tissue section. A circular polarizer (a \SI{45}{\degree} oriented quarter wave retarder and polarizer) is placed behind the tissue.
+By rotating the polarizer, the change of intensity is messured by a \ac{CCD} sensor.
 \par
 % 
-\todo{check}
-The final image is taken by a camera, which \dummy{} a \ac{CCD} sensor.
-Generaly \ac{CCD} sensor consits out of an array of capacitors.
-In each capacitor an electric charge will be stored, set free by an incoming photons.
+The first optical microscope called \ac{LAP} is able to measure an entire human brain section in a single image with a pixel size of \SI{60}{\micro\meter}\footnote{By changing the optic a pixel size of $\SI{40}{\micro\meter}$ and $\SI{20}{\micro\meter}$ is also available.}.
+Also allows the tissue specimen to be tilted.
+This leads to a change of the nerve fibers orientation, which leads to an change of the measured signal.
+This change is later used to analyse the 3d orientation of the nerve fibers inside the section (see \dummy{}).
+The optical setup of the \ac{LAP} is a little bit different in the matter that the quarter wave retarder is place between the first polarizer and the tissue section and all three optical elements are rotated at the same time.
+This yields to the same results, however dust particels on one of the optical elements can easier be identified since they rotate as well.
+The other microscopes are in a closed container which protects the optical elements for pollution.
+\\
+A higher resolution microscope is the \ac{LMP} which allows to measure a tile of 2048x2048 with a pixel size of \SI{1.3}{\micro\meter}.
+By measuring the tissue with multiple overlapping images, the overlap can be used to stitch them together to a complete image.
+This setup is not able to change the light path.
+The 3d information can be estimated by analysing the distribution of the retardation and transmittance.
+However the sign of the inclination can not be identified.
+\\
+The third setup \ac{LMP3D} is able to change the light path \cite{Wiese:887678}.
+It allows this by using a conical light path.
+When using a slit, only light of a certain angle is allowed to pass through the tissue.
+By changing the position of the slit, the different light paths can be measured.
+\\
+% 
+The tilted light beam (or tissue section) is usually measured in 4 perpendicular orientations: north, east, south and west.
+\par
+% 
+The final image is taken by a camera, which uses a \ac{CCD} sensor.
+Generally a \ac{CCD} sensor consist out of an array of metal oxide semiconductor (MOS) capacitors.
+In each capacitor an electric charge will be stored, which is set free by an incoming photons in means of the photo electric effect.
 After a read out process, which also contains a electric gain, the resulting values can be stored as an image.
-This process has two major noise parts. The first is the electic charge.
-Its value is, as long as it is not saturated, linear correlated with the number of photons.
-However internal noise like thermal, and a each photon statistically charges a number of electrons, the resulting capacity varies.
-The second major noise comes from the gain process.
-Here the electric voltage will be gained before a analog digital read out.
-This process is also strong linear correlated around a operational point.
-However due to the nature of the underlining circuit, i.e. usually transistors and their power source, the resulting value can vary.
-All noise sources combined yield to an poison distributed noise, to too the nature of digital values.
+Its value is, as long as the capacitors are not saturated or gain does not exceed its limits, linear correlated with the number of photons.
+The noise of the signal comes mainly from two parts.
+The first one is thermal noise, which can lead to electric charges in the MOS capacitors.
+Secondly the gain of the signal underlays noise.
+These noise sources combined yield to an poison like distribution, due too the nature of digital positive values.
+For intensity values $>> 0$ it can be modelled by a normal distribution.
+% 
+% 
 % 
 \subsection{Signal}
 % 
-From the M\"{u}ller Matrices (\cref{sec:Mueller-Stokes}) as shown in \cite{MenzelMaster,MenzelDissertation}, that the intensity signal, measured by the \ac{CCD}-sensor, follows a sinusiodal curve:
+From the M\"{u}ller Matrices (\cref{sec:Mueller-Stokes}) as shown in \cite{MenzelMaster,MenzelDissertation}, the intensity signal, which is the first component of the Stokes vector, follows a sinusiodal curve:
 % 
 % \begin{align}
 % I = \underbrace{\frac{I_0}{2}}_{\mathclap{\mathit{transmittance}}}
@@ -504,7 +522,7 @@ I(\rho, \varphi, \alpha, d) =\frac{I_0}{2}\bigl[ \sin\bigl(2\rho - 2\varphi \big
 \end{align}
 % 
 Since \cref{eq:pli_signal} describes a sinosoidal signal, the fourier analysis is a obvious choise.
-For a discrete, aquidistant measurement of the rotation angles $\rho$, one can use the fourier series with the three coefficients to describe the signal:
+For a discrete, aquidistant measurement of the rotation angles $\rho$, one can use the fourier series with the first three coefficients to describe the signal:
 % 
 % \begin{align}
 % \begin{split}
@@ -520,9 +538,9 @@ For a discrete, aquidistant measurement of the rotation angles $\rho$, one can u
 \begin{align}
 \begin{split}
 \rho &= [\SI{0}{\degree}, \frac{1\cdot180}{N+1}\si{\degree}, \frac{2\cdot180}{N+1}\si{\degree}, ..., \frac{N\cdot180}{N+1}\si{\degree}]\\
-a_0 &= \frac{1}{N} \sum(\mathit{data})\\
-a_1 &= \frac{2}{N} \sum(\mathit{data} \cdot \sin(2 \cdot \rho)\\
-b_1 &= \frac{2}{N} \sum(\mathit{data} \cdot \cos(2 \cdot \rho)
+a_0 &= \frac{1}{N} \sum_i^N I_i\\
+a_1 &= \frac{2}{N} \sum_i^N I_i \cdot \sin(2 \cdot \rho_i)\\
+b_1 &= \frac{2}{N} \sum_i^N I_i \cdot \cos(2 \cdot \rho_i)
 \end{split}
 \end{align}
 
@@ -530,9 +548,9 @@ With these the final \ac{3D-PLI} modalities are calculated:
 
 \begin{align}
 \begin{split}
-\mathit{transmittance} &= 2 \cdot a_0\\
-\mathit{direction} &= 0.5 \cdot \atantwo(-b_1 / a_1)\\
-\mathit{retardation} &= \frac{\sqrt{a_1^2 + b_1^2}}{a_0}
+\mathit{transmittance} &= 2 \cdot a_0 -> I_0/2\\
+\mathit{direction} &= 0.5 \cdot \atantwo(-b_1 / a_1) -> \varphi\\
+\mathit{retardation} &= \frac{\sqrt{a_1^2 + b_1^2}}{a_0} -> \sin(...)
 \end{split}
 \end{align}
 % 
@@ -596,7 +614,7 @@ For single fiber paths in the \ac{GM} however this is currently an unsolved prob
 % 
 % 
 The orientation of the birefringence axis is descibed by the direction angle $\varphi$ and inclination angle $\alpha$ (see \cref{fig:sphere}).
-To be able to show a 3d information, the \textit{hsv-black} is usually shown in \ac{3D-PLI}.
+To be able to show the 3d information, the \textit{hsv-black} is usually shown in \ac{3D-PLI}.
 It color code the orientation by:
 \begin{align}
 \begin{split}
@@ -616,8 +634,10 @@ Since the orientation, unlike a vector, covers only a half sphere, the colors ar
 \label{sec:opticalResolution}
 % 
 The optical resolution of an imaging system describes the minimal size of on object which can still be resolved.
-This property is limited by aberration and diffraction which both cause a blurring of the resulting image.
-Ernst Abbe described as on of the first that the resulition corrlates with the lightwave $\lambda$: 
+This property is limited by aberration and diffraction.
+Aberration causes a blurring of the image while diffraction can lead to superimposed diffraction patterns.
+If the diffraction is caused by many small objects regarding to the resolution this also looks like a blurring.\\
+Ernst Abbe described as on of the first that the resolution correlates with the light wave $\lambda$: 
 \begin{align}
 d=\frac{ \lambda}{2 n \sin \theta} = \frac{\lambda}{2\mathrm{NA}} \> .
 \end{align}
@@ -636,34 +656,58 @@ For the wavelength used in \ac{3D-PLI} with $\lambda = \SI{525}{\nano\meter}$ an
 % 
 \itodo{check} 
 % 
-To account for the optical setup, three things have to be done.
-\paragraph{Bluring}
+To account for the optical setup, three things have to be applied to a simulated measurement.
+% 
+\paragraph{Blurring}
 The optical resolution the light rays have to be blurred.
-This is classically done via a 2d gaussian convolution:
-
+This is classically done via a 2d Gaussian convolution:
+\begin{align}
+    (f * g)(x) = \int f(\tau)g(x-\tau)d\tau
+\end{align}
+% 
 \paragraph{Sampling}
 Since the number and final position of the light rays is according to the voxels, all intensities of an image pixel have to be combined.
-Here it is done via a mean value sampling.
+Here it is done via a mean value sampling:
+\begin{align}
+    \hat{I}(n,m) = \sum_{i=n \cdot dx}^{(n+1) \cdot dx-1}\sum_{j=m \cdot dy}^{(m+1) \cdot dy-1} I(i,j)
+\end{align}
 This in contrast to resizing, does not interpolates the image.
 % 
 \paragraph{Noise}
-The last step is to replicate the noise of the image setup. To account for this a noise model has to be applied to each image pixel. \cite{Wiese:887678} showed that this can be done via a poisson/gaus model.
+The last step is to replicate the noise of the image setup.
+To account for this a noise model has to be applied to each image pixel.
+\cite{Wiese:887678} showed that this can be done via a normal distribution.
+% 
+\begin{align}
+    I = I + normal(\sigma, \mu)
+\end{align}
+% 
+\par
+% 
+All three effects must be characterized for the system being simulated.
 % 
 % 
 % 
 \section{Computational speedup techniques}
 % 
-Among other already mentioned techniques, \eg{} the use of an octree, two main optimisation techniques are used to speed up the process., be placed before a dash. Whe
+Among other specific techniques described in the algorithm chapters \cref{chap:sof:modelling,cha:sof:simulation}, one major technique was utilized to speed up the calculations.
+\par
 % 
-\paragraph{Memory alignment}\todo{more general, myby fastpli package}
-The \code{std::vector} has the advantage that the data is linear in memory.
+The computational heavy code is written in \cpp{}.
+There the \code{std::vector} has the advantage that the data is linear in memory.
 Modern \acp{CPU} have a built-in method called \say{ache prefetching}.
 Data must be prepared and sent from the \ac{RAM} to the cache of the \acp{CPU}.
 This takes time.
 The main advantage of the cache is that it is very fast.
-However, since it must be very close to the \ac{CPU}, the cache is very fast. (in modern systems the speed is already limited by the speed of light) its size is very limited (usually around $\si{\mega\byte}$).
+Even the distance is so small, that the speed of light is no longer limiting the  \acp{CPU} connection to the cache.
+It is constructed inside the \ac{CPU}.
+Therefore its size is very limited , usually around $\si{\mega\byte}$.
 The prefetcher is an ingenious directive, which not only obtains the item at address $i$ in memory, but also the item next to it ($i+1$ or $i-1$ depending on the algorithm).
 Since many algorithms pass through arrays, the next item to be calculated is usually the next (or previous) item.
 Therefore the time needed to copy the data into the cache and prepare it is reduced.
 It can be shown that for linear operations on the memory the cache prefetcher reduces the time so much that it behaves as if the \ac{CPU} has an infinite cache.
+\par
 % 
+Another technique is the use of modern compiler open source compiler like \name{clang} or \name{gcc}.
+They have optimization algorithm build in, which optimizes the code to the architecture of the machine.
+For example if the number of iterations is known at compile time a for loop can be \name{unrolled} to speed up the calculations, because it does not have to check anymore, if the conditions are fulfilled.
