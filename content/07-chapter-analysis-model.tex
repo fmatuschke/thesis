@@ -341,6 +341,67 @@ Since all data is linear in memory, the cpu can use the full potential of the pr
 The results show, that especially to increase the volume size, other algorithms are needed. 
 Here the \ac{GPU} seems to be the hardware of choice.
 % 
+% 
+% 
+\section{Repo Messungen}
+% 
+% 90.0
+% 2.3 +- 0.0, 1.2 +- 0.0, 1.4 +- 0.0, 2.1 +- 0.0, 3.0 +- 0.1,
+% 19.6 +- 0.3, 13.8 +- 0.1, 9.5 +- 0.2, 16.1 +- 0.3, 26.2 +- 0.5,
+% 2.3 +- 0.0, 1.2 +- 0.0, 1.4 +- 0.0, 2.1 +- 0.0, 3.0 +- 0.1,
+% 19.6 +- 0.3, 13.7 +- 0.1, 9.5 +- 0.2, 16.1 +- 0.3, 26.1 +- 0.5,
+% 0.0
+% 2.3 +- 0.0, 1.2 +- 0.0, 1.4 +- 0.0, 2.1 +- 0.0, 3.0 +- 0.1,
+% 6.5 +- 0.2, 5.7 +- 0.2, 3.0 +- 0.1, 5.0 +- 0.1, 8.0 +- 0.3,
+% 0.0 +- 0.0, 0.0 +- 0.0, 0.0 +- 0.0, 0.0 +- 0.0, 0.0 +- 0.0,
+% 0.0 +- 0.0, 0.0 +- 0.0, 0.0 +- 0.0, 0.0 +- 0.0, 0.0 +- 0.0,
+% 
+% (mean, std, 25\%, 50\%, 75\%)\\
+% \paragraph{parallel fibers}: \\
+% (2.3 +- 0.0, 1.2 +- 0.0, 1.4 +- 0.0, 2.1 +- 0.0, 3.0 +- 0.1) -> (6.5 +- 0.2, 5.7 +- 0.2, 3.0 +- 0.1, 5.0 +- 0.1, 8.0 +- 0.3,)\\
+% \paragraph{crossing fibers}: \\
+% first fibers: \\
+% (2.3 +- 0.0, 1.2 +- 0.0, 1.4 +- 0.0, 2.1 +- 0.0, 3.0 +- 0.1) -> (19.6 +- 0.3, 13.8 +- 0.1, 9.5 +- 0.2, 16.1 +- 0.3, 26.2 +- 0.5)\\
+% and second pop:\\
+% (2.3 +- 0.0, 1.2 +- 0.0, 1.4 +- 0.0, 2.1 +- 0.0, 3.0 +- 0.1) -> (19.6 +- 0.3, 13.7 +- 0.1, 9.5 +- 0.2, 16.1 +- 0.3, 26.1 +- 0.5)
+% 
+\begin{table}
+\resizebox{\textwidth}{!}{
+\pgfplotstabletypeset[%
+    thesisTableStyle,
+    columns={omega,psi,radius,state, pop,mean_mean,mean_std,std_mean,std_std,25_mean,25_std,50_mean,50_std,75_mean,75_std},
+    sort, sort key=omega,
+    every head row/.style={after row={\si{\degree} & & \si{\micro\meter} & & & & &\si{\degree} & &\si{\degree} & &\si{\degree} & &\si{\degree} & &\si{\degree} & &\si{\degree} & &\si{\degree} & &\si{\degree} & &\si{\degree} & \\ \midrule}},
+    columns/state/.style={string type},
+    columns/mean_mean/.style={column name=$\mean(<d\Omega>_0)$,sci,sci zerofill,sci subscript,precision=2,dec sep align},
+    columns/std_mean/.style={column name=$\mean(\sigma(d\Omega)_0)$,sci,sci zerofill,sci subscript,precision=2,dec sep align},
+    columns/25_mean/.style={column name=$\mean(25(d\Omega)_0)$,sci,sci zerofill,sci subscript,precision=2,dec sep align},
+    columns/50_mean/.style={column name=$\mean(50(d\Omega)_0)$,sci,sci zerofill,sci subscript,precision=2,dec sep align},
+    columns/75_mean/.style={column name=$\mean(75(d\Omega)_0)$,sci,sci zerofill,sci subscript,precision=2,dec sep align},
+    columns/mean_std/.style={column name=$\std(<d\Omega>_0)$,sci,sci zerofill,sci subscript,precision=2,dec sep align},
+    columns/std_std/.style={column name=$\std(\sigma(d\Omega)_0)$,sci, sci zerofill,sci subscript,precision=2,dec sep align},
+    columns/25_std/.style={column name=$\std(25(d\Omega)_0)$,sci,sci zerofill,sci subscript,precision=2,dec sep align},
+    columns/50_std/.style={column name=$\std(50(d\Omega)_0)$,sci,sci zerofill,sci subscript,precision=2,dec sep align},
+    columns/75_std/.style={column name=$\std(75(d\Omega)_0)$,sci,sci zerofill,sci subscript,precision=2,dec sep align},
+    % column type=ccccccccccccccc,
+    col sep=comma,
+]
+{dev/rc1/repo/omegas_ms.csv}
+}
+\caption[repo angle results]{mean and std of opening angle $d\Omega$ in degree. The lower case number indicates the 10er exponent}
+\end{table}
+% 
+\par
+From the statistic above one notice that the initial fiber statistic is the same for all configurations from 1.4+-0.0 to 3.0+-0.1 [25-75].
+The mean orientation for both fiber population show withing $10^-5$ in the direction of the x and y axis.
+For parallel fibers the angle omega goes from 3.0+-0.1 to 8.0+-0.3 [25-75]. For crossing fibers from 9.5+-0.2 to 26.2+-0.5 [25-75].
+\par
+% 
+This results indicate because of the small standard deviation of the angle omega the ..., that not many models are needed, since the statistical orientations of the fiber segments inside the models are stable with less than 1 degree.
+However it still has to be shown, that it has no significant impact on the simulation side.
+% 
+% 
+% 
 \section{Building models for simulation}
 % 
 With the upper chosen model parameters the final models can be build.
@@ -348,6 +409,8 @@ To be able to study the effect of the fiber radii on the simulation, all radii a
 In this section the resulting orientation inside the volume, \ie{} the orientation of the fiber segments, will be analysed.
 The same setup as above (see \cref{sec:modelSetup}) is chosen with fix $\segLengthFactor=\SI{2}{}$ and $\segRadiusFactor = \SI{2}{}$.
 Using the rotational model from above, only fibers with a $\Psi =  0...90$ and $\Omega = 0.1...1.0$ are generated.
+% 
+% 
 % 
 \subsection{Results}
 % 
