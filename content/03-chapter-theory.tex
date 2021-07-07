@@ -280,14 +280,29 @@ S_0 &= I \\
 S_1 &= I p \cos 2\psi \cos 2\chi \\
 S_2 &= I p \sin 2\psi \cos 2\chi \\
 S_3 &= I p \sin 2\chi
-\end{split} \hspace{-6em}
+\end{split}
+% \hspace{-3em}
+% \begin{split}
+% &= \vec{P}_{\SI{0}{\degree}} + \vec{P}_{\SI{90}{\degree}} \\
+% &= \vec{P}_{\SI{0}{\degree}} - \vec{P}_{\SI{90}{\degree}} \\
+% &= \vec{P}_{\SI{45}{\degree}} - \vec{P}_{\SI{135}{\degree}} \\
+% &= \vec{P}_{\mathit{RZ}} - \vec{P}_{\mathit{LZ}} 
+% \end{split}
+% \hspace{0em}
+% \begin{split}
+% & \equiv \langle E_x^{2} \rangle + \langle E_y^{2} \rangle \\
+% %  & = \langle E_a^{2} \rangle + \langle E_b^{2} \rangle \\
+% %  & =  \langle E_l^{2} \rangle + \langle E_r^{2} \rangle \\
+% & \equiv \langle E_x^{2} \rangle - \langle E_y^{2} \rangle \\
+% & \equiv \langle E_a^{2} \rangle - \langle E_b^{2} \rangle \\
+% & \equiv  \langle E_l^{2} \rangle - \langle E_r^{2} \rangle
+% \end{split}
+\hspace{-8em}
 \begin{split}
-& \equiv \langle E_x^{2} \rangle + \langle E_y^{2} \rangle \\
-%  & = \langle E_a^{2} \rangle + \langle E_b^{2} \rangle \\
-%  & =  \langle E_l^{2} \rangle + \langle E_r^{2} \rangle \\
-& \equiv \langle E_x^{2} \rangle - \langle E_y^{2} \rangle \\
-& \equiv \langle E_a^{2} \rangle - \langle E_b^{2} \rangle \\
-& \equiv  \langle E_l^{2} \rangle - \langle E_r^{2} \rangle
+& \\
+& \\
+&= 2 E_x E_y \cos \delta \\
+&= 2 E_x E_y \sin \delta
 \end{split}
 , \enspace
 \vec{S} =
@@ -299,11 +314,12 @@ S_3 &= I p \sin 2\chi
     % \setlength{\tikzwidth}{\textwidth}
 	\centering
 		\inputtikz{gfx/pli/poincare}
-	\caption{Poincar\'e sphereillustrating Stokes vector.}
+	\caption{Poincar\'e sphere illustrating Stokes component.}
 	\label{fig:stokesPoincare}
 \end{figure}
 % 
-$I$ is the intensity, $p$ the polarization state, $\Psi$ and $\Xi$ the relative phases (see \cref{fig:stokesPoincare}).
+$I$ is the intensity, $p$ the polarization state, $\Psi$ and $\delta$ the relative phases between the $E_x$ and $E_y$ component.
+This can also be described b the two angles $\Psi$ and $\chi$ and visualized on the Poincar\'e sphere (see \cref{fig:stokesPoincare}).
 Therefore, the phase can no longer be described.
 However, the relative phase information is stored and can be used to describe also polarization states of polarization filters which cannot be described by Jones.
 Analogous to Jones one can formulate the matrices for the optical components:
@@ -413,6 +429,7 @@ The third setup \ac{LMP3D} is able to change the light path \cite{Wiese:887678}.
 It makes this possible by using a conical light path.
 When using a slit, only light of a certain angle is allowed through the tissue.
 By changing the position of the slit, the different light paths can be measured.
+This microscop is currently under construction and will be modelled here with the characterization from the \ac{LMP} microscope with a tilt angle of \SI{3.9}{\degree}.
 \\
 % 
 The tilted light beam (or tissue section) is normally measured in 4 perpendicular orientations: North, East, South and West.
@@ -460,9 +477,15 @@ These are used to calculate the final \ac{3D-PLI} modalities:
 
 \begin{align}
 \begin{split}
-\mathit{transmittance} &= 2 \cdot a_0 -> I_0/2\\
-\mathit{direction} &= 0.5 \cdot \atantwo(-b_1 / a_1) -> \varphi\\
-\mathit{retardation} &= \frac{\sqrt{a_1^2 + b_1^2}}{a_0} -> \sin(...)
+\mathit{transmittance} &\coloneqq 2 \cdot a_0 \vphantom{I_0/2} \\
+\mathit{direction} &\coloneqq 0.5 \cdot \atantwo(-b_1 / a_1) \vphantom{\varphi} \\
+\mathit{retardation} &\coloneqq \frac{\sqrt{a_1^2 + b_1^2}}{a_0}  \vphantom{\sin(...)} 
+\end{split}
+\hspace{-7em}
+\begin{split}
+& \mathrel{\widehat{=}} I_0/2 \vphantom{2 \cdot a_0}\\
+& \mathrel{\widehat{=}} \varphi \vphantom{0.5 \cdot \atantwo(-b_1 / a_1)} \\
+& \mathrel{\widehat{=}} \sin(...) \vphantom{\frac{\sqrt{a_1^2 + b_1^2}}{a_0}}
 \end{split}
 \end{align}
 % 

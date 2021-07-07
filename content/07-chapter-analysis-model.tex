@@ -2,22 +2,56 @@
 \chapter{Dense \acs{WM} modelling analysis}
 \label{cha:model_analysis}
 % 
-\todo{veroffentlichung in intro}
-% 
-\itodo{reproduzieren von modellen}
-% 
 \section{Introduction}
 % 
-After describing the functionality of the \pymodule{fastpli.model}, the next task is to use these methods not only to create realistic dense \ac{WM} models, but to keep them as simple as possible due to the complexity of the tissue.
-This is due to the fact that \ac{WM} contains individual nerve fibers that typically have a size in the order of about $\SI{1}{\micro\meter}$.
-Therefore, in a \SI{60}{\micro\meter} voxel of a \ac{LAP} measured \ac{3D-PLI} can be image within the \ac{WM} several thousand individual nerve fibers are already present.
-Considering that each nerve fiber has a unique trajectory through this volume, this means that theoretically an absurd variety of possible configurations exists.
-However, due to the nature of the \ac{3D-PLI} structure, previous studies have shown that the result of the signal depends on much less degrees of freedom than each individual nerve fiber has.
+In the previous chapter \cref{chap:sof:modelling} the module \pymodule{fastpli.model} was described to build non colliding nerve fiber models \cite{Matuschke2019, Matuschke2021}.
+The question is however, how to build them, and with what sets of parameters.
+Since the collision solving algorithm splits the nerve fibers into fiber segments and also controls there movement and bending while solving the colliding parts, its parameters have a influence on the resulting nerve fiber configuration.
+How big this influence is the main research of this chapter.
+A satisfying goal would be to find a set of parameters, which results in usable nerve fiber models where the input configuration mainly specifies the output configuration.
+% 
+\par
+Three goals are \dummy{}.
+The first is to be able to create a very dens volume.
+This of course depends on the initial fiber configuration.
+Configurations like crossings \eg{} will reduce the density.
+The second goal is to minimize the computational time.
+This will result in a more usable systems since the user can generate more models for the simulation part.
+The last goal is, that the initial fiber orientations remain intact.
+Due to the movement phase in the collision solver algorithm it is the case, that the orientations will change.
+The question is how much are they changing and is this appropriate to a users concepts and anatomical reality.
+\par
+Anatomically nerve fibers have a radius of around \SI{0.5}{\micro\meter} and more in the \ac{WM} (see \cref{chap:neuro}).
+This means that inside a \SI{60}{\micro\meter} thick tissue section already about \si{100} layers of nerve fibers have space.
+For the simulation a \ac{VOI} of $\SI{65}{\micro\meter} \times \SI{65}{\micro\meter} \times \SI{60}{\micro\meter}$ was chosen due to limitations in the tissue generation ans simulation step, which will be discussed this and the next chapter in detail.
+The main consideration for both parts is the limitation of memory size and computation time for the needed number of models and simulations.
+\\
+% 
+Inside this \ac{VOI} theoretically a very large number of configurations exists, since every single nerve fiber is defined by multiple points in space.
+However anatomically only a subset of configurations is reasonable.
+Still the number of possibilities is quite huge.
+\\
+% 
+Therefore the first part of this chapter defines a parameter sets which limits the possibility of configurations, without (or almost not) restricting the mathematically solution space.
+Once found such a parameter description the behavior of the parameters from the collision solving algorithm will be investigated.
+From this study a set of working parameters for the next simulation chapter will be chosen which again will not (or mostly not) restrict the outcome of the simulations.
+
+Finally the algorithms parallelization will be investigated.
+% 
+\par
+\noindent\rule{\textwidth}{2pt}
 \par
 % 
-Therefore, this work, being the first study of its kind, focuses mainly on two randomly interwoven fiber populations for \ac{3D-PLI} simulations.
-Another focus is the generation of such models, whereby the computational time effort shall be kept as low as possible.
-The analysis refers to the setting of the parameters for the model generation and their influence on the resulting collision-free configurations.
+% After describing the functionality of the \pymodule{fastpli.model}, the next task is to use these methods not only to create realistic dense \ac{WM} models, but to keep them as simple as possible due to the complexity of the tissue.
+% This is due to the fact that \ac{WM} contains individual nerve fibers that typically have a size in the order of about $\SI{1}{\micro\meter}$.
+% Therefore, in a \SI{60}{\micro\meter} voxel of a \ac{LAP} measured \ac{3D-PLI} can be image within the \ac{WM} several thousand individual nerve fibers are already present.
+% Considering that each nerve fiber has a unique trajectory through this volume, this means that theoretically an absurd variety of possible configurations exists.
+% However, due to the nature of the \ac{3D-PLI} structure, previous studies have shown that the result of the signal depends on much less degrees of freedom than each individual nerve fiber has.
+% \par
+% % 
+% Therefore, this work, being the first study of its kind, focuses mainly on two randomly interwoven fiber populations for \ac{3D-PLI} simulations.
+% Another focus is the generation of such models, whereby the computational time effort shall be kept as low as possible.
+% The analysis refers to the setting of the parameters for the model generation and their influence on the resulting collision-free configurations.
 % 
 % 
 \section{Brain tissue model}
@@ -423,8 +457,5 @@ These distributions are broder than the inital values and are centered around th
 The resulting 3d visualized models show all an interwoven structure, where both fiber population orientations are clearly visible. \todo{anhang}
 %  
 \subsection{Discussion}
-% 
-\vspace{5pt}
-\hrule
-\vspace{6pt}
+%
 % 
