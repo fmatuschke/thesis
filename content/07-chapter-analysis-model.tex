@@ -345,32 +345,12 @@ Here the \ac{GPU} seems to be the hardware of choice.
 % 
 \section{Repo Messungen}
 % 
-% 90.0
-% 2.3 +- 0.0, 1.2 +- 0.0, 1.4 +- 0.0, 2.1 +- 0.0, 3.0 +- 0.1,
-% 19.6 +- 0.3, 13.8 +- 0.1, 9.5 +- 0.2, 16.1 +- 0.3, 26.2 +- 0.5,
-% 2.3 +- 0.0, 1.2 +- 0.0, 1.4 +- 0.0, 2.1 +- 0.0, 3.0 +- 0.1,
-% 19.6 +- 0.3, 13.7 +- 0.1, 9.5 +- 0.2, 16.1 +- 0.3, 26.1 +- 0.5,
-% 0.0
-% 2.3 +- 0.0, 1.2 +- 0.0, 1.4 +- 0.0, 2.1 +- 0.0, 3.0 +- 0.1,
-% 6.5 +- 0.2, 5.7 +- 0.2, 3.0 +- 0.1, 5.0 +- 0.1, 8.0 +- 0.3,
-% 0.0 +- 0.0, 0.0 +- 0.0, 0.0 +- 0.0, 0.0 +- 0.0, 0.0 +- 0.0,
-% 0.0 +- 0.0, 0.0 +- 0.0, 0.0 +- 0.0, 0.0 +- 0.0, 0.0 +- 0.0,
-% 
-% (mean, std, 25\%, 50\%, 75\%)\\
-% \paragraph{parallel fibers}: \\
-% (2.3 +- 0.0, 1.2 +- 0.0, 1.4 +- 0.0, 2.1 +- 0.0, 3.0 +- 0.1) -> (6.5 +- 0.2, 5.7 +- 0.2, 3.0 +- 0.1, 5.0 +- 0.1, 8.0 +- 0.3,)\\
-% \paragraph{crossing fibers}: \\
-% first fibers: \\
-% (2.3 +- 0.0, 1.2 +- 0.0, 1.4 +- 0.0, 2.1 +- 0.0, 3.0 +- 0.1) -> (19.6 +- 0.3, 13.8 +- 0.1, 9.5 +- 0.2, 16.1 +- 0.3, 26.2 +- 0.5)\\
-% and second pop:\\
-% (2.3 +- 0.0, 1.2 +- 0.0, 1.4 +- 0.0, 2.1 +- 0.0, 3.0 +- 0.1) -> (19.6 +- 0.3, 13.7 +- 0.1, 9.5 +- 0.2, 16.1 +- 0.3, 26.1 +- 0.5)
-% 
 \begin{table}
 \resizebox{\textwidth}{!}{
 \pgfplotstabletypeset[%
     thesisTableStyle,
     columns={omega,psi,radius,state, pop,mean_mean,mean_std,std_mean,std_std,25_mean,25_std,50_mean,50_std,75_mean,75_std},
-    sort, sort key=omega,
+    % sort, sort key=omega,
     every head row/.style={after row={\si{\degree} & & \si{\micro\meter} & & & & &\si{\degree} & &\si{\degree} & &\si{\degree} & &\si{\degree} & &\si{\degree} & &\si{\degree} & &\si{\degree} & &\si{\degree} & &\si{\degree} & \\ \midrule}},
     columns/state/.style={string type},
     columns/mean_mean/.style={column name=$\mean(<d\Omega>_0)$,sci,sci zerofill,sci subscript,precision=2,dec sep align},

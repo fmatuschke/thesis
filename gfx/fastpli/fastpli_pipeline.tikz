@@ -5,20 +5,20 @@
         \begin{tcolorbox}[%
             title={fastpli \vphantom{Mg}},
             fonttitle=\bfseries,
-            colbacktitle=NavyBlue ,
+            colbacktitle=NavyBlue,
             width=9.25cm,
-            height=7.25cm
+            height=8.35cm
         ]
         \end{tcolorbox}
     };
     % 
-    \node[text width=5cm] (modelling) {
+    \node[text width=5cm, below= 2.5em of fastpli.north, xshift=0.75em] (modelling) {
         \begin{tcolorbox}[%
             title={modelling \vphantom{Mg}},
             fonttitle=\bfseries,
             colbacktitle=Gray,
             width=4.2cm,
-            height=3cm
+            height=2.5cm
         ]
         \begin{itemize}[leftmargin=1em]
             \item sandbox
@@ -34,7 +34,7 @@
             fonttitle=\bfseries,
             colbacktitle=Gray,
             width=4.2cm,
-            height=3cm
+            height=2.5cm
         ]
         \begin{itemize}[leftmargin=1em]
             \item generate tissue
@@ -43,30 +43,61 @@
         \end{tcolorbox}
     };
     % 
-    \node[text width=5cm, below= -1em of modelling] (io) {
-        \begin{tcolorbox}[%
-            title={IO \vphantom{Mg}},
-            fonttitle=\bfseries,
-            colbacktitle=Gray,
-            width=4.2cm,
-            height=3cm
-        ]
-        \begin{itemize}[leftmargin=1em]
-            \item dummy
-        \end{itemize}
-        \end{tcolorbox}
-    };
-    % 
-    \node[text width=5cm, below= -1em of simulation] (analysis) {
+    \node[text width=5cm, below= -1em of modelling] (analysis) {
         \begin{tcolorbox}[%
             title={analysis \vphantom{Mg}},
             fonttitle=\bfseries,
             colbacktitle=Gray,
             width=4.2cm,
-            height=3cm
+            height=2.5cm
         ]
         \begin{itemize}[leftmargin=1em]
-            \item dummy
+            \item inclination
+            \item fom generation
+            \item orientation
+        \end{itemize}
+        \end{tcolorbox}
+    };
+    % 
+    \node[text width=5cm, below= -1em of simulation] (objects) {
+        \begin{tcolorbox}[%
+            title={objects \vphantom{Mg}},
+            fonttitle=\bfseries,
+            colbacktitle=Gray,
+            width=4.2cm,
+            height=2.5cm
+        ]
+        \begin{itemize}[leftmargin=1em]
+            \item fiber object
+            \item fiber layer
+        \end{itemize}
+        \end{tcolorbox}
+    };
+    % 
+    \node[text width=5cm, below= -1em of analysis] (io) {
+        \begin{tcolorbox}[%
+            title={IO \vphantom{Mg}},
+            fonttitle=\bfseries,
+            colbacktitle=Gray,
+            width=4.2cm,
+            height=1.5cm
+        ]
+        \begin{itemize}[leftmargin=1em]
+            \item fiber\_bundles
+        \end{itemize}
+        \end{tcolorbox}
+    };
+    % 
+    \node[text width=5cm, below= -1em of objects] (tools) {
+        \begin{tcolorbox}[%
+            title={tools \vphantom{Mg}},
+            fonttitle=\bfseries,
+            colbacktitle=Gray,
+            width=4.2cm,
+            height=1.5cm
+        ]
+        \begin{itemize}[leftmargin=1em]
+            \item helper functions
         \end{itemize}
         \end{tcolorbox}
     };
