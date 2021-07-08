@@ -489,8 +489,110 @@ These are used to calculate the final \ac{3D-PLI} modalities:
 \end{split}
 \end{align}
 % 
-\itodo{Section Images}
+\begin{figure}[t]
+\centering
+% \fbox{
+\setlength{\tabcolsep}{14pt}
+\setlength{\tikzwidth}{0.495\textwidth}
+\begin{tabular}{cc}
+\tikzset{external/export=false}
+\begin{tikzpicture}[baseline, trim axis left, trim axis right]
+\begin{axis}[
+width=\tikzwidth,
+point meta min=6851,point meta max=13703,
+xmin=0,xmax=1,ymin=0,ymax=1,
+hide axis,colorbar left,colormap/gray,
+colorbar style={%
+    every y tick label/.append style={font=\footnotesize},
+    ytick={6851,13703},
+    yticklabels={0,$I_{\mathit{max}}/2$},
+    scaled y ticks=false,
+    }]
+\addplot [forget plot] graphics [
+xmin=0,xmax=1,ymin=0,ymax=1,
+] {dev/vervet1818/Vervet1818_60mu_70ms_s0550_a00_d000_Transmittance_6851_13703.png};
+\end{axis}
+\end{tikzpicture}
+&
+\tikzset{external/export=false}
+\begin{tikzpicture}[baseline, trim axis left, trim axis right]
+\begin{axis}[
+width=\tikzwidth,
+point meta min=0,point meta max=180,
+xmin=0,xmax=1,ymin=0,ymax=1,
+hide axis,colorbar left,colormap/gray,
+colorbar style={%
+    every y tick label/.append style={font=\footnotesize},
+    ytick={0,90,180},
+    yticklabels={0,90,180},
+    }]
+\addplot [forget plot] graphics [
+xmin=0,xmax=1,ymin=0,ymax=1,
+] {dev/vervet1818/Vervet1818_60mu_70ms_s0550_a00_d000_Direction_0_180.png};
+\end{axis}
+\end{tikzpicture}
+\\
 % 
+\begin{minipage}[t]{0.42\textwidth}
+\vspace{-1.75em}
+\leavevmode\subcaption{transmittance}
+\vspace{1.75em}
+\end{minipage}
+&
+\begin{minipage}[t]{0.42\textwidth}
+\vspace{-1.75em}
+\leavevmode\subcaption{direction}
+\vspace{1.75em}
+\end{minipage}
+\\
+% 
+\tikzset{external/export=false}
+\begin{tikzpicture}[baseline, trim axis left, trim axis right]
+\begin{axis}[
+width=\tikzwidth,
+point meta min=0,point meta max=0.858,
+xmin=0,xmax=1,ymin=0,ymax=1,
+hide axis,colorbar left,colormap/gray,
+colorbar style={%
+    every y tick label/.append style={font=\footnotesize},}]
+\addplot [forget plot] graphics [
+xmin=0,xmax=1,ymin=0,ymax=1,
+] {dev/vervet1818/Vervet1818_60mu_70ms_s0550_a00_d000_Retardation_0_0858.png};
+\end{axis}
+\end{tikzpicture}
+&
+\tikzset{external/export=false}
+\begin{tikzpicture}[baseline, trim axis left, trim axis right]
+\begin{axis}[
+width=\tikzwidth,
+xmin=0,xmax=1,ymin=0,ymax=1,
+hide axis,
+]
+\addplot [forget plot] graphics [
+xmin=0,xmax=1,ymin=0,ymax=1,
+] {dev/vervet1818/Vervet1818_60mu_70ms_s0550_a00_d000_FOM_HSVBlack.png};
+\addplot [forget plot] graphics [
+xmin=0,xmax=0.134,ymin=0.825,ymax=1.0,
+] {gfx/pli/color_sphere.png};
+\end{axis}
+\end{tikzpicture}
+\\
+% 
+\begin{minipage}[t]{0.42\textwidth}
+\vspace{-1.5em}
+\leavevmode\subcaption{retardation}
+\vspace{1.5em}
+\end{minipage}
+&
+\begin{minipage}[t]{0.42\textwidth}
+\vspace{-1.5em}
+\leavevmode\subcaption{fiber orientation map (FOM)}
+\vspace{1.5em}
+\end{minipage}
+\end{tabular}
+% }
+\caption[3D-PLI modalities]{3D-PLI modalities for a coronal section of a Vervet monkey brain.}
+\end{figure}
 % 
 % 
 \subsection{Inclination analysis}

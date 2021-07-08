@@ -414,6 +414,32 @@ However, this is only true for a pixel size of $\SI{1.25}{\micro\meter}$.
 % 
 % 
 % 
+\section{Model orientation sampling}
+\begin{figure}[p]
+\centering
+\def\tikzwidth{0.42*\textwidth}
+\subcaptionbox{\label{fig:modelrotcube}A spherical volume with diameter $d$ is used as boundary, so that a cube of side length $1/1.5 \cdot d$ can be cut in any orientation inside the sphere.}
+[.49\textwidth]{\inputtikz{gfx/model/sphere_cube}}\hfill
+\subcaptionbox{\label{fig:modelinit}Initial orientation for two fiber populations $F_0$ and $F_1$. The angle between both populations is $\Omega$. The remaining degree of freedom are taken into account by rotating the whole volume (see \cref{fig:modelrotcube})}
+[.49\textwidth]{\inputtikz{gfx/model/sphere_models}}
+\\
+% 
+\subcaptionbox{fixed first fiber population; half rotation of second fiber population}
+[.49\textwidth]{\inputtikz{gfx/model/sphere_models_a}}\hfill
+\subcaptionbox{\label{subfig:Test1}increasing inclination for first fiber population}
+[.49\textwidth]{\inputtikz{gfx/model/sphere_models_b}}
+\\
+% 
+\def\tikzwidth{0.35*\textwidth}
+\subcaptionbox{\label{subfig:sphere:hista1} hist a}
+[.49\textwidth]{\inputtikz{gfx/model/sphere_hist_a}}\hfill
+\subcaptionbox{\label{subfig:sphere:histb} hist b, with applied symmetries.}
+[.49\textwidth]{\inputtikz{gfx/model/sphere_hist_b}}
+\caption{two population model library \itodo{centering} \itodo{e und f fertig machen}}
+\label{fig:twomodelpop}
+\end{figure}
+% 
+% 
 % \subsection{Fiber radii}
 % % 
 % \begin{figure}[!t]
