@@ -249,12 +249,11 @@ Befor the orientation is analysed from the results the volume is cut to $\SI{60}
 % 
 % The parameters are set to the values in \cref{tab:cube2popSoftware}.
 % 
-\par
-\noindent\rule{\textwidth}{2pt}
-\par
+\todo{volume fration is measured by generating the discretised volume and counting the occupied voxels, 60 cube, vs 0.1}
 % 
-To find a usable library of two fiber populations researched main attributes are listed in \cref{tab:cube2pop} \cref{tab:cube2popSoftware} contains the parameters of the additional \pymodule{fastpli.model.solver} algorithm. All \dummy{} will be repeated five times.
-\itodo{AT THE END OF EACH STEP THE VOLUME TO SOLVE IS ALWAYS CUTTED TO 105.}
+\todo{time evole fr 1 und 2 nicht unterscheidbar}
+\todo{Intel(R) Xeon(R) CPU E5-4657L v2 @ 2.40GHz, L1d cache:1.5 MiB,L1i cache:1.5 MiB,L2 cache:12 MiB,L3 cache:120 MiB}
+% 
 % 
 % 
 \subsection{Results}
@@ -264,67 +263,97 @@ To find a usable library of two fiber populations researched main attributes are
 \begin{figure}[p]
 \centering
 \includegraphics[width=\textwidth, page=1]{dev/gfx/2/parameter_statistic_box_plot_volume.pdf}
-\caption[Model characteristics]{Model characteristic for $\fiberRadius = \SI{1}{\micro\meter}$ different parameters. \itodo{\segLengthFactor{} and \segRadiusFactor{}}}
+\caption[Model characteristics]{Model characteristic for $\fiberRadius = \SI{1}{\micro\meter}$ different parameters.}
 \label{fig:psbp1}
 \end{figure}
 % 
 \cref{fig:psbp1} show the resulting volume fraction $V/V_0$ for the parameter series.
-Non crossing angles $||$ achieve clearly a higher fraction of $V/V_0 > 0.75$ than their counter crossing parts $cross$.
-Their value also is for fibers with radii $\fiberRadius <= \SI{5}{\micro\meter}$ very stable for all five repeats.
-Further the volume fraction is stable for changes along the parameter $\segLengthFactor$ and $\segRadiusFactor$. 
-Only the fibers with a radius of $\fiberRadius = \SI{10}{\micro\meter}$ achive smaller fractions and slightly unstable results with Values around \dummy{}.
-\\
-The crossing \dummy{} show a clear decrease volume fraction along a increase of the $\segLengthFactor$ as well as a slightly decrease with increasing $\segRadiusFactor$ for all fiber radii.
-The decrease with the change of $\segLengthFactor$ stabilises around $\segLengthFactor = \num{8}$.
-For smaller fiber radii the repeating process is more stable as for larger radii.
-\\
-Overall the volume fraction stays above 0.75 for parallel and fr > 2.
-For crossing fibers in this range the value stays above around 0.5.
+For a single fiber population $(||)$ the volume fraction $V/V_0$ is almost constant at about $\SI{0.75}{}$.
+The value slightly decreases with increasig mean fiber radius \fiberRadiusMean{}.
+The \segLengthFactor{} nor the \segRadiusFactor{} have an essential effect.
+Only a slight decrease of the volume fraction is visible for increasing \segLengthFactor{}.
+The first significant change is visible for the largest mean fiber radius $\fiberRadiusMean=\SI{10}{\micro\meter}$.
+The variance of the volume fraction increases slightly with increasing mean fiber radius \fiberRadiusMean{}.
+For mean fiber radii $\fiberRadiusMean >= \SI{5}{\micro\meter}$ the variance increases significantly.
+\par
 % 
-\paragraph{Time development}
+The crossing fiber populations $(\times)$ the highest values are achieved for $\segRadiusFactor=\SI{1}{}$ of about \numrange{0.6}{0.72}{} depending on \fiberRadiusMean{}, however there are still lower than the single fiber population.
+The volume fraction decreases significantly with increasing \segRadiusFactor{}.
+Only for \segLengthFactor{} = 8 the volume fractions does not change anymore with the \segRadiusFactor{}.
+The \segLengthFactor{} decreases the volume fraction as well over all mean fiber radii \fiberRadiusMean{}.
+% 
+\paragraph{Computation time}
 % 
 \begin{figure}[p]
 \centering
 \includegraphics[width=\textwidth, page=2]{dev/gfx/2/parameter_statistic_time_evolve.pdf}
-\caption[Time development parallel]{Time development of the model generation process of parallel fiber populations. non crossing\itodo{\segLengthFactor and \segRadiusFactor}\itodo{title}\itodo{units}}
+\caption[Time development parallel]{Time development of the model generation process of parallel fiber populations. non crossing\itodo{title}\itodo{restlichen parameter anhang}}
 \label{fig:timeDevelopmentNone}
 \end{figure}
 % 
 \begin{figure}[p]
 \centering
 \includegraphics[width=\textwidth, page=1]{dev/gfx/2/parameter_statistic_time_evolve.pdf}
-\caption[Time development parallel]{Time development of the model generation process of parallel fiber populations. crossing \itodo{\segLengthFactor and \segRadiusFactor}\itodo{title}\itodo{units}\itodo{restlichen parameter anhang}}
+\caption[Time development parallel]{Time development of the model generation process of parallel fiber populations. crossing \itodo{\segLengthFactor and \segRadiusFactor}\itodo{title}\itodo{restlichen parameter anhang}}
 \label{fig:timeDevelopmentCross}
 \end{figure}
 % 
-The change in time of the properties are shown in \cref{fig:timeDevelopmentNone,fig:timeDevelopmentCross}.
-Looking at only the non crossing models \cref{fig:timeDevelopmentNone} shows a linear correlation between the number of steps and the time.
-All models have a step size smaller than the maximal step size, therefore are completely solved and the last plotted value corresponds to the total time consumption for each parameter set.
-The change of $\segLengthFactor$ has no significant influence.
-An increase in $\segRadiusFactor$ on the other side clearly increases the log(time) consumption up to several order of magnitudes.
+The change in computation time of the parameter series are shown in \cref{fig:timeDevelopmentNone} for the single fiber population and in \cref{fig:timeDevelopmentCross} for the crossing fiber population for number of steps, number of colliding fiber segments and the overlap fraction of the colliding fiber segments.
+\par
+% 
+The single fiber populations show a linear correlation between the computation time and the number of steps for all parameters.
+The number of steps increase significantly with decreasing \segLengthFactor{} as well as decreasing \fiberRadiusMean{}.
+The increase in computational time is significantly higher, about one magnitude, with decreasing \fiberRadiusMean{} with respect tot the \segLengthFactor{}.
+A change of the computational time with changing the fiber bending radius \segRadiusFactor{} is not visible.
+The total number of steps also increase with increasing mean fiber radius \fiberRadiusMean{} and decrease slightly with increased \segLengthFactor{}.
+All models of all parameter sets were  able to solve the collisions in the maximum number of steps.
+\\
+The number of colliding fiber segments in the second plot show a exponential decrease for increasing computational time for all parameters.
+The total number increases with decreasing \segLengthFactor{} as well as decreasing \fiberRadiusMean{}.
+Again the influence of the \fiberRadiusMean{} is more significant.
+The \segRadiusFactor{} has here no significant effect as well.
 \\
 % 
-Looking at the number of colliding objects they correlate with the time (non log!). 
-Again a change in $\segLengthFactor$ has no significant effect and an increase in $\segRadiusFactor$ increases the time consumption up to several order of magnitudes.
+The remaining overlap fraction show a behavior with increasing computational time.
+For all parameters the beginning value is about $\SI{4}{\percent}$ and decreases over time to about $\SI{1}{\percent}$ before the model is solved and the value is therefore $\SI{0}{\percent}$.
+The decreasing effect is almost linear.
+For increasing mean fiber radii \fiberRadiusMean{} the linearity bends slightly and the decreasing increases for about the last half of the total computation time. 
+At the end of every parameter set the variance of the remaining overlap fraction increases significantly.
+\par
+% 
+The crossing fiber population shows a linear behavior for the number of steps as well for all parameter sets.
+As for the single fiber population case, a decreasing \fiberRadiusMean{} increases the computational time significantly more than a decrease in \segLength{}.
+The increase of the computational time by decreasing the mean fiber radius is as for the single fiber population case again about one magnitude.
+A key difference to the single fiber population is the reduction of computational time with an increase of the minimal allowed fiber bending radius factor \segRadiusFactor{}.
+In the case of \dummy{} and \dummy{} the maximum number of steps were reached.
 \\
-% 
-The overlap fraction coresponts to the overlapping distance/distance in total of all remaining colliding objects.
-Its value at the start is non higher of \SI{8}{\percent} \dummy{}.
-The values are decreasing similar to the number of colliding objects, however not as fast.
-As before, a change in $\segLengthFactor$ has no significant effect and an increase in $\segRadiusFactor$ increases the time consumption up to several order of magnitudes.
-% 
-The comparison to crossing models in \cref{fig:timeDevelopmentCross} shows for all parameters a very similar behavior.
-The development of the number of steps is exactly as for the linear case, expect that the number of steps are higher.
-fl=\dummy{} and fl= \dummy{} reach the maximal number of steps, but not the maximal time value.
-\todo{human time values in plot}.
-The number of objects and overlapping fraction value show a splitting behavior for a change in $\segLengthFactor$.
-For smaller values the time consumption is significantly (log!) smaller.
-larger values show a stagnant behavior for the parameters, however already for small values (log!).
-A change in $\segRadiusFactor$  increases the time consumption up to several order of magnitudes as in the linear bundle case.
+The number of colliding fiber segments show also a exponential decrease as in the case of a single fiber population.
+The key difference is that with an increase of the minimal fiber bending radius factor \segRadiusFactor{} this behavier changes drastically.
+The exponential decrease seams to split at a critial number of steps (or computational time) and only decreases linear from there on for higher \segRadiusFactor{}.
+This splitting however only occurse for the smaller \segLengthFactor{}.
+The slop of the second phase is decreased for higher \segRadiusFactor{}.
+This behavier is more and more evident with decreasing \fiberRadiusMean{} and \segLengthFactor{}.
+The spliting point with regards to the computational time very close to the total computational time of the lowest \segRadiusFactor{}.
+\\
+The remaining overlap fraction shows for the smaller fiber segment length factor  \segLengthFactor{} a differents with respect to the single fiber population case.
+For the smaller \segLengthFactor{} the curve almost follows a logistic curve.
+Where for the higher \segLengthFactor{} the curve stops at the turning point, for the smaller values it continues and the number of remaining overlap fraction less and less decreases until it almost stays constant until the model is solved or the total number of steps is reached.
+Again the mean fiber radius \fiberRadiusMean{} does not change the curve significantly.
+The lower values for the remaining overlap fraction is as well about $\SI{1}{\percent}$ at the end of the solving steps.
 % 
 % 
 % 
 \subsection{Discussion}
+% 
+
+% 
+\itodo{zusammenfassung der gewaehlten parameter}
+\itodo{trennung zu overall discussion}
+\itodo{repo messung mit in die buolding simulation model}
+% 
+\par
+\noindent\rule{\textwidth}{2pt}
+\par
 % 
 The goal is to choice a set of parameters, which allow a) fast, b) collision free and c) a high volume fraction for densely fibers.
 In the case of parallel fibers, the solving process is always faster than for crossing bundles.
@@ -460,14 +489,14 @@ Using the rotational model from above, only fibers with a $\Psi =  0...90$ and $
 \label{fig:modelOrientation}
 \end{figure}
 % 
-\begin{figure}[p]
-\centering
-% \resizebox{1.0\textwidth}{!}{
-\includegraphics[width=\textwidth, page=1]{dev/rc1/cube_2pop_orientation_hist_output_cube_2pop_135_rc1_.pdf}
-% }
-\caption[Model orientation histograms]{Maximum normed distribution of fiber segment orientation in initial and resulting models. The left half circle contains the inclination $\alpha$ value, the right half the direction $\varphi$. \itodo{which norm?}}
-\label{fig:modelOrientationHist1d}
-\end{figure}
+% \begin{figure}[p]
+% \centering
+% % \resizebox{1.0\textwidth}{!}{
+% \includegraphics[width=\textwidth, page=1]{dev/rc1/cube_2pop_orientation_hist_output_cube_2pop_135_rc1_.pdf}
+% % }
+% \caption[Model orientation histograms]{Maximum normed distribution of fiber segment orientation in initial and resulting models. The left half circle contains the inclination $\alpha$ value, the right half the direction $\varphi$. \itodo{which norm?}}
+% \label{fig:modelOrientationHist1d}
+% \end{figure}
 % 
 The results are visualized in two polar axis plots in \cref{fig:modelOrientationHist1d}. On the right hemisphere the direction histogram is shown.
 The left hemisphere shows the inclination distribution.
