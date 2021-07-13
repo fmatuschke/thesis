@@ -57,7 +57,7 @@ Here the Idea must be adapted somewhat in order to adapt it to the research ques
 \label{fig:twomodelpopdesign}
 \end{figure}
 % 
-In this theses up to two fiber populations are investigated. \todo{argue why}
+In this theses up to two fiber populations are investigated. \todo{argue why: limit amount on data, concentrate on main effect}
 To limit the number of necessary models, one can .. the following symmetry arguments.
 % 
 For investigating a single fiber population, only one model is needed, since the model can be rotated afterwards into any 3d orientation.
@@ -88,11 +88,11 @@ Seedpoints on a 2d plane are generated with a uniform distribution:
 p = \mathrm{Uniform}(-\frac{1}{2}\mathit{size},\frac{1}{2}\mathit{size})
 \end{align}
 The $\mathit{size}$ will be choosen so that the model can be fully filled.
-Since the simulating model will be cubic, and the model shell be rotateble, a spherical boundry of diameter $d_{\mathit{sphere}}=\sqrt(3) \mathit{size}$ is choosen.
+Since the simulating model will be cubic, and the model shell be rotateble, a spherical boundry of diameter $d_{\mathit{sphere}}=\sqrt{3} \mathit{size}$ is choosen.
 The number of seed points is set to a value of 
 \begin{align}
-N_{0,\mathit{seeds}} &= \Psi \frac{\mathit{size}^2}{\pi \cdot \r_{\mathit{fiber}}}\\
-N_{1,\mathit{seeds}} &= (1-\Psi) \frac{\mathit{size}^2}{\pi \cdot \r_{\mathit{fiber}}}
+N_{0,\mathit{seeds}} &= \Psi \frac{\mathit{size}^2}{\pi \cdot \fiberRadiusMean}\\
+N_{1,\mathit{seeds}} &= (1-\Psi) \frac{\mathit{size}^2}{\pi \cdot \fiberRadiusMean}
 \end{align}
 which corresponds of filling the entire cross section area with the sum of all cross sections of fibers with respect to the fiber populations proportion.
 This way more fibers will be seeded in the volume than they have space, since the stacking of circles is mathematically limited to a volume fraction of $\frac{\pi \sqrt{3}}{6} \approx 0.9$.
@@ -386,23 +386,21 @@ However, the effect inside the simulation has to be studied.
 % 
 \begin{figure}[!t]
 \centering
-% 
-\subcaptionbox{speedup after 0 steps}[0.49\textwidth]{
-\resizebox{0.45\textwidth}{!}{
-\includegraphics[]{dev/rc1/speed/speedup_r_1.0_0.0.pdf}}}
-% 
-\subcaptionbox{speedup after 100 steps}[0.49\textwidth]{
-\resizebox{0.45\textwidth}{!}{
-\includegraphics[]{dev/rc1/speed/speedup_r_1.0_100.0.pdf}}}
-% 
-\subcaptionbox{speedup after 1000 steps}[0.49\textwidth]{
-\resizebox{0.45\textwidth}{!}{
-\includegraphics[]{dev/rc1/speed/speedup_r_1.0_1000.0.pdf}}}
+\includegraphics[]{dev/rc1/speed/boxplot_output_r_0.5.pkl_speedup.csv.pdf}
+% \subcaptionbox{speedup after 0 steps}[0.49\textwidth]{
+% \resizebox{0.45\textwidth}{!}{
+% \includegraphics[]{dev/rc1/speed/speedup_r_0.5_0.0.pdf}}}
+% % 
+% \subcaptionbox{speedup after 100 steps}[0.49\textwidth]{
+% \resizebox{0.45\textwidth}{!}{
+% \includegraphics[]{dev/rc1/speed/speedup_r_0.5_100.0.pdf}}}
+% % 
+% \subcaptionbox{speedup after 1000 steps}[0.49\textwidth]{
+% \resizebox{0.45\textwidth}{!}{
+% \includegraphics[]{dev/rc1/speed/speedup_r_0.5_1000.0.pdf}}}
 \caption{speedup}
 \label{fig:solverSpeedup}
 \end{figure}
-% 
-\itodo{Welche Parameter ...}
 % 
 As described in \dummy{} \openmp{} is used for acceleration.
 This means no usage of multiple computer nodes is currently available.
