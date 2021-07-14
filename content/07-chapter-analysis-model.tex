@@ -146,19 +146,15 @@ r_i &= r_i \cdot \mathrm{LogNormal}(\mu=0,\sigma=0.05)
 % 
 \subsection{Parameter characterization}\label{sec:modelSetup}
 % 
-\par
-\noindent\rule{\textwidth}{2pt}
-\par
-% 
-The described control mechanisms in the collision solver algorithm \code{fastpli.model.solver} (see \cref{chap:sof:modeling}) must be characterized.
+The described control mechanisms in the collision solver algorithm \code{fastpli.model.solver} (see \cref{chap:sof:modeling}) have to be characterized.
 These are the mean segment length \segLength{} and the minimum allowed radius of curvature \segRadius{}.
 It must be ensured that a parameter set is identified that ensures that the configurations entered by the user remain the same, i.e., the orientation distributions remain intact with respect to the fact that the fiber segments must move.
 Furthermore, the achievable fiber density should remain high for this set of parameters.
 Finally, it must also be ensured that a parameter set can be chosen that has an acceptable computation time.
 Here, of course, it makes sense to look for parameter configurations that reduce the computing time, since this is a limited resource.
-\\
+\par
 % 
-To investigate the behavier of the \segLength{} and \segRadius{} the two factor variable \segLengthFactor{} and \segRadiusFactor{} are defined:
+To investigate the behavior of the \segLength{} and \segRadius{} the two factor variable \segLengthFactor{} and \segRadiusFactor{} are defined:
 \begin{align}
     \begin{split}
         \segLength &= \segLengthFactor \cdot \fiberRadiusMean\\
@@ -186,7 +182,7 @@ The parameter ranges chosen to investigate the impact are listed in \cref{tab:cu
 {name & variable & values\\
 mean fiber radius & $\fiberRadiusMean$ & $\SIlist{0.5;1;2;5;10}{\micro\meter}$\\
 mean segment length factor & $\segLengthFactor$ & $\numlist{1;2;4;8}$\\
-min segment bending radii factor & $\segRadiusFactor$ & $\numlist{1;2;4;8}$\\
+min segment bending radius factor & $\segRadiusFactor$ & $\numlist{1;2;4;8}$\\
 % fiber bundle distribution value & $\textcolor{violet}{\modelPsi}$ & $\numlist{0.1;0.2;...;1.0}$ \\
 % fiber bundle crossing angle & $\textcolor{violet}{\modelOmega}$ & $\SIlist{0;10;...;90}{\degree}$\\
 fiber bundle crossing/proportion & $\modelPsi$/$\modelOmega$ & $\SI{1.0}{}/\SI{0}{\degree}$, $0.5/\SI{90}{\degree}$\\
@@ -199,7 +195,7 @@ In order to be able to statistically examine the results, $n_{\mathit{repeat}} =
 For characterization, only the $\modelPsi/\modelOmega$ pair of $\SI{1.0}{}/\SI{0}{\degree}(||)$ and $\SI{0.5}{}/\SI{90}{\degree}(\times)$ is considered as an extreme case.
 The number of steps is limited to \SI{100000}{} to limit the calculation. \footnote{In retrospect, this should have been limited by the computation time}.
 A cubic volume of $\SI{60}{\micro\meter} \SI{60}{\micro\meter} \times \SI{60}{\micro\meter}$ is chosen for this characterization.
-Every 50 steps, the fiber model is cut into a $\SI{60}{\micro\meter}+4*\fiberRadiusMean$ cube to delete unnecessary fibers and reduce the number of objects.
+Every 50 steps, the fiber model is cut into a $\SI{60}{\micro\meter}+4 \cdot \fiberRadiusMean$ cube to delete unnecessary fibers and reduce the number of objects.
 When the orientation is analyzed, the volume is cut to $\SI{60}{\micro\meter}$ to neglect the outlying fiber segments.
 To measure the volume fraction, the discretized volume is generated from the simulation module.
 There, the individual label IDs are counted to calculate the volume fraction.
@@ -211,29 +207,42 @@ Intel(R) Xeon(R) CPU E5-4657L v2 @ 2.40GHz, L1d cache:1.5 MiB, L1i cache:1.5 MiB
 % 
 \subsection{Results}
 % 
-\paragraph{Volume fraction}
-% 
 \begin{figure}[p]
 \centering
 \includegraphics[width=\textwidth, page=1]{dev/rc1/pre_stats_box_plot_volume_output_parameter_statistic_rc1.pdf}
-\caption[Model characteristics]{Model characteristic for $\fiberRadius = \SI{1}{\micro\meter}$ different parameters.}
+\caption[Volume fraction]{Volume fractions for parameter set.}
 \label{fig:psbp1}
 \end{figure}
 % 
-\cref{fig:psbp1} show the resulting volume fraction $V/V_0$ for the parameter series.
-For a single fiber population $(||)$ the volume fraction $V/V_0$ is almost constant at about $\SI{0.75}{}$.
-The value slightly decreases with increasig mean fiber radius \fiberRadiusMean{}.
-The \segLengthFactor{} nor the \segRadiusFactor{} have an essential effect.
-Only a slight decrease of the volume fraction is visible for increasing \segLengthFactor{}.
-The first significant change is visible for the largest mean fiber radius $\fiberRadiusMean=\SI{10}{\micro\meter}$.
-The variance of the volume fraction increases slightly with increasing mean fiber radius \fiberRadiusMean{}.
-For mean fiber radii $\fiberRadiusMean >= \SI{5}{\micro\meter}$ the variance increases significantly.
+\paragraph{Volume fraction}
+% 
+\Cref{fig:psbp1} show the resulting volume fraction $V_f/V_0$ for the parameter series.
+% \\
+% radius
+The results indicate, that with expection for mean fiber radii $\geq \SI{5}{\micro\meter}$ the volume fraction does not change its behavier with a change of the mean fiber radii.
+For values $\geq \SI{5}{\micro\meter}$ the variance increases significantly.
+Nevertheless, the median, even if it becomes smaller, follows the same behavior as for the smaller fiber radii across all parameters.
 \par
 % 
-The crossing fiber populations $(\times)$ the highest values are achieved for $\segRadiusFactor=\SI{1}{}$ of about \numrange{0.6}{0.72}{} depending on \fiberRadiusMean{}, however there are still lower than the single fiber population.
-The volume fraction decreases significantly with increasing \segRadiusFactor{}.
-Only for \segLengthFactor{} = 8 the volume fractions does not change anymore with the \segRadiusFactor{}.
-The \segLengthFactor{} decreases the volume fraction as well over all mean fiber radii \fiberRadiusMean{}.
+% singel fiber
+Single fiber populations $(||)$ are very high with values $> \SI{0.75}{}$.
+There value shows no significant change over the fiber bending radius factor \segRadiusFactor{}.
+There is only a slightly decrease visible for increasing fiber segment length factor \segLengthFactor{}.
+\par
+% 
+% crossing fiber
+This behavier changes significantly for the crossing fiber population $(\times)$.
+There values are always smaller than for the single fiber population case.
+For $\segLengthFactor{}=\SI{1}{}$ the volume fraction decreases abrupt between $\segRadiusFactor{} = \SI{2}{}$ and $\segRadiusFactor{} = \SI{4}{}$. 
+The change becomes smoother for $\segLengthFactor{}=\SI{2}{}$.
+The overall volume fraction decreases for values $\segLengthFactor{} \geq \SI{4}{}$ compared to the previous values.
+For $\segLengthFactor{}=\SI{8}{}$ the change with \segRadiusFactor{} disapears and the volume fraction only reaches a value around $\S{0.55}{}$.
+% 
+% 
+% 
+\par
+\noindent\rule{\textwidth}{2pt}
+\par 
 % 
 \paragraph{Computation time}
 % 
