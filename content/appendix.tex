@@ -61,37 +61,37 @@
 % \lstinputlisting[language=c++, caption=src/simulation/bindings/generator\_module.cpp]{code/src/simulation/bindings/generator_module.cpp}
 % \lstinputlisting[language=c++, caption=src/simulation/bindings/simulator\_module.cpp]{code/src/simulation/bindings/simulator_module.cpp}
 
-\chapter{Appendix B}
-% 
-\begin{figure}[!tb]
-\centering
-\resizebox{0.875\textwidth}{!}{
-\def\fiberradius{0.5}
-\inputtikz{dev/gfx/2/cube_stat.tex}}
-\caption{at fl=3 somethings wrong with the first fr value.
-Better use time, steps depends on every variable!}
-% \label{fig:}
-\end{figure}
-% 
-\begin{figure}[!tb]
-\centering
-\resizebox{0.875\textwidth}{!}{
-\def\fiberradius{1.0}
-\inputtikz{dev/gfx/2/cube_stat.tex}}
-\caption{at fl=3 somethings wrong with the first fr value.
-Better use time, steps depends on every variable!}
-% \label{fig:}
-\end{figure}
-% 
-\begin{figure}[!tb]
-\centering
-\resizebox{0.875\textwidth}{!}{
-\def\fiberradius{2.0}
-\inputtikz{dev/gfx/2/cube_stat.tex}}
-\caption{at fl=3 somethings wrong with the first fr value.
-Better use time, steps depends on every variable!}
-% \label{fig:}
-\end{figure}
+% \chapter{Appendix B}
+% % 
+% \begin{figure}[!tb]
+% \centering
+% \resizebox{0.875\textwidth}{!}{
+% \def\fiberradius{0.5}
+% \inputtikz{dev/gfx/2/cube_stat.tex}}
+% \caption{at fl=3 somethings wrong with the first fr value.
+% Better use time, steps depends on every variable!}
+% % \label{fig:}
+% \end{figure}
+% % 
+% \begin{figure}[!tb]
+% \centering
+% \resizebox{0.875\textwidth}{!}{
+% \def\fiberradius{1.0}
+% \inputtikz{dev/gfx/2/cube_stat.tex}}
+% \caption{at fl=3 somethings wrong with the first fr value.
+% Better use time, steps depends on every variable!}
+% % \label{fig:}
+% \end{figure}
+% % 
+% \begin{figure}[!tb]
+% \centering
+% \resizebox{0.875\textwidth}{!}{
+% \def\fiberradius{2.0}
+% \inputtikz{dev/gfx/2/cube_stat.tex}}
+% \caption{at fl=3 somethings wrong with the first fr value.
+% Better use time, steps depends on every variable!}
+% % \label{fig:}
+% \end{figure}
 % 
 % \begin{figure}[!tb]
 % \centering
@@ -113,141 +113,190 @@ Better use time, steps depends on every variable!}
 % % \label{fig:}
 % \end{figure}
 % 
-\chapter{Appendix C}
-\begin{figure}[!tb]
-\centering
-\resizebox{1.0\textwidth}{!}{
-\begin{tikzpicture}[>=latex]
-\node[inner sep=0pt] (image) at (0,0)
-    {\includegraphics[width=1.0\textwidth]{gfx/model/results/model_analysis.pdf}};
-\begin{scope}[overlay]
-    \draw[->,thick] ($(image.north west)-(0.25,-0.25)$) -- ++(1,0) node [midway, above] {$\Omega$};
-    \draw[->,thick] ($(image.north west)-(0.25,-0.25)$) -- ++(0,-1) node [midway, above, rotate=90] {$\Psi$};
-\end{scope}
-\path ($(image.north west) + (-.5,.5)$) -- ($(image.north east) + (.5,.5)$);
-\end{tikzpicture}
-}
-\caption{model init vs solved}
-\label{fig:model_histogram}
-\end{figure}
+% \chapter{Appendix C}
+% \begin{figure}[!tb]
+% \centering
+% \resizebox{1.0\textwidth}{!}{
+% \begin{tikzpicture}[>=latex]
+% \node[inner sep=0pt] (image) at (0,0)
+%     {\includegraphics[width=1.0\textwidth]{gfx/model/results/model_analysis.pdf}};
+% \begin{scope}[overlay]
+%     \draw[->,thick] ($(image.north west)-(0.25,-0.25)$) -- ++(1,0) node [midway, above] {$\Omega$};
+%     \draw[->,thick] ($(image.north west)-(0.25,-0.25)$) -- ++(0,-1) node [midway, above, rotate=90] {$\Psi$};
+% \end{scope}
+% \path ($(image.north west) + (-.5,.5)$) -- ($(image.north east) + (.5,.5)$);
+% \end{tikzpicture}
+% }
+% \caption{model init vs solved}
+% \label{fig:model_histogram}
+% \end{figure}
+% % 
+% \begin{figure}[!tb]
+% \centering
+% \resizebox{1.0\textwidth}{!}{
+% \begin{tikzpicture}[>=latex]
+% \node[inner sep=0pt] (image) at (0,0)
+%     {\includegraphics[width=1.0\textwidth]{gfx/model/results/histogram.pdf}};
+% \begin{scope}[overlay]
+%     \draw[->,thick] ($(image.north west)-(0.25,-0.25)$) -- ++(1,0) node [midway, above] {$\Omega$};
+%     \draw[->,thick] ($(image.north west)-(0.25,-0.25)$) -- ++(0,-1) node [midway, above, rotate=90] {$\Psi$};
+% \end{scope}
+% \path ($(image.north west) + (-.5,.5)$) -- ($(image.north east) + (.5,.5)$);
+% \end{tikzpicture}
+% }
+% \caption{Histogram cube\_2pop\_model}
+% \label{fig:model_histogram}
+% \end{figure}
+% % 
+% % 
+% \begin{figure}[!tb]
+% \centering
+% \resizebox{1.0\textwidth}{!}{
+% \begin{tikzpicture}[>=latex]
+% \node[inner sep=0pt] (image) at (0,0)
+%     {\includegraphics[width=1.0\textwidth]{gfx/model/results/voxel_size_simulation_analysis.pdf}};
+% \begin{scope}[overlay]
+%     \draw[->,thick] ($(image.north west)-(0.25,-0.25)$) -- ++(1,0) node [midway, above] {$voxel_size$};
+%     \draw[->,thick] ($(image.north west)-(0.25,-0.25)$) -- ++(0,-1) node [midway, above, rotate=90] {$f0_inc$};
+% \end{scope}
+% \path ($(image.north west) + (-.5,.5)$) -- ($(image.north east) + (.5,.5)$);
+% \end{tikzpicture}
+% }
+% \vspace{-1ex}
+% \begin{center}
+% \begin{tikzpicture}
+%     \draw[thin] (-3.0,-0.625) rectangle (3.0,0.25);
+%     \draw [green!50!black] (-2.5,0) -- (-1.5,0) node [below, midway, black] {truth};
+%     \draw [red,dashed] (-0.5,0) -- (0.5,0) node [below, midway, black] {model=r};
+%     \draw [blue, dash dot] (1.5,0) -- (2.5,0) node [below, midway, black] {model=p};
+% \end{tikzpicture}
+% \end{center}
+% \caption{voxel\_size\_5\_}
+% \label{fig:model_histogram}
+% \end{figure}
+% % 
+% \begin{figure}[!tb]
+% \centering
+% \resizebox{1.0\textwidth}{!}{
+% \begin{tikzpicture}[>=latex]
+% \node[inner sep=0pt] (image) at (0,0)
+%     {\includegraphics[width=1.0\textwidth]{gfx/simpli/results/simulation_analysis_spheres_LAP_p.pdf}};
+% \begin{scope}[overlay]
+%     \draw[->,thick] ($(image.north west)-(0.25,-0.25)$) -- ++(1,0) node [midway, above] {$\mathfrak{f}_0^\alpha$};
+%     \draw[->,thick] ($(image.north west)-(0.25,-0.25)$) -- ++(0,-1) node [midway, above, rotate=90] {$\mathfrak{f}_0^\Psi$};
+% \end{scope}
+% \path ($(image.north west) + (-.5,.5)$) -- ($(image.north east) + (.5,.5)$);
+% \end{tikzpicture}
+% }
+% \caption{Sphere LAP p}
+% \label{fig:model_histogram}
+% \end{figure}
+% % 
+% \begin{figure}[!tb]
+% \centering
+% \resizebox{1.0\textwidth}{!}{
+% \begin{tikzpicture}[>=latex]
+% \node[inner sep=0pt] (image) at (0,0)
+%     {\includegraphics[width=1.0\textwidth]{gfx/simpli/results/simulation_analysis_spheres_LAP_r.pdf}};
+% \begin{scope}[overlay]
+%     \draw[->,thick] (image.north west) -- ++(1,0) node [midway, above] {$\alpha_0$};
+%     \draw[->,thick] (image.north west) -- ++(0,-1) node [midway, above, rotate=90] {$\Psi_0$};
+% \end{scope}
+% \path ($(image.north west) + (-.5,.5)$) -- ($(image.north east) + (.5,.5)$);
+% \end{tikzpicture}
+% }
+% \caption{Sphere LAP r}
+% \label{fig:model_histogram}
+% \end{figure}
+% % 
+% \begin{figure}[!tb]
+% \centering
+% \resizebox{1.0\textwidth}{!}{
+% \begin{tikzpicture}[>=latex]
+% \node[inner sep=0pt] (image) at (0,0)
+%     {\includegraphics[width=1.0\textwidth]{gfx/simpli/results/simulation_analysis_spheres_PM_p.pdf}};
+% \begin{scope}[overlay]
+%     \draw[->,thick] ($(image.north west)-(0.25,-0.25)$) -- ++(1,0) node [midway, above] {$f_0$};
+%     \draw[->,thick] ($(image.north west)-(0.25,-0.25)$) -- ++(0,-1) node [midway, above, rotate=90] {$\Psi$};
+% \end{scope}
+% \path ($(image.north west) + (-.5,.5)$) -- ($(image.north east) + (.5,.5)$);
+% \end{tikzpicture}
+% }
+% \caption{Sphere PM p}
+% \label{fig:model_histogram}
+% \end{figure}
+% % 
+% \begin{figure}[!tb]
+% \centering
+% \resizebox{1.0\textwidth}{!}{
+% \begin{tikzpicture}[>=latex]
+% \node[inner sep=0pt] (image) at (0,0)
+%     {\includegraphics[width=1.0\textwidth]{gfx/simpli/results/simulation_analysis_spheres_PM_r.pdf}};
+% \begin{scope}[overlay]
+%     \draw[->,thick] ($(image.north west)-(0.25,-0.25)$) -- ++(1,0) node [midway, above] {$f_0$};
+%     \draw[->,thick] ($(image.north west)-(0.25,-0.25)$) -- ++(0,-1) node [midway, above, rotate=90] {$\Psi$};
+% \end{scope}
+% \path ($(image.north west) + (-.5,.5)$) -- ($(image.north east) + (.5,.5)$);
+% \end{tikzpicture}
+% }
+% \caption{Sphere PM r}
+% \label{fig:model_histogram}
+% \end{figure}
+% % 
+% \begin{figure}[!t]
+% \centering
+% \resizebox{1.0\textwidth}{!}{
+% \includegraphics[width=\textwidth, page=2]{dev/rc1/cube_2pop_orientation_hist2d_output_cube_2pop_135_rc1.pdf}
+% }
+% \caption[Model orientation histograms]{density distribution of fiber segment orientation in initial and resulting models for $\fiberRadius = \SI{1}{\micro\meter}$. \itodo{fit ESAG} \ITODO{these are only resulting models!}}
+% \label{fig:modelOrientation}
+% \end{figure}
+% % 
+% % 
 % 
-\begin{figure}[!tb]
-\centering
-\resizebox{1.0\textwidth}{!}{
-\begin{tikzpicture}[>=latex]
-\node[inner sep=0pt] (image) at (0,0)
-    {\includegraphics[width=1.0\textwidth]{gfx/model/results/histogram.pdf}};
-\begin{scope}[overlay]
-    \draw[->,thick] ($(image.north west)-(0.25,-0.25)$) -- ++(1,0) node [midway, above] {$\Omega$};
-    \draw[->,thick] ($(image.north west)-(0.25,-0.25)$) -- ++(0,-1) node [midway, above, rotate=90] {$\Psi$};
-\end{scope}
-\path ($(image.north west) + (-.5,.5)$) -- ($(image.north east) + (.5,.5)$);
-\end{tikzpicture}
-}
-\caption{Histogram cube\_2pop\_model}
-\label{fig:model_histogram}
-\end{figure}
+\chapter{Appendix A: Dense \acs{WM} modelling}
 % 
-% 
-\begin{figure}[!tb]
+% % \foreach \n in {1,3,...,10}{
+% % \begin{landscape}
+% \begin{figure}[!t]
+% \centering
+% % \resizebox{\textwidth}{!}{
+% \includegraphics[width=\textwidth,page=1]{dev/appendix/pre_stats_time_evolve_all_output_parameter_statistic_rc1.pdf}
+% \includegraphics[width=\textwidth,page=2]{dev/appendix/pre_stats_time_evolve_all_output_parameter_statistic_rc1.pdf}
+% \end{figure}
+% % \end{landscape}
+
+\begin{sidewaysfigure}[]
 \centering
-\resizebox{1.0\textwidth}{!}{
-\begin{tikzpicture}[>=latex]
-\node[inner sep=0pt] (image) at (0,0)
-    {\includegraphics[width=1.0\textwidth]{gfx/model/results/voxel_size_simulation_analysis.pdf}};
-\begin{scope}[overlay]
-    \draw[->,thick] ($(image.north west)-(0.25,-0.25)$) -- ++(1,0) node [midway, above] {$voxel_size$};
-    \draw[->,thick] ($(image.north west)-(0.25,-0.25)$) -- ++(0,-1) node [midway, above, rotate=90] {$f0_inc$};
-\end{scope}
-\path ($(image.north west) + (-.5,.5)$) -- ($(image.north east) + (.5,.5)$);
-\end{tikzpicture}
-}
-\vspace{-1ex}
-\begin{center}
-\begin{tikzpicture}
-    \draw[thin] (-3.0,-0.625) rectangle (3.0,0.25);
-    \draw [green!50!black] (-2.5,0) -- (-1.5,0) node [below, midway, black] {truth};
-    \draw [red,dashed] (-0.5,0) -- (0.5,0) node [below, midway, black] {model=r};
-    \draw [blue, dash dot] (1.5,0) -- (2.5,0) node [below, midway, black] {model=p};
-\end{tikzpicture}
-\end{center}
-\caption{voxel\_size\_5\_}
-\label{fig:model_histogram}
-\end{figure}
+% \resizebox{\textwidth}{!}{
+\includegraphics[width=0.475\textwidth,page=1]{dev/appendix/pre_stats_time_evolve_all_output_parameter_statistic_rc1.pdf}
+\includegraphics[width=0.475\textwidth,page=2]{dev/appendix/pre_stats_time_evolve_all_output_parameter_statistic_rc1.pdf}
+\end{sidewaysfigure}
 % 
-\begin{figure}[!tb]
+\begin{sidewaysfigure}[]
 \centering
-\resizebox{1.0\textwidth}{!}{
-\begin{tikzpicture}[>=latex]
-\node[inner sep=0pt] (image) at (0,0)
-    {\includegraphics[width=1.0\textwidth]{gfx/simpli/results/simulation_analysis_spheres_LAP_p.pdf}};
-\begin{scope}[overlay]
-    \draw[->,thick] ($(image.north west)-(0.25,-0.25)$) -- ++(1,0) node [midway, above] {$\mathfrak{f}_0^\alpha$};
-    \draw[->,thick] ($(image.north west)-(0.25,-0.25)$) -- ++(0,-1) node [midway, above, rotate=90] {$\mathfrak{f}_0^\Psi$};
-\end{scope}
-\path ($(image.north west) + (-.5,.5)$) -- ($(image.north east) + (.5,.5)$);
-\end{tikzpicture}
-}
-\caption{Sphere LAP p}
-\label{fig:model_histogram}
-\end{figure}
+% \resizebox{\textwidth}{!}{
+\includegraphics[width=0.475\textwidth,page=3]{dev/appendix/pre_stats_time_evolve_all_output_parameter_statistic_rc1.pdf}
+\includegraphics[width=0.475\textwidth,page=4]{dev/appendix/pre_stats_time_evolve_all_output_parameter_statistic_rc1.pdf}
+\end{sidewaysfigure}
 % 
-\begin{figure}[!tb]
+\begin{sidewaysfigure}[]
 \centering
-\resizebox{1.0\textwidth}{!}{
-\begin{tikzpicture}[>=latex]
-\node[inner sep=0pt] (image) at (0,0)
-    {\includegraphics[width=1.0\textwidth]{gfx/simpli/results/simulation_analysis_spheres_LAP_r.pdf}};
-\begin{scope}[overlay]
-    \draw[->,thick] (image.north west) -- ++(1,0) node [midway, above] {$\alpha_0$};
-    \draw[->,thick] (image.north west) -- ++(0,-1) node [midway, above, rotate=90] {$\Psi_0$};
-\end{scope}
-\path ($(image.north west) + (-.5,.5)$) -- ($(image.north east) + (.5,.5)$);
-\end{tikzpicture}
-}
-\caption{Sphere LAP r}
-\label{fig:model_histogram}
-\end{figure}
+% \resizebox{\textwidth}{!}{
+\includegraphics[width=0.475\textwidth,page=5]{dev/appendix/pre_stats_time_evolve_all_output_parameter_statistic_rc1.pdf}
+\includegraphics[width=0.475\textwidth,page=6]{dev/appendix/pre_stats_time_evolve_all_output_parameter_statistic_rc1.pdf}
+\end{sidewaysfigure}
 % 
-\begin{figure}[!tb]
+\begin{sidewaysfigure}[]
 \centering
-\resizebox{1.0\textwidth}{!}{
-\begin{tikzpicture}[>=latex]
-\node[inner sep=0pt] (image) at (0,0)
-    {\includegraphics[width=1.0\textwidth]{gfx/simpli/results/simulation_analysis_spheres_PM_p.pdf}};
-\begin{scope}[overlay]
-    \draw[->,thick] ($(image.north west)-(0.25,-0.25)$) -- ++(1,0) node [midway, above] {$f_0$};
-    \draw[->,thick] ($(image.north west)-(0.25,-0.25)$) -- ++(0,-1) node [midway, above, rotate=90] {$\Psi$};
-\end{scope}
-\path ($(image.north west) + (-.5,.5)$) -- ($(image.north east) + (.5,.5)$);
-\end{tikzpicture}
-}
-\caption{Sphere PM p}
-\label{fig:model_histogram}
-\end{figure}
+% \resizebox{\textwidth}{!}{
+\includegraphics[width=0.475\textwidth,page=7]{dev/appendix/pre_stats_time_evolve_all_output_parameter_statistic_rc1.pdf}
+\includegraphics[width=0.475\textwidth,page=8]{dev/appendix/pre_stats_time_evolve_all_output_parameter_statistic_rc1.pdf}
+\end{sidewaysfigure}
 % 
-\begin{figure}[!tb]
+\begin{sidewaysfigure}[]
 \centering
-\resizebox{1.0\textwidth}{!}{
-\begin{tikzpicture}[>=latex]
-\node[inner sep=0pt] (image) at (0,0)
-    {\includegraphics[width=1.0\textwidth]{gfx/simpli/results/simulation_analysis_spheres_PM_r.pdf}};
-\begin{scope}[overlay]
-    \draw[->,thick] ($(image.north west)-(0.25,-0.25)$) -- ++(1,0) node [midway, above] {$f_0$};
-    \draw[->,thick] ($(image.north west)-(0.25,-0.25)$) -- ++(0,-1) node [midway, above, rotate=90] {$\Psi$};
-\end{scope}
-\path ($(image.north west) + (-.5,.5)$) -- ($(image.north east) + (.5,.5)$);
-\end{tikzpicture}
-}
-\caption{Sphere PM r}
-\label{fig:model_histogram}
-\end{figure}
-% 
-\begin{figure}[!t]
-\centering
-\resizebox{1.0\textwidth}{!}{
-\includegraphics[width=\textwidth, page=2]{dev/rc1/cube_2pop_orientation_hist2d_output_cube_2pop_135_rc1.pdf}
-}
-\caption[Model orientation histograms]{density distribution of fiber segment orientation in initial and resulting models for $\fiberRadius = \SI{1}{\micro\meter}$. \itodo{fit ESAG} \ITODO{these are only resulting models!}}
-\label{fig:modelOrientation}
-\end{figure}
+% \resizebox{\textwidth}{!}{
+\includegraphics[width=0.475\textwidth,page=9]{dev/appendix/pre_stats_time_evolve_all_output_parameter_statistic_rc1.pdf}
+\includegraphics[width=0.475\textwidth,page=10]{dev/appendix/pre_stats_time_evolve_all_output_parameter_statistic_rc1.pdf}
+\end{sidewaysfigure}

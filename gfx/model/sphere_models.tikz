@@ -1,7 +1,5 @@
 \begin{tikzsize}{\tikzwidth}{\tikzheight}
 \begin{tikzpicture}[scale=\tikzscale]
-% \draw[] (-1.3,-1.3) rectangle (1.3,1.3);
-% 
 % 
 \begin{scope}[%
 3d view={52}{22},
@@ -11,7 +9,7 @@ arr/.style={-{latex[color=GREEN]},
   }
 ]
 \pgfmathsetmacro{\r}{1}
-\pgfmathsetmacro{\varomega}{30}
+\pgfmathsetmacro{\varomega}{50}
 \pgfmathsetmacro{\varalpha}{0}
 % 
 \foreach \i in {60,70,...,90}{\node[circle,fill,BLUE,inner sep=1.25pt] at ({cos(\i)},{sin(\i)}) {};}
@@ -24,11 +22,13 @@ arr/.style={-{latex[color=GREEN]},
 % 
 \draw[very thick, GREEN, ->] (0,0,0) -- (\r,0,0) node [pos=1, anchor = north east] {$F_0$};
 \foreach \i in {0,10,...,50}{\node[circle,fill,BLUE,inner sep=1.25pt] at ({cos(\i)},{sin(\i)}) {};}
-\draw[very thick, BLUE, ->] (0,0,0) -- ({\r*cos(\varomega)},{\r*sin(\varomega)},0) node [pos=1, anchor = south east] {$F_1$};
+\draw[very thick, BLUE, ->] (0,0,0) -- ({\r*cos(\varomega)},{\r*sin(\varomega)},0) node [pos=1, anchor = west] {$F_1$};
 \begin{scope}[canvas is xy plane at z=0]
-    \draw[] (0.60,0) arc (0:\varomega:0.60) node [pos=0.55, anchor=east, xshift=-0.1ex, yshift=0.25ex] () {$\Omega$};
+    \draw[] (0.70,0) arc (0:\varomega:0.70) node [pos=0.50, anchor=east, xshift=-0.5ex, yshift=0.25ex] () {$\Omega$};
 \end{scope}
 % 
 \end{scope}
+\pgfresetboundingbox
+\path[use as bounding box]  (-1.25,-1.25) rectangle (1.25,1.25);
 \end{tikzpicture}
 \end{tikzsize}
