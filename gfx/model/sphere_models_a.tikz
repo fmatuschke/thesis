@@ -1,7 +1,5 @@
 \begin{tikzsize}{\tikzwidth}{\tikzheight}
 \begin{tikzpicture}[scale=\tikzscale]
-% \draw[] (-1.3,-1.3) rectangle (1.3,1.3);
-% 
 % 
 \begin{scope}[%
 3d view={52}{22},
@@ -53,5 +51,7 @@ arr/.style={-{latex[color=GREEN]},
 % \end{scope}
 %
 \end{scope}
+\pgfresetboundingbox
+\path[use as bounding box]  (-1.25,-1.25) rectangle (1.25,1.25);
 \end{tikzpicture}
 \end{tikzsize}
