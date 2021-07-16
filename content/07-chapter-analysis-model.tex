@@ -428,80 +428,78 @@ Looking at the overlap fraction, a value of $<\SI{1}{\percent}$ can be feasible.
 This this an additional order of magnitude can be potential saved.
 However, the effect inside the simulation has to be studied.
 % 
+\todo{runtime is O(...)}
 % 
 % 
-\section{Angular distribution and further runtime analyses}
 % 
-\par
-\noindent\rule{\textwidth}{2pt}
-\par 
-% 
-The above chosen parameter set is viable regarding runtime and volume density.
-However an important property still has to be investigated, the resulting orientation dstribution.
-To reduce the amount of data and calculations, this is in only investigated on the chosen parameter set.
-A key factor is the angular opening angle $d\Omega$. Here it is defined as the angle to the mean value of all fiber segments inside its fiber bundle:
-\begin{align}
-    \begin{split}
-        d\Omega &= \sphericalangle(\vec{f}_{\mathit{seg}}, \overbar{\vec{f}}_{\mathit{seg}})\\
-        \overbar{\vec{f}}_{\mathit{seg}} &= \sum^{N_{\mathit{seg\, in\, fb}}}_{i=0} \frac{\overbar{\vec{f}}_{\mathit{seg},i}}{N_{\mathit{seg\, in\, fb}}}
-    \end{split}
-\end{align}
-% 
+% \section{Angular distribution and further runtime analyses}
+% % 
+% \par
+% \noindent\rule{\textwidth}{2pt}
+% \par 
+% % 
+% The above chosen parameter set is viable regarding runtime and volume density.
+% However an important property still has to be investigated, the resulting orientation dstribution.
+% To reduce the amount of data and calculations, this is in only investigated on the chosen parameter set.
+% A key factor is the angular opening angle $d\Omega$. Here it is defined as the angle to the mean value of all fiber segments inside its fiber bundle:
+% \begin{align}
+%     \begin{split}
+%         d\Omega &= \sphericalangle(\vec{f}_{\mathit{seg}}, \overbar{\vec{f}}_{\mathit{seg}})\\
+%         \overbar{\vec{f}}_{\mathit{seg}} &= \sum^{N_{\mathit{seg\, in\, fb}}}_{i=0} \frac{\overbar{\vec{f}}_{\mathit{seg},i}}{N_{\mathit{seg\, in\, fb}}}
+%     \end{split}
+% \end{align}
+% % 
 
-% 
-\begin{table}[!b]
-\caption[repo angle results]{mean and std of opening angle $d\Omega$ in degree. The lower case number indicates the 10er exponent}
-\resizebox{\textwidth}{!}{
-\pgfplotstabletypeset[%
-    thesisTableStyle,
-    columns={omega,psi,radius,state, pop,mean_mean,mean_std,25_mean,25_std,50_mean,50_std,75_mean,75_std}, %,std_mean,std_std,
-    % sort, sort key=omega,
-    % every head row/.style={after row={\si{\degree} & & \si{\micro\meter} & & & & &\si{\degree} & &\si{\degree} & &\si{\degree} & &\si{\degree} & &\si{\degree} & &\si{\degree} & &\si{\degree} & &\si{\degree} & &\si{\degree} & \\ \midrule}},
-    columns/state/.style={string type},
-    columns/mean_mean/.style={column name=$<<d\Omega>>$,sci,sci zerofill,sci subscript,precision=2,dec sep align},
-    % columns/std_mean/.style={column name=$<\sigma(d\Omega)>$,sci,sci zerofill,sci subscript,precision=2,dec sep align},
-    columns/25_mean/.style={column name=$<25(d\Omega)>$,sci,sci zerofill,sci subscript,precision=2,dec sep align},
-    columns/50_mean/.style={column name=$<50(d\Omega)>$,sci,sci zerofill,sci subscript,precision=2,dec sep align},
-    columns/75_mean/.style={column name=$<75(d\Omega)>$,sci,sci zerofill,sci subscript,precision=2,dec sep align},
-    columns/mean_std/.style={column name=$\sigma(<d\Omega>)$,sci,sci zerofill,sci subscript,precision=2,dec sep align},
-    % columns/std_std/.style={column name=$\sigma(\sigma(d\Omega))$,sci, sci zerofill,sci subscript,precision=2,dec sep align},
-    columns/25_std/.style={column name=$\sigma(25(d\Omega))$,sci,sci zerofill,sci subscript,precision=2,dec sep align},
-    columns/50_std/.style={column name=$\sigma(50(d\Omega))$,sci,sci zerofill,sci subscript,precision=2,dec sep align},
-    columns/75_std/.style={column name=$\sigma(75(d\Omega))$,sci,sci zerofill,sci subscript,precision=2,dec sep align},
-    % column type=ccccccccccccccc,
-    col sep=comma,
-]
-{dev/rc1/repo/omegas_ms.csv}
-}
-\end{table}
-% 
-From the statistic above one notice that the initial fiber statistic is the same for all configurations from 1.4+-0.0 to 3.0+-0.1 [25-75].
-The mean orientation for both fiber population show withing $10^-5$ in the direction of the x and y axis.
-For parallel fibers the angle omega goes from 3.0+-0.1 to 8.0+-0.3 [25-75]. For crossing fibers from 9.5+-0.2 to 26.2+-0.5 [25-75].
-\par
-% 
-This results indicate because of the small standard deviation of the angle omega the ..., that not many models are needed, since the statistical orientations of the fiber segments inside the models are stable with less than 1 degree.
-However it still has to be shown, that it has no significant impact on the simulation side.
-% 
-% 
-% 
-\par
-% 
-\begin{figure}[!t]
-\centering
-\subcaptionbox{volume and time}[.49\textwidth]{
-\includegraphics[width=0.45\textwidth]{dev/rc1/speed/time_volume_size_time.pdf}}
-\subcaptionbox{volume and num obj}[.49\textwidth]{
-\includegraphics[width=0.45\textwidth]{dev/rc1/speed/time_volume_size_num_obj.pdf}}
-\caption[time\_volume\_size\_time]{time\_volume\_size\_time and num obj, regression excluded 20 case}
-\label{fig:timevolumeSizeTime}
-\end{figure}
-% 
-\itodo{parameter und simulation von plot beschreiben (vor results)}
-\Cref{fig:timevolumeSizeTime} shows logarithmic plot of the cube size length against the time and number of objects. 
-A regression line is plotted in with excluding the v0=20 case.
-For this range of cube length an exponential behavior is visible for both time and number of objects.
-\todo{schoen schreiben und plotten}
+% % 
+% \begin{table}[!b]
+% \caption[repo angle results]{mean and std of opening angle $d\Omega$ in degree. The lower case number indicates the 10er exponent}
+% % \resizebox{\textwidth}{!}{
+% \centering
+% \pgfplotstabletypeset[%
+%     thesisTableStyle,
+%     columns={omega,psi,state, pop,mean_mean, std_mean,25_mean,50_mean,75_mean},
+%     every head row/.style={after row={\si{\degree} & & & & &\si{\degree} & &\si{\degree} & &\si{\degree} & &\si{\degree} & &\si{\degree} \\ \midrule}},
+%     columns/state/.style={string type},
+%     columns/omega/.style={column name=$\Omega$},
+%     columns/psi/.style={column name=$\Psi$},
+%     columns/mean_mean/.style={column name=$<d\Omega>$,sci,sci zerofill,sci subscript,precision=2,dec sep align},
+%     columns/std_mean/.style={column name=$\sigma(d\Omega)$,sci,sci zerofill,sci subscript,precision=2,dec sep align},
+%     columns/25_mean/.style={column name=$25(d\Omega)$,sci,sci zerofill,sci subscript,precision=2,dec sep align},
+%     columns/50_mean/.style={column name=$50(d\Omega)$,sci,sci zerofill,sci subscript,precision=2,dec sep align},
+%     columns/75_mean/.style={column name=$75(d\Omega)$,sci,sci zerofill,sci subscript,precision=2,dec sep align},
+%     col sep=comma,
+% ]
+% {dev/rc1/repo/omegas_ms.csv}
+% % }
+% \end{table}
+% % 
+% From the statistic above one notice that the initial fiber statistic is the same for all configurations from 1.4+-0.0 to 3.0+-0.1 [25-75].
+% The mean orientation for both fiber population show withing $10^-5$ in the direction of the x and y axis.
+% For parallel fibers the angle omega goes from 3.0+-0.1 to 8.0+-0.3 [25-75]. For crossing fibers from 9.5+-0.2 to 26.2+-0.5 [25-75].
+% \par
+% % 
+% This results indicate because of the small standard deviation of the angle omega the ..., that not many models are needed, since the statistical orientations of the fiber segments inside the models are stable with less than 1 degree.
+% However it still has to be shown, that it has no significant impact on the simulation side.
+% % 
+% % 
+% % 
+% \par
+% % 
+% \begin{figure}[!t]
+% \centering
+% \subcaptionbox{volume and time}[.49\textwidth]{
+% \includegraphics[width=0.45\textwidth]{dev/rc1/speed/time_volume_size_time.pdf}}
+% \subcaptionbox{volume and num obj}[.49\textwidth]{
+% \includegraphics[width=0.45\textwidth]{dev/rc1/speed/time_volume_size_num_obj.pdf}}
+% \caption[time\_volume\_size\_time]{time\_volume\_size\_time and num obj, regression excluded 20 case}
+% \label{fig:timevolumeSizeTime}
+% \end{figure}
+% % 
+% \itodo{parameter und simulation von plot beschreiben (vor results)}
+% \Cref{fig:timevolumeSizeTime} shows logarithmic plot of the cube size length against the time and number of objects. 
+% A regression line is plotted in with excluding the v0=20 case.
+% For this range of cube length an exponential behavior is visible for both time and number of objects.
+% \todo{schoen schreiben und plotten}
 % 
 \section{CPU Acceleration}
 % 
@@ -544,27 +542,27 @@ Using the rotational model from above, only fibers with a $\Psi =  0...90$ and $
 % \resizebox{1.0\textwidth}{!}{
 \includegraphics[width=\textwidth, page=1]{dev/rc1/cube_2pop_orientation_hist2d_output_cube_2pop_135_rc1.pdf}
 % }
-\caption[Model orientation histograms]{density distribution of fiber segment orientation in initial and resulting models for $\fiberRadius = \SI{1}{\micro\meter}$. \itodo{fit ESAG} \ITODO{these are only resulting models!}}
+\caption[Model orientation histograms]{density distribution of fiber segment orientation in initial and resulting models for $\fiberRadius = \SI{1}{\micro\meter}$. \itodo{domega?, rf=1?, logarithmisch?} \ITODO{these are only resulting models!}}
 \label{fig:modelOrientation}
 \end{figure}
 % 
 \begin{table}[!b]
 \centering
+\caption[repo angle results]{mean and std of opening angle $d\Omega$ in degree. The lower case number indicates the 10er exponent.}
 \pgfplotstabletypeset[%
     thesisTableStyle,
     columns={omega,psi,pop,mean,std,25,50,75},
-    % sort, sort key=omega,
-    % every head row/.style={after row={\si{\degree} & & &\si{\degree} &\si{\degree} &\si{\degree}&\si{\degree}&\si{\degree} \\ \midrule}},
-    columns/mean/.style={column name=$<d\Omega> / \si{\degree}$,zerofill,precision=0},
-    columns/std/.style={column name=$\sigma(d\Omega) / \si{\degree}$,zerofill,precision=0},
-    columns/25/.style={column name=$25(d\Omega) / \si{\degree}$,zerofill,precision=0},
-    columns/50/.style={column name=$50(d\Omega) / \si{\degree}$,zerofill,precision=0},
-    columns/75/.style={column name=$75(d\Omega) / \si{\degree}$,zerofill,precision=0},
+    columns/omega/.style={column name=$\Omega/\si{\degree}$},
+    columns/psi/.style={column name=$\Psi$},
+    columns/mean/.style={column name=$<d\Omega>/\si{\degree}$,zerofill,precision=0},
+    columns/std/.style={column name=$\sigma(d\Omega)/\si{\degree}$,zerofill,precision=0},
+    columns/25/.style={column name=$25(d\Omega)/\si{\degree}$,zerofill,precision=0},
+    columns/50/.style={column name=$50(d\Omega)/\si{\degree}$,zerofill,precision=0},
+    columns/75/.style={column name=$75(d\Omega)/\si{\degree}$,zerofill,precision=0},
     % column type=ccccccccccccccc,
     col sep=comma,
 ]
 {dev/rc1/omegas_ms_2pop.csv}
-\caption[repo angle results]{mean and std of opening angle $d\Omega$ in degree. The lower case number indicates the 10er exponent}
 \end{table}
 % 
 % \begin{figure}[p]
@@ -576,11 +574,31 @@ Using the rotational model from above, only fibers with a $\Psi =  0...90$ and $
 % \label{fig:modelOrientationHist1d}
 % \end{figure}
 % 
+\begin{figure}[t]
+\centering
+\begin{tabular}{ccc}
+    \includegraphics[width=0.3\textwidth]{dev/rc1/images/cube_2pop_psi_0.30_omega_30.00_r_0.50_v0_135_.solved.png} & 
+    \includegraphics[width=0.3\textwidth]{dev/rc1/images/cube_2pop_psi_0.60_omega_30.00_r_0.50_v0_135_.solved.png} & 
+    \includegraphics[width=0.3\textwidth]{dev/rc1/images/cube_2pop_psi_0.90_omega_30.00_r_0.50_v0_135_.solved.png} \\
+    % 
+    \includegraphics[width=0.3\textwidth]{dev/rc1/images/cube_2pop_psi_0.30_omega_60.00_r_0.50_v0_135_.solved.png} & 
+    \includegraphics[width=0.3\textwidth]{dev/rc1/images/cube_2pop_psi_0.60_omega_60.00_r_0.50_v0_135_.solved.png} & 
+    \includegraphics[width=0.3\textwidth]{dev/rc1/images/cube_2pop_psi_0.90_omega_60.00_r_0.50_v0_135_.solved.png} \\
+    % 
+    \includegraphics[width=0.3\textwidth]{dev/rc1/images/cube_2pop_psi_0.30_omega_90.00_r_0.50_v0_135_.solved.png} & 
+    \includegraphics[width=0.3\textwidth]{dev/rc1/images/cube_2pop_psi_0.60_omega_90.00_r_0.50_v0_135_.solved.png} & 
+    \includegraphics[width=0.3\textwidth]{dev/rc1/images/cube_2pop_psi_0.90_omega_90.00_r_0.50_v0_135_.solved.png} 
+\end{tabular}
+\caption[solved model images]{solved model images. inner $\SI{10}{\micro\meter}$ of the volume.}
+\end{figure}
+% 
 The results are visualized in two polar axis plots in \cref{fig:modelOrientationHist1d}. On the right hemisphere the direction histogram is shown.
 The left hemisphere shows the inclination distribution.
 Both plots are decoupled from each other. \todo{histograms mit line plots?}
 Each value is normed to the maximum of that curve so that the shape is visible.
 A 3d visualized model is printed in the corner of each parameterset.
+% 
+\itodo{show images of 10micrometer cropped volumes}
 % 
 The subset of results show that for all radii the fibers rich the same resulting distribution of orientations. 
 These distributions are broder than the inital values and are centered around their initial orientations.
