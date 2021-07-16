@@ -250,7 +250,7 @@ The results show that, except for mean fiber radii $\geq \SI{5}{\micro\meter}$, 
 \centering
 Single fiber population \vspace{1em}
 \includegraphics[page=2]{dev/rc1/mpara/pre_stats_time_evolve_r05_output_parameter_statistic_rc1.pdf}
-\caption[Time development parallel]{Time development of the model generation process of parallel fiber populations.}
+\caption[Time development parallel]{Time development of the model generation process of parallel fiber populations. x error bar not visible}
 \label{fig:timeDevelopmentNone}
 \end{figure}
 % 
@@ -291,6 +291,18 @@ A difference with changing \segRadiusFactor{} is again not visible.
 The number of objects show only a slightly decrease over time.
 A significant increase is visible in a decreasing value of \segLengthFactor{}.
 The \segRadiusFactor{} is negligible expect in the case of $\segLengthFactor = \SI{1}{}$, where the number of objects is increased \todo{WHY???, makes no sense especially so early}.
+\\
+% 
+The last plot shows the mean time $\Delta t$ needed for a single step.
+Again the \segLengthFactor{} is the most significant influence on the results.
+A change with \segRadiusFactor{} is almost not visible.
+The step time slowly decreses around the half of the time needed for the first step.
+The variance increases with increasing steps and can reach in the case of \segLengthFactor{} about half order of magnitude.
+\\
+% 
+From the first four plots, the total runtime can be seen.
+Decreasing the \segLengthFactor{} increases the runtime.
+This is between $\SI{1000}{\second}$ and $\SI{10000}{\second}$ for all parameters for this volume size.
 \par
 % 
 % CROSSING
@@ -319,66 +331,64 @@ The number of objects shows the same behavior as in the case of the single fiber
 A slight decrease in the number and a significant increase is visible for a decreasing value of the \segLengthFactor{}.
 The splitting of the curves for the \segRadiusFactor{} is also visible, but not as pronounced as in the case of the number of colliding objects.
 In the case of $\segLengthFactor = \SI{1}{}$ and $\segRadiusFactor = \SI{8}{}$, an increase of objects is visible in the last phase of the solution algorithm.
+\\
+The time needed for a single step decreses for all parameters over the number of steps until it reaches for every \segLengthFactor{} a const value.
+The \segRadiusFactor{} seems to play no significant role.
+For the $\segLengthFactor{} = \SI{8}{}$ the variance increases again at the end of the runtime, like in the single fiber population case, however not as high.
+In the case of $\segLengthFactor{} = \SI{1}{}$ and $\segRadiusFactor = \SI{8}{}$ one can see an increase of the step time an the end of the runtime.
+\\
+% 
+The total runtime is affected by both the \segLengthFactor{} and the \segRadiusFactor{}.
+The splitting behavior visible in the plot of the number of colliding objects shows the significant difference in runtime for the \segRadiusFactor{}.
+Increasing the \segRadiusFactor{} can result in up to an order of magnitude increase in runtime for this parameter.
+The differences between the \segLengthFactor{} are comparable to the Signle Fiber case.
 \par
 %
-The other fiber radii show a very similar behavier.
+The other fiber radii show a very similar behavior.
 The strongest difference is a very significant reduction of the runtime with an increase of the \fiberRadiusMean{} (see \cref{app:pste1,app:pste2,app:pste3,app:pste4,app:pste5}).
 % 
 % 
 % 
 \subsection{Discussion}
 % 
-% 
-\itodo{zusammenfassung der gewaehlten parameter}
-\itodo{trennung zu overall discussion}
-\itodo{repo messung mit in die buolding simulation model}
-% 
-
-% 
-\par
-\noindent\rule{\textwidth}{2pt}
-\par 
-% 
-The goal is to choice a set of parameters, which allow a) fast, b) collision free and c) a high volume fraction for densely fibers.
-In the case of parallel fibers, the solving process is always faster than for crossing bundles.
-Even thow that the number of colliding objects is more or less \dummy{} the same \dummy{(ein plot?)} the needed volume to have enough space to not collide with each other is larger \dummy{}.
-Therefore the distance the fiber segments have to travel is higher und the number of steps to achive this increases as well.
+The goal is to identify a parameter set that is a) fast, b) collision-free, and c) allows a high volume fraction for dense fibers.
+For parallel fibers, the solution process is always faster than for intersecting bundles.
+Even if the number of colliding objects is more or less the same, the volume required to have enough space to not collide with each other is larger.
+This is visible in the overlap fraction plot.
+The overlap is significant higher for the crossing fibers than for the single fiber case.
+This means that not only the fiber segments have to move is longer, but also the fiber segments which are but into the octree contain more multiple cases and the number per octree leaf is higher.
+This significantly increases the runtime until the volume is solved.
 \\
 % 
+% \segLengthFactor
 The behavior in change of the length factor \segLengthFactor{} is clearly a time advantage, since also the number ob objects is smaller.
 However a larger \segLengthFactor{} results for crossing fibers as to be expected in a smaller volume fraction.
-For parallel fiber is is reasonable that the volume fraction das not change, since the direction of movement for all fiber segments is radial symmetric along their main orientation axis.
-Up to a fiber radii of \SI{2}{\micro\meter} the repeating measurements are stable.
-Above it the resulting orientations starts to divers.
-This has to to with that the volume has a fixed size of \SI{60}{\micro\meter}.
-This means the number of segments is quite small, individual and the model is therefore diverge.
+For parallel fiber it is reasonable that the volume fraction does not change, since the direction of movement for all fiber segments is radial symmetric along their main orientation axis.
 \\
-The fiber semgent bending radii factor \segRadiusFactor{} yield to less diverse results.
-Since it restrict the bending radii, it is expected, and visible in the results, that the volume fraction is very influenced, since the volume can't be optimal filled anymore.
-Again changes parallel fiber orientation are almost not visible, for all analysed values.
-Crossing fibers however are as expected influenced.
-This is especial visible in the number of colliding objects, where the \segRadiusFactor{} splits the data into individual branches over time.
-Since smaller values of \segRadiusFactor{} allow more curved geometries, this is as expected.
-However this can lead to \say{strange looking} results and has to be set with an anatomical perspective. \todo{images}
+% 
+% \segRadiusFactor{}
+Since the fiber segment bending radius factor \segRadiusFactor{} restricts the bending radius, it is to be expected and visible in the results that the volume fraction is strongly influenced, since the volume can no longer be optimally filled.
+As before, changing the \segRadiusFactor{} in the single fiber case was likely to result in no difference.
+However, crossing fibers are strongly affected as expected.
+This is especially visible in the number of colliding objects, where the \segRadiusFactor{} splits the data into individual branches over time.
+Here, smaller values of \segRadiusFactor{} allow for more curved geometries.
+However, this can lead to unnatural results in terms of anatomical structure.\todo{images}
+For example, in theory, a fiber could deform like a ball of yarn.
+And once the fibers are bent in a volume, the algorithm is almost unable to remove these strong bends.
+Consequently, a lot of volume would be filled with fibers, or rather fiber segments, but the actual number of fibers would be reduced.
 \par
 % 
-Overall the choice of the parameters can be narrowed.
-The main decision come from the crossing results.
-Since most basic parameter is the length length factor \segLengthFactor{}.
-Looking at the volume fraction results it should be as small as possible.
-However since the difference between $\segLengthFactor=\SI{1}{}$ and $\segLengthFactor=\SI{2}{}$ is small, and a big leap is visible for $\segLengthFactor=\SI{4}{}$ one can use $\segLengthFactor=\SI{2}{}$.
-The only reason to increase this value further would be a reduction in runtime.
+Overall, the selection of parameters can be narrowed down.
+The main decision comes from the crossing results.
+Because the most basic parameter is the length factor \segLengthFactor{}.
+If we consider the results of the volume fraction, it should be as small as possible.
+But since the difference between $\segLengthFactor=\SI{1}{}$ and $\segLengthFactor=\SI{2}{}$ is small, and for $\segLengthFactor=\SI{4}{}$ a big jump becomes visible, one can use $\segLengthFactor=\SI{2}{}$ to reduce the runtime significantly.
 \\
 % 
-The fiber radii should be as realistic to real \acs{WM} brain tissue as possible.
-However to reduce the runtime further, a reduction to $r = \SI{1}{\micro\meter}$ is feasible.
-It is still in the same order of magnitude to the real values (\SI{0.5}{\micro\meter}).
-The \ac{3D-PLI} simulation results will show more effective metric to further restrict these parameters.
-% 
-The choice of the fiber banding factor is as already mentioned, more a anatomical restriction.
-However it can be resend, that it has no benefit to reduce its value more then 1 or fibers can (with a small fiber segment length) move perfectly around another fiber, like horseshoe shaped.
-To work against this, but not to further restrict the model geometry a value of 2 is chosen.
-Therefore the following parameters are chosen:
+The choice of the fiber bundling factor \segRadiusFactor{} is, as already mentioned, more of an anatomical constraint.
+To counteract excessive deformation, a value of at least 2 should be selected.
+An even larger value is especially important for large \segLengthFactor{} to strong enlargement of the running time.
+Therefore, the following parameters are chosen:
 % 
 \begin{table}[H]
 \sisetup{parse-numbers=false,open-bracket={\{}, close-bracket={\}}, list-final-separator={,},list-pair-separator={,}}%
@@ -404,7 +414,15 @@ min segment bending radius factor & $\segRadiusFactor$ & $\num{2}$\\
 % \label{tab:parameterSeries}
 \end{table}
 % 
-A last remark.
+For larger fiber radii, the most important effect is the shortening of the running time at constant volume.
+For larger fiber radii, boundry effects become visible.
+For example, the median volume fraction for each configuration decreases significantly and the variance increases.
+This is, of course, the effect of placing only a few fibers in a $\SI{60}{\micro\meter}$ thick volume.
+If these are then randomly arranged and deformed, as in this case, the volume fraction must decrease.
+If the volume were infinite, no difference would be seen between the results since all parameters are separate from the radii.
+Therefore, an increase in the fiber radii should be considered if the volume to be calculated is larger, and of course the simulation otherwise has no significant changes as a result.
+\\
+% 
 An additional property to reduce the runtime is to not completely solve the model. 
 Looking at the overlap fraction, a value of $<\SI{1}{\percent}$ can be feasible.
 This this an additional order of magnitude can be potential saved.
@@ -413,6 +431,10 @@ However, the effect inside the simulation has to be studied.
 % 
 % 
 \section{Angular distribution and further runtime analyses}
+% 
+\par
+\noindent\rule{\textwidth}{2pt}
+\par 
 % 
 The above chosen parameter set is viable regarding runtime and volume density.
 However an important property still has to be investigated, the resulting orientation dstribution.
