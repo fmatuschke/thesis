@@ -42,7 +42,7 @@ K{\'{e}}vin Ginsburger was able to show that one can build a library of models o
 These parameters of a fiber population have the advantage of being anatomically motivated and describing a nerve fiber volume based on statistical properties, which are also commonly used in \ac{dMRI}.
 Here, the idea needs some adaptation to fit the research questions given here.
 % 
-\subsection{Orientation and proportion}
+\subsection{Orientation and proportion}\label{sec:modelParamet}
 % 
 \begin{figure}[t]
 \centering
@@ -249,16 +249,16 @@ The results show that, except for mean fiber radii $\geq \SI{5}{\micro\meter}$, 
 \begin{figure}[p]
 \centering
 Single fiber population \vspace{1em}
-\includegraphics[page=2]{dev/rc1/mpara/pre_stats_time_evolve_r05_output_parameter_statistic_rc1.pdf}
-\caption[Time development parallel]{Time development of the model generation process of parallel fiber populations. x error bar not visible}
+\includegraphics[page=1]{dev/rc1/mpara/pre_stats_time_evolve_r05_output_parameter_statistic_rc1.pdf}
+\caption[Time development parallel]{Time development of the model generation process of parallel fiber populations. Error bars indicate $\SI{25}{\percent}$ and \SI{75}{\percent} quantile.}
 \label{fig:timeDevelopmentNone}
 \end{figure}
 % 
 \begin{figure}[p]
 \centering
 Crossing fiber population \vspace{1em}
-\includegraphics[page=1]{dev/rc1/mpara/pre_stats_time_evolve_r05_output_parameter_statistic_rc1.pdf}
-\caption[Time development parallel]{Time development of the model generation process of crossing fiber populations.}
+\includegraphics[page=2]{dev/rc1/mpara/pre_stats_time_evolve_r05_output_parameter_statistic_rc1.pdf}
+\caption[Time development parallel]{Time development of the model generation process of crossing fiber populations. Error bars indicate $\SI{25}{\percent}$ and \SI{75}{\percent} quantile.}
 \label{fig:timeDevelopmentCross}
 \end{figure}
 % 
@@ -354,14 +354,14 @@ The strongest difference is a very significant reduction of the runtime with an 
 The goal is to identify a parameter set that is a) fast, b) collision-free, and c) allows a high volume fraction for dense fibers.
 For parallel fibers, the solution process is always faster than for intersecting bundles.
 Even if the number of colliding objects is more or less the same, the volume required to have enough space to not collide with each other is larger.
-This is visible in the overlap fraction plot.
+This is visible in the overlap fraction plot \dummy{}.
 The overlap is significant higher for the crossing fibers than for the single fiber case.
-This means that not only the fiber segments have to move is longer, but also the fiber segments which are but into the octree contain more multiple cases and the number per octree leaf is higher.
+This means that not only the fiber segments have to move out of the way is longer, but also the fiber segments which are but into the octree contain more multiple cases and the number per octree leaf is higher.
 This significantly increases the runtime until the volume is solved.
 \\
 % 
 % \segLengthFactor
-The behavior in change of the length factor \segLengthFactor{} is clearly a time advantage, since also the number ob objects is smaller.
+The behavior in change of the length factor \segLengthFactor{} is clearly a time advantage, since also the number of objects is smaller.
 However a larger \segLengthFactor{} results for crossing fibers as to be expected in a smaller volume fraction.
 For parallel fiber it is reasonable that the volume fraction does not change, since the direction of movement for all fiber segments is radial symmetric along their main orientation axis.
 \\
@@ -369,13 +369,19 @@ For parallel fiber it is reasonable that the volume fraction does not change, si
 % \segRadiusFactor{}
 Since the fiber segment bending radius factor \segRadiusFactor{} restricts the bending radius, it is to be expected and visible in the results that the volume fraction is strongly influenced, since the volume can no longer be optimally filled.
 As before, changing the \segRadiusFactor{} in the single fiber case was likely to result in no difference.
-However, crossing fibers are strongly affected as expected.
+However, crossing fibers are strongly affected.
 This is especially visible in the number of colliding objects, where the \segRadiusFactor{} splits the data into individual branches over time.
 Here, smaller values of \segRadiusFactor{} allow for more curved geometries.
 However, this can lead to unnatural results in terms of anatomical structure.\todo{images}
 For example, in theory, a fiber could deform like a ball of yarn.
 And once the fibers are bent in a volume, the algorithm is almost unable to remove these strong bends.
 Consequently, a lot of volume would be filled with fibers, or rather fiber segments, but the actual number of fibers would be reduced.
+An interesting effect for smaller \segLengthFactor{} and higher \segRadiusFactor{} is visible.
+The number of colliding objects stars rising again as well as the total number of objects.
+Especially latter is a strange effect, since the volume is limited.
+With this data it is not possible to investigate the origin of this effect further.
+However one can defenetly say, that larger \segRadiusFactor{} should be avoided, since this effect also influences the data for $\segLengthFactor = 2$ and $\segRadiusFactor \geq 4$.
+However, since such a large radius factor represents an unnatural stiffness for a nerve fiber, this is not a problem for this type of model.
 \par
 % 
 Overall, the selection of parameters can be narrowed down.
@@ -385,10 +391,15 @@ If we consider the results of the volume fraction, it should be as small as poss
 But since the difference between $\segLengthFactor=\SI{1}{}$ and $\segLengthFactor=\SI{2}{}$ is small, and for $\segLengthFactor=\SI{4}{}$ a big jump becomes visible, one can use $\segLengthFactor=\SI{2}{}$ to reduce the runtime significantly.
 \\
 % 
-The choice of the fiber bundling factor \segRadiusFactor{} is, as already mentioned, more of an anatomical constraint.
-To counteract excessive deformation, a value of at least 2 should be selected.
-An even larger value is especially important for large \segLengthFactor{} to strong enlargement of the running time.
-Therefore, the following parameters are chosen:
+The choice of the fiber bending radius factor \segRadiusFactor{} is, as already mentioned, mainly an anatomical constraint.
+To counteract excessive deformation, a value of at $\segRadiusFactor = \SI{2}{}$ should be chosen.
+An even larger value is especially important for large \segLengthFactor{} to greatly increase the runtime and unnatural stiffness mentioned above.
+The \segLengthFactor{} should be as small as possible to have the highest accuracy.
+However, the running time increases too much.
+Therefore, a value of $\segLengthFactor = \SI{2}{}$ was chosen, since higher values already show a significant influence on the volume fraction.
+\\
+% 
+In summary, the following parameters were chosen:
 % 
 \begin{table}[H]
 \sisetup{parse-numbers=false,open-bracket={\{}, close-bracket={\}}, list-final-separator={,},list-pair-separator={,}}%
@@ -414,124 +425,73 @@ min segment bending radius factor & $\segRadiusFactor$ & $\num{2}$\\
 % \label{tab:parameterSeries}
 \end{table}
 % 
-For larger fiber radii, the most important effect is the shortening of the running time at constant volume.
-For larger fiber radii, boundry effects become visible.
-For example, the median volume fraction for each configuration decreases significantly and the variance increases.
-This is, of course, the effect of placing only a few fibers in a $\SI{60}{\micro\meter}$ thick volume.
+For fiber radii $\fiberRadiusMean > \SI{0.5}{\micro\meter}$, the most important effect is the shortening of the runtime for a constant volume.
+In addition, boundary effects become apparent due to the limited volume.
+For example, the mean volume fraction for each configuration decreases significantly and the variance increases.
+This is the effect of being able to place only a few fibers in a $\SI{60}{\micro\meter}$ thick volume.
 If these are then randomly arranged and deformed, as in this case, the volume fraction must decrease.
-If the volume were infinite, no difference would be seen between the results since all parameters are separate from the radii.
-Therefore, an increase in the fiber radii should be considered if the volume to be calculated is larger, and of course the simulation otherwise has no significant changes as a result.
+If the volume was infinite, no difference would be seen between the results, since all parameters are independent of the radii.
+Therefore, an increase in fiber radii should be considered if the volume to be calculated is larger or the run time is imperative.
+It should then be checked that the simulation has no significant changes in the results.
 \\
 % 
-An additional property to reduce the runtime is to not completely solve the model. 
-Looking at the overlap fraction, a value of $<\SI{1}{\percent}$ can be feasible.
-This this an additional order of magnitude can be potential saved.
-However, the effect inside the simulation has to be studied.
+Another tool to reduce the runtime is not to solve the model completely. 
+Looking at the overlap fraction, a value of $<\SI{1}{\percent}$ may be feasible.
+Here, it must be remembered that this is only the fraction of the fiber segment that is still overlapping.
+The number of colliding fiber segments decreases steadily for the chosen parameters
+This can potentially save an order of magnitude.
+However, the influence on the simulation must also be examined here beforehand.
 % 
 \todo{runtime is O(...)}
 % 
-% 
-% 
-% \section{Angular distribution and further runtime analyses}
-% % 
-% \par
-% \noindent\rule{\textwidth}{2pt}
-% \par 
-% % 
-% The above chosen parameter set is viable regarding runtime and volume density.
-% However an important property still has to be investigated, the resulting orientation dstribution.
-% To reduce the amount of data and calculations, this is in only investigated on the chosen parameter set.
-% A key factor is the angular opening angle $d\Omega$. Here it is defined as the angle to the mean value of all fiber segments inside its fiber bundle:
-% \begin{align}
-%     \begin{split}
-%         d\Omega &= \sphericalangle(\vec{f}_{\mathit{seg}}, \overbar{\vec{f}}_{\mathit{seg}})\\
-%         \overbar{\vec{f}}_{\mathit{seg}} &= \sum^{N_{\mathit{seg\, in\, fb}}}_{i=0} \frac{\overbar{\vec{f}}_{\mathit{seg},i}}{N_{\mathit{seg\, in\, fb}}}
-%     \end{split}
-% \end{align}
-% % 
-
-% % 
-% \begin{table}[!b]
-% \caption[repo angle results]{mean and std of opening angle $d\Omega$ in degree. The lower case number indicates the 10er exponent}
-% % \resizebox{\textwidth}{!}{
-% \centering
-% \pgfplotstabletypeset[%
-%     thesisTableStyle,
-%     columns={omega,psi,state, pop,mean_mean, std_mean,25_mean,50_mean,75_mean},
-%     every head row/.style={after row={\si{\degree} & & & & &\si{\degree} & &\si{\degree} & &\si{\degree} & &\si{\degree} & &\si{\degree} \\ \midrule}},
-%     columns/state/.style={string type},
-%     columns/omega/.style={column name=$\Omega$},
-%     columns/psi/.style={column name=$\Psi$},
-%     columns/mean_mean/.style={column name=$<d\Omega>$,sci,sci zerofill,sci subscript,precision=2,dec sep align},
-%     columns/std_mean/.style={column name=$\sigma(d\Omega)$,sci,sci zerofill,sci subscript,precision=2,dec sep align},
-%     columns/25_mean/.style={column name=$25(d\Omega)$,sci,sci zerofill,sci subscript,precision=2,dec sep align},
-%     columns/50_mean/.style={column name=$50(d\Omega)$,sci,sci zerofill,sci subscript,precision=2,dec sep align},
-%     columns/75_mean/.style={column name=$75(d\Omega)$,sci,sci zerofill,sci subscript,precision=2,dec sep align},
-%     col sep=comma,
-% ]
-% {dev/rc1/repo/omegas_ms.csv}
-% % }
-% \end{table}
-% % 
-% From the statistic above one notice that the initial fiber statistic is the same for all configurations from 1.4+-0.0 to 3.0+-0.1 [25-75].
-% The mean orientation for both fiber population show withing $10^-5$ in the direction of the x and y axis.
-% For parallel fibers the angle omega goes from 3.0+-0.1 to 8.0+-0.3 [25-75]. For crossing fibers from 9.5+-0.2 to 26.2+-0.5 [25-75].
-% \par
-% % 
-% This results indicate because of the small standard deviation of the angle omega the ..., that not many models are needed, since the statistical orientations of the fiber segments inside the models are stable with less than 1 degree.
-% However it still has to be shown, that it has no significant impact on the simulation side.
-% % 
-% % 
-% % 
-% \par
-% % 
-% \begin{figure}[!t]
-% \centering
-% \subcaptionbox{volume and time}[.49\textwidth]{
-% \includegraphics[width=0.45\textwidth]{dev/rc1/speed/time_volume_size_time.pdf}}
-% \subcaptionbox{volume and num obj}[.49\textwidth]{
-% \includegraphics[width=0.45\textwidth]{dev/rc1/speed/time_volume_size_num_obj.pdf}}
-% \caption[time\_volume\_size\_time]{time\_volume\_size\_time and num obj, regression excluded 20 case}
-% \label{fig:timevolumeSizeTime}
-% \end{figure}
-% % 
-% \itodo{parameter und simulation von plot beschreiben (vor results)}
-% \Cref{fig:timevolumeSizeTime} shows logarithmic plot of the cube size length against the time and number of objects. 
-% A regression line is plotted in with excluding the v0=20 case.
-% For this range of cube length an exponential behavior is visible for both time and number of objects.
-% \todo{schoen schreiben und plotten}
+%
 % 
 \section{CPU Acceleration}
 % 
 \begin{figure}[!t]
 \centering
 \includegraphics[]{dev/rc1/speed/boxplot_output_r_0.5.pkl_speedup.csv.pdf}
-\caption[\code{model.Sovler} speedup]{\code{model.Sovler} speedup. The time measurements are taken after $\Delta_{\mathit{steps}}$ for the next $100$ steps for parallel $(||)$ and crossing $\times$ fiber configurations.}
+\caption[\code{model.Sovler} speedup]{\code{model.Sovler} speedup. The time measurements are taken after $\Delta_{\mathit{steps}}$ for the next $100$ steps for parallel $(||)$ and crossing $(\times)$ fiber configurations. \itodo{for 16, 24, 32, 48 cores}}
 \label{fig:solverSpeedup}
 \end{figure}
 % 
-As described in \dummy{} \openmp{} is used for acceleration.
-This means no usage of multiple computer nodes is currently available.
-\cref{fig:solverSpeedup} shows a speedup up to eight cores.
-A number of two cores gives a good speedup of around $1.8$, three cores around $2.5$ and four cores around $3$.
-A further incresse of core numbers does not benefit the runtime much.
-This has most likely to do with the fact, that the data has to transvered between all the cores and this takes quite some time.
-Even if the algorithm is especially optimized to reduce the amount of data to be copied, the paralysed instructions are often very short (\eg{} move positions), with the exception of the distance calculation.
-Since all data is linear in memory, the cpu can use the full potential of the prefetcher and calculate very fast.
+As described in \cref{sec:modelOpt}, \openmp{} is used to accelerate \code{for} loops.
+This means that currently it is not possible to use multiple compute nodes.
+% 
+\subsection{Results}
+For a single node, a volume of $\SI{60}{\micro\meter} \times \SI{60}{\micro\meter} \times \SI{60}{\micro\meter}$ measured with the above parameters $\SI{24}{}$ times.
+\cref{fig:solverSpeedup} shows the speedup of the measurements on up to eight cores.
+The speedup was calculated after $\Delta_{\mathit{steps}}$ as the average of the nearest $\SI{100}{\steps}$.
+For $\Delta_{\mathit{steps}} = \SI{0}{\steps}$, the speedup for $\SI{2}{}$ cores is about 1.5 for crossing and noncrossing fiber bundles.
+Additional cores increase the speedup, but only slightly.
+For parallel fibers, the speedup does not increase above $2$, and for crossing fibers, it does not increase above $\SI{2.5}{}$.
+For $\Delta_{\mathit{steps}} = \SI{100}{\steps}$, the speedup approaches the ideal curve.
+The best case in this data set is for $\Delta_{\mathit{steps}} = \SI{1000}{\steps}$ and parallel fibers. There $\SI{2}{}$ cores almost reach a speedup of $2$ and 8 cores reach a speedup of $\SI{5.9}{}$.
+However, crossing fiber bundles have a much lower speedup.
+There $\SI{8}{}$ cores reach only a speedup of $\SI{4.3}{}$.
+% \par
+% 
+\subsection{Discussion}
+This most likely has to do with the fact that the data has to be transferred between all cores and this takes quite a lot of time.
+Even though the algorithm is specifically optimized to reduce the amount of data to be copied, the parallelized instructions are often very short (\eg{} move positions), except for the distance calculation.
+For the difference between the different $\Delta_{\mathit{steps}}$, consider that the overlap is higher for crossing fibers than for parallel fibers.
+However, why the speedup for $\Delta_{\mathit{steps}}=\SI{0}{\steps}$ is initially better for crossing fibers, and then the behavior reverses for $\Delta_{\mathit{steps}}=\SI{1000}{\steps}$ is unclear at this point. 
+A closer look at the data and the solution step is needed.
+Nonetheless, in a time-consuming manner, the data suggests that using a multicore system significantly reduces runtime.
+However, for small volumes or low-fiber objects, one should use only one or two cores and prefer to run multiple models in parallel.
 \par
 % 
-The results show, that especially to increase the volume size, other algorithms are needed. 
-Here the \ac{GPU} seems to be the hardware of choice.
+The results show, that especially to increase the volume size, a more optimized algorithm is needed.
+Here the \ac{GPU} seems to be the hardware of choice \cite{Karras2012}.
 % 
 % 
 % 
-\section{Building models for simulation}
+\section{Simulation library}
 % 
-With the upper chosen model parameters the final models can be build.
-To be able to study the effect of the fiber radii on the simulation, all radii are generated.
-In this section the resulting orientation inside the volume, \ie{} the orientation of the fiber segments, will be analysed.
-The same setup as above (see \cref{sec:modelSetup}) is chosen with fix $\segLengthFactor=\SI{2}{}$ and $\segRadiusFactor = \SI{2}{}$.
-Using the rotational model from above, only fibers with a $\Psi =  0...90$ and $\Omega = 0.1...1.0$ are generated.
+With the model parameters selected above (see \cref{sec:modelSetup}) the simulation models can be generated.
+As described in \cref{sec:modelParamet} only fibers with a $\Omega = \SIrange{10}{90}{\degree}$ and $\Psi = \SIrange{0.1}{0.9}{}$ are generated with the addition of $\Omega=\SI{0}{\degree}, \Psi=\SI{1.0}{}$.
+The volume for the simulation is increased up to a \SI{135}{\micro\meter} diameter sphere, so that a simulated volume with added tilting boundary can be generated from the sphere in any orientation.
+In this section, the resulting orientation within the volume, \ie{} the orientation of the fiber segments, is analyzed, before they are used in the simulation in the next chapter.
 % 
 % 
 % 
@@ -542,13 +502,36 @@ Using the rotational model from above, only fibers with a $\Psi =  0...90$ and $
 % \resizebox{1.0\textwidth}{!}{
 \includegraphics[width=\textwidth, page=1]{dev/rc1/cube_2pop_orientation_hist2d_output_cube_2pop_135_rc1.pdf}
 % }
-\caption[Model orientation histograms]{density distribution of fiber segment orientation in initial and resulting models for $\fiberRadius = \SI{1}{\micro\meter}$. \itodo{domega?, rf=1?, logarithmisch?} \ITODO{these are only resulting models!}}
+\caption[Simulation model orientation distrubition]{Density distribution of fiber segment orientation in the simulation models. The color of the segments is weighted by the area on a spherical surface. The value is normalized so that the integral over a hemisphere is 1. The dashed white line indicates the orientation of the two fiber populations.}
 \label{fig:modelOrientation}
+\end{figure}
+% 
+\begin{figure}[!t]
+\centering
+\begin{tabular}{cccc}
+    &$\Psi=\SI{0.3}{}$&$\Psi=\SI{0.6}{}$&$\Psi=\SI{0.9}{}$\\
+    \rotatebox[origin=c]{90}{$\Omega=\SI{30}{\degree}$} &
+    \includegraphics[width=0.3\textwidth]{dev/rc1/images/cube_2pop_psi_0.30_omega_30.00_r_0.50_v0_135_.solved.png} & 
+    \includegraphics[width=0.3\textwidth]{dev/rc1/images/cube_2pop_psi_0.60_omega_30.00_r_0.50_v0_135_.solved.png} & 
+    \includegraphics[width=0.3\textwidth]{dev/rc1/images/cube_2pop_psi_0.90_omega_30.00_r_0.50_v0_135_.solved.png} \\
+    % 
+    \rotatebox[origin=c]{90}{$\Omega=\SI{60}{\degree}$} &
+    \includegraphics[width=0.3\textwidth]{dev/rc1/images/cube_2pop_psi_0.30_omega_60.00_r_0.50_v0_135_.solved.png} & 
+    \includegraphics[width=0.3\textwidth]{dev/rc1/images/cube_2pop_psi_0.60_omega_60.00_r_0.50_v0_135_.solved.png} & 
+    \includegraphics[width=0.3\textwidth]{dev/rc1/images/cube_2pop_psi_0.90_omega_60.00_r_0.50_v0_135_.solved.png} \\
+    % 
+    \rotatebox[origin=c]{90}{$\Omega=\SI{90}{\degree}$} &
+    \includegraphics[width=0.3\textwidth]{dev/rc1/images/cube_2pop_psi_0.30_omega_90.00_r_0.50_v0_135_.solved.png} & 
+    \includegraphics[width=0.3\textwidth]{dev/rc1/images/cube_2pop_psi_0.60_omega_90.00_r_0.50_v0_135_.solved.png} & 
+    \includegraphics[width=0.3\textwidth]{dev/rc1/images/cube_2pop_psi_0.90_omega_90.00_r_0.50_v0_135_.solved.png} 
+\end{tabular}
+\caption[solved model images]{solved model images. inner $\SI{10}{\micro\meter}$ of the volume. \itodo{fix label}}
+\label{fig:modelImages}
 \end{figure}
 % 
 \begin{table}[!b]
 \centering
-\caption[repo angle results]{mean and std of opening angle $d\Omega$ in degree. The lower case number indicates the 10er exponent.}
+\caption[Opening angle distribution]{mean and std of opening angle $d\Omega$ of the simulation model. The lower case number indicates the 10er exponent. \itodo{mean theta, mean phi}}
 \pgfplotstabletypeset[%
     thesisTableStyle,
     columns={omega,psi,pop,mean,std,25,50,75},
@@ -559,51 +542,42 @@ Using the rotational model from above, only fibers with a $\Psi =  0...90$ and $
     columns/25/.style={column name=$25(d\Omega)/\si{\degree}$,zerofill,precision=0},
     columns/50/.style={column name=$50(d\Omega)/\si{\degree}$,zerofill,precision=0},
     columns/75/.style={column name=$75(d\Omega)/\si{\degree}$,zerofill,precision=0},
-    % column type=ccccccccccccccc,
     col sep=comma,
 ]
 {dev/rc1/omegas_ms_2pop.csv}
+\label{tab:modelDistribution}
 \end{table}
 % 
-% \begin{figure}[p]
-% \centering
-% % \resizebox{1.0\textwidth}{!}{
-% \includegraphics[width=\textwidth, page=1]{dev/rc1/cube_2pop_orientation_hist_output_cube_2pop_135_rc1_.pdf}
-% % }
-% \caption[Model orientation histograms]{Maximum normed distribution of fiber segment orientation in initial and resulting models. The left half circle contains the inclination $\alpha$ value, the right half the direction $\varphi$. \itodo{which norm?}}
-% \label{fig:modelOrientationHist1d}
-% \end{figure}
 % 
-\begin{figure}[t]
-\centering
-\begin{tabular}{ccc}
-    \includegraphics[width=0.3\textwidth]{dev/rc1/images/cube_2pop_psi_0.30_omega_30.00_r_0.50_v0_135_.solved.png} & 
-    \includegraphics[width=0.3\textwidth]{dev/rc1/images/cube_2pop_psi_0.60_omega_30.00_r_0.50_v0_135_.solved.png} & 
-    \includegraphics[width=0.3\textwidth]{dev/rc1/images/cube_2pop_psi_0.90_omega_30.00_r_0.50_v0_135_.solved.png} \\
-    % 
-    \includegraphics[width=0.3\textwidth]{dev/rc1/images/cube_2pop_psi_0.30_omega_60.00_r_0.50_v0_135_.solved.png} & 
-    \includegraphics[width=0.3\textwidth]{dev/rc1/images/cube_2pop_psi_0.60_omega_60.00_r_0.50_v0_135_.solved.png} & 
-    \includegraphics[width=0.3\textwidth]{dev/rc1/images/cube_2pop_psi_0.90_omega_60.00_r_0.50_v0_135_.solved.png} \\
-    % 
-    \includegraphics[width=0.3\textwidth]{dev/rc1/images/cube_2pop_psi_0.30_omega_90.00_r_0.50_v0_135_.solved.png} & 
-    \includegraphics[width=0.3\textwidth]{dev/rc1/images/cube_2pop_psi_0.60_omega_90.00_r_0.50_v0_135_.solved.png} & 
-    \includegraphics[width=0.3\textwidth]{dev/rc1/images/cube_2pop_psi_0.90_omega_90.00_r_0.50_v0_135_.solved.png} 
-\end{tabular}
-\caption[solved model images]{solved model images. inner $\SI{10}{\micro\meter}$ of the volume.}
-\end{figure}
 % 
-The results are visualized in two polar axis plots in \cref{fig:modelOrientationHist1d}. On the right hemisphere the direction histogram is shown.
-The left hemisphere shows the inclination distribution.
-Both plots are decoupled from each other. \todo{histograms mit line plots?}
-Each value is normed to the maximum of that curve so that the shape is visible.
-A 3d visualized model is printed in the corner of each parameterset.
+\Cref{fig:modelOrientation} shows the orientation distribution as polar histogram for the fiber segments in a subset of the models. 
+The hole dataset is available in \Cref{fig:modelHistOrientation}.
+The distribution shows the symmetry which corresponds well with the initialized orientation.
+The analysed oreintations as the statistic of the opening angle of each population $pop$ is listed in \cref{tab:modelDistribution}.
+Corresponding images are shown in \cref{fig:modelImages} for the most inner $\SI{10}{\micro\meter}$ cube, so that the individual fibers become more recognisable.
+\\
 % 
-\itodo{show images of 10micrometer cropped volumes}
+The distribution of the models fiber segment orientation show a local delimitation of each fiber population with a variance round the main population orientation.
+The \cref{tab:modelDistribution} show that for all crossing angles $\modelOmega$ the mean opening angle $<d\Omega>$ is around $\SI{20}{\degree}$ \todo{genauer wert}.
+The variance $\sigma(\Omega)$ is around $\SI{11}{\degree}$.
+Since the distribution is not a normal distribution, the quantile are also specified.
+The upper quantile $\SI{75}{\percent}$ shows values up to $\SI{29}{\percent}$.
+It exists a significant difference between the first and second fiperpopulation distribution, that the one, which is higher represented, has smaller opening angle and lower variance and quantile.
+\par
 % 
-The subset of results show that for all radii the fibers rich the same resulting distribution of orientations. 
-These distributions are broder than the inital values and are centered around their initial orientations.
-The resulting 3d visualized models show all an interwoven structure, where both fiber population orientations are clearly visible. \todo{anhang}
-%  
+The images in \cref{fig:modelImages} show the woven pattern within the collision-free model.
+Multiple layers of fibers are woven together, with one layer appearing to have a thickness of only one fiber diameter.
+Several instances are seen where multiple fibers appear to move as a unit through the woven pattern,\eg{} as the motion appears to be synchronized perpendicular to the main orientation.
+Wiggling of individual fibers is visible in fibers with a low density within the fiber population.
+\par
+% 
+Depending on parallel or crossing fibers these models were build with a runtime of \dummy{}.
+% 
+\par
+\noindent\rule{\textwidth}{2pt}
+\par
+% 
 \subsection{Discussion}
 %
+- single layer not anayomical always presetn -> but simulation signal does not care. reason in model: presure from outside fibers.
 % 
