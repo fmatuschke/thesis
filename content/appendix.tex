@@ -320,3 +320,147 @@
     \caption{Caption}
     \label{fig:modelHistOrientation}
 \end{figure}[]
+% 
+% 
+% 
+% \begin{table}[p]
+% \centering
+% \caption[Opening angle distribution]{Orientation statistic of simulation model library.}
+% \resizebox{\textwidth}{!}{
+% \pgfplotstabletypeset[%
+%     thesisTableStyle,
+%     skip rows between index={62}{184},
+%     columns={omega,psi,pop,incl_mean,incl_std,incl_25,incl_50,incl_75,phi_mean,phi_std,phi_25,phi_50,phi_75,mean,std,25,50,75},
+%     every head row/.style={
+%         before row={
+%             \toprule
+%         },
+%         after row={$\si{\degree}$ & & & $\si{\degree}$ & $\si{\degree}$ & $\si{\degree}$ & $\si{\degree}$ & $\si{\degree}$ & $\si{\degree}$ & $\si{\degree}$ & $\si{\degree}$ & $\si{\degree}$ & $\si{\degree}$ & $\si{\degree}$ & $\si{\degree}$ & $\si{\degree}$ & $\si{\degree}$ & $\si{\degree}$ \\ \midrule},
+%     },
+%     columns/omega/.style={column name=$\Omega$},
+%     columns/psi/.style={column name=$\Psi$},
+%     columns/mean/.style={column name=$<d\Omega>$,zerofill,precision=0},
+%     columns/std/.style={column name=$\sigma(d\Omega)$,zerofill,precision=0},
+%     columns/25/.style={column name=$25(d\Omega)$,zerofill,precision=0},
+%     columns/50/.style={column name=$50(d\Omega)$,zerofill,precision=0},
+%     columns/75/.style={column name=$75(d\Omega)$,zerofill,precision=0},
+%     columns/incl_mean/.style={column name=$<\alpha>$,fixed,fixed zerofill,precision=0},
+%     columns/incl_std/.style={column name=$\sigma(\alpha)$,fixed,fixed zerofill,precision=0},
+%     columns/incl_25/.style={column name=$25(\alpha)$,fixed,fixed zerofill,precision=0},
+%     columns/incl_50/.style={column name=$50(\alpha)$,fixed,fixed zerofill,precision=0},
+%     columns/incl_75/.style={column name=$75(\alpha)$,fixed,fixed zerofill,precision=0},
+%     columns/phi_mean/.style={column name=$<\varphi>$,fixed,fixed zerofill,precision=0},
+%     columns/phi_std/.style={column name=$\sigma(\varphi)$,fixed,fixed zerofill,precision=0},
+%     columns/phi_25/.style={column name=$25(\varphi)$,fixed,fixed zerofill,precision=0},
+%     columns/phi_50/.style={column name=$50(\varphi)$,fixed,fixed zerofill,precision=0},
+%     columns/phi_75/.style={column name=$75(\varphi)$,fixed,fixed zerofill,precision=0},
+%     col sep=comma,
+%     % 
+% ]
+% {dev/rc1/omegas_ms.csv}
+% }
+% \label{tab:modelDistributionFull}
+% \end{table}
+% % 
+% \begin{table*}[p]
+% \centering
+% \resizebox{\textwidth}{!}{
+% \pgfplotstabletypeset[%
+%     thesisTableStyle,
+%     skip rows between index={1}{61},
+%     skip rows between index={124}{184},
+%     columns={omega,psi,pop,incl_mean,incl_std,incl_25,incl_50,incl_75,phi_mean,phi_std,phi_25,phi_50,phi_75,mean,std,25,50,75},
+%     every head row/.style={
+%         before row={
+%             \toprule
+%         },
+%         after row={$\si{\degree}$ & & & $\si{\degree}$ & $\si{\degree}$ & $\si{\degree}$ & $\si{\degree}$ & $\si{\degree}$ & $\si{\degree}$ & $\si{\degree}$ & $\si{\degree}$ & $\si{\degree}$ & $\si{\degree}$ & $\si{\degree}$ & $\si{\degree}$ & $\si{\degree}$ & $\si{\degree}$ & $\si{\degree}$ \\ \midrule},
+%     },
+%     columns/omega/.style={column name=$\Omega$},
+%     columns/psi/.style={column name=$\Psi$},
+%     columns/mean/.style={column name=$<d\Omega>$,zerofill,precision=0},
+%     columns/std/.style={column name=$\sigma(d\Omega)$,zerofill,precision=0},
+%     columns/25/.style={column name=$25(d\Omega)$,zerofill,precision=0},
+%     columns/50/.style={column name=$50(d\Omega)$,zerofill,precision=0},
+%     columns/75/.style={column name=$75(d\Omega)$,zerofill,precision=0},
+%     columns/incl_mean/.style={column name=$<\alpha>$,fixed,fixed zerofill,precision=0},
+%     columns/incl_std/.style={column name=$\sigma(\alpha)$,fixed,fixed zerofill,precision=0},
+%     columns/incl_25/.style={column name=$25(\alpha)$,fixed,fixed zerofill,precision=0},
+%     columns/incl_50/.style={column name=$50(\alpha)$,fixed,fixed zerofill,precision=0},
+%     columns/incl_75/.style={column name=$75(\alpha)$,fixed,fixed zerofill,precision=0},
+%     columns/phi_mean/.style={column name=$<\varphi>$,fixed,fixed zerofill,precision=0},
+%     columns/phi_std/.style={column name=$\sigma(\varphi)$,fixed,fixed zerofill,precision=0},
+%     columns/phi_25/.style={column name=$25(\varphi)$,fixed,fixed zerofill,precision=0},
+%     columns/phi_50/.style={column name=$50(\varphi)$,fixed,fixed zerofill,precision=0},
+%     columns/phi_75/.style={column name=$75(\varphi)$,fixed,fixed zerofill,precision=0},
+%     col sep=comma,
+%     % 
+% ]
+% {dev/rc1/domega/omegas_ms.csv}
+% }
+% \end{table*}
+% 
+% 
+% \begin{table*}[p]
+% \centering
+% \resizebox{\textwidth}{!}{
+% \pgfplotstabletypeset[%
+%     thesisTableStyle,
+%     skip rows between index={1}{123},
+%     columns={omega,psi,pop,incl_mean,incl_std,incl_25,incl_50,incl_75,phi_mean,phi_std,phi_25,phi_50,phi_75,mean,std,25,50,75},
+%     every head row/.style={
+%         before row={
+%             \toprule
+%         },
+%         after row={$\si{\degree}$ & & & $\si{\degree}$ & $\si{\degree}$ & $\si{\degree}$ & $\si{\degree}$ & $\si{\degree}$ & $\si{\degree}$ & $\si{\degree}$ & $\si{\degree}$ & $\si{\degree}$ & $\si{\degree}$ & $\si{\degree}$ & $\si{\degree}$ & $\si{\degree}$ & $\si{\degree}$ & $\si{\degree}$ \\ \midrule},
+%     },
+%     columns/omega/.style={column name=$\Omega$},
+%     columns/psi/.style={column name=$\Psi$},
+%     columns/mean/.style={column name=$<d\Omega>$,zerofill,precision=0},
+%     columns/std/.style={column name=$\sigma(d\Omega)$,zerofill,precision=0},
+%     columns/25/.style={column name=$25(d\Omega)$,zerofill,precision=0},
+%     columns/50/.style={column name=$50(d\Omega)$,zerofill,precision=0},
+%     columns/75/.style={column name=$75(d\Omega)$,zerofill,precision=0},
+%     columns/incl_mean/.style={column name=$<\alpha>$,fixed,fixed zerofill,precision=0},
+%     columns/incl_std/.style={column name=$\sigma(\alpha)$,fixed,fixed zerofill,precision=0},
+%     columns/incl_25/.style={column name=$25(\alpha)$,fixed,fixed zerofill,precision=0},
+%     columns/incl_50/.style={column name=$50(\alpha)$,fixed,fixed zerofill,precision=0},
+%     columns/incl_75/.style={column name=$75(\alpha)$,fixed,fixed zerofill,precision=0},
+%     columns/phi_mean/.style={column name=$<\varphi>$,fixed,fixed zerofill,precision=0},
+%     columns/phi_std/.style={column name=$\sigma(\varphi)$,fixed,fixed zerofill,precision=0},
+%     columns/phi_25/.style={column name=$25(\varphi)$,fixed,fixed zerofill,precision=0},
+%     columns/phi_50/.style={column name=$50(\varphi)$,fixed,fixed zerofill,precision=0},
+%     columns/phi_75/.style={column name=$75(\varphi)$,fixed,fixed zerofill,precision=0},
+%     col sep=comma,
+%     % 
+% ]
+% {dev/rc1/domega/omegas_ms.csv}
+% }
+% \end{table*}
+% 
+% 
+% 
+\begin{figure}[p]
+    \centering
+    \includegraphics[width=\textwidth]{dev/rc1/domega/domega_all_phi_p_0.pdf}
+    \includegraphics[width=\textwidth]{dev/rc1/domega/domega_all_phi_p_1.pdf}
+    \caption[Boxplot]{Direction and inclination distribution of simulation model library. \itodo{RFC}}
+    % \label{fig:my_label}
+\end{figure}
+% 
+\begin{figure}[p]
+    \centering
+    \includegraphics[width=\textwidth]{dev/rc1/domega/domega_all_theta_p_0.pdf}
+    \includegraphics[width=\textwidth]{dev/rc1/domega/domega_all_theta_p_1.pdf}
+    \caption[Boxplot]{Direction and inclination distribution of simulation model library. \itodo{RFC}}
+    % \label{fig:my_label}
+\end{figure}
+% 
+\begin{figure}[p]
+    \centering
+    \includegraphics[width=\textwidth]{dev/rc1/domega/domega_all_domega_p_0.pdf}
+    \includegraphics[width=\textwidth]{dev/rc1/domega/domega_all_domega_p_1.pdf}
+    \caption[Boxplot]{Direction and inclination distribution of simulation model library. \itodo{RFC}}
+    % \label{fig:my_label}
+\end{figure}
+% 
