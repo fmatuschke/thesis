@@ -497,6 +497,13 @@ In this section, the resulting orientation within the volume, \ie{} the orientat
 % 
 \subsection{Results}
 % 
+\todo{rewrite angular statistics}
+% 
+\par
+\noindent\rule{\textwidth}{2pt}
+\par
+% 
+% 
 \begin{figure}[!t]
 \centering
 % \resizebox{1.0\textwidth}{!}{
@@ -525,28 +532,59 @@ In this section, the resulting orientation within the volume, \ie{} the orientat
     \includegraphics[width=0.3\textwidth]{dev/rc1/images/cube_2pop_psi_0.60_omega_90.00_r_0.50_v0_135_.solved.png} & 
     \includegraphics[width=0.3\textwidth]{dev/rc1/images/cube_2pop_psi_0.90_omega_90.00_r_0.50_v0_135_.solved.png} 
 \end{tabular}
-\caption[solved model images]{solved model images. inner $\SI{10}{\micro\meter}$ of the volume. \itodo{fix label}}
+\caption[solved model images]{Simulation model library. The inner $\SI{10}{\micro\meter} \times \SI{10}{\micro\meter} \times \SI{10}{\micro\meter}$ of the volume is shown. \itodo{fix label}}
 \label{fig:modelImages}
 \end{figure}
 % 
-\begin{table}[!b]
-\centering
-\caption[Opening angle distribution]{mean and std of opening angle $d\Omega$ of the simulation model. The lower case number indicates the 10er exponent. \itodo{mean theta, mean phi}}
-\pgfplotstabletypeset[%
-    thesisTableStyle,
-    columns={omega,psi,pop,mean,std,25,50,75},
-    columns/omega/.style={column name=$\Omega/\si{\degree}$},
-    columns/psi/.style={column name=$\Psi$},
-    columns/mean/.style={column name=$<d\Omega>/\si{\degree}$,zerofill,precision=0},
-    columns/std/.style={column name=$\sigma(d\Omega)/\si{\degree}$,zerofill,precision=0},
-    columns/25/.style={column name=$25(d\Omega)/\si{\degree}$,zerofill,precision=0},
-    columns/50/.style={column name=$50(d\Omega)/\si{\degree}$,zerofill,precision=0},
-    columns/75/.style={column name=$75(d\Omega)/\si{\degree}$,zerofill,precision=0},
-    col sep=comma,
-]
-{dev/rc1/omegas_ms_2pop.csv}
-\label{tab:modelDistribution}
-\end{table}
+% \begin{table}[!b]
+% \centering
+% \caption[Opening angle distribution]{Orientation statistic of simulation model library.}
+% \resizebox{\textwidth}{!}{
+% \pgfplotstabletypeset[%
+%     thesisTableStyle,
+%     columns={omega,psi,pop,incl_mean,incl_std,incl_25,incl_50,incl_75,phi_mean,phi_std,phi_25,phi_50,phi_75,mean,std,25,50,75},
+%     every head row/.style={
+%         before row={
+%             \toprule
+%         },
+%         after row={$\si{\degree}$ & & & $\si{\degree}$ & $\si{\degree}$ & $\si{\degree}$ & $\si{\degree}$ & $\si{\degree}$ & $\si{\degree}$ & $\si{\degree}$ & $\si{\degree}$ & $\si{\degree}$ & $\si{\degree}$ & $\si{\degree}$ & $\si{\degree}$ & $\si{\degree}$ & $\si{\degree}$ & $\si{\degree}$ \\ \midrule},
+%     },
+%     columns/omega/.style={column name=$\Omega$},
+%     columns/psi/.style={column name=$\Psi$},
+%     columns/mean/.style={column name=$<d\Omega>$,zerofill,precision=0},
+%     columns/std/.style={column name=$\sigma(d\Omega)$,zerofill,precision=0},
+%     columns/25/.style={column name=$25(d\Omega)$,zerofill,precision=0},
+%     columns/50/.style={column name=$50(d\Omega)$,zerofill,precision=0},
+%     columns/75/.style={column name=$75(d\Omega)$,zerofill,precision=0},
+%     columns/incl_mean/.style={column name=$<\alpha>$,fixed,fixed zerofill,precision=0},
+%     columns/incl_std/.style={column name=$\sigma(\alpha)$,fixed,fixed zerofill,precision=0},
+%     columns/incl_25/.style={column name=$25(\alpha)$,fixed,fixed zerofill,precision=0},
+%     columns/incl_50/.style={column name=$50(\alpha)$,fixed,fixed zerofill,precision=0},
+%     columns/incl_75/.style={column name=$75(\alpha)$,fixed,fixed zerofill,precision=0},
+%     columns/phi_mean/.style={column name=$<\varphi>$,fixed,fixed zerofill,precision=0},
+%     columns/phi_std/.style={column name=$\sigma(\varphi)$,fixed,fixed zerofill,precision=0},
+%     columns/phi_25/.style={column name=$25(\varphi)$,fixed,fixed zerofill,precision=0},
+%     columns/phi_50/.style={column name=$50(\varphi)$,fixed,fixed zerofill,precision=0},
+%     columns/phi_75/.style={column name=$75(\varphi)$,fixed,fixed zerofill,precision=0},
+%     col sep=comma,
+%     % 
+% ]
+% {dev/rc1/omegas_ms_2pop.csv}
+% }
+% \label{tab:modelDistribution}
+% \end{table}
+% 
+\begin{figure}[!t]
+    \centering
+    \includegraphics[width=0.495\textwidth]{dev/rc1/domega/domega_phi_p_0.pdf}
+    \includegraphics[width=0.495\textwidth]{dev/rc1/domega/domega_phi_p_1.pdf}
+    \includegraphics[width=0.495\textwidth]{dev/rc1/domega/domega_theta_p_0.pdf}
+    \includegraphics[width=0.495\textwidth]{dev/rc1/domega/domega_theta_p_1.pdf}
+    \includegraphics[width=0.495\textwidth]{dev/rc1/domega/domega_domega_p_0.pdf}
+    \includegraphics[width=0.495\textwidth]{dev/rc1/domega/domega_domega_p_1.pdf}
+    \caption[Boxplot]{Direction and inclination distribution of simulation model library. \itodo{RFC}}
+    % \label{fig:my_label}
+\end{figure}
 % 
 % 
 % 
@@ -563,6 +601,12 @@ The variance $\sigma(\Omega)$ is around $\SI{11}{\degree}$.
 Since the distribution is not a normal distribution, the quantile are also specified.
 The upper quantile $\SI{75}{\percent}$ shows values up to $\SI{29}{\percent}$.
 It exists a significant difference between the first and second fiperpopulation distribution, that the one, which is higher represented, has smaller opening angle and lower variance and quantile.
+\\
+The inclination $\alpha$ and direction $\phi$ was calculated by centering the orientation to the fiber populations main orientation and then applying the functions.
+The mean as well as the median orientation of the populations is in good agreement with the targeted value.
+The standard deviation for the here presented subset is about $\SI{18}{\degree}$ for the inclination and $\SI{16}{\degree}$ \todo{nachrechnen!} for the direction. 
+One has to bare in mind, that the angules for the inclination and direction are interdependent.
+Thats the reaseon the opening angle is calculated as well.
 \par
 % 
 The images in \cref{fig:modelImages} show the woven pattern within the collision-free model.
@@ -571,13 +615,26 @@ Several instances are seen where multiple fibers appear to move as a unit throug
 Wiggling of individual fibers is visible in fibers with a low density within the fiber population.
 \par
 % 
-Depending on parallel or crossing fibers these models were build with a runtime of \dummy{}.
-% 
-\par
-\noindent\rule{\textwidth}{2pt}
-\par
+Depending on parallel or crossing fibers the runtime was in the range of $\SIrange{32}{40}{\hour}$ and \SIrange{11000}{17000}{\steps}.
 % 
 \subsection{Discussion}
 %
+\todo{rewrite}
+% 
 - single layer not anayomical always presetn -> but simulation signal does not care. reason in model: presure from outside fibers.
 % 
+The simulation model library orientation distribution is stable for all crossing angles.
+The distribution variance is however smaller for the main represented fiber bundle.
+This is reasonable, since the main fiber fundle applies more pressure radial to is orientiation yielding to a more stable configuration for cylinder shaped objects.
+This will have a small impact also on the simulation results yielding in a higher retardation for parallel or high dominant fiber populations compared to the crossing and more evenly distributed fiber poplations.
+However this effect will be less significant than the shrinking of the volume fraction which results in less fibers inside the volume and therefore also for a lower retardation next to the main reduce effect of a crossing region.
+For stiff models a higher variance of the angular distribution is reasonable. 
+If this is also true for anatomically tissue has to be explored.
+Measurements like electro microscopy make it difficult to analyse shuch structures because the necesarry vacuum deforms the tissue strongly.
+TPFM on the other hand has the disadvantage, that in densly \ac{WM} regions the fibers saturate the images and no individual fibers can be detected anymore.
+Nevertheless since real nerve fibers are not stiff and are also not perfectly cylindric, one can assume, that from a geometrical point of few the angular distribution should be smaller than in these generated models.
+However which effect the growing and myelination process of the axons have on there geometry is still ... research.
+
+These models have the advantage to produce a naturaly inspired angular distribution which should lead in a more realistic distribution of the \ac{3D-PLI} simulation signal.
+There only the distribution, but not actually the position of the fiber (see \dummy{}) is of relevants.
+This is also the resion why a homoginiously woven pattern of nerve fiber is acceptable, even if the anatomical crossing have different number of layers, as long as the ratio is the same in one image voxel or better in the path of the light rays.
