@@ -414,32 +414,33 @@ However, this is only true for a pixel size of $\SI{1.25}{\micro\meter}$.
 % 
 % 
 % 
-\section{Model orientation sampling}
+\section{Parameterization}
 % 
 \begin{figure}[p]
 \centering
 \def\tikzwidth{0.42*\textwidth}
 \subcaptionbox{\label{fig:modelrotcube}A spherical volume with diameter $d$ is used as boundary, so that a cube of side length $1/1.5 \cdot d$ can be cut in any orientation inside the sphere.}
-[.49\textwidth]{\inputtikz{gfx/model/sphere_cube}}\hfill
+[.49\textwidth]{\inputtikz[true]{gfx/model/sphere_cube}}\hfill
 \subcaptionbox{\label{fig:modelinit}Initial orientation for two fiber populations $F_0$ and $F_1$. The angle between both populations is $\Omega$. The remaining degree of freedom are taken into account by rotating the whole volume (see \cref{fig:modelrotcube})}
-[.49\textwidth]{\inputtikz{gfx/model/sphere_models}}
+[.49\textwidth]{\inputtikz[true]{gfx/model/sphere_models}}
 \\
 % 
 \subcaptionbox{fixed first fiber population; half rotation of second fiber population}
-[.49\textwidth]{\inputtikz{gfx/model/sphere_models_a}}\hfill
+[.49\textwidth]{\inputtikz[true]{gfx/model/sphere_models_a}}\hfill
 \subcaptionbox{\label{subfig:Test1}increasing inclination for first fiber population}
-[.49\textwidth]{\inputtikz{gfx/model/sphere_models_b}}
+[.49\textwidth]{\inputtikz[true]{gfx/model/sphere_models_b}}
 \\
 % 
 \def\tikzwidth{0.35*\textwidth}
 \subcaptionbox{\label{subfig:sphere:hista1} hist a}
-[.49\textwidth]{\inputtikz{gfx/model/sphere_hist_a}}\hfill
+[.49\textwidth]{\inputtikz[true]{gfx/model/sphere_hist_a}}\hfill
 \subcaptionbox{\label{subfig:sphere:histb} hist b, with applied symmetries.}
-[.49\textwidth]{\inputtikz{gfx/model/sphere_hist_b}}
+[.49\textwidth]{\inputtikz[true]{gfx/model/sphere_hist_b}}
 \caption{two population model library \itodo{centering} \itodo{e und f fertig machen}}
 \label{fig:twomodelpop}
 \end{figure}
 % 
+Def of angles, def of parameters ...
 % 
 % \subsection{Fiber radii}
 % % 
@@ -784,25 +785,157 @@ The resulting direction of the analysis is between the models direction distribu
 \begin{figure}[!p]
 \centering
 \includegraphics[width=\textwidth, ]{dev/rc1/analysis/simulation_analysis_hist_0.5_setup_PM_s_Vervet_m_r_acc.pdf} 
+% colorbar
+\tikzset{external/export next=false}
+\begin{tikzpicture}
+\begin{axis}[
+    hide axis,
+    scale only axis,
+    height=0pt,
+    width=0pt,
+    colormap name=cividis,
+    colorbar horizontal,
+    point meta min=0,
+    point meta max=1,
+    colorbar style={
+        width=10cm,
+        % xtick={18,20,25,...,45}
+    }]
+    \addplot [draw=none] coordinates {(0,0)};
+\end{axis}
+\end{tikzpicture}
+% 
 \caption[sim]{acc 0 - 1 \dummy{}}
 % \label{fig:sim_fyjsrg}
 \end{figure}
+% 
 \begin{figure}[!p]
 \centering
 \includegraphics[width=\textwidth, ]{dev/rc1/analysis/simulation_analysis_hist_0.5_setup_PM_s_Vervet_m_r_ret_mean.pdf} 
+% colorbar
+\tikzset{external/export next=false}
+\begin{tikzpicture}
+\begin{axis}[
+    hide axis,
+    scale only axis,
+    height=0pt,
+    width=0pt,
+    colormap name=cividis,
+    colorbar horizontal,
+    point meta min=0.0137,
+    point meta max=0.7982,
+    colorbar style={
+        width=10cm,
+        % xtick={18,20,25,...,45}
+    }]
+    \addplot [draw=none] coordinates {(0,0)};
+\end{axis}
+\end{tikzpicture}
 \caption[sim]{ret mean 0.014-0.798 \dummy{}}
 % \label{fig:sim_fyjsrg}
 \end{figure}
+% 
 \begin{figure}[!p]
 \centering
-\includegraphics[width=\textwidth, ]{dev/rc1/analysis/simulation_analysis_hist_0.5_setup_PM_s_Vervet_m_r_trans_mean.pdf} 
+\includegraphics[width=\textwidth, ]{dev/rc1/analysis/simulation_analysis_hist_0.5_setup_PM_s_Vervet_m_r_trans_mean.pdf}
+% colorbar
+\tikzset{external/export next=false}
+\begin{tikzpicture}
+\begin{axis}[
+    hide axis,
+    scale only axis,
+    height=0pt,
+    width=0pt,
+    colormap name=cividis,
+    colorbar horizontal,
+    point meta min=999,
+    point meta max=1113,
+    colorbar style={
+        width=10cm,
+        % xtick={18,20,25,...,45}
+    }]
+    \addplot [draw=none] coordinates {(0,0)};
+\end{axis}
+\end{tikzpicture} 
 \caption[sim]{trans mean 99-1113 \dummy{}}
 % \label{fig:sim_fyjsrg}
 \end{figure}
+% 
 \begin{figure}[!p]
 \centering
-\includegraphics[width=\textwidth, ]{dev/rc1/analysis/simulation_analysis_hist_0.5_setup_PM_s_Vervet_m_r_trel_mean.pdf} 
-\caption[sim]{trel mean 0-0.55 \dummy{}}
+\includegraphics[width=\textwidth, ]{dev/rc1/analysis/simulation_analysis_hist_0.5_setup_PM_s_Vervet_m_r_rdir_mean.pdf} 
+% colorbar
+\tikzset{external/export next=false}
+\begin{tikzpicture}
+\begin{axis}[
+    hide axis,
+    scale only axis,
+    height=0pt,
+    width=0pt,
+    colormap name=cividis,
+    colorbar horizontal,
+    point meta min=0,
+    point meta max=180,
+    colorbar style={
+        width=10cm,
+        % xtick={18,20,25,...,45}
+    }]
+    \addplot [draw=none] coordinates {(0,0)};
+\end{axis}
+\end{tikzpicture}
+\caption[sim]{rofl dir mean  \dummy{}}
+% \label{fig:sim_fyjsrg}
+\end{figure}
+% 
+\begin{figure}[!p]
+\centering
+\includegraphics[width=\textwidth, ]{dev/rc1/analysis/simulation_analysis_hist_0.5_setup_PM_s_Vervet_m_r_rincl_mean.pdf} 
+% colorbar
+\tikzset{external/export next=false}
+\begin{tikzpicture}
+\begin{axis}[
+    hide axis,
+    scale only axis,
+    height=0pt,
+    width=0pt,
+    colormap name=cividis,
+    colorbar horizontal,
+    point meta min=-90,
+    point meta max=90,
+    colorbar style={
+        width=10cm,
+        % xtick={18,20,25,...,45}
+    }]
+    \addplot [draw=none] coordinates {(0,0)};
+\end{axis}
+\end{tikzpicture}
+\caption[sim]{rofl incl mean  \dummy{}}
+% \label{fig:sim_fyjsrg}
+\end{figure}
+% 
+\begin{figure}[!p]
+\centering
+\includegraphics[width=\textwidth, ]{dev/rc1/analysis/simulation_analysis_hist_0.5_setup_PM_s_Vervet_m_r_rtrel_mean.pdf} 
+% colorbar
+\tikzset{external/export next=false}
+\begin{tikzpicture}
+\begin{axis}[
+    hide axis,
+    scale only axis,
+    height=0pt,
+    width=0pt,
+    colormap name=cividis,
+    colorbar horizontal,
+    point meta min=0,
+    point meta max=0.55,
+    colorbar style={
+        width=10cm,
+        % xtick={18,20,25,...,45}
+    }]
+    \addplot [draw=none] coordinates {(0,0)};
+\end{axis}
+\end{tikzpicture}
+\caption[sim]{rofl trel mean 0-0.55 \dummy{}}
 % \label{fig:sim_fyjsrg}
 \end{figure}
 % 
