@@ -347,14 +347,14 @@
 % 
 \makeatletter
 \newcommand{\inputtikz}[2][false]{%
-    \ifthenelse{\boolean{#1}}{
+    % \ifthenelse{\boolean{#1}}{
         \inputtikzext{#2}
-    }{
-	\IfFileExists{tikz/#2.pdf}{% check if pdf tikz/.../*.pdf exists
-		\includegraphics{tikz/#2.pdf}
-	}{ % build ext tikz
-		\inputtikzext{#2}
-	}}
+%     }{
+% 	\IfFileExists{tikz/#2.pdf}{% check if pdf tikz/.../*.pdf exists
+% 		\includegraphics{tikz/#2.pdf}
+% 	}{ % build ext tikz
+% 		\inputtikzext{#2}
+% 	}}
 }
 \makeatother
 % 

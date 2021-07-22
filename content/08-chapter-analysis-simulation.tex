@@ -88,7 +88,7 @@ As a result, the convolution to be applied (see \cref{sec:opticalResolution}) is
 \begin{tabular}{cc}
 % 
 \multicolumn{2}{c}{
-\def\tikzwidth{0.75\textwidth}
+\setlength{\tikzwidth}{0.75\textwidth}
 \begin{minipage}{\tikzwidth}
 \tikzset{external/export next=false}
 \inputtikz{gfx/pli/pli_focus}
@@ -175,11 +175,11 @@ ylabel={intensity},
 % thesis/2_simulation/0_parameter/sensor_gain.py
 \centering
 % 
-\def\tikzwidth{0.45\textwidth}
+\setlength{\tikzwidth}{0.45\textwidth}
 \begin{tabular}{cc}
 \includegraphics[width=0.45\textwidth]{dev/gfx/2/PM_noise.png}
 &
-\inputtikz[true]{gfx/data/theo_noise}
+\inputtikz{gfx/data/theo_noise}
 \\
 % SUBCAPTIONS
 \multicolumn{1}{l}{
@@ -219,16 +219,16 @@ f(x) = \mathrm{round}\left(\mathrm{normal}(\mu = x, \sigma=\sqrt{\opticgain \cdo
 % 
 \begin{figure}[!t]
 \centering
-\def\tikzwidth{0.75\textwidth}
+\setlength{\tikzwidth}{0.75\textwidth}
 \begin{tabular}{c}
 % 
-\inputtikz[true]{gfx/data/vervet_transmittance}
+\inputtikz{gfx/data/vervet_transmittance}
 \\[-1em]
 \begin{minipage}[t]{\textwidth}
 \leavevmode\subcaption{\label{fig:brain_trans}transmittance}
 \end{minipage}
 \\
-\inputtikz[true]{gfx/data/vervet_retardation}
+\inputtikz{gfx/data/vervet_retardation}
 \\[-1em]
 \begin{minipage}[t]{\textwidth}
 \leavevmode\subcaption{\label{fig:brain_ret}retardation}
@@ -250,13 +250,14 @@ Two \acsp{ROI} with \dummy{} pixels are annotated for this purpose.
 % 2_simulation/0_parameter/measure_vervet.ipy
 \centering
 \hspace*{\fill}
-\subcaptionbox{zoom transmittance}{\includegraphics[width=0.45\textwidth]{dev/rc1/transmittance_vervet_cc_0_8339.png}}\hfill
-\subcaptionbox{hist transmittance}{\includegraphics[width=0.45\textwidth]{dev/rc1/transmittance_vervet_cc_hist.png}}
+\setlength{\tikzwidth}{0.45\textwidth}
+\subcaptionbox{zoom transmittance}{\inputtikz{gfx/data/vervet_transmittance_zoom}}\hfill
+\subcaptionbox{hist transmittance}{\includegraphics[width=0.45\textwidth]{dev/rc1/data/transmittance_vervet_cc_hist.png}}
 \hspace*{\fill}
 \\
 \hspace*{\fill}
-\subcaptionbox{zoom retardation}{\includegraphics[width=0.45\textwidth]{dev/rc1/retardation_vervet_cc_0.000_0.996.png}}\hfill
-\subcaptionbox{hist retardation}{\includegraphics[width=0.45\textwidth]{dev/rc1/retardation_vervet_cc_hist.png}}
+\subcaptionbox{zoom retardation}{\inputtikz{gfx/data/vervet_retardation_zoom}}\hfill
+\subcaptionbox{hist retardation}{\includegraphics[width=0.45\textwidth]{dev/rc1/data/retardation_vervet_cc_hist.png}}
 \hspace*{\fill}
 \caption[zoom ret and trans]{%
 trans left: $1200 \pm 500$,
@@ -418,25 +419,25 @@ However, this is only true for a pixel size of $\SI{1.25}{\micro\meter}$.
 % 
 \begin{figure}[p]
 \centering
-\def\tikzwidth{0.42*\textwidth}
+\setlength{\tikzwidth}{0.45\textwidth}
 \subcaptionbox{\label{fig:modelrotcube}A spherical volume with diameter $d$ is used as boundary, so that a cube of side length $1/1.5 \cdot d$ can be cut in any orientation inside the sphere.}
-[.49\textwidth]{\inputtikz[true]{gfx/model/sphere_cube}}\hfill
+[.49\textwidth]{\inputtikz{gfx/model/sphere_cube}}\hfill
 \subcaptionbox{\label{fig:modelinit}Initial orientation for two fiber populations $F_0$ and $F_1$. The angle between both populations is $\Omega$. The remaining degree of freedom are taken into account by rotating the whole volume (see \cref{fig:modelrotcube})}
-[.49\textwidth]{\inputtikz[true]{gfx/model/sphere_models}}
+[.49\textwidth]{\inputtikz{gfx/model/sphere_models}}
 \\
 % 
 \subcaptionbox{fixed first fiber population; half rotation of second fiber population}
-[.49\textwidth]{\inputtikz[true]{gfx/model/sphere_models_a}}\hfill
+[.49\textwidth]{\inputtikz{gfx/model/sphere_models_a}}\hfill
 \subcaptionbox{\label{subfig:Test1}increasing inclination for first fiber population}
-[.49\textwidth]{\inputtikz[true]{gfx/model/sphere_models_b}}
+[.49\textwidth]{\inputtikz{gfx/model/sphere_models_b}}
 \\
 % 
-\def\tikzwidth{0.35*\textwidth}
+\setlength{\tikzwidth}{0.42\textwidth}
 \subcaptionbox{\label{subfig:sphere:hista1} hist a}
-[.49\textwidth]{\inputtikz[true]{gfx/model/sphere_hist_a}}\hfill
+[.49\textwidth]{\inputtikz{gfx/model/sphere_hist_a}}\hfill
 \subcaptionbox{\label{subfig:sphere:histb} hist b, with applied symmetries.}
-[.49\textwidth]{\inputtikz[true]{gfx/model/sphere_hist_b}}
-\caption{two population model library \itodo{centering} \itodo{e und f fertig machen}}
+[.49\textwidth]{\inputtikz{gfx/model/sphere_hist_b}}
+\caption{two population model library \itodo{centering} \itodo{e und f fertig machen, beispiel inc=30, zwei symmetrien darstelen}}
 \label{fig:twomodelpop}
 \end{figure}
 % 
@@ -509,6 +510,8 @@ Def of angles, def of parameters ...
 85.0:    28.45 +- 0.57, 21.32 +- 0.22, 12.45 +- 0.57, 22.11 +- 0.59, 38.52 +- 1.04,\\
 90.0:    45.86 +- 0.90, 25.45 +- 0.43, 24.33 +- 1.24, 46.21 +- 1.42, 67.55 +- 1.41,\\
 \par
+% 
+\itodo{tabelle generieren}
 % 
 repo angles are up to an inclination of 65 degree stable < 2.5 degree.
 the standard diviation stays under 1.5 degree and is therefore considered stable.
@@ -668,7 +671,7 @@ Since these are log plots, the \say{visible variance} is almost neglectable.
 \includegraphics[width=\width]{dev/rc1/single/cube_2pop_135_rc1_single_plots_single_pop_rofl_inc.pdf}}\hfill
 \subcaptionbox{\label{fig:single_fiber_pop_rofl_trel}rofl trel}[\width]{
 \includegraphics[width=\width]{dev/rc1/single/cube_2pop_135_rc1_single_plots_single_pop_rofl_trel.pdf}}
-\caption[]{\dummy[single population rofl analysis; colors left to right: 0, 30, 60, 90 degree inclination; line: theoretical curve]{}}
+\caption[]{\dummy[single population rofl analysis; colors left to right: 0 to 90 degree inclination; line: theoretical curve]{}}
 \label{fig:single_fiber_pop_rofl}
 \end{figure}
 % 
@@ -726,7 +729,7 @@ For higher inclination values however its values exceeds 1 which leads to the co
 \includegraphics[width=\width]{dev/rc1/flat/cube_2pop_135_rc1_flat_plots_flat_pop_psi_0.3_rofl_inc.pdf}}\hfill
 \subcaptionbox{\label{fig:flat_03_fiber_pop_rofl_trel}rofl trel}[\width]{
 \includegraphics[width=\width]{dev/rc1/flat/cube_2pop_135_rc1_flat_plots_flat_pop_psi_0.3_rofl_trel.pdf}}
-\caption[]{\dummy[flat population psi=0.3 rofl analysis; colors left to right: 0, 30, 60, 90 degree inclination; line: theoretical curve]{}}
+\caption[]{\dummy[flat population psi=0.3 rofl analysis; colors left to right: 0 to 90 degree inclination; line: theoretical curve]{}}
 \label{fig:flat_03_fiber_pop_rofl}
 \end{figure}
 % 
@@ -763,7 +766,7 @@ For higher inclination values however its values exceeds 1 which leads to the co
 \includegraphics[width=\width]{dev/rc1/flat/cube_2pop_135_rc1_flat_plots_flat_pop_psi_0.5_rofl_inc.pdf}}\hfill
 \subcaptionbox{\label{fig:flat_05_fiber_pop_rofl_trel}rofl trel}[\width]{
 \includegraphics[width=\width]{dev/rc1/flat/cube_2pop_135_rc1_flat_plots_flat_pop_psi_0.5_rofl_trel.pdf}}
-\caption[]{\dummy[flat population psi=0.5 rofl analysis; colors left to right: 0, 30, 60, 90 degree inclination; line: theoretical curve]{}}
+\caption[]{\dummy[flat population psi=0.5 rofl analysis; colors left to right: 0 to 90 degree inclination; line: theoretical curve]{}}
 \label{fig:flat_05_fiber_pop_rofl}
 \end{figure}
 % 
@@ -852,7 +855,7 @@ The resulting direction of the analysis is between the models direction distribu
     point meta max=1113,
     colorbar style={
         width=10cm,
-        % xtick={18,20,25,...,45}
+        xtick={1000, 1020, 1040, 1060, 1080, 1100},
     }]
     \addplot [draw=none] coordinates {(0,0)};
 \end{axis}
