@@ -52,6 +52,6 @@ arr/.style={-{latex[color=GREEN]},
 %
 \end{scope}
 \pgfresetboundingbox
-\path[use as bounding box]  (-1.25,-1.25) rectangle (1.25,1.25);
+\path[use as bounding box] (-1.25,-1.25) rectangle (1.25,1.25);
 \end{tikzpicture}
 \end{tikzsize}

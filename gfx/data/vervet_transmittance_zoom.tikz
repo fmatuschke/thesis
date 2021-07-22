@@ -1,14 +1,13 @@
-\begin{tikzpicture}[trim axis left, trim axis right]
+\begin{tikzpicture}[trim axis left,trim axis right,baseline]
 \begin{axis}[%
-width=\tikzwidth,
-xmin=0,xmax=44364,ymin=0,ymax=33904,
+width=\tikzwidth, axis equal image,
+xmin=20000,xmax=27000,ymin=21000,ymax=24500,
 point meta min=0,point meta max=5846,
 hide axis,
 colormap name=cividis,
-colorbar,
+colorbar horizontal,
 ]
-\addplot [forget plot] graphics
-[xmin=0,xmax=44364,ymin=0,ymax=33904] {dev/rc1/data/transmittance_vervet_thumbnail_0_5846.4.png};
+\addplot [forget plot] graphics [xmin=20000,xmax=27000,ymin=21000,ymax=24500] {dev/rc1/data/transmittance_vervet_cc_0_5846.png};
 \draw[magenta, very thick, ->] (axis cs: 25500,27000) -- (axis cs: 23500,23500);
 \draw[magenta, very thick]
 (axis cs: 25830, 22097) --
