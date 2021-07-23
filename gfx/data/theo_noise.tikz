@@ -2,6 +2,7 @@
 \begin{loglogaxis}[%
 width=\tikzwidth,
 height=0.9\tikzwidth,
+scale only axis,
 xlabel={\footnotesize intensity},
 ylabel={\footnotesize rel $\sigma$},
 log ticks with fixed point,
