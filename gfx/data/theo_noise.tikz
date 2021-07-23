@@ -1,10 +1,14 @@
-\begin{tikzpicture} %[baseline, trim axis left, trim axis right]
+\begin{tikzpicture}[baseline, trim axis left, trim axis right]
 \begin{loglogaxis}[%
 width=\tikzwidth,
-xlabel={intensity},
-ylabel={rel $\sigma$},
+height=0.9\tikzwidth,
+xlabel={\footnotesize intensity},
+ylabel={\footnotesize rel $\sigma$},
 log ticks with fixed point,
 ytick={0.01, 0.02, 0.03, 0.04},
+yticklabels={\SI{1}{\percent}, \SI{2}{\percent}, \SI{3}{\percent}, \SI{4}{\percent}},
+xticklabel style={font=\footnotesize},
+yticklabel style={font=\footnotesize},
 ]
 % np.sqrt(x * 0.1175)/x
 \addplot [%
@@ -15,14 +19,17 @@ BLUE, thick, smooth,
 };
 \addplot+[%
 RED, only marks, mark=*,
-nodes near coords, node near coords style={anchor=south west},
-point meta=explicit symbolic,
+% nodes near coords, node near coords style={anchor=south west},
+% point meta=explicit symbolic,
 ]
-table[meta=label]{
+table[]{
 x y label
 115 0.0319 Human
 574 0.01430 Vervet
 1608 0.008548 Roden
 };
+\path (axis cs: 115, 0.0319) -- (axis cs: 2.048e+03, 7.574e-03) node[pos=0,anchor=south west, sloped] {Human};
+\path (axis cs: 574, 0.01430) -- (axis cs: 2.048e+03, 7.574e-03) node[pos=0,anchor=south west, sloped] {Vervet};
+\path (axis cs: 1608, 0.008548) -- (axis cs: 2.048e+03, 7.574e-03) node[pos=0,anchor=north east, sloped] {Roden};
 \end{loglogaxis}
 \end{tikzpicture}
