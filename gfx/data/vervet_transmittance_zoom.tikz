@@ -2,10 +2,13 @@
 \begin{axis}[%
 width=\tikzwidth, axis equal image,
 xmin=20000,xmax=27000,ymin=21000,ymax=24500,
-point meta min=0,point meta max=5846,
+point meta min=0,point meta max=5800,
 hide axis,
 colormap name=cividis,
 colorbar horizontal,
+colorbar/width=3mm,
+colorbar style={xticklabel style={font=\footnotesize},
+                xtick={0, 1450, 2900, 4350, 5800}}
 ]
 \addplot [forget plot] graphics [xmin=20000,xmax=27000,ymin=21000,ymax=24500] {dev/rc1/data/transmittance_vervet_cc_0_5846.png};
 \draw[magenta, very thick, ->] (axis cs: 25500,27000) -- (axis cs: 23500,23500);

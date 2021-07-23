@@ -107,27 +107,11 @@ As a result, the convolution to be applied (see \cref{sec:opticalResolution}) is
 \begin{axis}[
 width=0.45\textwidth,
 height=0.45\textwidth,
-point meta min=0,
-point meta max=1670,
-xmin=0,xmax=1,
-ymin=0,ymax=1,
-% 
+point meta min=0,point meta max=1670,
+xmin=0,xmax=1,ymin=0,ymax=1,
 hide axis,
-% axis lines=center,
-% % yticklabels={,,},
-% axis line style={draw=none},
-% tick style={draw=none},
-% tick label style={gray},
-% 
-colorbar left,
-colormap/gray,
-colorbar style={%
-    % axis line style={draw=none},
-    % tick style={},
-    % tick label style={black},
-    every y tick label/.append style={font=\small},
-}
-% 
+colorbar left,colormap/gray,
+colorbar style={every y tick label/.append style={font=\small},}
 ]
 \addplot [forget plot] graphics [
 xmin=0,xmax=1,
@@ -142,8 +126,6 @@ ymin=0,ymax=1,
 \begin{axis}[%
 width=0.45\textwidth,
 height=0.45\textwidth,
-% ymajorticks=false,
-% axis on top,
 axis lines=center,
 xlabel={x-pos},
 ylabel={intensity},
@@ -175,21 +157,23 @@ ylabel={intensity},
 % thesis/2_simulation/0_parameter/sensor_gain.py
 \centering
 % 
-\setlength{\tikzwidth}{0.45\textwidth}
+\setlength{\tikzwidth}{0.42\textwidth}
 \begin{tabular}{cc}
-\includegraphics[width=0.45\textwidth]{dev/gfx/2/PM_noise.png}
+% \tikzset{external/export next=false}
+\inputtikz{gfx/data/PM_noise}
 &
+% \tikzset{external/export next=false}
 \inputtikz{gfx/data/theo_noise}
 \\
 % SUBCAPTIONS
 \multicolumn{1}{l}{
-\begin{minipage}[t]{0.45\textwidth}
-\leavevmode\subcaption{\label{fig:parameterModelSimGain} Noise analysis PM. $\opticgain_{\mathit{PM}} = \SI{0.1175}{}(?)$. \itodo{replot}}
+\begin{minipage}[t]{0.495\textwidth}
+\leavevmode\subcaption{\label{fig:parameterModelSimGain} Noise analysis PM. $\opticgain_{\mathit{PM}} = \SI{0.1175}{}(?)$.}
 \end{minipage}}
 &
 \multicolumn{1}{l}{
-\begin{minipage}[t]{0.45\textwidth}
-\leavevmode\subcaption{\label{fig:noiseplot}noise \dummy{} \itodo{check values}}
+\begin{minipage}[t]{0.495\textwidth}
+\leavevmode\subcaption{\label{fig:noiseplot}noise \dummy[check values]{}}
 \end{minipage}}
 \end{tabular}
 % 
@@ -437,7 +421,7 @@ However, this is only true for a pixel size of $\SI{1.25}{\micro\meter}$.
 [.49\textwidth]{\inputtikz{gfx/model/sphere_hist_a}}\hfill
 \subcaptionbox{\label{subfig:sphere:histb} hist b, with applied symmetries.}
 [.49\textwidth]{\inputtikz{gfx/model/sphere_hist_b}}
-\caption{two population model library \itodo{centering} \itodo{e und f fertig machen, beispiel inc=30, zwei symmetrien darstelen}}
+\caption{two population model library \itodo{e und f fertig machen, beispiel inc=30, zwei symmetrien darstelen}}
 \label{fig:twomodelpop}
 \end{figure}
 % 
@@ -586,7 +570,7 @@ Verhalten von transmittance von steilheit?
 simpli.voxel\_size & $\SI{0.1}{\micro\meter}$\\
 simpli.pixel\_size & $\SI{1.3}{\micro\meter}$\\
 simpli.voi & $[\SI{-35}{\micro\meter}, \SI{-35}{\micro\meter}, \SI{-30}{\micro\meter}], [\SI{30}{\micro\meter}, \SI{35}{\micro\meter}, \SI{35}{\micro\meter}]$\\
-simpli.filter\_rotations & $\SIlist{0;20;40;60;80;100;120;160}{\degree}$\\
+simpli.filter\_rotations & $\SIlist{0;20;40;60;80;100;120;140;160}{\degree}$\\
 simpli.interpolate & \texttt{"Slerp"}\\
 simpli.wavelength & $\SI{525}{\nano\meter}$\\
 simpli.optical\_sigma & $\SI{0.75}{\pixel}$\\
