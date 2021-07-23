@@ -6,11 +6,11 @@
 % 
 \section{Introduction}
 % 
-This chapter contains focuses on the simulation of \ac{3D-PLI}.
-The first part focuses on the definition of all necessary parameters.
-A part of this is to determined how accurate the simulation has to be, i.e. the \voxelsize{}.
-Following this, these parameters are used to simulate the previously generated models.
-A focus is placed on the accuracy of tilt analyses for different orientations and crossing configurations.
+This chapter focuses on the simulation of \ac{3D-PLI}.
+The first part focuses on the determination of all necessary physical parameters of the tissues and microscope as well as the characterization of the simulation parameters.
+The latter is focused on the \voxelsize{}, which significantly determines the accuracy.
+Then, these parameters are used to simulate the previously generated models.
+The analysis of the simulations is done with the routine algorithms implemented in \ac{fastPLI}. The focus of the evaluations of the results is on the accuracy of the slope analyses for different orientations and intersection configurations.
 % 
 % 
 % 
@@ -59,14 +59,20 @@ The optical resolution and resampling is modelled as described in \cref{sec:ccdO
 \label{fig:USAF}
 \end{figure}
 %
-To measure the optical resolution of the microscop, the measurements and analysis analog to \cite{MenzelMaster} \todo{check ref} is done again.
-For this the \textit{1951 \ac{USAF} resolution test chart}\footnote{U.S. Air Force MIL-STD-150A standard of 1951} is aquired.
+To measure the optical resolution of the microscope, the measurements and analysis analog to \cite{MenzelMaster} \todo{check ref} is done again.
+For this the \textit{1951 \ac{USAF} resolution test chart}\footnote{U.S. Air Force MIL-STD-150A standard of 1951} is acquired.
 It consists of several patterns that have three slits with defined distances and widths (see \cref{fig:usaf}.
 They are ordered in patches of three vertical and horizontal lines.
 The patches are ordered in a spiral like, which shrinks down from pattern to pattern by a factor of $\SI{0.5}{}$.
-To identify the line width, the patches are numerical orded by a main group $i$, and a subgroup $j$.
+To identify the line width, the patches are numerical ordered by a main group $i$, and a subgroup $j$.
+\par
 % 
-\paragraph{results}
+Resolution is measured by measuring a microscopic image of the \ac{USAF} test chart.
+To determine this, the group corresponding to the imaging resolution system must be identified.
+This is done by analyzing the intensity profiles along the perpendicular line of the three slits. 
+The variance of the measured intensity is measured by analyzing all parallel lines in the slits.\footnote{Normally, multiple images should be measured. However, this is already done by \cite{MenzelMaster}. This measurement ensures that the results are reproducible}.
+% 
+\paragraph{Results}
 \Cref{fig:usaf_image} shows a section of a captured PM image.
 The highlighted areas show analysed groups 7-6 to 8-2.
 The first region corresponding to group 7-6 \raisebox{.25em}{\tikzset{external/export next=false}\tikz \draw[RED,ultra thick,dashed](0,0)--(0.25,0);} has a line width of $\SI{2.19}{\micro\meter}$.
@@ -74,9 +80,9 @@ The second group 8-1 \raisebox{.25em}{\tikzset{external/export next=false}\tikz 
 The final group 8-2 \raisebox{.25em}{\tikzset{external/export next=false}\tikz \draw[BLUE,ultra thick,dashed](0,0)--(0.25,0);} has a line width of $\SI{1.74}{\micro\meter}$.
 The intensity line profiles for the vertical and horizontal case are shown in \cref{fig:usaf_lines_lr,fig:usaf_lines_ud}.
 % 
-Using the Rayleigh criterion, the resolution can be limited in the range of the second group and thus around $\SI{1.95}{\micro\meter}$.
-This reproduces the measurements in \cite{MenzelMaster} \todo{master thesis?}.
-As a result, the convolution to be applied (see \cref{sec:opticalResolution}) is set to $\opticsigma = \SI{0.75}{\pixel}$.
+Using the Rayleigh criterion, the resolution can be limited in the range of the second group and thus by $\SI{1.95}{\micro\meter}$.
+This reproduces the measurements in the \cite{MenzelMaster}.
+Therefore, the convolution to be applied (see \cref{sec:opticalResolution}) is set to $\opticsigma = \SI{0.75}{\pixel}$.
 % 
 % 
 % 
@@ -105,15 +111,16 @@ As a result, the convolution to be applied (see \cref{sec:opticalResolution}) is
 % 1. IMAGE
 \begin{tikzpicture}[baseline, trim axis left, trim axis right]
 \begin{axis}[
-width=0.45\textwidth,
-height=0.45\textwidth,
+width=0.4\textwidth,
+height=0.4\textwidth,
 point meta min=0,point meta max=1670,
 xmin=0,xmax=1,ymin=0,ymax=1,
+scale only axis,
 hide axis,
 colorbar left,colormap/gray,
 colorbar style={every y tick label/.append style={font=\small},}
 ]
-\addplot [forget plot] graphics [
+\addplot[]graphics [
 xmin=0,xmax=1,
 ymin=0,ymax=1,
 ] {dev/gfx/2/PM_000_vmin_0_vmax_1670.png};
@@ -124,9 +131,10 @@ ymin=0,ymax=1,
 % 2. IMAGE
 \begin{tikzpicture}[baseline, trim axis left, trim axis right]
 \begin{axis}[%
-width=0.45\textwidth,
-height=0.45\textwidth,
+width=0.4\textwidth,
+height=0.4\textwidth,
 axis lines=center,
+scale only axis,
 xlabel={x-pos},
 ylabel={intensity},
 ]
@@ -159,10 +167,10 @@ ylabel={intensity},
 % 
 \setlength{\tikzwidth}{0.35\textwidth}
 \begin{tabular}{cc}
-\tikzset{external/export next=false}
+% \tikzset{external/export next=false}
 \inputtikz{gfx/data/PM_noise}
 &
-\tikzset{external/export next=false}
+% \tikzset{external/export next=false}
 \inputtikz{gfx/data/theo_noise}
 \\
 % SUBCAPTIONS
@@ -234,14 +242,18 @@ Two \acsp{ROI} with \dummy{} pixels are annotated for this purpose.
 % 2_simulation/0_parameter/measure_vervet.ipy
 \centering
 \hspace*{\fill}
-\setlength{\tikzwidth}{0.45\textwidth}
+\setlength{\tikzwidth}{0.42\textwidth}
+% \tikzset{external/export next=false}
 \subcaptionbox{zoom transmittance}{\inputtikz{gfx/data/vervet_transmittance_zoom}}\hfill
-\subcaptionbox{hist transmittance}{\includegraphics[width=0.45\textwidth]{dev/rc1/data/transmittance_vervet_cc_hist.png}}
+% \tikzset{external/export next=false}
+\subcaptionbox{hist transmittance}{\inputtikz{gfx/data/vervet_transmittance_hist}}
 \hspace*{\fill}
 \\
 \hspace*{\fill}
+% \tikzset{external/export next=false}
 \subcaptionbox{zoom retardation}{\inputtikz{gfx/data/vervet_retardation_zoom}}\hfill
-\subcaptionbox{hist retardation}{\includegraphics[width=0.45\textwidth]{dev/rc1/data/retardation_vervet_cc_hist.png}}
+% \tikzset{external/export next=false}
+\subcaptionbox{hist retardation}{\inputtikz{gfx/data/vervet_retardation_hist}}
 \hspace*{\fill}
 \caption[zoom ret and trans]{%
 trans left: $1200 \pm 500$,
@@ -249,8 +261,8 @@ trans right: $1200 \pm 500$,
 bg: $4530 \pm 240$,
 fuellgrad $0.75: \mu \approx 30 \pm 10$,
 fuellgrad $0.75: \mu \approx 30 \pm 10$,
-ret left: $0.83 \pm0.07$,
-ret right: $0.80 \pm0.07$
+ret left: $0.83 \pm 0.07$,
+ret right: $0.80 \pm 0.07$
 \itodo{new fig-> path as vector; what happens in the center; check lr flip with images above, histogramm?}}
 \label{fig:brain_ret_trans_zoom}
 \end{figure}

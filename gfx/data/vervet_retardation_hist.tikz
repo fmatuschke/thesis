@@ -1,0 +1,16 @@
+\begin{tikzpicture}[baseline, trim axis left, trim axis right]
+\begin{axis}[%
+width=\tikzwidth,
+height=0.5\tikzwidth,
+axis lines=center,
+scale only axis,
+area style,
+xlabel={\small retardation},
+ylabel={\small count},
+xticklabel style={font=\footnotesize},
+yticklabel style={font=\footnotesize},
+]
+\addplot+[ybar interval,mark=no, blue, opacity=0.5] table[x index=0, y index=1] {\currfiledir/vervet_retardation_left.dat};
+\addplot+[ybar interval,mark=no, red, opacity=0.5] table[x index=0, y index=1] {\currfiledir/vervet_retardation_right.dat};
+\end{axis}
+\end{tikzpicture}
