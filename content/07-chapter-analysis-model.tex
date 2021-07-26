@@ -450,8 +450,8 @@ However, the influence on the simulation must also be examined here beforehand.
 % 
 \begin{figure}[!t]
 \centering
-\includegraphics[]{dev/rc1/speed/boxplot_output_r_0.5.pkl_speedup.csv.pdf}
-\caption[\code{model.Sovler} speedup]{\code{model.Sovler} speedup. The time measurements are taken after $\Delta_{\mathit{steps}}$ for the next $100$ steps for parallel $(||)$ and crossing $(\times)$ fiber configurations. \itodo{for 16, 24, 32, 48 cores}}
+\includegraphics[page=1]{dev/rc1/speed/boxplot_output_r_0.5.pkl_speedup.csv.pdf}
+\caption[\code{model.Sovler} speedup]{\code{model.Sovler} speedup. The time measurements are taken after $\Delta_{\mathit{steps}}$ for the next $\SI{25}{\steps}$ for parallel $(||)$ and crossing $(\times)$ fiber configurations.}
 \label{fig:solverSpeedup}
 \end{figure}
 % 
@@ -469,6 +469,8 @@ For $\Delta_{\mathit{steps}} = \SI{100}{\steps}$, the speedup approaches the ide
 The best case in this data set is for $\Delta_{\mathit{steps}} = \SI{1000}{\steps}$ and parallel fibers. There $\SI{2}{}$ cores almost reach a speedup of $2$ and 8 cores reach a speedup of $\SI{5.9}{}$.
 However, crossing fiber bundles have a much lower speedup.
 There $\SI{8}{}$ cores reach only a speedup of $\SI{4.3}{}$.
+\\
+\dummy{} More cpu cores \cref{fig:solverSpeedupAll}.
 % \par
 % 
 \subsection{Discussion}
