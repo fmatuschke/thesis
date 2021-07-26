@@ -176,7 +176,7 @@ ylabel={intensity},
 % SUBCAPTIONS
 \multicolumn{1}{l}{
 \begin{minipage}[t]{0.495\textwidth}
-\leavevmode\subcaption{\label{fig:parameterModelSimGain} Noise analysis PM. $\opticgain_{\mathit{PM}} = \SI{0.1175}{}(?)$.}
+\leavevmode\subcaption{\label{fig:parameterModelNoise} Noise analysis PM. $\opticgain_{\mathit{PM}} = \SI{0.1175}{}(?)$.}
 \end{minipage}}
 &
 \multicolumn{1}{l}{
@@ -186,7 +186,7 @@ ylabel={intensity},
 \end{tabular}
 % 
 \caption[Noise analysis]{intensity variance and noise plot}
-\label{fig:parameterModelSimGain}
+\label{fig:parameterModelGain}
 \end{figure}
 % 
 As described in \cref{sec:ccdOptic} the optical noise has to be applied by a noise model.
@@ -198,7 +198,7 @@ Additionally the focal length is change in such a way, that the light is spread 
 By measuring $N=\SI{500}{}$ images, the variance for the different intensity values is aquired.
 % 
 \paragraph{results}
-The results are shown in \cref{fig:parameterModelSimGain} and show a gain value of $\opticgain_{\mathit{PM}} = \SI{0.1175}{}(?)$ which is agreement to the hardware specifics \todo{check and ref}.
+The results are shown in \cref{fig:parameterModelNoise} and show a gain value of $\opticgain_{\mathit{PM}} = \SI{0.1175}{}(?)$ which is agreement to the hardware specifics \todo{check and ref}.
 This gain factor can be used by the model:
 \begin{align}
 f(x) = \mathrm{round}\left(\mathrm{normal}(\mu = x, \sigma=\sqrt{\opticgain \cdot x})\right)
@@ -286,7 +286,7 @@ ret right: $0.80 \pm 0.07$
 \subcaptionbox{\label{fig:simRetValues}retardation}[.95\textwidth]{
 \includegraphics[width=0.95\textwidth]{dev/rc1/bf_rc1_retardation_PM_Vervet.pdf}
 }
-\caption{simulations for Vervet PM tissue for different absorption coef and birefringence values.}
+\caption{simulations for Vervet PM tissue for different absorption coef and birefringence values. \itodo{exp messungen mit einzeichnen, p fall loeschen.}}
 \label{fig:parameterModelSim}
 \end{figure}
 % 
@@ -413,72 +413,31 @@ However, this is only true for a pixel size of $\SI{1.25}{\micro\meter}$.
 % 
 \section{Parameterization}
 % 
-\begin{figure}[p]
-\centering
-\setlength{\tikzwidth}{0.45\textwidth}
-\subcaptionbox{\label{fig:modelrotcube}A spherical volume with diameter $d$ is used as boundary, so that a cube of side length $1/1.5 \cdot d$ can be cut in any orientation inside the sphere.}
-[.49\textwidth]{\inputtikz{gfx/model/sphere_cube}}\hfill
-\subcaptionbox{\label{fig:modelinit}Initial orientation for two fiber populations $F_0$ and $F_1$. The angle between both populations is $\Omega$. The remaining degree of freedom are taken into account by rotating the whole volume (see \cref{fig:modelrotcube})}
-[.49\textwidth]{\inputtikz{gfx/model/sphere_models}}
-\\
+% \begin{figure}[p]
+% \centering
+% \setlength{\tikzwidth}{0.45\textwidth}
+% \subcaptionbox{\label{fig:modelrotcube}A spherical volume with diameter $d$ is used as boundary, so that a cube of side length $1/1.5 \cdot d$ can be cut in any orientation inside the sphere.}
+% [.49\textwidth]{\inputtikz{gfx/model/sphere_cube}}\hfill
+% \subcaptionbox{\label{fig:modelinit}Initial orientation for two fiber populations $F_0$ and $F_1$. The angle between both populations is $\Omega$. The remaining degree of freedom are taken into account by rotating the whole volume (see \cref{fig:modelrotcube})}
+% [.49\textwidth]{\inputtikz{gfx/model/sphere_models}}
+% \\
 % 
-\subcaptionbox{fixed first fiber population; half rotation of second fiber population}
-[.49\textwidth]{\inputtikz{gfx/model/sphere_models_a}}\hfill
-\subcaptionbox{\label{subfig:Test1}increasing inclination for first fiber population}
-[.49\textwidth]{\inputtikz{gfx/model/sphere_models_b}}
-\\
-% 
-\setlength{\tikzwidth}{0.42\textwidth}
-\subcaptionbox{\label{subfig:sphere:hista1} hist a}
-[.49\textwidth]{\inputtikz{gfx/model/sphere_hist_a}}\hfill
-\subcaptionbox{\label{subfig:sphere:histb} hist b, with applied symmetries.}
-[.49\textwidth]{\inputtikz{gfx/model/sphere_hist_b}}
-\caption{two population model library \itodo{e und f fertig machen, beispiel inc=30, zwei symmetrien darstelen}}
-\label{fig:twomodelpop}
-\end{figure}
+% \subcaptionbox{fixed first fiber population; half rotation of second fiber population}
+% [.49\textwidth]{\inputtikz{gfx/model/sphere_models_a}}\hfill
+% \subcaptionbox{\label{subfig:Test1}increasing inclination for first fiber population}
+% [.49\textwidth]{\inputtikz{gfx/model/sphere_models_b}}
+% \\
+% % 
+% \setlength{\tikzwidth}{0.42\textwidth}
+% \subcaptionbox{\label{subfig:sphere:hista1} hist a}
+% [.49\textwidth]{\inputtikz{gfx/model/sphere_hist_a}}\hfill
+% \subcaptionbox{\label{subfig:sphere:histb} hist b, with applied symmetries.}
+% [.49\textwidth]{\inputtikz{gfx/model/sphere_hist_b}}
+% \caption{two population model library \itodo{e und f fertig machen, beispiel inc=30, zwei symmetrien darstelen}}
+% \label{fig:twomodelpop}
+% \end{figure}
 % 
 Def of angles, def of parameters ...
-% 
-% \subsection{Fiber radii}
-% % 
-% \begin{figure}[!t]
-% \centering
-% \includegraphics[width=1\textwidth]{dev/rc1/cube_2pop_135_rc1_radius_acc_compare_Vervet_PM_r.pdf}
-% \caption[sim acc]{ $\acc{}(GT,GT_{0.5})$, $\acc{}(SIM,GT_{0.5})$ and $\acc{}(SIM,SIM_{0.5})$. hypothese: abweichungen in GtSim bei kleinen radien dadurch, dass zwei richtungen nicht sichtbar sind? schaue dir die histogramme und odfs an. \itodo{komplett neu machen}}
-% \label{fig:accVervetPMr}
-% \end{figure}
-% % 
-% The last parameter to investigate is the fiber radius $\fiberRadius{}$ of the models.
-% The anatomical fiber radii is around $\fiberRadius{} = \SI{0.5}{\micro\meter}$.
-% However to allow faster modelling process it is feasible to analyse with which radius a difference is visible in the microscopic setup.
-% To investigate this behavior the distribution of the orientation of the fiber segments was analysed, because the models differ in there geometries. \todo{auf signal angucken?}
-% % 
-% \paragraph{results}
-% \Cref{fig:accVervetPMr} shows the ACC(GT0.5 to GT difference between the orientation of the models of different radii (always to $\fiberRadius{} = \SI{0.5}{\micro\meter}$).
-% the second shows the ACC(GT0.5 to SIM) and the last $\acc{}(SIM,SIM_{0.5})$.
-% % 
-% The first plot shows a very close correspondence between the GT of different radii (see y scala).
-% For more intermixed fiber populations (\modelPsi{} closer to $\SI{0.5}{\micro\meter}$) as well as crossing angle \modelOmega{} the \acc{} decreases slightly.
-% Overall the difference is almost negligible.
-% \par
-% %
-% Plot 2 shows a different result for the comparison between the $GT$ and $SIM$.
-% Here only fiber populations \modelPsi{} close to $\SI{0}{}$ or $\SI{1}{}$ have a high agreement for smaller fiber radii \fiberRadius{}.
-% The \acc{} decreeses with incrasing radii \fiberRadius{} down to a value of $\approx \SI{0.7}{}$.
-% Fiber populations with \modelPsi{} closer to 0.5 have a very low ACC parameter. For the 0.6 case the \acc{} increases slightly for increasing radii up to acc=0.6.
-% The crossing angle has a high impact on the acc value. 
-% % 
-% \par
-% Looking at the results from the $acc(GT,GT_{0.5})$ and $\acc{}(SIM,SIM_{0.5})$ of course $\fiberRadius=\SI{0.5}{\micro\meter}$ has a \acc{} of $\SI{0}{}$ since they are identical.
-% On the other hand $acc(GT,SIM_{0.5})$ shows for $\fiberRadius=\SI{0.5}{\micro\meter}$ the smallest values and highest variance for \acc{} since the fiber crossing leads to a low retardation and therefore signal lost and the analysis can't measure the in... signal.
-% % 
-% From the first and last plot show that a fiber radii of \SI{1}{\micro\meter} seems to have a little impact on the model and simulation side.
-% After that the simulation comparison \acc{}\todo{check if acc is defined.} value sinks drastically for fiber populations close to %\fiberPsi=\SI{0.5}{}$.
-% % 
-% The behavior between the ground truth $GT$ and and simulation $SIM$ will be closely examined in the next section.
-% % 
-% Since the models exists at this point already for $\fiberRadius = \SI{0.5}{\micro\meter}$ these will be used.
-% For future modelling the fibre radii however should be decreased (at this resolution) to allow for faster modelling\footnote{It should also be checked, if the \voxelsize{} can be increased then.}.
 % 
 % 
 % 
@@ -798,9 +757,8 @@ The resulting direction of the analysis is between the models direction distribu
     point meta max=1,
     colorbar style={
         width=10cm,
-        % xtick={18,20,25,...,45}
+        xticklabel style={tick label style={font=\footnotesize}},
     }]
-    \addplot [draw=none] coordinates {(0,0)};
 \end{axis}
 \end{tikzpicture}
 % 
@@ -825,9 +783,9 @@ The resulting direction of the analysis is between the models direction distribu
     point meta max=0.7982,
     colorbar style={
         width=10cm,
-        % xtick={18,20,25,...,45}
+        xticklabel style={tick label style={font=\footnotesize}},
     }]
-    \addplot [draw=none] coordinates {(0,0)};
+    % \addplot [draw=none] coordinates {(0,0)};
 \end{axis}
 \end{tikzpicture}
 \caption[sim]{ret mean 0.014-0.798 \dummy{}}
@@ -852,8 +810,8 @@ The resulting direction of the analysis is between the models direction distribu
     colorbar style={
         width=10cm,
         xtick={1000, 1020, 1040, 1060, 1080, 1100},
+        xticklabel style={tick label style={font=\footnotesize}},
     }]
-    \addplot [draw=none] coordinates {(0,0)};
 \end{axis}
 \end{tikzpicture} 
 \caption[sim]{trans mean 99-1113 \dummy{}}
@@ -877,9 +835,8 @@ The resulting direction of the analysis is between the models direction distribu
     point meta max=180,
     colorbar style={
         width=10cm,
-        % xtick={18,20,25,...,45}
+        xticklabel style={tick label style={font=\footnotesize}},
     }]
-    \addplot [draw=none] coordinates {(0,0)};
 \end{axis}
 \end{tikzpicture}
 \caption[sim]{rofl dir mean  \dummy{}}
@@ -903,9 +860,8 @@ The resulting direction of the analysis is between the models direction distribu
     point meta max=90,
     colorbar style={
         width=10cm,
-        % xtick={18,20,25,...,45}
+        xticklabel style={tick label style={font=\footnotesize}},
     }]
-    \addplot [draw=none] coordinates {(0,0)};
 \end{axis}
 \end{tikzpicture}
 \caption[sim]{rofl incl mean  \dummy{}}
@@ -929,9 +885,9 @@ The resulting direction of the analysis is between the models direction distribu
     point meta max=0.55,
     colorbar style={
         width=10cm,
-        % xtick={18,20,25,...,45}
+        xticklabel style={tick label style={font=\footnotesize},
+                          /pgf/number format/.cd,fixed,fixed zerofill, precision=2,},
     }]
-    \addplot [draw=none] coordinates {(0,0)};
 \end{axis}
 \end{tikzpicture}
 \caption[sim]{rofl trel mean 0-0.55 \dummy{}}
@@ -1217,3 +1173,64 @@ The resulting direction of the analysis is between the models direction distribu
 \label{fig:accVervetPMr}
 \end{figure}
 % 
+% 
+% 
+% 
+\section{speedup}
+% 
+\begin{figure}[!t]
+\centering
+% \tikzset{external/force remake=true}
+\setlength{\tikzwidth}{0.85\textwidth}
+\begin{tikzpicture}[baseline, trim axis left, trim axis right]
+\begin{axis}[%
+table/col sep=comma,
+width=\tikzwidth,
+height=0.5\tikzwidth,
+axis lines=center,
+scale only axis,
+xlabel={\small cpus},
+ylabel={\small speedup},
+xticklabel style={font=\footnotesize},
+yticklabel style={font=\footnotesize},
+y label style={at={(axis description cs:0,.85)},rotate=90,anchor=north},
+cycle multiindex* list={mark list*\nextlist Dark2\nextlist},
+]
+\addplot+[only marks] table[x index=1, y index=3] {dev/rc1/speed/generate_tissue_v_0.1.dat};
+\addplot[black, dashed] coordinates {(1,1) (24,24)} node[pos=0.9, sloped, anchor=south] {ideal};
+\end{axis}
+\end{tikzpicture}
+\caption[]{speedup discrete tissue generation. \itodo{einheitlicher style}}
+\end{figure}
+% 
+% 
+\begin{figure}[!t]
+\centering
+% \tikzset{external/force remake=true}
+\setlength{\tikzwidth}{0.85\textwidth}
+\begin{tikzpicture}[baseline, trim axis left, trim axis right]
+\begin{axis}[%
+table/col sep=comma,
+width=\tikzwidth,
+height=0.5\tikzwidth,
+axis lines=center,
+scale only axis,
+xlabel={\small cpus},
+ylabel={\small speedup},
+xticklabel style={font=\footnotesize},
+yticklabel style={font=\footnotesize},
+cycle multiindex* list={
+    mark list*\nextlist
+    Dark2\nextlist
+},
+]
+\addplot+[only marks] table[x index=1, y index=8] {dev/rc1/speed/simulation_v_0.1.dat}; \addlegendentry{flat}
+\addplot+[only marks] table[x index=1, y index=9] {dev/rc1/speed/simulation_v_0.1.dat}; \addlegendentry{W}
+\addplot+[only marks] table[x index=1, y index=10] {dev/rc1/speed/simulation_v_0.1.dat}; \addlegendentry{S}
+\addplot+[only marks] table[x index=1, y index=11] {dev/rc1/speed/simulation_v_0.1.dat}; \addlegendentry{E}
+\addplot+[only marks] table[x index=1, y index=12] {dev/rc1/speed/simulation_v_0.1.dat}; \addlegendentry{N}
+\addplot[black, dashed] coordinates {(1,1) (32,32)} node[pos=0.9, sloped, anchor=south] {ideal};
+\end{axis}
+\end{tikzpicture}
+\caption[]{Speedup simulation for 5 tilt direction. \itodo{einheitlicher style}}
+\end{figure}

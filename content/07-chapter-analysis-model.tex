@@ -44,15 +44,27 @@ Here, the idea needs some adaptation to fit the research questions given here.
 % 
 \subsection{Orientation and proportion}\label{sec:modelParamet}
 % 
-\begin{figure}[t]
+\begin{figure}[p]
 \centering
-\def\tikzwidth{0.42*\textwidth}
-\subcaptionbox{\label{fig:rotcube}A orientation in 3d can be rotated in any new orientation by applying 3d rotation matrices to the fibers.}
-[.49\textwidth]{\hfill\inputtikz[true]{gfx/model/sphere_cube}\hfill}\hfill
-\subcaptionbox{\label{fig:2pop}Initial orientation for two fiber populations $F_0$ and $F_1$. The angle between both populations is $\Omega$.}
-[.49\textwidth]{\hfill\inputtikz[true]{gfx/model/sphere_models}\hfill}
+\setlength{\tikzwidth}{0.45\textwidth}
+\subcaptionbox{\label{fig:modelrotcube}A spherical volume with diameter $d$ is used as boundary, so that a cube of side length $1/1.5 \cdot d$ can be cut in any orientation inside the sphere.}
+[.49\textwidth]{\inputtikz{gfx/model/sphere_cube}}\hfill
+\subcaptionbox{\label{fig:modelinit}Initial orientation for two fiber populations $F_0$ and $F_1$. The angle between both populations is $\Omega$. The remaining degree of freedom are taken into account by rotating the whole volume (see \cref{fig:modelrotcube})}
+[.49\textwidth]{\inputtikz{gfx/model/sphere_models}}
 \\
-\caption{model designing.}
+
+\subcaptionbox{fixed first fiber population; half rotation of second fiber population}
+[.49\textwidth]{\inputtikz{gfx/model/sphere_models_a}}\hfill
+\subcaptionbox{\label{subfig:Test1}increasing inclination for first fiber population}
+[.49\textwidth]{\inputtikz{gfx/model/sphere_models_b}}
+\\
+% 
+\setlength{\tikzwidth}{0.42\textwidth}
+\subcaptionbox{\label{subfig:sphere:hista1} hist a}
+[.49\textwidth]{\inputtikz{gfx/model/sphere_hist_a}}\hfill
+\subcaptionbox{\label{subfig:sphere:histb} hist b, with applied symmetries.}
+[.49\textwidth]{\inputtikz{gfx/model/sphere_hist_b}}
+\caption{two population model library \itodo{e und f fertig machen, beispiel inc=30, zwei symmetrien darstelen}}
 \label{fig:twomodelpopdesign}
 \end{figure}
 % 
