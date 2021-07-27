@@ -203,7 +203,7 @@ This gain factor can be used by the model:
 \begin{align}
 f(x) = \mathrm{round}\left(\mathrm{normal}(\mu = x, \sigma=\sqrt{\opticgain \cdot x})\right)
 \end{align}
-\todo{only values > 0}
+\todo{only values > 0 and I >> sqrt(gI)}
 % 
 % 
 % 
@@ -282,11 +282,11 @@ ret right: $0.80 \pm 0.07$
 \begin{figure}[!tp]
 \centering
 \subcaptionbox{\label{fig:simTransValues}transmittance}[.95\textwidth]{
-\includegraphics[width=0.95\textwidth]{dev/rc1/bf_rc1_transmittance_PM_Vervet.pdf}} %\hfill
+\includegraphics[width=0.95\textwidth]{dev/rc1/tissue/bf_rc1_transmittance_PM_Vervet.pdf}} %\hfill
 \subcaptionbox{\label{fig:simRetValues}retardation}[.95\textwidth]{
-\includegraphics[width=0.95\textwidth]{dev/rc1/bf_rc1_retardation_PM_Vervet.pdf}
+\includegraphics[width=0.95\textwidth]{dev/rc1/tissue/bf_rc1_retardation_PM_Vervet.pdf}
 }
-\caption{simulations for Vervet PM tissue for different absorption coef and birefringence values. \itodo{exp messungen mit einzeichnen, p fall loeschen.}}
+\caption{simulations for Vervet PM tissue for different absorption coef and birefringence values. \itodo{exp messungen mit einzeichnen, transmittance nur ein wert}}
 \label{fig:parameterModelSim}
 \end{figure}
 % 
@@ -297,7 +297,7 @@ To overcome this problem, the absorption and birefringence strengths must be inc
 \par
 % 
 Both properties can be measured by the \ac{3D-PLI} setup.
-Since the focus will be the Vervet monkey (since a large range of registered data is available at this moment), a coronal section will be used to analys both properties.
+Since the focus will be the Vervet monkey\todo{argue why} (since a large range of registered data is available at this moment), a coronal section will be used to analys both properties.
 It is important to ensure that a homogeneous region is chosen.
 In a coronal section, the corpus callosum is suitable for this purpose. It is the main fiber connection between the two cerebral hemispheres (see \cref{fig:parameterModelSim}).
 % 
@@ -305,7 +305,7 @@ In a coronal section, the corpus callosum is suitable for this purpose. It is th
 % % 
 % To get a approximation of the parameters the models with a radius of $r=\SI{0.5}{\micro\meter}$ are used, which is closed to the real tissue.
 % 
-\Cref{fig:brain_ret_trans} shows the transmittance and retardation maps of the coronal Cervet section, and \ref{fig:brain_ret_trans_zoom} a zommed version.
+\Cref{fig:brain_ret_trans} shows the transmittance and retardation maps of the coronal Vervet section, and \ref{fig:brain_ret_trans_zoom} a zommed version.
 The retartdation map shows a visible reduction of the retardation in the center of the corpus calosum.
 Because of the necesarry homoginity, this center region is therefore neglectet.
 This leaves a left and a right region, which in both transmittance and retardation is feasable homoginious (see histograms).
@@ -318,10 +318,12 @@ The same measurements are also aquired for the human and roden section (see appe
 \subsubsection{absorption}
 % 
 A problem with transmission is that scattering cannot be distinguished from actual absorption in this setup.
-However, since this property is mathematically the same, namely a reduction in intensity along the tissue, it can still be used, but it must be remembered that it is the outdated "absorption" and not just the loss of energy in the tissue.
+However, since this property is mathematically the same, namely a reduction in intensity along the tissue, \fixme{it can still be used}, but it must be remembered that it is the \fixme{outdated} "absorption" and not just the loss of energy in the tissue.
 Additionally, the scattering is not constant for all fiber configurations and orientations \dummy[see MM]{}.
 Therefore, the value measured here is only valid for the same fiber configurations as the region.
-However, it should be a good estimate for the magnitude of absorption in the tissue, which, as will be shown later in the simulation, is sufficient.
+\fixme{However, it should be a good estimate} for the magnitude of absorption in the tissue, which, as will be shown later in the simulation, is sufficient.
+% 
+\itodo{Messung beschreiben}
 % 
 \paragraph{results}
 A relative transmittance of about $\SIrange{20}{30}{\percent}$ is present inside the \ac{ROI} of the corpus callosum \todo{show histogram}. 
@@ -353,6 +355,7 @@ Literature measured a birefringence of nerve fibers of around \dummy{}\TODO{!!!}
 % Therefore to reach similar retardation values the birefringence value has to be increased.
 To analyse the effect of the lower desity inside the models, the birefringence values is simulated at a voxel size of $\SI{0.125}{\micro\meter}$ at different values.
 % 
+\itodo{Messung beschreiben}
 % 
 \paragraph{results}
 The results in \cref{fig:parameterModelSim} show that to reach a retardation value similar to the experimental setup of around $\SI{0.8}{}$ a birefringence value of $\SI{-0.004}{}$ for a macroscopic and $\SI{0.008}{}$ for the microscopic model should be chosen.
@@ -382,11 +385,11 @@ That is also the reason why the values are non normal distributed between $\si{0
 \subsection{voxel size \texorpdfstring{\voxels{}}{}}
 % 
 % 
-\begin{figure}[!tp]%p
+\begin{figure}[!t]%p
 % 2_simulation/0_parameter/fiber_radii.py
 \centering
-\includegraphics[width=\textwidth, page=1]{dev/rc1/voxel_size_plots_data_output_vs_135_0.01_6_25_vervet_r_rc1.pdf}
-\caption[voxel size model with noise]{1. $(\modelOmega=0, \modelPsi=1, \modelInc=0)$, 2. $(\modelOmega=0, \modelPsi=1, \modelInc=90)$, 3. $(\modelOmega=90, \modelPsi=0.5, \modelInc=0)$, 4. $(\modelOmega=90, \modelPsi=0.5, \modelInc=90)$: the mean difference between the Signal $\mean(\intensity(\voxels_{\mathit{ref} = \SI{0.0125}{\micro\meter}, \fiberRadius})- \intensity(\voxels, \fiberRadius))$. The mean difference is constant for smaller voxel sizes and does not start to grow significantly before $\voxels=\SI{0.125}{\micro\meter}$. \itodo{labels}}
+\includegraphics[width=\textwidth, page=1]{dev/rc1/voxel_size/voxel_size_plots_data_r05_output_vs_135_0.01_6_25_vervet_r_rc1.pdf}
+\caption[voxel size model with noise]{The mean difference is constant for smaller voxel sizes and does not start to grow significantly before $\voxels=\SI{0.125}{\micro\meter}$.}
 \label{fig:voxelsizeNoise}
 \end{figure}
 % 
@@ -411,7 +414,7 @@ However, this is only true for a pixel size of $\SI{1.25}{\micro\meter}$.
 % 
 % 
 % 
-\section{Parameterization}
+\section{Parameterization/ Model library}
 % 
 % \begin{figure}[p]
 % \centering
