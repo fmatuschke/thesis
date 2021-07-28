@@ -6,11 +6,14 @@ axis lines=center,
 scale only axis,
 area style,
 xlabel={\small transmittance},
-ylabel={\small count},
+ylabel={\small \#},
 xticklabel style={font=\footnotesize},
-yticklabel style={font=\footnotesize},
+% yticklabel style={font=\footnotesize},
+yticklabels=\empty,
+scaled y ticks=false,
 ]
-\addplot+[ybar interval,mark=no, blue, opacity=0.5] table[x index=0, y index=1] {\currfiledir/vervet_transmittance_left.dat};
-\addplot+[ybar interval,mark=no, red, opacity=0.5] table[x index=0, y index=1] {\currfiledir/vervet_transmittance_right.dat};
+\addplot+[ybar interval,mark=no, blue!50!white, opacity=0.5] table[x index=0, y index=1] {\currfiledir/vervet_transmittance_left.dat};
+\addplot+[ybar interval,mark=no, red!60!white, opacity=0.5] table[x index=0, y index=1] {\currfiledir/vervet_transmittance_right.dat};
+\legend{left,right};
 \end{axis}
 \end{tikzpicture}
