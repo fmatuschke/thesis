@@ -6,79 +6,78 @@
 % 
 \section{Introduction}
 % 
-This chapter focuses on the simulation of \ac{3D-PLI}.
-The first part focuses on the determination of all necessary physical parameters of the tissues and microscope as well as the characterization of the simulation parameters.
-The latter is focused on the \voxelsize{}, which significantly determines the accuracy.
-Then, these parameters are used to simulate the previously generated models.
-The analysis of the simulations is done with the routine algorithms implemented in \ac{fastPLI}. The focus of the evaluations of the results is on the accuracy of the slope analyses for different orientations and intersection configurations.
+This chapter addresses the simulation of \ac{3D-PLI}.
+The first part focuses on the determination of all necessary physical parameters of the tissue and the microscope as well as on the characterization of the simulation parameters.
+The latter focuses on the \voxelsize{}, which significantly determines the accuracy.
+Subsequently, these parameters are used to simulate the previously created models.
+The simulations are evaluated using the routine algorithms implemented in \ac{fastPLI}. The focus of the evaluations of the results is on the accuracy of the inclination analyses for different orientations and intersection configurations.
 % 
 % 
 % 
-\section{Experimental parameter characterisation}\label{sec:sim_choose_parameters}
+\section{Parameter characterisation}\label{sec:sim_choose_parameters}
 % 
-\subsection{optical resolution}
+\subsection{Optical resolution}
 % 
-As describe in \cref{sec:opticalResolution} the optical resolution depence on aberration and diffraction, which themselves depends on a wide range of factors.
-The optical resolution and resampling is modelled as described in \cref{sec:ccdOptic}. 
+As described in \cref{sec:opticalResolution}, optical resolution depends on aberration and diffraction, which in turn depend on a variety of factors.
+Optical resolution and resampling are modeled as described in \cref{sec:ccdOptic}. 
 % 
 \begin{figure}[!t]
-\setlength{\tikzwidth}{0.45\textwidth}
+\setlength{\tikzwidth}{0.35\textwidth}
 \centering
 \begin{tabular}{cc}
-\includegraphics[width=0.72\tikzwidth]{dev/wiki/USAF-1951.pdf}
+\includegraphics[width=\tikzwidth]{dev/wiki/USAF-1951.pdf}
 &
-% \subcaptionbox{\label{fig:usaf_image}microscopic image}{
-\inputtikz[]{dev/gfx/chap8/usaf_image}
-% }
+% \tikzset{external/remake next=true}
+\inputtikz{dev/gfx/chap8/usaf_image}
 \\
+% 
+\multicolumn{1}{l}{
 \begin{minipage}[t]{0.45\textwidth}
 \leavevmode\subcaption{\label{fig:usaf}USAF chart from group -2 to 1 \url{https://en.wikipedia.org/wiki/1951_USAF_resolution_test_chart}}
-\end{minipage}&
+\end{minipage}}&
+\multicolumn{1}{l}{
 \begin{minipage}[t]{0.45\textwidth}
 \leavevmode\subcaption{\label{fig:usaf_image}microscopic image}
-\end{minipage}
+\end{minipage}}
 \\
-% \subcaptionbox{\label{fig:usaf_lines_lr}centered line plots lr}{
-% \tikzset{external/export next=false}
+% 
+% \tikzset{external/remake next=true}
 \inputtikz{dev/gfx/chap8/usaf_line_plots_lr}
-% }
 &
-% \subcaptionbox{\label{fig:usaf_lines_lr}centered line plots ud}{
-% \tikzset{external/export next=false}
+% \tikzset{external/remake next=true}
 \inputtikz{dev/gfx/chap8/usaf_line_plots_up}
-% }
 \\
+% 
+\multicolumn{1}{l}{
 \begin{minipage}[t]{0.45\textwidth}
 \leavevmode\subcaption{\label{fig:usaf_lines_lr}centered line plots lr}
-\end{minipage}&
+\end{minipage}}&
+\multicolumn{1}{l}{
 \begin{minipage}[t]{0.45\textwidth}
 \leavevmode\subcaption{\label{fig:usaf_lines_ud}centered line plots ud}
-\end{minipage}
+\end{minipage}}
 \end{tabular}
-\caption[USAF test chart measurement]{taorad pm. Line width: magenta: $\SI{2.19}{\micro\meter}$, yellow $\SI{1.95}{\micro\meter}$ and cyan $\SI{1.74}{\micro\meter}$. Resolution at about $\SI{1.95}{\micro\meter}$ yielding to an optical convolution of $\opticsigma = \SI{0.75}{\pixel}$.}
+\caption[USAF test chart measurement]{\acs{LMP} data. Line width: magenta: $\SI{2.19}{\micro\meter}$, yellow $\SI{1.95}{\micro\meter}$ and cyan $\SI{1.74}{\micro\meter}$. Resolution at about $\SI{1.95}{\micro\meter}$ yielding to an optical convolution of $\opticsigma = \SI{0.75}{\pixel}$.}
 \label{fig:USAF}
 \end{figure}
 %
-To measure the optical resolution of the microscope, the measurements and analysis analog to \cite{MenzelMaster} \todo{check ref} is done again.
-For this the \textit{1951 \ac{USAF} resolution test chart}\footnote{U.S. Air Force MIL-STD-150A standard of 1951} is acquired.
-It consists of several patterns that have three slits with defined distances and widths (see \cref{fig:usaf}.
-They are ordered in patches of three vertical and horizontal lines.
-The patches are ordered in a spiral like, which shrinks down from pattern to pattern by a factor of $\SI{0.5}{}$.
-To identify the line width, the patches are numerical ordered by a main group $i$, and a subgroup $j$.
-\par
-% 
-Resolution is measured by measuring a microscopic image of the \ac{USAF} test chart.
-To determine this, the group corresponding to the imaging resolution system must be identified.
-This is done by analyzing the intensity profiles along the perpendicular line of the three slits. 
-The variance of the measured intensity is measured by analyzing all parallel lines in the slits.\footnote{Normally, multiple images should be measured. However, this is already done by \cite{MenzelMaster}. This measurement ensures that the results are reproducible}.
+In order to measure the optical resolution of the microscope, the measurements and analysis are performed again in the same way as \cite{MenzelMaster}.
+For this purpose, the \textit{1951 \ac{USAF} resolution test chart}\footnote{U.S. Air Force MIL-STD-150A standard of 1951} is acquired.
+It consists of several patterns that have three slots with defined spacing and width (see \cref{fig:usaf}).
+They are arranged in fields of three vertical and horizontal lines.
+The fields are arranged in a spiral, which shrinks by a factor of $\SI{0.5}{}$ from pattern to pattern.
+To determine the line width, the fields are numerically ordered according to a main group $i$ and a subgroup $j$.
+To determine the resolution of the microscope, the group corresponding to the imaging resolution system, \ie{} Rayleigh criteria (see \cref{fig:rayleigh}), must be identified.
+This is done by analyzing the intensity profiles along the perpendicular line of the three slits.
+The variance of the measured intensity is measured by analyzing all parallel lines in the slits.\footnote{Multiple images should be measured. These are performed in \cite{MenzelMaster}. This measurement ensures that the results are reproducible}.
 % 
 \paragraph{Results}
-\Cref{fig:usaf_image} shows a section of a captured PM image.
-The highlighted areas show analysed groups 7-6 to 8-2.
-The first region corresponding to group 7-6 \raisebox{.25em}{\tikzset{external/export next=false}\tikz \draw[RED,ultra thick,dashed](0,0)--(0.25,0);} has a line width of $\SI{2.19}{\micro\meter}$.
+\Cref{fig:usaf_image} shows a section of a captured \ac{LMP} setup image.
+The highlighted areas show the analyzed groups 7-6 to 8-2.
+The first area of group 7-6 \raisebox{.25em}{\tikzset{external/export next=false}\tikz \draw[RED,ultra thick,dashed](0,0)--(0.25,0);} has a line width of $\SI{2.19}{\micro\meter}$.
 The second group 8-1 \raisebox{.25em}{\tikzset{external/export next=false}\tikz \draw[GREEN,ultra thick,dashed](0,0)--(0.25,0);} has a line width of $\SI{1.95}{\micro\meter}$.
-The final group 8-2 \raisebox{.25em}{\tikzset{external/export next=false}\tikz \draw[BLUE,ultra thick,dashed](0,0)--(0.25,0);} has a line width of $\SI{1.74}{\micro\meter}$.
-The intensity line profiles for the vertical and horizontal case are shown in \cref{fig:usaf_lines_lr,fig:usaf_lines_ud}.
+The last group 8-2 \raisebox{.25em}{\tikzset{external/export next=false}\tikz \draw[BLUE,ultra thick,dashed](0,0)--(0.25,0);} has a line width of $\SI{1.74}{\micro\meter}$.
+The intensity line profiles for the vertical and horizontal cases are shown in \cref{fig:usaf_lines_lr,fig:usaf_lines_ud}.
 % 
 Using the Rayleigh criterion, the resolution can be limited in the range of the second group and thus by $\SI{1.95}{\micro\meter}$.
 This reproduces the measurements in the \cite{MenzelMaster}.
@@ -176,7 +175,7 @@ ylabel={intensity},
 % SUBCAPTIONS
 \multicolumn{1}{l}{
 \begin{minipage}[t]{0.495\textwidth}
-\leavevmode\subcaption{\label{fig:parameterModelNoise} Noise analysis PM. $\opticgain_{\mathit{PM}} = \SI{0.1175}{}(?)$.}
+\leavevmode\subcaption{\label{fig:parameterModelNoise} Noise analysis PM. $\opticgain_{\mathit{LMP}} = \SI{0.1175}{}(?)$.}
 \end{minipage}}
 &
 \multicolumn{1}{l}{
@@ -189,21 +188,22 @@ ylabel={intensity},
 \label{fig:parameterModelGain}
 \end{figure}
 % 
-As described in \cref{sec:ccdOptic} the optical noise has to be applied by a noise model.
-In \cite{Wiese:887678} the gain factor was measured by measuring multiple times an image with a varieties of intensity values.
-The same type of measurement and analysis is performed here on the \ac{PM} setup.
+As described in \cref{sec:ccdOptic}, optical noise must be modeled by a noise model.
+In \cite{Wiese:887678}, the gain factor $\opticgain$ of the microscopic setup was measured by multiple measurements of an image with a variety of intensity values. 
+The gain factor describes the linearity between a measured signal and the corresponding noise.
+The same type of measurement and analysis is performed here with the \ac{LMP} setup.
 \\
-To aquire statistik for multiple a greate range of intensity values, the specimen stage is covered with a fully absorbing cover, so that half of the image is dark.
-Additionally the focal length is change in such a way, that the light is spread over the hole image sensor depide of the cover (see \cref{fig:intensityImage}).
-By measuring $N=\SI{500}{}$ images, the variance for the different intensity values is aquired.
+To obtain statistics for a large number of intensity values, the sample stage is covered with a fully absorbing cover so that half of the image is dark.
+In addition, the focal length is changed so that light is distributed over the entire image sensor below the cover (see \cref{fig:intensityImage}).
+By measuring $N=\SI{500}{}$ images, the variance for the different intensity values is determined.
 % 
 \paragraph{results}
-The results are shown in \cref{fig:parameterModelNoise} and show a gain value of $\opticgain_{\mathit{PM}} = \SI{0.1175}{}(?)$ which is agreement to the hardware specifics \todo{check and ref}.
-This gain factor can be used by the model:
+The results are shown in \cref{fig:parameterModelNoise} and show a gain value of $\opticgain_{\mathit{LMP}} = \SI{0.1175}{}(?)$ which is agreement to the hardware specifics \todo{check and ref}.
+This gain factor can be used by the model
 \begin{align}
-f(x) = \mathrm{round}\left(\mathrm{normal}(\mu = x, \sigma=\sqrt{\opticgain \cdot x})\right)
+f(x) = \floor{\mathrm{normal}(\mu = x, \sigma=\sqrt{\opticgain x})+0.5}
 \end{align}
-\todo{only values > 0 and I >> sqrt(gI)}
+for intensities $I > 0$, $I \gg \sqrt{\opticgain I}$ and integer values.
 % 
 % 
 % 
@@ -241,20 +241,34 @@ Two \acsp{ROI} with \dummy{} pixels are annotated for this purpose.
 \begin{figure}[!t]
 % 2_simulation/0_parameter/measure_vervet.ipy
 \centering
-\hspace*{\fill}
-\setlength{\tikzwidth}{0.42\textwidth}
-% \tikzset{external/export next=false}
-\subcaptionbox{zoom transmittance}{\inputtikz{gfx/data/vervet_transmittance_zoom}}\hfill
-% \tikzset{external/export next=false}
-\subcaptionbox{hist transmittance}{\inputtikz{gfx/data/vervet_transmittance_hist}}
-\hspace*{\fill}
-\\
-\hspace*{\fill}
-% \tikzset{external/export next=false}
-\subcaptionbox{zoom retardation}{\inputtikz{gfx/data/vervet_retardation_zoom}}\hfill
-% \tikzset{external/export next=false}
-\subcaptionbox{hist retardation}{\inputtikz{gfx/data/vervet_retardation_hist}}
-\hspace*{\fill}
+\setlength{\tikzwidth}{0.45\textwidth}
+\begin{tabular}{cc}
+% 
+\inputtikz{gfx/data/vervet_transmittance_zoom} &
+\inputtikz{gfx/data/vervet_transmittance_hist} \\[-5mm]
+% 
+\multicolumn{1}{l}{
+\begin{minipage}[t]{0.495\textwidth}
+\leavevmode\subcaption{zoom transmittance}
+\end{minipage}} &
+\multicolumn{1}{l}{
+\begin{minipage}[t]{0.495\textwidth}
+\leavevmode\subcaption{hist transmittance}
+\end{minipage}} \\[10mm]
+% 
+\inputtikz{gfx/data/vervet_retardation_zoom} &
+\inputtikz{gfx/data/vervet_retardation_hist} \\[-5mm]
+% 
+\multicolumn{1}{l}{
+\begin{minipage}[t]{0.495\textwidth}
+\leavevmode\subcaption{zoom retardation}
+\end{minipage}} &
+\multicolumn{1}{l}{
+\begin{minipage}[t]{0.495\textwidth}
+\leavevmode\subcaption{hist retardation}
+\end{minipage}} \\
+% 
+\end{tabular}
 \caption[zoom ret and trans]{%
 trans left: $1200 \pm 500$,
 trans right: $1200 \pm 500$,
@@ -263,7 +277,7 @@ fuellgrad $0.75: \mu \approx 30 \pm 10$,
 fuellgrad $0.75: \mu \approx 30 \pm 10$,
 ret left: $0.83 \pm 0.07$,
 ret right: $0.80 \pm 0.07$
-\itodo{new fig-> path as vector; what happens in the center; check lr flip with images above, histogramm?}}
+\itodo{what happens in the center?; redesign histogramm; which is left and right?}}
 \label{fig:brain_ret_trans_zoom}
 \end{figure}
 % 
@@ -286,32 +300,26 @@ ret right: $0.80 \pm 0.07$
 \subcaptionbox{\label{fig:simRetValues}retardation}[.95\textwidth]{
 \includegraphics[width=0.95\textwidth]{dev/rc1/tissue/bf_rc1_retardation_PM_Vervet.pdf}
 }
-\caption{simulations for Vervet PM tissue for different absorption coef and birefringence values. \itodo{exp messungen mit einzeichnen, transmittance nur ein wert}}
+\caption{simulations for Vervet LMP tissue for different absorption coef and birefringence values. \itodo{exp messungen mit einzeichnen, transmittance nur ein wert}}
 \label{fig:parameterModelSim}
 \end{figure}
 % 
-The absorption coefficient $\absorp{}$ and the birefringence $\dn{}$ have to be estimated from the tissue to use suitable values within the simulation.
-As the literature shows, these values are in the range of \dummy{}\TODO{!!!} $\dn{}$.
-However, since the models generated here use stiff fiber segments, the volume density cannot reach the high density, which is commonly present in the \ac{WM}.
-To overcome this problem, the absorption and birefringence strengths must be increased to achieve comparable results.
+The absorption coefficient $\absorp{}$ and the birefringence $\dn{}$ have to be estimated from the tissue to use appropriate values in the simulation.
+As the literature shows, these values are in the range of $\dn{}$ \dummy{}.
+Since the models created here use stiff fiber segments the volume density cannot reach the high density usually present in \ac{WM}.
+To overcome this problem, the absorption and birefringence strengths must be increased to obtain comparable results.
 \par
+%
+For a measurement of the properties it is important to ensure that a homogeneous region is chosen.
+In coronal section, the corpus callosum is suitable for this purpose. It is the main fiber connection between the two cerebral hemispheres (see \cref{fig:parameterModelSim}). In a central section, the nerve fibers generally lie flat in section
 % 
-Both properties can be measured by the \ac{3D-PLI} setup.
-Since the focus will be the Vervet monkey\todo{argue why} (since a large range of registered data is available at this moment), a coronal section will be used to analys both properties.
-It is important to ensure that a homogeneous region is chosen.
-In a coronal section, the corpus callosum is suitable for this purpose. It is the main fiber connection between the two cerebral hemispheres (see \cref{fig:parameterModelSim}).
-% 
-% \Cref{fig:parameterModelSim} shows a coronal section of the Vervet monkey brain \dummy[section number 549, aber was ist zu sehen, ist es in der mitte?, ...]{}.
-% % 
-% To get a approximation of the parameters the models with a radius of $r=\SI{0.5}{\micro\meter}$ are used, which is closed to the real tissue.
-% 
-\Cref{fig:brain_ret_trans} shows the transmittance and retardation maps of the coronal Vervet section, and \ref{fig:brain_ret_trans_zoom} a zommed version.
-The retartdation map shows a visible reduction of the retardation in the center of the corpus calosum.
-Because of the necesarry homoginity, this center region is therefore neglectet.
-This leaves a left and a right region, which in both transmittance and retardation is feasable homoginious (see histograms).
+\ref{fig:brain_ret_trans} shows transmission and retardation maps of the vervet monkey coronal section, and \ref{fig:brain_ret_trans_zoom} shows a zoomed version.
+The retardation map shows a visible reduction of retardation in the center of the corpus callosum.
+Therefore, because of the need for homogeneity, this central region is neglected.
+A left and a right region remain, which may be homoginous in both transmission and retardation (see histograms).
 The left region has $\SI{1125858}{}$ number of pixels, the right part $\SI{1064629}{}$
 % 
-The same measurements are also aquired for the human and roden section (see appendix). \todo{end of this subsection}
+The same measurements are made for the human and rodent in the corpus callosum (see Appendix). \todo{Appendix}
 % 
 % 
 % 
@@ -1183,7 +1191,6 @@ The resulting direction of the analysis is between the models direction distribu
 % 
 \begin{figure}[!t]
 \centering
-% \tikzset{external/force remake=true}
 \setlength{\tikzwidth}{0.85\textwidth}
 \begin{tikzpicture}[baseline, trim axis left, trim axis right]
 \begin{axis}[%
@@ -1209,7 +1216,6 @@ cycle multiindex* list={mark list*\nextlist Dark2\nextlist},
 % 
 \begin{figure}[!t]
 \centering
-% \tikzset{external/force remake=true}
 \setlength{\tikzwidth}{0.85\textwidth}
 \begin{tikzpicture}[baseline, trim axis left, trim axis right]
 \begin{axis}[%
