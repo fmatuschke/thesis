@@ -400,6 +400,10 @@
 % PGFplotsTable
 % **************************************************
 \usepackage{pgfplotstable}
+\usepackage{array,multirow,makecell}
+\newcolumntype{R}[1]{>{\raggedleft\arraybackslash }b{#1}}
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash }b{#1}}
+\newcolumntype{C}[1]{>{\centering\arraybackslash }b{#1}}
 % 
 % \captionsetup[table]{textfont=it, parskip=10em} % skip does not work for table
 \pgfplotstableset{thesisTableStyle/.style={

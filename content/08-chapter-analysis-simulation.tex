@@ -293,14 +293,16 @@ ret right: $0.80 \pm 0.07$
 % ret: $0.68 \pm 0.11$,
 % 
 % 
-\begin{figure}[!tp]
+\begin{figure}[tp]
 \centering
 \subcaptionbox{\label{fig:simTransValues}transmittance}[.95\textwidth]{
-\includegraphics[width=0.95\textwidth]{dev/rc1/tissue/bf_rc1_transmittance_PM_Vervet.pdf}} %\hfill
+\includegraphics[height=0.7\textwidth,
+    rotate=-90, trim=0 95 775 90, clip]
+    {dev/rc1/tissue/bf_rc1_transmittance_PM_Vervet.pdf}} %\hfill
 \subcaptionbox{\label{fig:simRetValues}retardation}[.95\textwidth]{
 \includegraphics[width=0.95\textwidth]{dev/rc1/tissue/bf_rc1_retardation_PM_Vervet.pdf}
 }
-\caption{simulations for Vervet LMP tissue for different absorption coef and birefringence values. \itodo{exp messungen mit einzeichnen, transmittance nur ein wert}}
+\caption{simulations for Vervet LMP tissue for different absorption coef and birefringence values. \itodo{exp messungen mit einzeichnen, rfc plot}}
 \label{fig:parameterModelSim}
 \end{figure}
 % 
@@ -325,58 +327,49 @@ The same measurements are made for the human and rodent in the corpus callosum (
 % 
 \subsubsection{absorption}
 % 
-A problem with transmission is that scattering cannot be distinguished from actual absorption in this setup.
-However, since this property is mathematically the same, namely a reduction in intensity along the tissue, \fixme{it can still be used}, but it must be remembered that it is the \fixme{outdated} "absorption" and not just the loss of energy in the tissue.
-Additionally, the scattering is not constant for all fiber configurations and orientations \dummy[see MM]{}.
-Therefore, the value measured here is only valid for the same fiber configurations as the region.
-\fixme{However, it should be a good estimate} for the magnitude of absorption in the tissue, which, as will be shown later in the simulation, is sufficient.
+When the light passes through the tissue, it is absorbed in the matter on the one hand and scattered on the other.
+Both effects can be modeled mathematically in this linear optical simulation as a decrease in intensity along the path.
+A drawback of this simulation is that the scattering is not constant for all fiber configurations and orientations \dummy[see MM]{}.
+Therefore, the measured absorption coefficient is only valid for the same fiber configurations as in the region.
+Absorption only changes the transmittance and hence the relative noise, not the delay or direction of the signal. 
+Since the noise is quite low in this microscopic configuration, it should have little effect on the results. 
+\par
 % 
-\itodo{Messung beschreiben}
+To measure absorption, the transmittance of the coronal slice in the \ac{ROI} of the corpus callosum is measured against the background value.
+The absorption coefficient is then calculated by applying \dummy{}.
+This values are then increased according to the volume fraction, of the models and then simulated to ensure that the same behavior can be modelled.
 % 
-\paragraph{results}
-A relative transmittance of about $\SIrange{20}{30}{\percent}$ is present inside the \ac{ROI} of the corpus callosum \todo{show histogram}. 
-The simulation parameter has to be set such as that for the models a similar transmittance value is reached.
-This means, that for a $\SI{60}{\micro\meter}$ thick section the absorption coefficient $\absorp{}$ is about $\SI{30}{}$. 
-The absorption for the Roden is $\SI{8}{}$, and the human $\SI{65}{}$.
+\paragraph{Results}
+A relative transmittance of about $\SIrange{20}{30}{\percent}$ is present within the \ac{ROI} of the corpus callosum. 
+The simulation parameter must be set to achieve a similar transmission value for the models.
+This means that for a $\SI{60}{\micro\meter}$ thick section, the absorption coefficient $\absorp{}$ is about $\SI{30}{\milli\meter\tothe{-1}}$. 
+The absorption for the roden is about $\SI{8}{\milli\meter\tothe{-1}}$, and that of the human is about $\SI{65}{\milli\meter\tothe{-1}}$.
+\\
 %
-\Cref{fig:simTransValues} shows the simulated transmittance values for different fiber radii. \todo{only one is necesarry, since the birefringence not chaning anythong}.
+\Cref{fig:simTransValues} shows the simulated transmittance values for different fiber radii. 
 For smaler radii the variance of the transmittance is very small \dummy{} and increases with the radii.
-This behavier is epected, since models with larger radii have more space where no tissue is present, and therefore the light can transmitt freely through the \say{section}.
+This behavier is epected, since models with larger radii have more space where no tissue is present, and therefore the light can travel freely through the \say{section}.
 In comparison to the histogram \cref{fig:brain_ret_trans_zoom} the models with larger radii have more in common with the distribution.
-However from literature one can neglect, that this kind of fiber radii is present in corpus calosum \dummy{}. 
-Considering the neglection of light scattering one can come to the conclusion, that this beahvier was to be expected.
-At this point the here developed simulation is not ready to simulate scattered light.
-However, since in the analysis the transmittance is not presents (see \dummy{}) and its role only indicates, how large the noise distribution is (which is for this setup quite small), this ... should be ok.
-(Further simulation in the future have to show how large the impact of the transmittance is)
-%  
-\Cref{fig:noiseplot} shows the intensity noise curve for the ...
+However from literature one can neglect, that this kind of fiber radii is present in corpus calosum \dummy{}.
+Nevertheless the tissue can have more complicated configurations and effects, which leads to a larger viarity of absorption, \eg{} cells, blood vessels and so on.
+Also at this point the here developed simulation is not ready to simulate scattered light, which is to be expected to increase the range of the absorption and therefore resulting a a larger variance of transmittance.
 % 
 % 
 %
 \subsubsection{birefringence}
 % 
-To get an estimate of the birefringence of \ac{WM} it is essential in this setup configuration, that the measured nerve fibers have no inlcination.
-This of couse is impossible to ensure.
-However the corpus callosum again is because of its anatomical structure a good approximation in a coronal section for flat fibers.
-Literature measured a birefringence of nerve fibers of around \dummy{}\TODO{!!!}. 
-% Scince for this simulations the models are rigide and therefore are spatially farer away from each other, this means that the tissue density is lower than in reality.
-% Therefore to reach similar retardation values the birefringence value has to be increased.
-To analyse the effect of the lower desity inside the models, the birefringence values is simulated at a voxel size of $\SI{0.125}{\micro\meter}$ at different values.
+The birefringence cannot simply be measured like the transmittance.
+Due to the radial optical axis of the myelin, the relativ obsorving birefringence is smaller than the one of the myelin.
+However the simulation up to a point has the same geometrical constrains.
+By simulating difference birefringence strength and comparing them to the retardation of the tissue one can find a proper value.
+The simulation will use a flat single fiber population and the same parameters as the later simulation model library (see \dummy{}).
 % 
-\itodo{Messung beschreiben}
-% 
-\paragraph{results}
-The results in \cref{fig:parameterModelSim} show that to reach a retardation value similar to the experimental setup of around $\SI{0.8}{}$ a birefringence value of $\SI{-0.004}{}$ for a macroscopic and $\SI{0.008}{}$ for the microscopic model should be chosen.
-Since the nerve fibers in this region are not perfectly flat and dense, this is a lower esitmation of the birefingence strength.
-However the same is true for the fiber models.
-% This is around factor 2 \todo{check} higher than literatur.
-% However keeping the lower density in mind and the effect of a fixed myelin radii model of $\SI{75}{\percent}$ this is still in agreement.
-Looking at the different model nerve fiber radii the variance of the retardation values increase strong.
+\paragraph{Results}
+The results in \cref{fig:parameterModelSim} show that to reach a retardation value similar to the experimental setup of around $\SI{0.8}{}$ a birefringence value of $\SI{0.008}{}$ for the microscopic model should be chosen.
+Looking at the different model nerve fiber radii the variance of the retardation values increase strong, similar to the transmittance.
 This is to be expected since the simulated tissue section has a hight of $\SI{60}{\micro\meter}$.
 Therefore for a radii of $\SI{10}{\micro\meter}$ the number of tissue voxels has to vary depending on where the fibers are positioned in the volume.
-For larger radii this can lead to an reduction of retardation due to the $\sin(...)$ ambiguity.
-That is also the reason why the values are non normal distributed between $\si{0}$ and $\si{1}$.
-%  
+For larger radii this leads to the problem, that the retardation cannot be over 1 and therefore the signal amplitude reduces again.
 % 
 % 
 % \subsection{noise} <--- why this section?
@@ -397,144 +390,39 @@ That is also the reason why the values are non normal distributed between $\si{0
 % 2_simulation/0_parameter/fiber_radii.py
 \centering
 \includegraphics[width=\textwidth, page=1]{dev/rc1/voxel_size/voxel_size_plots_data_r05_output_vs_135_0.01_6_25_vervet_r_rc1.pdf}
-\caption[voxel size model with noise]{The mean difference is constant for smaller voxel sizes and does not start to grow significantly before $\voxels=\SI{0.125}{\micro\meter}$.}
+\caption[voxel size model with noise]{The mean difference is constant for smaller voxel sizes and does not start to grow significantly before $\voxels=\SI{0.1}{\micro\meter}$.}
 \label{fig:voxelsizeNoise}
 \end{figure}
 % 
-The \voxelsize{} \voxels{} is the main parameter for simulation accuracy, since it determanse how acurate the models will be discreticed.
-Smaller values mean more details, more accurate optical axes, more light rays.
-However, it also means an increase in memory by $O(n^3)$.
-therefore it is recommended to choose the \voxelsize{} so that it is as large as possible without generating a significant error from the discretiziation.
+The \voxelsize{} paramter $\voxels$ is the most important parameter for simulation accuracy, as it determines how accurately the models are discretized.
+Smaller values mean more details, more accurate optical axes and more light rays.
+However, this also increases the number of calculations and memory by $O(n_{\mathit{voxel}}^3)$.
+Therefore, it is recommended to choose the voxel size as large as possible without introducing a significant error due to the discretization.
 \par
 % 
-To investigate this effect, a simulation is performed with different types of voxel sizes from the $\SIrange{0.0125}{1.25}{\micro\meter}$.
-The smallest voxel size $\SI{0.0125}{\micro\meter}$ is used as ground truth or comparison. 
-However, this voxel size is so small that this is only performed for a single tissue section. \todo{which?, how much memory, ...}
-The pixel size \pixelsize{} will be set to $\SI{1.25}{\micro\meter}$. \todo{other parameters}
+To investigate this effect, a simulation is performed with different types of voxel sizes from the $\SIrange{0.01}{1.3}{\micro\meter}$.
+The smallest voxel size $\SI{0.01}{\micro\meter}$ is used as ground truth. 
+Since this voxel size is so small, only a volume of $3 \cdot \SI{1.3}{\micro\meter} \cdot \SI{1.3}{\micro\meter} 3 \cdot \SI{1.3}{\micro\meter} \times \SI{60}{\micro\meter}$ is used without tilting.
+Otherwise, if tilting is used, the volume would have to be increased so that the light beam still travels through the tissue.
+The other parameters are set as in \dummy{}.
+The models to be simulated are $(||,\modelInc = \SI{0}{\degree})$, $(||,\modelInc = \SI{90}{\degree})$, $(\times,\modelInc = \SI{0}{\degree})$, and $(\times,\modelInc = \SI{90}{\degree})$ with a anteil of $\modelPsi = \SI{0.5}{}$, since these configurations represent the extrema for two fiber populations.
+To improve the statistics, the simulation is repeated in the volume on an aquidistant $xy$ grid of $\num{5}$ by $\num{5}$ points within the $\SI{65}{\micro\meter}$ by $\SI{65}{\micro\meter}$ model.
 % 
-\paragraph{results}
-The results  in \cref{fig:voxelsizeNoise} show that the relative difference to the smallest \voxelsize{} increase statically after a value of \SI{0.125}{\micro\meter}.
-The variance of the relative difference increases with the radius of the models as well as with the \voxelsize{}.\todo{was sind die vier unterschiedlichen plots?}
+\paragraph{Results}
+The results in \cref{fig:voxelsizeNoise} show that the relative difference to the smallest \voxelsize{} increases statically significantly above a value of \SI{0.1}{\micro\meter}.
+The variance of the relative difference increases with increasing \voxelsize{} from this value.
 % 
-In summary:
-The results shown in \cref{fig:voxelsizeNoise} indicate that for noise, a voxel size smaller than $\SI{0.125}{\micro\meter}$ does not increase the accuracy with respect to the noise model chosen here.
-However, this is only true for a pixel size of $\SI{1.25}{\micro\meter}$.
-% 
-% 
-% 
-\section{Parameterization/ Model library}
-% 
-% \begin{figure}[p]
-% \centering
-% \setlength{\tikzwidth}{0.45\textwidth}
-% \subcaptionbox{\label{fig:modelrotcube}A spherical volume with diameter $d$ is used as boundary, so that a cube of side length $1/1.5 \cdot d$ can be cut in any orientation inside the sphere.}
-% [.49\textwidth]{\inputtikz{gfx/model/sphere_cube}}\hfill
-% \subcaptionbox{\label{fig:modelinit}Initial orientation for two fiber populations $F_0$ and $F_1$. The angle between both populations is $\Omega$. The remaining degree of freedom are taken into account by rotating the whole volume (see \cref{fig:modelrotcube})}
-% [.49\textwidth]{\inputtikz{gfx/model/sphere_models}}
-% \\
-% 
-% \subcaptionbox{fixed first fiber population; half rotation of second fiber population}
-% [.49\textwidth]{\inputtikz{gfx/model/sphere_models_a}}\hfill
-% \subcaptionbox{\label{subfig:Test1}increasing inclination for first fiber population}
-% [.49\textwidth]{\inputtikz{gfx/model/sphere_models_b}}
-% \\
-% % 
-% \setlength{\tikzwidth}{0.42\textwidth}
-% \subcaptionbox{\label{subfig:sphere:hista1} hist a}
-% [.49\textwidth]{\inputtikz{gfx/model/sphere_hist_a}}\hfill
-% \subcaptionbox{\label{subfig:sphere:histb} hist b, with applied symmetries.}
-% [.49\textwidth]{\inputtikz{gfx/model/sphere_hist_b}}
-% \caption{two population model library \itodo{e und f fertig machen, beispiel inc=30, zwei symmetrien darstelen}}
-% \label{fig:twomodelpop}
-% \end{figure}
-% 
-Def of angles, def of parameters ...
-% 
-% 
-% 
-\section{Repo}
-% 
-\paragraph{repo models}
-% 
-0.0:     1.72 +- 0.03, 1.29 +- 0.02, 0.69 +- 0.03, 1.46 +- 0.04, 2.47 +- 0.05,\\
-5.0:     1.73 +- 0.03, 1.30 +- 0.02, 0.70 +- 0.03, 1.46 +- 0.04, 2.48 +- 0.05,\\
-10.0:    1.74 +- 0.04, 1.31 +- 0.03, 0.69 +- 0.03, 1.46 +- 0.04, 2.49 +- 0.06,\\
-15.0:    1.74 +- 0.02, 1.28 +- 0.02, 0.70 +- 0.02, 1.47 +- 0.03, 2.48 +- 0.04,\\
-20.0:    1.72 +- 0.04, 1.27 +- 0.02, 0.71 +- 0.02, 1.45 +- 0.04, 2.45 +- 0.07,\\
-25.0:    1.71 +- 0.03, 1.24 +- 0.02, 0.71 +- 0.02, 1.44 +- 0.03, 2.42 +- 0.05,\\
-30.0:    1.69 +- 0.02, 1.21 +- 0.02, 0.73 +- 0.02, 1.42 +- 0.03, 2.38 +- 0.04,\\
-35.0:    1.69 +- 0.03, 1.19 +- 0.02, 0.75 +- 0.03, 1.41 +- 0.03, 2.35 +- 0.04,\\
-40.0:    1.68 +- 0.03, 1.15 +- 0.02, 0.80 +- 0.03, 1.41 +- 0.03, 2.32 +- 0.05,\\
-45.0:    1.68 +- 0.03, 1.13 +- 0.02, 0.82 +- 0.03, 1.42 +- 0.03, 2.29 +- 0.04,\\
-50.0:    1.71 +- 0.04, 1.11 +- 0.02, 0.88 +- 0.04, 1.47 +- 0.05, 2.31 +- 0.05,\\
-55.0:    1.76 +- 0.04, 1.11 +- 0.02, 0.94 +- 0.04, 1.54 +- 0.05, 2.36 +- 0.06,\\
-60.0:    1.86 +- 0.03, 1.14 +- 0.04, 1.03 +- 0.03, 1.65 +- 0.04, 2.47 +- 0.04,\\
-65.0:    2.03 +- 0.04, 1.21 +- 0.03, 1.16 +- 0.04, 1.82 +- 0.05, 2.68 +- 0.06,\\
-70.0:    2.37 +- 0.04, 1.39 +- 0.03, 1.38 +- 0.04, 2.15 +- 0.04, 3.10 +- 0.06,\\
-75.0:    3.10 +- 0.05, 1.87 +- 0.09, 1.81 +- 0.05, 2.81 +- 0.06, 4.02 +- 0.07,\\
-80.0:    5.79 +- 0.17, 4.90 +- 0.47, 3.24 +- 0.10, 4.95 +- 0.13, 7.00 +- 0.15,\\
-85.0:    28.45 +- 0.57, 21.32 +- 0.22, 12.45 +- 0.57, 22.11 +- 0.59, 38.52 +- 1.04,\\
-90.0:    45.86 +- 0.90, 25.45 +- 0.43, 24.33 +- 1.24, 46.21 +- 1.42, 67.55 +- 1.41,\\
-\par
-% 
-\itodo{tabelle generieren}
-% 
-repo angles are up to an inclination of 65 degree stable < 2.5 degree.
-the standard diviation stays under 1.5 degree and is therefore considered stable.
-% 
-\paragraph{repo simulations}
-% 
+The results shown in \cref{fig:voxelsizeNoise} suggest that with noise present and a voxel size smaller than $\SI{0.1}{\micro\meter}$, accuracy does not increase with respect to the noise model chosen here.
+However, this is only true for a pixel size of $\SI{1.3}{\micro\meter}$ and fiber radii of $\SI{0.5}{\micro\meter}$.
+%  
 % 
 % 
 \section{Simulation}
 % 
-\begin{enumerate}
-\item $r=0.5$ or fabric tissue 
-\begin{enumerate}
-\item eine population:
-\begin{enumerate}
-    \item verhalten von transmittance, direction und retardierung wie model
-    \item verteilung von orientierung SIM zu GT
-\end{enumerate}
-% 
-\item zwei population:
-\begin{enumerate}
-    \item verhalten von transmittance, direction und retardierung wie model
-    \item analyse signal ohne rauschen, zeigt rofl eine abweichung?
-    \item verteilung von orientierung SIM zu GT (odf oder histogram?)
-    \item groese "dunkler" Bereich
-\end{enumerate}
-\end{enumerate}
-% 
-\item $r > 0.5$ oder "fiberbundle":
-\begin{enumerate}
-\item zwei populationen
-\begin{enumerate}
-    \item verhalten von seeded fiber bundles zu solid fiber bundles
-    \item sichtbarkeit von zwei orientierungen
-\end{enumerate}
-\end{enumerate}
-% 
-\item misc
-\begin{enumerate}
-    \item speed test
-\end{enumerate}
-% 
-\item future discussions
-\begin{enumerate}
-    \item n-fiber populations
-    \item fiber bundles of different radii
-    \item fiber bundles with volume compressing solving steps
-\end{enumerate}
-\end{enumerate}
-% 
-Verhalten von transmittance von steilheit?
-% 
-% 
-% 
-\subsection{Parameters and execution}
-% 
+\subsection{Parameter and environment}
+%  
 \begin{table}[!b]
+\caption{simpli parameters}
 \centering
 % \sisetup{open-bracket={\{}, close-bracket={\}}, list-final-separator={,},list-pair-separator={,}}%
 \pgfplotstabletypeset[%
@@ -551,23 +439,23 @@ Verhalten von transmittance von steilheit?
 % 
 simpli.voxel\_size & $\SI{0.1}{\micro\meter}$\\
 simpli.pixel\_size & $\SI{1.3}{\micro\meter}$\\
-simpli.voi & $[\SI{-35}{\micro\meter}, \SI{-35}{\micro\meter}, \SI{-30}{\micro\meter}], [\SI{30}{\micro\meter}, \SI{35}{\micro\meter}, \SI{35}{\micro\meter}]$\\
+simpli.voi & $[[\SI{-35}{\micro\meter}, \SI{-35}{\micro\meter}, \SI{-30}{\micro\meter}], [\SI{30}{\micro\meter}, \SI{35}{\micro\meter}, \SI{35}{\micro\meter}]]$\\
 simpli.filter\_rotations & $\SIlist{0;20;40;60;80;100;120;140;160}{\degree}$\\
 simpli.interpolate & \texttt{"Slerp"}\\
 simpli.wavelength & $\SI{525}{\nano\meter}$\\
 simpli.optical\_sigma & $\SI{0.75}{\pixel}$\\
-tilt & $\SI{3.9}{\degree}$\\
+tilt angle & $\SI{3.9}{\degree}$\\
 simpli.light\_intensity & $\SI{8000}{}$\\
 gain & \SI{0.1175}{}\\
-% simpli.noise\_model & \texttt{lambda x:np.round(np.random.normal(x,np.sqrt(gain * x))).astype(np.uint16)}\\
-simpli.noise\_model & \texttt{lambda x:np.round(np.random.normal(}\\
- & \ \ \ \ \ \texttt{x,np.sqrt(gain * x))).astype(np.uint16)}\\
-fiber absorption & ('Roden', 8), ('Vervet', 30), ('Human', 65)\\
+simpli.noise\_model & \code{lambda x: np.floor(np.random.normal(x,}\\
+ & \ \ \ \ \ \code{np.sqrt(gain * x))+0.5).astype(np.uint16)}\\
+fiber absorption & Roden: $\SI{14}{\milli\meter\tothe{-1}}$, Vervet: $\SI{30}{\milli\meter\tothe{-1}}$, Human: $\SI{60}{\milli\meter\tothe{-1}}$\\
 fiber model & 'r'\\
-fiber birefringence & 0.008 for 'r'\\
-fiber radii & (0.75, 1)\\
+fiber birefringence & 0.008\\
+fiber radii & axon: \SI{0.75}{}, myelin: \SI{1}{}\\
+model delta inclinations & single: $\SI{10}{\degree}$, crossings: $\SI{30}{\degree}$\\
+model delta rotation & $\SI{15}{\degree}$\\
 }
-\caption{simpli parameters. \itodo{absorption ist volumenweit, nicht nur in faser} \ITODO{correct my values!!!}}
 \label{tab:simParameters}
 \end{table}
 % 
@@ -577,10 +465,11 @@ The values are chosen due to the discussion of \cref{sec:sim_choose_parameters}.
 % 
 This configuration results in 
 % 
-\subsubsection{Execution}
+% \subsubsection{Execution}
 % 
 As described in \cref{Software} \fastpli{} contains a pipeline implementation. \dummy{}.
 This implementation is used to calculate the discretized volumes (from generator), simulate the signal, performing the optical noise and inclination analysis of the resulting signal with \rofl{}.\footnote{Source code is available in appendix \dummy{}.}
+With a pixel size of \SI{1.3}{\micro\meter} there are be $\SI{2500}{\pixel}$ available per simulation for statistical analysis.
 \\
 % 
 The simulation were performed with a single compute node (\texttt{2x Intel(R) Xeon(R) CPU E5-4657L v2}).
@@ -588,9 +477,8 @@ The simulation were performed with a single compute node (\texttt{2x Intel(R) Xe
 % 
 % 
 \subsection{single fiber population}
-\itodo{mehr inclination winkel fuer diesen Fall? -> JA}
 % 
-\begin{figure}[!tp]
+\begin{figure}[!p]
 \centering
 \newlength{\width}
 \setlength{\width}{0.4\textwidth}
@@ -602,7 +490,7 @@ The simulation were performed with a single compute node (\texttt{2x Intel(R) Xe
     \includegraphics[width=\width]{dev/rc1/single/cube_2pop_135_rc1_single_plots_single_pop_hist_40.0.pdf} & \includegraphics[width=\width]{dev/rc1/single/cube_2pop_135_rc1_single_plots_single_pop_hist_90.0.pdf}
 \end{tabular}
 % 
-\caption[sim]{left: 2d log histogramm orientation from rofl analysis of simulation, right: 2d log histogramm of orientation of model segemnts.}
+\caption[sim]{left: 2d log histogramm orientation from rofl analysis of simulation, right: 2d log histogramm of orientation of model segemnts. \itodo{legende}}
 \label{fig:single_fiber_pop_hist}
 \end{figure}
 % 
@@ -674,7 +562,7 @@ For higher inclination values however its values exceeds 1 which leads to the co
     \includegraphics[width=\width]{dev/rc1/flat/cube_2pop_135_rc1_flat_plots_flat_pop_hist_omega_40.0_psi_0.3.pdf} & \includegraphics[width=\width]{dev/rc1/flat/cube_2pop_135_rc1_flat_plots_flat_pop_hist_omega_90.0_psi_0.3.pdf}
 \end{tabular}
 % 
-\caption[sim]{psi=0.3; left: 2d log histogramm orientation from rofl analysis of simulation, right: 2d log histogramm of orientation of model segemnts.}
+\caption[sim]{psi=0.3; left: 2d log histogramm orientation from rofl analysis of simulation, right: 2d log histogram of orientation of model segemnts. \itodo{legende}}
 \label{fig:flat_03_fiber_pop_hist}
 \end{figure}
 % 
@@ -711,7 +599,7 @@ For higher inclination values however its values exceeds 1 which leads to the co
     \includegraphics[width=\width]{dev/rc1/flat/cube_2pop_135_rc1_flat_plots_flat_pop_hist_omega_40.0_psi_0.5.pdf} & \includegraphics[width=\width]{dev/rc1/flat/cube_2pop_135_rc1_flat_plots_flat_pop_hist_omega_90.0_psi_0.5.pdf}
 \end{tabular}
 % 
-\caption[sim]{psi=0.5; left: 2d log histogramm orientation from rofl analysis of simulation, right: 2d log histogramm of orientation of model segemnts.}
+\caption[sim]{psi=0.5; left: 2d log histogramm orientation from rofl analysis of simulation, right: 2d log histogramm of orientation of model segemnts. \itodo{legende}}
 \label{fig:flat_05_fiber_pop_hist}
 \end{figure}
 % 
@@ -773,7 +661,7 @@ The resulting direction of the analysis is between the models direction distribu
 \end{axis}
 \end{tikzpicture}
 % 
-\caption[sim]{acc 0 - 1 \dummy{}}
+\caption[Simulation acc]{Mean \acc{} between model and tilt analysis orientations.}
 % \label{fig:sim_fyjsrg}
 \end{figure}
 % 
@@ -799,7 +687,7 @@ The resulting direction of the analysis is between the models direction distribu
     % \addplot [draw=none] coordinates {(0,0)};
 \end{axis}
 \end{tikzpicture}
-\caption[sim]{ret mean 0.014-0.798 \dummy{}}
+\caption[Simulation retardation]{Mean retardation.}
 % \label{fig:sim_fyjsrg}
 \end{figure}
 % 
@@ -825,7 +713,7 @@ The resulting direction of the analysis is between the models direction distribu
     }]
 \end{axis}
 \end{tikzpicture} 
-\caption[sim]{trans mean 99-1113 \dummy{}}
+\caption[Simulation transmittance]{Mean transmittance value.}
 % \label{fig:sim_fyjsrg}
 \end{figure}
 % 
@@ -850,7 +738,7 @@ The resulting direction of the analysis is between the models direction distribu
     }]
 \end{axis}
 \end{tikzpicture}
-\caption[sim]{rofl dir mean  \dummy{}}
+\caption[Simulation direction]{Circmean direction from tilt analysis.}
 % \label{fig:sim_fyjsrg}
 \end{figure}
 % 
@@ -875,6 +763,7 @@ The resulting direction of the analysis is between the models direction distribu
     }]
 \end{axis}
 \end{tikzpicture}
+\caption[Simulation inclination]{Circmean inclination from tilt analysis.}
 \caption[sim]{rofl incl mean  \dummy{}}
 % \label{fig:sim_fyjsrg}
 \end{figure}
@@ -901,293 +790,14 @@ The resulting direction of the analysis is between the models direction distribu
     }]
 \end{axis}
 \end{tikzpicture}
-\caption[sim]{rofl trel mean 0-0.55 \dummy{}}
+\caption[Simulation \trel{}]{Mean \trel{} from tilt analysis.}
 % \label{fig:sim_fyjsrg}
 \end{figure}
 % 
-\subsection{filled fiber populations}
-\subsection{misc}
-\section{summary/discussion}
+\subsection{repo}
 % 
-% 
-% 
-% % \subsection{expected results}
-% % 
-% % 
-% % 
-% \subsection{Results}
-% % 
-% \itodo{other results?}
-% \begin{itemize}
-% \item noise(omega, gamma, ...)
-% \item second orientation visible?
-% \item absolute birefringence, transmittance, absorption as a f(omega)
-% \item trel? abnahme der doppelbrechnung in flachen faser, bzw gegenüber f0?
-% \end{itemize}
-% % 
-% % 
-% % 
-% \subsection{Retardation comparison}
-% % 
-% \begin{figure}[!t]
-% \centering
-% \inputtikz{dev/gfx/sim_cube/data_rofl}
-% % \includegraphics[width=0.75\textwidth]{example-image} 
-% \caption[data vs rofl]{data vs rofl}
-% \label{fig:dataVsRofl}
-% \end{figure}
-% \itodo{show sinus plot of single pixel}
-% % 
-% % \begin{figure}[!tp]
-% % \centering
-% % \includegraphics[width=\textwidth]{dev/gfx/sim_cube/simulation_retardation_PM_Vervet_r.pdf}
-% % % 
-% % \begin{tikzpicture}
-% %  \begin{axis}[
-% %  scale only axis, width=0pt, height=0pt, hide axis,
-% %  tick label style={/pgf/number format/.cd, fixed},
-% %  colorbar,colormap/viridis high res,
-% %  point meta min=0,
-% %  point meta max=1,
-% %   colorbar horizontal,
-% %   colorbar style={width=0.75\textwidth},
-% %   ]%
-% %   {};
-% %  \end{axis}
-% % \end{tikzpicture}
-% % % 
-% % \caption[simulation results retardation]{0.5, PM, Vervet, r, retardation  \dummy{}}
-% % \label{fig:sim_retardation_05_PM_Vervet_r}
-% % \end{figure} 
-% % 
-% % 
-% % 
-% \subsection{Orientation comparison}
-% % 
-% \begin{figure}[!tp]
-% \centering
-% \includegraphics[width=\textwidth, trim = 115 50 115 0, clip]{dev/gfx/sim_cube/tissue_overlay_PM_Vervet_r_0.60_60.00_10.00_30.00_0.00_.pdf} 
-% \caption[sim]{\dummy{}}
-% \label{fig:sim_fyjsrg}
-% \end{figure}
-% % 
-% % 
-% % 
-% % 
-% \begin{figure}[!tp]
-% \centering
-% \includegraphics[height=0.8\textheight]{dev/gfx/sim_cube/test_r_0.5_species_Vervet_microscope_PM_model_r_inc_0.00_rot_0.00.pdf} 
-% \caption[sim]{\dummy{}}
-% \label{fig:sim_matrix_0}
-% \end{figure}
-% % 
-% % 
-% % 
-% % 
-% \begin{figure}[!tp]
-% \centering
-% \includegraphics[height=0.8\textheight]{dev/gfx/sim_cube/test_r_0.5_species_Vervet_microscope_PM_model_r_inc_90.00_rot_0.00.pdf} 
-% \caption[sim]{\dummy{}}
-% \label{fig:sim_matrix_90}
-% \end{figure}
-% % 
-% % 
-% % 
-% % \begin{figure}[!t]
-% % \begin{tikzpicture}[trim axis left, baseline]
-% % \begin{axis}[%
-% %     axis equal,
-% %     axis lines = center,
-% %     axis line style={opacity=0.0},
-% %     ticks=none,
-% %     view/h=145,
-% %     scale uniformly strategy=units only,
-% %     clip=false, % hide axis,
-% %     width=10cm,
-% %     height=10cm,
-% %     xmin=-1,xmax=1,
-% %     ymin=-1,ymax=1,
-% %     zmin=-1,zmax=1,
-% %     point meta min=0, point meta max=1,
-% %     colormap/viridis,
-% % ]
-% % \addplot3[%
-% %     surf,
-% %     shader=interp,
-% %     z buffer=sort,
-% %     mesh/color input=explicit,
-% %     ]
-% %  table[x=x,y=y,z=z,
-% %         meta=rgb,
-% %         ] {dev/gfx/sim_cube/cube_2pop_psi_0.60_omega_60.00_r_10.00_v0_120_.solved_vs_0.1250_inc_30.00_rot_0.00_PM_Vervet_r.gt.dat};
-% % \end{axis}
-% % \end{tikzpicture}
-% % \begin{tikzpicture}[trim axis left, baseline]
-% % \begin{axis}[%
-% %     axis equal,
-% %     axis lines = center,
-% %     axis line style={opacity=0.0},
-% %     ticks=none,
-% %     view/h=145,
-% %     scale uniformly strategy=units only,
-% %     clip=false, % hide axis,
-% %     width=10cm,
-% %     height=10cm,
-% %     xmin=-1,xmax=1,
-% %     ymin=-1,ymax=1,
-% %     zmin=-1,zmax=1,
-% %     point meta min=0, point meta max=1,
-% %     colormap/viridis,
-% % ]
-% % \addplot3[%
-% %     surf,
-% %     shader=interp,
-% %     z buffer=sort,
-% %     mesh/color input=explicit,
-% %     ]
-% %  table[x=x,y=y,z=z,
-% %         meta=rgb,
-% %         ] {dev/gfx/sim_cube/cube_2pop_psi_0.60_omega_60.00_r_10.00_v0_120_.solved_vs_0.1250_inc_30.00_rot_0.00_PM_Vervet_r.rofl.dat};
-% % \end{axis}
-% % \end{tikzpicture}
-% % % 
-% % \caption[odf]{\dummy{}}
-% % \label{fig:sim_fyjsrg}
-% % \end{figure}
-% % 
-% % 
-% % 
-% % 
-% \begin{figure}[!tp]
-% \centering
-% \includegraphics[width=\textwidth]{dev/gfx/sim_cube/simulation_analysis_hist_0.5_setup_PM_s_Vervet_m_r_acc.pdf}
-% % 
-% \begin{tikzpicture}
-%  \begin{axis}[
-%  scale only axis, width=0pt, height=0pt, hide axis,
-%  tick label style={/pgf/number format/.cd, fixed},
-%  colorbar,colormap/viridis high res,
-%  point meta min=0,
-%  point meta max=1,
-%   colorbar horizontal,
-%   colorbar style={width=0.75\textwidth,},
-%   ]%
-%   {};
-%  \end{axis}
-% \end{tikzpicture}
-% % 
-% \caption[simulation results acc]{0.5, PM, Vervet, r, acc-distance}
-% \label{fig:hist_0.5_setup_PM_s_Vervet_m_r_acc}
-% \end{figure}
-% % 
-% % 
-% \begin{figure}[!tp]
-% \centering
-% \includegraphics[width=\textwidth]{dev/gfx/sim_cube/simulation_analysis_hist_0.5_setup_PM_s_Vervet_m_r_trans_mean.pdf}
-% % 
-% \begin{tikzpicture}
-%  \begin{axis}[
-%  scale only axis, width=0pt, height=0pt, hide axis,
-%  tick label style={/pgf/number format/.cd, fixed},
-%  colorbar,colormap/viridis high res,
-%  point meta min=1000.24,
-%  point meta max=1109.23,
-%   colorbar horizontal,
-%   colorbar style={width=0.75\textwidth,},
-%   ]%
-%   {};
-%  \end{axis}
-% \end{tikzpicture}
-% % 
-% \caption[simulation results transmittance]{0.5, PM, Vervet, r, transmittance}
-% \label{fig:hist_0.5_setup_PM_s_Vervet_m_r_trans_mean}
-% \end{figure}
-% % 
-% % 
-% \begin{figure}[!tp]
-% \centering
-% \includegraphics[width=\textwidth]{dev/gfx/sim_cube/simulation_analysis_hist_0.5_setup_PM_s_Vervet_m_r_ret_mean.pdf}
-% % 
-% \begin{tikzpicture}
-%  \begin{axis}[
-%  scale only axis, width=0pt, height=0pt, hide axis,
-%  tick label style={/pgf/number format/.cd, fixed},
-%  colorbar,colormap/viridis high res,
-%  point meta min=0.016,
-%  point meta max=0.798,
-%   colorbar horizontal,
-%   colorbar style={width=0.75\textwidth,},
-%   ]%
-%   {};
-%  \end{axis}
-% \end{tikzpicture}
-% % 
-% \caption[simulation results ret]{0.5, PM, Vervet, r, retardation}
-% \label{fig:hist_0.5_setup_PM_s_Vervet_m_r_ret_mean}
-% \end{figure}
-% %
-% % 
-% \begin{figure}[!tp]
-% \centering
-% \includegraphics[width=\textwidth]{dev/gfx/sim_cube/simulation_analysis_hist_0.5_setup_PM_s_Vervet_m_r_trel_mean.pdf}
-% % 
-% \begin{tikzpicture}
-%  \begin{axis}[
-%  scale only axis, width=0pt, height=0pt, hide axis,
-%  tick label style={/pgf/number format/.cd, fixed},
-%  colorbar,colormap/viridis high res,
-%  point meta min=0,
-%  point meta max=0.55,
-%   colorbar horizontal,
-%   colorbar style={width=0.75\textwidth,},
-%   ]%
-%   {};
-%  \end{axis}
-% \end{tikzpicture}
-% % 
-% \caption[simulation results trel]{0.5, PM, Vervet, r, trel}
-% \label{fig:hist_0.5_setup_PM_s_Vervet_m_r_trel_mean}
-% \end{figure}
-% % 
-% % 
-% \begin{figure}[!tp]
-% \centering
-% \includegraphics[width=\textwidth]{dev/gfx/sim_cube/test_PM_Vervet_r_0.50_90.00_0.50_0.00_0.00_.pdf}
-% \caption[simulation analysis]{\dummy{}}
-% \label{fig:PM_Vervet_r_0.50_90.00_0.50_0.00_0.00}
-% \end{figure}
-% % 
-% % 
-% \begin{figure}[!tp]
-% \centering
-% \includegraphics[width=\textwidth]{dev/gfx/sim_cube/test_PM_Vervet_r_0.50_90.00_0.50_0.00_90.00_.pdf}
-% \caption[simulation analysis]{\dummy{}}
-% \label{fig:PM_Vervet_r_0.50_90.00_0.50_0.00_90.00}
-% \end{figure}
-% % 
-% % 
-% % 
-% % \subsubsection{LAP}
-% % % 
-% % -> discussion
-% % 
-% % 
-% % 
-% \section{Computational speed}
-% % 
-% % 
-% % 
-\begin{figure}[!p]
-\centering
-\includegraphics[width=1\textwidth]{dev/rc1/cube_2pop_135_rc1_radius_acc_compare_Vervet_PM_r.pdf}
-\caption[sim acc]{ $\acc{}(GT,GT_{0.5})$, $\acc{}(SIM,GT_{0.5})$ and $\acc{}(SIM,SIM_{0.5})$. hypothese: abweichungen in GtSim bei kleinen radien dadurch, dass zwei richtungen nicht sichtbar sind? schaue dir die histogramme und odfs an. \itodo{komplett neu machen}}
-\label{fig:accVervetPMr}
-\end{figure}
-% 
-% 
-% 
-% 
-\section{speedup}
+
+\subsection{speedup}
 % 
 \begin{figure}[!t]
 \centering
@@ -1243,3 +853,15 @@ cycle multiindex* list={
 \end{tikzpicture}
 \caption[]{Speedup simulation for 5 tilt direction. \itodo{einheitlicher style}}
 \end{figure}
+% 
+\section{summary/discussion}
+% 
+%  
+% 
+\begin{figure}[!p]
+\centering
+\includegraphics[width=1\textwidth]{dev/rc1/cube_2pop_135_rc1_radius_acc_compare_Vervet_PM_r.pdf}
+\caption[sim acc]{ $\acc{}(GT,GT_{0.5})$, $\acc{}(SIM,GT_{0.5})$ and $\acc{}(SIM,SIM_{0.5})$. hypothese: abweichungen in GtSim bei kleinen radien dadurch, dass zwei richtungen nicht sichtbar sind? schaue dir die histogramme und odfs an. \itodo{komplett neu machen}}
+\label{fig:accVervetPMr}
+\end{figure}
+% 
