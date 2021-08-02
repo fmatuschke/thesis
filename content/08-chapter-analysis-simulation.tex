@@ -102,22 +102,24 @@ Therefore, the convolution to be applied (see \cref{sec:opticalResolution}) is s
 \\[-1em]
 % 
 \multicolumn{2}{l}{
-\begin{minipage}[t]{\textwidth}
-\leavevmode\subcaption{\label{fig:intensityFocus}Intensity measurement setup. The focus of the microscop is changed so that the image is blured, resulting in a intensity variation at the border of the absorber material.\\[1em]}
+\begin{minipage}[t]{0.975\textwidth}
+\leavevmode\subcaption{\label{fig:intensityFocus}Intensity measurement setup. The focus of the microscope is changed so that the image is blurred, resulting in a intensity variation at the border of the absorber material.\\[1em]}
 \end{minipage}}
 \\
 % 
 % 1. IMAGE
+% \hfill
 \begin{tikzpicture}[baseline, trim axis left, trim axis right]
 \begin{axis}[
-width=0.4\textwidth,
-height=0.4\textwidth,
+width=0.32\textwidth,
+height=0.32\textwidth,
 point meta min=0,point meta max=1670,
 xmin=0,xmax=1,ymin=0,ymax=1,
 scale only axis,
 hide axis,
-colorbar left,colormap/gray,
-colorbar style={every y tick label/.append style={font=\small},}
+colorbar right,colormap/gray,
+colorbar style={every y tick label/.append style={font=\small},
+                ytick={0,1670}, yticklabels={0,$I_{\mathit{max}}$,}},
 ]
 \addplot[]graphics [
 xmin=0,xmax=1,
@@ -130,16 +132,22 @@ ymin=0,ymax=1,
 % 2. IMAGE
 \begin{tikzpicture}[baseline, trim axis left, trim axis right]
 \begin{axis}[%
-width=0.4\textwidth,
-height=0.4\textwidth,
+width=0.32\textwidth,
+height=0.32\textwidth,
 axis lines=center,
 scale only axis,
-xlabel={x-pos},
+xlabel={$x / \si{pixel}$},
 ylabel={intensity},
+xtick={0, 1000, 2000},
+% FIXME
+% axis on top=true,
+% ytick={0},
+% yticklabels={0, $I_{\mathit{max}}$},
 ]
 \addplot[mark=none, blue] table[x index=0, y index=1] {dev/gfx/2/PM_000.dat};
 \end{axis}
 \end{tikzpicture}
+% \hfill
 \\[-1em]
 % 
 % SUBCAPTIONS
@@ -150,7 +158,7 @@ ylabel={intensity},
 &
 \multicolumn{1}{l}{
 \begin{minipage}[t]{0.45\textwidth}
-\leavevmode\subcaption{\label{fig:intensityProfile}intensity profile.}
+\leavevmode\subcaption{\label{fig:intensityProfile}intensity profile. \dummy[fixme]{}}
 \end{minipage}}
 \end{tabular}
 % 
@@ -164,7 +172,7 @@ ylabel={intensity},
 % thesis/2_simulation/0_parameter/sensor_gain.py
 \centering
 % 
-\setlength{\tikzwidth}{0.35\textwidth}
+\setlength{\tikzwidth}{0.315\textwidth}
 \begin{tabular}{cc}
 % \tikzset{external/export next=false}
 \inputtikz{gfx/data/PM_noise}
@@ -241,7 +249,7 @@ Two \acsp{ROI} with \dummy{} pixels are annotated for this purpose.
 \begin{figure}[!t]
 % 2_simulation/0_parameter/measure_vervet.ipy
 \centering
-\setlength{\tikzwidth}{0.45\textwidth}
+\setlength{\tikzwidth}{0.425\textwidth}
 \begin{tabular}{cc}
 % 
 \inputtikz{gfx/data/vervet_transmittance_zoom} &
@@ -472,7 +480,7 @@ This ensures that the sphere is sampled reasonably equidistantly.
 % 
 % 
 % 
-\subsection{Single fiber population}
+\subsection{Single inclined fiber population}
 % 
 \begin{figure}[!tp]
 \centering
@@ -503,22 +511,8 @@ The comparison between both distributions shows an agreement of the inclination 
 % 
 \begin{figure}[!p]
 \centering
-\setlength{\width}{0.45\textwidth}
-\subcaptionbox{\label{fig:single_fiber_pop_epa_trans}transmittance}[\width]{
-\includegraphics[width=\width]{dev/rc1/single/cube_2pop_135_rc1_single_plots_single_pop_epa_trans.pdf}}\hfill
-\subcaptionbox{\label{fig:single_fiber_pop_epa_ret}retardation}[\width]{
-\includegraphics[width=\width]{dev/rc1/single/cube_2pop_135_rc1_single_plots_single_pop_epa_ret.pdf}}
-\\[2em]
-\subcaptionbox{\label{fig:single_fiber_pop_rofl_dir}rofl direction}[\width]{
-\includegraphics[width=\width]{dev/rc1/single/cube_2pop_135_rc1_single_plots_single_pop_rofl_dir.pdf}}\hfill
-\subcaptionbox{\label{fig:single_fiber_pop_rofl_inc}rofl inclination: it is remaped circular around the circmean value}[\width]{
-\includegraphics[width=\width]{dev/rc1/single/cube_2pop_135_rc1_single_plots_single_pop_rofl_inc.pdf}}
-\\[2em]
-\subcaptionbox{\label{fig:single_fiber_pop_rofl_trel}rofl trel}[\width]{
-\includegraphics[width=\width]{dev/rc1/single/cube_2pop_135_rc1_single_plots_single_pop_rofl_trel.pdf}}\hfill
-\subcaptionbox{\label{fig:single_fiber_pop_domega}domega}[\width]{
-\includegraphics[width=\width]{dev/rc1/single/cube_2pop_135_rc1_single_plots_single_pop_domega.pdf}}
-\caption[]{\dummy[single population rofl analysis; colors left to right: 0 to 90 degree inclination; line: theoretical curve]{} \itodo{opening angle instead of one direction}}
+\includegraphics[]{dev/rc1/analysis/plots_single_pop_output_cube_2pop_135_rc1_single.pdf}
+\caption[]{single population rofl analysis}
 \label{fig:single_fiber_pop_rofl}
 \end{figure}
 % 
@@ -544,7 +538,7 @@ It must be remembered that the boxplot does not take into account that the value
 Therefore, especially for the $\modelInc=\SI{90}{\degree}$, the values from the $\SIrange{-90}{90}{\degree}$ are uniformly distributed.
 \\
 % 
-% Inlcination
+% Inclination
 The inclination is drawn as a line as well as the set angle of inclination.
 The angles are shifted around the $\modelInc$ so that the admissible distribution values are in the range $[\modelInc-\SI{90}{\degree}, \modelInc+\SI{90}{\degree})$.
 The median follows the theoretical curve.
@@ -565,11 +559,9 @@ At higher inclination angles, both the median and the variance increase signific
 % 
 % 
 % 
-\subsection{two fiber populations}
+\subsection{Crossing flat fiber populations}
 % 
-\subsubsection{flat crossing fiber configurations}
-% 
-\begin{figure}[!tp]
+\begin{figure}[!t]
 \centering
 \setlength{\width}{0.45\textwidth}
 \begin{tabular}{c|c}
@@ -577,67 +569,41 @@ At higher inclination angles, both the median and the variance increase signific
     \includegraphics[width=\width]{dev/rc1/flat/cube_2pop_135_rc1_flat_plots_flat_pop_hist_omega_30.0_psi_0.3.pdf} \\ \includegraphics[width=\width]{dev/rc1/flat/cube_2pop_135_rc1_flat_plots_flat_pop_hist_omega_60.0_psi_0.3.pdf} & \includegraphics[width=\width]{dev/rc1/flat/cube_2pop_135_rc1_flat_plots_flat_pop_hist_omega_90.0_psi_0.3.pdf}
 \end{tabular}
 % 
-\caption[sim]{psi=0.3; left: 2d log histogramm orientation from rofl analysis of simulation, right: 2d log histogram of orientation of model segemnts. \itodo{legende}}
+\caption[sim]{Flat: psi=0.3; left: 2d log histogramm orientation from rofl analysis of simulation, right: 2d log histogram of orientation of model segemnts. \itodo{legende}}
 \label{fig:flat_03_fiber_pop_hist}
 \end{figure}
 % 
 \begin{figure}[!p]
 \centering
-\setlength{\width}{0.45\textwidth}
-\subcaptionbox{\label{fig:flat_03_fiber_pop_epa_trans}transmittance}[\width]{
-\includegraphics[width=\width]{dev/rc1/flat/cube_2pop_135_rc1_flat_plots_flat_pop_psi_0.3_epa_trans.pdf}}\hfill
-\subcaptionbox{\label{fig:flat_03_fiber_pop_epa_ret}retardation}[\width]{
-\includegraphics[width=\width]{dev/rc1/flat/cube_2pop_135_rc1_flat_plots_flat_pop_psi_0.3_epa_ret.pdf}}
-\\[2em]
-\subcaptionbox{\label{fig:flat_03_fiber_pop_rofl_dir}rofl direction}[\width]{
-\includegraphics[width=\width]{dev/rc1/flat/cube_2pop_135_rc1_flat_plots_flat_pop_psi_0.3_rofl_dir.pdf}}\hfill
-\subcaptionbox{\label{fig:flat_03_fiber_pop_rofl_inc}rofl inclination: it is remaped circular around the circmean value}[\width]{
-\includegraphics[width=\width]{dev/rc1/flat/cube_2pop_135_rc1_flat_plots_flat_pop_psi_0.3_rofl_inc.pdf}}
-\\[2em]
-\subcaptionbox{\label{fig:flat_03_fiber_pop_rofl_trel}rofl trel}[\width]{
-\includegraphics[width=\width]{dev/rc1/flat/cube_2pop_135_rc1_flat_plots_flat_pop_psi_0.3_rofl_trel.pdf}}\hfill
-\subcaptionbox{\label{fig:flat_03_fiber_pop_domega}domega}[\width]{
-\includegraphics[width=\width]{dev/rc1/flat/cube_2pop_135_rc1_flat_plots_flat_pop_psi_0.3_domega.pdf}}
-\caption[]{\dummy[flat population psi=0.3 rofl analysis; colors left to right: 0 to 90 degree inclination; line: theoretical curve]{}}
+\includegraphics[page=3]{dev/rc1/analysis/plots_flat_pop_output_cube_2pop_135_rc1_flat.pdf}
+\caption[]{flat population psi=0.3 rofl analysis}
 \label{fig:flat_03_fiber_pop_rofl}
 \end{figure}
 % 
-\begin{figure}[!p]
+\begin{figure}[!t]
 \centering
 \setlength{\width}{0.4\textwidth}
-\begin{tabular}{cc}
+\begin{tabular}{c|c}
     \includegraphics[width=\width]{dev/rc1/flat/cube_2pop_135_rc1_flat_plots_flat_pop_hist_omega_0.0_psi_0.5.pdf} &
     \includegraphics[width=\width]{dev/rc1/flat/cube_2pop_135_rc1_flat_plots_flat_pop_hist_omega_30.0_psi_0.5.pdf} \\
     \includegraphics[width=\width]{dev/rc1/flat/cube_2pop_135_rc1_flat_plots_flat_pop_hist_omega_60.0_psi_0.5.pdf} &
     \includegraphics[width=\width]{dev/rc1/flat/cube_2pop_135_rc1_flat_plots_flat_pop_hist_omega_90.0_psi_0.5.pdf}
 \end{tabular}
 % 
-\caption[sim]{psi=0.5; left: 2d log histogramm orientation from rofl analysis of simulation, right: 2d log histogramm of orientation of model segemnts. \itodo{legende}}
+\caption[sim]{Flat: psi=0.5; left: 2d log histogramm orientation from rofl analysis of simulation, right: 2d log histogramm of orientation of model segemnts. \itodo{legende}}
 \label{fig:flat_05_fiber_pop_hist}
 \end{figure}
 % 
 \begin{figure}[!p]
 \centering
-\setlength{\width}{0.45\textwidth}
-\subcaptionbox{\label{fig:flat_05_fiber_pop_epa_trans}transmittance}[\width]{
-\includegraphics[width=\width]{dev/rc1/flat/cube_2pop_135_rc1_flat_plots_flat_pop_psi_0.5_epa_trans.pdf}}\hfill
-\subcaptionbox{\label{fig:flat_05_fiber_pop_epa_ret}retardation}[\width]{
-\includegraphics[width=\width]{dev/rc1/flat/cube_2pop_135_rc1_flat_plots_flat_pop_psi_0.5_epa_ret.pdf}}
-\\[2em]
-\subcaptionbox{\label{fig:flat_05_fiber_pop_rofl_dir}rofl direction}[\width]{
-\includegraphics[width=\width]{dev/rc1/flat/cube_2pop_135_rc1_flat_plots_flat_pop_psi_0.5_rofl_dir.pdf}}\hfill
-\subcaptionbox{\label{fig:flat_05_fiber_pop_rofl_inc}rofl inclination: it is remaped circular around the circmean value}[\width]{
-\includegraphics[width=\width]{dev/rc1/flat/cube_2pop_135_rc1_flat_plots_flat_pop_psi_0.5_rofl_inc.pdf}}
-\\[2em]
-\subcaptionbox{\label{fig:flat_05_fiber_pop_rofl_trel}rofl trel}[\width]{
-\includegraphics[width=\width]{dev/rc1/flat/cube_2pop_135_rc1_flat_plots_flat_pop_psi_0.5_rofl_trel.pdf}}\hfill
-\subcaptionbox{\label{fig:flat_05_fiber_pop_domega}domega}[\width]{
-\includegraphics[width=\width]{dev/rc1/flat/cube_2pop_135_rc1_flat_plots_flat_pop_psi_0.5_domega.pdf}}
-\caption[]{\dummy[flat population psi=0.5 rofl analysis; colors left to right: 0 to 90 degree inclination; line: theoretical curve]{}}
+\includegraphics[page=5]{dev/rc1/analysis/plots_flat_pop_output_cube_2pop_135_rc1_flat.pdf}
+\caption[]{flat population psi=0.5}
 \label{fig:flat_05_fiber_pop_rofl}
 \end{figure}
 % 
-Two \dummy{} \modelPsi{} are simulated for the flat crossing model analysis.
+The next focus is on two flat crossing fiber populations.
+Here the results for the case $\modelPsi = \SI{30}{\percent}$ and $\modelPsi = \SI{50}{\percent}$ are examine.
+The other fiber population proportion are available in \dummy{}. %\cref{}
 \\
 % 
 \Cref{fig:flat_03_fiber_pop_hist} show the distribution of the orientation for the simulation and the model fiber segments.
@@ -671,7 +637,52 @@ From $\modelOmega \ge \SI{50}{\degree}$ the value increases with a stronger slop
 The median rises up to about a value of $\SI{5}{\degree}$.
 % 
 % 
-\subsection{inclined fibers}
+\subsection{Inclined crossing fibers population}
+% 
+\begin{figure}[!t]
+\centering
+\setlength{\width}{0.45\textwidth}
+\begin{tabular}{c|c}
+    \includegraphics[width=\width]{dev/rc1/inclined/cube_2pop_135_rc1_inclined_plots_inclined_pop_hist_omega_0.0_psi_0.3.pdf} &
+    \includegraphics[width=\width]{dev/rc1/inclined/cube_2pop_135_rc1_inclined_plots_inclined_pop_hist_omega_30.0_psi_0.3.pdf} \\ \includegraphics[width=\width]{dev/rc1/inclined/cube_2pop_135_rc1_inclined_plots_inclined_pop_hist_omega_60.0_psi_0.3.pdf} & \includegraphics[width=\width]{dev/rc1/inclined/cube_2pop_135_rc1_inclined_plots_inclined_pop_hist_omega_90.0_psi_0.3.pdf}
+\end{tabular}
+% 
+\caption[sim]{Inclined: psi=0.3; left: 2d log histogramm orientation from rofl analysis of simulation, right: 2d log histogram of orientation of model segemnts. \itodo{legende}}
+\label{fig:flat_03_fiber_pop_hist}
+\end{figure}
+% 
+\begin{figure}[!p]
+\centering
+\includegraphics[page=3]{dev/rc1/analysis/plots_inclined_pop_output_cube_2pop_135_rc1_inclined.pdf}
+\caption[]{Inclined population psi=0.3 rofl analysis}
+\label{fig:incl_03_fiber_pop_rofl}
+\end{figure}
+% 
+\begin{figure}[!p]
+\centering
+\setlength{\width}{0.4\textwidth}
+\begin{tabular}{cc}
+    \includegraphics[width=\width]{dev/rc1/inclined/cube_2pop_135_rc1_inclined_plots_inclined_pop_hist_omega_0.0_psi_0.5.pdf} &
+    \includegraphics[width=\width]{dev/rc1/inclined/cube_2pop_135_rc1_inclined_plots_inclined_pop_hist_omega_30.0_psi_0.5.pdf} \\
+    \includegraphics[width=\width]{dev/rc1/inclined/cube_2pop_135_rc1_inclined_plots_inclined_pop_hist_omega_60.0_psi_0.5.pdf} &
+    \includegraphics[width=\width]{dev/rc1/inclined/cube_2pop_135_rc1_inclined_plots_inclined_pop_hist_omega_90.0_psi_0.5.pdf}
+\end{tabular}
+% 
+\caption[sim]{Inclined: psi=0.5; left: 2d log histogramm orientation from rofl analysis of simulation, right: 2d log histogramm of orientation of model segemnts. \itodo{legende}}
+\label{fig:flat_05_fiber_pop_hist}
+\end{figure}
+% 
+\begin{figure}[!p]
+\centering
+\includegraphics[page=5]{dev/rc1/analysis/plots_inclined_pop_output_cube_2pop_135_rc1_inclined.pdf}
+\caption[]{Inclined population psi=0.5}
+\label{fig:incl_05_fiber_pop_rofl}
+\end{figure}
+% 
+% 
+% 
+% 
+\subsection{Free crossing fiber populations}
 % 
 \begin{figure}[!p]
 \centering
