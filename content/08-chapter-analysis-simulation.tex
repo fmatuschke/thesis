@@ -301,16 +301,15 @@ ret right: $0.80 \pm 0.07$
 % ret: $0.68 \pm 0.11$,
 % 
 % 
-\begin{figure}[tp]
+\begin{figure}[!t]
 \centering
-\subcaptionbox{\label{fig:simTransValues}transmittance}[.95\textwidth]{
-\includegraphics[height=0.7\textwidth,
-    rotate=-90, trim=0 95 775 90, clip]
-    {dev/rc1/tissue/bf_rc1_transmittance_PM_Vervet.pdf}} %\hfill
-\subcaptionbox{\label{fig:simRetValues}retardation}[.95\textwidth]{
-\includegraphics[width=0.95\textwidth]{dev/rc1/tissue/bf_rc1_retardation_PM_Vervet.pdf}
-}
-\caption{simulations for Vervet LMP tissue for different absorption coef and birefringence values. \itodo{exp messungen mit einzeichnen, rfc plot}}
+% \begin{tabular}{c}
+\subcaptionbox{\label{fig:simTransValues}transmittance}[0.95\textwidth]{
+\includegraphics[page=2]{dev/rc1/tissue/birefringence_output_bf_rc1.pdf}}\\[1em]
+\subcaptionbox{\label{fig:simRetValues}retardation}[0.95\textwidth]{
+\includegraphics[page=5]{dev/rc1/tissue/birefringence_output_bf_rc1.pdf}}
+% \end{tabular}
+\caption{simulations for Vervet LMP tissue for different absorption coef and birefringence values. \itodo{exp messungen mit einzeichnen}}
 \label{fig:parameterModelSim}
 \end{figure}
 % 
@@ -482,7 +481,26 @@ This ensures that the sphere is sampled reasonably equidistantly.
 % 
 \subsection{Single inclined fiber population}
 % 
-\begin{figure}[!tp]
+% \begin{figure}[!tp]
+% \centering
+% \newlength{\width}
+% \setlength{\width}{0.42\textwidth}
+% \subcaptionbox{\label{fig:single_fiber_pop_hist}Histogram}[\textwidth]{
+% \begin{tabular}{c|c}
+%     \includegraphics[width=\width]{dev/rc1/single/cube_2pop_135_rc1_single_plots_single_pop_hist_0.0.pdf}&
+%     \includegraphics[width=\width]{dev/rc1/single/cube_2pop_135_rc1_single_plots_single_pop_hist_30.0.pdf}\\ 
+%     \includegraphics[width=\width]{dev/rc1/single/cube_2pop_135_rc1_single_plots_single_pop_hist_60.0.pdf}&
+%     \includegraphics[width=\width]{dev/rc1/single/cube_2pop_135_rc1_single_plots_single_pop_hist_90.0.pdf}
+% \end{tabular}}
+% % 
+% \subcaptionbox{\label{fig:single_fiber_pop_rofl}Analysis}[\textwidth]{
+% \includegraphics[]{dev/rc1/analysis/plots_single_pop_output_cube_2pop_135_rc1_single.pdf}}
+% % 
+% \caption[sim]{left: 2d log histogramm orientation from rofl analysis of simulation, right: 2d log histogramm of orientation of model segemnts. \itodo{rfc plots}}
+% % \label{fig:single_fiber_pop_hist}
+% \end{figure}
+% 
+\begin{figure}[!t]
 \centering
 \newlength{\width}
 \setlength{\width}{0.45\textwidth}
@@ -493,8 +511,15 @@ This ensures that the sphere is sampled reasonably equidistantly.
     \includegraphics[width=\width]{dev/rc1/single/cube_2pop_135_rc1_single_plots_single_pop_hist_90.0.pdf}
 \end{tabular}
 % 
-\caption[sim]{left: 2d log histogramm orientation from rofl analysis of simulation, right: 2d log histogramm of orientation of model segemnts. \itodo{rfc plots}}
+\caption[sim]{Single: left: 2d log histogramm orientation from rofl analysis of simulation, right: 2d log histogramm of orientation of model segemnts. \itodo{rfc plots}}
 \label{fig:single_fiber_pop_hist}
+\end{figure}
+% 
+\begin{figure}[!p]
+\centering
+\includegraphics[]{dev/rc1/analysis/plots_single_pop_output_cube_2pop_135_rc1_single.pdf}
+\caption[]{single population rofl analysis}
+\label{fig:single_fiber_pop_rofl}
 \end{figure}
 % 
 To begin with, a single population of fibers is analyzed.
@@ -509,15 +534,15 @@ The comparison between both distributions shows an agreement of the inclination 
 % 
 % 
 % 
-\begin{figure}[!p]
-\centering
-\includegraphics[]{dev/rc1/analysis/plots_single_pop_output_cube_2pop_135_rc1_single.pdf}
-\caption[]{single population rofl analysis}
-\label{fig:single_fiber_pop_rofl}
-\end{figure}
+% \begin{figure}[!p]
+% \centering
+% \includegraphics[]{dev/rc1/analysis/plots_single_pop_output_cube_2pop_135_rc1_single.pdf}
+% \caption[]{single population rofl analysis}
+% \label{fig:single_fiber_pop_rofl}
+% \end{figure}
 % 
 %Transmittance
-\Cref{fig:fig:single_fiber_pop_rofl} show the different modalities after analyzing the raw non-tilted measurements.
+\Cref{fig:single_fiber_pop_rofl} show the different modalities after analyzing the raw non-tilted measurements.
 The transmittance increases slightly with inclination angle for inclinations $\modelInc<\SI{75}{\degree}$.
 For $\modelInc \ge \SI{75}{\degree}$ the transmittance increases significantly, \ie{} the absorption decreases.
 The variance of transmittance is within a few percent for all inclinations and also increases slightly with inclination angle.
@@ -568,7 +593,6 @@ At higher inclination angles, both the median and the variance increase signific
     \includegraphics[width=\width]{dev/rc1/flat/cube_2pop_135_rc1_flat_plots_flat_pop_hist_omega_0.0_psi_0.3.pdf} &
     \includegraphics[width=\width]{dev/rc1/flat/cube_2pop_135_rc1_flat_plots_flat_pop_hist_omega_30.0_psi_0.3.pdf} \\ \includegraphics[width=\width]{dev/rc1/flat/cube_2pop_135_rc1_flat_plots_flat_pop_hist_omega_60.0_psi_0.3.pdf} & \includegraphics[width=\width]{dev/rc1/flat/cube_2pop_135_rc1_flat_plots_flat_pop_hist_omega_90.0_psi_0.3.pdf}
 \end{tabular}
-% 
 \caption[sim]{Flat: psi=0.3; left: 2d log histogramm orientation from rofl analysis of simulation, right: 2d log histogram of orientation of model segemnts. \itodo{legende}}
 \label{fig:flat_03_fiber_pop_hist}
 \end{figure}
@@ -589,7 +613,6 @@ At higher inclination angles, both the median and the variance increase signific
     \includegraphics[width=\width]{dev/rc1/flat/cube_2pop_135_rc1_flat_plots_flat_pop_hist_omega_60.0_psi_0.5.pdf} &
     \includegraphics[width=\width]{dev/rc1/flat/cube_2pop_135_rc1_flat_plots_flat_pop_hist_omega_90.0_psi_0.5.pdf}
 \end{tabular}
-% 
 \caption[sim]{Flat: psi=0.5; left: 2d log histogramm orientation from rofl analysis of simulation, right: 2d log histogramm of orientation of model segemnts. \itodo{legende}}
 \label{fig:flat_05_fiber_pop_hist}
 \end{figure}
@@ -647,7 +670,7 @@ The median rises up to about a value of $\SI{5}{\degree}$.
     \includegraphics[width=\width]{dev/rc1/inclined/cube_2pop_135_rc1_inclined_plots_inclined_pop_hist_omega_30.0_psi_0.3.pdf} \\ \includegraphics[width=\width]{dev/rc1/inclined/cube_2pop_135_rc1_inclined_plots_inclined_pop_hist_omega_60.0_psi_0.3.pdf} & \includegraphics[width=\width]{dev/rc1/inclined/cube_2pop_135_rc1_inclined_plots_inclined_pop_hist_omega_90.0_psi_0.3.pdf}
 \end{tabular}
 % 
-\caption[sim]{Inclined: psi=0.3; left: 2d log histogramm orientation from rofl analysis of simulation, right: 2d log histogram of orientation of model segemnts. \itodo{legende}}
+\caption[sim]{Inclined: psi=0.3; left: 2d log histogramm orientation from rofl analysis of simulation, right: 2d log histogram of orientation of model segments. \itodo{legende}}
 \label{fig:flat_03_fiber_pop_hist}
 \end{figure}
 % 
@@ -658,16 +681,15 @@ The median rises up to about a value of $\SI{5}{\degree}$.
 \label{fig:incl_03_fiber_pop_rofl}
 \end{figure}
 % 
-\begin{figure}[!p]
+\begin{figure}[!t]
 \centering
 \setlength{\width}{0.4\textwidth}
-\begin{tabular}{cc}
+\begin{tabular}{c|c}
     \includegraphics[width=\width]{dev/rc1/inclined/cube_2pop_135_rc1_inclined_plots_inclined_pop_hist_omega_0.0_psi_0.5.pdf} &
     \includegraphics[width=\width]{dev/rc1/inclined/cube_2pop_135_rc1_inclined_plots_inclined_pop_hist_omega_30.0_psi_0.5.pdf} \\
     \includegraphics[width=\width]{dev/rc1/inclined/cube_2pop_135_rc1_inclined_plots_inclined_pop_hist_omega_60.0_psi_0.5.pdf} &
     \includegraphics[width=\width]{dev/rc1/inclined/cube_2pop_135_rc1_inclined_plots_inclined_pop_hist_omega_90.0_psi_0.5.pdf}
 \end{tabular}
-% 
 \caption[sim]{Inclined: psi=0.5; left: 2d log histogramm orientation from rofl analysis of simulation, right: 2d log histogramm of orientation of model segemnts. \itodo{legende}}
 \label{fig:flat_05_fiber_pop_hist}
 \end{figure}
@@ -680,13 +702,52 @@ The median rises up to about a value of $\SI{5}{\degree}$.
 \end{figure}
 % 
 % 
+The last focused few is on two crossing fiber bundles with a rotating angle of $\modelRot = \SI{90}{\degree}$, \ie{} the first fiber population along the $x$-axis and the second population in the $xz$-axis.
+As before the two parameters $\modelPsi = \SI{30}{\percent}$ and $\modelPsi = \SI{50}{\percent}$  will be discussed.
+The other fiber proportions are listed in the \dummy[appendix]{}.
+\\
+% 
+The histogram data for both cases are show for the measuremnt only one visible orientation.
+\dummy{}.
+\\
+% Transmittance
+The transmittance is for both cases almost identical.
+It grows with increasing crossing angle, but the slope decreases for larger $\modelOmega$.
+The median in both cases grows to a value of $\SI{110}{\percent}$ in contrast to the flat case.
+The variance stays similar for all values.
+\\
+% Retardation
+The retardation in both cases decreases almost linear with increasing crossing angle $\modelOmega$.
+In the case of $\modelPsi = \SI{30}{\percent}$ the final value is about $\SI{0.18}{}$ in contrast to $\modelPsi = \SI{50}{\percent}$ with a final value of $\SI{0.3}{}$.
+The varce increases for larger crossing angles significantly.
+\\
+% Direction
+The direction value is for both cases again very similar.
+The median always is around \SI{0}{\degree}.
+The quartle grows from about $\SI{0.5}{\degree}$ to $\SI{2}{\degree}$ with increasing crossing angle.
+\\
+% Inclination
+In the case of $\modelPsi = \SI{30}{\percent}$ the inclination is ab to about $\modelOmega =\SI{60}{\degree}$ almost linear with increasing crossing angle.
+In the case of $\modelPsi = \SI{50}{\percent}$ the tip point is about $\modelOmega = \SI{60}{\degree}$
+The variance is increasing for both parameters with increasing crossing angle.
+The main difference of both parameters is, that in the case of $\modelPsi = \SI{30}{\percent}$ the maximum reached inclination is significant higher than in the case of $\modelPsi = \SI{50}{\percent}$.
+However in both cases the inlination is always lower then the inclination value of the second fiber population.
+\\
+% Trel
+The relative effective thickness \trel{} decreases in both cases.
+In the case of $\modelPsi = \SI{50}{\percent}$ the correlation is almost linear and the variance increases slightly with increasing crossing angle.
+In the case of $\modelPsi = \SI{30}{\percent}$ a small hill is visible around $\modelOmega = \SI{50}{\degree}$ where the value is slighly increases as well as the variance.
+\\
+% domega
+The opening angle as well as its variance seems to exponentially increase with increasing crossing angle in the case of $\modelPsi = \SI{30}{\percent}$.
+In the case of $\modelPsi = \SI{50}{\percent}$ the median as well as the variance also increases, however for the largest crossing values the increase stopped at a median of about $\SI{6}{\degree}$.
 % 
 % 
 \subsection{Free crossing fiber populations}
 % 
 \begin{figure}[!p]
 \centering
-\includegraphics[width=\textwidth, ]{dev/rc1/analysis/simulation_analysis_hist_0.5_setup_PM_s_Vervet_m_r_acc.pdf} 
+\includegraphics[]{dev/rc1/analysis/simulation_analysis_hist_0.5_setup_PM_s_Vervet_m_r_acc.pdf} 
 % colorbar
 \tikzset{external/export next=false}
 \begin{tikzpicture}
@@ -712,7 +773,7 @@ The median rises up to about a value of $\SI{5}{\degree}$.
 % 
 \begin{figure}[!p]
 \centering
-\includegraphics[width=\textwidth, ]{dev/rc1/analysis/simulation_analysis_hist_0.5_setup_PM_s_Vervet_m_r_ret_mean.pdf} 
+\includegraphics[]{dev/rc1/analysis/simulation_analysis_hist_0.5_setup_PM_s_Vervet_m_r_ret_mean.pdf} 
 % colorbar
 \tikzset{external/export next=false}
 \begin{tikzpicture}
@@ -738,7 +799,7 @@ The median rises up to about a value of $\SI{5}{\degree}$.
 % 
 \begin{figure}[!p]
 \centering
-\includegraphics[width=\textwidth, ]{dev/rc1/analysis/simulation_analysis_hist_0.5_setup_PM_s_Vervet_m_r_trans_mean.pdf}
+\includegraphics[]{dev/rc1/analysis/simulation_analysis_hist_0.5_setup_PM_s_Vervet_m_r_trans_mean.pdf}
 % colorbar
 \tikzset{external/export next=false}
 \begin{tikzpicture}
@@ -764,7 +825,7 @@ The median rises up to about a value of $\SI{5}{\degree}$.
 % 
 \begin{figure}[!p]
 \centering
-\includegraphics[width=\textwidth, ]{dev/rc1/analysis/simulation_analysis_hist_0.5_setup_PM_s_Vervet_m_r_rdir_mean.pdf} 
+\includegraphics[]{dev/rc1/analysis/simulation_analysis_hist_0.5_setup_PM_s_Vervet_m_r_rdir_mean.pdf} 
 % colorbar
 \tikzset{external/export next=false}
 \begin{tikzpicture}
@@ -789,7 +850,7 @@ The median rises up to about a value of $\SI{5}{\degree}$.
 % 
 \begin{figure}[!p]
 \centering
-\includegraphics[width=\textwidth, ]{dev/rc1/analysis/simulation_analysis_hist_0.5_setup_PM_s_Vervet_m_r_rincl_mean.pdf} 
+\includegraphics[]{dev/rc1/analysis/simulation_analysis_hist_0.5_setup_PM_s_Vervet_m_r_rincl_mean.pdf} 
 % colorbar
 \tikzset{external/export next=false}
 \begin{tikzpicture}
@@ -809,13 +870,12 @@ The median rises up to about a value of $\SI{5}{\degree}$.
 \end{axis}
 \end{tikzpicture}
 \caption[Simulation inclination]{Circmean inclination from tilt analysis.}
-\caption[sim]{rofl incl mean  \dummy{}}
 % \label{fig:sim_fyjsrg}
 \end{figure}
 % 
 \begin{figure}[!p]
 \centering
-\includegraphics[width=\textwidth, ]{dev/rc1/analysis/simulation_analysis_hist_0.5_setup_PM_s_Vervet_m_r_rtrel_mean.pdf} 
+\includegraphics[]{dev/rc1/analysis/simulation_analysis_hist_0.5_setup_PM_s_Vervet_m_r_rtrel_mean.pdf} 
 % colorbar
 \tikzset{external/export next=false}
 \begin{tikzpicture}
@@ -899,9 +959,9 @@ cycle multiindex* list={
 \caption[]{Speedup simulation for 5 tilt direction. \itodo{einheitlicher style}}
 \end{figure}
 % 
-\section{summary/discussion}
 % 
-%  
+% 
+\subsection{misc}
 % 
 \begin{figure}[!p]
 \centering
@@ -910,3 +970,10 @@ cycle multiindex* list={
 \label{fig:accVervetPMr}
 \end{figure}
 % 
+% 
+% 
+\section{Discussion}
+% 
+\subsection{Single inclined fiber population} 
+% 
+asd
