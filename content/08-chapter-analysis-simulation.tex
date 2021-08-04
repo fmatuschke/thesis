@@ -32,14 +32,14 @@ Optical resolution and resampling are modeled as described in \cref{sec:ccdOptic
 \\
 % 
 \multicolumn{1}{l}{
-\begin{minipage}[t]{0.45\textwidth}
-\leavevmode\subcaption{\label{fig:usaf}USAF chart from group -2 to 1 \url{https://en.wikipedia.org/wiki/1951_USAF_resolution_test_chart}}
+\begin{minipage}[t]{0.465\textwidth}
+\leavevmode\subcaption{\label{fig:usaf}USAF chart from group -2 to 1: \url{https://en.wikipedia.org/wiki/1951_USAF_resolution_test_chart}}
 \end{minipage}}&
 \multicolumn{1}{l}{
-\begin{minipage}[t]{0.45\textwidth}
+\begin{minipage}[t]{0.465\textwidth}
 \leavevmode\subcaption{\label{fig:usaf_image}microscopic image}
 \end{minipage}}
-\\
+\\[2em]
 % 
 % \tikzset{external/remake next=true}
 \inputtikz{dev/gfx/chap8/usaf_line_plots_lr}
@@ -95,14 +95,14 @@ Therefore, the convolution to be applied (see \cref{sec:opticalResolution}) is s
 \multicolumn{2}{c}{
 \setlength{\tikzwidth}{0.75\textwidth}
 \begin{minipage}{\tikzwidth}
-\tikzset{external/export next=false}
+\tikzset{external/export next=false} % compile error ...
 \inputtikz{gfx/pli/pli_focus}
 \end{minipage}
 }
 \\[-1em]
 % 
 \multicolumn{2}{l}{
-\begin{minipage}[t]{0.975\textwidth}
+\begin{minipage}[t]{0.95\textwidth}
 \leavevmode\subcaption{\label{fig:intensityFocus}Intensity measurement setup. The focus of the microscope is changed so that the image is blurred, resulting in a intensity variation at the border of the absorber material.\\[1em]}
 \end{minipage}}
 \\
@@ -172,22 +172,22 @@ xtick={0, 1000, 2000},
 % thesis/2_simulation/0_parameter/sensor_gain.py
 \centering
 % 
-\setlength{\tikzwidth}{0.315\textwidth}
+\setlength{\tikzwidth}{0.325\textwidth}
 \begin{tabular}{cc}
 % \tikzset{external/export next=false}
 \inputtikz{gfx/data/PM_noise}
 &
 % \tikzset{external/export next=false}
 \inputtikz{gfx/data/theo_noise}
-\\
+\\[-1em]
 % SUBCAPTIONS
 \multicolumn{1}{l}{
-\begin{minipage}[t]{0.495\textwidth}
+\begin{minipage}[t]{0.47\textwidth}
 \leavevmode\subcaption{\label{fig:parameterModelNoise} Noise analysis PM. $\opticgain_{\mathit{LMP}} = \SI{0.1175}{}(?)$.}
 \end{minipage}}
 &
 \multicolumn{1}{l}{
-\begin{minipage}[t]{0.495\textwidth}
+\begin{minipage}[t]{0.47\textwidth}
 \leavevmode\subcaption{\label{fig:noiseplot}noise \dummy[check values]{}}
 \end{minipage}}
 \end{tabular}
@@ -223,21 +223,20 @@ for intensities $I > 0$, $I \gg \sqrt{\opticgain I}$ and integer values.
 \begin{tabular}{c}
 % 
 \inputtikz{gfx/data/vervet_transmittance}
-\\[-1em]
-\begin{minipage}[t]{\textwidth}
+\\[-2em]
+\begin{minipage}[t]{0.75\textwidth}
 \leavevmode\subcaption{\label{fig:brain_trans}transmittance}
 \end{minipage}
-\\
+\\[1.5em]
 \inputtikz{gfx/data/vervet_retardation}
-\\[-1em]
-\begin{minipage}[t]{\textwidth}
+\\[-2em]
+\begin{minipage}[t]{0.75\textwidth}
 \leavevmode\subcaption{\label{fig:brain_ret}retardation}
 \end{minipage}
 % 
 \end{tabular}
 \caption[Vervet monkey coronal section transmittance and retardation]{%
-Vervet monkey coronal section $\SI{549}{}$.
-a) transmittance, b) retardation.
+Transmittance and retardation map of a Vervet monkey coronal section $\SI{549}{}$.
 The absorption coefficient and birefingence strength can be estimated from flat fibers.
 Two \acsp{ROI} with \dummy{} pixels are annotated for this purpose.
 \itodo{histograms?, why these two rois?}}
@@ -256,11 +255,11 @@ Two \acsp{ROI} with \dummy{} pixels are annotated for this purpose.
 \inputtikz{gfx/data/vervet_transmittance_hist} \\[-5mm]
 % 
 \multicolumn{1}{l}{
-\begin{minipage}[t]{0.495\textwidth}
+\begin{minipage}[t]{0.45\textwidth}
 \leavevmode\subcaption{zoom transmittance}
 \end{minipage}} &
 \multicolumn{1}{l}{
-\begin{minipage}[t]{0.495\textwidth}
+\begin{minipage}[t]{0.45\textwidth}
 \leavevmode\subcaption{hist transmittance}
 \end{minipage}} \\[10mm]
 % 
@@ -268,11 +267,11 @@ Two \acsp{ROI} with \dummy{} pixels are annotated for this purpose.
 \inputtikz{gfx/data/vervet_retardation_hist} \\[-5mm]
 % 
 \multicolumn{1}{l}{
-\begin{minipage}[t]{0.495\textwidth}
+\begin{minipage}[t]{0.45\textwidth}
 \leavevmode\subcaption{zoom retardation}
 \end{minipage}} &
 \multicolumn{1}{l}{
-\begin{minipage}[t]{0.495\textwidth}
+\begin{minipage}[t]{0.45\textwidth}
 \leavevmode\subcaption{hist retardation}
 \end{minipage}} \\
 % 
@@ -671,14 +670,14 @@ The median rises up to about a value of $\SI{5}{\degree}$.
 \end{tabular}
 % 
 \caption[sim]{Inclined: psi=0.3; left: 2d log histogramm orientation from rofl analysis of simulation, right: 2d log histogram of orientation of model segments. \itodo{legende}}
-\label{fig:flat_03_fiber_pop_hist}
+\label{fig:inclined_03_fiber_pop_hist}
 \end{figure}
 % 
 \begin{figure}[!p]
 \centering
 \includegraphics[page=3]{dev/rc1/analysis/plots_inclined_pop_output_cube_2pop_135_rc1_inclined.pdf}
 \caption[]{Inclined population psi=0.3 rofl analysis}
-\label{fig:incl_03_fiber_pop_rofl}
+\label{fig:inclined_03_fiber_pop_rofl}
 \end{figure}
 % 
 \begin{figure}[!t]
@@ -691,14 +690,14 @@ The median rises up to about a value of $\SI{5}{\degree}$.
     \includegraphics[width=\width]{dev/rc1/inclined/cube_2pop_135_rc1_inclined_plots_inclined_pop_hist_omega_90.0_psi_0.5.pdf}
 \end{tabular}
 \caption[sim]{Inclined: psi=0.5; left: 2d log histogramm orientation from rofl analysis of simulation, right: 2d log histogramm of orientation of model segemnts. \itodo{legende}}
-\label{fig:flat_05_fiber_pop_hist}
+\label{fig:inclined_05_fiber_pop_hist}
 \end{figure}
 % 
 \begin{figure}[!p]
 \centering
 \includegraphics[page=5]{dev/rc1/analysis/plots_inclined_pop_output_cube_2pop_135_rc1_inclined.pdf}
 \caption[]{Inclined population psi=0.5}
-\label{fig:incl_05_fiber_pop_rofl}
+\label{fig:inclined_05_fiber_pop_rofl}
 \end{figure}
 % 
 % 
@@ -742,166 +741,116 @@ In the case of $\modelPsi = \SI{30}{\percent}$ a small hill is visible around $\
 The opening angle as well as its variance seems to exponentially increase with increasing crossing angle in the case of $\modelPsi = \SI{30}{\percent}$.
 In the case of $\modelPsi = \SI{50}{\percent}$ the median as well as the variance also increases, however for the largest crossing values the increase stopped at a median of about $\SI{6}{\degree}$.
 % 
-% 
 \subsection{Free crossing fiber populations}
 % 
+The following data shows the result of the tilting analysis without the orientation angles, since the mean value cant easyli be calculated for a single angle. \footref{orientations lie on a manifold of a hemispherical with symmetries as well as the angles are depending on each other.}
+The data of the previous chapter had the advantage, that the results of the angles are close enough to apply a remapping around the expected value.
+\\
+% 
+The spherical plots in \cref{sim_ana_acc,sim_ana_ret,sim_ana_trans,sim_ana_trel} are designed that the thick black circle shows the orientation of the first fiber population, and the thin dashed circles the orientation of the second fiber population. 
+At the position of the second fiber population the resulting mean value is inserted.
+% 
 \begin{figure}[!p]
 \centering
-\includegraphics[]{dev/rc1/analysis/simulation_analysis_hist_0.5_setup_PM_s_Vervet_m_r_acc.pdf} 
-% colorbar
-\tikzset{external/export next=false}
-\begin{tikzpicture}
-\begin{axis}[
-    hide axis,
-    scale only axis,
-    height=0pt,
-    width=0pt,
-    colormap name=cividis,
-    colorbar horizontal,
-    point meta min=0,
-    point meta max=1,
-    colorbar style={
-        width=10cm,
-        xticklabel style={tick label style={font=\footnotesize}},
-    }]
-\end{axis}
-\end{tikzpicture}
-% 
+\includegraphics[]{dev/rc1/analysis/simulation_analysis_hist_0.5_setup_PM_s_Vervet_m_r_acc.pdf}
 \caption[Simulation acc]{Mean \acc{} between model and tilt analysis orientations.}
-% \label{fig:sim_fyjsrg}
+\label{fig:sim_ana_acc}
 \end{figure}
+% 
+\Cref{fig:sim_ana_acc} shows the \acc{} value, \ie{} how good the coefficient of the odf base function are in alignment.
+\dummy[acc of psi = 1]{}.
+The $\modelPsi=\SI{10}{\percent}$ show for all $\modelInc$ no significant reduction of the \acc{} value.
+The for $\modelPsi=\SI{30}{\percent}$ the most secondary inclined values have a significant reduction of the \acc{} value.
+This sightly less visible for $\modelInc = \SI{30}{\degree}$ case and even less for the $\modelInc = \SI{60}{\degree}$.
+The $\modelInc = \SI{90}{\degree}$ is less than in the $\modelPsi=\SI{10}{\percent}$ case, but still constant for all secondary orientations.
+For the equal proportional fiber populations the \acc{} value reaches its lowest values for flat inclined first population $\modelInc = \SIlist{0,30}{\degree}$.
+In the case of $\modelInc = \SI{0}{\degree}$ the \acc{} value is lowest with a crossing angle of $\modelOmega = \SI{90}{\degree}$.
+This crossing angle for the slightly inclined has a higher \acc{} value \dummy[why?, -> show odf]{}.
+Otherwise the distribution is similar with respect of the 3d orientation symmetry.
+% 
+% 
 % 
 \begin{figure}[!p]
 \centering
-\includegraphics[]{dev/rc1/analysis/simulation_analysis_hist_0.5_setup_PM_s_Vervet_m_r_ret_mean.pdf} 
-% colorbar
-\tikzset{external/export next=false}
-\begin{tikzpicture}
-\begin{axis}[
-    hide axis,
-    scale only axis,
-    height=0pt,
-    width=0pt,
-    colormap name=cividis,
-    colorbar horizontal,
-    point meta min=0.0137,
-    point meta max=0.7982,
-    colorbar style={
-        width=10cm,
-        xticklabel style={tick label style={font=\footnotesize}},
-    }]
-    % \addplot [draw=none] coordinates {(0,0)};
-\end{axis}
-\end{tikzpicture}
+\includegraphics[]{dev/rc1/analysis/simulation_analysis_hist_0.5_setup_PM_s_Vervet_m_r_ret_mean.pdf}
 \caption[Simulation retardation]{Mean retardation.}
-% \label{fig:sim_fyjsrg}
+\label{fig:sim_ana_ret}
 \end{figure}
+% 
+% 
 % 
 \begin{figure}[!p]
 \centering
 \includegraphics[]{dev/rc1/analysis/simulation_analysis_hist_0.5_setup_PM_s_Vervet_m_r_trans_mean.pdf}
-% colorbar
-\tikzset{external/export next=false}
-\begin{tikzpicture}
-\begin{axis}[
-    hide axis,
-    scale only axis,
-    height=0pt,
-    width=0pt,
-    colormap name=cividis,
-    colorbar horizontal,
-    point meta min=999,
-    point meta max=1113,
-    colorbar style={
-        width=10cm,
-        xtick={1000, 1020, 1040, 1060, 1080, 1100},
-        xticklabel style={tick label style={font=\footnotesize}},
-    }]
-\end{axis}
-\end{tikzpicture} 
 \caption[Simulation transmittance]{Mean transmittance value.}
-% \label{fig:sim_fyjsrg}
+\label{fig:sim_trans}
 \end{figure}
 % 
-\begin{figure}[!p]
-\centering
-\includegraphics[]{dev/rc1/analysis/simulation_analysis_hist_0.5_setup_PM_s_Vervet_m_r_rdir_mean.pdf} 
-% colorbar
-\tikzset{external/export next=false}
-\begin{tikzpicture}
-\begin{axis}[
-    hide axis,
-    scale only axis,
-    height=0pt,
-    width=0pt,
-    colormap name=cividis,
-    colorbar horizontal,
-    point meta min=0,
-    point meta max=180,
-    colorbar style={
-        width=10cm,
-        xticklabel style={tick label style={font=\footnotesize}},
-    }]
-\end{axis}
-\end{tikzpicture}
-\caption[Simulation direction]{Circmean direction from tilt analysis.}
-% \label{fig:sim_fyjsrg}
-\end{figure}
 % 
-\begin{figure}[!p]
-\centering
-\includegraphics[]{dev/rc1/analysis/simulation_analysis_hist_0.5_setup_PM_s_Vervet_m_r_rincl_mean.pdf} 
-% colorbar
-\tikzset{external/export next=false}
-\begin{tikzpicture}
-\begin{axis}[
-    hide axis,
-    scale only axis,
-    height=0pt,
-    width=0pt,
-    colormap name=cividis,
-    colorbar horizontal,
-    point meta min=-90,
-    point meta max=90,
-    colorbar style={
-        width=10cm,
-        xticklabel style={tick label style={font=\footnotesize}},
-    }]
-\end{axis}
-\end{tikzpicture}
-\caption[Simulation inclination]{Circmean inclination from tilt analysis.}
-% \label{fig:sim_fyjsrg}
-\end{figure}
+% % 
+% \begin{figure}[!p]
+% \centering
+% \includegraphics[]{dev/rc1/analysis/simulation_analysis_hist_0.5_setup_PM_s_Vervet_m_r_rdir_mean.pdf} 
+% % colorbar
+% \tikzset{external/export next=false}
+% \begin{tikzpicture}
+% \begin{axis}[
+%     hide axis,
+%     scale only axis,
+%     height=0pt, width=0pt,
+%     xmin=0, xmax=1, ymin=0, ymax=1,
+%     colormap/twilight,
+%     colorbar horizontal,
+%     point meta min=0,
+%     point meta max=180,
+%     colorbar style={
+%         width=10cm,
+%         xticklabel style={tick label style={font=\footnotesize}},
+%         xtick={0,20,40,60,80,100,120,140,160,180},
+%         xticklabels={$\SI{0}{\degree}$,$\SI{20}{\degree}$,$\SI{40}{\degree}$,$\SI{60}{\degree}$,$\SI{80}{\degree}$,$\SI{100}{\degree}$,$\SI{120}{\degree}$,$\SI{140}{\degree}$,$\SI{160}{\degree}$,$\SI{180}{\degree}$},
+%     }]
+% \end{axis}
+% \end{tikzpicture}
+% \caption[Simulation direction]{Circmean direction from tilt analysis.}
+% % \label{fig:sim_fyjsrg}
+% \end{figure}
+% % 
+% % 
+% % 
+% \begin{figure}[!p]
+% \centering
+% \includegraphics[]{dev/rc1/analysis/simulation_analysis_hist_0.5_setup_PM_s_Vervet_m_r_rincl_mean.pdf} 
+% % colorbar
+% \tikzset{external/export next=false}
+% \begin{tikzpicture}
+% \begin{axis}[
+%     hide axis,
+%     scale only axis,
+%     height=0pt, width=0pt,
+%     xmin=0, xmax=1, ymin=0, ymax=1,
+%     colormap/twilight,
+%     colorbar horizontal,
+%     point meta min=-90,
+%     point meta max=90,
+%     colorbar style={
+%         width=10cm,
+%         xticklabel style={tick label style={font=\footnotesize}},
+%     }]
+% \end{axis}
+% \end{tikzpicture}
+% \caption[Simulation inclination]{Circmean inclination from tilt analysis.}
+% % \label{fig:sim_fyjsrg}
+% \end{figure}
 % 
 \begin{figure}[!p]
 \centering
 \includegraphics[]{dev/rc1/analysis/simulation_analysis_hist_0.5_setup_PM_s_Vervet_m_r_rtrel_mean.pdf} 
-% colorbar
-\tikzset{external/export next=false}
-\begin{tikzpicture}
-\begin{axis}[
-    hide axis,
-    scale only axis,
-    height=0pt,
-    width=0pt,
-    colormap name=cividis,
-    colorbar horizontal,
-    point meta min=0,
-    point meta max=0.55,
-    colorbar style={
-        width=10cm,
-        xticklabel style={tick label style={font=\footnotesize},
-                          /pgf/number format/.cd,fixed,fixed zerofill, precision=2,},
-    }]
-\end{axis}
-\end{tikzpicture}
 \caption[Simulation \trel{}]{Mean \trel{} from tilt analysis.}
-% \label{fig:sim_fyjsrg}
+\label{fig:sim_ana_trel}
 \end{figure}
 % 
-\subsection{repo}
 % 
-
+% 
 \subsection{speedup}
 % 
 \begin{figure}[!t]
@@ -965,7 +914,7 @@ cycle multiindex* list={
 % 
 \begin{figure}[!p]
 \centering
-\includegraphics[width=1\textwidth]{dev/rc1/cube_2pop_135_rc1_radius_acc_compare_Vervet_PM_r.pdf}
+\includegraphics[width=0.9\textwidth]{dev/rc1/cube_2pop_135_rc1_radius_acc_compare_Vervet_PM_r.pdf}
 \caption[sim acc]{ $\acc{}(GT,GT_{0.5})$, $\acc{}(SIM,GT_{0.5})$ and $\acc{}(SIM,SIM_{0.5})$. hypothese: abweichungen in GtSim bei kleinen radien dadurch, dass zwei richtungen nicht sichtbar sind? schaue dir die histogramme und odfs an. \itodo{komplett neu machen}}
 \label{fig:accVervetPMr}
 \end{figure}

@@ -8,7 +8,11 @@ scale only axis,
 colormap name=cividis,
 colorbar horizontal,
 colorbar/width=3mm,
-colorbar style={xticklabel style={font=\footnotesize},}
+colorbar style={xticklabel style={font=\footnotesize}
+                % ,xticklabel pos=right,
+                % at={(0,1.2)},anchor=north west,
+                },
+]
 ]
 \addplot [forget plot] graphics [xmin=20000,xmax=27000,ymin=21000,ymax=24500] {dev/rc1/data/retardation_vervet_cc_0_1.png};
 \draw[magenta, very thick, ->] (axis cs: 25500,27000) -- (axis cs: 23500,23500);
