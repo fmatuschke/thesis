@@ -33,6 +33,7 @@
 \setcounter{secnumdepth}{3}
 \setcounter{minitocdepth}{4}
 \mtcsetoffset{minitoc}{-4em}
+\Urlmuskip=0mu  plus 1mu
 % 
 %\ifshellescape
 \usetikzlibrary{external}
@@ -63,6 +64,11 @@ content/08-chapter-analysis-simulation,
 % 
 \input{content/acronyms}
 %
+%
+% **************************************************
+% Warnings
+% **************************************************
+\ActivateWarningFilters[references]
 % 
 % **************************************************
 % Document CONTENT
@@ -100,11 +106,12 @@ content/08-chapter-analysis-simulation,
 \include{content/acknowledgement} % INCLUDE: acknowledgement
 % \cleardoublepage
 %
-\currentpdfbookmark{\contentsname}{toc}
-\setcounter{tocdepth}{2}		% define depth of toc
-{\hypersetup{hidelinks}
-\tableofcontents				% display table of contents
-}
+% % Table of content
+% \currentpdfbookmark{\contentsname}{toc}
+% \setcounter{tocdepth}{2}		% define depth of toc
+% {\hypersetup{hidelinks}
+% \tableofcontents				% display table of contents
+% }
 % \cleardoublepage
 %
 % --------------------------
