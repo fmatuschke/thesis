@@ -1,7 +1,7 @@
 \begin{tikzpicture}[baseline, trim axis left, trim axis right]
 \begin{axis}[
     width=\tikzwidth,
-    height=0.9\tikzwidth,
+    height=\tikzwidth,
     scale only axis,
     enlargelimits=false,
     xmin=50, xmax=1600,
