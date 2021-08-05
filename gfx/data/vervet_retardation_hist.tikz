@@ -2,18 +2,26 @@
 \begin{axis}[%
 width=\tikzwidth,
 height=0.5\tikzwidth,
-axis lines=center,
 scale only axis,
 area style,
+axis lines=center,
+% x dir=reverse,
+% axis y line*=left,
+xmax=1, xmin=0,
+xtick={0,0.2,0.4,0.6,0.8,1.0},
 xlabel={\small retardation},
 ylabel={\small \#},
 xticklabel style={font=\footnotesize},
+x label style={at={(axis description cs:0,0)},anchor=south west},
 % yticklabel style={font=\footnotesize},
 yticklabels=\empty,
 scaled y ticks=false,
+% legend pos=north,
+legend columns=2,
+legend style={at={(0.5,1)},anchor=north,nodes={scale=0.75, transform shape}},
 ]
-\addplot+[ybar interval,mark=no, blue!50!white, opacity=0.5] table[x index=0, y index=1] {\currfiledir/vervet_retardation_left.dat};
-\addplot+[ybar interval,mark=no, red!60!white, opacity=0.5] table[x index=0, y index=1] {\currfiledir/vervet_retardation_right.dat};
-% \legend{left,right};
+\addplot+[ybar interval,mark=no, Dark2-A, opacity=0.5] table[x index=0, y index=1] {\currfiledir/vervet_retardation_left.dat};
+\addplot+[ybar interval,mark=no, Dark2-B, opacity=0.5] table[x index=0, y index=1] {\currfiledir/vervet_retardation_right.dat};
+\legend{left,right};
 \end{axis}
 \end{tikzpicture}
