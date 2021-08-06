@@ -829,6 +829,7 @@ cycle multiindex* list={mark list*\nextlist Dark2\nextlist},
 \caption[]{MPI speedup discrete tissue generation. \itodo{einheitlicher style}}
 \end{figure}
 % 
+% \tikzset{external/remake next=true}
 % 
 \begin{figure}[!t]
 \centering
@@ -880,7 +881,12 @@ yticklabel style={font=\footnotesize},
 y label style={at={(axis description cs:0,.85)},rotate=90,anchor=north},
 cycle multiindex* list={mark list*\nextlist Dark2\nextlist},
 ]
+% \addplot+[only marks] table[x index=1, y index=3] {dev/rc1/speed/generate_mp_tissue_v_0.1.dat};
+
 \addplot+[only marks] table[x index=1, y index=3] {dev/rc1/speed/generate_mp_tissue_v_0.1.dat};
+x expr=\thisrowno{0}, 
+           y expr=\thisrowno{1}*-1 
+
 \addplot[black, dashed] coordinates {(1,1) (5,5)} node[pos=0.9, sloped, anchor=north] {ideal};
 \end{axis}
 \end{tikzpicture}
@@ -998,15 +1004,34 @@ The decrease is linear as expected \dummy[really?]{} since the signal gets \dumm
 For the equal distributed crossing the inclination analysis reaches again values of $\trel>1$.
 \\
 % 
-the effects discussed above are reflected in the opening angle \modelDOmega{}, which has to increases with increasing \modelOmega{}.
-\dummy{}
+The effects discussed above are reflected in the opening angle \modelDOmega{}, which has to increases with increasing \modelOmega{}.
 % 
 \subsection{Inclined crossing fiber population}
-\cref{sec:resInclCross}
-\dummy{}
+\Cref{sec:resInclCross} shows the results of the inclined crossing, \ie{} $\modelRot=\SI{90}{\degree}$.
+The results are, with the exception of the inclination, very similar to the previous flat crossing fiber population case.
+This is as expected, since inclined fibers do not contribute to a retardation.
+The inclination in the case $\modelPsi=\SI{30}{\percent}$ rises first, since the main fiber population, \ie{} the second, contribution to the retardence is more dominant until it finally the median falls back to $\SI{0}{\degree}$.
+In the case of $\modelPsi=\SI{50}{\percent}$ the tipping point is earlier and less due to the less contributing effects of the second nerve fiber bundle.
+Otherwise the rest parameters are not behaving differently from the single fiber population case with respect to a reduced signal and its impact.
 % 
 \subsection{Free crossing fiber population}
-\cref{sec:resFreeCross}
+\Cref{sec:resFreeCross} shown the results of the \acc{} and other parameters for the free crossing fiber population.
+The \acc{} Parameter, which is a measure for the compliance of the \ac{ODF} coefficent, is a key parameter to highlight problematic fiber population orientations.
+However the value itself is not straightforward to be interpret.
+\\
+From the \Cref{fig:sim_ana_acc} there is a area visible from low \modelPsi{} and low \modelInc{} to higher low \modelPsi{} and higher \modelInc{} where the \acc{} is significantly low, with larger areas close to $\SI{0}{}$.
+This areas correspond to the already known problematic areas in crossing and inclined areas. 
+This results however give a better overview, how strong he indication is with respect to he \acc{} value.
+The \acc{} value can maybe be used as a weight for \dummy[not ...]{}.
+A importance result is the correlation between the \acc{} value and the \trel{} value.
+Since the \trel{} value is analysed it can therefor be used as an indicator for an underlying crossing or inclined region.
+This would then also be a indicator for further data processing \eg{} an tractography.
+One has to bare in mind, these results are only valid for dense fiber populations, \ie{} dense white matter.
+% 
+Th retardation is also a indicator, however not as reliable, since its value is also very low for a single inclined fiber population, which still can be correctly determined, with a high variance, with the tilting analyse (see \cref{fig:single_fiber_pop_rofl}).
+The \trel{} value is there also reduces, but not as strong as in the crossing fiber populations.
+This effect comes from the simple feature, that a inclined single fiber population rises its retardation value when it is tilted, whereas a flat crossing population does not due to the signal cancellation.
+
 \dummy{}
 % 
 \subsection{Speedup} 
