@@ -136,7 +136,7 @@ fi
 # activate list and make
 cp thesis.tex thesis_.tex
 sed -i 's/% *mode=list/ mode=list/' thesis_.tex
-sed -i '46,62d' ./thesis_.tex
+sed -i '47,63d' ./thesis_.tex
 
 # first build
 lualatex -interaction=nonstopmode -halt-on-error -shell-escape thesis_.tex
