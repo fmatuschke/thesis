@@ -106,13 +106,13 @@ content/08-chapter-analysis-simulation,
 \include{content/acknowledgement} % INCLUDE: acknowledgement
 % \cleardoublepage
 %
-% % Table of content
-% \currentpdfbookmark{\contentsname}{toc}
-% \setcounter{tocdepth}{2}		% define depth of toc
-% {\hypersetup{hidelinks}
-% \tableofcontents				% display table of contents
-% }
-% \cleardoublepage
+% Table of content
+\currentpdfbookmark{\contentsname}{toc}
+\setcounter{tocdepth}{2}		% define depth of toc
+{\hypersetup{hidelinks}
+\tableofcontents				% display table of contents
+}
+\cleardoublepage
 %
 % --------------------------
 % Body matter
@@ -179,6 +179,7 @@ content/08-chapter-analysis-simulation,
 % Back matter
 % --------------------------
 %
+\part{Bibliography}
 \addtocontents{toc}{\vspace{\normalbaselineskip}}
 {
 \pdfbookmark[0]{Bibliography}{Bibliography}
