@@ -136,7 +136,12 @@ fi
 # activate list and make
 cp thesis.tex thesis_.tex
 sed -i 's/% *mode=list/ mode=list/' thesis_.tex
-sed -i '47,63d' ./thesis_.tex
+
+include_start="$(grep -n "\includeonly{" thesis.tex | head -n 1 | cut -d: -f1)"
+include_end="$(grep -n "} % end includeonly" thesis.tex | head -n 1 | cut -d: -f1)"
+
+echo $include_start $include_end
+sed -i "${include_start},${include_end}d" ./thesis_.tex
 
 # first build
 lualatex -interaction=nonstopmode -halt-on-error -shell-escape thesis_.tex
