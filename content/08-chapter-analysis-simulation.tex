@@ -365,6 +365,7 @@ However, this is only true for a pixel size of $\SI{1.3}{\micro\meter}$ and fibe
 \section{Simulation}
 % 
 \subsection{Parameter and environment}
+\label{sec:simParameterEnv}
 %  
 \begin{table}[!b]
 \caption{Simulation parameters}
@@ -801,131 +802,233 @@ Here the interpolation of the spheres background values should not be taken too 
 % 
 % 
 % 
+\begin{figure}[!p]
+\centering
+\includegraphics[]{dev/rc1/analysis/simulation_analysis_hist_0.5_setup_PM_s_Vervet_m_r_R.pdf} 
+\caption[Simulation \rvalue]{Mean \rvalue{} from tilt analysis.}
+\label{fig:sim_ana_trel}
+\end{figure}
+% 
+\paragraph{\rvalue}
+The last value is the \rvalue{}.
+It describes the mean absolute difference between the data and the fitted data from the inclination analysis.
+Its values is overall in the range of $\SIrange{1.2}{1.8}{\percent}$.
+For $\modelInc = \SI{0}{\degree}$ the \rvalue{} rises in the center of the polar plot for higher \modelPsi{} values.
+The $\modelInc = \SI{30}{\degree}$ show towards the $\modelPsi = \SI{50}{\percent}$ a curved pattern with slightly higher \rvalue{}.
+For higher $\modelPsi$ the pattern changes and only the centered region is increased.
+For $\modelInc = \SI{60}{\degree}$ an increase of the \rvalue{} is visible towards the outer regions.
+For increasing \modelInc{} the pattern changes as well and is up to $\modelPsi=\SI{70}{\percent}$ increased visible towards the upper and lower part of the polar plot.
+Finally for the The $\modelInc = \SI{90}{\degree}$ case the \rvalue{} are low again.
+\\
+A significant difference has the $\modelPsi = \SI{10}{\percent} / \modelInc = \SI{90}{\degree}$.
+There the values reach for the crossing angles towords $\modelOmega = \SI{90}{\degree}$ a higher value of $\approx \SI{2.2}{\percent}$.
+The \rvalue{} for higher first fiber population proportions $\modelPsi$ at this inclination angle $\modelInc$ has a similar pattern, but gets lower and lower for higher $\modelPsi$.
+% 
+% 
+% 
+% 
 \subsection{Speedup}
 \label{sec:simSpeedup}
+% \tikzset{external/force remake=true}
+% \tikzset{external/export=false}
 % 
 % MPI
 \begin{figure}[!t]
 \centering
-\setlength{\tikzwidth}{0.85\textwidth}
-\begin{tikzpicture}[baseline, trim axis left, trim axis right]
-\begin{axis}[%
-table/col sep=comma,
-width=\tikzwidth,
-height=0.5\tikzwidth,
-axis lines=center,
-scale only axis,
-xlabel={\small cpus},
-ylabel={\small speedup},
-xticklabel style={font=\footnotesize},
-yticklabel style={font=\footnotesize},
-y label style={at={(axis description cs:0,.85)},rotate=90,anchor=north},
-cycle multiindex* list={mark list*\nextlist Dark2\nextlist},
-]
-\addplot+[only marks] table[x index=1, y index=3] {dev/rc1/speed/generate_tissue_v_0.1.dat};
-\addplot[black, dashed] coordinates {(1,1) (24,24)} node[pos=0.9, sloped, anchor=south] {ideal};
-\end{axis}
-\end{tikzpicture}
-\caption[]{MPI speedup discrete tissue generation. \itodo{einheitlicher style}}
-\end{figure}
 % 
-% \tikzset{external/remake next=true}
+\begin{lrbox}{\newtable}
+\pgfplotstabletypeset[%
+    thesisTableStyle,
+    column type=l,
+    fixed, zerofill, precision=2,
+    dec sep align,
+    font={\scriptsize},
+    columns/cpus/.style={precision=0},
+    % columns/value/.style={string type},
+]
+{cpus mean std
+1	1.00006472390261	0.008436755542444
+2	1.92269431841134	0.013489117814521
+3	2.96577613197067	0.026032692317656
+4	3.7772210840161	0.0683451109519
+5	4.69310330928019	0.053307326948835
+6	5.59568645873564	0.08209457262756
+7	6.46527803633867	0.078755238845452
+8	6.77988547696095	0.070937664466063
+16	13.2706748124183	0.227421225827763
+24	17.2977004181403	0.356822695290338
+32	21.6900417343156	0.489742257920109
+40	25.4634907689925	0.543172079794108
+48	27.9281802113992	0.714407306509344
+}
+\end{lrbox}
+% 
+\begin{tabular}{cc}
+\begin{minipage}{0.6\textwidth}
+\includegraphics[page=2]{dev/rc1/speed/boxplot_generation_output_generation_mpi_v_0.1.csv.pdf}
+\end{minipage}
+&
+\begin{minipage}{0.25\textwidth}
+\usebox{\newtable}
+\end{minipage}
+\end{tabular}
+\caption[]{MPI speedup discrete tissue generation Mean time 1 cpu: 29.9 +- 0.2}
+\label{fig:speedTissueMPI}
+\end{figure}
 % 
 \begin{figure}[!t]
 \centering
-\setlength{\tikzwidth}{0.85\textwidth}
-\begin{tikzpicture}[baseline, trim axis left, trim axis right]
-\begin{axis}[%
-table/col sep=comma,
-width=\tikzwidth,
-height=0.5\tikzwidth,
-axis lines=center,
-scale only axis,
-xlabel={\small cpus},
-ylabel={\small speedup},
-xticklabel style={font=\footnotesize},
-yticklabel style={font=\footnotesize},
-cycle multiindex* list={
-    mark list*\nextlist
-    Dark2\nextlist
-},
+\begin{lrbox}{\newtable}
+\pgfplotstabletypeset[%
+    thesisTableStyle,
+    column type=l,
+    fixed, zerofill, precision=2,
+    dec sep align,
+    font={\scriptsize},
+    columns/cpus/.style={precision=0},
+    % columns/value/.style={string type},
 ]
-\addplot+[only marks] table[x index=1, y index=8] {dev/rc1/speed/simulation_v_0.1.dat}; \addlegendentry{flat}
-\addplot+[only marks] table[x index=1, y index=9] {dev/rc1/speed/simulation_v_0.1.dat}; \addlegendentry{W}
-\addplot+[only marks] table[x index=1, y index=10] {dev/rc1/speed/simulation_v_0.1.dat}; \addlegendentry{S}
-\addplot+[only marks] table[x index=1, y index=11] {dev/rc1/speed/simulation_v_0.1.dat}; \addlegendentry{E}
-\addplot+[only marks] table[x index=1, y index=12] {dev/rc1/speed/simulation_v_0.1.dat}; \addlegendentry{N}
-\addplot[black, dashed] coordinates {(1,1) (32,32)} node[pos=0.9, sloped, anchor=south] {ideal};
-\end{axis}
-\end{tikzpicture}
-\caption[]{MPI Speedup simulation for 5 tilt direction. \itodo{einheitlicher style}}
+{cpus mean std
+1	1.00028560723869	0.016748523109448
+2	1.89554114187235	0.061890791019146
+3	2.93217274657456	0.137044706938191
+4	3.80796194148021	0.151338179581496
+5	4.56797840123376	0.294743030055688
+6	5.46464911530043	0.244860209863609
+7	6.30306494349277	0.558808919534342
+8	7.22964159473554	0.370613450811933
+16	13.6057964309241	0.869296236931105
+24	19.9354473052936	0.76053214292035
+32	25.4688807363332	1.33524999091616
+40	30.3887245939769	2.98878482975798
+48	34.7093030892855	3.59570044944364
+}
+\end{lrbox}
+% 
+\begin{tabular}{cc}
+\begin{minipage}{0.6\textwidth}
+\includegraphics[page=2]{dev/rc1/speed/boxplot_simulation_output_simulation_mpi_v_0.1.csv.pdf}
+\end{minipage}
+&
+\begin{minipage}{0.25\textwidth}
+\usebox{\newtable}
+\end{minipage}
+\end{tabular}
+\caption[]{MPI Speedup simulation for 5 tilt direction. Mean time 1 cpu, centered: 80 +- 2}
+\label{fig:speedSimMPI}
 \end{figure}
 % 
 % 
 % OPENMP
 \begin{figure}[!t]
 \centering
-\setlength{\tikzwidth}{0.85\textwidth}
-\begin{tikzpicture}[baseline, trim axis left, trim axis right]
-\begin{axis}[%
-table/col sep=comma,
-width=\tikzwidth,
-height=0.5\tikzwidth,
-axis lines=center,
-scale only axis,
-xmin=0.5,
-xlabel={\small cpus},
-ylabel={\small speedup},
-xticklabel style={font=\footnotesize},
-yticklabel style={font=\footnotesize},
-y label style={at={(axis description cs:0,.85)},rotate=90,anchor=north},
-cycle multiindex* list={mark list*\nextlist Dark2\nextlist},
-]
-% \addplot+[only marks] table[x index=1, y index=3] {dev/rc1/speed/generate_mp_tissue_v_0.1.dat};
-
-\addplot+[only marks] table[x index=1, y index=3] {dev/rc1/speed/generate_mp_tissue_v_0.1.dat};
-x expr=\thisrowno{0}, 
-           y expr=\thisrowno{1}*-1 
-
-\addplot[black, dashed] coordinates {(1,1) (5,5)} node[pos=0.9, sloped, anchor=north] {ideal};
-\end{axis}
-\end{tikzpicture}
-\caption[]{OpenMP speedup discrete tissue generation. \itodo{einheitlicher style}}
-\end{figure}
 % 
+\begin{lrbox}{\newtable}
+\pgfplotstabletypeset[%
+    thesisTableStyle,
+    column type=l,
+    fixed, zerofill, precision=2,
+    dec sep align,
+    font={\scriptsize},
+    columns/cpus/.style={precision=0},
+    % columns/value/.style={string type},
+]
+{cpus mean std
+1	1.00003318870801	0.006043762665602
+2	1.34745571509197	0.112126679306381
+3	1.85706837136119	0.166855662031889
+4	2.07043347980059	0.203474087892324
+5	2.41719826573049	0.208307641301249
+6	2.67381650473413	0.144163042046179
+7	2.81024536424621	0.413899849287807
+8	3.05678368352906	0.238570289478912
+16	3.98524630106596	0.175099042780921
+24	4.64005306796557	0.118496100940545
+32	4.90099710152266	0.112188961625372
+40	4.89783195844876	0.528173540658736
+48	5.22901104444621	0.053589607722899
+
+}
+\end{lrbox}
+% 
+\begin{tabular}{cc}
+\begin{minipage}{0.6\textwidth}
+\includegraphics[page=2]{dev/rc1/speed/boxplot_generation_output_generation_mp_v_0.1.csv.pdf}
+\end{minipage}
+&
+\begin{minipage}{0.25\textwidth}
+\usebox{\newtable}
+\end{minipage}
+\end{tabular}
+\caption[]{OpenMP speedup discrete tissue generation. Mean time 1 cpu: 29.9 +- 0.2}
+\label{fig:speedTissueMP}
+\end{figure}
 % 
 \begin{figure}[!t]
 \centering
-\setlength{\tikzwidth}{0.85\textwidth}
-\begin{tikzpicture}[baseline, trim axis left, trim axis right]
-\begin{axis}[%
-table/col sep=comma,
-width=\tikzwidth,
-height=0.5\tikzwidth,
-axis lines=center,
-scale only axis,
-xlabel={\small cpus},
-ylabel={\small speedup},
-xticklabel style={font=\footnotesize},
-yticklabel style={font=\footnotesize},
-cycle multiindex* list={
-    mark list*\nextlist
-    Dark2\nextlist
-},
+% 
+\begin{lrbox}{\newtable}
+\pgfplotstabletypeset[%
+    thesisTableStyle,
+    column type=l,
+    fixed, zerofill, precision=2,
+    dec sep align,
+    font={\scriptsize},
+    columns/cpus/.style={precision=0},
+    % columns/value/.style={string type},
 ]
-\addplot+[only marks] table[x index=1, y index=8] {dev/rc1/speed/simulation_mp_v_0.1.dat}; \addlegendentry{flat}
-\addplot+[only marks] table[x index=1, y index=9] {dev/rc1/speed/simulation_mp_v_0.1.dat}; \addlegendentry{W}
-\addplot+[only marks] table[x index=1, y index=10] {dev/rc1/speed/simulation_mp_v_0.1.dat}; \addlegendentry{S}
-\addplot+[only marks] table[x index=1, y index=11] {dev/rc1/speed/simulation_mp_v_0.1.dat}; \addlegendentry{E}
-\addplot+[only marks] table[x index=1, y index=12] {dev/rc1/speed/simulation_mp_v_0.1.dat}; \addlegendentry{N}
-\addplot[black, dashed] coordinates {(1,1) (42,42)} node[pos=0.9, sloped, anchor=south] {ideal};
-\end{axis}
-\end{tikzpicture}
-\caption[]{OpenMP Speedup simulation for 5 tilt direction. \itodo{einheitlicher style}}
+{cpus mean std
+1	1.00026069793854	0.015929466416549
+2	1.95547220178774	0.065680726218777
+3	2.97138856408045	0.080728713321266
+4	3.90097732250136	0.154778304333818
+5	4.89979040078024	0.193465065920687
+6	5.81536649890996	0.125590793795792
+7	6.71229347977858	0.143352506525363
+8	7.57827799547624	0.369746017663724
+16	14.6032840374081	0.31614387537932
+24	21.6206614940094	1.91501760949786
+32	28.8271369113821	1.12327525256459
+40	35.6305514268905	1.51516739583375
+48	42.1637558599282	1.30733435281682
+
+}
+\end{lrbox}
+% 
+\begin{tabular}{cc}
+\begin{minipage}{0.6\textwidth}
+\includegraphics[page=2]{dev/rc1/speed/boxplot_simulation_output_simulation_mp_v_0.1.csv.pdf}
+\end{minipage}
+&
+\begin{minipage}{0.25\textwidth}
+\usebox{\newtable}
+\end{minipage}
+\end{tabular}
+\caption[]{OpenMP Speedup simulation for 5 tilt direction. Mean time 1 cpu, centered: 74.9 +- 0.2}
+\label{fig:speedSimMP}
 \end{figure}
 % 
-\dummy{}\dummy{}\dummy{}
-%  
+Four speedup measurements are shown in \cref{fig:speedTissueMPI,fig:speedSimMPI} for the \mpi{} parallelisation and \cref{fig:speedTissueMP,fig:speedSimMP} for the \openmp{} parallelisation.
+To measure the speedup each algorithm was performed $N=10$ times.
+To calculate the speedup value the mean measured time for $n_\mathit{cpu}=1$ was then divided by the measured time for the $n_\mathit{cpu}$ individual values.
+The used volume is the $\modelPsi=\SI{0}{\percent} / \modelInc=\SI{0}{\degree}$ from the \cref{sec:simParameterEnv} parameterization.
+\\
+% 
+The \cref{fig:speedTissueMPI} shows the parallelization of the discrete tissue generation (see \cref{sec:dv_generator}).
+The speedup for $\SI{8}{\cpus}$ about $\SI{6.8}{}$ and for $\SI{48}{\cpus}$ about $\SI{30}{}$ for this architecture.
+For the simulation \cref{fig:speedSimMPI} the behavier is similar with a speedup for $\SI{8}{\cpus}$ about $\SI{7.2}{}$ and for $\SI{48}{\cpus}$ about $\SI{35}{}$.
+Looking at the plot the speedup values for the different tilting angles are shown.
+The centered $(C)$ position has a significant higher speedup then the tilts.
+\par
+% 
+The \openmp{} speedup is for the tissue generation significantly lower than the in \mpi{} case.
+The speedup reaches a value of $\SI{3}{}$ for $\SI{8}{\cpus}$ and $\SI{5.23}{}$ for $\SI{48}{\cpus}$.
+The speedup is almost linear increases for all tested number of cpus.
+\\
+% 
+In the case for the simulation speedup the values similar to the \mpi{} case.
+Up to $\SI{8}{\cpus}$ the speedup is almost identical and ideal.
+However for larger number of CPUs the speedup is higher with $\SI{42}{}$ for $\SI{48}{\cpus}$
 % 
 % 
 \section{Discussion}
@@ -1031,12 +1134,46 @@ One has to bare in mind, these results are only valid for dense fiber population
 Th retardation is also a indicator, however not as reliable, since its value is also very low for a single inclined fiber population, which still can be correctly determined, with a high variance, with the tilting analyse (see \cref{fig:single_fiber_pop_rofl}).
 The \trel{} value is there also reduces, but not as strong as in the crossing fiber populations.
 This effect comes from the simple feature, that a inclined single fiber population rises its retardation value when it is tilted, whereas a flat crossing population does not due to the signal cancellation.
-
-\dummy{}
+\\
+% 
+The relatively low \rvalue{} is in agreement to the noise of \SI{14,3}{\percent} (see \cref{fig:noiseplot}).
+The risen patterns of the \rvalue{} represent the area of a $\modelOmega \approx \SI{90}{\degree}$, so where a lower retardation is to be expected.
+The most interesting pattern is for the $\modelPsi = \SI{90}{\percent}$ case, where the \rvalue{} is maximal for the $\modelInc = \SI{0}{\degree}$ with a $\alpha_1$ \dummy[check variable name]{} angle of $\SI{80}{\degree}$.
+This is quite unexpected, since here the dominant nerve fiber population is the first one, \ie{} $\SI{90}{\percent}$.
+Nevertheless the small portion of $\SI{10}{\percent}$ seems to be enough for a high inclination case to disturb the fitting algorithm, which is only based on a single fiber population.
+However in comparison with the others result at this orientation, the other parameters seem not do be disturbed for their mean values.
+% 
+% 
 % 
 \subsection{Speedup} 
-\cref{sec:simSpeedup}
-\dummy{}
 % 
-\section{Summary}
-\dummy{}
+The speedup results of the simulation algorithm shown in \cref{fig:speedTissueMPI,fig:speedSimMPI,fig:speedTissueMP,fig:speedSimMP} show a very good speedup with increasing \ac{CPU} number with the exception of the \openmp{} case for tissue generation algorithm.
+Since here the \acsp{CPU} have to write in parallel into the same memory, but not the same memory address (see \cref{sec:dvOpti}), the overhead seems to slow the algorithm quite down.
+From the results no more than $\SI{4}{\cpus}$ are necessary, otherwise to much ... gets lost.
+Since however the \mpi{} implementation is quite good, the algorithm should be speed up over this implementation if needed.
+\\
+% 
+The simulation on the other hand has for the \mpi{} as well as for the \openmp{} a very good speedup up to the $\SI{48}{\cpus}$.
+The \openmp{} is here even stronger.
+This is the case, since the \openmp{} implementation does not need to communicate with each other, and since the rest memory access are random anyway, the light beams can be ideal parallized.
+The same is true for the \mpi{} implementation with the exception of the tilted case. 
+Since here the volume is split, the light beams have to be communicated, which takes time.
+Therefore the speedup is there reduced.
+\\
+% 
+Overall since the tissue generation algorithm is quite fast (\SI{30}{\second}), in comparison to the simulation (\SI{80}{\second}), which is needed usually 5 times for the 4 additional tilting angles, the letter algorithm is the bottleneck anyway.
+therefore the user can use both implementation to significantly improve the speed of the calculations overall.
+% 
+% 
+% 
+% \section{Summary}
+% % 
+% In this chapter \dummy{}.
+% \par
+% % 
+% The simulation is a very fast implemented algorithm with very good parallized capabilities which can simulate a \ac{3D-PLI} signal quite fast for a statistically filled volume of nerve fiber bundles.
+% The here presented results for the here used two crossing populations are in agreement with the experimental data as well as the prio simulation, which however had infirior models as well as very little statistics due to to higher runtime.
+% For the future this open source software package is capable of simulation a hughe amount of data which makes is usable for many machine learning algorithms where usually the amount on data dictates the \dummy{}.
+% \par
+% % 
+% The discretized models with the paramter sets of \modelInc{},\modelOmega{} and \modelPsi{} were a good choice to investigate such a complex systems with a lot of freedom.

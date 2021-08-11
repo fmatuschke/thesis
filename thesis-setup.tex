@@ -157,8 +157,9 @@
         math-micro=µ,
         binary-units = true
         } %\mathrm{\mu}} %math-micro=\muup,
-\DeclareSIUnit{\arbitraryunit}{\mathit{arb. unit}}
-\DeclareSIUnit\steps{steps}
+% \DeclareSIUnit{\arbitraryunit}{\mathit{arb. unit}}
+% \DeclareSIUnit\steps{steps}
+% \DeclareSIUnit\cpus{cpus}
 % \AtBeginDocument{\sisetup{math-rm=\mathrm, text-rm=\sffamily}}
 % 
 % \usepackage{caption}
@@ -174,7 +175,8 @@
 % \usepackage{stackengine}    % for double sided floats
 \usepackage{pdflscape}
 \usepackage{rotating}         
-\newsavebox{\largestimage}
+\newsavebox{\largestimage}    
+\newsavebox{\newtable}
 % 
 \acsetup{barriers/use=true,barriers/reset = true}
 % 
