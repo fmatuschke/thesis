@@ -47,7 +47,7 @@ The Simulation is split into two consecutive parts: the volume discretizer and t
 The volume discretizer discretises the virtual nerve fiber models onto a cartesian grid, which is then in the second step used to calculate the light matter interaction.
 One parallelization technique allows to split the volume onto different \acp{CPU} or nodes.
 Due to the tilting approach, the light vector needed to be able to leave the current volume of a single \ac{CPU} and traverse to the next volume/\ac{CPU}.
-This simulation as well as the optical \dummy{} of the system and the inclination analysis will be \dummy{} here.
+This simulation as well as the optical \dummy{} of the system and the tilting analysis will be \dummy{} here.
 \\
 % 
 The code is as the former written in \cpp{} with a user friendly wrapper function in \python{}.
@@ -496,7 +496,7 @@ These calculations are performed on the python side of the algorithm and can be 
 \section{Analysis}
 % 
 The same algorithms are implemented as in the \ac{3D-PLI} routine pipeline \dummy[-> theory]{}.
-This include the modalities analysis transmittance, direction and retardatation as well as the inclination analysis performend by \ac{ROFL}.
+This include the modalities analysis transmittance, direction and retardatation as well as the tilting analysis performend by \ac{ROFL}.
 % 
 % 
 % 
