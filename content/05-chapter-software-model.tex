@@ -16,7 +16,7 @@ A robe or fiber, \ie{} pipe object, is defined by a trajectory with a radius.
 From this, a surrounding mesh is generated.
 In visualization, the mesh is used to apply textures and thus represent a surface. 
 The same meshes are also used in Monte Carlo simulations \ac{dMRI} \cite{Ginsburger2019,ginsburgerDis2019}, among others.
-In this simulation, the meshes help to calculate whether a water molecule travels through the surface of a nerve fiber, i.e., the surface of the mesh.
+In this simulation, the meshes help to calculate whether a water molecule travels through the surface of a nerve fiber, i.e., the surface of the mesh. \todo{zu viel bla bla?}
 However, this representation is very computationally expensive because the number of triangles that must be present in the mesh are quite high for usable accuracy.
 \par
 % 
@@ -311,7 +311,7 @@ The origin of the seed point plane is placed on the origin of the cylinder.
 From there, the fiber runs in a circular pattern to the second directional angle $\beta$.
 The step size of the circular path can be changed.
 % 
-\paragraph{b) radial} The fibers will be placed fromm the iner wall to the outer wall of the cylinder.
+\paragraph{b) radial} The fibers will be placed from the inner wall to the outer wall of the cylinder.
 The seed point plane is therefore placed at the inner wall, with the origin at the lower corner of the first angle $\alpha$ (see \cref{fig:cylRadial}).
 The fibers are then generated radial until they hit the outer wall of the cylinder.
 Thus, the fiber density decreases along its path.
