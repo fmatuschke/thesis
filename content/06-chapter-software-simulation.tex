@@ -201,7 +201,7 @@ This also solves the problem, that at the end end points of a fiber segment in t
 This of course will still be the same at the beginning and end of an fiber.
 \par
 % 
-This \say{filling} loop is represented in the pseudocode \cref{alg:fiberbundleprops}.
+This \say{filling} loop is represented in the pseudocode \cref{alg:fillVolume}.
 % 
 \begin{lstfloat}[!tb]
 \lstset{style=python}
@@ -218,14 +218,14 @@ for fiber_segment in fiber_bundle:
                 current_distance[i,j,k] = min_dist
 \end{lstlisting}
 \caption{Discretized volume filling algorithm}
-\label{alg:fiberbundleprops}
+\label{alg:fillVolume}
 \end{lstfloat}
 %
 \itodo{the length of the stored optical axis vector is interpreted as strength. In this model the length is always 1. If the user wishes to add variability, he/she can do this by changing the length of the vectors inside the arrays.}
 % 
 % 
 % 
-\subsection{\voxelsize{}}
+\subsection{\voxelsize}
 % 
 \begin{figure}[!t]
 \centering
@@ -544,8 +544,4 @@ This is repeated until no more communications were necessary.
 \par
 % 
 Each \mpi{} process can additionally use \openmp{} to create multiple threads for efficient use of shared memory if the architecture supports it.
-% 
-\par
-\noindent\rule{\textwidth}{2pt}
-\par
 % 

@@ -15,7 +15,7 @@
 %  
 \section{Introduction}\label{sec:fastpliIntro}
 % 
-In the previous chapters, the algorithms for creating dense \ac{WM} fiber models (see \cref{chap:sof:modeling}) and simulating \ac{3D-PLI} (see \cref{cha:sof:simulation}) are described.
+In the previous chapters, the algorithms for creating dense \ac{WM} fiber models (see \cref{chap:sof:modelling}) and simulating \ac{3D-PLI} (see \cref{cha:sof:simulation}) are described.
 Both algorithms are designed to work without knowledge of the other.
 This allows \eg{} to be useful for models in other domains, such as \ac{dMRI} (\cite{Ginsburger2019,ginsburgerDis2019}).
 However, in addition to providing algorithms that are intended to be very fast and thus as in this case at a very low level, it is also necessary to provide an \ac{API} that provides an interface to the user.
@@ -153,7 +153,7 @@ In the following the different modules will be listed alphabetically.
 % 
 % 
 % 
-\subsection{\code{fastpli.analysis}}
+\subsection{\Code{fastpli.analysis}}
 % 
 This module contains all functionalities to analyse the \ac{3D-PLI} simulations analog to the routine measurements.
 This includes the analysis of the signal to the three image modalities transmittance, direcion and retardadation.
@@ -163,7 +163,7 @@ The final helper functions provides methods to convert the direction and inclina
 For the analysis of fiber models, the module providing a few simple helper functions.
 This for example allow the user to generate a histogramm of the orientations of the fiber segments like the ones shown in this thesis.
 % 
-\subsection{\code{fastpli.io}}
+\subsection{\Code{fastpli.io}}
 % 
 This methods provides the reading and writing routines to allow the user to read and save fiber models (\ie{} \code{fiber\_bundles}) to or from the disk.
 There are two formats available.
@@ -237,7 +237,7 @@ GROUP "/" { # fiber_bundles path
 % 
 % 
 % 
-\subsection{\code{fastpli.model.sandbox}}
+\subsection{\Code{fastpli.model.sandbox}}
 % 
 This module provides all the functionalities described in \cref{sec:sandbox}.
 The module is split in two submodules: \code{fastpli.sandbox.build} and \code{fastpli.sandbox.seeds}.
@@ -247,7 +247,7 @@ This include all described functions from \cref{sec:fillBundle}.
 % 
 % 
 % 
-\subsection{\code{fastpli.model.solver}}
+\subsection{\Code{fastpli.model.solver}}
 % 
 The \code{fastpli.model.solver} module contains the compiled solving algorithm explained in detail in \crefrange{sec:Solver}{sec:modelOpt}.
 Additionally the solver algorithm is wrapped inside the class \code{fastpli.model.solver.Solver}.
@@ -260,7 +260,7 @@ Finally this class also provides an easy use of a simple visualization (see \cre
 % 
 % 
 % 
-\subsection{\code{fastpli.objects}}
+\subsection{\Code{fastpli.objects}}
 %
 This modules provides wrapper class for \code{fastpli.objects.fibers} and \code{fastpli.objects.layers}.
 Essentially \code{layers} are a \code{list} of \code{layer}, which themself are a \code{tuple} of the 4 attributes \code{absorption}, \code{birefringence}, \code{model} and \code{scale} (see \cref{sec:dv_generator}).
@@ -275,7 +275,7 @@ The letter helps especially in the solving process to reduce the number of objec
 % 
 % 
 % 
-\subsection{\code{fastpli.simulation}}
+\subsection{\Code{fastpli.simulation}}
 Like the \code{fastpli.model.solver.Solver} class this method provides a wrapper for the simulation called \code{fastpli.simulation.Simpli} based on the original algorithm \cite{Dohmen2015,Lucksch2016}.
 It contains both algorithms \code{Generator} and \code{Simulation} described in \cref{sec:dv_generator,sec:simulation}.
 These two algorithms work seperatly, however since they share quite a few parameters, they coexists inside the class.
@@ -299,9 +299,9 @@ Here all data is automatically analysed and saved and only the parameters have t
 \end{lstfloat}
 % 
 % 
-\subsection{\code{fastpli.tools}}
+\subsection{\Code{fastpli.tools}}
 The last module contains a variety of helper functions.
-They provide acces to the current version as well as to the git hash, so that any calculations can be reproduced.
+They provide access to the current version as well as to the git hash, so that any calculations can be reproduced.
 For the fiber modelling rotation matrices are provided, to allow the usage of linear algebra.
 % 
 % 

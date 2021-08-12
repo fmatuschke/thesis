@@ -1,5 +1,5 @@
 #!/bin/bash
-set -e -o pipefail
+set -ex -o pipefail
 
 open=xdg-open
 if [ -f "/home/till/.local/bin/wsl-open" ]; then
@@ -155,7 +155,8 @@ fi
 
 # second build with tikz make
 if [ -f "thesis_.makefile" ]; then
-   make -j4 -f thesis_.makefile
+   numcpus=$(lscpu -p | wc -l) 
+   make -j${numcpus} -f thesis_.makefile
 fi
 biber thesis_
 lualatex -interaction=nonstopmode -halt-on-error -shell-escape thesis_.tex

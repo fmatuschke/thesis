@@ -94,8 +94,8 @@ Therefore the fiber can be described by a list of 4d points $(x,y,z,r)$, which c
 \begin{split}
 % \vec{p} &= (x_i,y_i,z_i) \mid x,y,z \in \mathbb{R}\\
 % r &\mid r \in \mathbb{R}\\
-\mathit{fiber} &= \left\{ \vec{p}_i=(x_i,y_i,z_i), r_i \mid x,y,z \in \mathbb{R}, \, r \in \mathbb{R^+}, \, i \in \{0,1,...,N_{\mathit{points}}-1\}\right\} \\
-\mathit{fiber\tu segment}_i &= (\vec{p}_i, \vec{p}_{i+1}, r_i, r_{i+1}), \, i \in \{0,1,...,N_{\mathit{points}}-2\}
+\mathit{fiber} = \left\{ \vec{p}_i=(x_i,y_i,z_i), r_i \mid x,y,z \in \mathbb{R}, \, r \in \mathbb{R^+}, \, i \in \{0,1,...,N_{\mathit{points}}-1\}\right\} \\
+\mathit{fiber\_segment}_i = (\vec{p}_i, \vec{p}_{i+1}, r_i, r_{i+1}), \, i \in \{0,1,...,N_{\mathit{points}}-2\}
 \end{split}
 \end{align}
 % 
@@ -157,7 +157,7 @@ The first module handles the seeding process, whereas the second part build from
 % 
 Seed points are stored as a list of 2d points:
 \begin{align}
-\mathit{seeds} = \left\{ \vec{p}_i=(x_i,y_i) \mid x,y \in \mathbb{R} , \, i \in \{0,1,...,N_{\mathit{seed\tu points}}-1\}\right\}
+\mathit{seeds} = \left\{ \vec{p}_i=(x_i,y_i) \mid x,y \in \mathbb{R} , \, i \in \{0,1,...,N_{\mathit{seed\_points}}-1\}\right\}
 \end{align}
 % 
 In order to form particularly dense fiber bundles, a method for generating an equilateral triangular grid was implemented (see \ref{fig:triGrid}).
@@ -210,7 +210,7 @@ As helper functions cutting methods do exists, which will crop the seed points i
 To populate a fiber bundle, the plane with seed points will be placed at each fiber bundle point $\vec{fb}_i$ along the trajectory.
 Essentially this means for each resulting $\mathit{fiber}_j$:
 \begin{align}
-    \mathit{fiber}_j = \left\{ \mat{R} \cdot (x_j, y_j, 0) + \vec{fb}_i \, | \, i \in \{0,1,...,N_{\mathit{seed\tu points}}-1\}\right\}
+    \mathit{fiber}_j = \left\{ \mat{R} \cdot (x_j, y_j, 0) + \vec{fb}_i \, | \, i \in \{0,1,...,N_{\mathit{seed\_points}}-1\}\right\}
 \end{align}
 The question however is, which rotation matrix has to be applied.
 Since the trajectory is only a 2d object, \ie{} a line, no ... are perpendicular to its tangential vector.
@@ -768,10 +768,6 @@ This visualization algorithm can still be far improved by processing the hole ca
 % 
 \itodo{Section neu schreiben. Bisher nur Ideen.}
 % 
-\par
-\noindent\rule{\textwidth}{2pt}
-\par
-% 
 Additionally to the previous discussed modelling algorithm (see \cref{sec:Solver}), the \ac{MEDUSA} algorithm \cite{Ginsburger2019} was developed in a cooperation with the team Neurospin from \ac{CEA} in France.
 The target was to develop an algorithm which can build a library of \ac{WM} tissue.
 This library should not only contain nerve fibers, but also other cell types like olegodendrocites or astrocytes.
@@ -845,7 +841,8 @@ d(i,j) &=
 \end{split}
 \end{align}
 % 
-Spheres inside cell bodys are not checked for collision, since their volume aproximate? the volume of the cell.\\
+Spheres inside cell bodys are not checked for collision, since their volume aproximate? the volume of the cell.
+\\
 % 
 The calculation of collisions is done via the GPU architecture. For this a first implementation was written with the \name{AxisAligedSortedSearch} \cite{Karras2012}. It sorteds the spheres along one axis, \eg{} x-axis, x-axis, and search for each sphere the fist and last possible collision on this axis:
 \begin{align}

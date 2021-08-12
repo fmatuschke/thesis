@@ -70,7 +70,7 @@
 % \inputtikz{dev/gfx/2/cube_stat.tex}}
 % \caption{at fl=3 somethings wrong with the first fr value.
 % Better use time, steps depends on every variable!}
-% % \label{fig:}
+% % \label{app:}
 % \end{figure}
 % % 
 % \begin{figure}[!tb]
@@ -80,7 +80,7 @@
 % \inputtikz{dev/gfx/2/cube_stat.tex}}
 % \caption{at fl=3 somethings wrong with the first fr value.
 % Better use time, steps depends on every variable!}
-% % \label{fig:}
+% % \label{app:}
 % \end{figure}
 % % 
 % \begin{figure}[!tb]
@@ -90,7 +90,7 @@
 % \inputtikz{dev/gfx/2/cube_stat.tex}}
 % \caption{at fl=3 somethings wrong with the first fr value.
 % Better use time, steps depends on every variable!}
-% % \label{fig:}
+% % \label{app:}
 % \end{figure}
 % 
 % \begin{figure}[!tb]
@@ -100,7 +100,7 @@
 % \inputtikz{dev/gfx/2/cube_stat.tex}}
 % \caption{at fl=3 somethings wrong with the first fr value.
 % Better use time, steps depends on every variable!}
-% % \label{fig:}
+% % \label{app:}
 % \end{figure}
 % % 
 % \begin{figure}[!tb]
@@ -110,7 +110,7 @@
 % \inputtikz{dev/gfx/2/cube_stat.tex}}
 % \caption{at fl=3 somethings wrong with the first fr value.
 % Better use time, steps depends on every variable!}
-% % \label{fig:}
+% % \label{app:}
 % \end{figure}
 % 
 % \chapter{Appendix C}
@@ -128,7 +128,7 @@
 % \end{tikzpicture}
 % }
 % \caption{model init vs solved}
-% \label{fig:model_histogram}
+% \label{app:model_histogram}
 % \end{figure}
 % % 
 % \begin{figure}[!tb]
@@ -145,7 +145,7 @@
 % \end{tikzpicture}
 % }
 % \caption{Histogram cube\_2pop\_model}
-% \label{fig:model_histogram}
+% \label{app:model_histogram}
 % \end{figure}
 % % 
 % % 
@@ -172,7 +172,7 @@
 % \end{tikzpicture}
 % \end{center}
 % \caption{voxel\_size\_5\_}
-% \label{fig:model_histogram}
+% \label{app:model_histogram}
 % \end{figure}
 % % 
 % \begin{figure}[!tb]
@@ -189,7 +189,7 @@
 % \end{tikzpicture}
 % }
 % \caption{Sphere LAP p}
-% \label{fig:model_histogram}
+% \label{app:model_histogram}
 % \end{figure}
 % % 
 % \begin{figure}[!tb]
@@ -206,7 +206,7 @@
 % \end{tikzpicture}
 % }
 % \caption{Sphere LAP r}
-% \label{fig:model_histogram}
+% \label{app:model_histogram}
 % \end{figure}
 % % 
 % \begin{figure}[!tb]
@@ -223,7 +223,7 @@
 % \end{tikzpicture}
 % }
 % \caption{Sphere PM p}
-% \label{fig:model_histogram}
+% \label{app:model_histogram}
 % \end{figure}
 % % 
 % \begin{figure}[!tb]
@@ -240,7 +240,7 @@
 % \end{tikzpicture}
 % }
 % \caption{Sphere PM r}
-% \label{fig:model_histogram}
+% \label{app:model_histogram}
 % \end{figure}
 % % 
 % \begin{figure}[!t]
@@ -249,7 +249,7 @@
 % \includegraphics[width=\textwidth, page=2]{dev/rc1/cube_2pop_orientation_hist2d_output_cube_2pop_135_rc1.pdf}
 % }
 % \caption[Model orientation histograms]{density distribution of fiber segment orientation in initial and resulting models for $\fiberRadius = \SI{1}{\micro\meter}$. \itodo{fit ESAG} \ITODO{these are only resulting models!}}
-% \label{fig:modelOrientation}
+% \label{app:modelOrientation}
 % \end{figure}
 % % 
 % % 
@@ -264,7 +264,7 @@
     \centering
     \includegraphics[width=1\textwidth]{dev/rc1/mpara/pre_stats_box_plot_volume_output_parameter_statistic_rc1.pdf}
     \caption{Caption}
-    \label{fig:appModelVolumeBoxPlot}
+    \label{app:appModelVolumeBoxPlot}
 \end{figure}
 % 
 % % \foreach \n in {1,3,...,10}{
@@ -327,7 +327,7 @@
     \centering
     \includegraphics[width=\textwidth, page=2]{dev/rc1/cube_2pop_orientation_hist2d_output_cube_2pop_135_rc1.pdf}
     \caption{Caption}
-    \label{fig:modelHistOrientation}
+    \label{app:modelHistOrientation}
 \end{figure}[]
 % 
 % 
@@ -337,10 +337,50 @@
 \centering
 \includegraphics[page=2]{dev/rc1/speed/boxplot_output_r_0.5.pkl_speedup.csv.pdf}
 \caption[\code{model.Sovler} speedup]{\code{model.Sovler} speedup. The time measurements are taken after $\Delta_{\mathit{steps}}$ for the next $\SI{25}{\steps}$ for parallel $(||)$ and crossing $(\times)$ fiber configurations.}
-\label{fig:solverSpeedupAll}
+\label{app:solverSpeedupAll}
 \end{figure}
 % 
 % 
+% 
+\fakesection{Simulation Library}
+\begin{table}[!b]
+\centering
+\caption[Opening angle distribution]{Orientation statistic of simulation model library.}
+\dummy{}
+% \resizebox{\textwidth}{!}{
+% \pgfplotstabletypeset[%
+%     thesisTableStyle,
+%     columns={omega,psi,pop,incl_mean,incl_std,incl_25,incl_50,incl_75,phi_mean,phi_std,phi_25,phi_50,phi_75,mean,std,25,50,75},
+%     every head row/.style={
+%         before row={
+%             \toprule
+%         },
+%         after row={$\si{\degree}$ & & & $\si{\degree}$ & $\si{\degree}$ & $\si{\degree}$ & $\si{\degree}$ & $\si{\degree}$ & $\si{\degree}$ & $\si{\degree}$ & $\si{\degree}$ & $\si{\degree}$ & $\si{\degree}$ & $\si{\degree}$ & $\si{\degree}$ & $\si{\degree}$ & $\si{\degree}$ & $\si{\degree}$ \\ \midrule},
+%     },
+%     columns/omega/.style={column name=$\Omega$},
+%     columns/psi/.style={column name=$\Psi$},
+%     columns/mean/.style={column name=$<d\Omega>$,zerofill,precision=0},
+%     columns/std/.style={column name=$\sigma(d\Omega)$,zerofill,precision=0},
+%     columns/25/.style={column name=$25(d\Omega)$,zerofill,precision=0},
+%     columns/50/.style={column name=$50(d\Omega)$,zerofill,precision=0},
+%     columns/75/.style={column name=$75(d\Omega)$,zerofill,precision=0},
+%     columns/incl_mean/.style={column name=$<\alpha>$,fixed,fixed zerofill,precision=0},
+%     columns/incl_std/.style={column name=$\sigma(\alpha)$,fixed,fixed zerofill,precision=0},
+%     columns/incl_25/.style={column name=$25(\alpha)$,fixed,fixed zerofill,precision=0},
+%     columns/incl_50/.style={column name=$50(\alpha)$,fixed,fixed zerofill,precision=0},
+%     columns/incl_75/.style={column name=$75(\alpha)$,fixed,fixed zerofill,precision=0},
+%     columns/phi_mean/.style={column name=$<\varphi>$,fixed,fixed zerofill,precision=0},
+%     columns/phi_std/.style={column name=$\sigma(\varphi)$,fixed,fixed zerofill,precision=0},
+%     columns/phi_25/.style={column name=$25(\varphi)$,fixed,fixed zerofill,precision=0},
+%     columns/phi_50/.style={column name=$50(\varphi)$,fixed,fixed zerofill,precision=0},
+%     columns/phi_75/.style={column name=$75(\varphi)$,fixed,fixed zerofill,precision=0},
+%     col sep=comma,
+%     % 
+% ]
+% {dev/rc1/omegas_ms_2pop.csv}
+% }
+\label{app:modelDistribution}
+\end{table}
 % 
 \chapter{Simulation}
 % 
@@ -363,7 +403,7 @@
 \centering
 \includegraphics[width=\textwidth, page=1]{dev/rc1/voxel_size/voxel_size_plots_data_output_vs_135_0.01_6_25_vervet_r_rc1.pdf}
 \caption[voxel size model with noise]{The mean difference is constant for smaller voxel sizes and does not start to grow significantly before $\voxels=\SI{0.125}{\micro\meter}$.}
-\label{fig:voxelsizeNoise}
+\label{app:voxelsizeNoise}
 \end{figure}
 % 
 % 
@@ -375,7 +415,7 @@
     \includegraphics[width=\textwidth]{dev/rc1/domega/domega_all_phi_p_0.pdf}
     \includegraphics[width=\textwidth]{dev/rc1/domega/domega_all_phi_p_1.pdf}
     \caption[Boxplot]{Direction and inclination distribution of simulation model library. \itodo{RFC}}
-    % \label{fig:my_label}
+    % \label{app:my_label}
 \end{figure}
 % 
 \begin{figure}[!p]
@@ -383,7 +423,7 @@
     \includegraphics[width=\textwidth]{dev/rc1/domega/domega_all_theta_p_0.pdf}
     \includegraphics[width=\textwidth]{dev/rc1/domega/domega_all_theta_p_1.pdf}
     \caption[Boxplot]{Direction and inclination distribution of simulation model library. \itodo{RFC}}
-    % \label{fig:my_label}
+    % \label{app:my_label}
 \end{figure}
 % 
 \begin{figure}[!p]
@@ -391,7 +431,7 @@
     \includegraphics[width=\textwidth]{dev/rc1/domega/domega_all_domega_p_0.pdf}
     \includegraphics[width=\textwidth]{dev/rc1/domega/domega_all_domega_p_1.pdf}
     \caption[Boxplot]{Direction and inclination distribution of simulation model library. \itodo{RFC}}
-    % \label{fig:my_label}
+    % \label{app:my_label}
 \end{figure}
 % 
 % 
@@ -437,7 +477,7 @@
 }}
 % 
 \caption[sim]{left: 2d log histogramm orientation from rofl analysis of simulation, right: 2d log histogramm of orientation of model segemnts. \itodo{rfc plots}}
-\label{fig:single_fiber_pop_hist_app}
+\label{app:single_fiber_pop_hist_app}
 \end{figure}
 % 
 % 
@@ -464,7 +504,7 @@
 \end{tabular}
 % 
 \caption[sim]{psi=0.3; left: 2d log histogramm orientation from rofl analysis of simulation, right: 2d log histogram of orientation of model segemnts. \itodo{legende}}
-\label{fig:flat_03_fiber_pop_hist}
+\label{app:flat_03_fiber_pop_hist}
 \end{figure}
 % 
 % 
@@ -487,7 +527,7 @@
 \end{tabular}
 % 
 \caption[sim]{psi=0.5; left: 2d log histogramm orientation from rofl analysis of simulation, right: 2d log histogramm of orientation of model segemnts. \itodo{legende}}
-% \label{fig:flat_05_fiber_pop_hist}
+\label{app:flat_05_fiber_pop_hist}
 \end{figure}
 % 
 % 
@@ -546,7 +586,7 @@
 \end{tabular}
 % 
 \caption[sim]{psi=0.3; left: 2d log histogramm orientation from rofl analysis of simulation, right: 2d log histogram of orientation of model segemnts. \itodo{legende}}
-% \label{fig:flat_03_fiber_pop_hist}
+\label{app:incl_03_fiber_pop_hist}
 \end{figure}
 % 
 % 
@@ -569,7 +609,7 @@
 \end{tabular}
 % 
 \caption[sim]{psi=0.5; left: 2d log histogramm orientation from rofl analysis of simulation, right: 2d log histogramm of orientation of model segemnts. \itodo{legende}}
-% \label{fig:flat_05_fiber_pop_hist}
+\label{app:incl_05_fiber_pop_hist}
 \end{figure}
 % 
 % 
