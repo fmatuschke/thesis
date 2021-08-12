@@ -23,13 +23,12 @@ Different species help to understand the evolution of the brain. The brains of r
 This chapter gives a general overview of the structure of the brain with its most important structures.
 The main focus is on the nerve fiber architecture, since this is the focus of this work.
 Additionally information can be found \eg{} \dummy{}.
-\itodo{literatur}
 %
 % 
 % 
 \section{Brain Architecture}
 % 
-The human brain (see \cref{fig:headAndBrain}) consists of three main parts: the cerebellum, located at the rear bottom, the cerebrum, located at the top, and the brainstem.
+The human brain (see \cref{fig:humanBrain}) consists of three main parts: the cerebellum, located at the rear bottom, the cerebrum, located at the top, and the brainstem.
 The brainstem is the connection between the different brain areas and the spinal cord.
 It can be further subdivided into the midbrain, the pons and the medulla obiongata, which in turn are further specialized.
 The most important function of the cerebellum in the human brain is motor control.
@@ -48,7 +47,7 @@ In addition, the cerebrum can be divided into 4 visible parts, which are separat
 \subcaptionbox{\label{fig:nerveFiber}}[.45\textwidth]{\includegraphics[height=3cm]{dev/wiki/brain_fiber_paths.png}\url{https://en.wikipedia.org/wiki/Association_fiber}}
 \hspace*{\fill}
 \caption{(a) Illustration of human brain. (b) Illustration of a coronal human brain section. \itodo{a) name brain parts, redo in inkscape}}
-\label{fig:human-fiber}
+\label{fig:humanBrain}
 \end{figure}
 % 
 the frontal, parietal, temporal, and ocipital lobes (see \cref{fig:brainLobes}).
@@ -227,30 +226,27 @@ Since \ac{3D-PLI} uses the already known sectioning techniques that have been de
 	\label{fig:brain_sectioning}
 \end{figure}
 % 
-\par
-\noindent\rule{\textwidth}{2pt}
-\par
-% 
 For the cutting process, the tissue, \ie{} the brain, has to be frozen and imbedded into a solid material.
 One commen material is parafine, however this is not possible for \ac{3D-PLI} \dummy[why?]{}.
 For \ac{3D-PLI} it very is important, that the tissue does not build up crystal structures, \eg{} from sugar mole cules, because these are also birefringence.
 Therefore the tissue is first ... into a ... liquid ...
-After a time of a few months the tissue will then be frozen into a \SI{-70}{\degree}.
+After a time of a few months the tissue will then be frozen into a $\SI{-70}{\degree}$.
 Then the frozen tissue can be fixated with a liquid glue on a cutting plate.
 The glue is ...
 It is also be used to build up a surrounding fixating material to stabilize the brain in the cutting process.
 Additionally markers are fixed which help in the later registration process, which will align the tissue sections in a 3d volume again \cite{Schober2016,Ali2018,Schmitz2018}.
 \par
+% 
 The cutting is done in a microtome (see \cref{fig:brain_sectioning}).
-In there the temperature can be held at about \SI{-70}{\degree} and allows no heating of the tissue.
+In there the temperature can be held at about $\SI{-70}{\degree}$ and allows no heating of the tissue.
 The brain is moved against a vibrating very sharp knife.
-This allows for the thin sectioning of about \SI{60}{\micro\meter}.
+This allows for the thin sectioning of about $\SI{60}{\micro\meter}$.
 After the cutting, the tissue is put onto a glass specimen.
 Since the tissue is such thin and filigran, it is not always possible to avoid cracks for example.
 This also will be as best as possible corrected in the registration process.
 The tissue will be ... with a glycerin ... and finally siled with another glass.
 To prevent the formation of waves in the tissue, the glass is weighted.
-The tissue sections are then stored into a refrigerator at \SI{-70}{\degree\celsius}.
+The tissue sections are then stored into a refrigerator at $\SI{-70}{\degree\celsius}$.
 The tissue can then finally be measured in the \ac{3D-PLI} microscopes (see \cref{sec:expSetup} for further techniqule informations).
 % 
 % 
@@ -277,7 +273,7 @@ rowem={2},rowem={5},
 rowem={9},rowem={12},rowem={15},
 rowem={20},rowem={23},rowem={26},
 ]{data/axon_distribution.csv}
-\caption{axon diameter distribution of the human brain in \si{\micro\meter} \cite{Liewald2014}}
+\caption{axon diameter distribution of the human brain in $\si{\micro\meter}$ \cite{Liewald2014}.}
 \label{tag:axonDiameter}
 \end{table}
 % 

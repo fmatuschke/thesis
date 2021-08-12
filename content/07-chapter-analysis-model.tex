@@ -4,7 +4,7 @@
 % 
 \section{Introduction}
 % 
-In the previous chapter \cref{chap:sof:modeling} the module \pymodule{fastpli.model} was described to build non-colliding nerve fiber models \cite{Matuschke2019, Matuschke2021}.
+In the previous chapter \cref{chap:sof:modelling} the module \pymodule{fastpli.model} was described to build non-colliding nerve fiber models \cite{Matuschke2019, Matuschke2021}.
 An open question, however, is how the parameters affect the resulting models.
 Since the collision resolution algorithm divides the nerve fibers into fiber segments and also controls their motion and bending when the colliding parts are resolved, its parameters have an influence on the resulting nerve fiber configuration.
 How big this influence is is the first investigation of this chapter.
@@ -158,7 +158,7 @@ r_i &= r_i \cdot \mathrm{LogNormal}(\mu=0,\sigma=0.05)
 % 
 \subsection{Parameter characterization}\label{sec:modelSetup}
 % 
-The described control mechanisms in the collision solver algorithm \code{fastpli.model.solver} (see \cref{chap:sof:modeling}) have to be characterized.
+The described control mechanisms in the collision solver algorithm \code{fastpli.model.solver} (see \cref{chap:sof:modelling}) have to be characterized.
 These are the mean segment length \segLength{} and the minimum allowed radius of curvature \segRadius{}.
 It must be ensured that a parameter set is identified that ensures that the configurations entered by the user remain the same, i.e., the orientation distributions remain intact with respect to the fact that the fiber segments must move.
 Furthermore, the achievable fiber density should remain high for this set of parameters.
@@ -174,7 +174,7 @@ To investigate the behavior of the \segLength{} and \segRadius{} the two factor 
     \end{split}
 \end{align}
 This allows a fiber radius independent investigation on the model characterization.
-The parameter ranges chosen to investigate the impact are listed in \cref{tab:cube2pop}.
+The parameter ranges chosen to investigate the impact are listed in \cref{tab:parameterSetupChar}.
 % 
 \begin{table}[!b]
 \sisetup{parse-numbers=false,open-bracket={\{}, close-bracket={\}}, list-final-separator={,},list-pair-separator={,}}%
@@ -200,7 +200,7 @@ min segment bending radius factor & $\segRadiusFactor$ & $\numlist{1;2;4;8}$\\
 fiber bundle crossing/proportion & $\modelPsi$/$\modelOmega$ & $\SI{1.0}{}/\SI{0}{\degree}$, $\SI{0.5}{}/\SI{90}{\degree}$\\
 }
 \caption{parameter characterization setup and variables.}
-\label{tab:parameterSeries}
+\label{tab:parameterSetupChar}
 \end{table}
 % 
 To be able to examine the results statistically, the generation of the models $n_{\mathit{repeat}} = \SI{24}{}$ was repeated.
@@ -229,7 +229,7 @@ Intel(R) Xeon(R) CPU E5-4657L v2 @ \SI{2.4}{\giga\hertz}, L1d cache: \SI{1.5}{\m
 \paragraph{Volume fraction}
 % 
 \Cref{fig:psbp1} show the resulting volume fraction $V_f/V_0$ for the parameter series.
-% The additional fiber radii results are available in \cref{fig:appModelVolumeBoxPlot}.
+% The additional fiber radii results are available in \cref{app:appModelVolumeBoxPlot}.
 \par
 % 
 % single fiber
@@ -249,7 +249,7 @@ For $\segLengthFactor{}=\SI{8}{}$ the change with \segRadiusFactor{} disappears 
 \par
 % 
 % radius
-The behavier is the same for higher mean fiber radii (see \cref{fig:appModelVolumeBoxPlot}). For values $\geq \SI{5}{\micro\meter}$, the variance increases and the median decreases significantly.
+The behavior is the same for higher mean fiber radii (see \cref{app:appModelVolumeBoxPlot}). For values $\geq \SI{5}{\micro\meter}$, the variance increases and the median decreases significantly.
 Nevertheless, even if the median becomes smaller, it follows the same behavior across all parameters as for the smaller fiber radii.
 The results show that, except for mean fiber radii $\geq \SI{5}{\micro\meter}$, the volume fraction does not change its behavior when the mean fiber radii are changed.
 \par
@@ -260,7 +260,7 @@ The results show that, except for mean fiber radii $\geq \SI{5}{\micro\meter}$, 
 % 
 \begin{figure}[p]
 \centering
-Single fiber population \vspace{1em}
+Single fiber population\\[0em]
 \includegraphics[page=1]{dev/rc1/mpara/pre_stats_time_evolve_r05_output_parameter_statistic_rc1.pdf}
 \caption[Time development parallel]{Time development of the model generation process of parallel fiber populations. Error bars indicate $\SI{25}{\percent}$ and \SI{75}{\percent} quantile.}
 \label{fig:timeDevelopmentNone}
@@ -268,13 +268,13 @@ Single fiber population \vspace{1em}
 % 
 \begin{figure}[p]
 \centering
-Crossing fiber population \vspace{1em}
+Crossing fiber population\\[0ex]
 \includegraphics[page=2]{dev/rc1/mpara/pre_stats_time_evolve_r05_output_parameter_statistic_rc1.pdf}
 \caption[Time development parallel]{Time development of the model generation process of crossing fiber populations. Error bars indicate $\SI{25}{\percent}$ and \SI{75}{\percent} quantile.}
 \label{fig:timeDevelopmentCross}
 \end{figure}
 % 
-The change in runtime $t$ of a subset of the parameter series \cref{tab:parameterSeries} are shown in \cref{fig:timeDevelopmentNone} for the single fiber population and in \cref{fig:timeDevelopmentCross} for the crossing fiber population for number of steps, number of colliding fiber segments, and the overlap fraction of colliding fiber segments.
+The change in runtime $t$ of a subset of the parameter series \cref{tab:parameterSetup} are shown in \cref{fig:timeDevelopmentNone} for the single fiber population and in \cref{fig:timeDevelopmentCross} for the crossing fiber population for number of steps, number of colliding fiber segments, and the overlap fraction of colliding fiber segments.
 The colliding fiber segments are defined as the average of the minimum distance between two colliding fiber segments divided by their combined radii.
 The additional fiber radii are results available in \cref{app:pste1,app:pste2,app:pste3,app:pste4,app:pste5}.
 \\
@@ -416,7 +416,7 @@ In summary, the following parameters were chosen:
 \begin{table}[H]
 \sisetup{parse-numbers=false,open-bracket={\{}, close-bracket={\}}, list-final-separator={,},list-pair-separator={,}}%
 \centering
-% \caption{Chosen model solver parameters}
+\caption{Chosen model solver parameters}
 \pgfplotstabletypeset[%
     thesisTableStyle,
     column type=lcc,
@@ -434,7 +434,7 @@ mean segment length factor & $\segLengthFactor$ & $\num{2}$\\
 min segment bending radius factor & $\segRadiusFactor$ & $\num{2}$\\
 }
 % \vspace{1ex}
-% \label{tab:parameterSeries}
+\label{tab:parameterSetup}
 \end{table}
 % 
 For fiber radii $\fiberRadiusMean > \SI{0.5}{\micro\meter}$, the most important effect is the shortening of the runtime for a constant volume.
@@ -482,7 +482,7 @@ The best case in this data set is for $\Delta_{\mathit{steps}} = \SI{1000}{\step
 However, crossing fiber bundles have a much lower speedup.
 There $\SI{8}{}$ cores reach only a speedup of $\SI{4.3}{}$.
 \\
-\dummy{} More cpu cores \cref{fig:solverSpeedupAll}.
+\dummy{} More cpu cores \cref{app:solverSpeedupAll}.
 % \par
 % 
 \subsection{Discussion}
@@ -511,12 +511,7 @@ In this section, the resulting orientation within the volume, \ie{} the orientat
 % 
 \subsection{Results}
 % 
-\todo{rewrite angular statistics}
-% 
-\par
-\noindent\rule{\textwidth}{2pt}
-\par
-% 
+\itodo{rewrite angular statistics}
 % 
 \begin{figure}[!t]
 \centering
@@ -529,64 +524,33 @@ In this section, the resulting orientation within the volume, \ie{} the orientat
 % 
 \begin{figure}[!t]
 \centering
-\begin{tabular}{cccc}
-    &$\Psi=\SI{0.3}{}$&$\Psi=\SI{0.6}{}$&$\Psi=\SI{0.9}{}$\\
-    \rotatebox[origin=c]{90}{$\Omega=\SI{30}{\degree}$} &
-    \includegraphics[width=0.3\textwidth]{dev/rc1/images/cube_2pop_psi_0.30_omega_30.00_r_0.50_v0_135_.solved.png} & 
-    \includegraphics[width=0.3\textwidth]{dev/rc1/images/cube_2pop_psi_0.60_omega_30.00_r_0.50_v0_135_.solved.png} & 
-    \includegraphics[width=0.3\textwidth]{dev/rc1/images/cube_2pop_psi_0.90_omega_30.00_r_0.50_v0_135_.solved.png} \\
-    % 
-    \rotatebox[origin=c]{90}{$\Omega=\SI{60}{\degree}$} &
-    \includegraphics[width=0.3\textwidth]{dev/rc1/images/cube_2pop_psi_0.30_omega_60.00_r_0.50_v0_135_.solved.png} & 
-    \includegraphics[width=0.3\textwidth]{dev/rc1/images/cube_2pop_psi_0.60_omega_60.00_r_0.50_v0_135_.solved.png} & 
-    \includegraphics[width=0.3\textwidth]{dev/rc1/images/cube_2pop_psi_0.90_omega_60.00_r_0.50_v0_135_.solved.png} \\
-    % 
-    \rotatebox[origin=c]{90}{$\Omega=\SI{90}{\degree}$} &
-    \includegraphics[width=0.3\textwidth]{dev/rc1/images/cube_2pop_psi_0.30_omega_90.00_r_0.50_v0_135_.solved.png} & 
-    \includegraphics[width=0.3\textwidth]{dev/rc1/images/cube_2pop_psi_0.60_omega_90.00_r_0.50_v0_135_.solved.png} & 
-    \includegraphics[width=0.3\textwidth]{dev/rc1/images/cube_2pop_psi_0.90_omega_90.00_r_0.50_v0_135_.solved.png} 
-\end{tabular}
-\caption[solved model images]{Simulation model library. The inner $\SI{10}{\micro\meter} \times \SI{10}{\micro\meter} \times \SI{10}{\micro\meter}$ of the volume is shown. \itodo{fix label}}
+% 
+\begin{tikzpicture}[inner sep=0]
+\node[] (A) at (0,0) {\includegraphics[width=0.295\textwidth]{dev/rc1/images/cube_2pop_psi_0.30_omega_30.00_r_0.50_v0_135_.solved.png}};
+\node[right =0cm of A] (B) {\includegraphics[width=0.295\textwidth]{dev/rc1/images/cube_2pop_psi_0.60_omega_30.00_r_0.50_v0_135_.solved.png}};
+\node[right =0cm of B] (C) {\includegraphics[width=0.295\textwidth]{dev/rc1/images/cube_2pop_psi_0.90_omega_30.00_r_0.50_v0_135_.solved.png}};
+% 
+\node[below =0cm of A] (D) {\includegraphics[width=0.295\textwidth]{dev/rc1/images/cube_2pop_psi_0.30_omega_60.00_r_0.50_v0_135_.solved.png}};
+\node[below =0cm of B] (E) {\includegraphics[width=0.295\textwidth]{dev/rc1/images/cube_2pop_psi_0.60_omega_60.00_r_0.50_v0_135_.solved.png}};
+\node[below =0cm of C] (F) {\includegraphics[width=0.295\textwidth]{dev/rc1/images/cube_2pop_psi_0.90_omega_60.00_r_0.50_v0_135_.solved.png}};
+% 
+\node[below =0cm of D] (G) {\includegraphics[width=0.295\textwidth]{dev/rc1/images/cube_2pop_psi_0.30_omega_90.00_r_0.50_v0_135_.solved.png}};
+\node[below =0cm of E] {\includegraphics[width=0.295\textwidth]{dev/rc1/images/cube_2pop_psi_0.60_omega_90.00_r_0.50_v0_135_.solved.png}};
+\node[below =0cm of F] {\includegraphics[width=0.295\textwidth]{dev/rc1/images/cube_2pop_psi_0.90_omega_90.00_r_0.50_v0_135_.solved.png}};
+% 
+\node[left =1ex of A] {\rotatebox[origin=c]{90}{$\Omega=\SI{30}{\degree}$}};
+\node[left =1ex of D] {\rotatebox[origin=c]{90}{$\Omega=\SI{60}{\degree}$}};
+\node[left =1ex of G] {\rotatebox[origin=c]{90}{$\Omega=\SI{90}{\degree}$}};
+\node[right =1ex of C] {\vphantom{\rotatebox[origin=c]{-90}{$\Omega=\SI{30}{\degree}$}}};
+% 
+\node[above =1ex of A] {$\Psi=\SI{30}{\percent}$};
+\node[above =1ex of B] {$\Psi=\SI{60}{\percent}$};
+\node[above =1ex of C] {$\Psi=\SI{90}{\percent}$};
+\end{tikzpicture}
+\caption[solved model images]{Simulation model library. The inner $\SI{10}{\micro\meter} \times \SI{10}{\micro\meter} \times \SI{10}{\micro\meter}$ of the volume is shown.}
 \label{fig:modelImages}
 \end{figure}
 % 
-% \begin{table}[!b]
-% \centering
-% \caption[Opening angle distribution]{Orientation statistic of simulation model library.}
-% \resizebox{\textwidth}{!}{
-% \pgfplotstabletypeset[%
-%     thesisTableStyle,
-%     columns={omega,psi,pop,incl_mean,incl_std,incl_25,incl_50,incl_75,phi_mean,phi_std,phi_25,phi_50,phi_75,mean,std,25,50,75},
-%     every head row/.style={
-%         before row={
-%             \toprule
-%         },
-%         after row={$\si{\degree}$ & & & $\si{\degree}$ & $\si{\degree}$ & $\si{\degree}$ & $\si{\degree}$ & $\si{\degree}$ & $\si{\degree}$ & $\si{\degree}$ & $\si{\degree}$ & $\si{\degree}$ & $\si{\degree}$ & $\si{\degree}$ & $\si{\degree}$ & $\si{\degree}$ & $\si{\degree}$ & $\si{\degree}$ \\ \midrule},
-%     },
-%     columns/omega/.style={column name=$\Omega$},
-%     columns/psi/.style={column name=$\Psi$},
-%     columns/mean/.style={column name=$<d\Omega>$,zerofill,precision=0},
-%     columns/std/.style={column name=$\sigma(d\Omega)$,zerofill,precision=0},
-%     columns/25/.style={column name=$25(d\Omega)$,zerofill,precision=0},
-%     columns/50/.style={column name=$50(d\Omega)$,zerofill,precision=0},
-%     columns/75/.style={column name=$75(d\Omega)$,zerofill,precision=0},
-%     columns/incl_mean/.style={column name=$<\alpha>$,fixed,fixed zerofill,precision=0},
-%     columns/incl_std/.style={column name=$\sigma(\alpha)$,fixed,fixed zerofill,precision=0},
-%     columns/incl_25/.style={column name=$25(\alpha)$,fixed,fixed zerofill,precision=0},
-%     columns/incl_50/.style={column name=$50(\alpha)$,fixed,fixed zerofill,precision=0},
-%     columns/incl_75/.style={column name=$75(\alpha)$,fixed,fixed zerofill,precision=0},
-%     columns/phi_mean/.style={column name=$<\varphi>$,fixed,fixed zerofill,precision=0},
-%     columns/phi_std/.style={column name=$\sigma(\varphi)$,fixed,fixed zerofill,precision=0},
-%     columns/phi_25/.style={column name=$25(\varphi)$,fixed,fixed zerofill,precision=0},
-%     columns/phi_50/.style={column name=$50(\varphi)$,fixed,fixed zerofill,precision=0},
-%     columns/phi_75/.style={column name=$75(\varphi)$,fixed,fixed zerofill,precision=0},
-%     col sep=comma,
-%     % 
-% ]
-% {dev/rc1/omegas_ms_2pop.csv}
-% }
-% \label{tab:modelDistribution}
-% \end{table}
 % 
 \begin{figure}[!t]
     \centering
@@ -603,14 +567,13 @@ In this section, the resulting orientation within the volume, \ie{} the orientat
 % 
 % 
 \Cref{fig:modelOrientation} shows the orientation distribution as polar histogram for the fiber segments in a subset of the models. 
-The hole dataset is available in \Cref{fig:modelHistOrientation}.
+The hole dataset is available in \Cref{app:modelHistOrientation}.
 The distribution shows the symmetry which corresponds well with the initialized orientation.
-The analysed oreintations as the statistic of the opening angle of each population $pop$ is listed in \cref{tab:modelDistribution}.
-Corresponding images are shown in \cref{fig:modelImages} for the most inner $\SI{10}{\micro\meter}$ cube, so that the individual fibers become more recognisable.
+The analysed orientations as the statistic of the opening angle of each population $pop$ are shown in \cref{fig:modelImages} for the most inner $\SI{10}{\micro\meter}$ cube, so that the individual fibers become more recognisable.
 \\
 % 
 The distribution of the models fiber segment orientation show a local delimitation of each fiber population with a variance round the main population orientation.
-The \cref{tab:modelDistribution} show that for all crossing angles $\modelOmega$ the mean opening angle $<d\Omega>$ is around $\SI{20}{\degree}$ \todo{genauer wert}.
+The \cref{app:modelDistribution} show that for all crossing angles $\modelOmega$ the mean opening angle $\langle d\Omega \rangle$ is around $\SI{20}{\degree}$ \todo{genauer wert}.
 The variance $\sigma(\Omega)$ is around $\SI{11}{\degree}$.
 Since the distribution is not a normal distribution, the quantile are also specified.
 The upper quantile $\SI{75}{\percent}$ shows values up to $\SI{29}{\percent}$.

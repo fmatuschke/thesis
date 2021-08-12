@@ -139,7 +139,7 @@ The gain factor describes the linearity between a measured signal and the corres
 The same type of measurement and analysis is performed here with the \ac{LMP} setup.
 \\
 To obtain statistics for a large number of intensity values, the sample stage is covered with a fully absorbing cover so that half of the image is dark.
-In addition, the focal length is changed so that light is distributed over the entire image sensor below the cover (see \cref{fig:intensityImage}).
+In addition, the focal length is changed so that light is distributed over the entire image sensor below the cover (see \cref{fig:pliFocusImage}).
 By measuring $N=\SI{500}{}$ images, the variance for the different intensity values is determined.
 % 
 \paragraph{results}
@@ -407,7 +407,7 @@ model delta rotation & $\SI{15}{\degree}$\\
 % 
 % 
 %
-As described in \cref{software}, \fastpli{} contains a pipeline implementation of the simulation with automatic analysis.
+As described in \cref{chap:Software}, \fastpli{} contains a pipeline implementation of the simulation with automatic analysis.
 This implementation is used to compute the discretized volumes, simulate the signal, and apply the optical noise and tilt analysis to the resulting signal using the algorithm \rofl{}. \footnote{source code is available in the appendix \dummy{}}.
 This pipeline is used to simulate and analyze the \ac{3D-PLI} signal for the model library with different orientations of two crossing fiber populations.
 \Cref{tab:simParameters} lists the parameters of the simulation in the variable notation \fastpli{}.
@@ -467,7 +467,7 @@ First, a single population of fibers is analyzed.
 Since the direction is negligible for a single population, only the inclination parameter \modelInc{} remains.
 \par
 % 
-\Cref{fig:single_fiber_pop_hist, fig:single_fiber_pop_hist_app} shows the orientation distribution of a single fiber population for different inclinations $\modelInc{}$.
+\Cref{fig:single_fiber_pop_hist} shows the orientation distribution of a single fiber population for different inclinations $\modelInc{}$.
 The distributions of the orientations of the model segments are shown on the left side, and those of the inclination analysis of the simulated images are shown on the right side.
 The distributions are logarithmic and weighted by the area of the 2d binning.
 The comparison between both distributions shows an agreement of the inclination analysis with the model orientations for all inclinations.
@@ -688,7 +688,7 @@ In the case of $\modelPsi = \SI{50}{\percent}$ the median as well as the varianc
 \subsection{Free crossing fiber populations}
 \label{sec:resFreeCross}
 % 
-The following data shows the result of the tilting analysis without the orientation angles, since the mean value cant easyli be calculated for a single angle. \footref{orientations lie on a manifold of a hemispherical with symmetries as well as the angles are depending on each other.}
+The following data shows the result of the tilting analysis without the orientation angles, since the mean value cant easily be calculated for a single angle. \footnote{orientations lie on a manifold of a hemispherical with symmetries as well as the angles are depending on each other.}
 The data of the previous chapter had the advantage, that the results of the angles are close enough to apply a remapping around the expected value.
 \\
 % 
@@ -742,7 +742,7 @@ The last inclination angle $\modelInc=\SI{90}{\degree}$ show a reduction of the 
 \end{figure}
 % 
 \paragraph{Retardation}
-The results of the retardation in \cref{fig:sim_ret} show in the case of the smallest first fiber population proportion $\modelPsi=\SI{10}{\percent}$ the smallest retardation for an inclination angle of $\alpha=\SI{90}{\degree}$ for the second fiber population and an increase towards the flat case of $\alpha=\SI{0}{\degree}$.
+The results of the retardation in \cref{fig:sim_ana_ret} show in the case of the smallest first fiber population proportion $\modelPsi=\SI{10}{\percent}$ the smallest retardation for an inclination angle of $\alpha=\SI{90}{\degree}$ for the second fiber population and an increase towards the flat case of $\alpha=\SI{0}{\degree}$.
 \\
 % 
 This is also visible for the second case of $\modelPsi=\SI{30}{\percent}$ and $\modelPsi=\SI{60}{\percent}$, however the non crossing fiber populations have a significant higher retardation for the first two $\modelInc = \SIlist{0;30}{\degree}$.
@@ -806,11 +806,11 @@ Here the interpolation of the spheres background values should not be taken too 
 \centering
 \includegraphics[]{dev/rc1/analysis/simulation_analysis_hist_0.5_setup_PM_s_Vervet_m_r_R.pdf} 
 \caption[Simulation \rvalue]{Mean \rvalue{} from tilt analysis.}
-\label{fig:sim_ana_trel}
+\label{fig:sim_ana_rvalue}
 \end{figure}
 % 
 \paragraph{\rvalue}
-The last value is the \rvalue{}.
+The last value is the \rvalue{} (see \cref{fig:sim_ana_rvalue}).
 It describes the mean absolute difference between the data and the fitted data from the inclination analysis.
 Its values is overall in the range of $\SIrange{1.2}{1.8}{\percent}$.
 For $\modelInc = \SI{0}{\degree}$ the \rvalue{} rises in the center of the polar plot for higher \modelPsi{} values.

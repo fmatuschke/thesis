@@ -458,19 +458,15 @@
 \newcommand{\tu}{\textunderscore}
 \newcommand{\note}[1]{\textcolor{gray}{\textit{#1}}}
 \newcommand{\dummy}[2][...]{\textcolor{blue!75!white}{\textbf{\{#1\}}}}
-% \usepackage{soul}
-% \newcommand{\itodo}[1]{%
-%   \begingroup
-%   \sethlcolor{ProcessBlue}%
-%   \hl{#1}%
-%   \endgroup
-% }
 % 
 \usepackage[colorinlistoftodos,prependcaption,textsize=footnotesize]{todonotes}
+\newlength{\itodolength}
+\setlength{\itodolength}{\textwidth minus 2.1411pt}
 \presetkeys%
     {todonotes}%
     {backgroundcolor=ProcessBlue,
-     linecolor=ProcessBlue, 
+     linecolor=ProcessBlue,
+     inlinewidth=\itodolength,
      tickmarkheight=1ex}{} %
 \makeatletter
 \renewcommand{\todo}[2][]{%
