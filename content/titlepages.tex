@@ -19,12 +19,21 @@
 	\tgherosfont
 	\centering
 %
-	{\Large \thesisUniversity} \\[7mm]
-	\includegraphics[width=6cm]{gfx/logo-hhu.pdf} \\[7mm]
-	\includegraphics[width=6cm]{gfx/logo-fzj.pdf} \\[7mm]
-	\textsf{\thesisUniversityDepartment} \\
-	\textsf{\thesisUniversityInstitute} \\
-	\textsf{\thesisUniversityGroup} \\
+    \phantom{}\\[10mm]
+% 
+    \begin{minipage}[t]{.45\textwidth}
+		\includegraphics[width=6cm]{gfx/logo-hhu.pdf} \\[7mm]
+		\thesisUniversity\\
+        \thesisUniversityDepartment
+	\end{minipage}
+	\hspace*{25pt}
+	\begin{minipage}[t]{.45\textwidth}
+	    \includegraphics[width=6cm]{gfx/logo-fzj.pdf} \\[7mm]
+		\thesisInstitute\\
+        % \thesisInstituteDepartment
+        \thesisInstituteInstitute
+        % \thesisInstituteGroup
+	\end{minipage}
 %
 	\vfill
 	{\large \thesisSubject} \\[5mm]
@@ -54,11 +63,13 @@
 	\end{minipage} \\[10mm]
 	\begin{minipage}[t]{.27\textwidth}
 		\raggedleft
-		\textit{Supervisors}
+		\textit{Supervisor}
 	\end{minipage}
 	\hspace*{15pt}
 	\begin{minipage}[t]{.65\textwidth}
-		\thesisFirstSupervisor\ %and \thesisSecondSupervisor
+		\thesisFirstSupervisor \\[-1mm]
+	  	{\footnotesize \thesisFirstSupervisorDepartment} \\[-1.75mm]
+		{\footnotesize \thesisFirstSupervisorUniversity}
 	\end{minipage} \\[10mm]
 %
 	\thesisDate \\
@@ -75,11 +86,21 @@
 	\textit{\thesisTitle} \\
 	\thesisSubject, \thesisDate \\
 	Reviewers: \thesisFirstReviewer\ and \thesisSecondReviewer \\
-	Supervisors: \thesisFirstSupervisor \\[1.5em]
-	\textbf{\thesisUniversity} \\
-	\textit{\thesisUniversityGroup} \\
-	\thesisUniversityInstitute \\
-	\thesisUniversityDepartment \\
-	\thesisUniversityStreetAddress \\
-	\thesisUniversityPostalCode\ and \thesisUniversityCity
+	Supervisor: \thesisFirstSupervisor \\[1.5em]
+% 	
+    \begin{minipage}[t]{.475\textwidth}
+		\textbf{\thesisUniversity} \\
+    	\thesisUniversityDepartment \\
+    	\thesisUniversityStreetAddress \\
+    	\thesisUniversityPostalCode
+	\end{minipage}
+	\hspace*{5pt}
+	\begin{minipage}[t]{.475\textwidth}
+	    \textbf{\thesisInstitute} \\
+    	\thesisInstituteDepartment \\
+    	\thesisInstituteInstitute \\
+    	\thesisInstituteGroup \\
+    	\thesisInstituteStreetAddress \\
+    	\thesisInstitutePostalCode
+	\end{minipage}
 }
