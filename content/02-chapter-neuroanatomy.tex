@@ -187,14 +187,19 @@ The latter are present to connect the nerve cells within the \ac{GM}, while the 
 	\centering
 	\tikzset{external/export next=false}
 	\begin{tikzpicture}[]   
-     \node[inner sep=0pt, anchor = south west] (fig) at (0,0)
-       {\includegraphics[width=\textwidth]{gfx/neuroanatomy/NeuralNet-BrainAtlasDotOrg.png}};
-     \draw[Orange, ultra thick] (7.65,6.15) ellipse (1 and 0.5);
-     \draw[ProcessBlue, ultra thick] (10,4.5) ellipse (2 and 1);
-     \draw[white, ultra thick] (0.5,0.5) -- ++ (0:1) node[pos=0.5, above] {\small $\SI{0}{\micro\meter}$};
+        \node[inner sep=0pt, anchor = south west] (fig) at (0,0)
+           {\includegraphics[width=\textwidth]{gfx/neuroanatomy/NeuralNet-BrainAtlasDotOrg.png}};
+        %   
+        \coordinate (A) at (fig.west);
+        \coordinate (B) at (fig.west);
+        %   
+        \draw[Orange, ultra thick] (7.65,6.15) ellipse (1 and 0.5);
+        \draw[ProcessBlue, ultra thick] (10,4.5) ellipse (2 and 1);
+        \draw[white, ultra thick] ($(fig.south west)+(0.5,0.5)$) -- ++ (1.12697238cm,0) node[pos=0.5, above] {\small$\SI{100}{\micro\meter}$}; %13,87303cm/1231×(0,46×2)*...
+        % \draw[yellow, ultra thick] (fig.north west) -- ++ (13.87303cm,0);
     \end{tikzpicture}
 % 	\includegraphics[width=\textwidth]{gfx/neuroanatomy/NeuralNet-BrainAtlasDotOrg.png}
-	\caption[Myelin staining of the human thalamus]{Myelin staining of the human thalamus, sagital section. \textcolor{Orange}{nerve fiber bundles}, \textcolor{ProcessBlue}{"neural net"}. \url{http://brainmaps.org/index.php?action=viewslides&datid=98}}
+	\caption[Myelin staining of the human thalamus]{Myelin staining of the human thalamus, sagital section. \textcolor{Orange}{nerve fiber bundles}, \textcolor{ProcessBlue}{"neural net"}. \url{http://brainmaps.org/HBP3/h.sapiens/sag/h5thal-myelin/17a}}
 	\label{fig:brainMyelinStain}
 \end{figure}
 % 
