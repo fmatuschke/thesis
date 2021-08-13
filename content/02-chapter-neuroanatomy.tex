@@ -42,16 +42,16 @@ In addition, the cerebrum can be divided into 4 visible parts, which are separat
 \begin{figure}[!t]
 \centering
 \hspace*{\fill}
-\subcaptionbox{\label{fig:brainLobes}}[.45\textwidth]{\includegraphics[height=3cm]{dev/wiki/brain_lobes.png}\url{https://en.wikipedia.org/wiki/Frontal_lobe}}
+\subcaptionbox{\label{fig:brainLobes}\url{https://en.wikipedia.org/wiki/Frontal_lobe}}[.45\textwidth]{\includegraphics[height=3cm]{dev/wiki/brain_lobes.png}}
 \hspace*{\fill}
-\subcaptionbox{\label{fig:nerveFiber}}[.45\textwidth]{\includegraphics[height=3cm]{dev/wiki/brain_fiber_paths.png}\url{https://en.wikipedia.org/wiki/Association_fiber}}
+\subcaptionbox{\label{fig:nerveFiber}\url{https://en.wikipedia.org/wiki/Association_fiber}}[.45\textwidth]{\includegraphics[height=3cm]{dev/wiki/brain_fiber_paths.png}}
 \hspace*{\fill}
 \caption{(a) Illustration of human brain. (b) Illustration of a coronal human brain section. \itodo{a) name brain parts, redo in inkscape}}
 \label{fig:humanBrain}
 \end{figure}
 % 
 the frontal, parietal, temporal, and ocipital lobes (see \cref{fig:brainLobes}).
-The frontal lobe contains most of the ... functionalities.
+The frontal lobe contains the voluntary movements of specific body parts as well as the human personality.
 The parietal lobe has \dummy{}.
 The main function of the ocipital lobe is signal processing of the visual system.
 The temporal lobes contain auditory functions and language in addition to visual memories.
@@ -63,15 +63,15 @@ These cells have the task of processing the information of all signals coming fr
 In addition, these cells are also arranged in other cortical layers that have different thicknesses, cell types, and densities depending on the brain area.
 These cells have a relative high density and are not only locally interconnected with each other, but also with different brain areas (see \cref{fig:nerveFiber,fig:cortLayers}).
 Therefore, the folding of the brain is particularly important to increase this layer and therefore the number of cells.
-There are many types of cells involved in this process.
-For example, some can amplify or inhibit a signal.
-In the human brain there are several \dummy[billions?]{}.
-This highly interconnected structure and arrangement of different functionalities is the source of human intelligence, consistency and much more.
+In the human brain there are several billions nerve cells.
+There are many types of cells involved in this process, \eg{} granule or pyramidal cells.
+Some cell types can amplify or inhibit a nerve signal.
+This highly interconnected structure and arrangement of the various cells is the source of its high number of different functionalities and, in the case of the human being, the origin of its relative high intelligence and consciousness.
 Therefore, it is a common goal of mankind to understand the human brain in order to improve both medical treatment and to understand the origin of intelligence in detail.
 % 
 % 
 % 
-\section{Fiber Architecture} \label{sec:fiberArchitecture}
+\section{Fiber architecture} \label{sec:fiberArchitecture}
 % 
 \begin{figure}[!t]
 \centering
@@ -100,13 +100,22 @@ Therefore, it is a common goal of mankind to understand the human brain in order
 % 
 \begin{figure}[!t]
 \centering
-% \subcaptionbox{\label{fig:headAndBrain}}[.28\textwidth]{\includegraphics[height=3cm]{gfx/neuroanatomy/human-brain-profile.pdf}}
-% \subcaptionbox{}[.42\textwidth]{\includegraphics[height=4cm]{gfx/neuroanatomy/human-brain-section.pdf}}\hfill
-% \subcaptionbox{\label{fig:nerveFiber}}[.42\textwidth]{
-\includegraphics[angle=90,width=0.75\textwidth,]{gfx/neuroanatomy/neuron-axon_.pdf}
-% }
+% gfx/neuroanatomy/neuron-axon_.pdf
+\begin{tikzpicture}[every node/.style={font=\small,},]
+% \draw[] (0,0) grid (11,6);
+\node[anchor=south west] at (0,0) {\includegraphics[angle=90,width=0.75\textwidth,]{gfx/neuroanatomy/neuron-axon_.pdf}};
+\node[] at (7.5,6.25) {Oligodendrocyte};
+% \node[] at (2,1) {Soma};
+% \node[] at (8,1) {Axon};
+\node[] at (7.5,2.25) {Myelin};
+\draw[->] (2.75,2.75) -- (3.15,3.15) node[pos=0, anchor=north] {Nucleus};
+% 
+\node[anchor=south] at (2.5,4.5) {Dendrites};
+\draw[->] (2.75,4.5) -- (3.5,4.25){};
+\draw[->] (2.25,4.5) -- (1.5,4.25){};
+\end{tikzpicture}
 \caption{
-Illustration of a neuron with axon and oligodendrocytes. The olegodendrocyte build up a layered lipid structure up, surrounding the axon. The myelin layers are separated along the axon by nodes of Ranvier. \itodo{name parts, ending of axon}}
+Illustration of a neuron with axon and oligodendrocytes. The olegodendrocyte build up a layered lipid structure up, surrounding the axon. The myelin layers are separated along the axon by nodes of Ranvier.}
 \label{fig:human-brain}
 \end{figure}
 % 
@@ -114,7 +123,7 @@ Nerve cells are connected by nerve fibers.
 A typical nerve cell (see \cref{fig:human-brain}) (if there is such a thing) has a cell body, called a soma, that processes incoming information.
 The information arrives via dendrites, which are star-shaped branches that connect to an incoming axon.
 The axon is the only information output exit of the cell.
-It travels through the brain to its destination, where it connects to a single brain cell. 
+It travels through the brain to its destination, where it connects to with the axon terminal to a single or multiple locally brain cells .
 \todo{in the case of human the development ...}
 After the axons are formed in the brain, no new axons are formed.
 Only the strength of the signals and the local structures change.
@@ -185,7 +194,7 @@ The latter are present to connect the nerve cells within the \ac{GM}, while the 
      \draw[white, ultra thick] (0.5,0.5) -- ++ (0:1) node[pos=0.5, above] {\small $\SI{0}{\micro\meter}$};
     \end{tikzpicture}
 % 	\includegraphics[width=\textwidth]{gfx/neuroanatomy/NeuralNet-BrainAtlasDotOrg.png}
-	\caption{Myelin Staining. human thalamus, sagital section. \textcolor{Orange}{nerve fiber bundles}. \textcolor{ProcessBlue}{neural net}}
+	\caption[Myelin staining of the human thalamus]{Myelin staining of the human thalamus, sagital section. \textcolor{Orange}{nerve fiber bundles}, \textcolor{ProcessBlue}{"neural net"}. \url{http://brainmaps.org/index.php?action=viewslides&datid=98}}
 	\label{fig:brainMyelinStain}
 \end{figure}
 % 
