@@ -1132,7 +1132,7 @@ However, compared to the other results at this orientation, the other parameters
 % 
 The simulation algorithm speedup results shown in \cref{fig:speedTissueMPI,fig:speedSimMPI,fig:speedTissueMP,fig:speedSimMP} show very good speedup with increasing \ac{CPU} number, except for the \openmp{} case for the tissue generation algorithm.
 Here, since the \acsp{CPU} must write to the same memory in parallel, but not to the same memory address (see \cref{sec:dvOpti}), the overhead seems to slow down the algorithm quite a bit.
-From the results, no more than $\SI{4}{\cpus}$ is necessary, otherwise too much ... is lost.
+From the results, no more than $\SI{4}{\cpus}$ is necessary, otherwise too much \dummy{} is lost.
 However, since the \mpi{} implementation is quite good, the algorithm should be sped up over this implementation if needed.
 \\
 % 

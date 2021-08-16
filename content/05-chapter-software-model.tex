@@ -212,8 +212,8 @@ Essentially this means for each resulting $\mathit{fiber}_j$:
 \begin{align}
     \mathit{fiber}_j = \left\{ \mat{R} \cdot (x_j, y_j, 0) + \vec{fb}_i \, | \, i \in \{0,1,...,N_{\mathit{seed\_points}}-1\}\right\}
 \end{align}
-The question however is, which rotation matrix has to be applied.
-Since the trajectory is only a 2d object, \ie{} a line, no ... are perpendicular to its tangential vector.
+The question however is, which rotation matrix $\mat{R}$ has to be applied.
+Since the trajectory is only a 2d object, \ie{} a line, no \dummy{} are perpendicular to its tangential vector.
 In mathematics the torsion of a curve can defined with a principal normal vector and a binormal vector.
 This however has the problem, that the line has a torsion for a helical function, \ie{} the line \say{rotates} along its path.
 This would mean, that if the seed point plane would be places according to the principal and binormal vector, that also the individual fibers would rotate around the fiber bundle trajectory.
@@ -224,15 +224,15 @@ This can be achieved by calculating the rotation matrix, which would rotate the 
 The rotation matrix $\mat{R}(\vec{a}, \vec{b}$ between two vectors $\vec{a}$ and $\vec{b}$, if $\vec{a} \nparallel \vec{b}$ can be calculated via
 \begin{align}
 \begin{split}
-    \vec{a} =& \vec{a} / |\vec{a}|\\
-    \vec{b} =& \vec{b} / |\vec{b}|\\
-    \vec{v} =& \vec{a} \times \vec{b}\\
-    c =& \vec{a} \cdot \vec{b}
+    \vec{a} =& \; \vec{a} / |\vec{a}|\\
+    \vec{b} =& \; \vec{b} / |\vec{b}|\\
+    \vec{v} =& \; \vec{a} \times \vec{b}\\
+    c =& \; \vec{a} \cdot \vec{b}
 \end{split}
 \quad
 \begin{split}
     \mat{U} =& \begin{pmatrix} 0 & \vec{v}_z & -\vec{v}_y\\ -\vec{v}_z & 0 & \vec{v}_x\\ \vec{v}_y & -\vec{v}_x & 0\end{pmatrix}\\
-    \mat{R} =& \mathbb{1} + \mat{U} + (\mat{U} \cdot \mat{U}) \cdot (1 - c) / |\vec{v}|^2
+    \mat{R} =& \; \mathbb{1} + \mat{U} + (\mat{U} \cdot \mat{U}) \cdot (1 - c) / |\vec{v}|^2
 \end{split}
 \end{align}
 The parallel case is trivial.

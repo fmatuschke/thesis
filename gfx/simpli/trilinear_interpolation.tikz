@@ -1,0 +1,43 @@
+\begin{tikzsize}{\tikzwidth}{\tikzheight}
+\begin{tikzpicture}[scale=2.75, %scale=\tikzscale, 
+                    x=(0:1cm), y=(90:1cm), z=(50:0.5cm)]
+    % 
+    \node at (0.5,0.5,0.5) {\tiny \tikzscale, \the\tikzwidth, \the\tikzheight};
+    % 
+    \draw[thick] (0,0,0)--(1,0,0){};
+    \draw[thick] (0,0,0)--(0,1,0){};
+    \draw[thick,dashed] (0,0,0)--(0,0,1){};
+    \draw[thick] (1,0,0)--(1,1,0){};
+    \draw[thick] (1,0,0)--(1,0,1){};
+    \draw[thick] (0,1,0)--(1,1,0){};
+    \draw[thick] (0,1,0)--(0,1,1){};
+    \draw[thick,dashed] (0,0,1)--(1,0,1){};
+    \draw[thick,dashed] (0,0,1)--(0,1,1){};
+    \draw[thick] (1,1,0)--(1,1,1){};
+    \draw[thick] (1,0,1)--(1,1,1){};
+    \draw[thick] (0,1,1)--(1,1,1){};
+    % 
+    \draw[fill=black] (0,0,0) circle[radius=0.75pt] node[anchor=north west] {$C_{000}$};
+    \draw[fill=black] (0,0,1) circle[radius=0.75pt] node[anchor=north west] {$C_{001}$};
+    \draw[fill=black] (0,1,0) circle[radius=0.75pt] node[anchor=north west] {$C_{010}$};
+    \draw[fill=black] (0,1,1) circle[radius=0.75pt] node[anchor=south west] {$C_{011}$};
+    \draw[fill=black] (1,0,0) circle[radius=0.75pt] node[anchor=north west] {$C_{100}$};
+    \draw[fill=black] (1,0,1) circle[radius=0.75pt] node[anchor=north west] {$C_{101}$};
+    \draw[fill=black] (1,1,0) circle[radius=0.75pt] node[anchor=north west] {$C_{110}$};
+    \draw[fill=black] (1,1,1) circle[radius=0.75pt] node[anchor=south west] {$C_{111}$};
+    % 
+    \draw[thick, BLUE] (0.5,0,0)--(0.5,0,1){};
+    \draw[thick, BLUE] (0.5,1,0)--(0.5,1,1.0){};
+    % 
+    \draw[fill=BLUE, BLUE] (0.5,0,0) circle[radius=0.75pt] node[anchor=north] {$C_{00}$};
+    \draw[fill=BLUE, BLUE] (0.5,1,0) circle[radius=0.75pt] node[anchor=north] {$C_{01}$};
+    \draw[fill=BLUE, BLUE] (0.5,0,1) circle[radius=0.75pt] node[anchor=south] {$C_{10}$};
+    \draw[fill=BLUE, BLUE] (0.5,1,1) circle[radius=0.75pt] node[anchor=south] {$C_{11}$};
+    % 
+    \draw[thick, RED] (0.5,1,0.5)--(0.5,0,0.5){};
+    % 
+    \draw[RED, fill=RED] (0.5,0,0.5) circle[radius=0.75pt] node[anchor=north west] {$C_0$};
+    \draw[RED, fill=RED] (0.5,1,0.5) circle[radius=0.75pt] node[anchor=north west] {$C_1$};
+    \draw[GREEN, fill=GREEN] (0.5,0.5,0.5) circle[radius=0.75pt] node[anchor=west] {$C$};
+\end{tikzpicture}
+\end{tikzsize}
