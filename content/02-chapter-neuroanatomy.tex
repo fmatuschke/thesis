@@ -41,11 +41,11 @@ In addition, the cerebrum can be divided into 4 visible parts, which are separat
 % 
 \begin{figure}[!t]
 \centering
+% \hspace*{\fill}
+\subcaptionbox{\label{fig:brainLobes}\url{https://en.wikipedia.org/wiki/Frontal_lobe}}[.47\textwidth]{\includegraphics[height=3.25cm]{dev/wiki/brain_lobes.png}}
 \hspace*{\fill}
-\subcaptionbox{\label{fig:brainLobes}\url{https://en.wikipedia.org/wiki/Frontal_lobe}}[.45\textwidth]{\includegraphics[height=3cm]{dev/wiki/brain_lobes.png}}
-\hspace*{\fill}
-\subcaptionbox{\label{fig:nerveFiber}\url{https://en.wikipedia.org/wiki/Association_fiber}}[.45\textwidth]{\includegraphics[height=3cm]{dev/wiki/brain_fiber_paths.png}}
-\hspace*{\fill}
+\subcaptionbox{\label{fig:nerveFiber}\url{https://en.wikipedia.org/wiki/Association_fiber}}[.47\textwidth]{\includegraphics[height=3.25cm]{dev/wiki/brain_fiber_paths.png}}
+% \hspace*{\fill}
 \caption{(a) Illustration of human brain. (b) Illustration of a coronal human brain section. \itodo{a) name brain parts, redo in inkscape}}
 \label{fig:humanBrain}
 \end{figure}
@@ -75,22 +75,26 @@ Therefore, it is a common goal of mankind to understand the human brain in order
 % 
 \begin{figure}[!t]
 \centering
-\hspace*{\fill}
+% \hspace*{\fill}
 \tikzset{external/export next=false}
-\subcaptionbox{\label{fig:coronalStained}BB 4201: Gray, White Matter, Coronal Section, Stained}[0.6\textwidth]{
+\subcaptionbox{\label{fig:coronalStained}BB 4201: Gray, White Matter, Coronal Section, Stained}[0.64\textwidth]{
 \begin{tikzpicture}[]
     \node[inner sep=0pt, anchor = south west] (fig) at (0,0)
-    {\includegraphics[width=0.6\textwidth]{dev/brain/BB_4201.png}};
-    % \draw[] (0,0) grid (8,5);
-    \draw[RED, ultra thick, <-] (5,4) -- ++ (-42:0.75) node[pos=1, anchor=north] {\textbf{WM}};
-    \draw[GREEN, ultra thick, <-] (2.4,5) -- ++ (-65:0.75) node[pos=1, anchor=north] {\textbf{GM}};
+    {\includegraphics[height=0.42\textwidth]{dev/brain/BB_4201.png}};
+    \coordinate (WM1) at ($(fig.north west)!0.6!(fig.north east)$);
+    \coordinate (WM2) at ($(fig.north east)!0.35!(fig.south east)$);
+    \draw[RED, ultra thick, <-] (WM1 |- WM2) -- ++ (-42:0.75) node[pos=1, anchor=north] {\textbf{WM}};
+    \coordinate (GM1) at ($(fig.north west)!0.275!(fig.north east)$);
+    \coordinate (GM2) at ($(fig.north east)!0.125!(fig.south east)$);
+    \draw[GREEN, ultra thick, <-] (GM1 |- GM2) -- ++ (-65:0.75) node[pos=1, anchor=north] {\textbf{GM}};
+    % \draw (0,5) -- (10,5);
 \end{tikzpicture}
 }
 \hspace*{\fill}
-\subcaptionbox{Cortical layers\label{fig:cortLayers}}[0.3\textwidth]{
-\includegraphics[width=0.3\textwidth]{dev/wiki/layers.png}
+\subcaptionbox{Cortical layers\label{fig:cortLayers}}[0.34\textwidth]{
+\includegraphics[height=0.42\textwidth]{dev/wiki/layers.png}
 }
-\hspace*{\fill}
+% \hspace*{\fill}
 % 
 \caption[GM, WM, layers]{}
 \label{fig:BBrain}
