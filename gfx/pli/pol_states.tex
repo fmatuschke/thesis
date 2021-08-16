@@ -1,70 +1,83 @@
-{
+
 % \captionsetup[sub]{textfont=normalsize}
-\captionsetup[sub]{position=top, skip=-14pt}
+% \captionsetup[sub]{position=top, skip=-14pt}
 \tikzset{cross/.pic={
 \draw[arrows={-Latex[scale=1]}] (-{sqrt(2)},0) -- ({sqrt(2)},0) node[anchor=north]{\small $E_x$};
 \draw[arrows={-Latex[scale=1]}] (0,-{sqrt(2)}) -- (0,{sqrt(2)}) node[anchor=east]{\small $E_y$};
 }}
 % 
-\subcaptionbox{}[.3\textwidth]{
-\begin{tikzpicture}
+% \subcaptionbox{}[.3\textwidth]{
+\begin{tikzpicture} 
+\begin{scope}[shift={(0,0)}, local bounding box=A]
 \pic at (0,0) {cross};
-\draw[] (0, 2) node[font=\small] () {linear, horizontal};
+% \draw[] (0, 2) node[font=\small] () {linear, horizontal};
 \draw[very thick, arrows={Latex[scale=1]-Latex[scale=1]}] (-1, 0) -- (1, 0);
 \draw[] (0, -2) node () {$\begin{pmatrix} 1&0 \end{pmatrix}$};
-\draw[] (0, -3) node () {$\begin{pmatrix} 1&1&0&0 \end{pmatrix}$};
-\end{tikzpicture}
-}
-\subcaptionbox{}[.3\textwidth]{
-\begin{tikzpicture}
+\draw[] (0, -2.75) node () {$\begin{pmatrix} 1&1&0&0 \end{pmatrix}$};
+\end{scope}
+\node[anchor=south west, xshift=-1em] at (A.north west) {\small \textcolor{magenta}{\textbf{(a)}} linear, horizontal};
+% }\hfill
+% \subcaptionbox{}[.3\textwidth]{
+\begin{scope}[shift={(4,0)}, local bounding box=B]
 \pic at (0,0) {cross};
-\draw[] (0, 2) node[font=\small] () {linear, vertical};
+% \draw[] (0, 2) node[font=\small] () {linear, vertical};
 \draw[very thick, arrows={Latex[scale=1]-Latex[scale=1]}] (0, -1) -- (0, 1);
 \draw[] (0, -2) node () {$\begin{pmatrix} 0&1 \end{pmatrix}$};
-\draw[] (0, -3) node () {$\begin{pmatrix} 1&-1&0&0 \end{pmatrix}$};
-\end{tikzpicture}
-}
-\subcaptionbox{}[.3\textwidth]{
-\begin{tikzpicture}
+\draw[] (0, -2.75) node () {$\begin{pmatrix} 1&-1&0&0 \end{pmatrix}$};
+\end{scope}
+\node[anchor=south west, xshift=-1em] at (B.north west) {\small \textcolor{magenta}{\textbf{(b)}} linear, vertical};
+% }\hfill
+% \subcaptionbox{}[.3\textwidth]{
+\begin{scope}[shift={(8,0)}, local bounding box=C]
 \pic at (0,0) {cross};
-\draw[] (0, 2) node[font=\small] () {linear, $\pi/4$};
+% \draw[] (0, 2) node[font=\small] () {linear, $\pi/4$};
 \draw[very thick, arrows={Latex[scale=1]-Latex[scale=1]}] (-1, -1) -- (1, 1);
 \draw[] (0, -2) node () {$\begin{pmatrix} 1&1 \end{pmatrix}$};
-\draw[] (0, -3) node () {$\begin{pmatrix} 1&0&1&0 \end{pmatrix}$};
+\draw[] (0, -2.75) node () {$\begin{pmatrix} 1&0&1&0 \end{pmatrix}$};
+\begin{scope}[overlay]
 \draw[] (2, -2) node () {Jones};
-\draw[] (2, -3) node () {Stokes};
-\end{tikzpicture}
-}
-\\[2em]
-\subcaptionbox{}[.3\textwidth]{
-\begin{tikzpicture}
+\draw[] (2, -2.75) node () {Stokes};
+\end{scope}
+\end{scope}
+\node[anchor=south west, xshift=-1em] at (C.north west) {\small \textcolor{magenta}{\textbf{(c)}} linear, $\pi/4$};
+% }
+% \\[2em]
+% \subcaptionbox{}[.32\textwidth]{
+\begin{scope}[shift={(0,-5.75)}, local bounding box=D]
 \pic at (0,0) {cross};
-\draw[] (0, 2) node[font=\small] () {left circular};
+% \draw[] (0, 2) node[font=\small] () {left circular};
 \draw[very thick] plot[domain=0:360,samples=90,smooth] ({cos(\x)},{sin(\x)});
 \draw[very thick, arrows={-Latex[scale=1]}] plot[domain=44:45,samples=1] ({cos(\x)},{sin(\x)});
 \draw[very thick, arrows={-Latex[scale=1]}] plot[domain=224:225,samples=1] ({cos(\x)},{sin(\x)});
 \draw[] (0, -2) node () {$\begin{pmatrix} 1&i \end{pmatrix}$};
-\draw[] (0, -3) node () {$\begin{pmatrix} 1&0&0&-1 \end{pmatrix}$};
-\end{tikzpicture}
-}
-\subcaptionbox{}[.3\textwidth]{
-\begin{tikzpicture}
+\draw[] (0, -2.75) node () {$\begin{pmatrix} 1&0&0&-1 \end{pmatrix}$};
+\end{scope}
+\node[anchor=south west, xshift=-1em] at (D.north west) {\small \textcolor{magenta}{\textbf{(d)}} left circular};
+% }\hfill
+% \subcaptionbox{}[.32\textwidth]{
+\begin{scope}[shift={(4,-5.75)}, local bounding box=E]
 \pic at (0,0) {cross};
-\draw[] (0, 2) node[font=\small] () {right circular};
+% \draw[] (0, 2) node[font=\small] () {right circular};
 \draw[very thick] plot[domain=0:360,samples=90,smooth] ({cos(\x)},{sin(\x)});
 \draw[very thick, arrows={-Latex[scale=1]}] plot[domain=46:45,samples=1] ({cos(\x)},{sin(\x)});
 \draw[very thick, arrows={-Latex[scale=1]}] plot[domain=226:225,samples=1] ({cos(\x)},{sin(\x)});
 \draw[] (0, -2) node () {$\begin{pmatrix} 1&-i \end{pmatrix}$};
-\draw[] (0, -3) node () {$\begin{pmatrix} 1&0&0&1 \end{pmatrix}$};
-\end{tikzpicture}
-}
-\subcaptionbox{}[.3\textwidth]{
-\begin{tikzpicture}
+\draw[] (0, -2.75) node () {$\begin{pmatrix} 1&0&0&1 \end{pmatrix}$};
+\end{scope}
+\node[anchor=south west, xshift=-1em] at (E.north west) {\small \textcolor{magenta}{\textbf{(e)}} right circular};
+% }\hfill
+% \subcaptionbox{}[.32\textwidth]{
+\begin{scope}[shift={(8,-5.75)}, local bounding box=F]
 \pic at (0,0) {cross};
-\draw[] (0, 2) node[font=\small] () {unpolarized};
-\draw[] (0, -3) node () {$\begin{pmatrix} 1&0&0&0 \end{pmatrix}$};
+% \draw[] (0, 2) node[font=\small] () {unpolarized};
+\draw[] (0, -2.75) node () {$\begin{pmatrix} 1&0&0&0 \end{pmatrix}$};
+\begin{scope}[overlay]
 \draw[] (2, -2) node () {Jones};
-\draw[] (2, -3) node () {Stokes};
+\draw[] (2, -2.75) node () {Stokes};
+\end{scope}
+\end{scope}
+\node[anchor=south west, xshift=-1em] at (F.north west) {\small \textcolor{magenta}{\textbf{(f)}} unpolarized};
+% 
+\path[] ($(A.west)!-0.075!(C.east)$) -- ($(A.west)!1.075!(C.east)$);
 \end{tikzpicture}
-}
-}
+% }
