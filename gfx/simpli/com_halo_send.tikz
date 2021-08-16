@@ -1,0 +1,68 @@
+\def\zangle{50}
+\def\xangle{-0}
+% 
+\begin{tikzsize}{\tikzwidth}{\tikzheight}
+\begin{tikzpicture}[scale=\tikzscale,
+                    x=(\xangle:1cm), y=(90:1cm), z=(\zangle:0.5cm)]
+    \pgfmathsetmacro{\lx}{4}
+    \pgfmathsetmacro{\ly}{5}
+    \pgfmathsetmacro{\lz}{4}
+    % 
+    \begin{scope}[shift={(0,0,0)}]
+         \fill[white] (0,0,0) rectangle (\lx,\ly,0);
+        \fill[white] (\lx,0,0)--(\lx,\ly,0)--(\lx,\ly,\lz)--(\lx,0,\lz)--cycle;
+        \fill[white] (0,\ly,0)--(\lx,\ly,0)--(\lx,\ly,\lz)--(0,\ly,\lz)--cycle;
+        % halo x+
+        \fill[dark23, fill opacity=0.5] (\lx-1,0,0) rectangle (\lx,\ly,0);
+        \fill[dark23, fill opacity=0.5] (\lx,0,0)--(\lx,\ly,0)--(\lx,\ly,\lz)--(\lx,0,\lz)--cycle;
+        \fill[dark23, fill opacity=0.5] (\lx-1,\ly,0)--(\lx,\ly,0)--(\lx,\ly,\lz)--(\lx-1,\ly,\lz)--cycle;
+        % halo y+
+        \fill[dark22, fill opacity=0.5] (0,\ly,\lz-1)--(\lx,\ly,\lz-1)--(\lx,\ly,\lz)--(0,\ly,\lz)--cycle;
+        % voxels
+        \foreach \i in {0,1,...,\lx}{
+            \draw[thick] (\i,0,0)--(\i,\ly,0){};
+            \draw[thick] (\i,\ly,0)--(\i,\ly,\lz){};
+        }
+        \foreach \i in {0,1,...,\ly}{
+            \draw[thick] (0,\i,0)--(\lx,\i,0){};
+            \draw[thick] (\lx,\i,0)--(\lx,\i,\lz){};
+        }
+        \foreach \i in {0,1,...,\lz}{
+            \draw[thick] (\lx,0,\i)--(\lx,\ly,\i){};
+            \draw[thick] (0,\ly,\i)--(\lx,\ly,\i){};
+        } 
+        \draw[GREEN, very thick] (2.5,0,0) -- (3.5,2.5,0);
+    \end{scope}
+    % 
+    \begin{scope}[shift={(\lx+1,0,0)}]
+         \fill[white] (0,0,0) rectangle (\lx,\ly,0);
+        \fill[white] (\lx,0,0)--(\lx,\ly,0)--(\lx,\ly,\lz)--(\lx,0,\lz)--cycle;
+        \fill[white] (0,\ly,0)--(\lx,\ly,0)--(\lx,\ly,\lz)--(0,\ly,\lz)--cycle;
+        % halo x+
+        \fill[dark26, fill opacity=0.5] (\lx-1,0,0) rectangle (\lx,\ly,0);
+        \fill[dark26, fill opacity=0.5] (\lx,0,0)--(\lx,\ly,0)--(\lx,\ly,\lz)--(\lx,0,\lz)--cycle;
+        \fill[dark26, fill opacity=0.5] (\lx-1,\ly,0)--(\lx,\ly,0)--(\lx,\ly,\lz)--(\lx-1,\ly,\lz)--cycle;
+        % halo y+
+        \fill[dark24, fill opacity=0.5] (0,\ly,\lz-1)--(\lx,\ly,\lz-1)--(\lx,\ly,\lz)--(0,\ly,\lz)--cycle;
+        % halo x-
+        \fill[dark23, fill opacity=0.5] (0,0,0)--(1,0,0)--(1,\ly,0)--(0,\ly,0)--cycle;
+        \fill[dark23, fill opacity=0.5] (0,\ly,0)--(1,\ly,0)--(1,\ly,\lz)--(0,\ly,\lz)--cycle;
+        % voxels
+        \foreach \i in {0,1,...,\lx}{
+            \draw[thick] (\i,0,0)--(\i,\ly,0){};
+            \draw[thick] (\i,\ly,0)--(\i,\ly,\lz){};
+        }
+        \foreach \i in {0,1,...,\ly}{
+            \draw[thick] (0,\i,0)--(\lx,\i,0){};
+            \draw[thick] (\lx,\i,0)--(\lx,\i,\lz){};
+        }
+        \foreach \i in {0,1,...,\lz}{
+            \draw[thick] (\lx,0,\i)--(\lx,\ly,\i){};
+            \draw[thick] (0,\ly,\i)--(\lx,\ly,\i){};
+        } 
+        \draw[GREEN, very thick] (0.5,2.5,0) -- (1.5,5,0);
+        % \node[] at (0.5,3.5,0) {test};
+    \end{scope}
+    % 
+\end{tikzpicture}
+\end{tikzsize}

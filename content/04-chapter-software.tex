@@ -252,7 +252,7 @@ This include all described functions from \cref{sec:fillBundle}.
 The \code{fastpli.model.solver} module contains the compiled solving algorithm explained in detail in \crefrange{sec:Solver}{sec:modelOpt}.
 Additionally the solver algorithm is wrapped inside the class \code{fastpli.model.solver.Solver}.
 This wrapper class provides a higher level of abstraction (see \cref{sec:fastpliIntro}).
-It contains all necessary variables as attributes and provides therefore an read/write access via class properties, \eg{} \code{Solver.obj\_mean\_length = ...}.
+It contains all necessary variables as attributes and provides therefore an read/write access via class properties, \eg{} \code{Solver.obj\_mean\_length = } \dummy{}.
 Every write method checks the input for user errors and provides a error message.
 This class also contains a \code{Solver.get\_dict()} method, which returns a \python{} dictionary containing all variables and there values for reproducability.
 It is also possible to save the class state, with the current state of the \code{fiber\_bundles}, as a \hdf{} object.

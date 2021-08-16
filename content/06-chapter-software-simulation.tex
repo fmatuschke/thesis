@@ -35,7 +35,7 @@ This allowed the understanding of scattering effects due to the configurations o
 %  
 In the case of the simulation of linear optics the optical system could repoduse the experimental results with \eg{} the optical resampling process \cite{Dohmen2015,Menzel2016}.
 However this algorithm is very computational heavy and due to the precalculations of a discretised tissue volume, very memory intense.
-The foundations of a more ffitient parallel algorithm for the use of supercomputer was already elaborated \cite{Lucksch2016}.
+The foundations of a more efficient parallel algorithm for the use of supercomputer was already elaborated \cite{Lucksch2016}.
 However, the new tilting design resulted in a simplification of the former simulation that could not be easily integrated.
 Therefore the algorithm was completely redesigned and rewritten.
 Additionally the here presented fiber models had to be Incorporated as well.
@@ -124,7 +124,7 @@ This makes it necessary to be able to build such a structure.
 An easy implementation is to represent the windings as layers (see \cref{fig:myelinLayer}).
 This simplifies the creation process significantly.
 A layer can then simply defined by a factor between $0$ and $1$, which scales with the nerve fiber radius.
-For example, $\code=0.75$ means that from $0\leq r < 0.75$ of the radii are interpreted as the first layer.
+For example, $0.75$ means that from $0 \leq r < 0.75$ of the radii are interpreted as the first layer.
 \par
 % 
 Each layer needs to its radius also a set of physical properties:
@@ -312,7 +312,7 @@ At the end it will be resampled to the final \ac{CCD} array size and a noise mod
 \label{sec:pathOfLight}
 % 
 \begin{figure}[!t]
-\def\tikzheight{0.42\textwidth}
+\setlength{\tikzheight}{0.42\textwidth}
 \subcaptionbox{camera view}[.49\textwidth]{
 \inputtikz{gfx/simpli/tilting_3d_a}}\hfill
 \subcaptionbox{perspective view}[.49\textwidth]{
@@ -357,7 +357,7 @@ Since this only adds a parallel shift, a simulation is only necessary if the res
 \par
 % 
 \begin{figure}[!t]
-\def\tikzwidth{0.42\textwidth}
+\setlength{\tikzwidth}{0.42\textwidth}
 \subcaptionbox{normal}[.495\textwidth]{
 \def\tilt{0}
 \def\nindex{2.25}
@@ -391,10 +391,24 @@ This means, that the physical properties stored in the arrays have to be interpo
 % 
 \begin{figure}[!t]
 \centering
-\def\tikzwidth{0.75*\textwidth}
-\inputtikz[true]{gfx/simpli/vector_interpolation}
-\tikzset{external/export=false}
-\caption[Illustration linear and spherical interpolation.]{Illustration of difference between linear and spherical interpolation. Linear interpolation has a constant distance $s$ between each point, spherical interpolation a constant angle $\varphi$ for the same $dt$.}
+\setlength{\tikzwidth}{0.45\textwidth}
+% \tikzset{external/force remake=true}
+\begin{tabular}{cc}
+\inputtikz{gfx/simpli/trilinear_interpolation}
+&
+\inputtikz{gfx/simpli/vector_interpolation}
+\\[-1ex]
+\multicolumn{1}{l}{
+\begin{minipage}[t]{0.495\textwidth}
+\leavevmode\subcaption{\label{fig:triInterp}}
+\end{minipage}}
+&
+\multicolumn{1}{l}{
+\begin{minipage}[t]{0.495\textwidth}
+\leavevmode\subcaption{\label{fig:vectormodel}}
+\end{minipage}}
+\end{tabular}
+\caption[]{Interpolation teqchniques: b) Trilinear interpolation. a) Illustration of difference between linear and spherical interpolation. Linear interpolation has a constant distance $s$ between each point, spherical interpolation a constant angle $\varphi$ for the same $dt$.}
 \label{fig:vectorfield_disc}
 \end{figure}
 % 
@@ -407,13 +421,6 @@ The \textit{linear interpolation} was the first one implemented.
 However since the data contain orientation data, the \textit{spherical interpolation} method should be used.
 \\
 % 
-\begin{figure}[!t]
-\centering
-\includegraphics[width = 0.5\textwidth]{dev/wiki/1280px-3D_interpolation2.png}
-\caption[Trilinear interpolation]{Trilinear interpolation \url{https://en.wikipedia.org/wiki/Trilinear\_interpolation}.}
-\label{fig:triInterp}
-\end{figure}
-% 
 To interpolate the data the trilinear interpolation will be performed (see \cref{fig:triInterp}).
 % 
 % 
@@ -422,7 +429,7 @@ To interpolate the data the trilinear interpolation will be performed (see \cref
 % 
 First the starting points of all light beams will be calculated.
 hen each light beam can be traversed inside the tissue.
-To calculate the light matter interaction, the ... will be calculated after each light beam step.
+To calculate the light matter interaction, the \dummy{} will be calculated after each light beam step.
 As soon as the light hits the boarder of the tissue, the light beam will be the last optical elements and the intensity will be stored inside the \ac{CCD} array.
 The pseudocode is shown in \cref{alg:simulationLoop}.
 % 
@@ -507,34 +514,35 @@ Both algorithms, the DV generator and the simulation can use an additionally par
 For huge volumes that are larger than the locally memory size, the calculation must be split onto several physical \acp{CPU} and \name{computation nodes}\footnote{A computing node is a processing unit in a computer network}.
 For this purpose \acreset{MPI} \ac{MPI} is used.
 A method is implemented that automatically divides the volume along the $x$-axis and $y$-axis into blocks with minimal surface area (see \cref{fig:com_halo}).
-The minimization of the $xy$ surface area is important for the simulation algorithm.
+The minimization of the $x-y$-surface area is important for the simulation algorithm.
 \\
 Once the volume is split into euqal parts, with respect to the nature of integers, the above mentioned algorithms can be performend completly analog on the \mpi{} ranks, as if they only would know about there volume.
 The only exception is the simulation for tilted light beams.
 This means, that at the boarder of the volume, when a light beam travels through the tissue, the light can leave the local volume of the \mpi{} rank.
 \mpi{} provides several methods to send information to another rank.
 Since this volume splitting is cartesion, the cartesion implementations of \mpi{} are used (\eg{} \code{MPI\tu Cart\tu create}).
-However since the light beam also needs in the case of interpolation the information of the sorounding 8 voxels, this would mean that the missing voxels had to be tranfered to the neighboring ranks.
+However since the light beam also needs in the case of interpolation the information of the surrounding $\SI{8}{\voxel}$, this would mean that the missing voxels had to be transferred to the neighboring ranks.
 % 
 \begin{figure}[!t]
 \centering
-\def\tikzwidth{0.75\textwidth}
+\setlength{\tikzwidth}{0.75\textwidth}
 \inputtikz{gfx/simpli/com_halo}
-\caption{comunication halos. The volume is split into six subvolumes, distributed to 6 mpi ranks. The coloured voxels have the same tissue information.}
+\caption{comunication halos. The volume is split into six subvolumes, distributed to 6 mpi ranks. The coloured voxels have the same tissue information.  To calculate the value at a given point a eight-neighborhood is necessary.}
 \label{fig:com_halo}
 \end{figure}
 % 
-This would mean a huge amount of communications, which are relativly slow.
+This would mean a huge amount of communications, which are relatively slow.
 The solution is a so called \name{halo}.
-This is a commenly used concept, where the borders (in this case a volume) are enlarged by a a specific size (in this case 1 voxel) so that the same information of the shared reagions is available everywhere (see \cref{fig:com_halo}).
+This is a commonly used concept, where the borders (in this case a volume) are enlarged by a a specific size (in this case $\SI{1}{\voxel}$) so that the same information of the shared regions is available everywhere (see \cref{fig:com_halo}).
 % 
-\begin{figure}[!t]
-\centering
-\includegraphics[width=0.5\textwidth]{example-image-a}
-\caption{light send to another node}
-\label{fig:com_halo_light}
-\end{figure}
-Now the light beam can be communicated when it leaves the local volume to the next one (see \cref{fig:com_halo_light}).
+% \begin{figure}[!t]
+% \centering
+% \def\tikzwidth{0.5\textwidth}
+% \inputtikz[]{gfx/simpli/com_halo_send}
+% \caption{Light ray send to another node. To calculate the \dummy{} a eight-neighborhood is necessary.}
+% \label{fig:com_halo_light}
+% \end{figure}
+Now the light beam can be communicated when it leaves the local volume to the next one (see \cref{fig:com_halo}).
 This is also the reason, why the surface area is minimized, so that the number of communications is also minimized.
 \\
 To even more speed up the communication process, all leaving light beams are first stored locally in a communication buffer, and only after all local light beams were processed, the buffer will be communicated to the neighbors.

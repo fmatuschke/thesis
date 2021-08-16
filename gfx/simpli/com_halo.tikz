@@ -68,7 +68,9 @@
         \foreach \i in {0,1,...,\lz}{
             \draw[thick] (\lx,0,\i)--(\lx,\ly,\i){};
             \draw[thick] (0,\ly,\i)--(\lx,\ly,\i){};
-        } 
+        }
+        \draw[GREEN, very thick] (2.5,0,0) -- (3.5,2.5,0);
+        \coordinate (A) at (3.5,2.5,0);
     \end{scope}
     \end{scope}
     
@@ -133,6 +135,8 @@
             \draw[thick] (\lx,0,\i)--(\lx,\ly,\i){};
             \draw[thick] (0,\ly,\i)--(\lx,\ly,\i){};
         } 
+        \draw[GREEN, very thick] (0.5,2.5,0) -- (1.5,5,0);
+        \coordinate (B) at (0.5,2.5,0);
     \end{scope}
     \end{scope}
     
@@ -199,5 +203,7 @@
         } 
     \end{scope}
     \end{scope}
+    \node[anchor=north, fill=white, inner sep=2.5pt, yshift=-0.5ex,opacity=0.75,text opacity=1] at ($(A)!0.5!(B)$)  {\textcolor{GREEN}{comm}};
+    \draw[dashed, thick, GREEN] (A) -- (B);
 \end{tikzpicture}
 \end{tikzsize}
