@@ -489,42 +489,46 @@ These are used to calculate the final \ac{3D-PLI} modalities:
 \end{split}
 \end{align}
 % 
+% 
 \begin{figure}[t]
 \centering
 % \fbox{
-\setlength{\tabcolsep}{14pt}
-\setlength{\tikzwidth}{0.495\textwidth}
-\begin{tabular}{cc}
+\setlength{\tabcolsep}{11pt}
+\setlength{\tikzwidth}{0.43\textwidth}
 \tikzset{external/export=false}
+\begin{tabular}{cc}
 \begin{tikzpicture}[baseline, trim axis left, trim axis right]
 \begin{axis}[
 width=\tikzwidth,
+enlargelimits=false,
+scale only axis,
 point meta min=6851,point meta max=13703,
 xmin=0,xmax=1,ymin=0,ymax=1,
-hide axis,colorbar left,colormap/gray,
+hide axis,colorbar horizontal,colormap/gray,
 colorbar style={%
-    every y tick label/.append style={font=\footnotesize},
-    ytick={6851,13703},
-    yticklabels={0,$I_{\mathit{max}}/2$},
-    scaled y ticks=false,
+    every x tick label/.append style={font=\footnotesize},
+    xtick={6851,13703},
+    xticklabels={0,$I_{\mathit{max}}/2$},
+    scaled x ticks=false,
     }]
 \addplot [forget plot] graphics [
-xmin=0,xmax=1,ymin=0,ymax=1,
+xmin=0,xmax=1,ymin=0,ymax=1
 ] {dev/vervet1818/Vervet1818_60mu_70ms_s0550_a00_d000_Transmittance_6851_13703.png};
 \end{axis}
 \end{tikzpicture}
 &
-\tikzset{external/export=false}
 \begin{tikzpicture}[baseline, trim axis left, trim axis right]
 \begin{axis}[
 width=\tikzwidth,
+enlargelimits=false,
+scale only axis,
 point meta min=0,point meta max=180,
 xmin=0,xmax=1,ymin=0,ymax=1,
-hide axis,colorbar left,colormap/gray,
+hide axis,colorbar horizontal,colormap/gray,
 colorbar style={%
-    every y tick label/.append style={font=\footnotesize},
-    ytick={0,90,180},
-    yticklabels={0,90,180},
+    every x tick label/.append style={font=\footnotesize},
+    xtick={0,90,180},
+    xticklabels={$\SI{0}{\degree}$,$\SI{90}{\degree}$,$\SI{180}{\degree}$},
     }]
 \addplot [forget plot] graphics [
 xmin=0,xmax=1,ymin=0,ymax=1,
@@ -533,38 +537,38 @@ xmin=0,xmax=1,ymin=0,ymax=1,
 \end{tikzpicture}
 \\
 % 
-\begin{minipage}[t]{0.42\textwidth}
+\begin{minipage}[t]{\tikzwidth}
 \vspace{-1.75em}
 \leavevmode\subcaption{transmittance}
-\vspace{1.75em}
 \end{minipage}
 &
-\begin{minipage}[t]{0.42\textwidth}
+\begin{minipage}[t]{\tikzwidth}
 \vspace{-1.75em}
 \leavevmode\subcaption{direction}
-\vspace{1.75em}
 \end{minipage}
-\\
+\\[1.75em]
 % 
-\tikzset{external/export=false}
 \begin{tikzpicture}[baseline, trim axis left, trim axis right]
 \begin{axis}[
 width=\tikzwidth,
+enlargelimits=false,
+scale only axis,
 point meta min=0,point meta max=0.858,
 xmin=0,xmax=1,ymin=0,ymax=1,
-hide axis,colorbar left,colormap/gray,
+hide axis,colorbar horizontal,colormap/gray,
 colorbar style={%
-    every y tick label/.append style={font=\footnotesize},}]
+    every x tick label/.append style={font=\footnotesize},}]
 \addplot [forget plot] graphics [
 xmin=0,xmax=1,ymin=0,ymax=1,
 ] {dev/vervet1818/Vervet1818_60mu_70ms_s0550_a00_d000_Retardation_0_0858.png};
 \end{axis}
 \end{tikzpicture}
 &
-\tikzset{external/export=false}
 \begin{tikzpicture}[baseline, trim axis left, trim axis right]
 \begin{axis}[
 width=\tikzwidth,
+enlargelimits=false,
+scale only axis,
 xmin=0,xmax=1,ymin=0,ymax=1,
 hide axis,
 ]
@@ -578,16 +582,14 @@ xmin=0,xmax=0.134,ymin=0.825,ymax=1.0,
 \end{tikzpicture}
 \\
 % 
-\begin{minipage}[t]{0.42\textwidth}
+\begin{minipage}[t]{\tikzwidth}
 \vspace{-1.5em}
 \leavevmode\subcaption{retardation}
-\vspace{1.5em}
 \end{minipage}
 &
-\begin{minipage}[t]{0.42\textwidth}
+\begin{minipage}[t]{\tikzwidth}
 \vspace{-1.5em}
-\leavevmode\subcaption{fiber orientation map (FOM)}
-\vspace{1.5em}
+\leavevmode\subcaption{\label{fig:exampleFom}fiber orientation map (FOM)}
 \end{minipage}
 \end{tabular}
 % }
@@ -631,11 +633,12 @@ However, for single fiber paths crossing other fiber bundles or in the extreme s
 % 
 \begin{figure}[!t]
 \centering
-\setlength{\tikzwidth}{0.4\textwidth}
+\setlength{\tikzwidth}{0.8\textwidth}
 \begin{center}
 \begin{tabular}{m{6cm}m{6cm}}
-\includegraphics[width=\tikzwidth]{gfx/pli/color_sphere.png}
+\includegraphics[width=0.41\tikzwidth]{gfx/pli/color_sphere.png}
 &
+% \tikzset{external/remake next=true}
 \inputtikz{gfx/pli/hsv_sphere}
 \\
 \begin{minipage}[t]{0.42\textwidth}
@@ -656,7 +659,7 @@ However, for single fiber paths crossing other fiber bundles or in the extreme s
 % 
 The orientation of the birefringence axis is described by the direction angle $\varphi$ and the inclination angle $\alpha$ (see \cref{fig:sphere}).
 To represent the 3D information, the \textit{hsv-black} is usually represented in \ac{3D-PLI}.
-It encodes the orientation in the color and the inclination in the saturation:
+It encodes the orientation in the color and the inclination in the saturation (see \cref{fig:exampleFom}):
 \begin{align}
 \begin{split}
     H &= \varphi/\pi\\
@@ -665,9 +668,6 @@ It encodes the orientation in the color and the inclination in the saturation:
 \end{split}
 \end{align}
 Since the orientation, unlike a vector, covers only a half sphere, the colors are point symmetric.
-% 
-\itodo{Section Images}
-% fig:spheres
 % 
 % 
 \section{optical resolution}
@@ -685,7 +685,7 @@ d=\frac{ \lambda}{2 n \sin \theta} = \frac{\lambda}{2\mathrm{NA}} \> .
 \end{align}
 $d$ is the minimum resolvable distance, $n$ the refractive index, $\theta$ the angle of a light spot, which can be combined to the better known numerical aperture $\mathrm{NA}$.
 This gives an absolute threshold for a light microscope above which resolution cannot be improved.
-For the wavelength used in \ac{3D-PLI} with $\lambda = \SI{525}{\nano\meter}$ and a numerical apperature of $\mathrm{NA} = \SI{}{}$, this results in a limit of \dummy{}.
+For the wavelength used in \ac{3D-PLI} with $\lambda = \SI{525}{\nano\meter}$ and a numerical apperature of $\mathrm{NA} = \SI{}{}$ \dummy{}, this results in a limit of \dummy{}.
 % 
 \begin{figure}[!t]
 \setlength{\tikzwidth}{0.45\textwidth}
@@ -721,7 +721,7 @@ To account for this, a noise model must be applied to each image pixel.
 \cite{Wiese:887678} showed that this can be done via a normal distribution.
 % 
 \begin{align}
-    I = I + normal(\sigma, \mu)
+    I = I + \gauss(\sigma, \mu)
 \end{align}
 % 
 \par

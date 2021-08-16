@@ -586,7 +586,7 @@ A special case are the first and last point of the fiber.
 These are only allowed to move perpendicular to the first / last segment line.
 This prevents the fibers from growing into infinity.
 % 
-\section{Shape Control}\label{chap5:ShapeControl}
+\section{Shape control}\label{chap5:ShapeControl}
 The movement of individual points can lead to a distorted fiber model, \eg{} two points move very far apart.
 Therefore boundary conditions must be specified.
 It was decided to use the following two conditions.
@@ -633,6 +633,7 @@ r_{new} = \frac{r_{i} + r_{i+1}}{2},\enspace
 % 
 \begin{figure}[!t]
     \centering
+    % \tikzset{external/force remake}
     \def\tikzheight{.40\textwidth}
     \subcaptionbox{Boundry segment length: lower bound $phi=\SI{60}{\degree} \xrightarrow{} r_{min} \geq \SI{0.5773}{} \cdot l_{mean}$}[.475\textwidth]{
     \inputtikz{gfx/model/model_circle}}\hfill
@@ -648,7 +649,7 @@ If a $p_{i}$ point in a fiber falls below this value, the three points are moved
 $p_{i-1},p_{i+1}$ is moved \dummy{} and $p_{i}$ opposite each other.
 This reduces the curvature.
 % 
-\subsection{Movement Phase}
+\subsection{Movement phase}
 All movements are added to the velocity vector before performing the overall movement.
 The algorithm performs each step sequentially (see \cref{alg:pseudocode_solver}).
 % 

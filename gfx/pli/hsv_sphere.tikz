@@ -1,22 +1,15 @@
-\begin{tikzsize}{\tikzwidth}{\tikzheight}
-\begin{tikzpicture}[scale=\tikzscale,]
+\begin{tikzpicture}[inner sep=0pt]
+% 
 \begin{axis}[%
 axis equal,
-width=10cm,
-height=10cm,
-axis lines = center,
-axis line style={->},
-xlabel = {$x$},
-ylabel = {$y$},
-zlabel = {$z$},
-label style={font=\tiny},
+axis lines=none,
 ticks=none,
-enlargelimits=0.3,
+% scale only axis,
+width=\tikzwidth,
+height=\tikzwidth,
+% enlargelimits=0,
 view/h=45,
-scale uniformly strategy=units only,
 ]
-% 
-% \draw[dashed, white!0!black] (axis cs:-1.5,0,0) -- (axis cs:1.5,0,0);
 % 
 \addplot3 [%
     patch,
@@ -31,7 +24,8 @@ scale uniformly strategy=units only,
     variable y = \v,
     domain = 0:360,
     y domain = 0:180,
-    samples = 9,%36
+    samples = 36,
+    samples y = 18,
     opacity=0.2,
     fill opacity=1.0,
     % point meta={symbolic={Hsb=deg(v),u,u}},
@@ -48,11 +42,13 @@ scale uniformly strategy=units only,
 ({cos(u)*sin(v)}, {sin(u)*sin(v)}, {cos(v)});
 % 
 \draw[dashed, white!0!black] (axis cs:-1.5,0,0) -- (axis cs:1,0,0);
-\draw[white!0!black] (axis cs:1,0,0) -- (axis cs:1.5,0,0);
-\draw[dashed, white!0!black] (axis cs:0,-1,0) -- (axis cs:0,1.5,0);
+\draw[white!0!black, ->] (axis cs:1,0,0) -- (axis cs:1.5,0,0) node[pos=0.75, anchor=south west, yshift=0.5ex] {$x$};
+\draw[dashed, white!0!black] (axis cs:0,-1,0) -- (axis cs:0,1,0);
 \draw[white!0!black] (axis cs:0,-1.5,0) -- (axis cs:0,-1,0);
+\draw[white!0!black, ->] (axis cs:0,1,0) -- (axis cs:0,1.5,0)
+node[pos=0.75, anchor=south west, yshift=0.5ex] {$y$};
 \draw[dashed, white!0!black] (axis cs:0,0,-1.5) -- (axis cs:0,0,1);
-\draw[white!0!black] (axis cs:0,0,1) -- (axis cs:0,0,1.5);
+\draw[white!0!black, ->] (axis cs:0,0,1) -- (axis cs:0,0,1.5) node[pos=0.75, anchor=west, xshift=0.5ex] {$z$};
 % 
 \draw[->] (axis cs:0.0,0.0,0.0) -- (axis cs:{cos(45)*sin(45)},{sin(45)*sin(45)},{cos(45)});
 \draw[->] (axis cs:0.0,0.0,0.0) -- (axis cs:0.5,0.5,0.0);
@@ -61,22 +57,22 @@ scale uniformly strategy=units only,
 \draw[dotted] (axis cs:0.5,0.5,0.0) -- (axis cs:0.5,0.5,{cos(45)});
 \addplot3[%
     black, no marks,
-    domain = 0:45, samples = 90,
+    domain = 0:45, samples = 45,
     variable = \u, samples y=1,
-    {Latex[scale=0.33]}-{Latex[scale=0.33]},] 
+    {Latex[scale=0.5]}-{Latex[scale=0.5]},] 
     ({cos(u)*0.3},{sin(u)*0.3},{0});
-\node[anchor=west,] at (axis cs:{cos(22.5)*0.3},{sin(22.5)*0.3},0)
-    {\scriptsize $\varphi$};
+\node[anchor=west,xshift=1.0ex] at (axis cs:{cos(5)*0.3},{sin(5)*0.3},0)
+    {$\varphi$};
 \addplot3[%
     black, no marks,
-    domain = 45:90, samples = 90,
+    domain = 45:90, samples = 45,
     variable = \v, samples y=1,
-    {Latex[scale=0.33]}-{Latex[scale=0.33]},] 
+    {Latex[scale=0.5]}-{Latex[scale=0.5]},] 
     ({cos(45)*sin(v)*0.3},{sin(45)*sin(v)*0.3},{cos(v)*0.3});
-\node[anchor=west] at 
+\node[anchor=west, xshift=0.5ex] at 
     (axis cs:{cos(45)*sin(67.5)*0.3},{sin(45)*sin(67.5)*0.3},{cos(67.5)*0.3})
-    {\scriptsize $\alpha$};
+    {$\alpha$};
 % 
+\coordinate (C) at (0,0,0);
 \end{axis}
 \end{tikzpicture}
-\end{tikzsize}
