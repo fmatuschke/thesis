@@ -156,12 +156,11 @@ At the end the DV-Generator returns the arrays \tissue{}, \opticalaxis{} and the
 \centering
 \setlength{\tikzwidth}{0.32\textwidth}
 \subcaptionbox{\label{fig:myelinLayer}Schematic of nerve fiber with axon and wrapped around myelin}[.32\textwidth]{
-\resizebox{!}{0.32\textwidth}{
-\includegraphics[]{dev/brain/myelin_layers.pdf}}}
-\subcaptionbox{\label{fig:fiberLayer}Cross section nerve fiber with layerd structure definde by $n$ radii}[.32\textwidth]{
-\inputtikz[true]{gfx/simpli/fiber_layer}}
+\includegraphics[height=0.3\textwidth]{dev/brain/myelin_layers.pdf}\vspace{0mm}}\hfill
+\subcaptionbox{\label{fig:fiberLayer}Cross section nerve fiber with layered structure definde by $n$ radii}[.32\textwidth]{
+\inputtikz[true]{gfx/simpli/fiber_layer}\vspace{-5mm}}\hfill
 \subcaptionbox{\label{fig:vectormodel}Cross section of discreticed nerve fiber with resulting vectors of optical axis}[.32\textwidth]{
-\inputtikz[true]{gfx/simpli/vector_model}} \hfill
+\inputtikz[true]{gfx/simpli/vector_model}\vspace{-5mm}}
 \caption{Discretisation of nerve fiber with layered structure.}
 \label{fig:fiber_discretisation}
 \end{figure}
@@ -229,9 +228,9 @@ for fiber_segment in fiber_bundle:
 % 
 \begin{figure}[!t]
 \centering
-\resizebox{1.0\textwidth}{!}{
-\tikzset{external/export=false}
-\input{gfx/simpli/vector_error}}
+% \tikzset{external/export=false}
+\setlength{\tikzwidth}{.24\textwidth}
+\input{gfx/simpli/vector_error}
 \caption[Discretization error]{Discretization error. Cross section of single fiber with one myelin layer inside discretized tissue volume. The couloured pattern show the resulting voxels which corresponds to the fiber. The smaller the \voxelsize{}, the smaller the representation error.}
 \label{fig:vectorfield_disc_error}
 \end{figure}
@@ -364,7 +363,7 @@ Since this only adds a parallel shift, a simulation is only necessary if the res
 \inputtikz[true]{gfx/simpli/tilting_a}}\hfill
 \subcaptionbox{tilted}[.495\textwidth]{
 \inputtikz[true]{gfx/simpli/tilting_b}}
-\caption[Light path]{Ligh path.}
+\caption[Light path]{Ligh path for a normal a) and tilted b) case. For the tilted case the light beam $I1$ \dummy{check} gets tilted inside the tissue and therefore recieves a optical shift $\Delta$.}
 \label{fig:tilted_side_view}
 \end{figure}
 % 
@@ -378,7 +377,7 @@ In the case of a tilted light beam or lilted tissue, a offset of $\Delta$ is occ
 % 
 In the case of already simulating an undistored view, the light paths have to spaced out by the same distance, as the affine transformation would resample the resulting pixels.
 % 
-\begin{lstfloat}[!ht]
+\begin{lstfloat}[!p]
 	\lstinputlisting[style=cpp,basicstyle=\scriptsize\ttfamily,]{code/simulation.cpp}
 	\caption{Pseudocode simulation \itodo{anhang}}
 	\label{alg:simulation}
@@ -393,22 +392,11 @@ This means, that the physical properties stored in the arrays have to be interpo
 \centering
 \setlength{\tikzwidth}{0.45\textwidth}
 % \tikzset{external/force remake=true}
-\begin{tabular}{cc}
-\inputtikz{gfx/simpli/trilinear_interpolation}
-&
-\inputtikz{gfx/simpli/vector_interpolation}
-\\[-1ex]
-\multicolumn{1}{l}{
-\begin{minipage}[t]{0.495\textwidth}
-\leavevmode\subcaption{\label{fig:triInterp}}
-\end{minipage}}
-&
-\multicolumn{1}{l}{
-\begin{minipage}[t]{0.495\textwidth}
-\leavevmode\subcaption{\label{fig:vectormodel}}
-\end{minipage}}
-\end{tabular}
-\caption[]{Interpolation teqchniques: b) Trilinear interpolation. a) Illustration of difference between linear and spherical interpolation. Linear interpolation has a constant distance $s$ between each point, spherical interpolation a constant angle $\varphi$ for the same $dt$.}
+\subcaptionbox{\label{fig:triInterp}Trilinear interpolation}[\tikzwidth]{
+\hfill\inputtikz{gfx/simpli/trilinear_interpolation}\hfill}\hfill
+\subcaptionbox{\label{fig:vectormodel}Spherical interpolation}[\tikzwidth]{
+\inputtikz{gfx/simpli/vector_interpolation}}
+\caption[]{Interpolation techniques: The trilinear interpolation can be visualized as a axial step interpolation. The difference between linear and spherical interpolation is that the linear interpolation has a constant distance $s$ between each point while the spherical interpolation has a constant angle $\varphi$ for the same step.}
 \label{fig:vectorfield_disc}
 \end{figure}
 % 

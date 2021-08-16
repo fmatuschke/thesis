@@ -203,7 +203,7 @@
         } 
     \end{scope}
     \end{scope}
-    \node[anchor=north, fill=white, inner sep=2.5pt, yshift=-0.5ex,opacity=0.75,text opacity=1] at ($(A)!0.5!(B)$)  {\textcolor{GREEN}{comm}};
+    \node[anchor=north, fill=white, inner sep=2.5pt, yshift=-0.5ex,opacity=0.875,text opacity=1] at ($(A)!0.5!(B)$)  {\textcolor{GREEN}{comm}};
     \draw[dashed, thick, GREEN] (A) -- (B);
 \end{tikzpicture}
 \end{tikzsize}
