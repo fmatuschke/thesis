@@ -30,8 +30,9 @@
         \draw[thick] (\lx,0,\i)--(\lx,\ly,\i){};
         \draw[thick] (0,\ly,\i)--(\lx,\ly,\i){};
     } 
-    \coordinate (BB1) at (current bounding box.north east);
-    \coordinate (BB2) at (current bounding box.south east);
-    \path[] (-1,0)--(\lx+2,0);
+    % \coordinate (BB1) at (current bounding box.north east);
+    % \coordinate (BB2) at (current bounding box.south east);
+    % 
+    \path[] (-2,5,2)--(7+2,5,2);
 \end{tikzpicture}
 \end{tikzsize}

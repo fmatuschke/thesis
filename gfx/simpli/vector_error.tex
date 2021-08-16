@@ -12,6 +12,7 @@
 \def\yc{0.2}
 \def\rin{1.5}
 \def\rout{3}
+% 
 %  
 \newcommand{\fiber}[3]{
 	\def\dd{#1}
@@ -45,21 +46,22 @@
 %	}
 }
 %
-\subcaptionbox{}[.245\textwidth]{
-\resizebox{0.245\textwidth}{!}{
-\begin{tikzpicture}[scale=0.65]
+\subcaptionbox{}[\tikzwidth]{
+\resizebox{\tikzwidth}{!}{
+\begin{tikzpicture}[]
 \path[] (-3.75, -3.5) rectangle (3.75, 3.25);
 \begin{scope}[shift={(-\xc,-\yc)}]
-    \fiber{2}{line width = 0.2mm}{pattern color=c1,pattern=horizontal lines}
-    \draw[line width = 0.4mm] (\xc,\yc) circle (\rin);
-    \draw[line width = 0.4mm] (\xc,\yc) circle (\rout);
+\fiber{2}{line width = 0.2mm}{pattern color=c1,pattern=horizontal lines}
+\draw[line width = 0.4mm] (\xc,\yc) circle (\rin);
+\draw[line width = 0.4mm] (\xc,\yc) circle (\rout);
 \end{scope}
 \end{tikzpicture}
 }}
+\hfill
 %
-\subcaptionbox{}[.245\textwidth]{
-\resizebox{0.245\textwidth}{!}{
-\begin{tikzpicture}[scale=0.65]
+\subcaptionbox{}[\tikzwidth]{
+\resizebox{\tikzwidth}{!}{
+\begin{tikzpicture}[]
 \path[] (-3.75, -3.5) rectangle (3.75, 3.25);
 \begin{scope}[shift={(-\xc,-\yc)}]
 \fiber{1}{line width = 0.1mm}{pattern color=c2,pattern=vertical lines}
@@ -68,10 +70,11 @@
 \end{scope}
 \end{tikzpicture}
 }}
+\hfill
 %
-\subcaptionbox{}[.245\textwidth]{
-\resizebox{0.245\textwidth}{!}{
-\begin{tikzpicture}[scale=0.65]
+\subcaptionbox{}[\tikzwidth]{
+\resizebox{\tikzwidth}{!}{
+\begin{tikzpicture}[]
 \path[] (-3.75, -3.5) rectangle (3.75, 3.25);
 \begin{scope}[shift={(-\xc,-\yc)}]
 \fiber{0.5}{line width = 0.05mm}{pattern color=c3,pattern=north east lines}
@@ -80,10 +83,11 @@
 \end{scope}
 \end{tikzpicture}
 }}
+\hfill
 %
-\subcaptionbox{}[.245\textwidth]{
-\resizebox{0.245\textwidth}{!}{
-\begin{tikzpicture}[scale=0.65]
+\subcaptionbox{}[\tikzwidth]{
+\resizebox{\tikzwidth}{!}{
+\begin{tikzpicture}[]
 \path[] (-3.75, -3.5) rectangle (3.75, 3.25);
 \begin{scope}[shift={(-\xc,-\yc)}]
 \fiber{0.25}{line width = 0.025mm}{pattern color=c4,pattern=crosshatch dots}

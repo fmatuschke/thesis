@@ -1,8 +1,8 @@
 \begin{tikzsize}{\tikzwidth}{\tikzheight}
-\begin{tikzpicture}[scale=2.75, %scale=\tikzscale, 
+\begin{tikzpicture}[scale=3, %scale=\tikzscale, 
                     x=(0:1cm), y=(90:1cm), z=(50:0.5cm)]
     % 
-    \node at (0.5,0.5,0.5) {\tiny \tikzscale, \the\tikzwidth, \the\tikzheight};
+    % \node at (0.5,0.5,0.5) {\tiny \tikzscale, \the\tikzwidth, \the\tikzheight};
     % 
     \draw[thick] (0,0,0)--(1,0,0){};
     \draw[thick] (0,0,0)--(0,1,0){};
