@@ -11,63 +11,37 @@
 \def\rndSeed{40}
 % 
 \begin{scope}[shift={(0,0)}]
- \node[] at (-2.5,-0.5) {$\segLength = \SI{1}{\mathit{L_0}}$};
+\node[] at (-2.5,-0.5) {$\segLength = \SI{1}{\mathit{L_0}}$};
 % 
 \def\rndSeed{40}
 % 
 \pgfmathsetseed{\rndSeed}%
+% gray background
 \foreach \i in {0,10,...,200}{
-\pgfmathsetmacro{\x}{\i/20}
-\pgfmathsetmacro{\y}{(0.75*sin(\i)+0.5*sin(3*\i-90))}
-\pgfmathsetmacro{\r}{(5+1.5*sin(\i*4.2)) / 10}
-\ifnum \i > 1
-    \foreach \j in {0,0.1,...,1}{
-    \pgfmathsetmacro{\rr}{\lastr+(\r-\lastr)*\j}
-    \pgfmathsetmacro{\xx}{\lastx + \j*(\x-\lastx)}
-    \pgfmathsetmacro{\yy}{\lasty + \j*(\y-\lasty)}
-    \draw[fill, lightgray] (\xx,\yy) circle(\rr);
-    }
-\fi
-\xdef\lastx{\x}
-\xdef\lasty{\y}
-\xdef\lastr{\r}
-}
-% repair why i dont know yet (last one)
-\pgfmathsetseed{\rndSeed}%
-\foreach \i in {0,10,...,200}{
-\pgfmathsetmacro{\x}{\i/20}
-\pgfmathsetmacro{\y}{(0.75*sin(\i)+0.5*sin(3*\i-90))}
-\pgfmathsetmacro{\r}{(5+1.5*sin(\i*4.2)) / 10}
-\draw[fill, lightgray] (\x,\y) circle(\r);
+    \pgfmathsetmacro{\x}{\i/20}
+    \pgfmathsetmacro{\y}{(0.75*sin(\i)+0.5*sin(3*\i-90))}
+    \pgfmathsetmacro{\r}{(5+1.5*sin(\i*4.2)) / 10}
+    \ifnum \i > 1
+        \foreach \j in {0,0.1,...,1}{
+        \pgfmathsetmacro{\rr}{\lastr+(\r-\lastr)*\j}
+        \pgfmathsetmacro{\xx}{\lastx + \j*(\x-\lastx)}
+        \pgfmathsetmacro{\yy}{\lasty + \j*(\y-\lasty)}
+        \draw[fill, lightgray] (\xx,\yy) circle(\rr);
+        }
+    \fi
+    \xdef\lastx{\x}
+    \xdef\lasty{\y}
+    \xdef\lastr{\r}
 }
 % 
+% fiber points
 \begin{scope}[local bounding box=bb]
 \pgfmathsetseed{\rndSeed}%
 \foreach \i in {0,10,...,200}{
-\pgfmathsetmacro{\x}{\i/20}
-\pgfmathsetmacro{\y}{(0.75*sin(\i)+0.5*sin(3*\i-90))}
-\pgfmathsetmacro{\r}{(5+1.5*sin(\i*4.2)) / 10}
-\node at (\x,\y) [circle,fill,inner sep=1.0pt]{};
-% \draw[ultra thin,lightgray!75!white,dashed] (\x,\y) circle (\r){};
-}
-\end{scope}
-% 
-% draw ground truth
-\begin{scope}[overlay]
-\pgfmathsetseed{\rndSeed}%
-\foreach \i in {0,10,...,200}{
-\pgfmathsetmacro{\x}{\i/20}
-\pgfmathsetmacro{\y}{(0.75*sin(\i)+0.5*sin(3*\i-90))}
-\pgfmathsetmacro{\r}{(5+1.5*sin(\i*4.2)) / 10}
-\path [clip] (\x,\y) circle (\r) [reverseclip];
-}
-% 
-\pgfmathsetseed{\rndSeed}%
-\foreach \i in {0,10,...,200}{
-\pgfmathsetmacro{\x}{\i/20}
-\pgfmathsetmacro{\y}{(0.75*sin(\i)+0.5*sin(3*\i-90))}
-\pgfmathsetmacro{\r}{(5+1.5*sin(\i*4.2)) / 10}
-\draw[thick, dashed] (\x,\y) circle (\r){};
+    \pgfmathsetmacro{\x}{\i/20}
+    \pgfmathsetmacro{\y}{(0.75*sin(\i)+0.5*sin(3*\i-90))}
+    \pgfmathsetmacro{\r}{(5+1.5*sin(\i*4.2)) / 10}
+    \node at (\x,\y) [circle,fill,inner sep=1.0pt]{};
 }
 \end{scope}
 \end{scope}
@@ -80,72 +54,39 @@
 \def\rndSeed{40}
 % 
 \pgfmathsetseed{\rndSeed}%
+% gray background
 \foreach \i in {0,10,...,200}{
-\pgfmathsetmacro{\x}{\i/20}
-\pgfmathsetmacro{\y}{(0.75*sin(\i)+0.5*sin(3*\i-90))}
-\pgfmathsetmacro{\r}{(5+1.5*sin(\i*4.2)) / 10}
-% 
-\pgfmathparse{Mod(\i,20)==0?1:0}
-\ifnum\pgfmathresult>0
-    \ifnum \i > 1
-        \foreach \j in {0,0.05,...,1}{
-        \pgfmathsetmacro{\rr}{\lastr+(\r-\lastr)*\j}
-        \pgfmathsetmacro{\xx}{\lastx + \j*(\x-\lastx)}
-        \pgfmathsetmacro{\yy}{\lasty + \j*(\y-\lasty)}
-        \draw[fill, lightgray] (\xx,\yy) circle(\rr);
-        }
+    \pgfmathsetmacro{\x}{\i/20}
+    \pgfmathsetmacro{\y}{(0.75*sin(\i)+0.5*sin(3*\i-90))}
+    \pgfmathsetmacro{\r}{(5+1.5*sin(\i*4.2)) / 10}
+    \pgfmathparse{Mod(\i,20)==0?1:0}
+    \ifnum\pgfmathresult>0
+        \ifnum \i > 1
+            \foreach \j in {0,0.05,...,1}{
+                \pgfmathsetmacro{\rr}{\lastr+(\r-\lastr)*\j}
+                \pgfmathsetmacro{\xx}{\lastx + \j*(\x-\lastx)}
+                \pgfmathsetmacro{\yy}{\lasty + \j*(\y-\lasty)}
+                \draw[fill, lightgray] (\xx,\yy) circle(\rr);
+            }
+        \fi
+        \xdef\lastx{\x}
+        \xdef\lasty{\y}
+        \xdef\lastr{\r}
     \fi
-    \xdef\lastx{\x}
-    \xdef\lasty{\y}
-    \xdef\lastr{\r}
-\fi
 }
 % 
-% repair why i dont know yet (last one)
+% fiber points
 \pgfmathsetseed{\rndSeed}%
 \foreach \i in {0,10,...,200}{
-\pgfmathsetmacro{\x}{\i/20}
-\pgfmathsetmacro{\y}{(0.75*sin(\i)+0.5*sin(3*\i-90))}
-\pgfmathsetmacro{\r}{(5+1.5*sin(\i*4.2)) / 10}
-% 
-\pgfmathparse{Mod(\i,20)==0?1:0}
-\ifnum\pgfmathresult>0
-    \draw[fill, lightgray] (\x,\y) circle(\r);
-\fi
+    \pgfmathsetmacro{\x}{\i/20}
+    \pgfmathsetmacro{\y}{(0.75*sin(\i)+0.5*sin(3*\i-90))}
+    \pgfmathsetmacro{\r}{(5+1.5*sin(\i*4.2)) / 10}
+    \pgfmathparse{Mod(\i,20)==0?1:0}
+    \ifnum\pgfmathresult>0
+        \node at (\x,\y) [circle,fill,inner sep=1.0pt]{};
+    \fi
 }
-% 
-\pgfmathsetseed{\rndSeed}%
-\foreach \i in {0,10,...,200}{
-% 
-\pgfmathsetmacro{\x}{\i/20}
-\pgfmathsetmacro{\y}{(0.75*sin(\i)+0.5*sin(3*\i-90))}
-\pgfmathsetmacro{\r}{(5+1.5*sin(\i*4.2)) / 10}
-% 
-\pgfmathparse{Mod(\i,20)==0?1:0}
-\ifnum\pgfmathresult>0
-    \node at (\x,\y) [circle,fill,inner sep=1.0pt]{};
-\fi
-% \draw[ultra thin,lightgray!75!white,dashed] (\x,\y) circle (\r){};
-}
-% 
-% draw ground trouth
-\begin{scope}[overlay]
-\pgfmathsetseed{\rndSeed}%
-\foreach \i in {0,10,...,200}{
-\pgfmathsetmacro{\x}{\i/20}
-\pgfmathsetmacro{\y}{(0.75*sin(\i)+0.5*sin(3*\i-90))}
-\pgfmathsetmacro{\r}{(5+1.5*sin(\i*4.2)) / 10}
-\path [clip] (\x,\y) circle (\r) [reverseclip];
-}
-% 
-\pgfmathsetseed{\rndSeed}%
-\foreach \i in {0,10,...,200}{
-\pgfmathsetmacro{\x}{\i/20}
-\pgfmathsetmacro{\y}{(0.75*sin(\i)+0.5*sin(3*\i-90))}
-\pgfmathsetmacro{\r}{(5+1.5*sin(\i*4.2)) / 10}
-\draw[thick, dashed] (\x,\y) circle (\r){};
-}
-\end{scope}
+%
 \end{scope}
 % 
 % 
@@ -157,74 +98,38 @@
 % 
 \pgfmathsetseed{\rndSeed}%
 \foreach \i in {0,10,...,200}{
-\pgfmathsetmacro{\x}{\i/20}
-\pgfmathsetmacro{\y}{(0.75*sin(\i)+0.5*sin(3*\i-90))}
-\pgfmathsetmacro{\r}{(5+1.5*sin(\i*4.2)) / 10}
-% 
-\pgfmathparse{Mod(\i,40)==0?1:0}
-\ifnum\pgfmathresult>0
-    \ifnum \i > 1
-        \foreach \j in {0,0.025,...,1}{
-        \pgfmathsetmacro{\rr}{\lastr+(\r-\lastr)*\j}
-        \pgfmathsetmacro{\xx}{\lastx + \j*(\x-\lastx)}
-        \pgfmathsetmacro{\yy}{\lasty + \j*(\y-\lasty)}
-        \draw[fill, lightgray] (\xx,\yy) circle(\rr);
-        }
+    \pgfmathsetmacro{\x}{\i/20}
+    \pgfmathsetmacro{\y}{(0.75*sin(\i)+0.5*sin(3*\i-90))}
+    \pgfmathsetmacro{\r}{(5+1.5*sin(\i*4.2)) / 10}
+    \pgfmathparse{Mod(\i,40)==0?1:0}
+    \ifnum\pgfmathresult>0
+        \ifnum \i > 1
+            \foreach \j in {0,0.025,...,1}{
+            \pgfmathsetmacro{\rr}{\lastr+(\r-\lastr)*\j}
+            \pgfmathsetmacro{\xx}{\lastx + \j*(\x-\lastx)}
+            \pgfmathsetmacro{\yy}{\lasty + \j*(\y-\lasty)}
+            \draw[fill, lightgray] (\xx,\yy) circle(\rr);
+            }
+        \fi
+        \xdef\lastx{\x}
+        \xdef\lasty{\y}
+        \xdef\lastr{\r}
     \fi
-    \xdef\lastx{\x}
-    \xdef\lasty{\y}
-    \xdef\lastr{\r}
-\fi
-}
-% 
-% repair why i dont know yet (last one)
-\pgfmathsetseed{\rndSeed}%
-\foreach \i in {0,10,...,200}{
-\pgfmathsetmacro{\x}{\i/20}
-\pgfmathsetmacro{\y}{(0.75*sin(\i)+0.5*sin(3*\i-90))}
-\pgfmathsetmacro{\r}{(5+1.5*sin(\i*4.2)) / 10}
-% 
-\pgfmathparse{Mod(\i,40)==0?1:0}
-\ifnum\pgfmathresult>0
-    \draw[fill, lightgray] (\x,\y) circle(\r);
-\fi
 }
 % 
 \pgfmathsetseed{\rndSeed}%
 \foreach \i in {0,10,...,200}{
-% 
-\pgfmathsetmacro{\x}{\i/20}
-\pgfmathsetmacro{\y}{(0.75*sin(\i)+0.5*sin(3*\i-90))}
-\pgfmathsetmacro{\r}{(5+1.5*sin(\i*4.2)) / 10}
-% 
-\pgfmathparse{Mod(\i,40)==0?1:0}
-\ifnum\pgfmathresult>0
-    \node at (\x,\y) [circle,fill,inner sep=1.0pt]{};
-\fi
-% \draw[ultra thin,lightgray!75!white,dashed] (\x,\y) circle (\r){};
-}
-% 
-% draw ground trouth
-\begin{scope}[overlay]
-\pgfmathsetseed{\rndSeed}%
-\foreach \i in {0,10,...,200}{
-\pgfmathsetmacro{\x}{\i/20}
-\pgfmathsetmacro{\y}{(0.75*sin(\i)+0.5*sin(3*\i-90))}
-\pgfmathsetmacro{\r}{(5+1.5*sin(\i*4.2)) / 10}
-\path [clip] (\x,\y) circle (\r) [reverseclip];
-}
-% 
-\pgfmathsetseed{\rndSeed}%
-\foreach \i in {0,10,...,200}{
-\pgfmathsetmacro{\x}{\i/20}
-\pgfmathsetmacro{\y}{(0.75*sin(\i)+0.5*sin(3*\i-90))}
-\pgfmathsetmacro{\r}{(5+1.5*sin(\i*4.2)) / 10}
-\draw[thick, dashed] (\x,\y) circle (\r){};
+    \pgfmathsetmacro{\x}{\i/20}
+    \pgfmathsetmacro{\y}{(0.75*sin(\i)+0.5*sin(3*\i-90))}
+    \pgfmathsetmacro{\r}{(5+1.5*sin(\i*4.2)) / 10}
+    \pgfmathparse{Mod(\i,40)==0?1:0}
+    \ifnum\pgfmathresult>0
+        \node at (\x,\y) [circle,fill,inner sep=1.0pt]{};
+    \fi
 }
 \end{scope}
-\end{scope}
 % 
-\path[] ($(bb.west)!-0.4!(bb.east)$) -- ($(bb.west)!1.4!(bb.east)$);
+% \path[] ($(bb.west)!-0.4!(bb.east)$) -- ($(bb.west)!1.4!(bb.east)$);
 % 
 \end{tikzpicture}
 \end{tikzsize}

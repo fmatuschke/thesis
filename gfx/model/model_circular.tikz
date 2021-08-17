@@ -24,7 +24,7 @@
     ]
     % 
     \addplot3[domain=0:360,y domain=0:180, samples=20,surf,z buffer=sort, colormap/winter]
-        ({(12 + 6 * cos(x)) * cos(y)} ,
+        ({(12 + 6 * cos(x)) * cos(y)},
         {(12 + 6 * cos(x)) * sin(y)},
         {6 * sin(x)});
     %     % 
@@ -33,22 +33,25 @@
          {6 * cos(x)},
          {y});
     \addplot3[domain=0:360,y domain=180:220, samples=20, samples y=5, surf, z buffer=sort, colormap/winter]
-        ({(12 + 6 * cos(x)) * cos(y)} ,
+        ({(12 + 6 * cos(x)) * cos(y)},
         {(12 + 6 * cos(x)) * sin(y)},
         {6 * sin(x)});
     \addplot3[domain=0:360,y domain=-40:0, samples=20, samples y=5, surf, z buffer=sort, colormap/winter]
-        ({(12 + 6 * cos(x)) * cos(y)} ,
+        ({(12 + 6 * cos(x)) * cos(y)},
         {(12 + 6 * cos(x)) * sin(y)},
         {6 * sin(x)});
     % 
     \draw[dashed] (axis cs: 0,0,10) -- (axis cs: 0,0,35);
     \draw[dashed] (axis cs: 0,0,-20.5) -- (axis cs: 0,0,-35);
     \draw[dashed] (axis cs:{12*cos(200)},{12*sin(200)},0) \foreach \i in {201,202,...,340}{-- (axis cs:{12*cos(\i)},{12*sin(\i)},0)};
-    \draw [] (axis cs:{12*cos(280)},{12*sin(280)},0) -- (7,-10) node[anchor=west, pos=1] {$fiber\_rad$};
-    \draw [] (axis cs: 0,0,16) -- (axis cs: 5,5,16) node[anchor=west, pos=1] {$fiber\_lin$};
-    \path[] (axis cs: 0,0,-35) -- (axis cs: 0,0,35);
-    \path[] (axis cs: -18,0,0) -- (axis cs: 18,0,0);
+    \draw [] (axis cs:{12*cos(280)},{12*sin(280)},0) -- (7,-10) node[anchor=west, pos=1] {\code{fiber\tu rad}};
+    \draw [] (axis cs: 0,0,16) -- (axis cs: 5,5,16) node[anchor=west, pos=1] {\code{fiber\tu lin}};
+    % 
+    \coordinate (C) at (axis cs: 0,0,0);
+    \path[use as bounding box] ($(C)-(3.5,0,35)$) rectangle ($(C)+(3.5,0,35)$);
+    % 
 \end{axis}
+% 
 % 
 \end{tikzpicture}
 \end{tikzsize}
