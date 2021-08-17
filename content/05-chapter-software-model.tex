@@ -145,11 +145,13 @@ The first module handles the seeding process, whereas the second part build from
 \begin{figure}[!t]
     \def\tikzheight{0.25\textwidth}
     \centering
-    \subcaptionbox{\label{fig:triGrid}equilateral triangle grid}[.295\textwidth]{
-    \inputtikz{gfx/model/triangular_grid}\hfill}
-    \subcaptionbox{\label{fig:rndGrid}random grid}[.295\textwidth]{
-    \inputtikz{gfx/model/rnd_circle_points}}\hfill
-    \subcaptionbox{\label{fig:crossBundle}populated fiber bundles}[.39\textwidth]{
+    \subcaptionbox{\label{fig:triGrid}equilateral triangle grid}[.32\textwidth]{
+    \inputtikz{gfx/model/triangular_grid}}
+    \hfill
+    \subcaptionbox{\label{fig:rndGrid}random grid}[.32\textwidth]{
+    \inputtikz{gfx/model/rnd_circle_points}}
+    \hfill
+    \subcaptionbox{\label{fig:crossBundle}populated fiber bundles}[.32\textwidth]{
     \inputtikz{gfx/model/crossing_bundle}}
 	\caption{Populating fiber bundles with seed points.}
 % 	\label{fig:}
@@ -202,7 +204,7 @@ As helper functions cutting methods do exists, which will crop the seed points i
 \begin{figure}[!t]
     \centering
     \setlength{\tikzwidth}{0.75\textwidth}
-    \inputtikz[true]{gfx/model/min_torsion}
+    \inputtikz{gfx/model/min_torsion}
 	\caption[]{Left initial seed point plane. Right plane rotating and placed along the path. At the end, the plane has the same normal vector as the initial plane, however due to the minimal rotation principle, the plane paradoxically is rotated along the normal vector.}
 	\label{fig:torsion}
 \end{figure}
@@ -467,10 +469,11 @@ Therefore another strategy has to be choosen to reduce the number of calculation
     \centering
     \subcaptionbox{\label{fig:octreeCube}Exemplary octree subdivision of a cube.}[.3\textwidth]{
     \def\tikzheight{0.6\textwidth}
-    \inputtikz{gfx/model/oct_tree}}\hfill
+    \inputtikz{gfx/model/oct_tree}}
+    \hfill
     \subcaptionbox{\label{fig:collision2D}Exemplary collision in 2d. The \textcolor{RED}{red} boxes corresponds to the \acp{AABB} }[.65\textwidth]{
     \def\tikzheight{0.6\textwidth}
-    \inputtikz[true]{gfx/model/collision_tree}}
+    \inputtikz{gfx/model/collision_tree}}
 	\caption{Exemplary tree subdivision.}
 	\label{fig:octree}
 \end{figure}
@@ -595,11 +598,25 @@ It was decided to use the following two conditions.
 % 
 \begin{figure}[!t]
     \centering
+    % \tikzset{external/force remake}
+    % \def\forcetikzscale{true}
+    \setlength{\tabcolsep}{0pt}
     \setlength{\tikzwidth}{.45\textwidth}
-    \subcaptionbox{merge}[.49\textwidth]{
-    \inputtikz{gfx/model/model_merge}}
-    \subcaptionbox{split}[.49\textwidth]{
-    \inputtikz{gfx/model/model_split}}
+    \begin{tabular}{cc}
+    % 
+    \inputtikz{gfx/model/model_merge} &
+    \inputtikz{gfx/model/model_split}
+    \\
+    \multicolumn{1}{@{}l}{
+    \begin{minipage}{0.5\textwidth}
+    \leavevmode\subcaption{merge}
+    \end{minipage}}
+    &
+    \multicolumn{1}{@{}l}{
+    \begin{minipage}{0.5\textwidth}
+    \leavevmode\subcaption{split}
+    \end{minipage}}
+    \end{tabular}
 	\caption{Length control for fibers $f$ and $f'$}
 	\label{fig:mergeSplit}
 \end{figure}
@@ -607,8 +624,9 @@ It was decided to use the following two conditions.
 % 
 \begin{figure}[!t]
     \centering
-    \setlength{\tikzwidth}{0.75\textwidth}
-    \tikzset{external/export next=false}
+    \setlength{\tikzwidth}{0.95\textwidth}
+    \def\forcetikzscale{true}
+    \tikzset{external/export=false}
     \inputtikz{gfx/model/model_length}
 	\caption{different fiber segment length.}
 	\label{fig:modelLength}
@@ -616,7 +634,7 @@ It was decided to use the following two conditions.
 % 
 The mean segment length is the distance between the two points of a fiber segment.
 If the segment length becomes too small/large, the points within a fiber corresponding to the object are merged/separated, adding one point less/one new point.
-The minimum/maximum distance of the object is set to $d_{\min} = \frac{2}{3} \overline{d}, d_{\max} = \frac{4}{3}\overline{d}$.
+The minimum/maximum distance of the object is set to $d_{\min} = \frac{2}{3} \overline{d}$ and $d_{\max} = \frac{4}{3}\overline{d}$.
 Therefore the mean value of the object is:
 \begin{align}
 \frac{d_{\min} + d_{\max}}{2} = \overline{d}

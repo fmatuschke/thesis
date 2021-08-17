@@ -1,6 +1,5 @@
 \begin{tikzsize}{\tikzwidth}{\tikzheight}
 \begin{tikzpicture}[scale=\tikzscale,remember picture]
-% \begin{sizetikz}[remember picture]{\textwidth}{\textheight}
 % 
 \tikzstyle{reverseclip}=[insert path={(current page.north east) --
   (current page.south east) --
@@ -42,6 +41,7 @@
 \draw[fill, lightgray] (\x,\y) circle(\r);
 }
 % 
+\begin{scope}[local bounding box=bb]
 \pgfmathsetseed{\rndSeed}%
 \foreach \i in {0,10,...,200}{
 \pgfmathsetmacro{\x}{\i/20}
@@ -50,11 +50,10 @@
 \node at (\x,\y) [circle,fill,inner sep=1.0pt]{};
 % \draw[ultra thin,lightgray!75!white,dashed] (\x,\y) circle (\r){};
 }
-\path[](-1,0)--(9,0); %bb
+\end{scope}
 % 
-% draw ground trouth
-\begin{scope}
-\begin{pgfinterruptboundingbox}
+% draw ground truth
+\begin{scope}[overlay]
 \pgfmathsetseed{\rndSeed}%
 \foreach \i in {0,10,...,200}{
 \pgfmathsetmacro{\x}{\i/20}
@@ -70,7 +69,6 @@
 \pgfmathsetmacro{\r}{(5+1.5*sin(\i*4.2)) / 10}
 \draw[thick, dashed] (\x,\y) circle (\r){};
 }
-\end{pgfinterruptboundingbox}
 \end{scope}
 \end{scope}
 % 
@@ -129,11 +127,9 @@
 \fi
 % \draw[ultra thin,lightgray!75!white,dashed] (\x,\y) circle (\r){};
 }
-\path[](-1,0)--(9,0); %bb
 % 
 % draw ground trouth
-\begin{scope}
-\begin{pgfinterruptboundingbox}
+\begin{scope}[overlay]
 \pgfmathsetseed{\rndSeed}%
 \foreach \i in {0,10,...,200}{
 \pgfmathsetmacro{\x}{\i/20}
@@ -149,7 +145,6 @@
 \pgfmathsetmacro{\r}{(5+1.5*sin(\i*4.2)) / 10}
 \draw[thick, dashed] (\x,\y) circle (\r){};
 }
-\end{pgfinterruptboundingbox}
 \end{scope}
 \end{scope}
 % 
@@ -208,11 +203,9 @@
 \fi
 % \draw[ultra thin,lightgray!75!white,dashed] (\x,\y) circle (\r){};
 }
-\path[](-1,0)--(9,0); %bb
 % 
 % draw ground trouth
-\begin{scope}
-\begin{pgfinterruptboundingbox}
+\begin{scope}[overlay]
 \pgfmathsetseed{\rndSeed}%
 \foreach \i in {0,10,...,200}{
 \pgfmathsetmacro{\x}{\i/20}
@@ -228,10 +221,10 @@
 \pgfmathsetmacro{\r}{(5+1.5*sin(\i*4.2)) / 10}
 \draw[thick, dashed] (\x,\y) circle (\r){};
 }
-\end{pgfinterruptboundingbox}
 \end{scope}
 \end{scope}
 % 
-% \end{sizetikz}
+\path[] ($(bb.west)!-0.4!(bb.east)$) -- ($(bb.west)!1.4!(bb.east)$);
+% 
 \end{tikzpicture}
 \end{tikzsize}
