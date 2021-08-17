@@ -22,21 +22,25 @@ As described in \cref{sec:opticalResolution}, optical resolution depends on aber
 Optical resolution and resampling are modeled as described in \cref{sec:ccdOptic}. 
 % 
 \begin{figure}[!t]
-\setlength{\tikzwidth}{0.35\textwidth}
+\setlength{\tikzwidth}{0.35\textwidth} % bigger than 0.475 images???
+\setlength{\tabcolsep}{0em}
 \centering
-\begin{tabular}{cc}
+\begin{tabular}{|c|c|}
+% \begin{minipage}{0.5\textwidth}\end{minipage}&
+% \begin{minipage}{0.5\textwidth}\end{minipage}\\
+% 
 \includegraphics[width=\tikzwidth]{dev/wiki/USAF-1951.pdf}
 &
-% \tikzset{external/remake next=true}
+\tikzset{external/remake next=true}
 \inputtikz{dev/gfx/chap8/usaf_image}
 \\
 % 
 \multicolumn{1}{l}{
-\begin{minipage}[t]{0.465\textwidth}
+\begin{minipage}[t]{0.457\textwidth}
 \leavevmode\subcaption{\label{fig:usaf}USAF chart from group -2 to 1: \url{https://en.wikipedia.org/wiki/1951_USAF_resolution_test_chart}}
 \end{minipage}}&
 \multicolumn{1}{l}{
-\begin{minipage}[t]{0.465\textwidth}
+\begin{minipage}[t]{0.475\textwidth}
 \leavevmode\subcaption{\label{fig:usaf_image}microscopic image}
 \end{minipage}}
 \\[2em]
@@ -49,11 +53,11 @@ Optical resolution and resampling are modeled as described in \cref{sec:ccdOptic
 \\
 % 
 \multicolumn{1}{l}{
-\begin{minipage}[t]{0.45\textwidth}
+\begin{minipage}[t]{0.475\textwidth}
 \leavevmode\subcaption{\label{fig:usaf_lines_lr}centered line plots lr}
 \end{minipage}}&
 \multicolumn{1}{l}{
-\begin{minipage}[t]{0.45\textwidth}
+\begin{minipage}[t]{0.475\textwidth}
 \leavevmode\subcaption{\label{fig:usaf_lines_ud}centered line plots ud}
 \end{minipage}}
 \end{tabular}
