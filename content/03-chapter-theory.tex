@@ -491,108 +491,7 @@ These are used to calculate the final \ac{3D-PLI} modalities:
 % 
 % 
 \begin{figure}[t]
-\centering
-% \fbox{
-\setlength{\tabcolsep}{11pt}
-\setlength{\tikzwidth}{0.43\textwidth}
-\tikzset{external/export=false}
-\begin{tabular}{cc}
-\begin{tikzpicture}[baseline, trim axis left, trim axis right]
-\begin{axis}[
-width=\tikzwidth,
-enlargelimits=false,
-scale only axis,
-point meta min=6851,point meta max=13703,
-xmin=0,xmax=1,ymin=0,ymax=1,
-hide axis,colorbar horizontal,colormap/gray,
-colorbar style={%
-    every x tick label/.append style={font=\footnotesize},
-    xtick={6851,13703},
-    xticklabels={0,$I_{\mathit{max}}/2$},
-    scaled x ticks=false,
-    }]
-\addplot [forget plot] graphics [
-xmin=0,xmax=1,ymin=0,ymax=1
-] {dev/vervet1818/Vervet1818_60mu_70ms_s0550_a00_d000_Transmittance_6851_13703.png};
-\end{axis}
-\end{tikzpicture}
-&
-\begin{tikzpicture}[baseline, trim axis left, trim axis right]
-\begin{axis}[
-width=\tikzwidth,
-enlargelimits=false,
-scale only axis,
-point meta min=0,point meta max=180,
-xmin=0,xmax=1,ymin=0,ymax=1,
-hide axis,colorbar horizontal,colormap/gray,
-colorbar style={%
-    every x tick label/.append style={font=\footnotesize},
-    xtick={0,90,180},
-    xticklabels={$\SI{0}{\degree}$,$\SI{90}{\degree}$,$\SI{180}{\degree}$},
-    }]
-\addplot [forget plot] graphics [
-xmin=0,xmax=1,ymin=0,ymax=1,
-] {dev/vervet1818/Vervet1818_60mu_70ms_s0550_a00_d000_Direction_0_180.png};
-\end{axis}
-\end{tikzpicture}
-\\
-% 
-\begin{minipage}[t]{\tikzwidth}
-\vspace{-1.75em}
-\leavevmode\subcaption{transmittance}
-\end{minipage}
-&
-\begin{minipage}[t]{\tikzwidth}
-\vspace{-1.75em}
-\leavevmode\subcaption{direction}
-\end{minipage}
-\\[1.75em]
-% 
-\begin{tikzpicture}[baseline, trim axis left, trim axis right]
-\begin{axis}[
-width=\tikzwidth,
-enlargelimits=false,
-scale only axis,
-point meta min=0,point meta max=0.858,
-xmin=0,xmax=1,ymin=0,ymax=1,
-hide axis,colorbar horizontal,colormap/gray,
-colorbar style={%
-    every x tick label/.append style={font=\footnotesize},}]
-\addplot [forget plot] graphics [
-xmin=0,xmax=1,ymin=0,ymax=1,
-] {dev/vervet1818/Vervet1818_60mu_70ms_s0550_a00_d000_Retardation_0_0858.png};
-\end{axis}
-\end{tikzpicture}
-&
-\begin{tikzpicture}[baseline, trim axis left, trim axis right]
-\begin{axis}[
-width=\tikzwidth,
-enlargelimits=false,
-scale only axis,
-xmin=0,xmax=1,ymin=0,ymax=1,
-hide axis,
-]
-\addplot [forget plot] graphics [
-xmin=0,xmax=1,ymin=0,ymax=1,
-] {dev/vervet1818/Vervet1818_60mu_70ms_s0550_a00_d000_FOM_HSVBlack.png};
-\addplot [forget plot] graphics [
-xmin=0,xmax=0.134,ymin=0.825,ymax=1.0,
-] {gfx/pli/color_sphere.png};
-\end{axis}
-\end{tikzpicture}
-\\
-% 
-\begin{minipage}[t]{\tikzwidth}
-\vspace{-1.5em}
-\leavevmode\subcaption{retardation}
-\end{minipage}
-&
-\begin{minipage}[t]{\tikzwidth}
-\vspace{-1.5em}
-\leavevmode\subcaption{\label{fig:exampleFom}fiber orientation map (FOM)}
-\end{minipage}
-\end{tabular}
-% }
+\input{dev/vervet1818/images.tex}
 \caption[3D-PLI modalities]{3D-PLI modalities for a coronal section of a Vervet monkey brain.}
 \end{figure}
 % 
@@ -634,25 +533,26 @@ However, for single fiber paths crossing other fiber bundles or in the extreme s
 \begin{figure}[!t]
 \centering
 \setlength{\tikzwidth}{0.8\textwidth}
-\begin{center}
+\setlength{\tabcolsep}{0pt}
 \begin{tabular}{m{6cm}m{6cm}}
 \includegraphics[width=0.41\tikzwidth]{gfx/pli/color_sphere.png}
 &
 % \tikzset{external/remake next=true}
 \inputtikz{gfx/pli/hsv_sphere}
 \\
-\begin{minipage}[t]{0.42\textwidth}
+\multicolumn{1}{@{}l}{
+\begin{minipage}{0.5\textwidth}
 \leavevmode\subcaption{2d hsv sphere}
-\end{minipage}
+\end{minipage}}
 &
-\begin{minipage}[t]{0.42\textwidth}
+\multicolumn{1}{@{}l}{
+\begin{minipage}{0.5\textwidth}
 \leavevmode\subcaption{\label{fig:sphere}3d hsv sphere}
-\end{minipage}
+\end{minipage}}
 \end{tabular}
-\end{center}
 % 
-\vspace{-1em} % because of tabular?
-\caption{collor spheres \itodo{high res hsv sphere}}
+% \vspace{-1em} % because of tabular?
+\caption{Color spheres decoding the direction $\varphi$ and inclination $\alpha$ of a orientation.}
 \label{fig:spheres}
 \end{figure}
 % 
