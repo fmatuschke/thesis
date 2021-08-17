@@ -4,7 +4,7 @@ width=\tikzwidth,
 xmin=0,xmax=44364,ymin=0,ymax=33904,
 point meta min=0,point meta max=5846,
 hide axis,
-colormap name=cividis,
+colormap/cividis,
 colorbar,
 ]
 \addplot [forget plot] graphics

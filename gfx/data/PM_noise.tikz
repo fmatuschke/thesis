@@ -6,7 +6,7 @@
     enlargelimits=false,
     xmin=50, xmax=1600,
     % ymin=0,ymax=253,
-    colormap name=cividis,
+    colormap/cividis,
     colorbar,
     % colorbar horizontal,
     colorbar/width=3mm,
