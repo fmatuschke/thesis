@@ -94,7 +94,7 @@ The code is as the former written in \cpp{} with a user friendly wrapper functio
 \begin{figure}[!t]
 \centering
 \setlength{\tikzwidth}{0.5\textwidth}
-\inputtikz[true]{gfx/simpli/disc_volume}
+\inputtikz{gfx/simpli/disc_volume}
 \caption[discreticed tissue volume]{discretized tissue volume: Its \dummy{} is defined by a \ac{AABB}, which is defined by two variables. \itodo{show x,y,z resulting volume?}\itodo{show fiber model inside?}}
 \label{fig:discVol}
 \end{figure}
@@ -158,9 +158,9 @@ At the end the DV-Generator returns the arrays \tissue{}, \opticalaxis{} and the
 \subcaptionbox{\label{fig:myelinLayer}Schematic of nerve fiber with axon and wrapped around myelin}[.32\textwidth]{
 \includegraphics[height=0.3\textwidth]{dev/brain/myelin_layers.pdf}\vspace{0mm}}\hfill
 \subcaptionbox{\label{fig:fiberLayer}Cross section nerve fiber with layered structure definde by $n$ radii}[.32\textwidth]{
-\inputtikz[true]{gfx/simpli/fiber_layer}\vspace{-5mm}}\hfill
+\inputtikz{gfx/simpli/fiber_layer}\vspace{-5mm}}\hfill
 \subcaptionbox{\label{fig:vectormodel}Cross section of discreticed nerve fiber with resulting vectors of optical axis}[.32\textwidth]{
-\inputtikz[true]{gfx/simpli/vector_model}\vspace{-5mm}}
+\inputtikz{gfx/simpli/vector_model}\vspace{-5mm}}
 \caption{Discretisation of nerve fiber with layered structure.}
 \label{fig:fiber_discretisation}
 \end{figure}
@@ -360,9 +360,9 @@ Since this only adds a parallel shift, a simulation is only necessary if the res
 \subcaptionbox{normal}[.495\textwidth]{
 \def\tilt{0}
 \def\nindex{2.25}
-\inputtikz[true]{gfx/simpli/tilting_a}}\hfill
+\inputtikz{gfx/simpli/tilting_a}}\hfill
 \subcaptionbox{tilted}[.495\textwidth]{
-\inputtikz[true]{gfx/simpli/tilting_b}}
+\inputtikz{gfx/simpli/tilting_b}}
 \caption[Light path]{Ligh path for a normal a) and tilted b) case. For the tilted case the light beam $I1$ \dummy{check} gets tilted inside the tissue and therefore recieves a optical shift $\Delta$.}
 \label{fig:tilted_side_view}
 \end{figure}

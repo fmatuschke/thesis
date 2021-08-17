@@ -360,61 +360,57 @@
 \setlength{\tikzheight}{\textheight} %22.37076cm
 % 
 \makeatletter
-\newcommand{\inputtikzext}[1]{%
-	% \IfFileExists{#1.tikz}{
-		\input{#1.tikz}
-	% }{
-  %   \@latex@warning{.....#1.tikz..... not found. Using example-image.}
-	% 	\noindent\includegraphics[width=\tikzwidth]{example-image}
-	% }
+\newcommand{\inputtikz}[1]{%
+    \input{#1.tikz}
 }
 \makeatother
-% 
-\makeatletter
-\newcommand{\inputtikz}[2][false]{%
-    % \ifthenelse{\boolean{#1}}{
-        \inputtikzext{#2}
+% \makeatletter
+% \newcommand{\inputtikz}[2][false]{%
+%     \ifthenelse{\boolean{#1}}{
+%         \input{#2.tikz}
 %     }{
 % 	\IfFileExists{tikz/#2.pdf}{% check if pdf tikz/.../*.pdf exists
 % 		\includegraphics{tikz/#2.pdf}
 % 	}{ % build ext tikz
-% 		\inputtikzext{#2}
+% 		\input{#2.tikz}
 % 	}}
-}
-\makeatother
+% }
+% \makeatother
 % 
 \usepackage{environ}
 \makeatletter
+\def\forcetikzscale{false}
 \newsavebox{\measure@tikzpicture}
-\NewEnviron{tikzsize}[3][true]{%
-	\def\tikzscale{1}%
-	\ifthenelse{\boolean{#1}}{
+\NewEnviron{tikzsize}[2]{% use false for non externalized images
+    \pgfmathsetmacro{\tikzscale}{1}
+	\ifthenelse{\boolean{\forcetikzscale}}{
+	    \tikzset{external/export=false,external/optimize=false}% force translation of this BODY (and do not optimize it away as it would usually do):
+	    \begin{lrbox}{\measure@tikzpicture}%
+		\BODY
+		\end{lrbox}%
+		\expandafter\pgfmathparse{#1/\wd\measure@tikzpicture}%
+		\edef\tikzscalewidth{\pgfmathresult}%
+		\expandafter\pgfmathparse{#2/\ht\measure@tikzpicture}%
+		\edef\tikzscaleheight{\pgfmathresult}%
+		\pgfmathparse{min(\tikzscalewidth, \tikzscaleheight)}%
+		\edef\tikzscale{\pgfmathresult}%
+		\BODY
+	}{%
 	\tikzifexternalizingnext{%
 		\begin{lrbox}{\measure@tikzpicture}%
 		\tikzset{external/export next=false,external/optimize=false}% force translation of this BODY (and do not optimize it away as it would usually do):
 		\BODY
 		\end{lrbox}%
-		\expandafter\pgfmathparse{#2/\wd\measure@tikzpicture}%
+		\expandafter\pgfmathparse{#1/\wd\measure@tikzpicture}%
 		\edef\tikzscalewidth{\pgfmathresult}%
-		\expandafter\pgfmathparse{#3/\ht\measure@tikzpicture}%
+		\expandafter\pgfmathparse{#2/\ht\measure@tikzpicture}%
 		\edef\tikzscaleheight{\pgfmathresult}%
 		\pgfmathparse{min(\tikzscalewidth, \tikzscaleheight)}%
 		\edef\tikzscale{\pgfmathresult}%
 		\BODY
-	}{% this will re-use an existing external graphics:
+    }{% this will re-use an existing external graphics:
 		\BODY
-	}}{
-	    \begin{lrbox}{\measure@tikzpicture}%
-		\tikzset{external/export next=false,external/optimize=false}% force translation of this BODY (and do not optimize it away as it would usually do):
-		\BODY
-		\end{lrbox}%
-		\expandafter\pgfmathparse{#2/\wd\measure@tikzpicture}%
-		\edef\tikzscalewidth{\pgfmathresult}%
-		\expandafter\pgfmathparse{#3/\ht\measure@tikzpicture}%
-		\edef\tikzscaleheight{\pgfmathresult}%
-		\pgfmathparse{min(\tikzscalewidth, \tikzscaleheight)}%
-		\edef\tikzscale{\pgfmathresult}%
-		\BODY
+	}
 	}
 }
 \makeatother
@@ -550,7 +546,7 @@
 % \makeatother
 % 
 \pgfplotsset{
-   /pgfplots/colormap={cividis}{%
+    colormap/cividis/.style={colormap={cividis}{%
       rgb=(0.00000000, 0.13511200, 0.30475100)
       rgb=(0.00000000, 0.13806800, 0.31110500)
       rgb=(0.00000000, 0.14101300, 0.31757900)
@@ -808,7 +804,7 @@
       rgb=(0.99550300, 0.90386600, 0.21237000)
       rgb=(0.99573700, 0.90934400, 0.21777200)
    },
-}
+}}
 
 \pgfplotsset{
   colormap/twilight/.style={colormap={twilight}{[1pt]

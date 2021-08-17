@@ -1,5 +1,5 @@
 \begin{tikzsize}{\tikzwidth}{\tikzheight}
-\begin{tikzpicture}[scale=\tikzscale,]
+\begin{tikzpicture}[scale=\tikzscale]
 % 
 \begin{scope}[shift={(0,0)}, local bounding box=bb1]
 \foreach \x/\y/\r [count=\i] in {0/0/18,2/1/17,4/-1/15,6/0.75/12,8/-0.15/26,10/0.42/23}{
@@ -20,6 +20,10 @@
 \draw[black, dashed] (\x,\y) circle (\r pt);
 \pgfmathsetmacro{\ii}{int(\i-1)}
 \draw[black, fill] (\x,\y) circle (2pt) node[black, yshift=-10pt, anchor=north] {$p_{\ii}$};}
+% 
+\coordinate (A) at (0,0);
+\coordinate (B) at (10,0);
+% 
 \end{scope}
 % 
 \begin{scope}[shift={(0,-5.0)}, local bounding box=bb2]
@@ -45,5 +49,8 @@
 % 
 \draw[->, line width=2.0pt] (bb1.south) -- (bb2.north);
 % 
+% \coordinate (C) at ($(A)!-0.5!(B)$);
+% \path[draw, GREEN, thick, as bounding box] (A -| bb1.north) rectangle (B -| bb2.south);
+%
 \end{tikzpicture}
 \end{tikzsize}

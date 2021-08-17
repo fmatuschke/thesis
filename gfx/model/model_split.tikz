@@ -25,6 +25,10 @@
 \draw[black, dashed] (\x,\y) circle (\r pt);
 \pgfmathsetmacro{\ii}{int(\i-1)}
 \draw[black, fill] (\x,\y) circle (2pt) node[black, yshift=-10pt, anchor=north] {$p_{\ii}$};}
+% 
+\coordinate (A) at (0,0);
+\coordinate (B) at (10,0);
+% 
 \end{scope}
 % 
 \begin{scope}[shift={(0,-5)}, local bounding box=bb2]
@@ -49,6 +53,7 @@
 \end{scope}
 % 
 \draw[->, line width=2.0pt] (bb1.south) -- (bb2.north);
+% \path[draw, GREEN, thick] ($(A)!-0.1!(B)$) -- ($(A)!1.1!(B)$);
 % 
 \end{tikzpicture}
 \end{tikzsize}
