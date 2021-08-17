@@ -471,7 +471,7 @@ Therefore another strategy has to be choosen to reduce the number of calculation
     \def\tikzheight{0.6\textwidth}
     \inputtikz{gfx/model/oct_tree}}
     \hfill
-    \subcaptionbox{\label{fig:collision2D}Exemplary collision in 2d. The \textcolor{RED}{red} boxes corresponds to the \acp{AABB} }[.65\textwidth]{
+    \subcaptionbox{\label{fig:collision2D}Exemplary collision in 2d. The \textcolor{RED}{boxes} corresponds to the \acp{AABB} }[.65\textwidth]{
     \def\tikzheight{0.6\textwidth}
     \inputtikz{gfx/model/collision_tree}}
 	\caption{Exemplary tree subdivision.}
@@ -624,9 +624,10 @@ It was decided to use the following two conditions.
 % 
 \begin{figure}[!t]
     \centering
-    \setlength{\tikzwidth}{0.95\textwidth}
-    \def\forcetikzscale{true}
-    \tikzset{external/export=false}
+    \setlength{\tikzwidth}{0.75\textwidth}
+    % disable tikz externalize for overlayed circle lines
+    % \def\forcetikzscale{true}
+    % \tikzset{external/export=false}
     \inputtikz{gfx/model/model_length}
 	\caption{different fiber segment length.}
 	\label{fig:modelLength}
@@ -652,12 +653,23 @@ r_{new} = \frac{r_{i} + r_{i+1}}{2},\enspace
 \begin{figure}[!t]
     \centering
     % \tikzset{external/force remake}
-    \def\tikzheight{.40\textwidth}
-    \subcaptionbox{Boundry segment length: lower bound $phi=\SI{60}{\degree} \xrightarrow{} r_{min} \geq \SI{0.5773}{} \cdot l_{mean}$}[.475\textwidth]{
-    \inputtikz{gfx/model/model_circle}}\hfill
-    \subcaptionbox{\label{fig:boundaryLength}Boundary segment radii: lower bound $r_{min} \geq \fiberRadiusMean $}[.45\textwidth]{
-    \inputtikz{gfx/model/model_circular}}
-	\caption{Geometrical boundry condition for fiber segment length \segLength and fiber bending radius \segRadius.}
+    \setlength{\tikzheight}{.42\textwidth}
+    \setlength{\tabcolsep}{0pt}
+    \begin{tabular}{m{0.5\textwidth}m{0.5\textwidth}}
+    \inputtikz{gfx/model/model_circle} &
+    \inputtikz{gfx/model/model_circular}
+    \\
+    \multicolumn{1}{@{}l}{
+    \begin{minipage}{0.475\textwidth}
+    \leavevmode\subcaption{Boundary segment length: lower bound $phi=\SI{60}{\degree} \xrightarrow{} r_{\mathit{min}} \geq \SI{0.5773}{} \cdot l_{\mathit{mean}}$}
+    \end{minipage}}
+    &
+    \multicolumn{1}{@{}l}{
+    \begin{minipage}{0.475\textwidth}
+    \leavevmode\subcaption{\label{fig:boundaryLength}Boundary segment radii: lower bound $r_{\mathit{min}} \geq \fiberRadiusMean$}
+    \end{minipage}\hfill}
+    \end{tabular}
+	\caption{Geometrical boundary condition for fiber segment length \segLength{} and fiber bending radius \segRadius{}.}
 	\label{fig:modelCircle}
 \end{figure}
 % 
@@ -722,13 +734,16 @@ It additionally provides interactive methods to build nerve fiber models and was
 % 
 % 
 \begin{figure}[!t]
-    \setlength{\tikzwidth}{0.5\textwidth}
-    \subcaptionbox{\label{fig:mesh}mesh \dummy[triangles are missing]{}}[0.49\textwidth]{
-    \inputtikz{gfx/model/vis_a}}
-    \subcaptionbox{vis}[0.49\textwidth]{
-    \inputtikz{gfx/model/vis_b}
-    }
-	\caption[Nerve fiber visualization example]{Generating mesh for visualization. A mesh perpendicular to the fiber trajectory is calculated by n points. Triangles defined by these points are uses as an surface to render the object. With the help of normal vectors the visualization can be smoothen and lightning effects help with a more natural rendeing (b).}
+    \centering
+    % \tikzset{external/force remake=true}
+    \setlength{\tikzwidth}{0.75\textwidth}
+    % \subcaptionbox{\label{fig:mesh}mesh \dummy[triangles are missing]{}}[0.495\textwidth]{
+    \inputtikz{gfx/model/vis_a}
+    % }
+    % \subcaptionbox{vis}[0.495\textwidth]{
+    % \fbox{\inputtikz{gfx/model/vis_b}}
+    % }
+	\caption[Nerve fiber visualization example]{Generating mesh for visualization. A mesh perpendicular to the fiber trajectory is calculated by n points. Triangles defined by these points are uses as an surface to render the object. With the help of normal vectors the visualization can be smoothen and lightning effects help with a more natural rendering.}
 	\label{fig:vis_mesh}
 \end{figure}
 % 
