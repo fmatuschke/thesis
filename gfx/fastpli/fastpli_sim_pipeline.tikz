@@ -30,7 +30,7 @@
     \node (ana_epa)     [activitySingle, below of=analysis, xshift=-3cm]    {fourie};
     \node (ana_rofl)    [activityLoop, below of=analysis, xshift=3cm]       {ROFL};
     \node (ana_save)    [save, right of=ana_rofl, xshift=3cm]               {save()};
-%  
+% 
     \draw[->]     (tissue) -- (simulation);
     \draw[->]     (simulation) -- (sim_single);
     \draw[->]     (simulation) -- (sim_all);

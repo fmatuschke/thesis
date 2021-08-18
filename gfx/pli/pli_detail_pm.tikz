@@ -8,12 +8,12 @@
 	\def\hbody{0.5}
 	\shade[left color=black!10!white,right color=black!40!white] (-\wbody,-\hbody) rectangle  (\wbody,\hbody);
 	\draw(-\wbody,-\hbody) rectangle  (\wbody,\hbody);
-
+%
 	\def\wlense{0.6}
 	\def\hlense{0.5}
 	\shade[left color=black!10!white,right color=black!40!white] (-\wlense,- \hbody) rectangle  (\wlense,-\hlense - \hbody);
 	\draw(-\wlense,- \hbody) rectangle  (\wlense,-\hlense - \hbody);
-
+%
 	\draw[line join=round,fill=blue!15] (0.9*\wlense,-\hbody - 0.5*\hlense) arc (60:120:1.1) arc (-120:-60:1.1)  ;
 %
 	\draw[blue] (-0.75*\wbody,\hbody) -- (0.75*\wlense,-\hbody - 0.5*\hlense) -- (1,-3){};

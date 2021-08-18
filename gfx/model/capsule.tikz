@@ -10,7 +10,7 @@
 %     \pgfmathsetmacro\len{sqrt((\x-\lastx)*(\x-\lastx)+(\y-\lasty)*(\y-\lasty))}
 %     \draw[fill, lightgray, rotate around={180+\angle:(\lastx,\lasty)}] ($(\lastx,\lasty-\r)$) rectangle ($(\lastx+\len,\lasty+\r)$);
 % \fi
-
+%
 % \ifnum \i > 1
 %     \draw[fill, lightgray] (\lastx, \lasty) circle (\r);
 % \fi

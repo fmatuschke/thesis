@@ -70,7 +70,7 @@
         \coordinate (A) at (3.5,2.5,0);
     \end{scope}
     \end{scope}
-   
+  
     \begin{scope}[shift={(\lx+1,0,0)}]
     \begin{scope}[shift={(0,0,\lz+1)}]
         \fill[white] (0,0,0) rectangle (\lx,\ly,0);
@@ -136,7 +136,7 @@
         \coordinate (B) at (0.5,2.5,0);
     \end{scope}
     \end{scope}
-   
+  
     \begin{scope}[shift={(2*\lx+2,0,0)}]
     \begin{scope}[shift={(0,0,\lz+1)}]
         \fill[white] (0,0,0) rectangle (\lx,\ly,0);

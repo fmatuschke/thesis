@@ -1,8 +1,8 @@
 \tikzset{external/export=false}
-% 
+%
 \pgfmathsetmacro{\size}{10}
 \pgfmathsetmacro{\scale}{0.19}
-% 
+%
 \subcaptionbox{translation}[.245\textwidth]{
 \begin{tikzpicture}[scale=\scale]
 	\pgfmathsetmacro{\dx}{2.25}
@@ -15,7 +15,7 @@
 	}
 \end{tikzpicture}
 }\hfill
-% 
+%
 \subcaptionbox{scaling}[.245\textwidth]{
 \begin{tikzpicture}[scale=\scale]
 	\pgfmathsetmacro{\sx}{1.5}
@@ -41,7 +41,7 @@
 	}
 \end{tikzpicture}
 }\hfill
-% 
+%
 \subcaptionbox{rotation}[.245\textwidth]{
 \begin{tikzpicture}[scale=\scale]
 	\path[use as bounding box] (0,-1) grid (\size,\size+1);

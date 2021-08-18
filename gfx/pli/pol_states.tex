@@ -1,13 +1,13 @@
-
+%
 % \captionsetup[sub]{textfont=normalsize}
 % \captionsetup[sub]{position=top, skip=-14pt}
 \tikzset{cross/.pic={
 \draw[arrows={-Latex[scale=1]}] (-{sqrt(2)},0) -- ({sqrt(2)},0) node[anchor=north]{\small $E_x$};
 \draw[arrows={-Latex[scale=1]}] (0,-{sqrt(2)}) -- (0,{sqrt(2)}) node[anchor=east]{\small $E_y$};
 }}
-% 
+%
 % \subcaptionbox{}[.3\textwidth]{
-\begin{tikzpicture} 
+\begin{tikzpicture}
 \begin{scope}[shift={(0,0)}, local bounding box=A]
 \pic at (0,0) {cross};
 % \draw[] (0, 2) node[font=\small] () {linear, horizontal};
@@ -77,7 +77,8 @@
 \end{scope}
 \end{scope}
 \node[anchor=south west, xshift=-1em] at (F.north west) {\small \textcolor{magenta}{\textbf{(f)}} unpolarized};
-% 
+%
 \path[] ($(A.west)!-0.075!(C.east)$) -- ($(A.west)!1.075!(C.east)$);
 \end{tikzpicture}
 % }
+%

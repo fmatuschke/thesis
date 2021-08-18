@@ -36,7 +36,7 @@
 \newcommand{\thesisUniversityCity}{D\"{u}sseldorf}
 \newcommand{\thesisUniversityStreetAddress}{Universitt\"{a}sstra{\ss}e 1}
 \newcommand{\thesisUniversityPostalCode}{40225 D\"{u}sseldorf}
-% 
+%
 \newcommand{\thesisInstitute}{\protect{Forschungszentrum J\"{u}lich}}
 \newcommand{\thesisInstituteDepartment}{Institut für Neurowissenschaften und Medizin}
 \newcommand{\thesisInstituteInstitute}{Strukturelle und funktionelle Organisation des Gehirns (INM-1)}
@@ -52,23 +52,23 @@
 % \WarningFilter[references]{latex} {There were undefined references}
 \WarningFilter[references]{latex} {Reference }
 % \listfiles
-% 
+%
 % **************************************************
 % User Commands
 % **************************************************
-% 
+%
 % \makeatletter
 % \renewcommand\listoftables{%
 %         \@starttoc{lot}%
 % }
 % \makeatother
-% % 
+% %
 % \makeatletter
 % \renewcommand\listoffigures{%
 %         \@starttoc{lof}%
 % }
 % \makeatother
-% % 
+% %
 % \makeatletter
 % \renewcommand\lstlistoflistings{%
 %         \@starttoc{lof}%
@@ -81,7 +81,7 @@
 % **************************************************
 \RequirePackage[dvipsnames]{xcolor}
 \usepackage{tikz}
-% 
+%
 % **************************************************
 % Load and Configure Packages
 % **************************************************
@@ -109,7 +109,7 @@
 \colorlet{citeColor}{violet>twheel,2,3}
 \colorlet{linkColor}{violet}
 \colorlet{urlColor}{violet>twheel,1,3}
-% 
+%
 \hypersetup{% setup the hyperref-package options
     pdftitle={\thesisTitle},    %   - title (PDF meta)
     pdfsubject={\thesisSubject},%   - subject (PDF meta)
@@ -137,14 +137,14 @@
 \usepackage{minitoc}
 \usepackage{tcolorbox}
 \usepackage{enumitem}
-% 
+%
 \newcommand{\subcaptiontab}[2]{%
 \multicolumn{1}{l}{%
 \begin{minipage}[t]{#1}
 \leavevmode\subcaption{#2}
 \end{minipage}}
 }
-% 
+%
 \usepackage{amsmath, amssymb, amsthm, mathtools}
 \ifPDFTeX
     % \usepackage{newtxsf} ???
@@ -155,11 +155,11 @@
     \usepackage{lualatex-math}
     \setmathfont{Latin Modern Math}
 \fi
-% 
+%
 \usepackage{dirtree}
 \usepackage[bottom]{footmisc}
-% 
-\usepackage{siunitx} 
+%
+\usepackage{siunitx}
 \usepackage{upgreek}
 \sisetup{%
         detect-mode=true,detect-family=false,
@@ -176,11 +176,11 @@
 % \DeclareSIUnit\steps{steps}
 % \DeclareSIUnit\cpus{cpus}
 % \AtBeginDocument{\sisetup{math-rm=\mathrm, text-rm=\sffamily}}
-% 
+%
 % \usepackage{caption}
 \usepackage[nameinlink]{cleveref}
 % \usepackage{esvect} % see \let\vv\mathbf
-% 
+%
 \usepackage{currfile}
 \usepackage{blindtext}
 %\usepackage{ifplatform}
@@ -189,33 +189,33 @@
 \usepackage{dirtytalk}
 % \usepackage{stackengine}    % for double sided floats
 \usepackage{pdflscape}
-\usepackage{rotating}         
-\newsavebox{\largestimage}    
+\usepackage{rotating}        
+\newsavebox{\largestimage}   
 \newsavebox{\newtable}
-% 
+%
 \acsetup{barriers/use=true,barriers/reset = true}
-% 
+%
 % \crefname{figure}{fig.}{fig.}
 % \Crefname{figure}{Fig.}{Fig.}
-% 
+%
 \makeatletter
 \def\convertto#1#2{\strip@pt\dimexpr #2*65536/\number\dimexpr 1#1}
 \makeatother
-% 
+%
 \newcommand{\fakechapter}[1]{%
   \par\refstepcounter{chapter}% Increase section counter
   \sectionmark{#1}% Add section mark (header)
   \addcontentsline{toc}{section}{\protect\numberline{\thesection}#1}% Add section to ToC
 %   Add more content here, if needed.
 }
-% 
+%
 \newcommand{\fakesection}[1]{%
   \par\refstepcounter{section}% Increase section counter
   \sectionmark{#1}% Add section mark (header)
   \addcontentsline{toc}{section}{\protect\numberline{\thesection}#1}% Add section to ToC
   % Add more content here, if needed.
 }
-% 
+%
 % **************************************************
 %  Minitoc
 % **************************************************
@@ -228,7 +228,7 @@
 \renewcommand\beforeparttoc{}
 \let\oldparttoc\parttoc
 \renewcommand*{\parttoc}{{\hypersetup{hidelinks}\oldparttoc}}
-% 
+%
 % **************************************************
 %  Math
 % **************************************************
@@ -251,7 +251,7 @@
 % Syntax Highlighting
 % **************************************************
 \usepackage{listings}
-% 
+%
 \newfloat{lstfloat}{htbp}{lop}
 \floatname{lstfloat}{Alg.}
 \crefname{lstfloat}{alg.}{alg.}
@@ -259,7 +259,7 @@
 \crefname{pluralequation}{eqs.}{eqs.}
 \renewcommand{\lstlistingname}{Alg.}
 \renewcommand{\lstlistlistingname}{List of Algorithm}
-% 
+%
 \definecolor{syntax_red}{RGB}{160,0,0}
 \definecolor{syntax_green}{RGB}{0,160,0}
 \definecolor{syntax_blue}{RGB}{0,0,210}
@@ -267,7 +267,7 @@
 \definecolor{syntax_keywords}{RGB}{255,0,90}
 \definecolor{syntax_comments}{RGB}{0,0,113}
 %
-% 
+%
 \lstdefinestyle{common}{%
     basicstyle=\footnotesize\ttfamily,
     showstringspaces=false,
@@ -276,7 +276,7 @@
     frame=tb,
     xleftmargin=\parindent,
 }
-% 
+%
 \lstdefinestyle{cpp}{%
     language=C++,
     style=common,
@@ -286,9 +286,9 @@
     % identifierstyle=\color{syntax_mauve},
     tabsize=2,
 }
-%  
+% 
 \lstdefinestyle{python}{%
-    language=Python, 
+    language=Python,
     style=common,
     keywordstyle=\color{syntax_blue},
     commentstyle=\color{syntax_green},
@@ -297,17 +297,17 @@
     % procnamekeys={def,class},
 	tabsize=3,
 }
-% 
+%
 % Hyphenate code
 \usepackage[htt]{hyphenat}
-% 
+%
 \newcommand{\breakingperiod}{%
   \penalty0 % allow a break before the period
   .\nobreak\hspace{0pt}%
 }
-% 
+%
 \ExplSyntaxOn
-% 
+%
 \NewDocumentCommand{\code}{m}
  {%
   \texttt
@@ -316,7 +316,7 @@
     \seq_use:Nn \l_michael_lw_seq { \breakingperiod }
    }
  }
-% 
+%
 \ExplSyntaxOff
 %
 % **************************************************
@@ -337,7 +337,7 @@
 \usetikzlibrary{bending} % bend arrow heads
 \usetikzlibrary{decorations.pathreplacing}
 \tikzset{>=latex}
-% 
+%
 % \usepackage{pdftexcmds} % for hased externalized names
 % \makeatletter
 % \ifx\pdf@filemdfivesum\undefined\def\pdf@filemdfivesum#{\mdfivesum file}\fi
@@ -365,13 +365,13 @@
    \def\tikz@plane@y{\pgfpointxyz{#7}{#8}{#9}}%
    \tikz@canvas@is@plane
   }
-\makeatother 
-% 
+\makeatother
+%
 \newlength{\tikzwidth}
 \newlength{\tikzheight}
 \setlength{\tikzwidth}{\textwidth} %13.87303cm
 \setlength{\tikzheight}{\textheight} %22.37076cm
-% 
+%
 \makeatletter
 \newcommand{\inputtikz}[1]{%
     \input{#1.tikz}
@@ -389,7 +389,7 @@
 % 	}}
 % }
 % \makeatother
-% 
+%
 \usepackage{environ}
 \makeatletter
 \def\forcetikzscale{false}
@@ -427,7 +427,7 @@
 	}
 }
 \makeatother
-% 
+%
 % **************************************************
 % PGFplotsTable
 % **************************************************
@@ -442,7 +442,7 @@
 % \newcolumntype{RM}[1]{>{\raggedleft\arraybackslash}m{#1}}
 % \newcolumntype{LM}[1]{>{\raggedright\arraybackslash}m{#1}}
 % \newcolumntype{CM}[1]{>{\centering\arraybackslash}m{#1}}
-% 
+%
 % \captionsetup[table]{textfont=it, parskip=10em} % skip does not work for table
 \pgfplotstableset{thesisTableStyle/.style={%
     every even row/.style={before row={\rowcolor[gray]{0.90}}},
@@ -450,7 +450,7 @@
     every head row/.style={before row=\toprule,after row=\midrule},
     every last row/.style={after row=\bottomrule},
 }}
-% 
+%
 \pgfplotstableset{%
     rowbf/.style={%
         postproc cell content/.append code={%
@@ -473,10 +473,10 @@
         },
     },
 }
-% 
+%
 % every row 3 column 3/.style={postproc cell content/.style=
 %         {@cell content=\textbf{##1}}}
-% 
+%
 % **************************************************
 % User Macros
 % **************************************************
@@ -485,7 +485,7 @@
 % \newcommand{\tum}{\textscale{.7}{\_}}
 \newcommand{\note}[1]{\textcolor{gray}{\textit{#1}}}
 \newcommand{\dummy}[2][...]{\textcolor{blue!75!white}{\textbf{\{#1\}}}}
-% 
+%
 \usepackage[colorinlistoftodos,prependcaption,textsize=footnotesize]{todonotes}
 \newlength{\itodolength}
 \setlength{\itodolength}{\textwidth minus 12.1411pt}
@@ -509,18 +509,18 @@
 \newcommand{\fixme}[1]{\textcolor{red!75!black}{\textbf{#1}}}
 % \newcommand{\markus}[1]{\todo[color=orange]{#1}}
 % \newcommand{\imarkus}[1]{\todo[inline, color=orange]{#1}}
-% 
+%
 % **************************************************
 % Debug LaTeX Information
 % **************************************************
 % \usepackage{showframe}
-% 
+%
 % **************************************************
 % Custom Colors
 % **************************************************
 %  from colorbrewer
 \pgfplotsset{cycle list/Dark2}
-% 
+%
 \definecolor{set11}{HTML}{e41a1c}
 \definecolor{set12}{HTML}{377eb8}
 \definecolor{set13}{HTML}{4daf4a}
@@ -529,7 +529,7 @@
 \definecolor{set16}{HTML}{ffff33}
 \definecolor{set17}{HTML}{a65628}
 \definecolor{set18}{HTML}{f781bf}
-% 
+%
 \definecolor{set21}{HTML}{66c2a5}
 \definecolor{set22}{HTML}{fc8d62}
 \definecolor{set23}{HTML}{8da0cb}
@@ -538,7 +538,7 @@
 \definecolor{set26}{HTML}{ffd92f}
 \definecolor{set27}{HTML}{e5c494}
 \definecolor{set28}{HTML}{b3b3b3}
-% 
+%
 \definecolor{dark21}{HTML}{1b9e77}
 \definecolor{dark22}{HTML}{d95f02}
 \definecolor{dark23}{HTML}{7570b3}
@@ -547,25 +547,25 @@
 \definecolor{dark26}{HTML}{e6ab02}
 \definecolor{dark27}{HTML}{a6761d}
 \definecolor{dark28}{HTML}{666666}
-% 
+%
 \colorlet{sred}{set11}
 \colorlet{sgreen}{set13}
 \colorlet{sblue}{set12}
-% 
+%
 \colorlet{dred}{dark22}
 \colorlet{dgreen}{dark21}
-\colorlet{dblue}{dark23} 
-% 
+\colorlet{dblue}{dark23}
+%
 \colorlet{RED}{dark22}
 \colorlet{GREEN}{dark21}
-\colorlet{BLUE}{dark23} 
-% 
+\colorlet{BLUE}{dark23}
+%
 % \makeatletter
 % \definecolor{cc21}{HTML}{A6CEE3}
 % \definecolor{cc22}{HTML}{1F78B4}
 % \pgfplotscreateplotcyclelist{cc2}{cc21, cc22}
 % \makeatother
-% 
+%
 \pgfplotsset{%
   colormap/cividis/.style={colormap={cividis}{[1pt]
     rgb(0pt)=(0.00000000, 0.13511200, 0.30475100);

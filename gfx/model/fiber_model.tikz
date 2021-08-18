@@ -65,10 +65,10 @@
 \draw[fill, gray!60!white] (0,1.0)  rectangle (1,1.5) node[pos=.5, xshift=1em, black, anchor=west] {\small - myelin layer 1};
 \draw[fill, gray!40!white] (0,1.5)  rectangle (1,2) node[pos=.5, xshift=1em, black, anchor=west] {\small - axon};
 \end{scope}
-
+%
 \end{tikzpicture}
 \end{tikzsize}
-
+%
 %
 %
 %

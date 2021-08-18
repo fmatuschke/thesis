@@ -29,12 +29,12 @@
 % Setup YOUR thesis document in this file !
 % **************************************************
 \input{thesis-setup}
-% 
+%
 \setcounter{secnumdepth}{3}
 \setcounter{minitocdepth}{4}
 \mtcsetoffset{minitoc}{-4em}
 \Urlmuskip=0mu plus 1mu
-% 
+%
 %\ifshellescape
 \usetikzlibrary{external}
 \tikzexternalize[%
@@ -44,9 +44,9 @@
                  % mode=list and make,
                  ]
 % \def\forcetikzscale{true}
-% 
+%
 % \tikzset{external/force remake}
-% 
+%
 \includeonly{%
 % content/titlepages,
 % content/abstract,
@@ -64,7 +64,7 @@ content/05-chapter-software-model,
 % content/declaration
 % content/appendix,
 } % end includeonly
-% 
+%
 \input{content/acronyms}
 %
 %
@@ -75,12 +75,12 @@ content/05-chapter-software-model,
 % \par
 % \noindent\rule{\textwidth}{2pt}
 % \par
-% 
+%
 % **************************************************
 % Document CONTENT
 % **************************************************
 \begin{document}
-% 
+%
 % \dominitoc
 \doparttoc[n]
 %
@@ -131,51 +131,51 @@ content/05-chapter-software-model,
 % Chapters
 % --------------------------
 %\part{Example Part}
-% 
+%
 % \include{content/todo}
 \cleardoublepage
 \listoftodos[TODOs]
-% 
+%
 \cleardoublepage
 \include{content/01-chapter-introduction}
-% 
+%
 \cleardoublepage
 \part{Theory/Background}
 % \cleanchapterquote{We are part of the universe that has developed a remarkable ability: We can hold an image of the world in our minds. We are matter contemplating itself.}{Sean Carroll}{The Particle at the End of the Universe}
 % \acbarrier
 \parttoc
 \include{content/02-chapter-neuroanatomy}
-% 
+%
 \cleardoublepage
 \include{content/03-chapter-theory}
-% 
+%
 \cleardoublepage
 \part{Software}
 % \acbarrier
 \parttoc
 \include{content/05-chapter-software-model}
-% 
+%
 \cleardoublepage
 \include{content/06-chapter-software-simulation}
-% 
+%
 \cleardoublepage
 \include{content/04-chapter-software}
-% 
+%
 \cleardoublepage
 \part{Results}
 % \acbarrier
 \parttoc
 \include{content/07-chapter-analysis-model}
-% 
+%
 \cleardoublepage
 \include{content/08-chapter-analysis-simulation}
-% 
+%
 \cleardoublepage
 % \part{To infinity and beyond}
 % \parttoc
 % \acbarrier
 \include{content/09-chapter-usecase}
-% 
+%
 \cleardoublepage
 \part{Conclusion}
 % \acbarrier
@@ -199,7 +199,7 @@ content/05-chapter-software-model,
 \newrefcontext[labelprefix={@}]
 \printbibliography[heading=subbibliography,title={Software},keyword={software}]
 }
-% 
+%
 \cleardoublepage
 \label{sec:acronyms}
 \acsetup{pages/display=all}
@@ -214,7 +214,7 @@ content/05-chapter-software-model,
 % \cleardoublepage
 % \lstlistoflistings
 %
-% 
+%
 % \cleardoublepage
 % \include{content/declaration}
 % \clearpage

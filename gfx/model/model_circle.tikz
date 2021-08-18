@@ -26,6 +26,6 @@
 % \draw [] ({cos(120)},{sin(120)}) -- (-1.5,0.8) node[anchor=east, pos=1] {$fiber\_point$};
 %
 \path[use as bounding box] (-1.75,-1.5) rectangle (1.75,1.5);
-
+%
 \end{tikzpicture}
 \end{tikzsize}

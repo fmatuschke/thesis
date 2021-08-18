@@ -2,18 +2,18 @@
 \definecolor{c2}{rgb}{1.0,0.73,0}
 \definecolor{c3}{rgb}{0.98,0.4,0.25}
 \definecolor{c4}{rgb}{0.22,0.36,0.59}
-% 
+%
 % \definecolor{c1}{HTML}{440154FF}
 % \definecolor{c2}{HTML}{38598CFF}
 % \definecolor{c3}{HTML}{1E9B8AFF}
 % \definecolor{c4}{HTML}{FDE725FF}
-% 
+%
 \def\xc{0.7}
 \def\yc{0.2}
 \def\rin{1.5}
 \def\rout{3}
+%
 % 
-%  
 \newcommand{\fiber}[3]{
 	\def\dd{#1}
 	\pgfmathsetmacro{\xmin}{int(floor(\xc-\rout))}
@@ -22,7 +22,7 @@
 	\pgfmathsetmacro{\ymin}{int(floor(\yc-\rout))}
 	\pgfmathsetmacro{\ymax}{int(ceil(\yc+\rout))}
 	\pgfmathsetmacro{\yd}{\ymin+\dd}
-	% 
+	%
 	\pgfmathsetmacro{\rmin}{\rin*\rin*100}
 	\pgfmathsetmacro{\rmax}{\rout*\rout*100}
 	\foreach \x in {\xmin,\xd,...,\xmax} {
@@ -98,6 +98,6 @@
 % \fiber{1}{very thin}{fill, c2, opacity=0.25}
 % \fiber{0.5}{ultra thin}{fill, c3, opacity=0.25}
 % \fiber{0.25}{ultra thin}{fill, c4, opacity=0.25}
-% 
+%
 \end{tikzpicture}
 }}

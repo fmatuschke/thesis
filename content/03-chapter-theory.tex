@@ -1,23 +1,23 @@
 \setcounter{chapter}{2}
 \chapter{Theory}
 \label{sec:theory}
-% 
+%
 % \cleanchapterquote{The first principle is that you must not fool yourself and you are the easiest person to fool.}{Richard P. Feynman}{}%\newline
 %
 \section{Introduction}
 The following chapter lists the physical theories needed to describe the mathematics behind \ac{3D-PLI}.
 These include the basic properties of light with the description of their polarization state, the optical models of the tissue, i.e. the nerve fibers, the mathematical description of the experimental setup of \ac{3D-PLI} and the analysis of its signal.
 The first part of this chapter was written with the aid of \cite{demtroeder2, Fliebach2012}.
-% 
-% 
-% 
+%
+%
+%
 \section{Electromagnetic Wave}
-% 
+%
 Light is an electromagnetic wave.
 The theory of electromagnetism was first fully described by James Clerk Maxwell.
 He formulated Maxwell's equations \cref{eq::maxwell_general}, generalized from the previous work of Johann Carl Friedrich Gau{\ss}, Michael Faraday and Andr\'{e}-Marie Amp\`{e}re and others:
-% 
-\begin{align} 
+%
+\begin{align}
 \begin{split} \label{eq::maxwell_general}
     \nabla \cdot \vec{E} &= \frac {\rho} {\varepsilon_0}\\
     \nabla \cdot \vec{B} &= 0\\
@@ -25,9 +25,9 @@ He formulated Maxwell's equations \cref{eq::maxwell_general}, generalized from t
     \nabla \times \vec{B} &= \mu_0\left(\vec{j} + \varepsilon_0 \frac{\partial \vec{E}} {\partial t} \right)
 \end{split}
 \end{align}
-% 
+%
 with $\nabla \coloneqq \left({\frac{\partial}{\partial x}}, {\frac{\partial}{\partial y}}, {\frac{\partial}{\partial z}} \right)$ as vector differential operator, $\vec{E}$ as electric field, $\rho$ as electric charge density, $\varepsilon_0$ as permittivity of free space, $\vec{B}$ as magnetic field, $\mu_0$ as permeability of free space and $\vec{j}$ as electric current density.
-% 
+%
 The first equation states that no electric field can be generated without an electric charge (conservation of charge).
 The second equation states that there are no magnetic monopoles.
 The basic unit of a magnetic field is a dipole.
@@ -38,11 +38,11 @@ Maxwell's equation satisfies the continuity equation $\divergence j + \frac{\par
 This means that neither an electric field nor a magnetic field can be generated without either an electric current or a change in electric potential.
 %
 % \par
-% 
+%
 \subsection{EM in a vacuum}
-% 
+%
 In a vacuum, \cref{eq::maxwell_general} simplifies with $\rho = 0$ and $\vec{j} = \vec{0}$ to:
-% 
+%
 \begin{align}
 \begin{split} \label{eq::maxwell_vacuum}
   \nabla \cdot \vec{E} &= 0 \quad\\
@@ -51,62 +51,62 @@ In a vacuum, \cref{eq::maxwell_general} simplifies with $\rho = 0$ and $\vec{j} 
   \nabla \times \vec{B} &= \mu_0\varepsilon_0 \frac{\partial\vec E}{\partial t}
   \end{split}
 \end{align}
-% 
-With 
+%
+With
 \begin{align}
-\begin{split} 
+\begin{split}
     \nabla \times \nabla \times \vec{E} = -\nabla \times \frac{\partial \vec{B}} {\partial t} &= -\frac{\partial} {\partial t} \left( \nabla \times  \vec{B} \right)\\
     &= -\varepsilon_0 \cdot \mu_0 \frac{\partial^2 \vec{E}}{\partial t^2} \, ,
 \end{split}
 \end{align}
-% 
+%
 the identity $\nabla \times \left( \nabla \times \vec{A} \right) = \nabla(\nabla \cdot \vec{A}) - \nabla^{2}\vec{A}$, $\mu_0\varepsilon_0 = \frac{1}{c^2}$ and $c$ as the speed of light\footnote{can be derived from Maxwell's equation and Lorentz force in a vacuum}, this further simplifies to:
-% 
+%
 \begin{align}
 \begin{split} \label[pluralequation]{eq::maxwell_wave_equations}
   \frac{1}{c^2} \frac{\partial^2 \vec{E}}{\partial t^2} - \nabla^2 \vec{E} &= 0 \\
   \frac{1}{c^2} \frac{\partial^2 \vec{B}}{\partial t^2} - \nabla^2 \vec{B} &= 0
 \end{split}
 \end{align}
-% 
+%
 This also shows that $c^2 \frac{\partial B} {\partial z} = \frac{\partial E}{\partial t} \rightarrow \vec{E} \cdot \vec{B} = 0$ and thus the electric and magnetic field components are perpendicular to each other.
 In addition, this also means that space and time are connected and that light propagates in vacuum with the speed of light $c$.
-% 
+%
 \subsection{Solving MW Equ in vacuum}
-% 
+%
 \Cref{eq::maxwell_wave_equations} have the form of a wave equation and therefore, as is well known, can be solved by
-% 
+%
 % Using the Maxwell equation in vacuum \ref{eq::maxwell_vacuum}, one can find the most simple solution to the differential equation is a wave:
-% 
+%
 \begin{align}
 \begin{split} \label{eq::dgl_solution}
   \vec{E}( \vec{r}, t ) &= g(\phi( \vec{r}, t )) = g( \omega t - \vec{k} \cdot \vec{r} + \varphi)\\
   \vec{B}( \vec{r}, t ) &= g(\phi( \vec{r}, t )) = g( \omega t - \vec{k} \cdot \vec{r} + \varphi )
 \end{split}
 \end{align}
-% 
+%
 where $g$ is any well-behaved function (continuous and differentiable) and therefore also its superpositions.
-% 
+%
 With the help of
-% 
+%
 \begin{align}
 k = \mathopen| \vec{k} \mathclose| = \frac{\omega}{c} =  \frac{2 \pi}{\lambda}
 \end{align}
-% 
+%
 a planar wave can be described by
-% 
+%
 \begin{align}
 \begin{split} \label{eq::plane_wave}
 \vec{E}(\vec{r}) &= \vec{E}_0 \cdot e^{ -i \, \vec{k} \cdot \vec{r} }\\
  \vec{B}(\vec{r}) &= \vec{B}_0 \cdot e^{ -i \, \vec{k} \cdot \vec{r} }
 \end{split}
 \end{align}
-% 
+%
 with $\vec{k}$ as wave vector pointing in the direction of the propagation of the light wave.
-% 
-% 
+%
+%
 \subsection{Polarization}
-% 
+%
 \begin{figure}[!t]
 \centering
 \setlength{\tikzwidth}{\textwidth}
@@ -114,10 +114,10 @@ with $\vec{k}$ as wave vector pointing in the direction of the propagation of th
 \label{fig:polarization_state}
 \caption{Illustration of the polarization state of light. Unpolarized light passes through a linear polarizer, which polarizes the light in one direction (w.l.o.g. $E_x$ and $E_y$ in phase). It then passes through a quarter-wave retarder that converts linearly polarized light (of a given wavelength) into circularly polarized light, where $E_x$ and $E_y$ are $\pi/2$ in phase.}
 \end{figure}
-% 
+%
 Since the light wave propagates in one direction and the electric field and magnetic field are perpendicular to $\vec{k}$ as well as to each other, the orientation of the plane of oscillation is a fundamental property of light called polarization.
 Without additional information, the polarization orientation is conventionally in the direction of the electric field component.
-% 
+%
 A superposition of x- and y-wave with z equal to the propagation direction gives the general form:
 \begin{align}
 \vec{E}(z,t) &= \begin{pmatrix} E_{0x} \cdot e^{ -i \phi_x } \\ E_{0y} \cdot e^{ -i \phi_y } \\ 0 \end{pmatrix}
@@ -128,7 +128,7 @@ e^{ -i (kz - \omega t)}
 \centering
 \tikzset{external/export=false}
 \input{gfx/pli/pol_states}
-\caption{polarization states, check vector length} 
+\caption{polarization states, check vector length}
 \label{fig:polarization_state_vectors}
 \end{figure}
 %
@@ -136,27 +136,27 @@ e^{ -i (kz - \omega t)}
 It shows the component perpendicular to the propagation direction.
 Thus, the time evolution of the electric field can be represented in the $xy$-plane.
 In addition, the states can be described by the Jones or Stokes calculation, which is described later in \cref{sec:jones,sec:mueller_stokes}.
-% 
-% 
-% 
+%
+%
+%
 \subsection{Light in a medium}
-% 
+%
 \todo{herleiten}
 The Maxwell's equations in \dummy{} are described above. They can be solved analog to \dummy{}. This yields to some special behavior, \eg{} the magnetic and electric field component get out of phase.
 However here only the two properties of absorption and diffraction are described.
 They derivation can be found \eg{} \cite{demtroeder2, Fliebach2012}.
-% 
+%
 \subsection{Absorption}
-% 
+%
 \begin{align}
     I = I_0 \exp(-\mu x)
 \end{align}
 \todo{herleiten}
-% 
+%
 Beersche law of absorption with $\mu = \frac{4\pi \kappa}{\lambda_0}$ where $\kappa$ is the imaginary part of the complex refractive index.
-% 
+%
 \subsection{Refraction}
-% 
+%
 \begin{figure}[!t]
 \centering
 \setlength{\tikzwidth}{\textwidth}
@@ -164,7 +164,7 @@ Beersche law of absorption with $\mu = \frac{4\pi \kappa}{\lambda_0}$ where $\ka
 \label{fig:optic_refraction}
 \caption{Illustration of refraction.}
 \end{figure}
-% 
+%
 Refraction is the change of direction of light as it passes from one medium to another.
 This can be shown by using the full Maxwell equations  for non-conductive material, \ie{} $\vec{j} = 0, \rho = 0$, that the differential equating consist out of a primary wave with from atomic medium induced secondary waves, which leads to a reduction of the velocity of the resulting wave.
 Mathematically this can be described by a complex number $n = c' / c$.
@@ -174,12 +174,12 @@ The transmitting light beam however due to the reduction of the velocity, change
 \begin{align}
     n_0 \sin \alpha = n_1 \sin \beta \label{eq:Snellius}
 \end{align}
-
-% 
+%
+%
 \begin{align}
 \underline{n} = n + i\kappa
 \end{align}
-% 
+%
 \begin{align}
 \begin{split}
 \vec{E}(z, t) &= \operatorname{Re}\! \left[\vec{E}_0 \cdot e^{i\, (kz - \omega t)}\right] \\
@@ -187,9 +187,9 @@ The transmitting light beam however due to the reduction of the velocity, change
 &= e^{-2\pi \kappa z/\lambda_0} \operatorname{Re}\! \left[\vec{E}_0 \cdot e^{i\, (kz - \omega t)}\right]
 \end{split}
 \end{align}\todo{?, was macht das hier}
-% 
-% 
-% 
+%
+%
+%
 \subsection{Birefingence}
 %
 \begin{figure}[!t]
@@ -199,7 +199,7 @@ The transmitting light beam however due to the reduction of the velocity, change
 \caption{Illustration of retardation. The linear $\SI{45}{\degree}$ polarized light wave is decomposed into the $x$ and $y$ component in the birefringend medium. The y compoinent travels faster than the x component. Therefore a pahse shift $\phi$ betwen both components occure. This leads in the case of a $\lambda/4$ retarder to a circulalar polarized light wave. }
 \label{fig:optic_retardation}
 \end{figure}
-% 
+%
 A translucent material can have a different refractive index depending on the relative orientation and polarization of the light beam.
 This property is called birefringence.
 The refractive index can be described by the ordinary refractive index $n_o$ and the extraordinary $n_e$.
@@ -207,33 +207,33 @@ Since these two are perpendicular to each other, the light ray can be split into
 These two light rays will have a different direction due to refraction, except for the trivial case where one light ray is perpendicular to the surface.
 If the relative length is small (depends on n, or the phase change), the two light beams leave the material at the same point and are recombined at the end.
 The phase change is called birefringence and the physical property is described by:
-% 
+%
 \begin{align}
     \Delta n = n_e - n_o \> .
 \end{align}
-% 
-% 
-% 
+%
+%
+%
 \subsection{Jones calculus}
 \label{sec:jones}
-% 
+%
 The Jones calculus, introduced by Robert Clark Jones in 1941, describes the polarization state of a light beam by a complex vector $J$:
-% 
+%
 \begin{align}
     \vec{J} = \begin{pmatrix} E_x \exp(i \phi_x) \\ E_y \exp(i \phi_y) \end{pmatrix}
 \end{align}
-% 
+%
 The amplitude of the perpendicular components are $E_x$ and $E_y$ with their phase $\phi_x$ and $\phi_y$.
 Optical elements that change the polarization state, such as polarization filters and retarders, can be described by a matrix:
-% 
+%
 \begin{align}
 \begin{split}
-\mat{P}_x = 
+\mat{P}_x =
 \begin{pmatrix}
 1 & 0 \\ 0 & 0
 \end{pmatrix}
 , \enspace
-\mat{P}_y = 
+\mat{P}_y =
 \begin{pmatrix}
 0 & 0 \\ 0 & 1
 \end{pmatrix}
@@ -250,29 +250,29 @@ e^{\frac{i \pi}{4}}
 \end{pmatrix}
 \end{split}
 \end{align}
-% 
+%
 A rotation of an optical element can be achieved by a 2d rotation matrix $\mat{R}$:
-% 
+%
 \begin{align}
 \begin{split}
 \mat{M}(\theta )=\mat{R}(\theta )\cdot\mat{M}\cdot\mat{R}(-\theta )
 , \enspace
-\mat{R}(\theta ) = 
+\mat{R}(\theta ) =
 \begin{pmatrix}
 \cos \theta & -\sin \theta \\
 \sin \theta & \cos \theta
 \end{pmatrix}
 \end{split}
 \end{align}
-% 
-% 
-% 
+%
+%
+%
 \subsection{M\"uller-Stokes}\label{sec:Mueller-Stokes}
 \label{sec:mueller_stokes}
-% 
+%
 In analogy to \cref{sec:jones}, the M\"uller-Stokes formalism, described by George Gabriel Stokes in 1852, also describes the polarization state of a light beam.
 However, it does not use the absolute electric components, but the relative polarization between both components:
-% 
+%
 \paragraph{Stokes vector}
 \begin{align}
 \begin{split}
@@ -286,7 +286,7 @@ S_3 &= I p \sin 2\chi
 % &= \vec{P}_{\SI{0}{\degree}} + \vec{P}_{\SI{90}{\degree}} \\
 % &= \vec{P}_{\SI{0}{\degree}} - \vec{P}_{\SI{90}{\degree}} \\
 % &= \vec{P}_{\SI{45}{\degree}} - \vec{P}_{\SI{135}{\degree}} \\
-% &= \vec{P}_{\mathit{RZ}} - \vec{P}_{\mathit{LZ}} 
+% &= \vec{P}_{\mathit{RZ}} - \vec{P}_{\mathit{LZ}}
 % \end{split}
 % \hspace{0em}
 % \begin{split}
@@ -309,7 +309,7 @@ S_3 &= I p \sin 2\chi
 \begin{pmatrix} S_0 \\ S_1 \\ S_2 \\ S_3\end{pmatrix}
 \end{align}
 \todo{variablen erklaeutern}
-% 
+%
 \begin{figure}[!t]
     % \setlength{\tikzwidth}{\textwidth}
 	\centering
@@ -317,13 +317,13 @@ S_3 &= I p \sin 2\chi
 	\caption{Poincar\'e sphere illustrating Stokes component.}
 	\label{fig:stokesPoincare}
 \end{figure}
-% 
+%
 $I$ is the intensity, $p$ the polarization state, $\Psi$ and $\delta$ the relative phases between the $E_x$ and $E_y$ component.
 This can also be described b the two angles $\Psi$ and $\chi$ and visualized on the Poincar\'e sphere (see \cref{fig:stokesPoincare}).
 Therefore, the phase can no longer be described.
 However, the relative phase information is stored and can be used to describe also polarization states of polarization filters which cannot be described by Jones.
 Analogous to Jones one can formulate the matrices for the optical components:
-% 
+%
 \paragraph{Linear Polarizer}
 \begin{align}
 \mat{P}_x=\frac{1}{2}
@@ -342,7 +342,7 @@ Analogous to Jones one can formulate the matrices for the optical components:
      0 &  0 & 0 & 0
 \end{pmatrix}
 \end{align}
-% 
+%
 \paragraph{retarder}
 \begin{align}
 \mat{M}=\
@@ -353,7 +353,7 @@ Analogous to Jones one can formulate the matrices for the optical components:
     0 & 0 & -\sin \delta &  \cos \delta
 \end{pmatrix}
 \end{align}
-% 
+%
 \paragraph{Quarter-wave plate (fast-axis vertical)}
 \begin{align}
 \Lambda_{1/4}=\
@@ -364,7 +364,7 @@ Analogous to Jones one can formulate the matrices for the optical components:
     0 & 0 & 1 &  0
 \end{pmatrix}
 \end{align}
-% 
+%
 \paragraph{Rotation Matrix}
 \begin{align}
 \mat{R}(\theta)=
@@ -377,14 +377,14 @@ Analogous to Jones one can formulate the matrices for the optical components:
   \end{pmatrix}
 \end{split}
 \end{align}
-% 
+%
 Analog to \dummy{} rotations are applied by
 \begin{align}
 \mat{M}(\theta )=\mat{R}(\theta )\cdot\mat{M}\cdot\mat{R}(-\theta )
 \end{align}
-% 
-% 
-% 
+%
+%
+%
 \section{3D-PLI setup}\label{sec:expSetup}
 %
 \begin{figure}[!t]
@@ -410,7 +410,7 @@ Polarized light with a wavelength of \SI{525}{\nano\meter} is irradiated through
 A circular polarizer (a \SI{45}{\degree} oriented quarter-wave retarder and polarizer) is placed behind the tissue.
 By rotating the polarizer, the change in intensity is measured with a \ac{CCD} sensor.
 \par
-% 
+%
 The first microscopic setup called \ac{LAP} is capable of measuring an entire human brain slice in a single image with a pixel size of \SI{60}{\micro\meter} \footnote{By changing the optics, a pixel size of $\SI{40}{\micro\meter}$ and $\SI{20}{\micro\meter}$ is also possible}.
 In addition, the tissue sample can be tilted.
 This causes a change in the orientation of the nerve fibers, resulting in a change in the measured signal.
@@ -431,10 +431,10 @@ When using a slit, only light of a certain angle is allowed through the tissue.
 By changing the position of the slit, the different light paths can be measured.
 This microscop is currently under construction and will be modelled here with the characterization from the \ac{LMP} microscope with a tilt angle of \SI{3.9}{\degree}.
 \\
-% 
+%
 The tilted light beam (or tissue section) is normally measured in 4 perpendicular orientations: North, East, South and West.
 \par
-% 
+%
 The final image is captured by a camera that uses an \ac{CCD} sensor.
 In general, an \ac{CCD} sensor consists of an array of metal oxide semiconductor (MOS) capacitors.
 Each capacitor stores an electric charge that is released by incident photons using the photoelectric effect.
@@ -445,25 +445,25 @@ The first is the thermal noise that can lead to electrical charges in the MOS ca
 Second, the amplification of the signal underlies a noise usually from a non-ideal direct current which is needed for amplification.
 These noise sources combine to produce a poison-like distribution due to the nature of digital positive values produced by the analog-to-digital converter.
 For intensity values $>> 0$ it can be modeled by a normal distribution.
-% 
-% 
-% 
+%
+%
+%
 \subsection{Intensity signal}
-% 
+%
 From the Mueller-Stokes matrices (\cref{sec:Mueller-Stokes}), as shown in \cite{MenzelMaster,MenzelDissertation}, the intensity signal, which is the first component of the Stokes vector, follows a sinusoidal curve:
-% 
+%
 \begin{align}
 \label{eq:pli_signal}
 \begin{split}
 I(\rho, \varphi, \alpha, d) =\frac{I_0}{2}\bigl[ \sin\bigl(2\rho - 2\varphi \bigr)\cdot \sin \bigl( 2\pi\frac{d \dn}{\lambda} \cos^2\left( \alpha \right) \bigr) \bigr] \\
-\text{with} \enspace \delta \coloneqq 2\pi\frac{d \dn}{\lambda} \cos^2\left( \alpha \right) \enspace 
+\text{with} \enspace \delta \coloneqq 2\pi\frac{d \dn}{\lambda} \cos^2\left( \alpha \right) \enspace
 \text{and} \enspace \trel \coloneqq \frac{d \dn}{\lambda}
 \end{split}
 \end{align}
-% 
+%
 Since \cref{eq:pli_signal} describes a sinusoidal signal, Fourier analysis is an obvious choice.
 For a discrete, aquidistant measurement of the rotation angles $\rho$, one can use the Fourier series with the first three coefficients to describe the signal:
-% 
+%
 \begin{align}
 \begin{split}
 \rho &= [\SI{0}{\degree}, \frac{1\cdot180}{N+1}\si{\degree}, \frac{2\cdot180}{N+1}\si{\degree}, ..., \frac{N\cdot180}{N+1}\si{\degree}]\\
@@ -472,14 +472,14 @@ a_1 &= \frac{2}{N} \sum_i^N I_i \cdot \sin(2 \cdot \rho_i)\\
 b_1 &= \frac{2}{N} \sum_i^N I_i \cdot \cos(2 \cdot \rho_i)
 \end{split}
 \end{align}
-
+%
 These are used to calculate the final \ac{3D-PLI} modalities:
-
+%
 \begin{align}
 \begin{split}
 \mathit{transmittance} &\coloneqq 2 \cdot a_0 \vphantom{I_0/2} \\
 \mathit{direction} &\coloneqq 0.5 \cdot \atantwo(-b_1 / a_1) \vphantom{\varphi} \\
-\mathit{retardation} &\coloneqq \frac{\sqrt{a_1^2 + b_1^2}}{a_0}  \vphantom{\sin(...)} 
+\mathit{retardation} &\coloneqq \frac{\sqrt{a_1^2 + b_1^2}}{a_0}  \vphantom{\sin(...)}
 \end{split}
 \hspace{-7em}
 \begin{split}
@@ -488,48 +488,48 @@ These are used to calculate the final \ac{3D-PLI} modalities:
 & \mathrel{\widehat{=}} \sin(...) \vphantom{\frac{\sqrt{a_1^2 + b_1^2}}{a_0}}
 \end{split}
 \end{align}
-% 
-% 
+%
+%
 \begin{figure}[t]
 \input{dev/vervet1818/images}
 \caption[3D-PLI modalities]{3D-PLI modalities for a coronal section of a Vervet monkey brain.}
 \end{figure}
-% 
-% 
+%
+%
 \subsection{Tilting analysis}
-% 
+%
 To be able to analyze the inclination $\alpha$, one has to distinguish the relative strength of the birefringence from the $\cos^2(\alpha)$.
 For this purpose, a tiltable sample was developed that allows the light signal to be measured through the tissue at a different angle of incidence \cite{Axer2011}\todo{check ref}.
 This means that the tissue, and therefore the nerve fibers, change their orientation due to the tilt angles $\theta, \varphi$.
 In addition, the distance the light travels through the tissue increases by $1/\cos(\theta)$ \cref{fig:tilted_side_view}.
 \\
-% 
+%
 Depending on the \pixelsize{}, this light passes through the same volume but with a different orientation.
 Therefore, a measurement of multiple light paths can be captured and the resulting signals can be used to analyze the slope and relative birefringent tissue thickness \trel{}.
 The angle of incidence of the light on the glass and tissue also changes the angle of the light by Snellius law \cref{eq:Snellius}.
 This also results in a perspective shift that must be corrected by a registration process.
 In this case, an affine transformation.
 However, this effect is neglected in the simulation, since it only adds a parallel offset.
-All angles mentioned here, if not specified, are always the angle change of light within the tissue (see \cref{fig:tilting_camera_view}). 
+All angles mentioned here, if not specified, are always the angle change of light within the tissue (see \cref{fig:tilting_camera_view}).
 \\
-% 
+%
 In \cite{Schmitz2018} this analysis was published under the name \ac{ROFL}, which builds on the work of \cite{Wiese:887678}.
 The idea is to fit the measured signals of all light paths simultaneously.
 However, since the change in the signal is proportional to $\cos(\alpha)$, this means that for steep fibers not only are the changes small, but also the amplitude of the signal is very small.
 This leads to the problem of increasing uncertainty with increasing slope angle.
 \\
-% 
+%
 Another difficulty is that for a smaller \pixelsize{} the light path can no longer be neglected.
 For the \ac{LMP3D} system, this means that for a maximum tilt angle of about $\SI{3.9}{\degree}$ and a usual tissue thickness of $\SI{60}{\micro\meter}$, the light path is measured in n \dummy{} pixels away from the non-tilting case when the center of rotation is in the middle of the tissue.
 \\
-% 
+%
 For homogeneous tissue regions, such as parts in the dense \ac{WM}, this can be neglected.
 However, for single fiber paths crossing other fiber bundles or in the extreme single visible fibers in the \ac{GM} this is currently an unsolved problem.
-% 
-% 
-% 
+%
+%
+%
 \section{Orientation visualization}
-% 
+%
 \begin{figure}[!t]
 \centering
 \setlength{\tikzwidth}{0.8\textwidth}
@@ -541,13 +541,13 @@ However, for single fiber paths crossing other fiber bundles or in the extreme s
 \subcaptiontab{0.475\textwidth}{2d hsv sphere} &
 \subcaptiontab{0.475\textwidth}{\label{fig:sphere}3d hsv sphere}
 \end{tabular}
-% 
+%
 % \vspace{-1em} % because of tabular?
 \caption{Color spheres decoding the direction $\varphi$ and inclination $\alpha$ of a orientation.}
 \label{fig:spheres}
 \end{figure}
-% 
-% 
+%
+%
 The orientation of the birefringence axis is described by the direction angle $\varphi$ and the inclination angle $\alpha$ (see \cref{fig:sphere}).
 To represent the 3D information, the \textit{hsv-black} is usually represented in \ac{3D-PLI}.
 It encodes the orientation in the color and the inclination in the saturation (see \cref{fig:exampleFom}):
@@ -559,25 +559,25 @@ It encodes the orientation in the color and the inclination in the saturation (s
 \end{split}
 \end{align}
 Since the orientation, unlike a vector, covers only a half sphere, the colors are point symmetric.
-% 
-% 
+%
+%
 \section{optical resolution}
 \label{sec:opticalResolution}
-% 
+%
 The optical resolution of an imaging system describes the minimum size of an object that can still be resolved.
 This property is limited by aberration and diffraction.
 Aberration causes blurring of the image, while diffraction can lead to superimposed diffraction patterns.
 If diffraction is caused by many small objects in relation to the resolution, this also looks like blurring.
 \\
-% 
-Ernst Abbe was one of the first to describe that the resolution correlates with the light wave $\lambda$: 
+%
+Ernst Abbe was one of the first to describe that the resolution correlates with the light wave $\lambda$:
 \begin{align}
 d=\frac{ \lambda}{2 n \sin \theta} = \frac{\lambda}{2\mathrm{NA}} \> .
 \end{align}
 $d$ is the minimum resolvable distance, $n$ the refractive index, $\theta$ the angle of a light spot, which can be combined to the better known numerical aperture $\mathrm{NA}$.
 This gives an absolute threshold for a light microscope above which resolution cannot be improved.
 For the wavelength used in \ac{3D-PLI} with $\lambda = \SI{525}{\nano\meter}$ and a numerical apperature of $\mathrm{NA} = \SI{}{}$ \dummy{}, this results in a limit of \dummy{}.
-% 
+%
 \begin{figure}[!t]
 \setlength{\tikzwidth}{0.45\textwidth}
 \centering
@@ -586,18 +586,18 @@ For the wavelength used in \ac{3D-PLI} with $\lambda = \SI{525}{\nano\meter}$ an
 \caption[Raylay criterium]{Rayleigh criteria. The minima of the one function is in the maxima of the other.}
 \label{fig:rayleigh}
 \end{figure}
-% 
-\itodo{check} 
-% 
+%
+\itodo{check}
+%
 To account for optical setup, three things must be applied to a simulated measurement.
-% 
+%
 \paragraph{Blurring}
 In optical resolution, the light rays must be blurred.
 This is done classically via a 2d Gaussian convolution:
 \begin{align}
     (f * g)(x) = \int f(\tau)g(x-\tau)d\tau
 \end{align}
-% 
+%
 \paragraph{Sampling}
 Since the number and final position of the light rays correspond to the voxels, all intensities of an image pixel must be combined.
 Here, this is done via a mean value scan:
@@ -605,27 +605,27 @@ Here, this is done via a mean value scan:
     \hat{I}(n,m) = \sum_{i=n \cdot dx}^{(n+1) \cdot dx-1}\sum_{j=m \cdot dy}^{(m+1) \cdot dy-1} I(i,j)
 \end{align}
 Unlike resizing, this does not interpolate the image.
-% 
+%
 \paragraph{Noise}
 The final step is to recreate the noise of the image composition.
 To account for this, a noise model must be applied to each image pixel.
 \cite{Wiese:887678} showed that this can be done via a normal distribution.
-% 
+%
 \begin{align}
     I = I + \gauss(\sigma, \mu)
 \end{align}
-% 
+%
 \par
-% 
+%
 All three effects must be characterized for the system being simulated.
-% 
-% 
-% 
+%
+%
+%
 \section{Computational speedup techniques}
-% 
+%
 Among other specific techniques described in in the next chapers \cref{chap:sof:modelling,cha:sof:simulation}, two important technique was used to speed up the calculations.
 \par
-% 
+%
 The computationally intensive code is written in \cpp{}.
 There the \code{std::vector} has the advantage that the data in memory is linear.
 Modern \acp{CPU} have a built-in method called \say{ache prefetching}.
@@ -640,8 +640,9 @@ Since many algorithms traverse arrays, the next element to be computed is usuall
 Therefore, the time required to copy the data from the memory to the cache is reduced.
 It can be shown that for linear operations on memory, the cache prefetcher reduces the time so much that it behaves as if the \ac{CPU} had an infinite cache.
 \par
-% 
+%
 Another technique is to use modern compilers such as Clang or GCC.
 These have an optimization algorithms built in that optimizes the code to the architecture of the machine\footnote{And much more sophisticated methods.}.
 For example, if the number of iterations is known at compile time, a for loop can be \name{unrolled} to speed up the computations since it no longer needs to check if the conditions are met to end the loop.
 To review these optimizations, the bottlenecked code was tested with \name{Compiler Explorer}\footnote{https://godbolt.org/} and \name{C++ Insight}\footnote{https://cppinsights.io/}.
+%

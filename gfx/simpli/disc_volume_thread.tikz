@@ -15,7 +15,7 @@
         }
     }
     \draw[fill, RED] (\lx,0,0) -- (\lx,\ly,0) -- (\lx,\ly,\lz) -- (\lx,0,\lz) -- cycle;
-   
+  
     %
     %
     \foreach \i in {0,1,...,\lx}{%
