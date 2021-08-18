@@ -1,7 +1,7 @@
 \begin{tikzpicture}[baseline, trim axis left]
 \begin{loglogaxis}[%
 width=\tikzwidth,
-height=\tikzwidth,
+height=\tikzheight,
 scale only axis,
 xlabel={\small intensity},
 ylabel={\small rel $\sigma$},

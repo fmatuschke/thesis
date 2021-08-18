@@ -599,21 +599,22 @@ It was decided to use the following two conditions.
 \begin{figure}[!t]
     \centering
     % \tikzset{external/force remake}
-    % \def\forcetikzscale{true}
-    \setlength{\tabcolsep}{0pt}
+    \tikzset{external/export=false}
+    \def\forcetikzscale{true}
+    % \setlength{\tabcolsep}{0pt}
     \setlength{\tikzwidth}{.45\textwidth}
-    \begin{tabular}{cc}
+    \begin{tabular}{C{.5\textwidth}C{.5\textwidth}}
     % 
     \inputtikz{gfx/model/model_merge} &
     \inputtikz{gfx/model/model_split}
     \\
-    \multicolumn{1}{@{}l}{
-    \begin{minipage}{0.5\textwidth}
+    \multicolumn{1}{l}{
+    \begin{minipage}{0.475\textwidth}
     \leavevmode\subcaption{merge}
     \end{minipage}}
     &
-    \multicolumn{1}{@{}l}{
-    \begin{minipage}{0.5\textwidth}
+    \multicolumn{1}{l}{
+    \begin{minipage}{0.475\textwidth}
     \leavevmode\subcaption{split}
     \end{minipage}}
     \end{tabular}

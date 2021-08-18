@@ -138,6 +138,13 @@
 \usepackage{tcolorbox}
 \usepackage{enumitem}
 % 
+\newcommand{\subcaptiontab}[2]{%
+\multicolumn{1}{l}{%
+\begin{minipage}[t]{#1}
+\leavevmode\subcaption{#2}
+\end{minipage}}
+}
+% 
 \usepackage{amsmath, amssymb, amsthm, mathtools}
 \ifPDFTeX
     % \usepackage{newtxsf} ???
