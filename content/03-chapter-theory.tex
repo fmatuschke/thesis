@@ -534,21 +534,12 @@ However, for single fiber paths crossing other fiber bundles or in the extreme s
 \centering
 \setlength{\tikzwidth}{0.8\textwidth}
 \setlength{\tabcolsep}{0pt}
-\begin{tabular}{m{6cm}m{6cm}}
-\includegraphics[width=0.41\tikzwidth]{gfx/pli/color_sphere.png}
-&
+\begin{tabular}{C{0.5\textwidth}C{0.5\textwidth}}
+\includegraphics[width=0.41\tikzwidth]{gfx/pli/color_sphere.png} &
 % \tikzset{external/remake next=true}
-\inputtikz{gfx/pli/hsv_sphere}
-\\
-\multicolumn{1}{@{}l}{
-\begin{minipage}{0.5\textwidth}
-\leavevmode\subcaption{2d hsv sphere}
-\end{minipage}}
-&
-\multicolumn{1}{@{}l}{
-\begin{minipage}{0.5\textwidth}
-\leavevmode\subcaption{\label{fig:sphere}3d hsv sphere}
-\end{minipage}}
+\inputtikz{gfx/pli/hsv_sphere} \\
+\subcaptiontab{0.475\textwidth}{2d hsv sphere} &
+\subcaptiontab{0.475\textwidth}{\label{fig:sphere}3d hsv sphere}
 \end{tabular}
 % 
 % \vspace{-1em} % because of tabular?

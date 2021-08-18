@@ -1,6 +1,11 @@
 \chapter{Software}
 \label{app:fastpli}
-
+% 
+\newlength{\width}
+\newlength{\height}
+\setlength{\width}{\textwidth}
+\setlength{\height}{\textheight}
+% 
 % \section{fastpli}
 % \lstinputlisting[language=python, caption=src/fastpli/\_\_init\_\_.py]{code/src/fastpli/__init__.py}
 % \section{fastpli/analysis}
@@ -254,13 +259,13 @@
 % % 
 % % 
 % 
-\chapter{Model analysis}
+\chapter{} % Model analysis
 \label{app:modelAnalysis}
 % 
 % 
 \fakesection{Model parameter}
 % 
-\begin{figure}[H]
+\begin{figure}[!h]
     \centering
     \includegraphics[width=1\textwidth]{dev/rc1/mpara/pre_stats_box_plot_volume_output_parameter_statistic_rc1.pdf}
     \caption{Caption}
@@ -278,29 +283,30 @@
 % % \end{landscape}
 % 
 % 
-\fakesection{Time evolvement}
+\fakesection{Time evolution}
 % 
+\setlength{\width}{\textwidth}
 \begin{sidewaysfigure}[]
 \centering
-% \resizebox{\textwidth}{!}{
-\includegraphics[width=0.475\textwidth,page=1]{dev/rc1/mpara/pre_stats_time_evolve_all_output_parameter_statistic_rc1.pdf}
-\includegraphics[width=0.475\textwidth,page=2]{dev/rc1/mpara/pre_stats_time_evolve_all_output_parameter_statistic_rc1.pdf}
+\includegraphics[height=\width,page=1]{dev/rc1/mpara/pre_stats_time_evolve_all_output_parameter_statistic_rc1.pdf}
+\includegraphics[height=\width,page=2]{dev/rc1/mpara/pre_stats_time_evolve_all_output_parameter_statistic_rc1.pdf}
 \label{app:pste1}
 \end{sidewaysfigure}
 % 
 \begin{sidewaysfigure}[]
 \centering
-% \resizebox{\textwidth}{!}{
-\includegraphics[width=0.475\textwidth,page=3]{dev/rc1/mpara/pre_stats_time_evolve_all_output_parameter_statistic_rc1.pdf}
-\includegraphics[width=0.475\textwidth,page=4]{dev/rc1/mpara/pre_stats_time_evolve_all_output_parameter_statistic_rc1.pdf}
+% \resizebox{\width}{!}{
+\includegraphics[height=\width,page=3]{dev/rc1/mpara/pre_stats_time_evolve_all_output_parameter_statistic_rc1.pdf}
+\includegraphics[height=\width,page=4]{dev/rc1/mpara/pre_stats_time_evolve_all_output_parameter_statistic_rc1.pdf}
+% }
 \label{app:pste2}
 \end{sidewaysfigure}
 % 
 \begin{sidewaysfigure}[]
 \centering
 % \resizebox{\textwidth}{!}{
-\includegraphics[width=0.475\textwidth,page=5]{dev/rc1/mpara/pre_stats_time_evolve_all_output_parameter_statistic_rc1.pdf}
-\includegraphics[width=0.475\textwidth,page=6]{dev/rc1/mpara/pre_stats_time_evolve_all_output_parameter_statistic_rc1.pdf}
+\includegraphics[height=\width,page=5]{dev/rc1/mpara/pre_stats_time_evolve_all_output_parameter_statistic_rc1.pdf}
+\includegraphics[height=\width,page=6]{dev/rc1/mpara/pre_stats_time_evolve_all_output_parameter_statistic_rc1.pdf}
 \label{app:pste3}
 \end{sidewaysfigure}
 % 
@@ -315,8 +321,8 @@
 \begin{sidewaysfigure}[]
 \centering
 % \resizebox{\textwidth}{!}{
-\includegraphics[width=0.475\textwidth,page=9]{dev/rc1/mpara/pre_stats_time_evolve_all_output_parameter_statistic_rc1.pdf}
-\includegraphics[width=0.475\textwidth,page=10]{dev/rc1/mpara/pre_stats_time_evolve_all_output_parameter_statistic_rc1.pdf}
+\includegraphics[height=\width,page=9]{dev/rc1/mpara/pre_stats_time_evolve_all_output_parameter_statistic_rc1.pdf}
+\includegraphics[height=\width,page=10]{dev/rc1/mpara/pre_stats_time_evolve_all_output_parameter_statistic_rc1.pdf}
 \label{app:pste5}
 \end{sidewaysfigure}
 % 
@@ -343,44 +349,45 @@
 % 
 % 
 \fakesection{Simulation Library}
-\begin{table}[!b]
+\begin{table}[htb]
 \centering
 \caption[Opening angle distribution]{Orientation statistic of simulation model library.}
-\dummy{}
-% \resizebox{\textwidth}{!}{
-% \pgfplotstabletypeset[%
-%     thesisTableStyle,
-%     columns={omega,psi,pop,incl_mean,incl_std,incl_25,incl_50,incl_75,phi_mean,phi_std,phi_25,phi_50,phi_75,mean,std,25,50,75},
-%     every head row/.style={
-%         before row={
-%             \toprule
-%         },
-%         after row={$\si{\degree}$ & & & $\si{\degree}$ & $\si{\degree}$ & $\si{\degree}$ & $\si{\degree}$ & $\si{\degree}$ & $\si{\degree}$ & $\si{\degree}$ & $\si{\degree}$ & $\si{\degree}$ & $\si{\degree}$ & $\si{\degree}$ & $\si{\degree}$ & $\si{\degree}$ & $\si{\degree}$ & $\si{\degree}$ \\ \midrule},
-%     },
-%     columns/omega/.style={column name=$\Omega$},
-%     columns/psi/.style={column name=$\Psi$},
-%     columns/mean/.style={column name=$<d\Omega>$,zerofill,precision=0},
-%     columns/std/.style={column name=$\sigma(d\Omega)$,zerofill,precision=0},
-%     columns/25/.style={column name=$25(d\Omega)$,zerofill,precision=0},
-%     columns/50/.style={column name=$50(d\Omega)$,zerofill,precision=0},
-%     columns/75/.style={column name=$75(d\Omega)$,zerofill,precision=0},
-%     columns/incl_mean/.style={column name=$<\alpha>$,fixed,fixed zerofill,precision=0},
-%     columns/incl_std/.style={column name=$\sigma(\alpha)$,fixed,fixed zerofill,precision=0},
-%     columns/incl_25/.style={column name=$25(\alpha)$,fixed,fixed zerofill,precision=0},
-%     columns/incl_50/.style={column name=$50(\alpha)$,fixed,fixed zerofill,precision=0},
-%     columns/incl_75/.style={column name=$75(\alpha)$,fixed,fixed zerofill,precision=0},
-%     columns/phi_mean/.style={column name=$<\varphi>$,fixed,fixed zerofill,precision=0},
-%     columns/phi_std/.style={column name=$\sigma(\varphi)$,fixed,fixed zerofill,precision=0},
-%     columns/phi_25/.style={column name=$25(\varphi)$,fixed,fixed zerofill,precision=0},
-%     columns/phi_50/.style={column name=$50(\varphi)$,fixed,fixed zerofill,precision=0},
-%     columns/phi_75/.style={column name=$75(\varphi)$,fixed,fixed zerofill,precision=0},
-%     col sep=comma,
-%     % 
-% ]
-% {dev/rc1/omegas_ms_2pop.csv}
-% }
+\resizebox{\textwidth}{!}{
+\pgfplotstabletypeset[%
+    thesisTableStyle,
+    columns={omega,psi,pop,incl_mean,incl_std,incl_25,incl_50,incl_75,phi_mean,phi_std,phi_25,phi_50,phi_75,mean,std,25,50,75},
+    every head row/.style={
+        before row={
+            \toprule
+        },
+        after row={$\si{\degree}$ & & & $\si{\degree}$ & $\si{\degree}$ & $\si{\degree}$ & $\si{\degree}$ & $\si{\degree}$ & $\si{\degree}$ & $\si{\degree}$ & $\si{\degree}$ & $\si{\degree}$ & $\si{\degree}$ & $\si{\degree}$ & $\si{\degree}$ & $\si{\degree}$ & $\si{\degree}$ & $\si{\degree}$ \\ \midrule},
+    },
+    columns/omega/.style={column name=$\Omega$},
+    columns/psi/.style={column name=$\Psi$},
+    columns/mean/.style={column name=$<d\Omega>$,zerofill,precision=0},
+    columns/std/.style={column name=$\sigma(d\Omega)$,zerofill,precision=0},
+    columns/25/.style={column name=$25(d\Omega)$,zerofill,precision=0},
+    columns/50/.style={column name=$50(d\Omega)$,zerofill,precision=0},
+    columns/75/.style={column name=$75(d\Omega)$,zerofill,precision=0},
+    columns/incl_mean/.style={column name=$<\alpha>$,fixed,fixed zerofill,precision=0},
+    columns/incl_std/.style={column name=$\sigma(\alpha)$,fixed,fixed zerofill,precision=0},
+    columns/incl_25/.style={column name=$25(\alpha)$,fixed,fixed zerofill,precision=0},
+    columns/incl_50/.style={column name=$50(\alpha)$,fixed,fixed zerofill,precision=0},
+    columns/incl_75/.style={column name=$75(\alpha)$,fixed,fixed zerofill,precision=0},
+    columns/phi_mean/.style={column name=$<\varphi>$,fixed,fixed zerofill,precision=0},
+    columns/phi_std/.style={column name=$\sigma(\varphi)$,fixed,fixed zerofill,precision=0},
+    columns/phi_25/.style={column name=$25(\varphi)$,fixed,fixed zerofill,precision=0},
+    columns/phi_50/.style={column name=$50(\varphi)$,fixed,fixed zerofill,precision=0},
+    columns/phi_75/.style={column name=$75(\varphi)$,fixed,fixed zerofill,precision=0},
+    col sep=comma,
+    % 
+]
+{dev/rc1/domega/omegas_ms_2pop.csv}
+}
 \label{app:modelDistribution}
 \end{table}
+% 
+% 
 % 
 \chapter{Simulation}
 % 
@@ -398,7 +405,7 @@
 % 
 \fakesection{Voxelsize}
 % 
-\begin{figure}[!p]%p
+\begin{figure}[!p]
 % 2_simulation/0_parameter/fiber_radii.py
 \centering
 \includegraphics[width=\textwidth, page=1]{dev/rc1/voxel_size/voxel_size_plots_data_output_vs_135_0.01_6_25_vervet_r_rc1.pdf}
@@ -435,7 +442,6 @@
 \end{figure}
 % 
 % 
-% \section{Single fiber population}
 % 
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % SINGLE
