@@ -601,22 +601,13 @@ It was decided to use the following two conditions.
     % \tikzset{external/force remake}
     \tikzset{external/export=false}
     \def\forcetikzscale{true}
-    % \setlength{\tabcolsep}{0pt}
+    \setlength{\tabcolsep}{0pt}
     \setlength{\tikzwidth}{.45\textwidth}
     \begin{tabular}{C{.5\textwidth}C{.5\textwidth}}
-    % 
     \inputtikz{gfx/model/model_merge} &
-    \inputtikz{gfx/model/model_split}
-    \\
-    \multicolumn{1}{l}{
-    \begin{minipage}{0.475\textwidth}
-    \leavevmode\subcaption{merge}
-    \end{minipage}}
-    &
-    \multicolumn{1}{l}{
-    \begin{minipage}{0.475\textwidth}
-    \leavevmode\subcaption{split}
-    \end{minipage}}
+    \inputtikz{gfx/model/model_split} \\
+    \subcaptiontab{0.475\textwidth}{merge} &
+    \subcaptiontab{0.475\textwidth}{split}
     \end{tabular}
 	\caption{Length control for fibers $f$ and $f'$}
 	\label{fig:mergeSplit}
@@ -656,19 +647,11 @@ r_{new} = \frac{r_{i} + r_{i+1}}{2},\enspace
     % \tikzset{external/force remake}
     \setlength{\tikzheight}{.42\textwidth}
     \setlength{\tabcolsep}{0pt}
-    \begin{tabular}{m{0.5\textwidth}m{0.5\textwidth}}
+    \begin{tabular}{C{0.5\textwidth}C{0.5\textwidth}}
     \inputtikz{gfx/model/model_circle} &
-    \inputtikz{gfx/model/model_circular}
-    \\
-    \multicolumn{1}{@{}l}{
-    \begin{minipage}{0.475\textwidth}
-    \leavevmode\subcaption{Boundary segment length: lower bound $phi=\SI{60}{\degree} \xrightarrow{} r_{\mathit{min}} \geq \SI{0.5773}{} \cdot l_{\mathit{mean}}$}
-    \end{minipage}}
-    &
-    \multicolumn{1}{@{}l}{
-    \begin{minipage}{0.475\textwidth}
-    \leavevmode\subcaption{\label{fig:boundaryLength}Boundary segment radii: lower bound $r_{\mathit{min}} \geq \fiberRadiusMean$}
-    \end{minipage}\hfill}
+    \inputtikz{gfx/model/model_circular} \\
+    \subcaptiontab{0.475\textwidth}{Boundary segment length: lower bound $\varphi=\SI{60}{\degree} \xrightarrow{} r_{\mathit{min}} \geq \SI{0.5773}{} \cdot l_{\mathit{mean}}$} &
+    \subcaptiontab{0.475\textwidth}{\label{fig:boundaryLength}Boundary segment radii: lower bound $r_{\mathit{min}} \geq \fiberRadiusMean$}
     \end{tabular}
 	\caption{Geometrical boundary condition for fiber segment length \segLength{} and fiber bending radius \segRadius{}.}
 	\label{fig:modelCircle}
