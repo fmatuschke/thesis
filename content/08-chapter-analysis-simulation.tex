@@ -22,44 +22,28 @@ As described in \cref{sec:opticalResolution}, optical resolution depends on aber
 Optical resolution and resampling are modeled as described in \cref{sec:ccdOptic}. 
 % 
 \begin{figure}[!t]
+\centering
 \setlength{\tikzwidth}{0.35\textwidth} % bigger than 0.475 images???
 \setlength{\tabcolsep}{0em}
-\centering
 \begin{tabular}{C{0.5\textwidth}C{0.5\textwidth}}
 % 
-\includegraphics[width=\tikzwidth]{dev/wiki/USAF-1951.pdf}
+\includegraphics[height=\tikzwidth]{dev/wiki/USAF-1951.pdf}
 &
-% \tikzset{external/remake next=true}
 \inputtikz{dev/gfx/chap8/usaf_image}
 \\[-1em]
 % 
-\multicolumn{1}{l}{
-\begin{minipage}[t]{0.475\textwidth}
-\leavevmode\subcaption{\label{fig:usaf}USAF chart from group -2 to 1: \url{https://en.wikipedia.org/wiki/1951_USAF_resolution_test_chart}}
-\end{minipage}}&
-\multicolumn{1}{l}{
-\begin{minipage}[t]{0.475\textwidth}
-\leavevmode\subcaption{\label{fig:usaf_image}microscopic image}
-\end{minipage}}
-\\[3em]
+\subcaptiontab{0.475\textwidth}{\label{fig:usaf}USAF chart from group -2 to 1: \url{https://en.wikipedia.org/wiki/1951_USAF_resolution_test_chart}} &
+\subcaptiontab{0.475\textwidth}{\label{fig:usaf_image}microscopic image} \\[5em]
 % 
-% \tikzset{external/remake next=true}
 \inputtikz{dev/gfx/chap8/usaf_line_plots_lr}
 &
-% \tikzset{external/remake next=true}
 \inputtikz{dev/gfx/chap8/usaf_line_plots_up}
 \\[-1em]
 % 
-\multicolumn{1}{l}{
-\begin{minipage}[t]{0.475\textwidth}
-\leavevmode\subcaption{\label{fig:usaf_lines_lr}centered line plots lr}
-\end{minipage}}&
-\multicolumn{1}{l}{
-\begin{minipage}[t]{0.475\textwidth}
-\leavevmode\subcaption{\label{fig:usaf_lines_ud}centered line plots ud}
-\end{minipage}}
+\subcaptiontab{0.475\textwidth}{\label{fig:usaf_lines_lr}centered line plots lr} &
+\subcaptiontab{0.475\textwidth}{\label{fig:usaf_lines_ud}centered line plots ud}
 \end{tabular}
-\caption[USAF test chart measurement]{\acs{LMP} data. Line width: magenta: $\SI{2.19}{\micro\meter}$, yellow $\SI{1.95}{\micro\meter}$ and cyan $\SI{1.74}{\micro\meter}$. Resolution at about $\SI{1.95}{\micro\meter}$ yielding to an optical convolution of $\opticsigma = \SI{0.75}{\pixel}$.}
+\caption[USAF test chart measurement]{\acs{LMP} data. Group 8-1 with $\SI{1.95}{\micro\meter}$ indicates a resulting resolution at about \dummy{} which corresponds to an optical convolution of $\opticsigma = \SI{0.75}{\pixel}$.}
 \label{fig:USAF}
 \end{figure}
 %
@@ -94,41 +78,30 @@ Therefore, the convolution to be applied (see \cref{sec:opticalResolution}) is s
 % 
 % \tikzset{external/export=false}
 \setlength{\tikzwidth}{0.3\textwidth}
+\setlength{\tikzheight}{0.3\textwidth}
+% \tikzset{external/force remake}
 % 
-\begin{tabular}{cc}
-\resizebox{!}{\tikzwidth}{
-\inputtikz{gfx/pli/pli_focus}}
+\setlength{\tabcolsep}{0em}
+\begin{tabular}{C{0.5\textwidth}C{0.5\textwidth}}
+% \tikzset{external/remake next}
+\inputtikz{gfx/pli/pli_focus}
 &
 \inputtikz{dev/gfx/2/PM_000_image}
 \\[-1em]
 % 
 % SUBCAPTIONS
-\multicolumn{1}{l}{
-\begin{minipage}[t]{0.47\textwidth}
-\leavevmode\subcaption{\label{fig:pliFocus}unfocused microscopic image}
-\end{minipage}}
-&
-\multicolumn{1}{l}{
-\begin{minipage}[t]{0.47\textwidth}
-\leavevmode\subcaption{\label{fig:pliFocusImage}image}
-\end{minipage}}
-\\[2em]
+\subcaptiontab{0.475\textwidth}{\label{fig:pliFocus}unfocused microscopic image} &
+\subcaptiontab{0.475\textwidth}{\label{fig:pliFocusImage}image} \\[2em]
 % 
+% \tikzset{external/remake next}
 \inputtikz{gfx/data/PM_noise}
 &
 \inputtikz{gfx/data/theo_noise}
 \\[-1em]
 % 
 % SUBCAPTIONS
-\multicolumn{1}{l}{
-\begin{minipage}[t]{0.47\textwidth}
-\leavevmode\subcaption{\label{fig:parameterModelNoise} Linear regression results in a gain factor of $\opticgain_{\mathit{LMP}} = \SI{0.1175}{}(?)$.}
-\end{minipage}}
-&
-\multicolumn{1}{l}{
-\begin{minipage}[t]{0.47\textwidth}
-\leavevmode\subcaption{\label{fig:noiseplot}Expected noise range for different species \dummy[check values]{}}
-\end{minipage}}
+\subcaptiontab{0.475\textwidth}{\label{fig:parameterModelNoise} Linear regression results in a gain factor of $\opticgain_{\mathit{LMP}} = \SI{0.1175}{}(?)$.} &
+\subcaptiontab{0.475\textwidth}{\label{fig:noiseplot}Expected noise range for different species \dummy[check values]{}}
 \end{tabular}
 % 
 \caption[Noise analysis]{Intensity noise measurements and results}
@@ -161,17 +134,12 @@ for intensities $I > 0$, $I \gg \sqrt{\opticgain I}$ and integer values.
 \setlength{\tikzwidth}{0.75\textwidth}
 \begin{tabular}{c}
 % 
-\inputtikz{gfx/data/vervet_transmittance}
-\\[-2em]
-\begin{minipage}[t]{0.75\textwidth}
-\leavevmode\subcaption{\label{fig:brain_trans}transmittance}
-\end{minipage}
-\\[1.5em]
-\inputtikz{gfx/data/vervet_retardation}
-\\[-2em]
-\begin{minipage}[t]{0.75\textwidth}
-\leavevmode\subcaption{\label{fig:brain_ret}retardation}
-\end{minipage}
+\tikzset{external/export next=false} % takes long for the first time
+\inputtikz{gfx/data/vervet_transmittance} \\[-2em]
+\subcaptiontab{0.75\textwidth}{\label{fig:brain_trans}transmittance} \\[1.5em]
+\tikzset{external/export next=false}% takes long for the first time
+\inputtikz{gfx/data/vervet_retardation} \\[-2em]
+\subcaptiontab{0.75\textwidth}{\label{fig:brain_ret}retardation}
 % 
 \end{tabular}
 \caption[Vervet monkey coronal section transmittance and retardation]{%
@@ -188,33 +156,22 @@ Two \acsp{ROI} with \dummy{} pixels are annotated for this purpose.
 % 2_simulation/0_parameter/measure_vervet.ipy
 \centering
 \setlength{\tikzwidth}{0.425\textwidth}
-\begin{tabular}{cc}
+\setlength{\tabcolsep}{0em}
+\begin{tabular}{C{0.5\textwidth}C{0.5\textwidth}}
 % 
+\tikzset{external/export next=false}% takes long for the first time
 \inputtikz{gfx/data/vervet_transmittance_zoom} &
-% \tikzset{external/export next=false}
 \inputtikz{gfx/data/vervet_transmittance_hist} \\[-5mm]
 % 
-\multicolumn{1}{l}{
-\begin{minipage}[t]{0.45\textwidth}
-\leavevmode\subcaption{zoom transmittance}
-\end{minipage}} &
-\multicolumn{1}{l}{
-\begin{minipage}[t]{0.45\textwidth}
-\leavevmode\subcaption{hist transmittance}
-\end{minipage}} \\[10mm]
+\subcaptiontab{0.475\textwidth}{zoom transmittance} &
+\subcaptiontab{0.475\textwidth}{hist transmittance} \\[10mm]
 % 
+\tikzset{external/export next=false}
 \inputtikz{gfx/data/vervet_retardation_zoom} &
-% \tikzset{external/export next=false}
 \inputtikz{gfx/data/vervet_retardation_hist} \\[-5mm]
 % 
-\multicolumn{1}{l}{
-\begin{minipage}[t]{0.45\textwidth}
-\leavevmode\subcaption{zoom retardation}
-\end{minipage}} &
-\multicolumn{1}{l}{
-\begin{minipage}[t]{0.45\textwidth}
-\leavevmode\subcaption{hist retardation}
-\end{minipage}} \\
+\subcaptiontab{0.475\textwidth}{zoom retardation} &
+\subcaptiontab{0.475\textwidth}{hist retardation} \\
 % 
 \end{tabular}
 \caption[zoom ret and trans]{%
