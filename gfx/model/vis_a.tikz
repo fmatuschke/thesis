@@ -1,6 +1,6 @@
 \begin{tikzsize}{\tikzwidth}{\tikzheight}
 \begin{tikzpicture}[scale=\tikzscale,]
-    \begin{axis}[
+    \begin{axis}[%
     view={10}{40},
     hide axis,
     axis equal,
@@ -12,7 +12,7 @@
    %  \def0.25{0.25}
    %  \def1{1}
    %  \def3.14159{3.14159265359}
-    \addplot3[
+    \addplot3[%
         surf,
         shader=flat,
         domain=0:1,
@@ -26,7 +26,7 @@
         z buffer=sort,
     ]
     ({1*3.14159*x + sin(1*x*270)*sin(y)*0.25}, {cos(1*x*270) + sin(y)*0.25}, {cos(y)*0.25});
-    \addplot3[
+    \addplot3[%
         surf,
         shader=flat,
         domain=0:1,
@@ -40,7 +40,7 @@
         mark size=0.75pt,
     ]
     ({1*3.14159*x + sin(1*x*270)*sin(y)*0.25}, {cos(1*x*270) + sin(y)*0.25}, {cos(y)*0.25});
-    \addplot3[
+    \addplot3[%
         domain=0:1,
         samples=7,
         samples y=0,

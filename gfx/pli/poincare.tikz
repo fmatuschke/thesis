@@ -1,41 +1,41 @@
 \tdplotsetmaincoords{60}{110}
 \begin{tikzpicture}[scale=3,tdplot_main_coords]
-%  
+% 
 % variables
 \def\rvec{1.0}
 \def\thetavec{30}
 \def\phivec{60}
-%  
+% 
 % axes
 \coordinate (O) at (0,0,0);
 \draw[thick,->] (0,0,0) -- (1.3,0,0) node[anchor=north east]{$S_1$};
 \draw[thick,->] (0,0,0) -- (0,1.2,0) node[anchor=north west]{$S_2$};
 \draw[thick,->] (0,0,0) -- (0,0,1.3) node[anchor=south]{$S_3$};
-%  
+% 
 % vectors
 \tdplotsetcoord{P}{\rvec}{\thetavec}{\phivec}
 \draw[-stealth,red] (O)  -- (P) node[above right] {$Ip$};
 \draw[dashed,red]   (O)  -- (Pxy);
 \draw[dashed,red]   (P)  -- (Pxy);
 \draw[dashed,red]   (Py) -- (Pxy);
-%  
+% 
 % arcs
 \tdplotdrawarc[->]{(O)}{0.3}{0}{\phivec}
 {anchor=north}{$2\Psi$}
 \tdplotsetthetaplanecoords{\phivec}
 \tdplotdrawarc[->,tdplot_rotated_coords]{(0,0,0)}{0.3}{90}{\thetavec}
 {anchor=south west}{$2\chi$}
-% 
+%
 % sphere
 \tdplotsetthetaplanecoords{\phivec}
 \tdplotdrawarc[tdplot_rotated_coords, thin]{(0,0,0)}{1}{-30}{-30+180}{}{}  \tdplotdrawarc[tdplot_rotated_coords, thin, dashed]{(0,0,0)}{1}{-30+180}{-30+360}{}{}
-%   
+%  
 % \tdplotsetthetaplanecoords{-70} % 180-110 ???
 \tdplotsetrotatedcoords{20}{60}{0}
 \tdplotdrawarc[tdplot_rotated_coords, thick]{(0,0,0)}{1}{0}{360}{}{}
-%   
+%  
 \tdplotsetrotatedcoords{0}{0}{0}
 \tdplotdrawarc[tdplot_rotated_coords, thin]{(0,0,0)}{1}{-70}{-70+180}{}{}
 \tdplotdrawarc[tdplot_rotated_coords, thin,dashed]{(0,0,0)}{1}{110}{110+180}{}{}
-%  
-\end{tikzpicture}  
+% 
+\end{tikzpicture}

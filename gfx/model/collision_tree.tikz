@@ -6,7 +6,7 @@
         \draw[GREEN, thick] (0:1cm) \foreach \x in {0,120,...,360} {-- (\x:1cm)} -- cycle {};
     \end{scope}
     \node[anchor=north] at (BB1.south) {$\mathit{obj}_1$};
-    % 
+    %
     \begin{scope}[shift={(7,4.8)},local bounding box=BB2,
         rotate=42,
         3d view={85}{35},
@@ -14,7 +14,7 @@
         ]
         \pgfmathsetmacro\a{2}
         \pgfmathsetmacro{\phi}{\a*(1+sqrt(5))/2}
-        \path 
+        \path
         coordinate(A) at (0,\phi,\a)
         coordinate(B) at (0,\phi,-\a)
         coordinate(C) at (0,-\phi,\a)
@@ -26,16 +26,16 @@
         coordinate(I) at (\phi,\a,0)
         coordinate(J) at (\phi,-\a,0)
         coordinate(K) at (-\phi,\a,0)
-        coordinate(L) at (-\phi,-\a,0); 
+        coordinate(L) at (-\phi,-\a,0);
         \draw[dashed, thick, GREEN]
-        (B) -- (H) -- (F) 
-        (L) -- (D) -- (H) --cycle 
+        (B) -- (H) -- (F)
+        (L) -- (D) -- (H) --cycle
         (K) -- (L) -- (H) --cycle
         (K) -- (L) -- (G) --cycle
         (C) -- (L) (B)--(K) (A)--(K);
         \draw[GREEN, thick, rounded corners=1pt]
-        (A) -- (I) -- (B) --cycle 
-        (F) -- (I) -- (B) --cycle 
+        (A) -- (I) -- (B) --cycle
+        (F) -- (I) -- (B) --cycle
         (F) -- (I) -- (J) --cycle
         (F) -- (D) -- (J) --cycle
         (C) -- (D) -- (J) --cycle
@@ -43,31 +43,31 @@
         (I) -- (E) -- (J) --cycle
         (I) -- (E) -- (A) --cycle
         (G) -- (E) -- (A) --cycle
-        (G) -- (E) -- (C) --cycle; 
+        (G) -- (E) -- (C) --cycle;
     \end{scope}
     \node[anchor=north] at (BB2.south) {$\mathit{obj}_2$};
-    % 
+    %
     \begin{scope}[shift={(5.5,8)},rotate=21,local bounding box=BB3]
         \draw[thick, GREEN] (0:1cm) \foreach \x in {0,90,...,360} {-- (\x:1cm)} -- cycle {};
     \end{scope}
     \node[anchor=north] at (BB3.south) {$\mathit{obj}_3$};
-    % 
+    %
     \draw[RED] (BB1.north west) rectangle (BB1.south east);
     \draw[RED] (BB2.north west) rectangle (BB2.south east);
     \draw[RED] (BB3.north west) rectangle (BB3.south east);
-    % 
+    %
     \draw[thick] (0,0) rectangle (10,10);
-    % 
+    %
     \draw[] (5,0) -- (5,10);
     \draw[] (0,5) -- (10,5);
-     % 
+     %
     \draw[very thin] (5,7.5) -- (10,7.5);
     \draw[very thin] (7.5,5) -- (7.5,10);
-    % 
+    %
     \node at (2.5, 2.5) {$(0,0)$};
     \node at (7.5, 2.5) {$(1,0)$};
     \node at (2.5, 7.5) {$(0,1)$};
-    % 
+    %
     \node at (6.25, 6.25) {$(10,10)$};
     \node at (8.75, 6.25) {$(11,10)$};
     \node at (6.25, 8.75) {$(10,11)$};

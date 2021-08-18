@@ -1,24 +1,24 @@
 \def\zangle{50}
 \def\xangle{-0}
-% 
+%
 \begin{tikzsize}{\tikzwidth}{\tikzheight}
 \begin{tikzpicture}[scale=\tikzscale,
                     x=(\xangle:1cm), y=(90:1cm), z=(\zangle:0.5cm)]
     \pgfmathsetmacro{\lx}{7}
     \pgfmathsetmacro{\ly}{5}
     \pgfmathsetmacro{\lz}{4}
-    \foreach \i in {0,1,...,\lx}{
+    \foreach \i in {0,1,...,\lx}{%
         \draw[thick] (\i,0,0)--(\i,\ly,0){};
         \draw[thick] (\i,\ly,0)--(\i,\ly,\lz){};
     }
-    \foreach \i in {0,1,...,\ly}{
+    \foreach \i in {0,1,...,\ly}{%
         \draw[thick] (0,\i,0)--(\lx,\i,0){};
         \draw[thick] (\lx,\i,0)--(\lx,\i,\lz){};
     }
-    \foreach \i in {0,1,...,\lz}{
+    \foreach \i in {0,1,...,\lz}{%
         \draw[thick] (\lx,0,\i)--(\lx,\ly,\i){};
         \draw[thick] (0,\ly,\i)--(\lx,\ly,\i){};
-    } 
+    }
     \draw[fill, inner sep=0.1pt] (0,0,0) circle (4.2pt) node[anchor=north east] {$\mathit{voi}_{\mathit{min}}$};
     \draw[fill, inner sep=0.1pt] (\lx,\ly,\lz) circle (4.2pt) node[anchor=south west, xshift=0.5ex, yshift=0.5ex]  {$\mathit{voi}_{\mathit{max}}$};
     \draw[<->] (3,-0.25,0) -- (4,-0.25,0) node[midway, below]  {\voxels};

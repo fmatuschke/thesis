@@ -2,37 +2,37 @@
 \pgfmathsetmacro{\c}{2}
 \pgfmathsetmacro{\alpha}{-15}
 \pgfmathsetmacro{\beta}{-atan(1.5*\a*cos(\alpha) / (1.5*\c*sin(\alpha))}
-% 
+%
 \ifthenelse{\boolean{false}}
 {\pgfmathsetmacro{\roty}{\beta-90}}
 {\pgfmathsetmacro{\roty}{0}}
-% 
+%
 \begin{tikzsize}{\tikzwidth}{\tikzheight}
 \begin{tikzpicture}[scale=\tikzscale]
-% 
+%
 \path[help lines] (-2,-2.3) grid (2,2.3);
-% 
-\begin{scope}[
+%
+\begin{scope}[%
 3d view={20}{20},
 rotate around y={\roty},
 ]
-% 
+%
 % \draw[->] (-1,0,0)-- (1,0,0)node[pos=1.1]{x};
 % \draw[->] (0,-1,0)-- (0,1,0)node[pos=1.1]{y};
 % \draw[->] (0,0,-1)-- (0,0,1)node[pos=1.1]{z};
-% 
+%
 \draw[RED, densely dotted] plot[domain=0:360,samples=90,smooth] ({\a*sin(\x)*cos(\alpha)}, {\a*cos(\x)}, {\c*sin(\x)*sin(\alpha)});
 \draw[thick, RED, ->] (0,0,0) -- ({1.5*\c*sin(-\alpha)},0,{1.5*\a*cos(\alpha)}) node [midway, anchor = west] () {$\vec{k}$};
 \draw[GREEN] (0,0,0) -- (0,-\a,0) node [anchor = north] () {$n_o$};
 \draw[GREEN] (0,0,0) -- ({-\a*cos(\alpha)},0,{\c* sin(-\alpha)}) node [midway, anchor=south] () {$n_a$};
-% 
+%
 \begin{scope}[canvas is zx plane at y=0]
 \draw[] (1,0) arc (0:90-\beta:1) node [midway, above] () {$\theta$};
 \end{scope}
-% 
+%
 \draw[densely dashed] plot[domain=0:180,samples=90,smooth] ({\a*cos(\x)},{\a*sin(\x)},0);
 \draw[] plot[domain=180:360,samples=90,smooth] ({\a*cos(\x)},{\a*sin(\x)},0);
-% 
+%
 \draw[dashdotted] (0,0,-1.2*\c) -- (0,0,1.2*\c);
 \draw[thin, dashed] plot[domain=100:265,samples=90,smooth] ({\a*cos(\x)},0,{\c*sin(\x)});
 \draw[thick, rotate around z=20,

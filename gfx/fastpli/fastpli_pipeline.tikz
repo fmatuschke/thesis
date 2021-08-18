@@ -1,7 +1,7 @@
 % \tikzset{external/export=false}
 \begin{tikzpicture}
-    % 
-    \node[text width=5cm] (fastpli) at (-0.25,-1.35) {
+    %
+    \node[text width=5cm] (fastpli) at (-0.25,-1.35) {%
         \begin{tcolorbox}[%
             title={fastpli \vphantom{Mg}},
             fonttitle=\bfseries,
@@ -11,8 +11,8 @@
         ]
         \end{tcolorbox}
     };
-    % 
-    \node[text width=5cm, below= 2.5em of fastpli.north, xshift=0.75em] (modelling) {
+    %
+    \node[text width=5cm, below= 2.5em of fastpli.north, xshift=0.75em] (modelling) {%
         \begin{tcolorbox}[%
             title={modelling \vphantom{Mg}},
             fonttitle=\bfseries,
@@ -27,8 +27,8 @@
         \end{itemize}
         \end{tcolorbox}
     };
-    % 
-    \node[text width=5cm, right= -2em of modelling] (simulation) {
+    %
+    \node[text width=5cm, right= -2em of modelling] (simulation) {%
         \begin{tcolorbox}[%
             title={simulation \vphantom{Mg}},
             fonttitle=\bfseries,
@@ -42,8 +42,8 @@
         \end{itemize}
         \end{tcolorbox}
     };
-    % 
-    \node[text width=5cm, below= -1em of modelling] (analysis) {
+    %
+    \node[text width=5cm, below= -1em of modelling] (analysis) {%
         \begin{tcolorbox}[%
             title={analysis \vphantom{Mg}},
             fonttitle=\bfseries,
@@ -58,8 +58,8 @@
         \end{itemize}
         \end{tcolorbox}
     };
-    % 
-    \node[text width=5cm, below= -1em of simulation] (objects) {
+    %
+    \node[text width=5cm, below= -1em of simulation] (objects) {%
         \begin{tcolorbox}[%
             title={objects \vphantom{Mg}},
             fonttitle=\bfseries,
@@ -73,8 +73,8 @@
         \end{itemize}
         \end{tcolorbox}
     };
-    % 
-    \node[text width=5cm, below= -1em of analysis] (io) {
+    %
+    \node[text width=5cm, below= -1em of analysis] (io) {%
         \begin{tcolorbox}[%
             title={IO \vphantom{Mg}},
             fonttitle=\bfseries,
@@ -87,8 +87,8 @@
         \end{itemize}
         \end{tcolorbox}
     };
-    % 
-    \node[text width=5cm, below= -1em of objects] (tools) {
+    %
+    \node[text width=5cm, below= -1em of objects] (tools) {%
         \begin{tcolorbox}[%
             title={tools \vphantom{Mg}},
             fonttitle=\bfseries,

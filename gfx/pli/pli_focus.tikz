@@ -3,9 +3,9 @@
 % %
 % % \path (-5,0)--(5,0);
 % % \draw (-7.5,0)--(7.5,0);
-% % 
+% %
 % \colorlet{led}{green!70!black}
-% % 
+% %
 % \begin{scope}[shift={(-3,0)}, local bounding box=B1]
 % % camera and light path
 % \def\wbody{1}
@@ -32,9 +32,9 @@
 % \draw[very thick, black] (0,0) -- (-\w,0) node[midway, anchor=north] {absorber};
 % \end{scope}
 % \end{scope}
-% % 
+% %
 % % \draw[->] (0,0) -- (3,0);
-% 
+%
 \begin{tikzpicture}
 % \begin{scope}[shift={(0,0)}, local bounding box=B2] % \begin{scope}[shift={(3,0)}, local bounding box=B2]
 % camera and light path
@@ -63,5 +63,5 @@
 % \end{scope}
 %
 % \draw[->, very thick] (B1.east) -- (B2.west);
-% 
+%
 \end{tikzpicture}

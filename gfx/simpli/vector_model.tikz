@@ -12,8 +12,8 @@
 \draw[semithick] (-4.5+\xc, -4.5+\yc) grid (4.5+\xc, 4.5+\yc);
 \draw[semithick] (\xc,\yc) circle (\rin);
 \draw[semithick] (\xc,\yc) circle (\rout);
-\foreach \x in {-6.5,...,6.5} {
-    \foreach \y in {-6.5,...,6.5} {
+\foreach \x in {-6.5,...,6.5} {%
+    \foreach \y in {-6.5,...,6.5} {%
         \pgfmathsetmacro{\angle}{atan2((\y-\yc),(\x-\xc))}
         \pgfmathsetmacro{\d}{int(floor(sqrt((\x-\xc)*(\x-\xc)+(\y-\yc)*(\y-\yc))))}
         \ifnum\d>\rmin
@@ -22,12 +22,12 @@
         \fi\fi
     }
 }
-\path[BLUE,thick, ->] (\xc,\yc) -- ++(-30:\rin) node[midway, anchor=north, xshift=-0.75ex, preaction={fill, white}]{$r_{\text{min}}$}; 
+\path[BLUE,thick, ->] (\xc,\yc) -- ++(-30:\rin) node[midway, anchor=north, xshift=-0.75ex, preaction={fill, white}]{$r_{\text{min}}$};
 \draw[BLUE,thick, ->] (\xc,\yc) -- ++(-30:\rin);
-% 
-\path[BLUE,thick, ->] (\xc,\yc) -- ++(-150:\rout) node[pos=0.25, anchor=south, yshift=2mm, preaction={fill, white}]{$r_{\text{max}}$}; 
+%
+\path[BLUE,thick, ->] (\xc,\yc) -- ++(-150:\rout) node[pos=0.25, anchor=south, yshift=2mm, preaction={fill, white}]{$r_{\text{max}}$};
 \draw[BLUE,thick, ->] (\xc,\yc) -- ++(-150:\rout);
-% 
+%
 \path[RED,thick, {Circle[length=1mm]}-{Circle[length=1mm]},
     shorten >=-.5mm, shorten <=-.50mm]
     (\xc,\yc) -- (2.5,1.5) node[midway, anchor=north west, xshift=-0.5mm, preaction={fill, white}]{$\vec{q}$};

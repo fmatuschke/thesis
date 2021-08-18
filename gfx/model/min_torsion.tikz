@@ -1,22 +1,22 @@
 \tdplotsetmaincoords{60}{40}
 \pgfmathsetmacro{\d}{1}
-% 
+%
 \begin{tikzsize}{\tikzwidth}{\tikzheight}
 \begin{tikzpicture}[scale=\tikzscale,tdplot_main_coords]
-% 
+%
 % \draw[RED, very thick, ->]   (0,0,0) -- (1,0,0);
 % \draw[GREEN, very thick, ->] (0,0,0) -- (0,1,0);
 % \draw[BLUE, very thick, ->]  (0,0,0) -- (0,0,1);
-% 
+%
 \draw[thick] (-\d,-\d,0) -- (-\d,\d,0) -- (\d,\d,0) -- (\d,-\d,0) -- cycle;
 \draw[thick, RED, ->]   (0,0,0) -- (0.42*\d,0,0);
 \draw[thick, GREEN, ->] (0,0,0) -- (0,0.42*\d,0);
 \draw[thick, BLUE,  ->]  (0,0,0) -- (0,0,0.42*\d);
 % \draw[BLUE, thick] (0,0,0) -- (10,0,0);
-% 
+%
 \definecolor{LINE}{RGB}{231,41,138}
 \draw[LINE, very thick] plot [smooth] coordinates {(3,0,0)(4,0,0)(5,1,0)(5,2,0)(5,3,1)(5,3,2)};
-% 
+%
 \begin{scope}[shift={(3,0,0)}]
 \tdplotsetrotatedcoords{0}{90}{0}
 % \tdplotsetcoord{P}{5*\d}{90}{0}
@@ -26,7 +26,7 @@
 \draw[tdplot_rotated_coords, thick, GREEN,  ->] (0,0,0) -- (0,0.42*\d,0);
 \draw[tdplot_rotated_coords, thick, BLUE, ->]  (0,0,0) -- (0,0,0.42*\d);
 \end{scope}
-% 
+%
 \begin{scope}[shift={(4,0,0)}]
 \tdplotsetrotatedcoords{22.5}{90}{0}
 \draw[tdplot_rotated_coords, thick,] (-\d,-\d,0) -- (-\d,\d,0) -- (\d,\d,0) -- (\d,-\d,0) -- cycle;
@@ -34,7 +34,7 @@
 \draw[tdplot_rotated_coords, thick, GREEN, ->] (0,0,0) -- (0,0.42*\d,0);
 \draw[tdplot_rotated_coords, thick, BLUE, ->]  (0,0,0) -- (0,0,0.42*\d);
 \end{scope}
-% 
+%
 \begin{scope}[shift={(5,1,0)}]
 \tdplotsetrotatedcoords{67.5}{90}{0}
 \draw[tdplot_rotated_coords, thick,] (-\d,-\d,0) -- (-\d,\d,0) -- (\d,\d,0) -- (\d,-\d,0) -- cycle;
@@ -42,7 +42,7 @@
 \draw[tdplot_rotated_coords, thick, GREEN, ->] (0,0,0) -- (0,0.42*\d,0);
 \draw[tdplot_rotated_coords, thick, BLUE, ->]  (0,0,0) -- (0,0,0.42*\d);
 \end{scope}
-% % 
+% %
 \begin{scope}[shift={(5,2,0)}]
 \tdplotsetrotatedcoords{90}{45}{0}
 \draw[tdplot_rotated_coords, thick,] (-\d,-\d,0) -- (-\d,\d,0) -- (\d,\d,0) -- (\d,-\d,0) -- cycle;
@@ -50,7 +50,7 @@
 \draw[tdplot_rotated_coords, thick, GREEN, ->] (0,0,0) -- (0,0.42*\d,0);
 \draw[tdplot_rotated_coords, thick, BLUE, ->]  (0,0,0) -- (0,0,0.42*\d);
 \end{scope}
-% % 
+% %
 \begin{scope}[shift={(5,3,1)}]
 \tdplotsetrotatedcoords{90}{22.5}{0}
 \draw[tdplot_rotated_coords, thick,] (-\d,-\d,0) -- (-\d,\d,0) -- (\d,\d,0) -- (\d,-\d,0) -- cycle;
@@ -58,7 +58,7 @@
 \draw[tdplot_rotated_coords, thick, GREEN, ->] (0,0,0) -- (0,0.42*\d,0);
 \draw[tdplot_rotated_coords, thick, BLUE, ->]  (0,0,0) -- (0,0,0.42*\d);
 \end{scope}
-% % 
+% %
 \begin{scope}[shift={(5,3,2)}]
 \tdplotsetrotatedcoords{90}{0}{0}
 \draw[tdplot_rotated_coords, thick,] (-\d,-\d,0) -- (-\d,\d,0) -- (\d,\d,0) -- (\d,-\d,0) -- cycle;
@@ -67,21 +67,21 @@
 \draw[tdplot_rotated_coords, thick, BLUE, ->]  (0,0,0) -- (0,0,0.42*\d);
 \end{scope}
 %
-% 
-% \pgfplotsset{
-%     /pgf/declare function={
+%
+% \pgfplotsset{%
+%     /pgf/declare function={%
 %         p=1;q=3;
-%         % 
+%         %
 %         fx(\t) = (2+cos(p*\t))*cos(q*\t);
 %         fy(\t) = (2+cos(p*\t))*sin(q*\t);
 %         fz(\t) = sin(p*\t);
 %         flen(\t)=sqrt(fx(\t)^2+fy(\t)^2+fz(\t)^2);
-%         % 
+%         %
 %         dfx(\t) = -p*sin(p*\t)*cos(q*\t)-q*(cos(p*\t)+2)*sin(q*\t);
 %         dfy(\t) = -p*sin(p*\t)*sin(q*\t)+q*(cos(p*\t)+2)*cos(q*\t);
 %         dfz(\t) = p*cos(p*\t);
 %         dflen(\t)=sqrt(dfx(\t)^2+dfy(\t)^2+dfz(\t)^2);
-%         % 
+%         %
 %         ddfx(\t) = 2*p*q*sin(p*\t)*sin(q*\t)-cos(q*\t)*((p*p+q*q)*cos(p*\t)+2*q*q);
 %         ddfy(\t) = -2*p*q*sin(p*\t)*cos(q*\t)-sin(q*\t)*((p*p+q*q)*cos(p*\t)+2*q*q);
 %         ddfz(\t) = -p*p*cos(p*\t);
@@ -94,13 +94,13 @@
 %         nx(\t) = ddfx(\t)/ddflen(\t);
 %         ny(\t) = ddfy(\t)/ddflen(\t);
 %         nz(\t) = ddfz(\t)/ddflen(\t);
-%         % 
+%         %
 %         bx(\t) = dfy(\t)/dflen(\t)*nz(\t)-dfz(\t)/dflen(\t)*ny(\t);
 %         by(\t) = dfz(\t)/dflen(\t)*nx(\t)-dfx(\t)/dflen(\t)*nz(\t);
 %         bz(\t) = dfx(\t)/dflen(\t)*ny(\t)-dfy(\t)/dflen(\t)*nx(\t);
 %     },
 % }
-% % 
+% %
 % \pgfmathsetmacro{\vscale}{0.5};
 % \begin{axis}[%
 %     axis equal, hide axis,
@@ -115,7 +115,7 @@
 %             mark=*, mark size=0.5pt,
 %             ]
 %             ({fx(t)},{fy(t)},{fz(t)});
-%     % 
+%     %
 %     \foreach \t in {-180,-120,...,180}{%
 %         \edef\temp{\noexpand\draw[BLUE, ->] (axis cs:{fx(\t)},{fy(\t)},{fz(\t)}) -- (axis cs:{fx(\t)+tx(\t)*\vscale},{fy(\t)+ty(\t)*\vscale},{fz(\t)+tz(\t)*\vscale});} \temp
 %         \edef\temp{\noexpand\draw[RED, ->] (axis cs:{fx(\t)},{fy(\t)},{fz(\t)}) -- (axis cs:{fx(\t)+nx(\t)*\vscale},{fy(\t)+ny(\t)*\vscale},{fz(\t)+nz(\t)*\vscale});} \temp
@@ -127,7 +127,7 @@
 %     \path[BLUE, ->] (axis cs:{fx(\t)},{fy(\t)},{fz(\t)}) -- (axis cs:{fx(\t)+tx(\t)*\vscale},{fy(\t)+ty(\t)*\vscale},{fz(\t)+tz(\t)*\vscale}) node[midway, BLUE, anchor=north west] {$\vec{t}$};
 %     \path[RED, ->] (axis cs:{fx(\t)},{fy(\t)},{fz(\t)}) -- (axis cs:{fx(\t)+nx(\t)*\vscale},{fy(\t)+ny(\t)*\vscale},{fz(\t)+nz(\t)*\vscale}) node[midway, RED, anchor=north east] {$\vec{n}$};
 %     \path[GREEN, ->] (axis cs:{fx(\t)},{fy(\t)},{fz(\t)}) -- (axis cs:{fx(\t)+bx(\t)*\vscale},{fy(\t)+by(\t)*\vscale},{fz(\t)+bz(\t)*\vscale}) node[midway, GREEN, anchor=south east] {$\vec{b}$};
-%     % 
+%     %
 % \end{axis}
 % % \node at (2,-5) {\tikzwidth};
 % % \node at (2,-6) {\tikzheight};

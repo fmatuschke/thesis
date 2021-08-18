@@ -18,14 +18,14 @@ colorbar style={xticklabel style={font=\footnotesize},
 (axis cs: 25458, 23025) --
 (axis cs: 25026, 22881) --
 (axis cs: 24453, 22913) --
-(axis cs: 24469, 21909) -- 
+(axis cs: 24469, 21909) --
 (axis cs: 25830, 22097) -- cycle;
 \draw[magenta, very thick]
 (axis cs: 22076,22290) --
 (axis cs: 22442,23136) --
 (axis cs: 21938,23292) --
 (axis cs: 21494,23640) --
-(axis cs: 20939,22788) -- 
+(axis cs: 20939,22788) --
 (axis cs: 22076,22290) -- cycle;
 \end{axis}
 \end{tikzpicture}

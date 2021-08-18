@@ -6,8 +6,8 @@
     \pgfmathsetmacro{\lx}{7}
     \pgfmathsetmacro{\ly}{5}
     \pgfmathsetmacro{\lz}{4}
-    % 
-    \foreach \j/\c in {0/RED,1/GREEN,2/BLUE} in{
+    %
+    \foreach \j/\c in {0/RED,1/GREEN,2/BLUE} in{%
         \pgfmathsetmacro{\jnext}{int(\j+3)}
         \foreach \i in {\j,\jnext,...,6}{\draw[fill, \c] (\i,0,0) -- (\i,\ly,0) -- (\i,\ly,\lz) -- (\i+1,\ly,\lz) -- (\i+1,\ly,0) -- (\i+1,0,0) -- cycle;
         \pgfmathsetmacro{\t}{int(mod(\i,3))}
@@ -15,24 +15,24 @@
         }
     }
     \draw[fill, RED] (\lx,0,0) -- (\lx,\ly,0) -- (\lx,\ly,\lz) -- (\lx,0,\lz) -- cycle;
-    
-    % 
-    % 
-    \foreach \i in {0,1,...,\lx}{
+   
+    %
+    %
+    \foreach \i in {0,1,...,\lx}{%
         \draw[thick] (\i,0,0)--(\i,\ly,0){};
         \draw[thick] (\i,\ly,0)--(\i,\ly,\lz){};
     }
-    \foreach \i in {0,1,...,\ly}{
+    \foreach \i in {0,1,...,\ly}{%
         \draw[thick] (0,\i,0)--(\lx,\i,0){};
         \draw[thick] (\lx,\i,0)--(\lx,\i,\lz){};
     }
-    \foreach \i in {0,1,...,\lz}{
+    \foreach \i in {0,1,...,\lz}{%
         \draw[thick] (\lx,0,\i)--(\lx,\ly,\i){};
         \draw[thick] (0,\ly,\i)--(\lx,\ly,\i){};
-    } 
+    }
     % \coordinate (BB1) at (current bounding box.north east);
     % \coordinate (BB2) at (current bounding box.south east);
-    % 
+    %
     \path[] (-2,5,2)--(7+2,5,2);
 \end{tikzpicture}
 \end{tikzsize}

@@ -1,6 +1,6 @@
 \begin{tikzsize}{\tikzwidth}{\tikzheight}
 \begin{tikzpicture}[scale=\tikzscale]
-\begin{polaraxis}[
+\begin{polaraxis}[%
     width=0.42\textwidth, height=0.42\textwidth,
     scale only axis=true,
     xtick={0,45,...,315},
@@ -58,7 +58,7 @@
 }; %, contour filled={number=9}
 % \coordinate (P) at (axis cs: 0,0);
 \end{polaraxis}
-% 
+%
 \coordinate (P) at (current bounding box.center);
 % \draw[green] ($(P)$) -- ($(P)+(4,-4)$);
 % \draw[green] ($(P)-(4,4)$) rectangle ($(P)+(4,4)$);

@@ -3,25 +3,25 @@
     scale=\tikzscale,
     triangle/.style = {regular polygon, regular polygon sides=3}
     ]
-    % 
+    %
     % \node at (0,0.5) {\tiny \tikzscale, \the\tikzwidth, \the\tikzheight};
-    % 
+    %
     \pgfmathsetmacro{\xa}{cos(35)}
     \pgfmathsetmacro{\ya}{sin(35)}
     \pgfmathsetmacro{\xb}{cos(135)}
     \pgfmathsetmacro{\yb}{sin(135)}
     \pgfmathsetmacro{\theta}{100}
     \pgfmathsetmacro{\n}{6}
-    % 
+    %
     \pgfmathsetmacro{\r}{3}
     \coordinate (a) at ({\r*\xa},{\r*\ya});
     \coordinate (b) at ({\r*\xb},{\r*\yb});
-    % 
+    %
     \draw[] ({\r*\xa}, {\r*\ya}) arc(35:135:\r);
     \draw[name path=AB] (a) -- (b);
-    % 
+    %
     % \pgfmathsetmacro{\r}{0.1}
-    \foreach \i in {0,1,...,\n}{
+    \foreach \i in {0,1,...,\n}{%
         \pgfmathsetmacro{\x}{1/\n*\i}
         \node[GREEN,circle,fill,inner sep=2] at
         ({\r*(((1-\x)*\xa+\x*\xb)/sqrt(((1-\x)*\xa+\x*\xb)*((1-\x)*\xa+\x*\xb)+((1-\x)*\ya+\x*\yb)*((1-\x)*\ya+\x*\yb)))},
@@ -31,19 +31,19 @@
         \draw[GREEN, name intersections={of=P and AB, by=E}] (E) -- ({\r*(((1-\x)*\xa+\x*\xb)/sqrt(((1-\x)*\xa+\x*\xb)*((1-\x)*\xa+\x*\xb)+((1-\x)*\ya+\x*\yb)*((1-\x)*\ya+\x*\yb)))},
         {\r*(((1-\x)*\ya+\x*\yb)/sqrt(((1-\x)*\xa+\x*\xb)*((1-\x)*\xa+\x*\xb)+((1-\x)*\ya+\x*\yb)*((1-\x)*\ya+\x*\yb)))}) node[pos=0.0,GREEN,circle,fill,inner sep=2] (P\i) {};
     }
-    % 
-    \foreach \i in {0,1,...,\n}{
+    %
+    \foreach \i in {0,1,...,\n}{%
         \pgfmathsetmacro{\x}{1/\n*\i}
         \node[RED,triangle,fill,inner sep={sqrt(1/2)*2}] at
         ({\r*(sin((1-\x)*\theta)/sin(\theta)*\xa+sin(\x*\theta)/sin(\theta)*\xb)},
         {\r*(sin((1-\x)*\theta)/sin(\theta)*\ya+sin(\x*\theta)/sin(\theta)*\yb)}) {};
         \draw[RED] (0,0) --
         ({\r*(sin((1-\x)*\theta)/sin(\theta)*\xa+sin(\x*\theta)/sin(\theta)*\xb)},
-        {\r*(sin((1-\x)*\theta)/sin(\theta)*\ya+sin(\x*\theta)/sin(\theta)*\yb)}); 
+        {\r*(sin((1-\x)*\theta)/sin(\theta)*\ya+sin(\x*\theta)/sin(\theta)*\yb)});
     }
     \draw[GREEN, thick] (P1) -- (P2) node[below, pos=0.75] {$s$};
         \draw[RED, thick] ({0.25*\r*\xa}, {0.25*\r*\ya}) arc(35:35+100/\n:0.25*\r) node[pos=0.35, anchor=south west,] {$\varphi$};
-    % 
+    %
     \coordinate (BB1) at (current bounding box.north west);
     \coordinate (BB2) at (current bounding box.south west);
     \path (BB1) -- (BB2) node[right, GREEN, pos=0.72] {linear};

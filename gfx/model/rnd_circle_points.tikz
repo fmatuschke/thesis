@@ -2,7 +2,7 @@
 \begin{tikzpicture}[scale=\tikzscale,]
 %
 \pgfmathsetseed{42}
-\foreach \yValue in {0,1,...,210} {
+\foreach \yValue in {0,1,...,210} {%
 \pgfmathparse{rnd*360}\let\phi=\pgfmathresult
 \pgfmathparse{sqrt(rnd*0.99)}\let\r=\pgfmathresult
 \pgfmathparse{\r*cos(\phi)}\let\x=\pgfmathresult
@@ -11,6 +11,6 @@
 }
 \draw[] (0,0) circle (1);
 \path[] (0,-1.25)--(0,1.25);
-% 
+%
 \end{tikzpicture}
 \end{tikzsize}

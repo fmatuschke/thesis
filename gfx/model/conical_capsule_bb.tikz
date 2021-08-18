@@ -5,18 +5,18 @@
 \pgfmathsetmacro{\ra}{1.9*\tikzscale}
 \pgfmathsetmacro{\rb}{3.2*\tikzscale}
 \pgfmathsetmacro{\rmax}{max(\ra, \rb)}
-% 
+%
 \begin{scope}[local bounding box=bb]
 \node[circle,minimum size=2 * \ra cm,inner sep=0pt] (l1) at (PA) {};
 \node[circle,minimum size=2 * \rb cm,inner sep=0pt] (l2) at (PB) {};
 \pgfmathsetmacro{\out}{\ra/(\ra - \rb)}
 \path (PA) -- node[coordinate,pos=\out] (out) {} (PB);
-% 
-\foreach \i in {1,2}{
-\foreach \j in {1,2}{
+%
+\foreach \i in {1,2}{%
+\foreach \j in {1,2}{%
     \coordinate (t\i\j) at (tangent cs:node=l\i,point={(out)},solution=\j);}}
 \foreach \i in {1,2}{\draw[line width=0.75mm] (t1\i) --  (t2\i);}
-% 
+%
 \begin{scope}[overlay]
     \coordinate (t1) at ($(t11)!-\ra!(t21)$);
     \coordinate (t2) at ($(t12)!-\ra!(t22)$);
@@ -40,7 +40,7 @@
     \draw[line width=0.75mm] (PB) circle (\rb cm+0.2pt);
 \end{scope}
 \end{scope}
-% 
+%
 \begin{pgfinterruptboundingbox}
 \node[RED, above] at ($(bb.north west)!0.25!(bb.north east)$) {$aabb_{cone}$};
 \node[BLUE, above] at ($(PA) + (-0.65*\ra,\ra)$) {$aabb_{0}$};
@@ -50,34 +50,34 @@
 \draw[black, thin] (PA) -- (t12) node[midway, right] {$r_{i}$};
 \draw[black, thin] (PB) -- (t22) node[midway, right] {$r_{i+1}$};
 \end{pgfinterruptboundingbox}
-% 
-\ifthenelse{\lengthtest{\ra pt < \rmax pt}}{
+%
+\ifthenelse{\lengthtest{\ra pt < \rmax pt}}{%
 \draw[dashed] (PA) circle (\rmax);
-}{
+}{%
 \draw[dashed] (PB) circle (\rmax);
 }
 \ifthenelse{\lengthtest{\ra pt < \rb pt}}
 {\draw[GREEN, thick] ($(PA)-(\rmax,\rmax)$) rectangle ($(PB)+(\rmax,\rmax)$);}
 {\draw[GREEN, thick] ($(PB)-(\rmax,\rmax)$) rectangle ($(PA)+(\rmax,\rmax)$);}
 \node[GREEN, above] at ($(current bounding box.north west)!0.125!(current bounding box.north east)$) {$aabb_{capsule}$};
-% 
-% 
+%
+%
 \begin{scope}[local bounding box=bbcapsule]
 \draw[dashed] let \p1=($(PB)-(PA)$), \n1={1/veclen(\x1,\y1)} in ($(PA)+\rmax cm*\n1*(\y1, -\x1)$) -- ($(PB)+\rmax cm*\n1*(\y1, -\x1)$);
 \draw[dashed] let \p1=($(PB)-(PA)$), \n1={1/veclen(\x1,\y1)} in ($(PA)+\rmax cm*\n1*(-\y1, \x1)$) -- ($(PB)+\rmax cm*\n1*(-\y1, \x1)$);
 \end{scope}
-% 
-% 
+%
+%
 \draw[RED, thick, dashed] (bb.north west) -| (bb.south east);
 \draw[RED, thick] (bb.north west) |- (bb.south east);
 \draw[BLUE, thick, dotted] ($(PA) - (\ra,\ra)$) rectangle ($(PA) + (\ra,\ra)$);
 \draw[BLUE, thick, dotted] ($(PB) - (\rb,\rb)$) rectangle ($(PB) + (\rb,\rb)$);
 \draw[dashed] (PA) circle (\ra);
 \draw[dashed] (PB) circle (\rb);
-% 
+%
 \end{tikzpicture}
-% 
-% 
+%
+%
 %
 % \begin{tikzpicture}[scale=\tikzscale]
 % \def\ra{1}
@@ -85,63 +85,63 @@
 % \def\alpha{85}
 % \path[] (0,0) -- (-\alpha:\ra) coordinate (A) {};
 % \path[] (A) -- + (0,0) arc (-\alpha:\alpha:\ra) coordinate (B) -- ++ (\alpha+90:\d) coordinate (C);
-% % 
+% %
 % \path[name path=line] (C) -- +(\alpha+180:2*\ra);
 % \path[name path=xaxis] (-5*\ra,0) -- (0,0);
 % \path[name intersections={of=xaxis and line, by={R}}];
 % % \node (r) at (R) {R};
 % \draw[] let \p1 = ($ (C) - (R) $),
 %             \n1 = {veclen(\x1,\y1)}
-%             in 
-%             (A) -- 
-%             ++ (0,0) arc (-\alpha:\alpha:\ra) coordinate (B) -- 
-%             ++ (\alpha+90:\d) -- 
+%             in
+%             (A) --
+%             ++ (0,0) arc (-\alpha:\alpha:\ra) coordinate (B) --
+%             ++ (\alpha+90:\d) --
 %             ++ (0,0) arc (\alpha:360-\alpha:\n1) coordinate (D) --
 %             cycle;
-% % 
+% %
 % % \node (a) at (A) {A};
 % % \node (b) at (B) {B};
 % % \node (c) at (C) {C};
 % % \node (d) at (D) {D};
-% % 
+% %
 % \draw[thin, dashed] (A) arc (360-\alpha:\alpha:\ra);
 % \draw[thin, dashed] let \p1 = ($ (C) - (R) $),
-%             \n1 = {veclen(\x1,\y1)} 
+%             \n1 = {veclen(\x1,\y1)}
 %             in (C) arc (\alpha:-\alpha:\n1);
-% % 
+% %
 % \draw[thin] (0,0) -- (B) node[pos=0.5, left]{$r_{i+1}$};
 % \draw[thin] (R) -- (C) node[pos=0.5, left]{$r_{i}$};
-% % 
+% %
 % \path[] let \p1 = ($ (C) - (R) $),
 %             \n1 = {veclen(\x1,\y1)}
-%             in 
+%             in
 %             (0,0) -- (-90:\n1) coordinate (AR) {};
-% \draw[BLUE, dashed] let 
+% \draw[BLUE, dashed] let
 %             \p1 = ($ (C) - (R) $),
 %             \p2 = ($ (0,0) - (R) $),
 %             \n1 = {veclen(\x1,\y1)},
 %             \n2 = {veclen(\x2,\y2)}
-%             in 
-%             (AR) -- ++ (0,0) arc (-90:90:\n1) -- 
-%             ++ (180:\n2) -- 
-%             ++ (0,0) arc (90:270:\n1) -- 
+%             in
+%             (AR) -- ++ (0,0) arc (-90:90:\n1) --
+%             ++ (180:\n2) --
+%             ++ (0,0) arc (90:270:\n1) --
 %             cycle;
-% \draw[RED, very thin, dash dot] let 
+% \draw[RED, very thin, dash dot] let
 %             \p1 = ($ (C) - (R) $),
 %             \p2 = ($ (0,0) - (R) $),
 %             \n1 = {veclen(\x1,\y1)},
 %             \n2 = {veclen(\x2,\y2)}
-%             in 
+%             in
 %             ($(R) - (\n1,\n1)$) -- ++ ($(0,\n1)+(0,\n1)$) -- ++ ($(\n1,0)+(\n1,0)+(\n2,0)$) -- ++ ($(0,-\n1)+(0,-\n1)$) --
 %             cycle;
-% % \draw[RED, very thin, dash dot] let 
+% % \draw[RED, very thin, dash dot] let
 % %             \p1 = ($ (C) - (R) $),
 % %             \p2 = ($ (0,0) - (R) $),
 % %             \p3 = ($ (0,0) - (B) $),
 % %             \n1 = {veclen(\x1,\y1)},
 % %             \n2 = {veclen(\x2,\y2)},
 % %             \n3 = {veclen(\x3,\y3)}
-% %             in 
+% %             in
 % %             ($(R) - (\n1,\n1)$) -- ++ ($(0,\n1)+(0,\n1)$) -- ++ ($(\n1,0)+(\n3,0)+(\n2,0)$) -- ++ ($(0,-\n1)+(0,-\n1)$) --
 % %             cycle;
 % \end{tikzpicture}

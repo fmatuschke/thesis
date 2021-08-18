@@ -14,7 +14,7 @@ yticklabel style={font=\footnotesize},
 % np.sqrt(x * 0.1175)/x
 \addplot [%
 BLUE, thick, smooth,
-] coordinates {
+] coordinates {%
 (9.701e+01, 3.480e-02)
 (2.048e+03, 7.574e-03)
 };
@@ -23,7 +23,7 @@ RED, only marks, mark=*,
 % nodes near coords, node near coords style={anchor=south west},
 % point meta=explicit symbolic,
 ]
-table[]{
+table[]{%
 x y label
 115 0.0319 Human
 574 0.01430 Vervet

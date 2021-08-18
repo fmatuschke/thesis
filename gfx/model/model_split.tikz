@@ -1,40 +1,15 @@
 \begin{tikzsize}{\tikzwidth}{\tikzheight}
 \begin{tikzpicture}[scale=\tikzscale,]
-% 
+%
 \begin{scope}[shift={(0,0)}, local bounding box=bb1]
-% 
-\foreach \x/\y/\r [count=\i] in {0/0/18,2/-0.5/16.5,4/-1/15,6/-0.575/20.5,8/-0.15/26,10/0.42/23}{
+%
+\foreach \x/\y/\r [count=\i] in {0/0/18,2/-0.5/16.5,4/-1/15,6/-0.575/20.5,8/-0.15/26,10/0.42/23}{%
 \path (\x,\y) circle(\r pt);
 }
-% 
-\foreach \x/\y/\r [count=\i] in {0/0/18,4/-1/15,8/-0.15/26,10/0.42/23}{
+%
+\foreach \x/\y/\r [count=\i] in {0/0/18,4/-1/15,8/-0.15/26,10/0.42/23}{%
 \ifnum \i > 1
-    \foreach \j in {0,0.025,...,1}{
-    \pgfmathsetmacro{\rr}{\lastr+(\r-\lastr)*\j}
-    \pgfmathsetmacro{\xx}{\lastx + \j*(\x-\lastx)}
-    \pgfmathsetmacro{\yy}{\lasty + \j*(\y-\lasty)}
-    \draw[fill, lightgray] (\xx,\yy) circle(\rr pt);
-    }
-\fi
-\xdef\lastx{\x}
-\xdef\lasty{\y}
-\xdef\lastr{\r}
-}
-% 
-\foreach \x/\y/\r [count=\i] in {0/0/18,4/-1/15,8/-0.15/26,10/0.42/23}{
-\draw[black, dashed] (\x,\y) circle (\r pt);
-\pgfmathsetmacro{\ii}{int(\i-1)}
-\draw[black, fill] (\x,\y) circle (2pt) node[black, yshift=-10pt, anchor=north] {$p_{\ii}$};}
-% 
-\coordinate (A) at (0,0);
-\coordinate (B) at (10,0);
-% 
-\end{scope}
-% 
-\begin{scope}[shift={(0,-5)}, local bounding box=bb2]
-\foreach \x/\y/\r [count=\i] in {0/0/18,2/-0.5/16.5,4/-1/15,6/-0.575/20.5,8/-0.15/26,10/0.42/23}{
-\ifnum \i > 1
-    \foreach \j in {0,0.025,...,1}{
+    \foreach \j in {0,0.025,...,1}{%
     \pgfmathsetmacro{\rr}{\lastr+(\r-\lastr)*\j}
     \pgfmathsetmacro{\xx}{\lastx + \j*(\x-\lastx)}
     \pgfmathsetmacro{\yy}{\lasty + \j*(\y-\lasty)}
@@ -46,14 +21,39 @@
 \xdef\lastr{\r}
 }
 %
-\foreach \x/\y/\r [count=\i] in {0/0/18,2/-0.5/16.5,4/-1/15,6/-0.575/20.5,8/-0.15/26,10/0.42/23}{
+\foreach \x/\y/\r [count=\i] in {0/0/18,4/-1/15,8/-0.15/26,10/0.42/23}{%
+\draw[black, dashed] (\x,\y) circle (\r pt);
+\pgfmathsetmacro{\ii}{int(\i-1)}
+\draw[black, fill] (\x,\y) circle (2pt) node[black, yshift=-10pt, anchor=north] {$p_{\ii}$};}
+%
+\coordinate (A) at (0,0);
+\coordinate (B) at (10,0);
+%
+\end{scope}
+%
+\begin{scope}[shift={(0,-5)}, local bounding box=bb2]
+\foreach \x/\y/\r [count=\i] in {0/0/18,2/-0.5/16.5,4/-1/15,6/-0.575/20.5,8/-0.15/26,10/0.42/23}{%
+\ifnum \i > 1
+    \foreach \j in {0,0.025,...,1}{%
+    \pgfmathsetmacro{\rr}{\lastr+(\r-\lastr)*\j}
+    \pgfmathsetmacro{\xx}{\lastx + \j*(\x-\lastx)}
+    \pgfmathsetmacro{\yy}{\lasty + \j*(\y-\lasty)}
+    \draw[fill, lightgray] (\xx,\yy) circle(\rr pt);
+    }
+\fi
+\xdef\lastx{\x}
+\xdef\lasty{\y}
+\xdef\lastr{\r}
+}
+%
+\foreach \x/\y/\r [count=\i] in {0/0/18,2/-0.5/16.5,4/-1/15,6/-0.575/20.5,8/-0.15/26,10/0.42/23}{%
 \draw[black, dashed] (\x,\y) circle (\r pt);
 \pgfmathsetmacro{\ii}{int(\i-1)}
 \draw[black, fill] (\x,\y) circle (2pt) node[black, yshift=-10pt, anchor=north] {$p'_{\ii}$};}
 \end{scope}
-% 
+%
 \draw[->, line width=2.0pt] (bb1.south) -- (bb2.north);
 % \path[draw, GREEN, thick] ($(A)!-0.1!(B)$) -- ($(A)!1.1!(B)$);
-% 
+%
 \end{tikzpicture}
 \end{tikzsize}

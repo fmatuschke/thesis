@@ -15,9 +15,9 @@ enlargelimits=0.3,
 view/h=45,
 scale uniformly strategy=units only,
 ]
-% 
+%
 % \draw[dashed, white!0!black] (axis cs:-1.5,0,0) -- (axis cs:1.5,0,0);
-% 
+%
 \addplot3 [%
     patch,
     patch type=bilinear,
@@ -34,7 +34,7 @@ scale uniformly strategy=units only,
     samples = 9,%36
     opacity=0.2,
     fill opacity=1.0,
-    point meta={
+    point meta={%
         symbolic={(
             {abs(cos(u)*sin(v))}, % R
             {abs(sin(u)*sin(v))}, % G
@@ -42,14 +42,14 @@ scale uniformly strategy=units only,
         }},
     ]
 ({cos(u)*sin(v)}, {sin(u)*sin(v)}, {cos(v)});
-% 
+%
 \draw[dashed, white!0!black] (axis cs:-1.5,0,0) -- (axis cs:1,0,0);
 \draw[white!0!black] (axis cs:1,0,0) -- (axis cs:1.5,0,0);
 \draw[dashed, white!0!black] (axis cs:0,-1,0) -- (axis cs:0,1.5,0);
 \draw[white!0!black] (axis cs:0,-1.5,0) -- (axis cs:0,-1,0);
 \draw[dashed, white!0!black] (axis cs:0,0,-1.5) -- (axis cs:0,0,1);
 \draw[white!0!black] (axis cs:0,0,1) -- (axis cs:0,0,1.5);
-% 
+%
 \draw[->] (axis cs:0.0,0.0,0.0) -- (axis cs:{cos(45)*sin(45)},{sin(45)*sin(45)},{cos(45)});
 \draw[->] (axis cs:0.0,0.0,0.0) -- (axis cs:0.5,0.5,0.0);
 \draw[dotted] (axis cs:0.0,0.5,0.0) -- (axis cs:0.5,0.5,0.0);
@@ -59,7 +59,7 @@ scale uniformly strategy=units only,
     black, no marks,
     domain = 0:45, samples = 45,
     variable = \u, samples y=1,
-    {Latex[scale=0.33]}-{Latex[scale=0.33]},] 
+    {Latex[scale=0.33]}-{Latex[scale=0.33]},]
     ({cos(u)*0.3},{sin(u)*0.3},{0});
 \node[anchor=west,] at (axis cs:{cos(22.5)*0.3},{sin(22.5)*0.3},0)
     {\scriptsize $\varphi$};
@@ -67,12 +67,12 @@ scale uniformly strategy=units only,
     black, no marks,
     domain = 45:90, samples = 45,
     variable = \v, samples y=1,
-    {Latex[scale=0.33]}-{Latex[scale=0.33]},] 
+    {Latex[scale=0.33]}-{Latex[scale=0.33]},]
     ({cos(45)*sin(v)*0.3},{sin(45)*sin(v)*0.3},{cos(v)*0.3});
-\node[anchor=west] at 
+\node[anchor=west] at
     (axis cs:{cos(45)*sin(67.5)*0.3},{sin(45)*sin(67.5)*0.3},{cos(67.5)*0.3})
     {\scriptsize $\alpha$};
-% 
+%
 \end{axis}
 \end{tikzpicture}
 \end{tikzsize}

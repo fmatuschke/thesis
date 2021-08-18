@@ -1,6 +1,6 @@
 \begin{tikzsize}{\tikzwidth}{\tikzheight}
 \begin{tikzpicture}[baseline, trim axis left]
-% 
+%
 \begin{axis}[%
     width=\tikzwidth,
     height=\tikzwidth,
@@ -28,6 +28,6 @@
 \addplot[RED, thick, dashed,
     ] coordinates{(-\dx,1)(-\dx,0)};
 \end{axis}
-% 
+%
 \end{tikzpicture}
 \end{tikzsize}

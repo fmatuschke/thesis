@@ -1,28 +1,28 @@
 \begin{tikzsize}{\tikzwidth}{\tikzheight}
 \begin{tikzpicture}[scale=\tikzscale,remember picture]
-% 
+%
 \tikzstyle{reverseclip}=[insert path={(current page.north east) --
   (current page.south east) --
   (current page.south west) --
   (current page.north west) --
   (current page.north east)}
 ]
-% 
+%
 \def\rndSeed{40}
-% 
+%
 \begin{scope}[shift={(0,0)}]
 \node[] at (-2.5,-0.5) {$\segLength = \SI{1}{\mathit{L_0}}$};
-% 
+%
 \def\rndSeed{40}
-% 
+%
 \pgfmathsetseed{\rndSeed}%
 % gray background
-\foreach \i in {0,10,...,200}{
+\foreach \i in {0,10,...,200}{%
     \pgfmathsetmacro{\x}{\i/20}
     \pgfmathsetmacro{\y}{(0.75*sin(\i)+0.5*sin(3*\i-90))}
     \pgfmathsetmacro{\r}{(5+1.5*sin(\i*4.2)) / 10}
     \ifnum \i > 1
-        \foreach \j in {0,0.1,...,1}{
+        \foreach \j in {0,0.1,...,1}{%
         \pgfmathsetmacro{\rr}{\lastr+(\r-\lastr)*\j}
         \pgfmathsetmacro{\xx}{\lastx + \j*(\x-\lastx)}
         \pgfmathsetmacro{\yy}{\lasty + \j*(\y-\lasty)}
@@ -33,11 +33,11 @@
     \xdef\lasty{\y}
     \xdef\lastr{\r}
 }
-% 
+%
 % fiber points
 \begin{scope}[local bounding box=bb]
 \pgfmathsetseed{\rndSeed}%
-\foreach \i in {0,10,...,200}{
+\foreach \i in {0,10,...,200}{%
     \pgfmathsetmacro{\x}{\i/20}
     \pgfmathsetmacro{\y}{(0.75*sin(\i)+0.5*sin(3*\i-90))}
     \pgfmathsetmacro{\r}{(5+1.5*sin(\i*4.2)) / 10}
@@ -45,24 +45,24 @@
 }
 \end{scope}
 \end{scope}
-% 
-% 
-% 
+%
+%
+%
 \begin{scope}[shift={(0,-2)}]
  \node[] at (-2.5,-0.5) {$\segLength = \SI{2}{\mathit{L_0}}$};
-% 
+%
 \def\rndSeed{40}
-% 
+%
 \pgfmathsetseed{\rndSeed}%
 % gray background
-\foreach \i in {0,10,...,200}{
+\foreach \i in {0,10,...,200}{%
     \pgfmathsetmacro{\x}{\i/20}
     \pgfmathsetmacro{\y}{(0.75*sin(\i)+0.5*sin(3*\i-90))}
     \pgfmathsetmacro{\r}{(5+1.5*sin(\i*4.2)) / 10}
     \pgfmathparse{Mod(\i,20)==0?1:0}
     \ifnum\pgfmathresult>0
         \ifnum \i > 1
-            \foreach \j in {0,0.05,...,1}{
+            \foreach \j in {0,0.05,...,1}{%
                 \pgfmathsetmacro{\rr}{\lastr+(\r-\lastr)*\j}
                 \pgfmathsetmacro{\xx}{\lastx + \j*(\x-\lastx)}
                 \pgfmathsetmacro{\yy}{\lasty + \j*(\y-\lasty)}
@@ -74,10 +74,10 @@
         \xdef\lastr{\r}
     \fi
 }
-% 
+%
 % fiber points
 \pgfmathsetseed{\rndSeed}%
-\foreach \i in {0,10,...,200}{
+\foreach \i in {0,10,...,200}{%
     \pgfmathsetmacro{\x}{\i/20}
     \pgfmathsetmacro{\y}{(0.75*sin(\i)+0.5*sin(3*\i-90))}
     \pgfmathsetmacro{\r}{(5+1.5*sin(\i*4.2)) / 10}
@@ -88,23 +88,23 @@
 }
 %
 \end{scope}
-% 
-% 
-% 
+%
+%
+%
 \begin{scope}[shift={(0,-4)}]
  \node[] at (-2.5,-0.5) {$\segLength = \SI{4}{\mathit{L_0}}$};
-% 
+%
 \def\rndSeed{40}
-% 
+%
 \pgfmathsetseed{\rndSeed}%
-\foreach \i in {0,10,...,200}{
+\foreach \i in {0,10,...,200}{%
     \pgfmathsetmacro{\x}{\i/20}
     \pgfmathsetmacro{\y}{(0.75*sin(\i)+0.5*sin(3*\i-90))}
     \pgfmathsetmacro{\r}{(5+1.5*sin(\i*4.2)) / 10}
     \pgfmathparse{Mod(\i,40)==0?1:0}
     \ifnum\pgfmathresult>0
         \ifnum \i > 1
-            \foreach \j in {0,0.025,...,1}{
+            \foreach \j in {0,0.025,...,1}{%
             \pgfmathsetmacro{\rr}{\lastr+(\r-\lastr)*\j}
             \pgfmathsetmacro{\xx}{\lastx + \j*(\x-\lastx)}
             \pgfmathsetmacro{\yy}{\lasty + \j*(\y-\lasty)}
@@ -116,9 +116,9 @@
         \xdef\lastr{\r}
     \fi
 }
-% 
+%
 \pgfmathsetseed{\rndSeed}%
-\foreach \i in {0,10,...,200}{
+\foreach \i in {0,10,...,200}{%
     \pgfmathsetmacro{\x}{\i/20}
     \pgfmathsetmacro{\y}{(0.75*sin(\i)+0.5*sin(3*\i-90))}
     \pgfmathsetmacro{\r}{(5+1.5*sin(\i*4.2)) / 10}
@@ -128,8 +128,8 @@
     \fi
 }
 \end{scope}
-% 
+%
 % \path[] ($(bb.west)!-0.4!(bb.east)$) -- ($(bb.west)!1.4!(bb.east)$);
-% 
+%
 \end{tikzpicture}
 \end{tikzsize}

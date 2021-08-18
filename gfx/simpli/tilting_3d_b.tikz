@@ -5,16 +5,16 @@
 \begin{tikzsize}{\tikzwidth}{\tikzheight}
 \begin{tikzpicture}[scale=\tikzscale]
 \path[] (-8.5, 8.75) rectangle (10, -7);
-\begin{scope}[
+\begin{scope}[%
 3d view={\azimuth}{\elevation},
 ]
-\foreach \i in {-\dz, 0, \dz}{
+\foreach \i in {-\dz, 0, \dz}{%
 \draw[dashed] (-5, -5, \i) -- (-5, 5, \i) -- (5, 5, \i) -- (5, -5, \i) -- cycle;
 }
-\foreach \i in {-5, 5}{ \foreach \j in {-5, 5}{
+\foreach \i in {-5, 5}{ \foreach \j in {-5, 5}{%
 \draw[dashed] (\i, \j, -\dz) -- (\i, \j, \dz);
 }}
-\begin{scope}[
+\begin{scope}[%
 rotate around z=45,
 rotate around x=20,
 rotate around z=-45,]
@@ -23,15 +23,15 @@ rotate around z=-45,]
 \draw[RED, thick] (-5, -5, \dz) -- (-5, 5, \dz) -- (5, 5, \dz) -- (5, -5, \dz) -- cycle;
 \draw[GREEN, thick] (-5, -5, 0) -- (-5, 5, 0) -- (5, 5, 0) -- (5, -5, 0) -- cycle;
 \draw[BLUE, thick] (-5, -5, -\dz) -- (-5, 5, -\dz) -- (5, 5, -\dz) -- (5, -5, -\dz) -- cycle;
-\foreach \i in {-5, 5}{ \foreach \j in {-5, 5}{
+\foreach \i in {-5, 5}{ \foreach \j in {-5, 5}{%
 \draw[] (\i, \j, -\dz) -- (\i, \j, \dz);
 }}
 \end{scope}
-% 
-\ifthenelse{\azimuth=0}{
+%
+\ifthenelse{\azimuth=0}{%
 \draw[gray, dashed] (0,0,0) -- (5,0,0);
 \draw[gray, <->] (2,0,0) arc (0:45:2) node[midway, anchor=south west, yshift=-1ex]{$\varphi$};
-}{} 
+}{}
 \end{scope}
 \end{tikzpicture}
 \end{tikzsize}

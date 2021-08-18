@@ -1,12 +1,12 @@
 \begin{tikzsize}{\tikzwidth}{\tikzheight}
 \begin{tikzpicture}[scale=\tikzscale]
-% 
+%
 \pgfmathsetmacro{\s}{2.0}
 \path (1.25*\s,1.25*\s) -- (-1.25*\s,-1.25*\s);
-\foreach \r/\c [count=\i] in {1.0/set21,0.9/set22,0.8/set21,0.7/set22,0.6/set23} {
+\foreach \r/\c [count=\i] in {1.0/set21,0.9/set22,0.8/set21,0.7/set22,0.6/set23} {%
     \draw[fill, \c] (0,0) circle (\s*\r);
 }
-\foreach \r [count=\i] in {1.0,0.9,0.8,0.7,0.6} {
+\foreach \r [count=\i] in {1.0,0.9,0.8,0.7,0.6} {%
     \pgfmathsetmacro{\ii}{int(5-\i)}
     \draw[black, ->] (0,0) -- ++(6+\ii*42.0:\s*\r) node[midway, anchor=north, sloped]{$r_{\ii}$};
 }

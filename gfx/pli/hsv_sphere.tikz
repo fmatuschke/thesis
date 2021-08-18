@@ -1,5 +1,5 @@
 \begin{tikzpicture}[inner sep=0pt]
-% 
+%
 \begin{axis}[%
 axis equal,
 axis lines=none,
@@ -10,7 +10,7 @@ height=\tikzwidth,
 % enlargelimits=0,
 view/h=45,
 ]
-% 
+%
 \addplot3 [%
     patch,
     patch type=bilinear,
@@ -29,10 +29,10 @@ view/h=45,
     opacity=0.2,
     fill opacity=1.0,
     % point meta={symbolic={Hsb=deg(v),u,u}},
-    point meta={
+    point meta={%
         symbolic={hsb=(
-            {abs(mod(u,180))/180}, 
-            {1}, 
+            {abs(mod(u,180))/180},
+            {1},
             {1-(2*abs(90-v)/180)}
             % h = 360.0 * np.abs(directionValue) / np.pi
             % s = 1.0
@@ -40,7 +40,7 @@ view/h=45,
         }},
     ]
 ({cos(u)*sin(v)}, {sin(u)*sin(v)}, {cos(v)});
-% 
+%
 \draw[dashed, white!0!black] (axis cs:-1.5,0,0) -- (axis cs:1,0,0);
 \draw[white!0!black, ->] (axis cs:1,0,0) -- (axis cs:1.5,0,0) node[pos=0.75, anchor=south west, yshift=0.5ex] {$x$};
 \draw[dashed, white!0!black] (axis cs:0,-1,0) -- (axis cs:0,1,0);
@@ -49,7 +49,7 @@ view/h=45,
 node[pos=0.75, anchor=south west, yshift=0.5ex] {$y$};
 \draw[dashed, white!0!black] (axis cs:0,0,-1.5) -- (axis cs:0,0,1);
 \draw[white!0!black, ->] (axis cs:0,0,1) -- (axis cs:0,0,1.5) node[pos=0.75, anchor=west, xshift=0.5ex] {$z$};
-% 
+%
 \draw[->] (axis cs:0.0,0.0,0.0) -- (axis cs:{cos(45)*sin(45)},{sin(45)*sin(45)},{cos(45)});
 \draw[->] (axis cs:0.0,0.0,0.0) -- (axis cs:0.5,0.5,0.0);
 \draw[dotted] (axis cs:0.0,0.5,0.0) -- (axis cs:0.5,0.5,0.0);
@@ -59,7 +59,7 @@ node[pos=0.75, anchor=south west, yshift=0.5ex] {$y$};
     black, no marks,
     domain = 0:45, samples = 45,
     variable = \u, samples y=1,
-    {Latex[scale=0.5]}-{Latex[scale=0.5]},] 
+    {Latex[scale=0.5]}-{Latex[scale=0.5]},]
     ({cos(u)*0.3},{sin(u)*0.3},{0});
 \node[anchor=west,xshift=1.0ex] at (axis cs:{cos(5)*0.3},{sin(5)*0.3},0)
     {$\varphi$};
@@ -67,12 +67,12 @@ node[pos=0.75, anchor=south west, yshift=0.5ex] {$y$};
     black, no marks,
     domain = 45:90, samples = 45,
     variable = \v, samples y=1,
-    {Latex[scale=0.5]}-{Latex[scale=0.5]},] 
+    {Latex[scale=0.5]}-{Latex[scale=0.5]},]
     ({cos(45)*sin(v)*0.3},{sin(45)*sin(v)*0.3},{cos(v)*0.3});
-\node[anchor=west, xshift=0.5ex] at 
+\node[anchor=west, xshift=0.5ex] at
     (axis cs:{cos(45)*sin(67.5)*0.3},{sin(45)*sin(67.5)*0.3},{cos(67.5)*0.3})
     {$\alpha$};
-% 
+%
 \coordinate (C) at (0,0,0);
 \end{axis}
 \end{tikzpicture}
