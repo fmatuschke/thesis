@@ -7,7 +7,7 @@ if [ -f "/home/till/.local/bin/wsl-open" ]; then
 fi
 
 clean_build() {
-   rm -f thesis_.tex
+   rm -f thesis_.*
    find . -type f -iname "*.acr" -exec rm {} \;
    find . -type f -iname "*.aux*" -exec rm {} \;
    find . -type f -iname "*.bbl" -exec rm {} \;
@@ -112,7 +112,7 @@ underscore_copy() {
    cp ${UNDERSCORE_DIR}_$DIR_DELIMITER${REMAINING_DIR}/${FILE} $1
 }
 
-if [ "$1" = "--clean" ]; then
+if [ "$1" == "--clean" ]; then
    clean_build
    clean_tikz
    exit 0
@@ -135,7 +135,9 @@ fi
 
 # activate list and make
 cp thesis.tex thesis_.tex
-sed -i 's/% *mode=list/ mode=list/' thesis_.tex
+if [ "$1" == "--make" ]; then
+   sed -i 's/% *mode=list/ mode=list/' thesis_.tex
+fi
 
 include_start="$(grep -n "\includeonly{" thesis.tex | head -n 1 | cut -d: -f1)"
 include_end="$(grep -n "} % end includeonly" thesis.tex | head -n 1 | cut -d: -f1)"
@@ -147,15 +149,15 @@ sed -i "${include_start},${include_end}d" ./thesis_.tex
 lualatex -interaction=nonstopmode -halt-on-error -shell-escape thesis_.tex
 #  | tr -d '\n'
 # | awk -F'File|not found' '{print $2}'
-if [ "$1" = "--single" ]; then
+if [ "$1" == "--single" ]; then
    mv thesis_.pdf thesis.pdf
    eval "$open thesis.pdf &> /dev/null 2>&1"
    exit 0
 fi
 
 # second build with tikz make
-if [ -f "thesis_.makefile" ]; then
-   numcpus=$(lscpu -p | wc -l) 
+if [ "$1" == "--make" ]; then
+   numcpus=$(lscpu -p | wc -l)
    make -j${numcpus} -f thesis_.makefile
 fi
 biber thesis_

@@ -117,19 +117,23 @@ In this way, edge effects should be prevented.
 % 
 \begin{figure}[!t]
 \centering
-\tikzset{external/export=false}
+% \tikzset{external/export=false}
 \begin{tikzpicture}[scale=1, trim axis left, trim axis right]
-\begin{axis}[height=0.46\textwidth, width=0.75\textwidth,enlargelimits=false, xlabel={$x$}, ylabel={$f(x,\mu,\sigma)$}, title=${f(x,\mu,\sigma)=\frac{1}{\sigma x \sqrt{2\pi}}\exp\left(-\frac{(\ln(x)-\mu)^2}{2 \sigma^2}\right)}$,
-legend style={at={(1,1)},anchor=north east},
-legend cell align={left},
-]
-\pgfmathsetmacro{\muValue}{0}
-\pgfmathsetmacro{\sigmaValue}{0.05}
-\addplot[BLUE,thick,domain=0.6:1.4, samples=2*42, smooth]{1/(\sigmaValue*x*sqrt(2*pi))*exp(-(ln(x)-\muValue)^2/(2*\sigmaValue^2))}; \addlegendentry{$\mu=0.0,\sigma=0.05$}
-\pgfmathsetmacro{\muValue}{0}
-\pgfmathsetmacro{\sigmaValue}{0.1}
-\addplot[GREEN,thick,domain=0.6:1.4, samples=2*42, smooth]{1/(\sigmaValue*x*sqrt(2*pi))*exp(-(ln(x)-\muValue)^2/(2*\sigmaValue^2))}; \addlegendentry{$\mu=0.0,\sigma=0.1$}
-\end{axis}
+        \begin{axis}[%
+            height=0.46\textwidth, width=0.75\textwidth,
+            enlargelimits=false, xlabel={$x$},
+            ylabel={$f(x,\mu,\sigma)$},
+            title=${f(x,\mu,\sigma)=\frac{1}{\sigma x \sqrt{2\pi}}\exp\left(-\frac{(\ln(x)-\mu)^2}{2 \sigma^2}\right)}$,
+            legend style={at={(1,1)},anchor=north east},
+            legend cell align={left},
+        ]
+        \pgfmathsetmacro{\muValue}{0}
+        \pgfmathsetmacro{\sigmaValue}{0.05}
+        \addplot[BLUE,thick,domain=0.6:1.4, samples=2*42, smooth]{1/(\sigmaValue*x*sqrt(2*pi))*exp(-(ln(x)-\muValue)^2/(2*\sigmaValue^2))}; \addlegendentry{$\mu=0.0,\sigma=0.05$}
+        \pgfmathsetmacro{\muValue}{0}
+        \pgfmathsetmacro{\sigmaValue}{0.1}
+        \addplot[GREEN,thick,domain=0.6:1.4, samples=2*42, smooth]{1/(\sigmaValue*x*sqrt(2*pi))*exp(-(ln(x)-\muValue)^2/(2*\sigmaValue^2))}; \addlegendentry{$\mu=0.0,\sigma=0.1$}
+    \end{axis}
 \end{tikzpicture}
 \caption[]{\itodo{check values in literatur} Probability density function of a multiplicative \name{log normal} distribution.}
 \label{fig:logNormal}

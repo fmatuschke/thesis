@@ -142,7 +142,6 @@
 \ifPDFTeX
     % \usepackage{newtxsf} ???
     \usepackage{newtxmath} % new math fonts\usepackage[libertine, vvarbb]{newtxmath}
-    
 \else
     \usepackage{fontspec}
     \usepackage[warnings-off={mathtools-colon,mathtools-overbracket}]{unicode-math}
@@ -155,7 +154,7 @@
 % 
 \usepackage{siunitx} 
 \usepackage{upgreek}
-\sisetup{
+\sisetup{%
         detect-mode=true,detect-family=false,
         detect-display-math=false,detect-shape=false,
         list-units=brackets, range-units=brackets,
@@ -255,7 +254,7 @@
 \definecolor{syntax_comments}{RGB}{0,0,113}
 %
 % 
-\lstdefinestyle{common}{
+\lstdefinestyle{common}{%
     basicstyle=\footnotesize\ttfamily,
     showstringspaces=false,
     breaklines=false,
@@ -264,7 +263,7 @@
     xleftmargin=\parindent,
 }
 % 
-\lstdefinestyle{cpp}{
+\lstdefinestyle{cpp}{%
     language=C++,
     style=common,
     keywordstyle=\color{syntax_blue},
@@ -274,7 +273,7 @@
     tabsize=2,
 }
 %  
-\lstdefinestyle{python}{
+\lstdefinestyle{python}{%
     language=Python, 
     style=common,
     keywordstyle=\color{syntax_blue},
@@ -296,9 +295,9 @@
 \ExplSyntaxOn
 % 
 \NewDocumentCommand{\code}{m}
- {
+ {%
   \texttt
-   {
+   {%
     \seq_set_split:Nnn \l_michael_lw_seq { . } { #1 }
     \seq_use:Nn \l_michael_lw_seq { \breakingperiod }
    }
@@ -366,9 +365,9 @@
 \makeatother
 % \makeatletter
 % \newcommand{\inputtikz}[2][false]{%
-%     \ifthenelse{\boolean{#1}}{
+%     \ifthenelse{\boolean{#1}}{%
 %         \input{#2.tikz}
-%     }{
+%     }{%
 % 	\IfFileExists{tikz/#2.pdf}{% check if pdf tikz/.../*.pdf exists
 % 		\includegraphics{tikz/#2.pdf}
 % 	}{ % build ext tikz
@@ -383,7 +382,7 @@
 \newsavebox{\measure@tikzpicture}
 \NewEnviron{tikzsize}[2]{% use false for non externalized images
     \pgfmathsetmacro{\tikzscale}{1}
-	\ifthenelse{\boolean{\forcetikzscale}}{
+	\ifthenelse{\boolean{\forcetikzscale}}{%
 	    \tikzset{external/export=false,external/optimize=false}% force translation of this BODY (and do not optimize it away as it would usually do):
 	    \begin{lrbox}{\measure@tikzpicture}%
 		\BODY
@@ -420,21 +419,27 @@
 % **************************************************
 \usepackage{pgfplotstable}
 \usepackage{array,multirow,makecell}
-\newcolumntype{R}[1]{>{\raggedleft\arraybackslash }b{#1}}
-\newcolumntype{L}[1]{>{\raggedright\arraybackslash }b{#1}}
-\newcolumntype{C}[1]{>{\centering\arraybackslash }b{#1}}
+\newcolumntype{R}[1]{>{\raggedleft\arraybackslash}b{#1}}
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}b{#1}}
+\newcolumntype{C}[1]{>{\centering\arraybackslash}b{#1}}
+% \newcolumntype{RP}[1]{>{\raggedleft\arraybackslash}p{#1}}
+% \newcolumntype{LP}[1]{>{\raggedright\arraybackslash}p{#1}}
+% \newcolumntype{CP}[1]{>{\centering\arraybackslash}p{#1}}
+% \newcolumntype{RM}[1]{>{\raggedleft\arraybackslash}m{#1}}
+% \newcolumntype{LM}[1]{>{\raggedright\arraybackslash}m{#1}}
+% \newcolumntype{CM}[1]{>{\centering\arraybackslash}m{#1}}
 % 
 % \captionsetup[table]{textfont=it, parskip=10em} % skip does not work for table
-\pgfplotstableset{thesisTableStyle/.style={
+\pgfplotstableset{thesisTableStyle/.style={%
     every even row/.style={before row={\rowcolor[gray]{0.90}}},
     % empty cells with={--}, % replace empty cells with '--'
     every head row/.style={before row=\toprule,after row=\midrule},
     every last row/.style={after row=\bottomrule},
 }}
 % 
-\pgfplotstableset{
-    rowbf/.style={
-        postproc cell content/.append code={
+\pgfplotstableset{%
+    rowbf/.style={%
+        postproc cell content/.append code={%
           \count0=\pgfplotstablerow
             \advance\count0 by1
             \ifnum\count0=#1
@@ -443,9 +448,9 @@
         },
     },
 }
-\pgfplotstableset{
-    rowem/.style={
-        postproc cell content/.append code={
+\pgfplotstableset{%
+    rowem/.style={%
+        postproc cell content/.append code={%
           \count0=\pgfplotstablerow
             \advance\count0 by1
             \ifnum\count0=#1
@@ -494,7 +499,7 @@
 % **************************************************
 % Debug LaTeX Information
 % **************************************************
-\usepackage{showframe}
+% \usepackage{showframe}
 % 
 % **************************************************
 % Custom Colors
@@ -547,7 +552,7 @@
 % \pgfplotscreateplotcyclelist{cc2}{cc21, cc22}
 % \makeatother
 % 
-\pgfplotsset{
+\pgfplotsset{%
   colormap/cividis/.style={colormap={cividis}{[1pt]
     rgb(0pt)=(0.00000000, 0.13511200, 0.30475100);
     rgb(25pt)=(0.25974000, 0.30512000, 0.42281000);

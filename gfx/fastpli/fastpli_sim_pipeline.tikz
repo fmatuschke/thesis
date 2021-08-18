@@ -1,4 +1,4 @@
-\tikzset{external/export=false}
+% \tikzset{external/export=false}
 \tikzset{%
   % Specifications for style of nodes:
     base/.style = {rectangle, rounded corners, draw=black,
@@ -10,40 +10,40 @@
     save/.style = {base, minimum width=2.5cm, fill=orange!15,
                           font=\ttfamily},
 }
-% 
+%
 \begin{tikzpicture}
 [node distance=1.5cm,
     every node/.style={fill=white, font=\sffamily}, align=center]
-% 
+%
     \node (tissue)      [activity]                                          {tissue generation};
     \node (simulation)  [activity, below of=tissue]                         {simulation};
     \node (sim_single)  [activitySingle, below of=simulation, xshift=-3cm]  {single};
     \node (sim_all)     [activityLoop, below of=simulation, xshift=3cm]     {tilting};
     \node (sim_save)    [save, right of=sim_all, xshift=3cm]                {save()};
     \node (sim_center)  [draw=none, below of=simulation] {};
-    % 
+    %
     \node (optic)       [activity, below of=sim_center]                     {optic};
     \node (optic_save)  [save, right of=optic, xshift=6cm]                  {save()};
-    % 
+    %
     \node (analysis)    [activity, below of=optic]                          {analysis};
-    % 
+    %
     \node (ana_epa)     [activitySingle, below of=analysis, xshift=-3cm]    {fourie};
     \node (ana_rofl)    [activityLoop, below of=analysis, xshift=3cm]       {ROFL};
     \node (ana_save)    [save, right of=ana_rofl, xshift=3cm]               {save()};
-%   
+%  
     \draw[->]     (tissue) -- (simulation);
     \draw[->]     (simulation) -- (sim_single);
     \draw[->]     (simulation) -- (sim_all);
-    % 
+    %
     \draw[red,thick,dotted] ($(sim_single.north west)+(-0.3,0.3)$)  rectangle ($(sim_all.south east)+(0.3,-0.3)$);
     \draw[red,thick,dotted] ($(sim_all.east)+(0.3,-0.0)$) -- (sim_save);
-    % 
+    %
     \draw[->]     (sim_single)  -- (optic);
     \draw[->]     (sim_all)     -- (optic);
     \draw[->]     (optic)       -- (analysis);
     \draw[red,thick,dotted] ($(optic.north west)+(-0.3,0.3)$)  rectangle ($(optic.south east)+(0.3,-0.3)$);
     \draw[red,thick,dotted] ($(optic.east)+(0.3,-0.0)$) -- (optic_save);
-    % 
+    %
     \draw[->]     (analysis)    -- (ana_epa);
     \draw[->]     (analysis)    -- (ana_rofl);
     \draw[->]     (sim_single)  -- (ana_epa);
