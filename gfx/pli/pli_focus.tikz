@@ -22,7 +22,7 @@
 \def\w{2}
 \begin{scope}[shift={(0,-5)}]
 \draw[dotted] (-\w,0) -- (\w,0);
-\draw[very thick, black] (0,0) -- (-\w,0) node[midway, anchor=south] {\small absorber};
+\draw[very thick, black] (0,0) -- (-\w,0) node[pos=0, anchor=south west] {\small absorber};
 \end{scope}
 %
 % \draw[->, very thick] (B1.east) -- (B2.west);
