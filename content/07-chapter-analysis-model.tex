@@ -528,29 +528,7 @@ In this section, the resulting orientation within the volume, \ie{} the orientat
 %
 \begin{figure}[!t]
 \centering
-%
-\begin{tikzpicture}[inner sep=0]
-\node[] (A) at (0,0) {\includegraphics[width=0.295\textwidth]{dev/rc1/images/cube_2pop_psi_0.30_omega_30.00_r_0.50_v0_135_.solved.png}};
-\node[right =0cm of A] (B) {\includegraphics[width=0.295\textwidth]{dev/rc1/images/cube_2pop_psi_0.60_omega_30.00_r_0.50_v0_135_.solved.png}};
-\node[right =0cm of B] (C) {\includegraphics[width=0.295\textwidth]{dev/rc1/images/cube_2pop_psi_0.90_omega_30.00_r_0.50_v0_135_.solved.png}};
-%
-\node[below =0cm of A] (D) {\includegraphics[width=0.295\textwidth]{dev/rc1/images/cube_2pop_psi_0.30_omega_60.00_r_0.50_v0_135_.solved.png}};
-\node[below =0cm of B] (E) {\includegraphics[width=0.295\textwidth]{dev/rc1/images/cube_2pop_psi_0.60_omega_60.00_r_0.50_v0_135_.solved.png}};
-\node[below =0cm of C] (F) {\includegraphics[width=0.295\textwidth]{dev/rc1/images/cube_2pop_psi_0.90_omega_60.00_r_0.50_v0_135_.solved.png}};
-%
-\node[below =0cm of D] (G) {\includegraphics[width=0.295\textwidth]{dev/rc1/images/cube_2pop_psi_0.30_omega_90.00_r_0.50_v0_135_.solved.png}};
-\node[below =0cm of E] {\includegraphics[width=0.295\textwidth]{dev/rc1/images/cube_2pop_psi_0.60_omega_90.00_r_0.50_v0_135_.solved.png}};
-\node[below =0cm of F] {\includegraphics[width=0.295\textwidth]{dev/rc1/images/cube_2pop_psi_0.90_omega_90.00_r_0.50_v0_135_.solved.png}};
-%
-\node[left =1ex of A] {\rotatebox[origin=c]{90}{$\Omega=\SI{30}{\degree}$}};
-\node[left =1ex of D] {\rotatebox[origin=c]{90}{$\Omega=\SI{60}{\degree}$}};
-\node[left =1ex of G] {\rotatebox[origin=c]{90}{$\Omega=\SI{90}{\degree}$}};
-\node[right =1ex of C] {\vphantom{\rotatebox[origin=c]{-90}{$\Omega=\SI{30}{\degree}$}}};
-%
-\node[above =1ex of A] {$\Psi=\SI{30}{\percent}$};
-\node[above =1ex of B] {$\Psi=\SI{60}{\percent}$};
-\node[above =1ex of C] {$\Psi=\SI{90}{\percent}$};
-\end{tikzpicture}
+\includegraphics[page=1]{dev/rc1/images/cube_2pop_images_output_cube_2pop_135_rc1.pdf}
 \caption[solved model images]{Simulation model library. The inner $\SI{10}{\micro\meter} \times \SI{10}{\micro\meter} \times \SI{10}{\micro\meter}$ of the volume is shown.}
 \label{fig:modelImages}
 \end{figure}
@@ -566,7 +544,7 @@ In this section, the resulting orientation within the volume, \ie{} the orientat
 %
 %
 \Cref{fig:modelOrientation} shows the orientation distribution as polar histogram for the fiber segments in a subset of the models.
-The hole dataset is available in \Cref{app:modelHistOrientation}.
+The hole dataset is available in \Cref{app:modelOrientation}.
 The distribution shows the symmetry which corresponds well with the initialized orientation.
 The analysed orientations as the statistic of the opening angle of each population $pop$ are shown in \cref{fig:modelImages} for the most inner $\SI{10}{\micro\meter}$ cube, so that the individual fibers become more recognisable.
 \\
