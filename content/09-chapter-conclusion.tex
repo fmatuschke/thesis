@@ -10,7 +10,7 @@
 The tissue modelling software is capable of producing non colliding dense white nerve fiber models.
 This library is parallelized for the \ac{CPU}.
 \par
-% Outlook
+% outlook
 The algorithm is written for the \ac{CPU}. However this type of algorithm is highly recomended the usage of a \ac{GPU}.
 \cite{Karras2012} describes such an algorithm based on \ac{AABB} and a parallelized z-ordered tree instead of an octree.
 Since the \-ordered tree can be build in parallel, the collision checking can begin almost immediately.
@@ -19,12 +19,50 @@ Since the \-ordered tree can be build in parallel, the collision checking can be
 \dummy{}
 \par
 % outlook
-\dummy[kobuschk]{}
+Due to this thesis two projects were completed to start a implemenmtation of a parallel \ac{GPU} implementation for the \ac{3D-PLI} simulation.
+The first was a Seminararbeit \cite{Kobusch:Seminar} which targeted the implementation of the light tissue voxel calculations \dummy{}.
+It was shown, that the speedup of the matrix calculus was very \dummy{}, however the large need of memory of the discretizied volume neglected this speedup in total.
+Therefore the next project \cite{Kobusch:887783} was to implement a raytracing algoithm, which would calculate a light matter collision and performing the matrix calculus on the fly without the need of precalculating the discretised volume.
+Due to the time limitations of a Bachelorthesis a simple collision checking algorithm on the \ac{GPU} was implemented, a single axis aligned search algorithm \cite{Karras2012}.
+At the end of the project it could be shown that the speedup capabilities are hughe.
+However due to the fact of the rather simple algorithm, the runtime was slighly larger, but in the same order of magnitude, then the \ac{CPU} version.
+However the algorithm was already implemented in such a way, that the light rays are also not limited to follow all the same parallel path.
+This can achieve in a future implementation also effects light scattering light rays.
+A probably perfect algorithm for this kind of code was described in \cite{Karras2012}.
+As in the case of the collision checking algorithm for the fibers \dummy{}, the same collision checking algorithm and z-orded tree can be used to identify the light fiber segments, \ie{} conical cones, and calculate on the fly with a much smaller step size the light matter calculations.
+Next to the speedup, which should be quite large compared to the \ac{CPU} version, the much smaller need of memory is a huge advantage.
+With such a implementation it is highly likely that there will be no need for reasonable simulations on multiple nodes on a super computing system.
+\\
+% 
+Further speedups should then also be the implementation of the already developed parallel tilting analysis \dummy{}.
+%
 % 
 % 
 \paragraph{\nameref{chap:Software}}
 % 
+The Software as a open source cannot be underestimated.
+The sharebility of knowledge is a, if not the key in science.
+Already since a few years the modelling algorithm is used for different kind of science next to the obvious in \ac{3D-PLI} and \ac{dMRI}.
+\cite{Ji2021} can use such none colliding fiber models for simulations of \dummy{}.
+The software \ac{fastPLI} allows for a easy usage and fast generation of simple as also complicated simulations.
+% 
+% 
+% 
 \paragraph{\nameref{cha:model_analysis}}
+The results from the modeling characterization could identify a very good arguable working point for the models.
+The limiting factor is the runtime and therefore the number of objects in the \ac{VOI}.
+For \ac{3D-PLI} simulations a certain remaining overlapping percentage is probably vertretbar and therefore about a order of magnitude in runtime can be saved.
+Otherwise with a up to date computing systems a reasonable amount of models can be generated.
+However here the number of models were highly limited (considering anatomical and simulation constrains).
+A future study has to show, if certain configuration show a unique behavior.
+Specially for simulations like scattering light this can be quite important.
+% 
+% 
 % 
 \paragraph{\nameref{cha:simulation_analysis}}
-% 
+The results with the new generated irregular dense white matter models could reproduce the experiments as well as old results.
+Additionally a lot more simulations and configurations could be investigated.
+\par
+% outlook
+For the future the usage of machine learning can probably be used to try to find a new characterization of \ac{3D-PLI} signals to better be able to know he underlying fiber structure.
+Here \cite{ginsburgerDis2019} could show the first steps already for \ac{dMRI} with similar methods. 
