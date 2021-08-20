@@ -746,40 +746,7 @@ The calculated meshes and resulting images look like (see \cref{fig:medusa_11})
 Further information how to generate meshes and visualization of such objects can be found in \dummy{}.
 This visualization algorithm can still be far improved by processing the hole calculations an the \ac{GPU}.
 %
-% \par
-% %
-% \ac{CC} are rendered using the \code{gluCylinder} function provided by the \name{GLUT} library for a rough but fast visualization.
-% The first step in the visualization of surfaces is usually the generation of a \name{mesh} from triangles.
-% A texture can then be placed on each triangle.
-% Since fibers have to be visualized here, the mesh is generated as a tube surrounding the fiber with circularly arranged points around a fiber point $p_i$ (see \cref{fig:mesh}).
-% Corner points and normals are calculated from the mesh, which are finally rendered with a color within an illuminated scene.
-% To enable visualization of the inner axon, the myelin sheath can also be rendered.
-%
-%
-%
-%
-%
-% For a more accurate and correct visualization of the \ac{CC} a self-implemented rendering was developed, which is however not included in this package. It was however used for another nerve fiber and cell modelling algorithm (see sec:medusa).
-%
-%
-%
-% \paragraph{Disclamer}
-% This is a fast implementation.
-% Current rendering software uses much more advanced techniques.
-% However, this rendering algorithm has been written to be an easily integrated tool that uses only the additional \name{OpenGl 2} and \name{GLUT} library.
-% \\
-% %
-% A more advanced tool, the \name{FAConstructor} \cite{Reuter2019} was written by Andr'e Reuter as part of this doctoral thesis.
-% This tool uses \name{OpenGl 3} and additional calculation on the GPU. Additionally it allows a user-defined interactive technique to create a 3D fiber model.
-% The next step is already carried out with the visualization tool by Nicole Schubert called \name{PLIVis}.
-%
-% \subsection{Wall opacity}
-% %
-% In order to visualize axons within the myelinated nerve fibers, the visualized vertices must be transparent.
-% However, this requires sorted vertices along the z-axis (viewer/camera? axis).
-% This is needed because vertices are rendered from back to front, so that the absorption of light can be taken into account.
-% This process takes a certain amount of time and is therefore only recommended for screen shoots at this time (see \dummy{}).
-%
+% 
 % 
 \section{Medusa - sphered nerve and cell modelling}
 \label{sec:medusa}
