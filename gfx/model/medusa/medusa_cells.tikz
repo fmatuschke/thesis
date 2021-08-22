@@ -1,0 +1,8 @@
+% \tikzset{external/export = false}
+\begin{tikzsize}{\tikzwidth}{\tikzheight}
+\begin{tikzpicture}[scale=\tikzscale]
+    \node[] (A) at (0,0) {\includegraphics[rotate=-90,scale=\tikzscale]{gfx/neuroanatomy/neuron_medusa_0.pdf}};
+    \node[right = of A, xshift=0em] (B) {\includegraphics[rotate=-90,scale=\tikzscale]{gfx/neuroanatomy/neuron_medusa_1.pdf}};
+    \draw[very thick,->] (A.east) -- (B.west);
+\end{tikzpicture}
+\end{tikzsize}

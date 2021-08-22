@@ -751,61 +751,57 @@ This visualization algorithm can still be far improved by processing the hole ca
 \section{Medusa - sphered nerve and cell modelling}
 \label{sec:medusa}
 %
-\itodo{Section neu schreiben. Bisher nur Ideen.}
-%
-Additionally to the previous discussed modelling algorithm (see \cref{sec:Solver}), the \ac{MEDUSA} algorithm \cite{Ginsburger2019} was developed in a cooperation with the team Neurospin from \ac{CEA} in France.
-The target was to develop an algorithm which can build a library of \ac{WM} tissue.
-This library should not only contain nerve fibers, but also other cell types like olegodendrocites or astrocytes.
-These cell types are currently not used in \ac{3D-PLI} routine analysis however in \ac{dMRI} the cell are quite important [\dummy{}].
-Furthermore these cells take up additional volume which results in different nerve fiber configurations.
+The above described algorithm is capable of generating dense \ac{WM} nerve fiber models.
+In \ac{dMRI} these models can be applied as well.
+There the movement and interaction of water molecules with the fiber models can be simulated.
+When the water moelcules are hitting the surface of a fiber segment, the diffusion model has to be taken into account.
+This, however, is not only true for nerve fibers but also for ather types of cells.
+Since the \ac{WM} consist not only out of axons, but also out of gliacells like astrocytes and olegodendrites, these are also infering with the movement of the water moelcules.
 \\
-%
-Since this tool aims to build a statistically library, other parameters are chosen for boundary conditions.
-These parameters are chosen as close as possible from the current \ac{dMRI} models:
-\dummy{}.
-\\
-%
-The main difference is that the nerve fiber objects are not represented by \ac{CC} but as spheres.
-Spheres have the advantage, that a collision calculation is much more simpler.
-On the other side more spheres are needed to represent a fiber.
-There can be a resulting overlap which depending on the usecase, can lead to unbehaved results.
-\\
-%
-Cells are also represented as a collection of spheres.
-There overall sum represents the volume of the cells soma as well as in the case of astrocytes or olegodendrites, there dentrites.
+% 
+Therefore an additional algorithm was developed in cooperation with Kevin Ginsburger and Cyril Poupon (Neurospin, \ac{CEA}).
+This algorithm called \ac{MEDUSA} \cite{Ginsburger2019} is working similar to the above describe algorithm, however it is not modelling the 3d objects as tube segments, but as spheres.
+This has the advantage, that the objects are simpler, which leads to an increase in collision checking calculations, but also spheres are capable of approximating a 3d object like a cell body.
+Latter is achieved by representing the surface of a cell body as the sum of multiple spheres. 
+Only the surface of a sphere, which is not colliding with another sphere is ... as the surcace of the entire cell (see \cref{ig:medusaCell}).
+By these means very complicated shapes are possible.
+The disadvantage however is for representing tube like objects a lot more spheres, and therefore objects to check for a collisions, are necesarry.
 \par
-%
-In this theses cells are disregarded.
-A full description of the construction of how models with astrocytes and olegodendrocytes can be generated with this algorithm can be found in detail in  \cite{Ginsburger2019}.
+% 
+Since the number ob objects, \ie{} spheres, is so much higher, the algorithm was implemented on the \ac{GPU} with a x-axes aligned bounding box search algorithm \cite{Karras2012}.
+\par
+A key feature of this algorithm is hoe to build other cell types and escpeccially how to design olegodendrites which arms connect to the myelin sheet of a near axon.
+Another focus was on the iniatial configurations of the cells.
+Nerve fibers are initialized as fiber populations with parameters like density and angular dispersion (see \cite[Ginsburger2019]).
+Analog to the \dummy{} algorithm the collisions of the bjects are then checked and slighlty pushed appart until no more collisions can be detected.
+% 
+% % ------------------------------------------------------------------------------
+% \par
+% \noindent\rule{\textwidth}{1pt}
+% \par
+% % ------------------------------------------------------------------------------
 %
 \subsection{Algorithm}
 %
 \begin{figure}[!t]
-\centering
-% \resizebox{0.75\textwidth}{!}{
-\setlength{\tikzwidth}{0.75\textwidth}
-\inputtikz{gfx/model/medusa/medusa_spheres}
-% }
-\caption{modified from \cite{Ginsburger2019} \itodo{cell representation example}}
-\label{fig:model:medusa_4}
+    \centering
+    \setlength{\tikzwidth}{0.75\textwidth}
+    \subcaptionbox{modified from \cite{Ginsburger2019}. Outer blue spheres myelin, inner red spheres axon}[0.75\textwidth]{
+    \inputtikz{gfx/model/medusa/medusa_spheres}}
+    \\[2em]
+    % 
+    \subcaptionbox{Cell aproximation by overlapping spheres.}[0.75\textwidth]{
+    \inputtikz{gfx/model/medusa/medusa_cells}}
+    \caption{\ac{MEDUSA} sphere approximation.}
+    \label{fig:medusaCell}
 \end{figure}
-%
-% \begin{figure}[!t]
-%     \centering
-%     % \resizebox{0.75\textwidth}{!}{
-%     \setlength{\tikzwidth}{0.75\textwidth}
-%     \includegraphics{gfx/model/medusa/4.jpg}
-%     % }
-% 	\caption{4 \cite{Ginsburger2019}}
-% 	\label{fig:model:medusa_4_org}
-% \end{figure}
 %
 Since all objects are represented as a collection of spheres (see \cref{fig:model:medusa_4})
 \begin{align}
     \mathcal{S} = \{ (x_i,y_i,z_i,r_i) : i \in \{0, 1, ..., n_\text{objects}-1\}  \}
 \end{align}
 %
-, a collision is present if (VCS !!!)
+, a collision occurs if
 %
 \begin{align}
 \begin{split}
@@ -846,57 +842,15 @@ The above described algorithm is currently used for volumes $\approx \SI{200}{\m
 %
 \begin{figure}[!t]
     \centering
-    \resizebox{0.95\textwidth}{!}{
-    \includegraphics{gfx/model/medusa/8.jpg}}
-	\caption{8 \cite{Ginsburger2019}}
+    \subcaptionbox{\dummy{}}[0.75\textwidth]{
+    \resizebox{0.75\textwidth}{!}{
+    \includegraphics{gfx/model/medusa/8.jpg}}}
+    \\[2em]
+    \subcaptionbox{\dummy{}}[0.75\textwidth]{
+    \resizebox{0.75\textwidth}{!}{
+    \includegraphics{gfx/model/medusa/11_.jpg}}}
+	\caption{\cite{Ginsburger2019}}
+
 	\label{fig:medusa_8}
 \end{figure}
-%
-\begin{figure}[!t]
-    \centering
-    \resizebox{0.95\textwidth}{!}{
-    \includegraphics{gfx/model/medusa/11_.jpg}}
-	\caption{11 \cite{Ginsburger2019}}
-	\label{fig:medusa_11}
-\end{figure}
-%
-%
-%
-%
-%
-%
-%
-%
-% Neurospin works with \ac{dMRI} signals.
-% One focus is on the analysis of the fiber architect of the human brain.
-% \ac{dMRI} is here quite handy since it is currently the only technique to allow in-vivo measurements to analyse the orientation of white matter tracts. Another importance is the availability of \ac{MRI} machines in almost every hospital in the western civilization.
-% Although their resolution is with \SIrange{1.5}{3}{\tesla} limited.
-% However, Neurospin is equipped with a mordern \SI{7}{\tesla} \ac{MRI}.
-% This makes it possible, including higher measurments times on post mortem brain tissue, a \ac{dMRI} resolution up to \SI{200}{\micro\meter}.
-% This makes it possible to allow \ac{3D-PLI} to verify and enhance the analysis of current developed tractography data.
-% %
-% Along this works they developed a simulation tool (name) which is computing a Monte-Carlo simulation on the diffusion process in virtual tissues.
-% Therefore, for simulations of the \ac{dMRI} signal in the brain, geometric models of nerve fibers as well as nerve cells are required.
-% %
-% The common goal was, due to a work packes inside the \ac{HBP}, the development of a common general purpose tool to build a geometrical library of nerve fiber configurations.
-% Therefore it was decided to work based on the first approaches \cite{Ginsburger2018}.
-% %
-% \begin{quotation}
-% We design a novel white matter numerical phantom generation algorithm which constructs biomimicking geometric configurations with few design parameters, and enables to control the level of disorder of the generated phantoms. The influence of various geometrical parameters present in white matter, such as global angular dispersion, tortuosity, presence of Ranvier nodes, beading, ...
-% \end{quotation}
-% %
-% It is therefore qualified to generate a large database or library of parameter controlled white matter volumes.
-% %
-% \paragraph{differences:}
-% \begin{itemize}
-%     \item All objects are aproximated with spheres.
-%     \item Statistical ... of tissue
-%     \item diffusion specific parameters
-%     \item pathological changes like axon beeding
-% \end{itemize}
-%
-% \section{Conclusion}
-% This allows a user to specify any initial configuration and reaching a collision free model, which, depending on the initial overlap, follows the initial geometry.
-% The disadvantage obvious is that the configuration has to change.
-% However since biological tissue is deformable and not "caotic" itself, it follows its natrual behavier.
-%
+% 

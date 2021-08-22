@@ -162,6 +162,7 @@ if [ "$1" == "--make" ]; then
 fi
 biber thesis_
 lualatex -interaction=nonstopmode -halt-on-error -shell-escape thesis_.tex
+lualatex -interaction=nonstopmode -halt-on-error -shell-escape thesis_.tex
 
 # view
 mv thesis_.pdf thesis.pdf
