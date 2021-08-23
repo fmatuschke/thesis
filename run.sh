@@ -155,9 +155,9 @@ if [ "$1" == "--single" ]; then
    exit 0
 fi
 
-# second build with tikz make
+# second build with tikz mqake
 if [ "$1" == "--make" ]; then
-   numcpus=$(lscpu -p | wc -l)
+   numcpus=$(nproc)
    make -j${numcpus} -f thesis_.makefile
 fi
 biber thesis_

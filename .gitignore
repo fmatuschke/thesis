@@ -1,15 +1,14 @@
-.vscode/
-thesis.pdf
-thesis_*
 !thesis.tex
+!thesis-setup.tex
+!tikz/dummy.tex
+
+.vscode/
+thesis*
 dev/
+build/
 old/
 tikz/*
-tikz/**/*
-output/
-*.*.*-*.pdf
 __latexindent_temp.*
-thesis*ptc*
 
 # Created by https://www.gitignore.io/api/latex
 # Edit at https://www.gitignore.io/?templates=latex

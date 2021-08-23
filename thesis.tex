@@ -38,13 +38,13 @@
 %\ifshellescape
 \usetikzlibrary{external}
 \tikzexternalize[%
-                 optimize command away=\includepdf,
-                 prefix=tikz/,
-                 figure name=\thesubsection-,
-                 % mode=list and make,
-                 ]
-% \def\forcetikzscale{true}
+    optimize command away=\includepdf,
+    prefix=tikz/,
+    figure name=\thesubsection-,
+    % mode=list and make,
+    ]
 %
+% \def\forcetikzscale{true}
 % \tikzset{external/force remake}
 % 
 \includeonly{%
