@@ -6,7 +6,7 @@
 %
 \section{Introduction}
 The following chapter lists the physical theories needed to describe the mathematics behind \ac{3D-PLI}.
-These include the basic properties of light with the description of their polarization state, the optical models of the tissue, i.e. the nerve fibers, the mathematical description of the experimental setup of \ac{3D-PLI} and the analysis of its signal.
+These include the basic properties of light with the description of their polarization state, the optical models of the tissue, \ie{} the nerve fibers, the mathematical description of the experimental setup of \ac{3D-PLI} and the analysis of its signal.
 The first part of this chapter was written with the aid of \cite{demtroeder2, Fliebach2012}.
 %
 %
@@ -39,7 +39,7 @@ This means that neither an electric field nor a magnetic field can be generated 
 %
 % \par
 %
-\subsection{EM in a vacuum}
+\subsection{Light in a vacuum}
 %
 In a vacuum, \cref{eq::maxwell_general} simplifies with $\rho = 0$ and $\vec{j} = \vec{0}$ to:
 %
@@ -72,11 +72,9 @@ the identity $\nabla \times \left( \nabla \times \vec{A} \right) = \nabla(\nabla
 This also shows that $c^2 \frac{\partial B} {\partial z} = \frac{\partial E}{\partial t} \rightarrow \vec{E} \cdot \vec{B} = 0$ and thus the electric and magnetic field components are perpendicular to each other.
 In addition, this also means that space and time are connected and that light propagates in vacuum with the speed of light $c$.
 %
-\subsection{Solving MW Equ in vacuum}
+\subsection{Solving Maxwells equations in vacuum}
 %
-\Cref{eq::maxwell_wave_equations} have the form of a wave equation and therefore, as is well known, can be solved by
-%
-% Using the Maxwell equation in vacuum \ref{eq::maxwell_vacuum}, one can find the most simple solution to the differential equation is a wave:
+\Cref{eq::maxwell_wave_equations} have the form of a wave equation and therefore, as it is well-known, can be solved by
 %
 \begin{align}
 \begin{split} \label{eq::dgl_solution}
@@ -85,7 +83,7 @@ In addition, this also means that space and time are connected and that light pr
 \end{split}
 \end{align}
 %
-where $g$ is any well-behaved function (continuous and differentiable) and therefore also its superpositions.
+where $g$ is any well-behaved function (continuous and differentiable) and therefore also its superposition.
 %
 With the help of
 %
@@ -128,7 +126,7 @@ e^{ -i (kz - \omega t)}
 \centering
 \tikzset{external/export=false}
 \input{gfx/pli/pol_states}
-\caption{polarization states, check vector length}
+\caption{Polarization states in Jones and Stokes convention.}
 \label{fig:polarization_state_vectors}
 \end{figure}
 %
@@ -143,8 +141,7 @@ In addition, the states can be described by the Jones or Stokes calculation, whi
 %
 \todo{herleiten}
 The Maxwell's equations in \dummy{} are described above. They can be solved analog to \dummy{}. This yields to some special behavior, \eg{} the magnetic and electric field component get out of phase.
-However here only the two properties of absorption and diffraction are described.
-They derivation can be found \eg{} \cite{demtroeder2, Fliebach2012}.
+However, here only the two properties of absorption and diffraction are described.\footnote{For their derivation, \eg{} see \cite{demtroeder2, Fliebach2012}.}
 %
 \subsection{Absorption}
 %
@@ -169,7 +166,7 @@ Refraction is the change of direction of light as it passes from one medium to a
 This can be shown by using the full Maxwell equations  for non-conductive material, \ie{} $\vec{j} = 0, \rho = 0$, that the differential equating consist out of a primary wave with from atomic medium induced secondary waves, which leads to a reduction of the velocity of the resulting wave.
 Mathematically this can be described by a complex number $n = c' / c$.
 Using this relationship at a boundary surface between two media, one can show that the incident light beam splits into a reflecting and transmitting light wave.
-The reflecting light wave has the same angle as the incident light beam relative the the surface normal.
+The reflecting light wave has the same angle as the incident light beam relative to the surface normal.
 The transmitting light beam however due to the reduction of the velocity, changes its direction described by the Snellius law
 \begin{align}
     n_0 \sin \alpha = n_1 \sin \beta \label{eq:Snellius}
@@ -267,10 +264,10 @@ A rotation of an optical element can be achieved by a 2d rotation matrix $\mat{R
 %
 %
 %
-\subsection{M\"uller-Stokes}\label{sec:Mueller-Stokes}
+\subsection{M{\"u}ller-Stokes}\label{sec:Mueller-Stokes}
 \label{sec:mueller_stokes}
 %
-In analogy to \cref{sec:jones}, the M\"uller-Stokes formalism, described by George Gabriel Stokes in 1852, also describes the polarization state of a light beam.
+In analogy to \cref{sec:jones}, the M{\"u}ller-Stokes formalism, described by George Gabriel Stokes in 1852, also describes the polarization state of a light beam.
 However, it does not use the absolute electric components, but the relative polarization between both components:
 %
 \paragraph{Stokes vector}
@@ -343,7 +340,7 @@ Analogous to Jones one can formulate the matrices for the optical components:
 \end{pmatrix}
 \end{align}
 %
-\paragraph{retarder}
+\paragraph{Retarder (fast-axis x-axis)}
 \begin{align}
 \mat{M}=\
 \begin{pmatrix}
@@ -354,7 +351,7 @@ Analogous to Jones one can formulate the matrices for the optical components:
 \end{pmatrix}
 \end{align}
 %
-\paragraph{Quarter-wave plate (fast-axis vertical)}
+\paragraph{Quarter-wave plate (fast-axis x-axis)}
 \begin{align}
 \Lambda_{1/4}=\
 \begin{pmatrix}
@@ -406,8 +403,8 @@ Analog to \dummy{} rotations are applied by
 \end{figure}
 %
 There are three microscopic setups based on the same physical principle \cite{Axer2011} (see \cref{fig:pli_setup}).
-Polarized light with a wavelength of \SI{525}{\nano\meter} is irradiated through a tissue section.
-A circular polarizer (a \SI{45}{\degree} oriented quarter-wave retarder and polarizer) is placed behind the tissue.
+Polarized light with a wavelength of $\SI{525}{\nano\meter}$ is irradiated through a tissue section.
+A circular polarizer, a $\SI{45}{\degree}$ oriented quarter-wave retarder and polarizer, is placed behind the tissue.
 By rotating the polarizer, the change in intensity is measured with a \ac{CCD} sensor.
 \par
 %
@@ -419,17 +416,19 @@ The optical setup of \ac{LAP} is slightly different in that the quarter-wave ret
 This produces the same results, but dust particles on one of the optical elements can be identified more easily because they are also rotating.
 The other microscopes are located in a closed container that protects the optical elements from contamination.
 \\
-A higher resolution microscope is the \ac{LMP}, which allows measurement of a 2048x2048 tile with a pixel size of \SI{1.3}{\micro\meter}.
+% 
+A higher resolution microscope is the \ac{LMP}, which allows measurement of a $\num{2048}\times\num{2048}$ tile with a pixel size of $\SI{1.3}{\micro\meter}$.
 By measuring the tissue with multiple overlapping images, the overlap can be used to combine them into an overall image.
 This setup is not able to change the light path.
 The 3d information can be estimated by analyzing the distribution of retardation and transmittance.
 However, the sign of the slope cannot be detected.
 \\
+% 
 The third setup \ac{LMP3D} is able to change the light path \cite{Wiese:887678}.
 It makes this possible by using a conical light path.
 When using a slit, only light of a certain angle is allowed through the tissue.
 By changing the position of the slit, the different light paths can be measured.
-This microscop is currently under construction and will be modelled here with the characterization from the \ac{LMP} microscope with a tilt angle of \SI{3.9}{\degree}.
+This microscope is currently under construction and will be modeled here with the characterization from the \ac{LMP} microscope with a tilt angle of $\SI{3.9}{\degree}$.
 \\
 %
 The tilted light beam (or tissue section) is normally measured in 4 perpendicular orientations: North, East, South and West.
@@ -450,7 +449,7 @@ For intensity values $>> 0$ it can be modeled by a normal distribution.
 %
 \subsection{Intensity signal}
 %
-From the Mueller-Stokes matrices (\cref{sec:Mueller-Stokes}), as shown in \cite{MenzelMaster,MenzelDissertation}, the intensity signal, which is the first component of the Stokes vector, follows a sinusoidal curve:
+From the Mueller-Stokes matrices (\cref{sec:Mueller-Stokes}), the intensity signal, which is the first component of the Stokes vector, follows a sinusoidal curve \cite{MenzelMaster,MenzelDissertation}:
 %
 \begin{align}
 \label{eq:pli_signal}
@@ -462,7 +461,7 @@ I(\rho, \varphi, \alpha, d) =\frac{I_0}{2}\bigl[ \sin\bigl(2\rho - 2\varphi \big
 \end{align}
 %
 Since \cref{eq:pli_signal} describes a sinusoidal signal, Fourier analysis is an obvious choice.
-For a discrete, aquidistant measurement of the rotation angles $\rho$, one can use the Fourier series with the first three coefficients to describe the signal:
+For a discrete, equidistant measurement of the rotation angles $\rho$, one can use the Fourier series with the first three coefficients to describe the signal:
 %
 \begin{align}
 \begin{split}
@@ -513,7 +512,7 @@ However, this effect is neglected in the simulation, since it only adds a parall
 All angles mentioned here, if not specified, are always the angle change of light within the tissue (see \cref{fig:tilting_camera_view}).
 \\
 %
-In \cite{Schmitz2018} this analysis was published under the name \ac{ROFL}, which builds on the work of \cite{Wiese:887678}.
+To analyse the tilting signal an algorithm was developed under the name \ac{ROFL} \cite{Wiese:887678,Schmitz2018}.
 The idea is to fit the measured signals of all light paths simultaneously.
 However, since the change in the signal is proportional to $\cos(\alpha)$, this means that for steep fibers not only are the changes small, but also the amplitude of the signal is very small.
 This leads to the problem of increasing uncertainty with increasing slope angle.
@@ -534,10 +533,10 @@ However, for single fiber paths crossing other fiber bundles or in the extreme s
 \centering
 \setlength{\tikzwidth}{0.8\textwidth}
 \setlength{\tabcolsep}{0pt}
-\begin{tabular}{C{0.5\textwidth}C{0.5\textwidth}}
+\begin{tabular}{M{0.5\textwidth}M{0.5\textwidth}}
 \includegraphics[width=0.41\tikzwidth]{gfx/pli/color_sphere.png} &
 % \tikzset{external/remake next=true}
-\inputtikz{gfx/pli/hsv_sphere} \\
+\inputtikz{gfx/pli/hsv_sphere}\\
 \subcaptiontab{0.475\textwidth}{2d hsv sphere} &
 \subcaptiontab{0.475\textwidth}{\label{fig:sphere}3d hsv sphere}
 \end{tabular}
@@ -561,7 +560,7 @@ It encodes the orientation in the color and the inclination in the saturation (s
 Since the orientation, unlike a vector, covers only a half sphere, the colors are point symmetric.
 %
 %
-\section{optical resolution}
+\section{Optical resolution}
 \label{sec:opticalResolution}
 %
 The optical resolution of an imaging system describes the minimum size of an object that can still be resolved.
@@ -576,7 +575,7 @@ d=\frac{ \lambda}{2 n \sin \theta} = \frac{\lambda}{2\mathrm{NA}} \> .
 \end{align}
 $d$ is the minimum resolvable distance, $n$ the refractive index, $\theta$ the angle of a light spot, which can be combined to the better known numerical aperture $\mathrm{NA}$.
 This gives an absolute threshold for a light microscope above which resolution cannot be improved.
-For the wavelength used in \ac{3D-PLI} with $\lambda = \SI{525}{\nano\meter}$ and a numerical apperature of $\mathrm{NA} = \SI{}{}$ \dummy{}, this results in a limit of \dummy{}.
+For the wavelength used in \ac{3D-PLI} with $\lambda = \SI{525}{\nano\meter}$ and a numerical aperture of $\mathrm{NA} = \SI{}{}$ \dummy{}, this results in a limit of \dummy{}.
 %
 \begin{figure}[!t]
 \setlength{\tikzwidth}{0.45\textwidth}
@@ -623,7 +622,7 @@ All three effects must be characterized for the system being simulated.
 %
 \section{Computational speedup techniques}
 %
-Among other specific techniques described in in the next chapers \cref{chap:sof:modelling,cha:sof:simulation}, two important technique was used to speed up the calculations.
+Among other specific techniques described in the next chapers \cref{chap:sof:modelling,cha:sof:simulation}, two important technique was used to speed up the calculations.
 \par
 %
 The computationally intensive code is written in \cpp{}.
@@ -634,8 +633,8 @@ This takes time.
 The main advantage of the cache is that it is very fast.
 Even the distance is so small that the speed of light does not limit the connection of the \acp{CPU} to the cache.
 It is built inside the \ac{CPU}.
-Therefore its size is very limited, usually around $\si{mega\byte}$.
-The prefetcher is a sophisticated directive that requests not only the element at address $i$ in memory, but also the element next to it ($i+1$ or $i-1$, depending on the algorithm).
+Therefore, its size is very limited, usually around $\si{mega\byte}$.
+The \ac{CPU} cache prefetcher is a sophisticated directive that requests not only the element at address $i$ in memory, but also the element next to it ($i+1$ or $i-1$, depending on the algorithm).
 Since many algorithms traverse arrays, the next element to be computed is usually the next (or previous) element.
 Therefore, the time required to copy the data from the memory to the cache is reduced.
 It can be shown that for linear operations on memory, the cache prefetcher reduces the time so much that it behaves as if the \ac{CPU} had an infinite cache.
@@ -644,5 +643,5 @@ It can be shown that for linear operations on memory, the cache prefetcher reduc
 Another technique is to use modern compilers such as Clang or GCC.
 These have an optimization algorithms built in that optimizes the code to the architecture of the machine\footnote{And much more sophisticated methods.}.
 For example, if the number of iterations is known at compile time, a for loop can be \name{unrolled} to speed up the computations since it no longer needs to check if the conditions are met to end the loop.
-To review these optimizations, the bottlenecked code was tested with \name{Compiler Explorer}\footnote{https://godbolt.org/} and \name{C++ Insight}\footnote{https://cppinsights.io/}.
+To review these optimizations, the code with bottlenecks was tested with \name{Compiler Explorer}\footnote{https://godbolt.org/} and \name{C++ Insight}\footnote{https://cppinsights.io/}.
 %
