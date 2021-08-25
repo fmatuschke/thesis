@@ -5,6 +5,9 @@
 # 	mkdir build/content
 # 	mkdir build/tikz
 
+# wget https://ftp.tu-chemnitz.de/pub/tug/historic/systems/texlive/2020/tlnet-final/install-tl-unx.tar.gz
+# sudo ./install-tl --repository=https://ftp.tu-chemnitz.de/pub/tug/historic/systems/texlive/2020/tlnet-final/
+
 .PHONY: compile
 compile:
 	lualatex -interaction=nonstopmode -halt-on-error -shell-escape thesis.tex
@@ -33,24 +36,26 @@ tikz-clean:
 	
 .PHONY: clean
 clean: tikz-clean
-	rm thesis.acr
-	rm thesis.aux
-	rm thesis.auxlock
-	rm thesis.bcf
-	rm thesis.figlist
-	rm thesis.log
-	rm thesis.maf
-	rm thesis.makefile
-	rm thesis.mtc
-	rm thesis.mtc0
-	rm thesis.out
-	rm thesis.pdf
-	rm thesis.ptc1
-	rm thesis.ptc2
-	rm thesis.ptc3
-	rm thesis.ptc4
-	rm thesis.ptc5
-	rm thesis.run.xml
-	rm thesis.tdo
-	rm thesis.toc
-	rm content/*.aux
+	rm -f thesis.acr
+	rm -f thesis.aux
+	rm -f thesis.auxlock
+	rm -f thesis.bbl
+	rm -f thesis.bcf
+	rm -f thesis.blg
+	rm -f thesis.figlist
+	rm -f thesis.log
+	rm -f thesis.maf
+	rm -f thesis.makefile
+	rm -f thesis.mtc
+	rm -f thesis.mtc0
+	rm -f thesis.out
+	rm -f thesis.pdf
+	rm -f thesis.ptc1
+	rm -f thesis.ptc2
+	rm -f thesis.ptc3
+	rm -f thesis.ptc4
+	rm -f thesis.ptc5
+	rm -f thesis.run.xml
+	rm -f thesis.tdo
+	rm -f thesis.toc
+	rm -f content/*.aux
