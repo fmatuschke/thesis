@@ -33,3 +33,24 @@ tikz-clean:
 	
 .PHONY: clean
 clean: tikz-clean
+	rm thesis.acr
+	rm thesis.aux
+	rm thesis.auxlock
+	rm thesis.bcf
+	rm thesis.figlist
+	rm thesis.log
+	rm thesis.maf
+	rm thesis.makefile
+	rm thesis.mtc
+	rm thesis.mtc0
+	rm thesis.out
+	rm thesis.pdf
+	rm thesis.ptc1
+	rm thesis.ptc2
+	rm thesis.ptc3
+	rm thesis.ptc4
+	rm thesis.ptc5
+	rm thesis.run.xml
+	rm thesis.tdo
+	rm thesis.toc
+	rm content/*.aux
