@@ -98,7 +98,7 @@ Therefore, the convolution to be applied (see \cref{sec:opticalResolution}) is s
 %
 % SUBCAPTIONS
 \subcaptiontab{0.475\textwidth}{\label{fig:parameterModelNoise} Linear regression results in a gain factor of $\opticgain_{\mathit{LMP}} = \SI{0.1175}{}(?)$.} &
-\subcaptiontab{0.475\textwidth}{\label{fig:noiseplot}Expected noise range for different species \dummy[check values]{}}
+\subcaptiontab{0.475\textwidth}{\label{fig:noiseplot}Expected noise range for different species \todo{check values}}
 \end{tabular}
 %
 \caption[Noise analysis]{Intensity noise measurements and results}
@@ -178,7 +178,7 @@ fuellgrad $0.75: \mu \approx 30 \pm 10$,
 fuellgrad $0.75: \mu \approx 30 \pm 10$,
 ret left: $0.83 \pm 0.07$,
 ret right: $0.80 \pm 0.07$
-\itodo{what happens in the center?}}
+\todo{what happens in the center?}}
 \label{fig:brain_ret_trans_zoom}
 \end{figure}
 %
@@ -202,7 +202,7 @@ ret right: $0.80 \pm 0.07$
 \subcaptionbox{\label{fig:simRetValues}retardation}[0.95\textwidth]{
 \includegraphics[page=5]{dev/rc1/tissue/birefringence_output_bf_rc1.pdf}}
 % \end{tabular}
-\caption{simulations for Vervet LMP tissue for different absorption coef and birefringence values. \itodo{exp messungen mit einzeichnen}}
+\caption{simulations for Vervet LMP tissue for different absorption coef and birefringence values. \todo{exp messungen mit einzeichnen}}
 \label{fig:parameterModelSim}
 \end{figure}
 %
@@ -229,7 +229,7 @@ The same measurements are made for the human and rodent in the corpus callosum (
 %
 When the light passes through the tissue, it is absorbed in the matter on the one hand and scattered on the other.
 Both effects can be modeled mathematically in this linear optical simulation as a decrease in intensity along the path.
-A drawback of this simulation is that the scattering is not constant for all fiber configurations and orientations \dummy[see MM]{}.
+A drawback of this simulation is that the scattering is not constant for all fiber configurations and orientations \todo{see MM}.
 Therefore, the measured absorption coefficient is only valid for the same fiber configurations as in the region.
 Absorption only changes the transmittance and hence the relative noise, not the delay or direction of the signal.
 Since the noise is quite low in this microscopic configuration, it should have little effect on the results.
@@ -386,7 +386,7 @@ This ensures that the sphere is sampled reasonably equidistantly considering the
     \includegraphics[width=\tikzwidth]{dev/rc1/single/cube_2pop_135_rc1_single_plots_single_pop_hist_90.0.pdf}
 \end{tabular}
 %
-\caption[sim]{Single tilted fiber population. Left: 2d log histogram of orientation from rofl analysis of simulation, right: 2d log histogram of orientation of model segments. \itodo{rfc plots}}
+\caption[sim]{Single tilted fiber population. Left: 2d log histogram of orientation from rofl analysis of simulation, right: 2d log histogram of orientation of model segments. \todo{rfc plots}}
 \label{fig:single_fiber_pop_hist}
 \end{figure}
 %
@@ -462,7 +462,7 @@ For higher inclination angles, both the median and the variance increase signifi
     \includegraphics[width=\tikzwidth]{dev/rc1/flat/cube_2pop_135_rc1_flat_plots_flat_pop_hist_omega_60.0_psi_0.3.pdf} &
     \includegraphics[width=\tikzwidth]{dev/rc1/flat/cube_2pop_135_rc1_flat_plots_flat_pop_hist_omega_90.0_psi_0.3.pdf}
 \end{tabular}
-\caption[sim]{Crossing flat fiber population: $\modelPsi=\SI{30}{\percent}$. left: 2d log histogram orientation from rofl analysis of simulation, right: 2d log histogram of orientation of model segments. \itodo{rfc}}
+\caption[sim]{Crossing flat fiber population: $\modelPsi=\SI{30}{\percent}$. left: 2d log histogram orientation from rofl analysis of simulation, right: 2d log histogram of orientation of model segments. \todo{rfc}}
 \label{fig:flat_03_fiber_pop_hist}
 \end{figure}
 %
@@ -482,7 +482,7 @@ For higher inclination angles, both the median and the variance increase signifi
     \includegraphics[width=\tikzwidth]{dev/rc1/flat/cube_2pop_135_rc1_flat_plots_flat_pop_hist_omega_60.0_psi_0.5.pdf} &
     \includegraphics[width=\tikzwidth]{dev/rc1/flat/cube_2pop_135_rc1_flat_plots_flat_pop_hist_omega_90.0_psi_0.5.pdf}
 \end{tabular}
-\caption[sim]{Crossing flat fiber population: $\modelPsi=\SI{50}{\percent}$. left: 2d log histogram orientation from rofl analysis of simulation, right: 2d log histogram of orientation of model segments. \itodo{rfc}}
+\caption[sim]{Crossing flat fiber population: $\modelPsi=\SI{50}{\percent}$. left: 2d log histogram orientation from rofl analysis of simulation, right: 2d log histogram of orientation of model segments. \todo{rfc}}
 \label{fig:flat_05_fiber_pop_hist}
 \end{figure}
 %
@@ -495,7 +495,7 @@ For higher inclination angles, both the median and the variance increase signifi
 %
 The next simulation focuses on two flat crossing fiber populations.
 Here, the results for the case $\modelPsi = \SI{30}{\percent}$ and $\modelPsi = \SI{50}{\percent}$ are examined.
-The other proportions of the fiber population are available in \dummy[appendix]{}.
+The other proportions of the fiber population are available in \todo{appendix}.
 \\
 %
 \Cref{fig:flat_03_fiber_pop_hist} shows the distribution of orientation for the simulation and model fiber segments.
@@ -511,11 +511,11 @@ Its variance increases with the crossing angle.
 \\
 % Direction
 The direction is plotted in \dummy{} with the direction of the fiber population values.
-The data follow the second fiber population, but are significantly lower in the middle section, albeit slightly with a delta of \dummy[value]{}.
+The data follow the second fiber population, but are significantly lower in the middle section, albeit slightly with a delta of \todo{value}.
 \\
 % Inclination
 The inclination is about $\SI{0}{\degree}$ with its median for all crossing angles.
-The variance increases significantly with increasing crossing angle, up to \dummy[3]{} times the lowest value.
+The variance increases significantly with increasing crossing angle, up to \todo{3} times the lowest value.
 \\
 % Trel
 The relative thickness \trel{} decreases with increasing crossing angle \modelOmega{}.
@@ -540,7 +540,7 @@ The median increases up to about a value of $\SI{5}{\degree}$.
     \includegraphics[width=\tikzwidth]{dev/rc1/inclined/cube_2pop_135_rc1_inclined_plots_inclined_pop_hist_omega_30.0_psi_0.3.pdf} \\ \includegraphics[width=\tikzwidth]{dev/rc1/inclined/cube_2pop_135_rc1_inclined_plots_inclined_pop_hist_omega_60.0_psi_0.3.pdf} & \includegraphics[width=\tikzwidth]{dev/rc1/inclined/cube_2pop_135_rc1_inclined_plots_inclined_pop_hist_omega_90.0_psi_0.3.pdf}
 \end{tabular}
 %
-\caption[sim]{Inclined crossing fiber population: $\modelPsi=\SI{30}{\percent}$. left: 2d log histogram orientation from rofl analysis of simulation, right: 2d log histogram of orientation of model segments. \itodo{rfc}}
+\caption[sim]{Inclined crossing fiber population: $\modelPsi=\SI{30}{\percent}$. left: 2d log histogram orientation from rofl analysis of simulation, right: 2d log histogram of orientation of model segments. \todo{rfc}}
 \label{fig:inclined_03_fiber_pop_hist}
 \end{figure}
 %
@@ -560,7 +560,7 @@ The median increases up to about a value of $\SI{5}{\degree}$.
     \includegraphics[width=\tikzwidth]{dev/rc1/inclined/cube_2pop_135_rc1_inclined_plots_inclined_pop_hist_omega_60.0_psi_0.5.pdf} &
     \includegraphics[width=\tikzwidth]{dev/rc1/inclined/cube_2pop_135_rc1_inclined_plots_inclined_pop_hist_omega_90.0_psi_0.5.pdf}
 \end{tabular}
-\caption[sim]{Inclined crossing fiber population: $\modelPsi=\SI{50}{\percent}$. left: 2d log histogram orientation from rofl analysis of simulation, right: 2d log histogram of orientation of model segments. \itodo{rfc}}
+\caption[sim]{Inclined crossing fiber population: $\modelPsi=\SI{50}{\percent}$. left: 2d log histogram orientation from rofl analysis of simulation, right: 2d log histogram of orientation of model segments. \todo{rfc}}
 \label{fig:inclined_05_fiber_pop_hist}
 \end{figure}
 %
@@ -574,7 +574,7 @@ The median increases up to about a value of $\SI{5}{\degree}$.
 %
 The final focus is on two intersecting fiber bundles with a rotation angle of $\modelRot = \SI{90}{\degree}$, \ie{} the first fiber population along the $x$-axis and the second population in the $xz$-axis.
 As before, the two parameters $\modelPsi = \SI{30}{\percent}$ and $\modelPsi = \SI{50}{\percent}$ are discussed.
-The other fiber percentages are listed in the \dummy[appendix]{}.
+The other fiber percentages are listed in the \todo{appendix}.
 \\
 %
 The histogram data for both cases are show for the measurement only one visible orientation.
@@ -633,7 +633,7 @@ At the position of the second fiber population, the resulting mean value is inse
 %
 \paragraph{\acc{}}
 \Cref{fig:sim_ana_acc} shows the \acc{} value, \ie{} how good the coefficient of the odf base function are in alignment.
-\dummy[acc of psi = 1]{}.
+\todo{acc of psi = 1}.
 \\
 %
 The $\modelPsi=\SI{10}{\percent}$ show no significant reduction in \acc{} value for all $\modelInc$.
@@ -646,7 +646,7 @@ The $\modelInc = \SI{90}{\degree}$ is less than for the case $\modelPsi=\SI{10}{
 %
 For the equally proportional fiber population $\modelInc = \SI{50}{\degree}$, the \acc{} value reaches its lowest values at shallowly inclined first population $\modelInc = \SIlist{0;30}{\degree}$.
 In the case of $\modelInc = \SI{0}{\degree}$, the \acc{} value is lowest at a crossing angle of $\modelOmega = \SI{90}{\degree}$.
-This crossing angle for the slightly inclined has a higher \acc{}-value \dummy[why?, -> show odf]{}.
+This crossing angle for the slightly inclined has a higher \acc{}-value \todo{why?, -> show odf}.
 Otherwise, the distribution is similar with respect to 3d orientation symmetry.
 The most tilted angle $\modelInc=\SI{90}{\degree}$ shows a \acc{} value of about $\SI{0.5}{}$ for all orientations with an increase to $\SI{1}{}$ for the $\modelOmega = \SI{0}{\degree}$ ,\ie{} a single fiber population along the z-axis.
 \\
@@ -971,13 +971,13 @@ The transmittance values show an increase for the last free inclination values.
 This is to be expected since the 3D model configurations are aligned parallel along an axis with some randomness.
 If this axis is aligned along the z-axis, \ie{} $\modelInc=\SI{90}{\degree}$, the light rays also moving along the z-axis will statistically strike less tissue and therefore the transmittance must increase.
 Since the density of the tissue is quite high, the effect is only a few percent.
-In reality, however, one must take into account that \cite{Menzel2021}\dummy[check ref]{} was able to show that the change in transmittance is much more complicated.
+In reality, however, one must take into account that \cite{Menzel2021}\todo{check ref} was able to show that the change in transmittance is much more complicated.
 One of the most important effects is the significant change of transmittance with inclination.
 The effect on the results presented here is an increase/decrease in noise according to \cref{fig:parameterModelGain}.
 However, since the change in noise is linear with the square root of the intensity, the effect is rather small.
 \\
 %
-The retardation almost follows the theoretical curve for a single retardation signal (see \dummy[pli formula]{}).
+The retardation almost follows the theoretical curve for a single retardation signal (see \todo{pli formula}).
 However, the signal is higher for the mean values than the theoretically expected values.
 One must keep in mind that the theoretical signal is normalized by the maximum value of retardation, \ie{} the value for $\modelInc = \SI{0}{\degree}$.
 However, this value is incorrect in that the inclination angle of the underlying fibers is not perfectly $\SI{0}{\degree}$. The opening angle of the models is about \dummy{}.
@@ -1062,7 +1062,7 @@ However, the value itself is not easy to interpret.
 From the \Cref{fig:sim_ana_acc}, a range of low \modelPsi{} and low \modelInc{} to higher low \modelPsi{} and higher \modelInc{} is evident where the \acc{} is significantly low, with larger areas near $\SI{0}{}$.
 These areas correspond to the already known problematic areas in intersection and inclined regions.
 However, these results give a better idea of how strong the indication is with respect to the \acc{} value.
-The \acc{} value can possibly be used as a weight for \dummy[not ...]{}.
+The \acc{} value can possibly be used as a weight for \todo{not ...}.
 An important result is the correlation between the \acc{}-value and the \trel{}-value.
 As the \trel{} value is analyzed, it can be used as an indicator of an underlying intersection or oblique region.
 This would then also be an indicator for further data processing \eg{} a tractography.
@@ -1075,7 +1075,7 @@ This effect results from the simple fact that a inclined single fiber population
 %
 The relatively low \rvalue{} is consistent with the noise of \SI{14.3}{\percent} (see \cref{fig:noiseplot}).
 The increased patterns of \rvalue{} represent the range of a $\modelOmega \approx \SI{90}{\degree}$, where thus a lower retardation is expected.
-The most interesting pattern is for the case $\modelPsi = \SI{90}{\percent}$, where the \r-value{} for the $\modelInc = \SI{0}{\degree}$ is maximum with a $\alpha_1$ \dummy[check variable name]{} angle of $\SI{80}{\degree}$.
+The most interesting pattern is for the case $\modelPsi = \SI{90}{\percent}$, where the \r-value{} for the $\modelInc = \SI{0}{\degree}$ is maximum with a $\alpha_1$ \todo{check variable name} angle of $\SI{80}{\degree}$.
 This is quite unexpected, since here the dominant nerve fiber population is the first one, \ie{} $\SI{90}{\percent}$.
 Nevertheless, the small fraction of $\SI{10}{\percent}$ for a high inclination case seems to be sufficient to perturb the fitting algorithm based only on a single fiber population.
 However, compared to the other results at this orientation, the other parameters do not appear to be perturbed in their mean values.

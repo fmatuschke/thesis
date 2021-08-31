@@ -52,7 +52,7 @@ This simulation as well as the optical \dummy{} of the system and the tilting an
 %
 The code is as the former written in \cpp{} with a user friendly wrapper function in \python{}.
 %
-\dummy[wohin mit den zukunftsplaenen? -> ende]{}.
+\todo{wohin mit den zukunftsplaenen? -> ende}.
 %
 %
 % The here presented \fastpli{} software package allows to predict \ac{3D-PLI} experiments within the \python package \pymodule{fastpli.simulation} by means of linear optics \cite{} and 3d fiber models \cite{}.
@@ -95,11 +95,11 @@ The code is as the former written in \cpp{} with a user friendly wrapper functio
 \centering
 \setlength{\tikzwidth}{0.5\textwidth}
 \inputtikz{gfx/simpli/disc_volume}
-\caption[discreticed tissue volume]{discretized tissue volume: Its \dummy{} is defined by a \ac{AABB}, which is defined by two variables. \itodo{show x,y,z resulting volume?}\itodo{show fiber model inside?}}
+\caption[discreticed tissue volume]{discretized tissue volume: Its \dummy{} is defined by a \ac{AABB}, which is defined by two variables. \todo{show x,y,z resulting volume?}\todo{show fiber model inside?}}
 \label{fig:discVol}
 \end{figure}
 %
-\itodo{better name}
+\todo{better name}
 %
 The idea of the simulation is to first calculate a so called \say{discretised tissue volume}.
 It represents a discrete constant voxel model of the tissue.
@@ -220,7 +220,7 @@ for fiber_segment in fiber_bundle:
 \label{alg:fillVolume}
 \end{lstfloat}
 %
-\itodo{the length of the stored optical axis vector is interpreted as strength. In this model the length is always 1. If the user wishes to add variability, he/she can do this by changing the length of the vectors inside the arrays.}
+\todo{the length of the stored optical axis vector is interpreted as strength. In this model the length is always 1. If the user wishes to add variability, he/she can do this by changing the length of the vectors inside the arrays.}
 %
 %
 %
@@ -317,7 +317,7 @@ At the end it will be resampled to the final \ac{CCD} array size and a noise mod
 \subcaptionbox{perspective view}[.49\textwidth]{
 \inputtikz{gfx/simpli/tilting_3d_b}}
 \tikzset{external/export=false}
-\caption[3d tilting]{3d tilting: around $xy$-axis, \raisebox{.25em}{\tikz \draw[red,thick](0,0)--(0.25,0);} top, \raisebox{.25em}{\tikz \draw[green,thick](0,0)--(0.25,0);} middle, \raisebox{.25em}{\tikz \draw[blue,thick](0,0)--(0.25,0);} bottom, \raisebox{.25em}{\tikz \draw[dash pattern=on 1.25pt off 1.25pt,thick](0,0)--(0.25,0);} original, \raisebox{.25em}{\tikz \draw[gray](0,0)--(0.25,0);} axis of rotation \itodo{test david und daniel}}
+\caption[3d tilting]{3d tilting: around $xy$-axis, \raisebox{.25em}{\tikz \draw[red,thick](0,0)--(0.25,0);} top, \raisebox{.25em}{\tikz \draw[green,thick](0,0)--(0.25,0);} middle, \raisebox{.25em}{\tikz \draw[blue,thick](0,0)--(0.25,0);} bottom, \raisebox{.25em}{\tikz \draw[dash pattern=on 1.25pt off 1.25pt,thick](0,0)--(0.25,0);} original, \raisebox{.25em}{\tikz \draw[gray](0,0)--(0.25,0);} axis of rotation \todo{test david und daniel}}
 \label{fig:tilting_camera_view}
 \end{figure}
 %
@@ -379,7 +379,7 @@ In the case of already simulating an undistored view, the light paths have to sp
 %
 \begin{lstfloat}[!p]
 	\lstinputlisting[style=cpp,basicstyle=\scriptsize\ttfamily,]{code/simulation.cpp}
-	\caption{Pseudocode simulation \itodo{anhang}}
+	\caption{Pseudocode simulation \todo{anhang}}
 	\label{alg:simulation}
 \end{lstfloat}
 %
@@ -490,7 +490,7 @@ These calculations are performed on the python side of the algorithm and can be 
 %
 \section{Analysis}
 %
-The same algorithms are implemented as in the \ac{3D-PLI} routine pipeline \dummy[-> theory]{}.
+The same algorithms are implemented as in the \ac{3D-PLI} routine pipeline \todo{-> theory}.
 This include the modalities analysis transmittance, direction and retardatation as well as the tilting analysis performend by \ac{ROFL}.
 %
 %

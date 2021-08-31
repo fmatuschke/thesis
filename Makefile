@@ -35,7 +35,7 @@ tikz-clean:
 	touch tikz/dummy.tex
 	
 .PHONY: clean
-clean: tikz-clean
+clean:
 	rm -f thesis.acr
 	rm -f thesis.aux
 	rm -f thesis.auxlock
@@ -59,3 +59,6 @@ clean: tikz-clean
 	rm -f thesis.tdo
 	rm -f thesis.toc
 	rm -f content/*.aux
+
+.PHONY: clean-all
+clean-all: clean tikz-clean

@@ -485,32 +485,10 @@
 % \newcommand{\tu}{\textscale{.7}{\textunderscore}}
 % \newcommand{\tum}{\textscale{.7}{\_}}
 \newcommand{\note}[1]{\textcolor{gray}{\textit{#1}}}
-\newcommand{\dummy}[2][...]{\textcolor{blue!75!white}{\textbf{\{#1\}}}}
-%
-\usepackage[colorinlistoftodos,prependcaption,textsize=footnotesize]{todonotes}
-\newlength{\itodolength}
-\setlength{\itodolength}{\textwidth minus 12.1411pt}
-\presetkeys%
-    {todonotes}%
-    {backgroundcolor=ProcessBlue,
-     linecolor=ProcessBlue,
-     inlinewidth=\itodolength,
-     tickmarkheight=1ex}{} %
-\makeatletter
-\renewcommand{\todo}[2][]{%
-  {\tikzset{external/export=false}\@todo[#1]{#2}}%
-}
-\makeatother
-\reversemarginpar
-\setlength{\marginparwidth}{4cm}
-\newcommand{\itodo}[2][]{\todo[inline, #1]{#2}}
-\newcommand{\TODO}[2][]{\todo[color=red, #1]{#2}}
-\newcommand{\ITODO}[2][]{\todo[inline, color=red, #1]{#2}}
-\newcommand{\markus}[1]{\textcolor{orange!90!black}{#1}}
-\newcommand{\fixme}[1]{\textcolor{red!75!black}{\textbf{#1}}}
-% \newcommand{\markus}[1]{\todo[color=orange]{#1}}
-% \newcommand{\imarkus}[1]{\todo[inline, color=orange]{#1}}
-%
+\newcommand{\dummy}{\textcolor{blue!75!white}{\textbf{\{...\}}}}
+\newcommand{\todo}[1]{\textcolor{blue!75!white}{\textbf{\{#1\}}}}
+\newcommand{\TODO}[1]{\colorbox{red!75!white}{\textbf{\{#1\}}}}
+% 
 % **************************************************
 % Debug LaTeX Information
 % **************************************************

@@ -197,7 +197,7 @@ As helper functions cutting methods do exists, which will crop the seed points i
     \resizebox{.75\textwidth}{!}{
     \includegraphics{dev/gfx/circle_bundle.png}}
     % }
-	\caption[Bending filled fiber bundle]{Bending fiber along trajectory $\vec{f}(t) = \left(\cos(t), \sin(t), 0 \right)$ \itodo{more interesting example}}
+	\caption[Bending filled fiber bundle]{Bending fiber along trajectory $\vec{f}(t) = \left(\cos(t), \sin(t), 0 \right)$ \todo{more interesting example}}
 	\label{fig:bendingFiberBundle}
 \end{figure}
 %
@@ -370,7 +370,7 @@ def step():
 
     return colliding_list.is_empty()
 \end{lstlisting}
-\caption{Pseudocode of the \code{main} algorithm: The function \code{FiberCollisionSolver} will loop the followings four steps, which are run in parallel, until no collision are detected anymore: 1. build an \code{octree} from all objects, 2. \code{Collision Detection}, 3. \code{Seperation Process} and 4. \code{Shape Control}. \itodo{check algorithm, spetially movement phase}}
+\caption{Pseudocode of the \code{main} algorithm: The function \code{FiberCollisionSolver} will loop the followings four steps, which are run in parallel, until no collision are detected anymore: 1. build an \code{octree} from all objects, 2. \code{Collision Detection}, 3. \code{Seperation Process} and 4. \code{Shape Control}. \todo{check algorithm, spetially movement phase}}
 \label{alg:pseudocode_solver}
 \end{lstfloat}
 %
@@ -405,7 +405,7 @@ Before going into the details of the algorithm, the collision detection algorith
 \end{tabular}
 % \end{sideways}
 }
-\caption{Collision detection between two capsule objects. The distance as well as the points on the line segments is returned. A collision takes place if the distance is smaller than $\mathit{cone_a.r}+\mathit{cone_b.r} > d$. \itodo{same variable name as in figure and text}}
+\caption{Collision detection between two capsule objects. The distance as well as the points on the line segments is returned. A collision takes place if the distance is smaller than $\mathit{cone_a.r}+\mathit{cone_b.r} > d$. \todo{same variable name as in figure and text}}
 \label{alg:pseudocodeCollisionDetection}
 \end{lstfloat}
 %
@@ -677,7 +677,7 @@ Therefore the value is to 0 so that after each step the velocity is reset to $\v
 %
 %
 The biggest optimization in this algorithm is the use of the octree.
-As later shown millions \dummy[ueberpruefen]{} of objects have to be checked for collisions.
+As later shown millions \dummy{ueberpruefen} of objects have to be checked for collisions.
 The difference between a $O(n\log(n))$ and $O(n^2)$ is not to be underestimated here.
 %
 \paragraph{Memory alignment}
@@ -719,14 +719,8 @@ It additionally provides interactive methods to build nerve fiber models and was
 %
 \begin{figure}[!t]
     \centering
-    % \tikzset{external/force remake=true}
     \setlength{\tikzwidth}{0.75\textwidth}
-    % \subcaptionbox{\label{fig:mesh}mesh \dummy[triangles are missing]{}}[0.495\textwidth]{
     \inputtikz{gfx/model/vis_a}
-    % }
-    % \subcaptionbox{vis}[0.495\textwidth]{
-    % \fbox{\inputtikz{gfx/model/vis_b}}
-    % }
 	\caption[Nerve fiber visualization example]{Generating mesh for visualization. A mesh perpendicular to the fiber trajectory is calculated by n points. Triangles defined by these points are uses as an surface to render the object. With the help of normal vectors the visualization can be smoothen and lightning effects help with a more natural rendering.}
 	\label{fig:vis_mesh}
 \end{figure}
