@@ -173,9 +173,6 @@
         math-micro=µ,
         binary-units = true
         } %\mathrm{\mu}} %math-micro=\muup,
-% \DeclareSIUnit{\arbitraryunit}{\mathit{arb. unit}}
-% \DeclareSIUnit\steps{steps}
-% \DeclareSIUnit\cpus{cpus}
 % \AtBeginDocument{\sisetup{math-rm=\mathrm, text-rm=\sffamily}}
 %
 % \usepackage{caption}
@@ -203,19 +200,19 @@
 \def\convertto#1#2{\strip@pt\dimexpr #2*65536/\number\dimexpr 1#1}
 \makeatother
 %
-\newcommand{\fakechapter}[1]{%
-  \par\refstepcounter{chapter}% Increase section counter
-  \sectionmark{#1}% Add section mark (header)
-  \addcontentsline{toc}{section}{\protect\numberline{\thesection}#1}% Add section to ToC
-%   Add more content here, if needed.
-}
-%
-\newcommand{\fakesection}[1]{%
-  \par\refstepcounter{section}% Increase section counter
-  \sectionmark{#1}% Add section mark (header)
-  \addcontentsline{toc}{section}{\protect\numberline{\thesection}#1}% Add section to ToC
-  % Add more content here, if needed.
-}
+% \newcommand{\fakechapter}[1]{%
+%   \par\refstepcounter{chapter}% Increase section counter
+%   \sectionmark{#1}% Add section mark (header)
+%   \addcontentsline{toc}{section}{\protect\numberline{\thesection}#1}% Add section to ToC
+% %   Add more content here, if needed.
+% }
+% %
+% \newcommand{\fakesection}[1]{%
+%   \par\refstepcounter{section}% Increase section counter
+%   \sectionmark{#1}% Add section mark (header)
+%   \addcontentsline{toc}{section}{\protect\numberline{\thesection}#1}% Add section to ToC
+%   % Add more content here, if needed.
+% }
 %
 % **************************************************
 %  Minitoc
