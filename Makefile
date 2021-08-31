@@ -29,6 +29,12 @@ zip:
 	git archive --format=zip HEAD -o thesis.zip
 	zip -ur thesis.zip dev/
 
+.PHONY: textidote
+textidote:
+	textidote --output html --check en thesis.tex > thesis.html
+	open thesis.html
+#  textidote --output html --check en content/03-chapter-theory.tex > thesis.html
+
 .PHONY: tikz-clean
 tikz-clean:
 	rm -r tikz/*
