@@ -6,7 +6,7 @@
 In \cref{chap:neuro}, both the structure of nerve fibers and the macroscopic structure of \ac{WM} were described.
 The question is how to represent such a structure in a computer algorithm.
 For simple fiber configurations, \eg{} parallel straight nerve fiber, this may be quite straightforward.
-However, it has already been shown that in \dummy{} \cite{MenzelDissertation} irregular, non-symmetric nerve fiber configurations are necessary to obtain a realistic result without diffraction patterns.
+However, it has already been shown that irregular, non-symmetric nerve fiber configurations are necessary to obtain a realistic result without diffraction patterns \cite{MenzelDissertation}.
 This means that any type of pattern that may exist should ideally be representable.
 \par
 %
@@ -16,7 +16,7 @@ A robe or fiber, \ie{} pipe object, is defined by a trajectory with a radius.
 From this, a surrounding mesh is generated.
 In visualization, the mesh is used to apply textures and thus represent a surface.
 The same meshes are also used in Monte Carlo simulations \ac{dMRI} \cite{Ginsburger2019,ginsburgerDis2019}, among others.
-In this simulation, the meshes help to calculate whether a water molecule travels through the surface of a nerve fiber, i.e., the surface of the mesh. \todo{zu viel bla bla?}
+In this simulation, the meshes help to calculate whether a water molecule travels through the surface of a nerve fiber, i.e., the surface of the mesh.
 However, this representation is very computationally expensive because the number of triangles that must be present in the mesh are quite high for usable accuracy.
 \par
 %
@@ -31,7 +31,7 @@ The same is true for a computer algorithm.
 An algorithm could be written that defines a single fiber in a volume and then places the next one, but makes sure that none overlaps and so forth.
 This works well up to a point.
 Even if an algorithm always finds a solution to find a path through an already filled volume (which is probably not analytically possible), at some point the volume appears to be full, but still has a lot of free space between fibers.
-Of course, you can minimize this behavior by trying to place nearly parallel fibers, but again, if you look at real tissue data (\cref{fig:brainTPFM} \dummy{}), this does not reflect reality.
+Of course, one can minimize this behavior by trying to place nearly parallel fibers, but again, if one look at real tissue data, \eg{} \cref{fig:brainTPFM}, this does not reflect reality.
 Even in a fiber bundle, the fibers are so densely packed that one cannot simply add another fiber in a way that wastes volume over time (\ie{} adding more fibers).
 \par
 %
@@ -61,7 +61,7 @@ All described algorithms here are part of the toolbox \ac{fastPLI} \cite{Matusch
 \label{sec:nerve_fiber_representation}
 %
 Nerve fibers themself are cabel like structures surrounded by an electric isolating lipid layer of meylin.
-The diameter of the axon as well as the myelin thickness can varry from fiber to fiber quite a bit (see \dummy{}).
+The diameter of the axon as well as the myelin thickness can varry from fiber to fiber quite a bit (see \cref{sec:axonMicroscopy}).
 This means that the representation of nerve fiber models should be capable of representing such variations as well.\\
 %
 As described in \cref{sec:fiberArchitecture} \ac{WM} consist out of nerve fibers, which are packed densly together in nerve fiber bundles.
@@ -215,12 +215,13 @@ Essentially this means for each resulting $\mathit{fiber}_j$:
     \mathit{fiber}_j = \left\{ \mat{R} \cdot (x_j, y_j, 0) + \vec{fb}_i \, | \, i \in \{0,1,...,N_{\mathit{seed\_points}}-1\}\right\}
 \end{align}
 The question however is, which rotation matrix $\mat{R}$ has to be applied.
-Since the trajectory is only a 2d object, \ie{} a line, no \dummy{} are perpendicular to its tangential vector.
+Since a trajectory is only a 2d object, \ie{} a line, thus no unique normal vector can be defined in space.
 In mathematics the torsion of a curve can defined with a principal normal vector and a binormal vector.
 This however has the problem, that the line has a torsion for a helical function, \ie{} the line \say{rotates} along its path.
 This would mean, that if the seed point plane would be places according to the principal and binormal vector, that also the individual fibers would rotate around the fiber bundle trajectory.
 This is in principle possible, however practical not existent in real tissue.
 \\
+% 
 A more sensible solution would be to apply a rotation in such a way, that the rotation along the fiber bundle trajectory is minimal.
 This can be achieved by calculating the rotation matrix, which would rotate the current tangential vector $\vec{t}(i)$ to the one of the next point $\vec{t}(i+1)$.
 The rotation matrix $\mat{R}(\vec{a}, \vec{b}$ between two vectors $\vec{a}$ and $\vec{b}$, if $\vec{a} \nparallel \vec{b}$ can be calculated via
@@ -326,7 +327,6 @@ Here the seed points are located in bottom plane, with the both origins at the s
 \section{Solving fiber collisions}
 \label{sec:Solver}
 %
-%
 The focus of the following algorithm is to allow the user to define any given fiber path way the way he/she wants it.
 This allows the most freedom on initialization.
 Of course in most cases, fiber since they are 3d volumetric objects, will overlapp with each other.
@@ -344,6 +344,7 @@ This is very important since the solving process, depending on the volume slice 
 The following parts of this chapter describe the main algorithm, \ie{} the collision detection process and the movement phase, as well as the visualization.
 %
 %
+% 
 \subsection{solver-main}
 %
 \begin{lstfloat}[!tb]
@@ -463,6 +464,8 @@ The next object must then be checked with $n-1$ etc.
 This results in a calculation effort of $\mathcal{O}(n^{2})$, which is not acceptable for large n.
 Therefore another strategy has to be choosen to reduce the number of calculations.
 %
+% 
+% 
 \subsection{Octree}
 %
 \begin{figure}[!t]
@@ -557,7 +560,7 @@ Once a leaf could be generated, all objects inside have to be checked against ea
 As above mentioned, this is of $O(n^2)$.
 But there will be a number ob objects, where it is faster to actually calculate if they are colliding, instead of further divide the volume again.
 This number has to be checked at runtime, since it depends on many factors like the CPUs architecture.
-In the development phase of this algorithm a value of \dummy{20} could be identified for the involved computer architectures.
+In the development phase of this algorithm a value of $\approx \SI{20}{}$ could be identified for the involved computer architectures.
 \par
 %
 At this point the colliding objects can be performed (see \cref{sec:collisionDetection}) and identified.
@@ -594,6 +597,8 @@ The movement of individual points can lead to a distorted fiber model, \eg{} two
 Therefore boundary conditions must be specified.
 It was decided to use the following two conditions.
 %
+% 
+% 
 \subsection{Mean segment length}
 %
 \begin{figure}[!t]
@@ -640,6 +645,8 @@ r_{new} = \frac{r_{i} + r_{i+1}}{2},\enspace
 \vec{v}_{new} = \frac{\vec{v}_{i} + \vec{v}_{i+1}}{2}
 \end{align}
 %
+% 
+% 
 \subsection{Bending radius}
 %
 \begin{figure}[!t]
@@ -660,10 +667,13 @@ r_{new} = \frac{r_{i} + r_{i+1}}{2},\enspace
 The bending radius is defined as the circle radius corresponding to the circle defined by three adjacent points $\vec{p}_{i-1}, \vec{p}_{i}, \vec{p}_{i+1}$ (see \cref{fig:boundaryLength}).
 The limit is set as a minimum radius of $r_{\min}$.
 If a $p_{i}$ point in a fiber falls below this value, the three points are moved.
-$p_{i-1},p_{i+1}$ is moved \dummy{} and $p_{i}$ opposite each other.
+$p_{i-1},p_{i+1}$ is moved along the shortest distance vector and $p_{i}$ in the opposite orientation.
 This reduces the curvature.
 %
+% 
+% 
 \subsection{Movement phase}
+% 
 All movements are added to the velocity vector before performing the overall movement.
 The algorithm performs each step sequentially (see \cref{alg:pseudocode_solver}).
 %
@@ -672,12 +682,13 @@ The boundary conditions can be set to 0 to ignore them.
 Additionally a drag value can be set, to reduce the velocity by its factor after each step.
 It can help to reach a collision free volume faster, however the density will be significantly reduced.
 Therefore the value is to 0 so that after each step the velocity is reset to $\vec{0}$.
-%
+% 
+% 
+% 
 \subsection{Optimization and parallelisation}\label{sec:modelOpt}
-%
-%
+% 
 The biggest optimization in this algorithm is the use of the octree.
-As later shown millions \dummy{ueberpruefen} of objects have to be checked for collisions.
+As later shown millions of objects have to be checked for collisions.
 The difference between a $O(n\log(n))$ and $O(n^2)$ is not to be underestimated here.
 %
 \paragraph{Memory alignment}
@@ -726,18 +737,18 @@ It additionally provides interactive methods to build nerve fiber models and was
 \end{figure}
 %
 Parallel to the above implementation a more advanced visualization was necesarry.
-During an cooperation with Neurospin \dummy{} the goal was not only to provide nerve fiber models, but also to generate cells like astrocytes.
+During an cooperation with Neurospin at \ac{CEA} the goal was not only to provide nerve fiber models, but also to generate cells like astrocytes.
 This cells also needed to be visualized as well as the inner axon.
 For this purpose an the first mentioned algorithm was rewritten.
 The mesh of the objects now was calculated by an own algorithm.
 To visualize the axon as well as the myelin at the same time, the myelin had to be transparent.
 This means, that in the visualization the computer has to remember, which object in the scene is infront of another object in the correct order, \ie{} the objects have to be sorted in z direction (parallel to the view direction).
-This is a huge amount of computational \dummy{} and the reason, because it is not included for the \ac{fastPLI} package.
+This is a huge amount of computational resources and the reason why it is not included in the \ac{fastPLI} package.
 \\
 The fiber segments are also not anymore visualized like an cylinder, but as a \ac{CC} (see \cref{fig:vis_mesh}).
 The calculated meshes and resulting images look like (see \cref{fig:medusa_11})
 \\
-Further information how to generate meshes and visualization of such objects can be found in \dummy{}.
+Further information how to generate meshes and visualization of such objects can be found in \cite{9780134495491}.
 This visualization algorithm can still be far improved by processing the hole calculations an the \ac{GPU}.
 %
 % 
@@ -757,7 +768,7 @@ Therefore an additional algorithm was developed in cooperation with Kevin Ginsbu
 This algorithm called \ac{MEDUSA} \cite{Ginsburger2019} is working similar to the above describe algorithm, however it is not modelling the 3d objects as tube segments, but as spheres.
 This has the advantage, that the objects are simpler, which leads to an increase in collision checking calculations, but also spheres are capable of approximating a 3d object like a cell body.
 Latter is achieved by representing the surface of a cell body as the sum of multiple spheres. 
-Only the surface of a sphere, which is not colliding with another sphere is ... as the surcace of the entire cell (see \cref{ig:medusaCell}).
+Only the surface of a sphere, which is not colliding with another sphere is \dummy{} as the surface of the entire cell (see \cref{ig:medusaCell}).
 By these means very complicated shapes are possible.
 The disadvantage however is for representing tube like objects a lot more spheres, and therefore objects to check for a collisions, are necesarry.
 \par
@@ -767,7 +778,7 @@ Since the number ob objects, \ie{} spheres, is so much higher, the algorithm was
 A key feature of this algorithm is hoe to build other cell types and escpeccially how to design olegodendrites which arms connect to the myelin sheet of a near axon.
 Another focus was on the iniatial configurations of the cells.
 Nerve fibers are initialized as fiber populations with parameters like density and angular dispersion (see \cite[Ginsburger2019]).
-Analog to the \dummy{} algorithm the collisions of the bjects are then checked and slighlty pushed appart until no more collisions can be detected.
+Analog to \cref{sec:Solver} algorithm the collisions of the objects are then checked and slighlty pushed appart until no more collisions can be detected.
 % 
 % % ------------------------------------------------------------------------------
 % \par
