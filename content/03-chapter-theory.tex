@@ -22,7 +22,7 @@ He formulated Maxwell's equations \cref{eq::maxwell_general}, generalized from t
     \nabla \cdot \vec{E} &= \frac {\rho} {\varepsilon_0}\\
     \nabla \cdot \vec{B} &= 0\\
     \nabla \times \vec{E} &= -\frac{\partial \vec{B}} {\partial t}\\
-    \nabla \times \vec{B} &= \mu_0\left(\vec{j} + \varepsilon_0 \frac{\partial \vec{E}} {\partial t} \right)
+    \nabla \times \vec{B} &= \mu_0 \left( \vec{j} + \varepsilon_0 \frac{\partial \vec{E}} {\partial t} \right)
 \end{split}
 \end{align}
 %
@@ -72,7 +72,7 @@ the identity $\nabla \times \left( \nabla \times \vec{A} \right) = \nabla(\nabla
 This also shows that $c^2 \frac{\partial B} {\partial z} = \frac{\partial E}{\partial t} \rightarrow \vec{E} \cdot \vec{B} = 0$ and thus the electric and magnetic field components are perpendicular to each other.
 In addition, this also means that space and time are connected and that light propagates in vacuum with the speed of light $c$.
 %
-\subsection{Solving Maxwells equations in vacuum}
+\subsection{Solving Maxwells equations in vacuum}\label{sec::SolvMaxEqVac}
 %
 \Cref{eq::maxwell_wave_equations} have the form of a wave equation and therefore, as it is well-known, can be solved by
 %
@@ -139,16 +139,14 @@ In addition, the states can be described by the Jones or Stokes calculation, whi
 %
 \subsection{Light in a medium}
 %
-\todo{herleiten}
-The Maxwell's equations in \dummy{} are described above. They can be solved analog to \dummy{}. This yields to some special behavior, \eg{} the magnetic and electric field component get out of phase.
-However, here only the two properties of absorption and diffraction are described.\footnote{For their derivation, \eg{} see \cite{demtroeder2, Fliebach2012}.}
+The gerenal Maxwell's equations \cref{eq::maxwell_general} can be solved analog to \cref{sec::SolvMaxEqVac}. This yields to some special behavior, \eg{} the magnetic and electric field component get out of phase.
+Here only the two decisive properties absorption and diffraction are described.\footnote{For their derivation, \eg{} see \cite{demtroeder2, Fliebach2012}.}
 %
 \subsection{Absorption}
 %
 \begin{align}
     I = I_0 \exp(-\mu x)
 \end{align}
-\todo{herleiten}
 %
 Beersche law of absorption with $\mu = \frac{4\pi \kappa}{\lambda_0}$ where $\kappa$ is the imaginary part of the complex refractive index.
 %
@@ -177,14 +175,13 @@ The transmitting light beam however due to the reduction of the velocity, change
 \underline{n} = n + i\kappa
 \end{align}
 %
-\begin{align}
-\begin{split}
-\vec{E}(z, t) &= \operatorname{Re}\! \left[\vec{E}_0 \cdot e^{i\, (kz - \omega t)}\right] \\
-&= \operatorname{Re}\! \left[\vec{E}_0 \cdot e^{i\, (2\pi(n + i\kappa)z/\lambda_0 - \omega t)}\right] \\
-&= e^{-2\pi \kappa z/\lambda_0} \operatorname{Re}\! \left[\vec{E}_0 \cdot e^{i\, (kz - \omega t)}\right]
-\end{split}
-\end{align}
-\todo{?, was macht das hier}
+% \begin{align}
+% \begin{split}
+% \vec{E}(z, t) &= \operatorname{Re}\! \left[\vec{E}_0 \cdot e^{i\, (kz - \omega t)}\right] \\
+% &= \operatorname{Re}\! \left[\vec{E}_0 \cdot e^{i\, (2\pi(n + i\kappa)z/\lambda_0 - \omega t)}\right] \\
+% &= e^{-2\pi \kappa z/\lambda_0} \operatorname{Re}\! \left[\vec{E}_0 \cdot e^{i\, (kz - \omega t)}\right]
+% \end{split}
+% \end{align}
 %
 %
 %
@@ -261,6 +258,7 @@ A rotation of an optical element can be achieved by a 2d rotation matrix $\mat{R
 \sin \theta & \cos \theta
 \end{pmatrix}
 \end{split}
+\label{eq::JonesRotation}
 \end{align}
 %
 %
@@ -295,18 +293,17 @@ S_3 &= I p \sin 2\chi
 % & \equiv \langle E_a^{2} \rangle - \langle E_b^{2} \rangle \\
 % & \equiv  \langle E_l^{2} \rangle - \langle E_r^{2} \rangle
 % \end{split}
-\hspace{-8em}
+\hspace{-7.5em}
 \begin{split}
 & \\
 & \\
 &= 2 E_x E_y \cos \delta \\
 &= 2 E_x E_y \sin \delta
 \end{split}
-, \enspace
+\: , \enspace
 \vec{S} =
 \begin{pmatrix} S_0 \\ S_1 \\ S_2 \\ S_3\end{pmatrix}
 \end{align}
-\todo{variablen erklaeutern}
 %
 \begin{figure}[!t]
     % \setlength{\tikzwidth}{\textwidth}
@@ -376,12 +373,14 @@ Analogous to Jones one can formulate the matrices for the optical components:
 \end{split}
 \end{align}
 %
-Analog to \dummy{} rotations are applied by
+Analog to \cref{eq::JonesRotation} rotations are applied by
 \begin{align}
 \mat{M}(\theta )=\mat{R}(\theta )\cdot\mat{M}\cdot\mat{R}(-\theta )
 \end{align}
 %
 %
+\todo{sind matrizen kommutative?}
+% 
 %
 \section{3D-PLI setup}\label{sec:expSetup}
 %
@@ -412,7 +411,7 @@ By rotating the polarizer, the change in intensity is measured with a \ac{CCD} s
 The first microscopic setup called \ac{LAP} is capable of measuring an entire human brain slice in a single image with a pixel size of \SI{60}{\micro\meter} \footnote{By changing the optics, a pixel size of $\SI{40}{\micro\meter}$ and $\SI{20}{\micro\meter}$ is also possible}.
 In addition, the tissue sample can be tilted.
 This causes a change in the orientation of the nerve fibers, resulting in a change in the measured signal.
-This change is later used to analyze the 3d orientation of the nerve fibers inside the section (see \dummy{}).
+This change is later used to analyze the 3d orientation of the nerve fibers inside the section (see \cref{sec::InclAnalysis}).
 The optical setup of \ac{LAP} is slightly different in that the quarter-wave retarder is placed between the first polarizer and the tissue section, and all three optical elements are rotated simultaneously.
 This produces the same results, but dust particles on one of the optical elements can be identified more easily because they are also rotating.
 The other microscopes are located in a closed container that protects the optical elements from contamination.
@@ -444,7 +443,7 @@ The noise of the signal comes mainly from two parts.
 The first is the thermal noise that can lead to electrical charges in the MOS capacitors.
 Second, the amplification of the signal underlies a noise usually from a non-ideal direct current which is needed for amplification.
 These noise sources combine to produce a poison-like distribution due to the nature of digital positive values produced by the analog-to-digital converter.
-For intensity values $>> 0$ it can be modeled by a normal distribution.
+For intensity values $\gg 0$ it can be modeled by a normal distribution.
 %
 %
 %
@@ -496,10 +495,10 @@ These are used to calculate the final \ac{3D-PLI} modalities:
 \end{figure}
 %
 %
-\subsection{Tilting analysis}
+\subsection{Inclination analysis} \label{sec::InclAnalysis}
 %
 To be able to analyze the inclination $\alpha$, one has to distinguish the relative strength of the birefringence from the $\cos^2(\alpha)$.
-For this purpose, a tiltable sample was developed that allows the light signal to be measured through the tissue at a different angle of incidence \cite{Axer2011}\todo{check ref}.
+For this purpose, a tiltable sample was developed that allows the light signal to be measured through the tissue at a different angle of incidence \cite{Axer2011}.
 This means that the tissue, and therefore the nerve fibers, change their orientation due to the tilt angles $\theta, \varphi$.
 In addition, the distance the light travels through the tissue increases by $1/\cos(\theta)$ \cref{fig:tilted_side_view}.
 \\
@@ -520,7 +519,7 @@ This leads to the problem of increasing uncertainty with increasing slope angle.
 \\
 %
 Another difficulty is that for a smaller \pixelsize{} the light path can no longer be neglected.
-For the \ac{LMP3D} system, this means that for a maximum tilt angle of about $\SI{3.9}{\degree}$ and a usual tissue thickness of $\SI{60}{\micro\meter}$, the light path is measured in n \dummy{} pixels away from the non-tilting case when the center of rotation is in the middle of the tissue.
+For the \ac{LMP3D} system, this means that for a maximum tilt angle of about $\SI{3.9}{\degree}$ and a usual tissue thickness of $\SI{60}{\micro\meter}$, the light path is measured about $\SI{4}{\pixels}$ away from the non-tilting case when the center of rotation is in the middle of the tissue.
 \\
 %
 For homogeneous tissue regions, such as parts in the dense \ac{WM}, this can be neglected.
@@ -576,7 +575,7 @@ d=\frac{ \lambda}{2 n \sin \theta} = \frac{\lambda}{2\mathrm{NA}} \> .
 \end{align}
 $d$ is the minimum resolvable distance, $n$ the refractive index, $\theta$ the angle of a light spot, which can be combined to the better known numerical aperture $\mathrm{NA}$.
 This gives an absolute threshold for a light microscope above which resolution cannot be improved.
-For the wavelength used in \ac{3D-PLI} with $\lambda = \SI{525}{\nano\meter}$ and a numerical aperture of $\mathrm{NA} = \SI{}{}$ \dummy{}, this results in a limit of \dummy{}.
+For the wavelength used in \ac{3D-PLI} with $\lambda = \SI{525}{\nano\meter}$ and a numerical aperture of $\mathrm{NA} \approx \SI{0.15}{}$ , which results in a limit of $\SI{2.1}{\micro\meter}$ (see \cite{MenzelDissertation}.
 %
 \begin{figure}[!t]
 \setlength{\tikzwidth}{0.45\textwidth}
@@ -586,8 +585,6 @@ For the wavelength used in \ac{3D-PLI} with $\lambda = \SI{525}{\nano\meter}$ an
 \caption[Raylay criterium]{Rayleigh criteria. The minima of the one function is in the maxima of the other.}
 \label{fig:rayleigh}
 \end{figure}
-%
-\todo{check}
 %
 To account for optical setup, three things must be applied to a simulated measurement.
 %
