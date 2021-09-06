@@ -2,36 +2,10 @@
 \chapter{\acs{3D-PLI} simulation}
 \label{cha:sof:simulation}
 %
-% Interesse wecken: warum braucht man es, warum ist es kompliziert, lösbare probleme
-%
-%
-% \textcolor{gray}{
-% Simulation are a technique which are getting more commonly used in this century.
-% In literature it is knows as \name{in silico} meaning \say{performed on computer} where silicon stands for the silicon in computer chips.
-% It is a analogy to \name{in vivo} (within the living), \name{in vitro} (in the glass) and \name{in sito} (on site), which are commonly used in biology and medicine.
-% Simulations can be a cheaper and faster approach to doing experiments.
-% However since the knowlege increases over time, the experiments and simulations bekome more and more compilacted.
-% For simulations this usually means, more precise calculations and more effects have to be considered when doing predictions of the real world.
-% If no mathematical shortcuts are developed or even exists this leads to more calculation intense and time consuming procedures.
-% In the past Moores Law was a good thriver to be able to do more expensive calculations.
-% However currently the computer chips are physically at there limit with a few nanometer at scale (at least in 2d).
-% Also the clock frequency is almost at its limits since at that scale the \say{wires} inside the chips become more conductive because they behave as a capacitor.
-% Additionally quantum effects like tunneling become another barrier since they introduce error currents.
-% \\
-% %
-% Since about one decade \acs{GPU} become more and more commonly used in simulations and other algorithms.
-% They have the advantage of calculate a lot of parallel instructions at the same time.
-% However they come with the cost of being (at least for now) slower than a \ac{CPU}.
-% \\
-% %
-% Further then that only super computers can help to solve the high demand on computer power needed.
-% }
-% \par
-%
-%
 In the past simulation of \ac{3D-PLI} already shown their capabilities \cite{Dohmen2015,Menzel2015,Menzel2016,Menzel2020,Menzel2021,MenzelMaster,MenzelDissertation}.
 In the case of scattering finite-difference time-domain simulations the here presented algorithm to design new collision free fiber models allowed for the first time to simulate the effect of scattering light without any superposed interference signals.
 This allowed the understanding of scattering effects due to the configurations of fiber bundles and crossings as well as the transmittance change for inclined fiber configurations.\cite{MenzelDissertation,Menzel2020,Menzel2021}.
+\par
 % 
 In the case of the simulation of linear optics the optical system could repoduse the experimental results with \eg{} the optical resampling process \cite{Dohmen2015,Menzel2016}.
 However this algorithm is very computational heavy and due to the precalculations of a discretised tissue volume, very memory intense.
@@ -39,69 +13,32 @@ The foundations of a more efficient parallel algorithm for the use of supercompu
 However, the new tilting design resulted in a simplification of the former simulation that could not be easily integrated.
 Therefore the algorithm was completely redesigned and rewritten.
 Additionally the here presented fiber models had to be Incorporated as well.
-Finally the descision was made, to switch to the M\"uller Stokes calculus to allow the \dummy{} of filter \dummy{}.
-%
+Finally the descision was made, to switch to the M\"{u}ller Stokes calculus to allow also account for polarization effects of filters.
 \par
 %
 The Simulation is split into two consecutive parts: the volume discretizer and the simulation.
 The volume discretizer discretises the virtual nerve fiber models onto a cartesian grid, which is then in the second step used to calculate the light matter interaction.
 One parallelization technique allows to split the volume onto different \acp{CPU} or nodes.
 Due to the tilting approach, the light vector needed to be able to leave the current volume of a single \ac{CPU} and traverse to the next volume/\ac{CPU}.
-This simulation as well as the optical \dummy{} of the system and the tilting analysis will be \dummy{} here.
+This simulation as well as the optical characterization of the system and the inclination analysis will be discussed here.
 \\
 %
 The code is as the former written in \cpp{} with a user friendly wrapper function in \python{}.
 %
-\todo{wohin mit den zukunftsplaenen? -> ende}.
-%
-%
-% The here presented \fastpli{} software package allows to predict \ac{3D-PLI} experiments within the \python package \pymodule{fastpli.simulation} by means of linear optics \cite{} and 3d fiber models \cite{}.
-% It is based on the previous develop tool \simpli{} \cite{Dohmen2015}, which was then further developed and already parallel for the use on the super computers by multiple \acp{CPU} \cite{Lucksch2016}.
-% This version however uses M\"uller matrices \cite{} to define the optical elements and the Stokes vector \cite{} for describing the light \cref{sec:Mueller-Stokes}.
-% %
-% The further development of the algorithm will be described in the following.
-% \par
-% %
-% The following procedures are described in this chapter:
-% \begin{itemize}[nosep]
-%     % \item overview
-%     \item model discretization technique
-%     \item simulation
-%     \item optic imitation
-%     \item analysis
-%     \item optimization
-% \end{itemize}
-% %
-% The computational heavy calculations of the discretization and simulation part are written in \cpp{} which are wrapped inside a \python{} class \code{simpli} for user friendly interactions.
-% The additional algorithms of the optic are written in \python{}.
-% %
-% \par
-% %
-% The \ac{3D-PLI} Simulation is in its \ac{CPU} version\footnote{At the end of the dissertation Alexander Kobush developed a GPUsimPLI approach under my supervision \cite{}.} split into two parts.
-% The first part called \name{Generation} \todo{name} generates a discretizied 3d volume of the nerve fiber models from \cref{chap:modelling}.
-% This means that all properties \eg{} optical axis are saved in a 3d array.
-% This \say{volume} is then later be used to perform the light matter interaction by means of linear optic described in \cref{sec:theory}.
-% Last but not least the light interaction with the \ac{CCD}-Sensor will be performed inside the \pymodule{fastpli.simulation.optic} module.
-% The resulting data correspond the a \ac{3D-PLI} row data image.
-% Further analysis algorithms are implemented
-% With these the same type of analysis as in the \ac{3D-PLI} experimental analysis can be achieved.
-% All Algorithms are combined inside a \python{} class called \pymodule{fastpli.simulation.simpli}.
-% Inside is everything to perform a pipeline code as well as full control about every step inside the pipeline.\todo{veroffentlichung in intro}
-%
-\section{DV-Generator}
+% 
+% 
+\section{Discrete volume generator}
 \label{sec:dv_generator}
 %
 \begin{figure}[!t]
 \centering
 \setlength{\tikzwidth}{0.5\textwidth}
 \inputtikz{gfx/simpli/disc_volume}
-\caption[discreticed tissue volume]{discretized tissue volume: Its \dummy{} is defined by a \ac{AABB}, which is defined by two variables. \todo{show x,y,z resulting volume?}\todo{show fiber model inside?}}
+\caption[discreticed tissue volume]{Discretized tissue volume: Its boundry is defined by a \ac{AABB}, which itself is defined by the lower and upper corner values $v_\mathit{min}$ and $v_\mathit{max}$. \todo{show x,y,z resulting volume?}\todo{show fiber model inside?}}
 \label{fig:discVol}
 \end{figure}
 %
-\todo{better name}
-%
-The idea of the simulation is to first calculate a so called \say{discretised tissue volume}.
+The idea of the simulation is to split the necesarry calculation in to conesqutive parts. The first one is to calculate a discretised tissue volume.
 It represents a discrete constant voxel model of the tissue.
 This helps to drastically speed up the light matter interaction of the next step (see \cref{sec:simulation}).
 \par
@@ -116,7 +53,7 @@ If the division of the \voi{} by the \voxelsize{} is not an integer, the \voi{} 
 %
 \subsection{Nerve fiber layers}
 %
-As described in \dummy{} nerve fibers are axons, which can be wrapped around by several windings of myelin (see \cref{fig:fiberLayer}).
+As described in \cref{sec:fiberArchitecture} nerve fibers are axons, which can be wrapped around by several windings of myelin (see \cref{fig:fiberLayer}).
 Especially for light wave simulations the myelin windings are a significant property \cite{MenzelDissertation}.
 This makes it necessary to be able to build such a structure.
 \par
@@ -179,9 +116,9 @@ This is easily be done by only iterating over the voxels of the \ac{AABB} of the
 Now each voxel will be checked, if it is inside the nerve fiber segment.
 This is analog calculated to the collision between two nerve fiber segment (see \cref{alg:pseudocodeCollisionDetection}) except that only one point of the closest distance has to be found.
 The other one is the voxels center position $\vec{q}$.
-From this calculation the not only the closes point \dummy{} will be returned, but also the distance vector \dummy{}.
+From this calculation not only the closest points $\vec{p}_a$ and $\vec{p}_b$ will be returned, but also the distance vector $\vec{d}$.
 This helps to calculate the the distance, which will be used to check if the voxel is inside the fiber segment, and if it is, in wich layer of the fiber segment it is.
-Additionally the distance vector can be used, if the optical axis inside the current layer is set to a microscopic \dummy{}, which means that the optical axis is orientated radial to the fiber segment.
+Additionally the distance vector calculation $\vec{d}$ is used, if the optical axis inside the current layer is set to a microscopic model. Then the optical axis is orientated radial to the fiber segment. This orientation is identical to calculate the minimal distance from that current point to the line segment.
 \par
 %
 Two values have to be stored in the case of a valid entry.
@@ -220,7 +157,7 @@ for fiber_segment in fiber_bundle:
 \label{alg:fillVolume}
 \end{lstfloat}
 %
-\todo{the length of the stored optical axis vector is interpreted as strength. In this model the length is always 1. If the user wishes to add variability, he/she can do this by changing the length of the vectors inside the arrays.}
+The length of the optical axis vector is interpreted as strength. In this model the length is usualy always 1. If the user wishes to add variability, one can do this by changing the length of the vectors inside the arrays.
 %
 %
 %
@@ -236,7 +173,7 @@ for fiber_segment in fiber_bundle:
 \end{figure}
 %
 The \voxelsize{} parameter is the most important property of the simulation.
-It will determine, how accurate the simulation is \dummy{}.
+It will determine, how accurate the simulation is.
 This is first of all because it will change the number of voxels with which the nerve fiber model is discretized (see \cref{fig:vectorfield_disc_error}).
 Especially for the case of multiple layers this will have an major impact.
 Additionally it will also change the \stepsize{} of the light through the tissue.
@@ -289,9 +226,9 @@ However since with this configuration only once threads are spawned, and the \ac
 Additionally the shared cache of the \acp{CPU} can speed up the memory retrieving process as well, if the \acp{CPU} workload do not differ that much.
 \par
 \paragraph{Note}
-Depending on the scice of the volume and the acessable memory, the user is adviced to distribute the \openmp{} parallelization and \mpi{} distribution \dummy{}.
+Depending on the size of the volume and the acessable memory, the user is adviced to distribute the \openmp{} parallelization on one node and the \mpi{} distribution on multiple nodes. Depending onthe Architecture the distribution is not straightforword to optimize. Individual tests should be performed.
 The \openmp{} speedup is usually as fastest if the spawend threads are located on the same physical \ac{CPU} or even inside the same \acp{CPU} which uses the same cache.
-It can therefore be that the speedup is increased by reducing the \openmp{} threads and by increasing the \mpi{} threads instead \todo{better mpi implementation?}.
+It can therefore be that the speedup is increased by reducing the \openmp{} threads and by increasing the \mpi{} threads instead.
 %
 %
 %
@@ -317,7 +254,7 @@ At the end it will be resampled to the final \ac{CCD} array size and a noise mod
 \subcaptionbox{perspective view}[.49\textwidth]{
 \inputtikz{gfx/simpli/tilting_3d_b}}
 \tikzset{external/export=false}
-\caption[3d tilting]{3d tilting: around $xy$-axis, \raisebox{.25em}{\tikz \draw[red,thick](0,0)--(0.25,0);} top, \raisebox{.25em}{\tikz \draw[green,thick](0,0)--(0.25,0);} middle, \raisebox{.25em}{\tikz \draw[blue,thick](0,0)--(0.25,0);} bottom, \raisebox{.25em}{\tikz \draw[dash pattern=on 1.25pt off 1.25pt,thick](0,0)--(0.25,0);} original, \raisebox{.25em}{\tikz \draw[gray](0,0)--(0.25,0);} axis of rotation \todo{test david und daniel}}
+\caption[3d tilting]{3d tilting: around $xy$-axis, \raisebox{.25em}{\tikz \draw[red,thick](0,0)--(0.25,0);} top, \raisebox{.25em}{\tikz \draw[green,thick](0,0)--(0.25,0);} middle, \raisebox{.25em}{\tikz \draw[blue,thick](0,0)--(0.25,0);} bottom, \raisebox{.25em}{\tikz \draw[dash pattern=on 1.25pt off 1.25pt,thick](0,0)--(0.25,0);} original, \raisebox{.25em}{\tikz \draw[gray](0,0)--(0.25,0);} axis of rotation.}
 \label{fig:tilting_camera_view}
 \end{figure}
 %
@@ -351,7 +288,7 @@ However, this leads to interpolation artifacts.
 Therefore both techniques exists to be able to study this effect in more detail.
 \par
 %
-An additional effect is the simulation of the refraction of the tissue-air border, which is described by Snell's law for isotropic media (see \dummy{})
+An additional effect is the simulation of the refraction of the tissue-air border, which is described by Snell's law for isotropic media (see \cref{eq:Snellius})
 Since this only adds a parallel shift, a simulation is only necessary if the resampling of an image registration is to be studied.
 \par
 %
@@ -363,7 +300,7 @@ Since this only adds a parallel shift, a simulation is only necessary if the res
 \inputtikz{gfx/simpli/tilting_a}}\hfill
 \subcaptionbox{tilted}[.495\textwidth]{
 \inputtikz{gfx/simpli/tilting_b}}
-\caption[Light path]{Ligh path for a normal a) and tilted b) case. For the tilted case the light beam $I1$ \dummy{check} gets tilted inside the tissue and therefore recieves a optical shift $\Delta$.}
+\caption[Light path]{Ligh path for a normal (a) and tilted (b) case. For the tilted case the light beam $\vec{l}_1$ gets tilted inside the tissue and therefore recieves a optical shift $\Delta$.}
 \label{fig:tilted_side_view}
 \end{figure}
 %
@@ -372,7 +309,7 @@ Each light beam $\vec{l}_0$ hitting the \ac{CCD}-array element, not resampled ye
 Next the light beam $\vec{l}_1$ is traversed back through the tissue to the bottom plane $\mathfrak{S}_{bottom}$.
 The point on the bottom tissue plane corresponds to the starting position of the light beam.
 In the case of a tilted light beam or lilted tissue, a offset of $\Delta$ is occurs.
-\todo{The backtracking of the light from the ccd array is better so that in the resampling process no boarder effects can occurs}
+The backtracking of the light from the ccd-array to the tissue is prevends a  resampling process and therefore no boarder effects can occurs.
 \\
 %
 In the case of already simulating an undistored view, the light paths have to spaced out by the same distance, as the affine transformation would resample the resulting pixels.
@@ -417,7 +354,7 @@ To interpolate the data the trilinear interpolation will be performed (see \cref
 %
 First the starting points of all light beams will be calculated.
 hen each light beam can be traversed inside the tissue.
-To calculate the light matter interaction, the \dummy{} will be calculated after each light beam step.
+To calculate the light matter interaction, the change of the Stokes vector will be calculated after each light beam step.
 As soon as the light hits the boarder of the tissue, the light beam will be the last optical elements and the intensity will be stored inside the \ac{CCD} array.
 The pseudocode is shown in \cref{alg:simulationLoop}.
 %
@@ -456,7 +393,7 @@ This threads are completely separated and no race conditions exists.
 \label{sec:ccdOptic}
 %
 The image sensor as described in \cref{sec:expSetup} is a \ac{CCD} sensor.
-The calculations, \ie resolution \dummy{}, resampling and noise modelling, are implemented according to \cref{sec:opticalResolution}.
+The calculations, \ie the resampling and noise modelling, are implemented according to \cref{sec:opticalResolution}.
 These calculations are performed on the python side of the algorithm and can be parallized with the \code{multiprocessing} library of \python{}.
 %
 % A general \ac{CCD} sensor consits out of an array of capacitors.
@@ -490,7 +427,7 @@ These calculations are performed on the python side of the algorithm and can be 
 %
 \section{Analysis}
 %
-The same algorithms are implemented as in the \ac{3D-PLI} routine pipeline \todo{-> theory}.
+The same algorithms are implemented as in the \ac{3D-PLI} routine pipeline (see \cref{sec::intSignal,sec::InclAnalysis}).
 This include the modalities analysis transmittance, direction and retardatation as well as the tilting analysis performend by \ac{ROFL}.
 %
 %

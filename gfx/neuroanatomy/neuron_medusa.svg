@@ -529,16 +529,16 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="3.959798"
-     inkscape:cx="89.867268"
-     inkscape:cy="92.746164"
+     inkscape:zoom="2.8284271"
+     inkscape:cx="-23.756271"
+     inkscape:cy="128.4829"
      inkscape:document-units="mm"
-     inkscape:current-layer="layer1"
+     inkscape:current-layer="layer2"
      showgrid="false"
      inkscape:window-width="1848"
-     inkscape:window-height="1016"
+     inkscape:window-height="1163"
      inkscape:window-x="72"
-     inkscape:window-y="27"
+     inkscape:window-y="0"
      inkscape:window-maximized="1"
      inkscape:snap-global="false" />
   <metadata
@@ -597,31 +597,31 @@
        id="path107-3"
        cx="93.368927"
        cy="114.57212"
-       style="display:inline;stroke-width:0.17177913"
+       style="display:inline;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none;opacity:1"
        r="5" />
     <circle
        id="path107-3-2"
        cx="88.416168"
        cy="117.8476"
-       style="display:inline;stroke-width:0.17177913"
+       style="display:inline;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none;opacity:1"
        r="5" />
     <circle
        id="path107-3-1"
        cx="85.112968"
        cy="114.96145"
-       style="display:inline;stroke-width:0.08588956"
+       style="display:inline;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none;opacity:1"
        r="2.5" />
     <circle
        id="path107-3-1-2"
        cx="88.274429"
        cy="113.26464"
-       style="display:inline;opacity:0.603;stroke-width:0.08588956"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="2.5" />
     <circle
        id="path107-3-1-7"
        cx="91.250992"
        cy="110.42982"
-       style="display:inline;opacity:0.603;stroke-width:0.08588956"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="2.5"
        inkscape:transform-center-x="-0.42522321"
        inkscape:transform-center-y="-0.66145639" />
@@ -629,19 +629,19 @@
        id="path107-3-1-0"
        cx="95.644966"
        cy="112.08347"
-       style="display:inline;opacity:0.603;stroke-width:0.08588956"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="2.5" />
     <circle
        id="path107-3-1-9"
        cx="96.589905"
        cy="116.57194"
-       style="display:inline;opacity:0.603;stroke-width:0.08588956"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="2.5" />
     <circle
        id="path107-3-1-06"
        cx="82.888634"
        cy="120.84575"
-       style="display:inline;opacity:0.603;stroke-width:0.04294478"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="1.25"
        inkscape:transform-center-x="4.9609375"
        inkscape:transform-center-y="-14.363093" />
@@ -649,7 +649,7 @@
        id="path107-3-1-06-2"
        cx="89.172119"
        cy="123.70624"
-       style="display:inline;opacity:0.603;stroke-width:0.04294478"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="1.25"
        inkscape:transform-center-x="4.9609375"
        inkscape:transform-center-y="-14.363093" />
@@ -657,19 +657,19 @@
        id="path107-3-1-6"
        cx="85.486855"
        cy="119.78474"
-       style="display:inline;opacity:0.603;stroke-width:0.08588956"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="2.5" />
     <circle
        id="path107-3-1-1"
        cx="88.699654"
        cy="121.2494"
-       style="display:inline;opacity:0.603;stroke-width:0.08588956"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="2.5" />
     <circle
        id="path107-3-1-06-2-8"
        cx="98.952255"
        cy="117.70587"
-       style="display:inline;opacity:0.603;stroke-width:0.04294478"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="1.25"
        inkscape:transform-center-x="4.9609375"
        inkscape:transform-center-y="-14.363093" />
@@ -677,7 +677,7 @@
        id="path107-3-1-06-2-7"
        cx="97.393105"
        cy="110.66606"
-       style="display:inline;opacity:0.603;stroke-width:0.04294478"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="1.25"
        inkscape:transform-center-x="4.9609375"
        inkscape:transform-center-y="-14.363093" />
@@ -685,7 +685,7 @@
        id="path107-3-1-06-2-9"
        cx="88.888634"
        cy="110.99679"
-       style="display:inline;opacity:0.603;stroke-width:0.04294478"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="1.25"
        inkscape:transform-center-x="4.9609375"
        inkscape:transform-center-y="-14.363093" />
@@ -693,7 +693,7 @@
        id="path107-3-1-06-2-2"
        cx="93.80233"
        cy="110.38257"
-       style="display:inline;opacity:0.603;stroke-width:0.04294478"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="1.25"
        inkscape:transform-center-x="4.9609375"
        inkscape:transform-center-y="-14.363093" />
@@ -701,7 +701,7 @@
        id="path107-3-1-06-2-0"
        cx="92.810143"
        cy="119.26501"
-       style="display:inline;opacity:0.603;stroke-width:0.04294478"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="1.25"
        inkscape:transform-center-x="4.9609375"
        inkscape:transform-center-y="-14.363093" />
@@ -709,7 +709,7 @@
        id="path107-3-1-06-2-23"
        cx="82.557541"
        cy="114.35133"
-       style="display:inline;opacity:0.603;stroke-width:0.04294478"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="1.25"
        inkscape:transform-center-x="4.9609375"
        inkscape:transform-center-y="-14.363093" />
@@ -717,7 +717,7 @@
        id="path107-3-1-06-2-75-9"
        cx="90.292206"
        cy="106.69157"
-       style="display:inline;opacity:0.603;stroke-width:0.02147239"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.625"
        inkscape:transform-center-x="2.4804687"
        inkscape:transform-center-y="-7.1815455" />
@@ -725,7 +725,7 @@
        id="path107-3-1-06-2-9-2"
        cx="90.73127"
        cy="108.3037"
-       style="display:inline;opacity:0.603;stroke-width:0.04294478"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="1.25"
        inkscape:transform-center-x="4.9609375"
        inkscape:transform-center-y="-14.363093" />
@@ -733,7 +733,7 @@
        id="path107-3-1-06-2-75-9-2"
        cx="99.080688"
        cy="108.91811"
-       style="display:inline;opacity:0.603;stroke-width:0.02147239"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.625"
        inkscape:transform-center-x="2.4804687"
        inkscape:transform-center-y="-7.1815455" />
@@ -741,7 +741,7 @@
        id="path107-3-1-06-2-75-9-8"
        cx="101.15204"
        cy="118.74026"
-       style="display:inline;opacity:0.603;stroke-width:0.02147239"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.625"
        inkscape:transform-center-x="2.4804687"
        inkscape:transform-center-y="-7.1815455" />
@@ -749,7 +749,7 @@
        id="path107-3-1-06-2-75-9-9"
        cx="89.910011"
        cy="127.27619"
-       style="display:inline;opacity:0.603;stroke-width:0.02147239"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.625"
        inkscape:transform-center-x="2.4804687"
        inkscape:transform-center-y="-7.1815455" />
@@ -757,7 +757,7 @@
        id="path107-3-1-06-2-75-9-7"
        cx="79.987625"
        cy="121.99761"
-       style="display:inline;opacity:0.603;stroke-width:0.02147239"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.625"
        inkscape:transform-center-x="2.4804687"
        inkscape:transform-center-y="-7.1815455" />
@@ -765,7 +765,7 @@
        id="path107-3-1-06-2-75-9-3"
        cx="73.723495"
        cy="111.03957"
-       style="display:inline;opacity:0.603;stroke-width:0.02147239"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.625"
        inkscape:transform-center-x="2.4804687"
        inkscape:transform-center-y="-7.1815455" />
@@ -773,7 +773,7 @@
        id="path107-3-1-06-2-75-9-6"
        cx="98.061729"
        cy="109.75333"
-       style="display:inline;opacity:0.603;stroke-width:0.02147239"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.625"
        inkscape:transform-center-x="2.4804687"
        inkscape:transform-center-y="-7.1815455" />
@@ -781,7 +781,7 @@
        id="path107-3-1-06-2-75-9-1"
        cx="98.646378"
        cy="109.31902"
-       style="display:inline;opacity:0.603;stroke-width:0.02147239"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.625"
        inkscape:transform-center-x="2.4804687"
        inkscape:transform-center-y="-7.1815455" />
@@ -789,7 +789,7 @@
        id="path107-3-1-06-2-75-9-29"
        cx="98.596268"
        cy="109.88696"
-       style="display:inline;opacity:0.603;stroke-width:0.02147239"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.625"
        inkscape:transform-center-x="2.4804687"
        inkscape:transform-center-y="-7.1815455" />
@@ -797,7 +797,7 @@
        id="path107-3-1-06-2-75-9-31"
        cx="81.07341"
        cy="113.79578"
-       style="display:inline;opacity:0.603;stroke-width:0.02147239"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.625"
        inkscape:transform-center-x="2.4804687"
        inkscape:transform-center-y="-7.1815455" />
@@ -805,7 +805,7 @@
        id="path107-3-1-06-2-75-9-94"
        cx="79.920815"
        cy="113.56192"
-       style="display:inline;opacity:0.603;stroke-width:0.02147239"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.625"
        inkscape:transform-center-x="2.4804687"
        inkscape:transform-center-y="-7.1815455" />
@@ -813,7 +813,7 @@
        id="path107-3-1-06-2-75-9-78"
        cx="78.734802"
        cy="113.19443"
-       style="display:inline;opacity:0.603;stroke-width:0.02147239"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.625"
        inkscape:transform-center-x="2.4804687"
        inkscape:transform-center-y="-7.1815455" />
@@ -821,7 +821,7 @@
        id="path107-3-1-06-2-75-9-4"
        cx="77.615608"
        cy="112.7267"
-       style="display:inline;opacity:0.603;stroke-width:0.02147239"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.625"
        inkscape:transform-center-x="2.4804687"
        inkscape:transform-center-y="-7.1815455" />
@@ -829,7 +829,7 @@
        id="path107-3-1-06-2-75-9-5"
        cx="76.412895"
        cy="112.12534"
-       style="display:inline;opacity:0.603;stroke-width:0.02147239"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.625"
        inkscape:transform-center-x="2.4804687"
        inkscape:transform-center-y="-7.1815455" />
@@ -837,7 +837,7 @@
        id="path107-3-1-06-2-75-9-0"
        cx="75.109955"
        cy="111.52399"
-       style="display:inline;opacity:0.603;stroke-width:0.02147239"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.625"
        inkscape:transform-center-x="2.4804687"
        inkscape:transform-center-y="-7.1815455" />
@@ -845,7 +845,7 @@
        id="path107-3-1-06-2-75-9-36"
        cx="75.544266"
        cy="112.10864"
-       style="display:inline;opacity:0.603;stroke-width:0.02147239"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.625"
        inkscape:transform-center-x="2.4804687"
        inkscape:transform-center-y="-7.1815455" />
@@ -853,7 +853,7 @@
        id="path107-3-1-06-2-75-9-10"
        cx="76.646759"
        cy="112.6933"
-       style="display:inline;opacity:0.603;stroke-width:0.02147239"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.625"
        inkscape:transform-center-x="2.4804687"
        inkscape:transform-center-y="-7.1815455" />
@@ -861,7 +861,7 @@
        id="path107-3-1-06-2-75-9-63"
        cx="78.150146"
        cy="113.52851"
-       style="display:inline;opacity:0.603;stroke-width:0.02147239"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.625"
        inkscape:transform-center-x="2.4804687"
        inkscape:transform-center-y="-7.1815455" />
@@ -869,7 +869,7 @@
        id="path107-3-1-06-2-75-9-20"
        cx="79.152412"
        cy="114.09647"
-       style="display:inline;opacity:0.603;stroke-width:0.02147239"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.625"
        inkscape:transform-center-x="2.4804687"
        inkscape:transform-center-y="-7.1815455" />
@@ -877,7 +877,7 @@
        id="path107-3-1-06-2-75-9-61"
        cx="80.23819"
        cy="114.49736"
-       style="display:inline;opacity:0.603;stroke-width:0.02147239"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.625"
        inkscape:transform-center-x="2.4804687"
        inkscape:transform-center-y="-7.1815455" />
@@ -885,7 +885,7 @@
        id="path107-3-1-06-2-75-9-55"
        cx="81.357376"
        cy="114.76463"
-       style="display:inline;opacity:0.603;stroke-width:0.02147239"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.625"
        inkscape:transform-center-x="2.4804687"
        inkscape:transform-center-y="-7.1815455" />
@@ -893,7 +893,7 @@
        id="path107-3-1-06-2-75-9-37"
        cx="74.374962"
        cy="111.35695"
-       style="display:inline;opacity:0.603;stroke-width:0.02147239"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.625"
        inkscape:transform-center-x="2.4804687"
        inkscape:transform-center-y="-7.1815455" />
@@ -901,7 +901,7 @@
        id="path107-3-1-06-2-75-9-45"
        cx="70.583084"
        cy="110.47162"
-       style="display:inline;opacity:0.603;stroke-width:0.02147239"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.625"
        inkscape:transform-center-x="2.4804687"
        inkscape:transform-center-y="-7.1815455" />
@@ -909,7 +909,7 @@
        id="path107-3-1-06-2-75-9-47"
        cx="80.806137"
        cy="121.41296"
-       style="display:inline;opacity:0.603;stroke-width:0.02147239"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.625"
        inkscape:transform-center-x="2.4804687"
        inkscape:transform-center-y="-7.1815455" />
@@ -917,7 +917,7 @@
        id="path107-3-1-06-2-75-9-44"
        cx="81.708176"
        cy="120.96194"
-       style="display:inline;opacity:0.603;stroke-width:0.02147239"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.625"
        inkscape:transform-center-x="2.4804687"
        inkscape:transform-center-y="-7.1815455" />
@@ -925,7 +925,7 @@
        id="path107-3-1-06-2-75-9-30"
        cx="83.194862"
        cy="119.72582"
-       style="display:inline;opacity:0.603;stroke-width:0.02147239"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.625"
        inkscape:transform-center-x="2.4804687"
        inkscape:transform-center-y="-7.1815455" />
@@ -933,7 +933,7 @@
        id="path107-3-1-06-2-75-9-786"
        cx="81.808403"
        cy="121.66353"
-       style="display:inline;opacity:0.603;stroke-width:0.02147239"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.625"
        inkscape:transform-center-x="2.4804687"
        inkscape:transform-center-y="-7.1815455" />
@@ -941,7 +941,7 @@
        id="path107-3-1-06-2-75-9-88"
        cx="80.906372"
        cy="121.76375"
-       style="display:inline;opacity:0.603;stroke-width:0.02147239"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.625"
        inkscape:transform-center-x="2.4804687"
        inkscape:transform-center-y="-7.1815455" />
@@ -949,7 +949,7 @@
        id="path107-3-1-06-2-75-9-43"
        cx="89.158318"
        cy="125.22155"
-       style="display:inline;opacity:0.603;stroke-width:0.02147239"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.625"
        inkscape:transform-center-x="2.4804687"
        inkscape:transform-center-y="-7.1815455" />
@@ -957,7 +957,7 @@
        id="path107-3-1-06-2-75-9-43-1"
        cx="89.726257"
        cy="125.10463"
-       style="display:inline;opacity:0.603;stroke-width:0.02147239"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.625"
        inkscape:transform-center-x="2.4804687"
        inkscape:transform-center-y="-7.1815455" />
@@ -965,7 +965,7 @@
        id="path107-3-1-06-2-75-9-43-4"
        cx="89.826492"
        cy="126.59132"
-       style="display:inline;opacity:0.603;stroke-width:0.02147239"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.625"
        inkscape:transform-center-x="2.4804687"
        inkscape:transform-center-y="-7.1815455" />
@@ -973,7 +973,7 @@
        id="path107-3-1-06-2-75-9-43-9"
        cx="89.776375"
        cy="125.73939"
-       style="display:inline;opacity:0.603;stroke-width:0.02147239"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.625"
        inkscape:transform-center-x="2.4804687"
        inkscape:transform-center-y="-7.1815455" />
@@ -981,7 +981,7 @@
        id="path107-3-1-06-2-75-9-43-2"
        cx="89.442284"
        cy="125.93984"
-       style="display:inline;opacity:0.603;stroke-width:0.02147239"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.625"
        inkscape:transform-center-x="2.4804687"
        inkscape:transform-center-y="-7.1815455" />
@@ -989,7 +989,7 @@
        id="path107-3-1-06-2-75-9-43-0"
        cx="89.676147"
        cy="126.59131"
-       style="display:inline;opacity:0.603;stroke-width:0.02147239"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.625"
        inkscape:transform-center-x="2.4804687"
        inkscape:transform-center-y="-7.1815455" />
@@ -997,7 +997,7 @@
        id="path107-3-1-06-2-75-9-43-6"
        cx="94.119499"
        cy="119.32492"
-       style="display:inline;opacity:0.603;stroke-width:0.02147239"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.625"
        inkscape:transform-center-x="2.4804687"
        inkscape:transform-center-y="-7.1815455" />
@@ -1005,7 +1005,7 @@
        id="path107-3-1-06-2-75-9-43-8"
        cx="95.188576"
        cy="118.90731"
-       style="display:inline;opacity:0.603;stroke-width:0.02147239"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.625"
        inkscape:transform-center-x="2.4804687"
        inkscape:transform-center-y="-7.1815455" />
@@ -1013,7 +1013,7 @@
        id="path107-3-1-06-2-75-9-43-92"
        cx="99.865784"
        cy="118.35607"
-       style="display:inline;opacity:0.603;stroke-width:0.02147239"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.625"
        inkscape:transform-center-x="2.4804687"
        inkscape:transform-center-y="-7.1815455" />
@@ -1021,7 +1021,7 @@
        id="path107-3-1-06-2-75-9-43-66"
        cx="100.68431"
        cy="118.62334"
-       style="display:inline;opacity:0.603;stroke-width:0.02147239"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.625"
        inkscape:transform-center-x="2.4804687"
        inkscape:transform-center-y="-7.1815455" />
@@ -1029,7 +1029,7 @@
        id="path107-3-1-06-2-75-9-43-49"
        cx="100.58408"
        cy="118.28925"
-       style="display:inline;opacity:0.603;stroke-width:0.02147239"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.625"
        inkscape:transform-center-x="2.4804687"
        inkscape:transform-center-y="-7.1815455" />
@@ -1037,7 +1037,7 @@
        id="path107-3-1-06-2-75-9-43-5"
        cx="99.915909"
        cy="117.72131"
-       style="display:inline;opacity:0.603;stroke-width:0.02147239"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.625"
        inkscape:transform-center-x="2.4804687"
        inkscape:transform-center-y="-7.1815455" />
@@ -1045,7 +1045,7 @@
        id="path107-3-1-06-2-75-9-43-04"
        cx="98.980469"
        cy="116.5687"
-       style="display:inline;opacity:0.603;stroke-width:0.02147239"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.625"
        inkscape:transform-center-x="2.4804687"
        inkscape:transform-center-y="-7.1815455" />
@@ -1053,7 +1053,7 @@
        id="path107-3-1-06-2-75-9-43-87"
        cx="90.678406"
        cy="107.11404"
-       style="display:inline;opacity:0.603;stroke-width:0.02147239"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.625"
        inkscape:transform-center-x="2.4804687"
        inkscape:transform-center-y="-7.1815455" />
@@ -1061,7 +1061,7 @@
        id="path107-3-1-06-2-75-9-43-17"
        cx="90.210686"
        cy="107.38132"
-       style="display:inline;opacity:0.603;stroke-width:0.02147239"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.625"
        inkscape:transform-center-x="2.4804687"
        inkscape:transform-center-y="-7.1815455" />
@@ -1069,7 +1069,7 @@
        id="path107-3-1-06-2-75-9-43-27"
        cx="85.800735"
        cy="112.52625"
-       style="display:inline;opacity:0.603;stroke-width:0.02147239"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.625"
        inkscape:transform-center-x="2.4804687"
        inkscape:transform-center-y="-7.1815455" />
@@ -1077,7 +1077,7 @@
        id="path107-3-1-06-2-75-9-43-22-6"
        cx="88.356499"
        cy="96.323029"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -1085,7 +1085,7 @@
        id="path107-3-1-06-2-75-9-43-22-1"
        cx="88.473434"
        cy="96.60701"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -1093,7 +1093,7 @@
        id="path107-3-1-06-2-75-9-43-22-0"
        cx="88.673889"
        cy="97.041321"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -1101,7 +1101,7 @@
        id="path107-3-1-06-2-75-9-43-22-61"
        cx="88.790817"
        cy="97.475639"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -1109,7 +1109,7 @@
        id="path107-3-1-06-2-75-9-43-22-5"
        cx="88.991272"
        cy="98.060287"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -1117,7 +1117,7 @@
        id="path107-3-1-06-2-75-9-43-22-9"
        cx="89.103302"
        cy="98.615234"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -1125,7 +1125,7 @@
        id="path107-3-1-06-2-75-9-43-22-11"
        cx="89.242989"
        cy="99.208656"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -1133,7 +1133,7 @@
        id="path107-3-1-06-2-75-9-43-22-59"
        cx="89.319771"
        cy="99.722466"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -1141,7 +1141,7 @@
        id="path107-3-1-06-2-75-9-43-22-8"
        cx="89.39064"
        cy="100.18312"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -1149,7 +1149,7 @@
        id="path107-3-1-06-2-75-9-43-22-4"
        cx="89.479225"
        cy="100.80914"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -1157,7 +1157,7 @@
        id="path107-3-1-06-2-75-9-43-22-81"
        cx="89.502853"
        cy="101.40564"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -1165,7 +1165,7 @@
        id="path107-3-1-06-2-75-9-43-22-03"
        cx="89.556007"
        cy="101.89583"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -1173,7 +1173,7 @@
        id="path107-3-1-06-2-75-9-43-22-04"
        cx="89.561905"
        cy="102.36829"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -1181,7 +1181,7 @@
        id="path107-3-1-06-2-75-9-43-22-44"
        cx="89.591438"
        cy="102.83485"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -1189,7 +1189,7 @@
        id="path107-3-1-06-2-75-9-43-22-47"
        cx="89.650497"
        cy="103.3782"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -1197,7 +1197,7 @@
        id="path107-3-1-06-2-75-9-43-22-63"
        cx="89.768616"
        cy="103.87431"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -1205,7 +1205,7 @@
        id="path107-3-1-06-2-75-9-43-22-17"
        cx="89.857201"
        cy="104.3763"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -1213,7 +1213,7 @@
        id="path107-3-1-06-2-75-9-43-22-596"
        cx="89.904449"
        cy="104.80742"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -1221,7 +1221,7 @@
        id="path107-3-1-06-2-75-9-43-22-2"
        cx="90.034378"
        cy="105.03185"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -1229,7 +1229,7 @@
        id="path107-3-1-06-2-75-9-43-22-178"
        cx="90.223366"
        cy="105.32124"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -1237,7 +1237,7 @@
        id="path107-3-1-06-2-75-9-43-22-57"
        cx="90.382828"
        cy="105.69921"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -1245,7 +1245,7 @@
        id="path107-3-1-06-2-75-9-43-22-41"
        cx="90.56591"
        cy="106.0831"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -1253,7 +1253,7 @@
        id="path107-3-1-06-2-75-9-43-22-85"
        cx="90.784424"
        cy="106.4906"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -1261,7 +1261,7 @@
        id="path107-3-1-06-2-75-9-43-22-97"
        cx="89.892639"
        cy="106.31342"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -1269,7 +1269,7 @@
        id="path107-3-1-06-2-75-9-43-22-53"
        cx="89.83358"
        cy="105.85277"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -1277,7 +1277,7 @@
        id="path107-3-1-06-2-75-9-43-22-88"
        cx="89.7509"
        cy="105.37439"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -1285,7 +1285,7 @@
        id="path107-3-1-06-2-75-9-43-22-3"
        cx="89.674118"
        cy="105.10863"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -1293,7 +1293,7 @@
        id="path107-3-1-06-2-75-9-43-22-18"
        cx="89.650497"
        cy="104.70112"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -1301,7 +1301,7 @@
        id="path107-3-1-06-2-75-9-43-22-96"
        cx="89.603256"
        cy="104.30543"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -1309,7 +1309,7 @@
        id="path107-3-1-06-2-75-9-43-22-43"
        cx="89.437889"
        cy="103.86249"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -1317,7 +1317,7 @@
        id="path107-3-1-06-2-75-9-43-22-33"
        cx="89.396545"
        cy="103.36639"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -1325,7 +1325,7 @@
        id="path107-3-1-06-2-75-9-43-22-86"
        cx="89.337486"
        cy="102.81715"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -1333,7 +1333,7 @@
        id="path107-3-1-06-2-75-9-43-22-048"
        cx="89.319771"
        cy="102.30334"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -1341,7 +1341,7 @@
        id="path107-3-1-06-2-75-9-43-22-889"
        cx="89.284332"
        cy="101.80724"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -1349,7 +1349,7 @@
        id="path107-3-1-06-2-75-9-43-22-7"
        cx="89.248901"
        cy="101.21665"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -1357,7 +1357,7 @@
        id="path107-3-1-06-2-75-9-43-22-76"
        cx="89.183937"
        cy="100.70875"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -1365,7 +1365,7 @@
        id="path107-3-1-06-2-75-9-43-22-430"
        cx="89.118965"
        cy="100.18312"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -1373,7 +1373,7 @@
        id="path107-3-1-06-2-75-9-43-22-30"
        cx="89.083534"
        cy="99.675217"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -1381,7 +1381,7 @@
        id="path107-3-1-06-2-75-9-43-22-92"
        cx="89.089439"
        cy="99.149597"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -1389,7 +1389,7 @@
        id="path107-3-1-06-2-75-9-43-22-54"
        cx="88.989044"
        cy="98.370018"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -1397,7 +1397,7 @@
        id="path107-3-1-06-2-75-9-43-22-05"
        cx="88.865013"
        cy="97.761711"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -1405,7 +1405,7 @@
        id="path107-3-1-06-2-75-9-43-22"
        cx="99.194397"
        cy="108.15606"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -1413,7 +1413,7 @@
        id="path107-3-1-06-2-75-9-43-22-94"
        cx="99.483788"
        cy="107.8017"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -1421,7 +1421,7 @@
        id="path107-3-1-06-2-75-9-43-22-69"
        cx="99.76136"
        cy="107.41782"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -1429,7 +1429,7 @@
        id="path107-3-1-06-2-75-9-43-22-22"
        cx="100.03895"
        cy="107.04576"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -1437,7 +1437,7 @@
        id="path107-3-1-06-2-75-9-43-22-477"
        cx="100.26336"
        cy="106.56147"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -1445,7 +1445,7 @@
        id="path107-3-1-06-2-75-9-43-22-548"
        cx="100.52322"
        cy="106.14215"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -1453,7 +1453,7 @@
        id="path107-3-1-06-2-75-9-43-22-12"
        cx="100.71812"
        cy="105.6815"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -1461,7 +1461,7 @@
        id="path107-3-1-06-2-75-9-43-22-89"
        cx="100.95435"
        cy="105.16769"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -1469,7 +1469,7 @@
        id="path107-3-1-06-2-75-9-43-22-36"
        cx="101.2083"
        cy="104.67159"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -1477,7 +1477,7 @@
        id="path107-3-1-06-2-75-9-43-22-80"
        cx="101.45634"
        cy="104.19321"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -1485,7 +1485,7 @@
        id="path107-3-1-06-2-75-9-43-22-21"
        cx="101.64533"
        cy="103.72074"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -1493,7 +1493,7 @@
        id="path107-3-1-06-2-75-9-43-22-051"
        cx="101.88157"
        cy="103.28961"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -1501,7 +1501,7 @@
        id="path107-3-1-06-2-75-9-43-22-10"
        cx="102.14733"
        cy="102.87031"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -1509,7 +1509,7 @@
        id="path107-3-1-06-2-75-9-43-22-850"
        cx="102.35404"
        cy="102.49232"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -1517,7 +1517,7 @@
        id="path107-3-1-06-2-75-9-43-22-64"
        cx="102.60799"
        cy="102.09072"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -1525,7 +1525,7 @@
        id="path107-3-1-06-2-75-9-43-22-62"
        cx="102.93872"
        cy="101.68913"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -1533,7 +1533,7 @@
        id="path107-3-1-06-2-75-9-43-22-58"
        cx="103.2104"
        cy="101.34068"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -1541,7 +1541,7 @@
        id="path107-3-1-06-2-75-9-43-22-628"
        cx="103.47025"
        cy="100.96861"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -1549,7 +1549,7 @@
        id="path107-3-1-06-2-75-9-43-22-472"
        cx="103.76555"
        cy="100.60835"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -1557,7 +1557,7 @@
        id="path107-3-1-06-2-75-9-43-22-40"
        cx="104.01951"
        cy="100.27762"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -1565,7 +1565,7 @@
        id="path107-3-1-06-2-75-9-43-22-629"
        cx="104.35023"
        cy="99.958702"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -1573,7 +1573,7 @@
        id="path107-3-1-06-2-75-9-43-22-90"
        cx="104.65733"
        cy="99.574814"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -1581,7 +1581,7 @@
        id="path107-3-1-06-2-75-9-43-22-813"
        cx="104.97625"
        cy="99.226364"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -1589,7 +1589,7 @@
        id="path107-3-1-06-2-75-9-43-22-110"
        cx="105.49597"
        cy="98.688942"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -1597,7 +1597,7 @@
        id="path107-3-1-06-2-75-9-43-22-34"
        cx="105.80308"
        cy="98.405457"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -1605,7 +1605,7 @@
        id="path107-3-1-06-2-75-9-43-22-039"
        cx="106.08656"
        cy="98.145599"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -1613,7 +1613,7 @@
        id="path107-3-1-06-2-75-9-43-22-19"
        cx="106.38185"
        cy="97.862114"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -1621,7 +1621,7 @@
        id="path107-3-1-06-2-75-9-43-22-693"
        cx="106.67715"
        cy="97.531387"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -1629,7 +1629,7 @@
        id="path107-3-1-06-2-75-9-43-22-38"
        cx="106.937"
        cy="97.259712"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -1637,7 +1637,7 @@
        id="path107-3-1-06-2-75-9-43-22-056"
        cx="107.27954"
        cy="97.023476"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -1645,7 +1645,7 @@
        id="path107-3-1-06-2-75-9-43-22-640"
        cx="107.62209"
        cy="96.692749"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -1653,7 +1653,7 @@
        id="path107-3-1-06-2-75-9-43-22-046"
        cx="107.89375"
        cy="96.421082"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -1661,7 +1661,7 @@
        id="path107-3-1-06-2-75-9-43-22-26"
        cx="108.16543"
        cy="96.102165"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -1669,7 +1669,7 @@
        id="path107-3-1-06-2-75-9-43-22-75"
        cx="108.46072"
        cy="95.877739"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -1677,7 +1677,7 @@
        id="path107-3-1-06-2-75-9-43-22-698"
        cx="108.69695"
        cy="95.428894"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -1685,7 +1685,7 @@
        id="path107-3-1-06-2-75-9-43-22-72"
        cx="108.89775"
        cy="95.700562"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -1693,7 +1693,7 @@
        id="path107-3-1-06-2-75-9-43-22-82"
        cx="105.20658"
        cy="98.99604"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -1701,7 +1701,7 @@
        id="path107-3-1-06-2-75-9-43-22-99"
        cx="99.673691"
        cy="108.60909"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -1709,7 +1709,7 @@
        id="path107-3-1-06-2-75-9-43-22-60"
        cx="99.807335"
        cy="108.37522"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -1717,7 +1717,7 @@
        id="path107-3-1-06-2-75-9-43-22-27"
        cx="100.00778"
        cy="107.96597"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -1725,7 +1725,7 @@
        id="path107-3-1-06-2-75-9-43-22-613"
        cx="100.24165"
        cy="107.60682"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -1733,7 +1733,7 @@
        id="path107-3-1-06-2-75-9-43-22-215"
        cx="100.45045"
        cy="107.18921"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -1741,7 +1741,7 @@
        id="path107-3-1-06-2-75-9-43-22-991"
        cx="100.61749"
        cy="106.82172"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -1749,7 +1749,7 @@
        id="path107-3-1-06-2-75-9-43-22-49"
        cx="100.82629"
        cy="106.32894"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -1757,7 +1757,7 @@
        id="path107-3-1-06-2-75-9-43-22-107"
        cx="100.97664"
        cy="105.8111"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -1765,7 +1765,7 @@
        id="path107-3-1-06-2-75-9-43-22-587"
        cx="101.18544"
        cy="105.32668"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -1773,7 +1773,7 @@
        id="path107-3-1-06-2-75-9-43-22-0480"
        cx="101.42765"
        cy="104.82555"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -1781,7 +1781,7 @@
        id="path107-3-1-06-2-75-9-43-22-42"
        cx="101.69492"
        cy="104.2409"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -1789,7 +1789,7 @@
        id="path107-3-1-06-2-75-9-43-22-961"
        cx="101.95384"
        cy="103.59778"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -1797,7 +1797,7 @@
        id="path107-3-1-06-2-75-9-43-22-042"
        cx="102.17935"
        cy="103.14676"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -1805,7 +1805,7 @@
        id="path107-3-1-06-2-75-9-43-22-220"
        cx="102.39651"
        cy="102.69575"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -1813,7 +1813,7 @@
        id="path107-3-1-06-2-75-9-43-22-55"
        cx="102.73059"
        cy="102.23637"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -1821,7 +1821,7 @@
        id="path107-3-1-06-2-75-9-43-22-29"
        cx="102.99786"
        cy="101.75195"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -1829,7 +1829,7 @@
        id="path107-3-1-06-2-75-9-43-22-02"
        cx="101.78117"
        cy="118.82798"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -1837,7 +1837,7 @@
        id="path107-3-1-06-2-75-9-43-22-83"
        cx="102.08237"
        cy="119.05241"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -1845,7 +1845,7 @@
        id="path107-3-1-06-2-75-9-43-22-804"
        cx="102.36585"
        cy="119.37132"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -1853,7 +1853,7 @@
        id="path107-3-1-06-2-75-9-43-22-09"
        cx="102.69658"
        cy="119.70205"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -1861,7 +1861,7 @@
        id="path107-3-1-06-2-75-9-43-22-196"
        cx="102.99778"
        cy="120.00916"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -1869,7 +1869,7 @@
        id="path107-3-1-06-2-75-9-43-22-25"
        cx="103.29308"
        cy="120.34579"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -1877,7 +1877,7 @@
        id="path107-3-1-06-2-75-9-43-22-449"
        cx="103.61199"
        cy="120.66471"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -1885,7 +1885,7 @@
        id="path107-3-1-06-2-75-9-43-22-93"
        cx="103.97225"
        cy="121.00725"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -1893,7 +1893,7 @@
        id="path107-3-1-06-2-75-9-43-22-605"
        cx="104.30888"
        cy="121.39703"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -1901,7 +1901,7 @@
        id="path107-3-1-06-2-75-9-43-22-029"
        cx="104.60418"
        cy="121.75139"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -1909,7 +1909,7 @@
        id="path107-3-1-06-2-75-9-43-22-435"
        cx="104.86404"
        cy="122.07621"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -1917,7 +1917,7 @@
        id="path107-3-1-06-2-75-9-43-22-174"
        cx="105.20068"
        cy="122.42466"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -1925,7 +1925,7 @@
        id="path107-3-1-06-2-75-9-43-22-31"
        cx="105.50188"
        cy="122.80264"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -1933,7 +1933,7 @@
        id="path107-3-1-06-2-75-9-43-22-46"
        cx="105.84441"
        cy="123.23376"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -1941,7 +1941,7 @@
        id="path107-3-1-06-2-75-9-43-22-942"
        cx="106.1279"
        cy="123.5704"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -1949,7 +1949,7 @@
        id="path107-3-1-06-2-75-9-43-22-264"
        cx="106.43501"
        cy="123.89523"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -1957,7 +1957,7 @@
        id="path107-3-1-06-2-75-9-43-22-128"
        cx="106.81298"
        cy="124.23776"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -1965,7 +1965,7 @@
        id="path107-3-1-06-2-75-9-43-22-892"
        cx="107.18505"
        cy="124.59212"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -1973,7 +1973,7 @@
        id="path107-3-1-06-2-75-9-43-22-888"
        cx="107.57484"
        cy="124.976"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -1981,7 +1981,7 @@
        id="path107-3-1-06-2-75-9-43-22-68"
        cx="107.97053"
        cy="125.29491"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -1989,7 +1989,7 @@
        id="path107-3-1-06-2-75-9-43-22-383"
        cx="108.33079"
        cy="125.63746"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -1997,7 +1997,7 @@
        id="path107-3-1-06-2-75-9-43-22-338"
        cx="108.8328"
        cy="125.96228"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -2005,7 +2005,7 @@
        id="path107-3-1-06-2-75-9-43-22-047"
        cx="109.26392"
        cy="126.30482"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -2013,7 +2013,7 @@
        id="path107-3-1-06-2-75-9-43-22-689"
        cx="109.71867"
        cy="126.54697"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -2021,7 +2021,7 @@
        id="path107-3-1-06-2-75-9-43-22-06"
        cx="110.1498"
        cy="126.75367"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -2029,7 +2029,7 @@
        id="path107-3-1-06-2-75-9-43-22-87"
        cx="110.58093"
        cy="126.89541"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -2037,7 +2037,7 @@
        id="path107-3-1-06-2-75-9-43-22-903"
        cx="110.97662"
        cy="126.90131"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -2045,7 +2045,7 @@
        id="path107-3-1-06-2-75-9-43-22-337"
        cx="110.87624"
        cy="127.27929"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -2053,7 +2053,7 @@
        id="path107-3-1-06-2-75-9-43-22-32"
        cx="110.37422"
        cy="127.01353"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -2061,7 +2061,7 @@
        id="path107-3-1-06-2-75-9-43-22-65"
        cx="110.03168"
        cy="126.80092"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -2069,7 +2069,7 @@
        id="path107-3-1-06-2-75-9-43-22-265"
        cx="109.73639"
        cy="126.71232"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -2077,7 +2077,7 @@
        id="path107-3-1-06-2-75-9-43-22-879"
        cx="109.28754"
        cy="126.47609"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -2085,7 +2085,7 @@
        id="path107-3-1-06-2-75-9-43-22-604"
        cx="108.80917"
        cy="126.18671"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -2093,7 +2093,7 @@
        id="path107-3-1-06-2-75-9-43-22-104"
        cx="108.45481"
        cy="125.96228"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -2101,7 +2101,7 @@
        id="path107-3-1-06-2-75-9-43-22-870"
        cx="108.08274"
        cy="125.69652"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -2109,7 +2109,7 @@
        id="path107-3-1-06-2-75-9-43-22-862"
        cx="107.66343"
        cy="125.31264"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -2117,7 +2117,7 @@
        id="path107-3-1-06-2-75-9-43-22-479"
        cx="107.25592"
        cy="124.96419"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -2125,7 +2125,7 @@
        id="path107-3-1-06-2-75-9-43-22-39"
        cx="106.90747"
        cy="124.66889"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -2133,7 +2133,7 @@
        id="path107-3-1-06-2-75-9-43-22-28"
        cx="106.58265"
        cy="124.38541"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -2141,7 +2141,7 @@
        id="path107-3-1-06-2-75-9-43-22-301"
        cx="106.19286"
        cy="124.04287"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -2149,7 +2149,7 @@
        id="path107-3-1-06-2-75-9-43-22-78"
        cx="105.8267"
        cy="123.73576"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -2157,7 +2157,7 @@
        id="path107-3-1-06-2-75-9-43-22-91"
        cx="105.45463"
        cy="123.33417"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -2165,7 +2165,7 @@
        id="path107-3-1-06-2-75-9-43-22-549"
        cx="105.05302"
        cy="122.90304"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -2173,7 +2173,7 @@
        id="path107-3-1-06-2-75-9-43-22-257"
        cx="104.65143"
        cy="122.50143"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -2181,7 +2181,7 @@
        id="path107-3-1-06-2-75-9-43-22-499"
        cx="104.29117"
        cy="122.11165"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -2189,7 +2189,7 @@
        id="path107-3-1-06-2-75-9-43-22-45"
        cx="103.93681"
        cy="121.69233"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -2197,7 +2197,7 @@
        id="path107-3-1-06-2-75-9-43-22-935"
        cx="103.58247"
        cy="121.2612"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -2205,7 +2205,7 @@
        id="path107-3-1-06-2-75-9-43-22-70"
        cx="103.32851"
        cy="121.00134"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -2213,7 +2213,7 @@
        id="path107-3-1-06-2-75-9-43-22-819"
        cx="102.90329"
        cy="120.51115"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -2221,7 +2221,7 @@
        id="path107-3-1-06-2-75-9-43-22-978"
        cx="102.28317"
        cy="119.89104"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -2229,7 +2229,7 @@
        id="path107-3-1-06-2-75-9-43-22-253"
        cx="101.9052"
        cy="119.56622"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -2237,7 +2237,7 @@
        id="path107-3-1-06-2-75-9-43-22-490"
        cx="101.49178"
        cy="119.22958"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -2245,7 +2245,7 @@
        id="path107-3-1-06-2-75-9-43-22-20"
        cx="102.56666"
        cy="120.22176"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -2253,7 +2253,7 @@
        id="path107-3-1-06-2-75-9-43-22-1962"
        cx="103.07455"
        cy="120.74149"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -2261,7 +2261,7 @@
        id="path107-3-1-06-2-75-9-43-22-120"
        cx="89.75132"
        cy="128.14482"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -2269,7 +2269,7 @@
        id="path107-3-1-06-2-75-9-43-22-73"
        cx="89.918358"
        cy="128.6209"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -2277,7 +2277,7 @@
        id="path107-3-1-06-2-75-9-43-22-119"
        cx="89.985176"
        cy="128.96333"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -2285,7 +2285,7 @@
        id="path107-3-1-06-2-75-9-43-22-0567"
        cx="90.068703"
        cy="129.41434"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -2293,7 +2293,7 @@
        id="path107-3-1-06-2-75-9-43-22-74"
        cx="90.127167"
        cy="129.90712"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -2301,7 +2301,7 @@
        id="path107-3-1-06-2-75-9-43-22-064"
        cx="90.177277"
        cy="130.42496"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -2309,7 +2309,7 @@
        id="path107-3-1-06-2-75-9-43-22-748"
        cx="90.26915"
        cy="130.93443"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -2317,7 +2317,7 @@
        id="path107-3-1-06-2-75-9-43-22-582"
        cx="90.260796"
        cy="131.43558"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -2325,7 +2325,7 @@
        id="path107-3-1-06-2-75-9-43-22-606"
        cx="90.294212"
        cy="131.91165"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -2333,7 +2333,7 @@
        id="path107-3-1-06-2-75-9-43-22-646"
        cx="90.285858"
        cy="132.3042"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -2341,7 +2341,7 @@
        id="path107-3-1-06-2-75-9-43-22-289"
        cx="90.294212"
        cy="132.77193"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -2349,7 +2349,7 @@
        id="path107-3-1-06-2-75-9-43-22-607"
        cx="90.277504"
        cy="133.23129"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -2357,7 +2357,7 @@
        id="path107-3-1-06-2-75-9-43-22-01"
        cx="90.26915"
        cy="133.68231"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -2365,7 +2365,7 @@
        id="path107-3-1-06-2-75-9-43-22-013"
        cx="90.277504"
        cy="134.13333"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -2373,7 +2373,7 @@
        id="path107-3-1-06-2-75-9-43-22-77"
        cx="90.285851"
        cy="134.6261"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -2381,7 +2381,7 @@
        id="path107-3-1-06-2-75-9-43-22-2645"
        cx="90.277504"
        cy="135.16899"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -2389,7 +2389,7 @@
        id="path107-3-1-06-2-75-9-43-22-202"
        cx="90.319267"
        cy="135.64507"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -2397,7 +2397,7 @@
        id="path107-3-1-06-2-75-9-43-22-909"
        cx="90.365112"
        cy="136.25032"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -2405,7 +2405,7 @@
        id="path107-3-1-06-2-75-9-43-22-945"
        cx="90.500946"
        cy="136.69917"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -2413,7 +2413,7 @@
        id="path107-3-1-06-2-75-9-43-22-103"
        cx="90.678123"
        cy="137.2366"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -2421,7 +2421,7 @@
        id="path107-3-1-06-2-75-9-43-22-788"
        cx="90.825768"
        cy="137.7327"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -2429,7 +2429,7 @@
        id="path107-3-1-06-2-75-9-43-22-6046"
        cx="90.985229"
        cy="138.20517"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -2437,7 +2437,7 @@
        id="path107-3-1-06-2-75-9-43-22-760"
        cx="91.203743"
        cy="138.61858"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -2445,7 +2445,7 @@
        id="path107-3-1-06-2-75-9-43-22-975"
        cx="91.475418"
        cy="139.04971"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -2453,7 +2453,7 @@
        id="path107-3-1-06-2-75-9-43-22-9785"
        cx="91.705742"
        cy="139.45721"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -2461,7 +2461,7 @@
        id="path107-3-1-06-2-75-9-43-22-3383"
        cx="91.965607"
        cy="139.84109"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -2469,7 +2469,7 @@
        id="path107-3-1-06-2-75-9-43-22-79"
        cx="92.302238"
        cy="140.27812"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -2477,7 +2477,7 @@
        id="path107-3-1-06-2-75-9-43-22-37"
        cx="92.62706"
        cy="140.57933"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -2485,7 +2485,7 @@
        id="path107-3-1-06-2-75-9-43-22-874"
        cx="92.90464"
        cy="141.06361"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -2493,7 +2493,7 @@
        id="path107-3-1-06-2-75-9-43-22-190"
        cx="93.105438"
        cy="141.51837"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -2501,7 +2501,7 @@
        id="path107-3-1-06-2-75-9-43-22-98"
        cx="93.08181"
        cy="141.90816"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -2509,7 +2509,7 @@
        id="path107-3-1-06-2-75-9-43-22-858"
        cx="93.406639"
        cy="141.63649"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -2517,7 +2517,7 @@
        id="path107-3-1-06-2-75-9-43-22-437"
        cx="93.672401"
        cy="141.41206"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -2525,7 +2525,7 @@
        id="path107-3-1-06-2-75-9-43-22-13"
        cx="93.247177"
        cy="141.16992"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -2533,7 +2533,7 @@
        id="path107-3-1-06-2-75-9-43-22-809"
        cx="92.934166"
        cy="140.77422"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -2541,7 +2541,7 @@
        id="path107-3-1-06-2-75-9-43-22-799"
        cx="92.697929"
        cy="140.42578"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -2549,7 +2549,7 @@
        id="path107-3-1-06-2-75-9-43-22-324"
        cx="92.379013"
        cy="140.06552"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -2557,7 +2557,7 @@
        id="path107-3-1-06-2-75-9-43-22-371"
        cx="92.10144"
        cy="139.60486"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -2565,7 +2565,7 @@
        id="path107-3-1-06-2-75-9-43-22-2202"
        cx="91.871109"
        cy="139.25641"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -2573,7 +2573,7 @@
        id="path107-3-1-06-2-75-9-43-22-175"
        cx="91.564003"
        cy="138.83119"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -2581,7 +2581,7 @@
        id="path107-3-1-06-2-75-9-43-22-1741"
        cx="91.286423"
        cy="138.32919"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -2589,7 +2589,7 @@
        id="path107-3-1-06-2-75-9-43-22-71"
        cx="91.097435"
        cy="137.87444"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -2597,7 +2597,7 @@
        id="path107-3-1-06-2-75-9-43-22-117"
        cx="90.884827"
        cy="137.30748"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -2605,7 +2605,7 @@
        id="path107-3-1-06-2-75-9-43-22-040"
        cx="90.725365"
        cy="136.84091"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -2613,7 +2613,7 @@
        id="path107-3-1-06-2-75-9-43-22-851"
        cx="90.595436"
        cy="136.20898"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -2621,7 +2621,7 @@
        id="path107-3-1-06-2-75-9-43-22-66"
        cx="90.560005"
        cy="135.68335"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -2629,7 +2629,7 @@
        id="path107-3-1-06-2-75-9-43-22-219"
        cx="90.524567"
        cy="135.06323"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -2637,7 +2637,7 @@
        id="path107-3-1-06-2-75-9-43-22-648"
        cx="90.477318"
        cy="134.27776"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -2645,7 +2645,7 @@
        id="path107-3-1-06-2-75-9-43-22-08"
        cx="90.465508"
        cy="133.68716"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -2653,7 +2653,7 @@
        id="path107-3-1-06-2-75-9-43-22-102"
        cx="90.418259"
        cy="134.62621"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -2661,7 +2661,7 @@
        id="path107-3-1-06-2-75-9-43-22-297"
        cx="90.459602"
        cy="133.14383"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -2669,7 +2669,7 @@
        id="path107-3-1-06-2-75-9-43-22-56"
        cx="90.430077"
        cy="132.67728"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -2677,7 +2677,7 @@
        id="path107-3-1-06-2-75-9-43-22-463"
        cx="90.447792"
        cy="132.16345"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -2685,7 +2685,7 @@
        id="path107-3-1-06-2-75-9-43-22-797"
        cx="90.447792"
        cy="131.66736"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -2693,7 +2693,7 @@
        id="path107-3-1-06-2-75-9-43-22-491"
        cx="90.489136"
        cy="131.2126"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -2701,7 +2701,7 @@
        id="path107-3-1-06-2-75-9-43-22-706"
        cx="90.495041"
        cy="130.72832"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -2709,7 +2709,7 @@
        id="path107-3-1-06-2-75-9-43-22-085"
        cx="90.506851"
        cy="130.24405"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -2717,7 +2717,7 @@
        id="path107-3-1-06-2-75-9-43-22-394"
        cx="90.495033"
        cy="129.73615"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -2725,7 +2725,7 @@
        id="path107-3-1-06-2-75-9-43-22-15"
        cx="90.47142"
        cy="129.21643"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -2733,7 +2733,7 @@
        id="path107-3-1-06-2-75-9-43-22-415"
        cx="90.435982"
        cy="128.73213"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -2741,7 +2741,7 @@
        id="path107-3-1-06-2-75-9-43-22-5498"
        cx="90.376923"
        cy="128.27739"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -2749,7 +2749,7 @@
        id="path107-3-1-06-2-75-9-43-22-385"
        cx="90.353294"
        cy="127.80492"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -2757,7 +2757,7 @@
        id="path107-3-1-06-2-75-9-43-22-222"
        cx="89.691833"
        cy="127.73995"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -2765,7 +2765,7 @@
        id="path107-3-1-06-2-75-9-43-22-703"
        cx="90.344322"
        cy="123.2254"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -2773,7 +2773,7 @@
        id="path107-3-1-06-2-75-9-43-22-4636"
        cx="90.603233"
        cy="122.78272"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -2781,7 +2781,7 @@
        id="path107-3-1-06-2-75-9-43-22-334"
        cx="90.920624"
        cy="122.28159"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -2789,7 +2789,7 @@
        id="path107-3-1-06-2-75-9-43-22-439"
        cx="91.221298"
        cy="121.88068"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -2797,7 +2797,7 @@
        id="path107-3-1-06-2-75-9-43-22-725"
        cx="92.382256"
        cy="120.70303"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -2805,7 +2805,7 @@
        id="path107-3-1-06-2-75-9-43-22-890"
        cx="92.774803"
        cy="120.45246"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -2813,7 +2813,7 @@
        id="path107-3-1-06-2-75-9-43-22-24"
        cx="94.779327"
        cy="119.42514"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -2821,7 +2821,7 @@
        id="path107-3-1-06-2-75-9-43-22-765"
        cx="95.881813"
        cy="119.04094"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -2829,7 +2829,7 @@
        id="path107-3-1-06-2-75-9-43-22-713"
        cx="97.685875"
        cy="118.71521"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -2837,7 +2837,7 @@
        id="path107-3-1-06-2-75-9-43-22-3385"
        cx="98.178658"
        cy="118.73192"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -2845,7 +2845,7 @@
        id="path107-3-1-06-2-75-9-43-22-108"
        cx="98.370758"
        cy="114.55583"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -2853,7 +2853,7 @@
        id="path107-3-1-06-2-75-9-43-22-763"
        cx="98.512749"
        cy="115.0152"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -2861,7 +2861,7 @@
        id="path107-3-1-06-2-75-9-43-22-50"
        cx="98.754959"
        cy="115.49127"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -2869,7 +2869,7 @@
        id="path107-3-1-06-2-75-9-43-22-8041"
        cx="99.022224"
        cy="115.89217"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -2877,7 +2877,7 @@
        id="path107-3-1-06-2-75-9-43-22-135"
        cx="98.036674"
        cy="112.74341"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -2885,7 +2885,7 @@
        id="path107-3-1-06-2-75-9-43-22-934"
        cx="98.036674"
        cy="111.98336"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -2893,7 +2893,7 @@
        id="path107-3-1-06-2-75-9-43-22-150"
        cx="98.237122"
        cy="111.49059"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -2901,7 +2901,7 @@
        id="path107-3-1-06-2-75-9-43-22-835"
        cx="97.994911"
        cy="112.32579"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -2909,7 +2909,7 @@
        id="path107-3-1-06-2-75-9-43-22-659"
        cx="98.395813"
        cy="111.09803"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -2917,7 +2917,7 @@
        id="path107-3-1-06-2-75-9-43-22-907"
        cx="98.587914"
        cy="110.53008"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -2925,7 +2925,7 @@
        id="path107-3-1-06-2-75-9-43-22-637"
        cx="99.197624"
        cy="109.48606"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -2933,7 +2933,7 @@
        id="path107-3-1-06-2-75-9-43-22-615"
        cx="96.541634"
        cy="109.77003"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -2941,7 +2941,7 @@
        id="path107-3-1-06-2-75-9-43-22-065"
        cx="95.898521"
        cy="109.70322"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -2949,7 +2949,7 @@
        id="path107-3-1-06-2-75-9-43-22-081"
        cx="95.397385"
        cy="109.65311"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -2957,7 +2957,7 @@
        id="path107-3-1-06-2-75-9-43-22-226"
        cx="94.896255"
        cy="109.58629"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -2965,7 +2965,7 @@
        id="path107-3-1-06-2-75-9-43-22-910"
        cx="94.461945"
        cy="109.4443"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -2973,7 +2973,7 @@
        id="path107-3-1-06-2-75-9-43-22-427"
        cx="93.84388"
        cy="109.21044"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -2981,7 +2981,7 @@
        id="path107-3-1-06-2-75-9-43-22-403"
        cx="93.309341"
        cy="108.99328"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -2989,7 +2989,7 @@
        id="path107-3-1-06-2-75-9-43-22-280"
        cx="92.014755"
        cy="108.11631"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -2997,7 +2997,7 @@
        id="path107-3-1-06-2-75-9-43-22-370"
        cx="91.638908"
        cy="107.80727"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -3005,7 +3005,7 @@
        id="path107-3-1-06-2-75-9-43-22-034"
        cx="91.338234"
        cy="107.38966"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -3013,7 +3013,7 @@
        id="path107-3-1-06-2-75-9-43-22-927"
        cx="89.433937"
        cy="108.74271"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -3021,7 +3021,7 @@
        id="path107-3-1-06-2-75-9-43-22-425"
        cx="89.091492"
        cy="109.21044"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -3029,7 +3029,7 @@
        id="path107-3-1-06-2-75-9-43-22-244"
        cx="88.774109"
        cy="109.66981"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -3037,7 +3037,7 @@
        id="path107-3-1-06-2-75-9-43-22-386"
        cx="87.646568"
        cy="110.83911"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -3045,7 +3045,7 @@
        id="path107-3-1-06-2-75-9-43-22-089"
        cx="86.151527"
        cy="111.9416"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -3053,7 +3053,7 @@
        id="path107-3-1-06-2-75-9-43-22-223"
        cx="85.140915"
        cy="112.53461"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -3061,7 +3061,7 @@
        id="path107-3-1-06-2-75-9-43-22-183"
        cx="83.278389"
        cy="113.29465"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -3069,7 +3069,7 @@
        id="path107-3-1-06-2-75-9-43-22-422"
        cx="81.624649"
        cy="113.48675"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -3077,7 +3077,7 @@
        id="path107-3-1-06-2-75-9-43-22-451"
        cx="79.386269"
        cy="113.12761"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -3085,7 +3085,7 @@
        id="path107-3-1-06-2-75-9-43-22-757"
        cx="80.580627"
        cy="113.39487"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -3093,7 +3093,7 @@
        id="path107-3-1-06-2-75-9-43-22-16"
        cx="79.603424"
        cy="114.62265"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -3101,7 +3101,7 @@
        id="path107-3-1-06-2-75-9-43-22-981"
        cx="80.697563"
        cy="114.92332"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -3109,7 +3109,7 @@
        id="path107-3-1-06-2-75-9-43-22-333"
        cx="78.551056"
        cy="114.0714"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -3117,7 +3117,7 @@
        id="path107-3-1-06-2-75-9-43-22-798"
        cx="77.473625"
        cy="113.43664"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -3125,7 +3125,7 @@
        id="path107-3-1-06-2-75-9-43-22-67"
        cx="77.03096"
        cy="113.1109"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -3133,7 +3133,7 @@
        id="path107-3-1-06-2-75-9-43-22-0484"
        cx="77.147888"
        cy="112.08359"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -3141,7 +3141,7 @@
        id="path107-3-1-06-2-75-9-43-22-816"
        cx="78.350601"
        cy="112.61813"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -3149,7 +3149,7 @@
        id="path107-3-1-06-2-75-9-43-22-852"
        cx="75.886711"
        cy="111.5407"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -3157,7 +3157,7 @@
        id="path107-3-1-06-2-75-9-43-22-199"
        cx="75.986938"
        cy="112.59307"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -3165,7 +3165,7 @@
        id="path107-3-1-06-2-75-9-43-22-6064"
        cx="73.155548"
        cy="110.5969"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -3173,7 +3173,7 @@
        id="path107-3-1-06-2-75-9-43-22-990"
        cx="72.62101"
        cy="110.45491"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -3181,7 +3181,7 @@
        id="path107-3-1-06-2-75-9-43-22-893"
        cx="72.119881"
        cy="110.39645"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -3189,7 +3189,7 @@
        id="path107-3-1-06-2-75-9-43-22-14"
        cx="71.618752"
        cy="110.28787"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -3197,7 +3197,7 @@
        id="path107-3-1-06-2-75-9-43-22-896"
        cx="71.209496"
        cy="110.26281"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -3205,7 +3205,7 @@
        id="path107-3-1-06-2-75-9-43-22-773"
        cx="70.190529"
        cy="109.97884"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -3213,7 +3213,7 @@
        id="path107-3-1-06-2-75-9-43-22-712"
        cx="70.299103"
        cy="110.88087"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -3221,7 +3221,7 @@
        id="path107-3-1-06-2-75-9-43-22-2150"
        cx="71.226196"
        cy="110.73888"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -3229,7 +3229,7 @@
        id="path107-3-1-06-2-75-9-43-22-904"
        cx="71.660507"
        cy="110.73888"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -3237,7 +3237,7 @@
        id="path107-3-1-06-2-75-9-43-22-0137"
        cx="72.094818"
        cy="110.81406"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -3245,7 +3245,7 @@
        id="path107-3-1-06-2-75-9-43-22-411"
        cx="72.512428"
        cy="110.98945"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -3253,7 +3253,7 @@
        id="path107-3-1-06-2-75-9-43-22-303"
        cx="72.963448"
        cy="111.14814"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -3261,7 +3261,7 @@
        id="path107-3-1-06-2-75-9-43-22-217"
        cx="81.12352"
        cy="120.87843"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -3269,7 +3269,7 @@
        id="path107-3-1-06-2-75-9-43-22-565"
        cx="81.825104"
        cy="120.36894"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -3277,7 +3277,7 @@
        id="path107-3-1-06-2-75-9-43-22-4221"
        cx="80.572281"
        cy="122.14796"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -3285,7 +3285,7 @@
        id="path107-3-1-06-2-75-9-43-22-724"
        cx="81.34903"
        cy="121.99761"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -3293,7 +3293,7 @@
        id="path107-3-1-06-2-75-9-43-22-165"
        cx="82.342941"
        cy="121.93079"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -3301,7 +3301,7 @@
        id="path107-3-1-06-2-75-9-43-22-785"
        cx="83.554001"
        cy="121.83891"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -3309,7 +3309,7 @@
        id="path107-3-1-06-2-75-9-43-22-9273"
        cx="84.071838"
        cy="121.84727"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -3317,7 +3317,7 @@
        id="path107-3-1-06-2-75-9-43-22-647"
        cx="86.026245"
        cy="122.22312"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -3325,7 +3325,7 @@
        id="path107-3-1-06-2-75-9-43-22-972"
        cx="86.502319"
        cy="122.48204"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -3333,7 +3333,7 @@
        id="path107-3-1-06-2-75-9-43-22-216"
        cx="87.847023"
        cy="123.59288"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -3341,7 +3341,7 @@
        id="path107-3-1-06-2-75-9-43-22-302"
        cx="88.055824"
        cy="123.95203"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -3349,7 +3349,7 @@
        id="path107-3-1-06-2-75-9-43-22-156"
        cx="88.331444"
        cy="124.45316"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -3357,7 +3357,7 @@
        id="path107-3-1-06-2-75-9-43-22-500"
        cx="88.623772"
        cy="124.81229"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -3365,7 +3365,7 @@
        id="path107-3-1-06-2-75-9-43-22-346"
        cx="90.018585"
        cy="124.46151"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -3373,7 +3373,7 @@
        id="path107-3-1-06-2-75-9-43-22-602"
        cx="79.160759"
        cy="122.01849"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -3381,7 +3381,7 @@
        id="path107-3-1-06-2-75-9-43-22-589"
        cx="78.630402"
        cy="122.30247"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -3389,7 +3389,7 @@
        id="path107-3-1-06-2-75-9-43-22-506"
        cx="78.216965"
        cy="122.51128"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -3397,7 +3397,7 @@
        id="path107-3-1-06-2-75-9-43-22-083"
        cx="77.786827"
        cy="122.64073"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -3405,7 +3405,7 @@
        id="path107-3-1-06-2-75-9-43-22-782"
        cx="77.319107"
        cy="122.8036"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -3413,7 +3413,7 @@
        id="path107-3-1-06-2-75-9-43-22-105"
        cx="76.83886"
        cy="122.93306"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -3421,7 +3421,7 @@
        id="path107-3-1-06-2-75-9-43-22-855"
        cx="76.463013"
        cy="123.07504"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -3429,7 +3429,7 @@
        id="path107-3-1-06-2-75-9-43-22-07"
        cx="76.037048"
        cy="123.1711"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -3437,7 +3437,7 @@
        id="path107-3-1-06-2-75-9-43-22-382"
        cx="75.623619"
        cy="123.43002"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -3445,7 +3445,7 @@
        id="path107-3-1-06-2-75-9-43-22-307"
        cx="75.193481"
        cy="123.69728"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -3453,7 +3453,7 @@
        id="path107-3-1-06-2-75-9-43-22-776"
        cx="74.734108"
        cy="123.95203"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -3461,7 +3461,7 @@
        id="path107-3-1-06-2-75-9-43-22-911"
        cx="74.291443"
        cy="124.29028"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -3469,7 +3469,7 @@
        id="path107-3-1-06-2-75-9-43-22-908"
        cx="73.928123"
        cy="124.6202"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -3477,7 +3477,7 @@
        id="path107-3-1-06-2-75-9-43-22-988"
        cx="73.477104"
        cy="124.80395"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -3485,7 +3485,7 @@
        id="path107-3-1-06-2-75-9-43-22-037"
        cx="73.26413"
        cy="124.758"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -3493,7 +3493,7 @@
        id="path107-3-1-06-2-75-9-43-22-069"
        cx="73.397758"
        cy="125.20485"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -3501,7 +3501,7 @@
        id="path107-3-1-06-2-75-9-43-22-2177"
        cx="73.677559"
        cy="124.89999"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -3509,7 +3509,7 @@
        id="path107-3-1-06-2-75-9-43-22-976"
        cx="74.174515"
        cy="124.55756"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -3517,7 +3517,7 @@
        id="path107-3-1-06-2-75-9-43-22-271"
        cx="74.537834"
        cy="124.30282"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -3525,7 +3525,7 @@
        id="path107-3-1-06-2-75-9-43-22-588"
        cx="74.94709"
        cy="124.05643"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -3533,7 +3533,7 @@
        id="path107-3-1-06-2-75-9-43-22-456"
        cx="75.423164"
        cy="123.81421"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -3541,7 +3541,7 @@
        id="path107-3-1-06-2-75-9-43-22-568"
        cx="75.811539"
        cy="123.60123"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -3549,7 +3549,7 @@
        id="path107-3-1-06-2-75-9-43-22-48"
        cx="76.187386"
        cy="123.43419"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -3557,7 +3557,7 @@
        id="path107-3-1-06-2-75-9-43-22-838"
        cx="76.692696"
        cy="123.26297"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -3565,7 +3565,7 @@
        id="path107-3-1-06-2-75-9-43-22-752"
        cx="77.13118"
        cy="123.10845"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -3573,7 +3573,7 @@
        id="path107-3-1-06-2-75-9-43-22-450"
        cx="77.640663"
        cy="122.94559"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -3581,7 +3581,7 @@
        id="path107-3-1-06-2-75-9-43-22-573"
        cx="78.1418"
        cy="122.79525"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -3589,7 +3589,7 @@
        id="path107-3-1-06-2-75-9-43-22-272"
        cx="78.559402"
        cy="122.64491"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -3597,7 +3597,7 @@
        id="path107-3-1-06-2-75-9-43-22-134"
        cx="78.960312"
        cy="122.52798"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -3605,7 +3605,7 @@
        id="path107-3-1-06-2-75-9-43-22-941"
        cx="79.461441"
        cy="122.42356"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -3613,7 +3613,7 @@
        id="path107-3-1-06-2-75-9-43-22-95"
        cx="80.259071"
        cy="121.50901"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -3621,7 +3621,7 @@
        id="path107-3-1-06-2-75-9-43-22-741"
        cx="82.646126"
        cy="119.73748"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -3629,7 +3629,7 @@
        id="path107-3-1-06-2-75-9-43-22-221"
        cx="82.982765"
        cy="119.3595"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -3637,7 +3637,7 @@
        id="path107-3-1-06-2-75-9-43-22-620"
        cx="83.266243"
        cy="119.01106"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -3645,7 +3645,7 @@
        id="path107-3-1-06-2-75-9-43-22-229"
        cx="83.496574"
        cy="118.53859"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -3653,7 +3653,7 @@
        id="path107-3-1-06-2-75-9-43-22-743"
        cx="82.785606"
        cy="115.54974"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -3661,7 +3661,7 @@
        id="path107-3-1-06-2-75-9-43-22-561"
        cx="81.841805"
        cy="115.16136"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -3669,7 +3669,7 @@
        id="path107-3-1-06-2-75-9-43-22-4031"
        cx="88.206169"
        cy="95.805206"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -3677,7 +3677,7 @@
        id="path107-3-1-06-2-75-9-43-22-277"
        cx="87.989006"
        cy="95.30825"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -3685,7 +3685,7 @@
        id="path107-3-1-06-2-75-9-43-22-9810"
        cx="87.780205"
        cy="94.777885"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -3693,7 +3693,7 @@
        id="path107-3-1-06-2-75-9-43-22-7601"
        cx="87.416885"
        cy="94.33522"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -3701,7 +3701,7 @@
        id="path107-3-1-06-2-75-9-43-22-025"
        cx="87.659096"
        cy="94.214111"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -3709,7 +3709,7 @@
        id="path107-3-1-06-2-75-9-43-22-6064-1"
        cx="72.824646"
        cy="110.83142"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -3717,7 +3717,7 @@
        id="path107-3-1-06-2-75-9-43-22-6064-9"
        cx="72.34037"
        cy="110.65424"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -3725,7 +3725,7 @@
        id="path107-3-1-06-2-75-9-43-22-6064-7"
        cx="90.176125"
        cy="106.00041"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -3733,7 +3733,7 @@
        id="path107-3-1-06-2-75-9-43-22-6064-13"
        cx="90.022568"
        cy="105.58701"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -3741,7 +3741,7 @@
        id="path107-3-1-06-2-75-9-43-22-6064-12"
        cx="99.631935"
        cy="108.21653"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -3749,7 +3749,7 @@
        id="path107-3-1-06-2-75-9-43-22-6064-0"
        cx="103.96044"
        cy="121.37932"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -3757,7 +3757,7 @@
        id="path107-3-1-06-2-75-9-43-22-6064-6"
        cx="104.27936"
        cy="121.67461"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
@@ -3765,7 +3765,7 @@
        id="path107-3-1-06-2-75-9-43-22-6064-8"
        cx="90.077049"
        cy="128.06129"
-       style="display:inline;opacity:0.603;stroke-width:0.0107362"
+       style="display:inline;opacity:1;stroke-width:0.07055556;stroke:#000000;fill:#323232;fill-opacity:0.39215687;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        r="0.3125"
        inkscape:transform-center-x="1.2402343"
        inkscape:transform-center-y="-3.5907718" />
