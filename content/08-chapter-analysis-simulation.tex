@@ -917,20 +917,20 @@ The volume used is the $\modelPsi=\SI{0}{\percent} / \modelInc=\SI{0}{\degree}$ 
 \\
 %
 The \cref{fig:speedTissueMPI} shows the parallelization of the discrete tissue generation (see \cref{sec:dv_generator}).
-The speedup for $\SI{8}{\cpus}$ about $\SI{6.8}{}$ and for $\SI{48}{\cpus}$ about $\SI{30}{}$ for this architecture.
-For the simulation \cref{fig:speedSimMPI} the behavier is similar with a speedup for $\SI{8}{\cpus}$ about $\SI{7.2}{}$ and for $\SI{48}{\cpus}$ about $\SI{35}{}$.
+The speedup for $\SI{8}{\cores}$ about $\SI{6.8}{}$ and for $\SI{48}{\cores}$ about $\SI{30}{}$ for this architecture.
+For the simulation \cref{fig:speedSimMPI} the behavier is similar with a speedup for $\SI{8}{\cores}$ about $\SI{7.2}{}$ and for $\SI{48}{\cores}$ about $\SI{35}{}$.
 Looking at the plot the speedup values for the different tilting angles are shown.
 The centered $(C)$ position has a significant higher speedup then the tilts.
 \par
 %
 The \ac{OpenMP} speedup for tissue generation is significantly lower than that in the \ac{MPI} case.
-The speedup reaches a value of $\SI{3}{}$ for $\SI{8}{\cpus}$ and $\SI{5.23}{}$ for $\SI{48}{\cpus}$.
+The speedup reaches a value of $\SI{3}{}$ for $\SI{8}{\cores}$ and $\SI{5.23}{}$ for $\SI{48}{\cores}$.
 The speed increase is almost linear for all tested cpus.
 \\
 %
 In the case of simulation acceleration, the values are similar to the case of \ac{MPI}.
-Up to $\SI{8}{\cpus}$ the speedup is almost identical and ideal.
-However, for a larger number of \acsp{CPU}, the speedup is higher with $\SI{42}{}$ for $\SI{48}{\cpus}$.
+Up to $\SI{8}{\cores}$ the speedup is almost identical and ideal.
+However, for a larger number of \acsp{CPU}, the speedup is higher with $\SI{42}{}$ for $\SI{48}{\cores}$.
 %
 %
 \section{Discussion}
@@ -1056,11 +1056,11 @@ However, compared to the other results at this orientation, the other parameters
 %
 The simulation algorithm speedup results shown in \cref{fig:speedTissueMPI,fig:speedSimMPI,fig:speedTissueMP,fig:speedSimMP} show very good speedup with increasing \ac{CPU} number, except for the \ac{OpenMP} case for the tissue generation algorithm.
 Here, since the \acsp{CPU} must write to the same memory in parallel, but not to the same memory address (see \cref{sec:dvOpti}), the overhead seems to slow down the algorithm quite a bit.
-From the results, no more than $\SI{4}{\cpus}$ is necessary, otherwise too much \dummy{} is lost.
+From the results, no more than $\SI{4}{\cores}$ is necessary, otherwise too much \dummy{} is lost.
 However, since the \ac{MPI} implementation is quite good, the algorithm should be sped up over this implementation if needed.
 \\
 %
-The simulation, on the other hand, has a very good speedup to $\SI{48}{\cpus}$ for both the \ac{MPI} and the \ac{OpenMP}.
+The simulation, on the other hand, has a very good speedup to $\SI{48}{\cores}$ for both the \ac{MPI} and the \ac{OpenMP}.
 The \ac{OpenMP} is even stronger here.
 This is the case because the \ac{OpenMP} implementation does not need to communicate with each other, and since the rest of the memory accesses are random anyway, the light beams can be ideally parallized.
 The same is true for the \ac{MPI} implementation except for the tilted case.

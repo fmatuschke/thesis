@@ -135,7 +135,7 @@ In this way, edge effects should be prevented.
         \addplot[GREEN,thick,domain=0.6:1.4, samples=2*42, smooth]{1/(\sigmaValue*x*sqrt(2*pi))*exp(-(ln(x)-\muValue)^2/(2*\sigmaValue^2))}; \addlegendentry{$\mu=0.0,\sigma=0.1$}
     \end{axis}
 \end{tikzpicture}
-\caption[]{\todo{check values in literatur} Probability density function of a multiplicative \name{log normal} distribution.}
+\caption[]{Probability density function of a multiplicative \name{log normal} distribution.}
 \label{fig:logNormal}
 \end{figure}
 %
@@ -370,7 +370,7 @@ The strongest difference is a very significant reduction of the runtime with an 
 The goal is to identify a parameter set that is a) fast, b) collision-free, and c) allows a high volume fraction for dense fibers.
 For parallel fibers, the solution process is always faster than for intersecting bundles.
 Even if the number of colliding objects is more or less the same, the volume required to have enough space to not collide with each other is larger.
-This is visible in the overlap fraction plot \dummy{}.
+This is visible in the overlap fraction plot \cref{fig:timeDevelopmentNone,fig:timeDevelopmentCross}.
 The overlap is significant higher for the crossing fibers than for the single fiber case.
 This means that not only the fiber segments have to move out of the way is longer, but also the fiber segments which are but into the octree contain more multiple cases and the number per octree leaf is higher.
 This significantly increases the runtime until the volume is solved.
@@ -482,13 +482,13 @@ For $\Delta_{\mathit{steps}} = \SI{0}{\steps}$, the speedup for $\SI{2}{}$ cores
 Additional cores increase the speedup, but only slightly.
 For parallel fibers, the speedup does not increase above $2$, and for crossing fibers, it does not increase above $\SI{2.5}{}$.
 For $\Delta_{\mathit{steps}} = \SI{100}{\steps}$, the speedup approaches the ideal curve.
-The best case in this data set is for $\Delta_{\mathit{steps}} = \SI{1000}{\steps}$ and parallel fibers. There $\SI{2}{}$ cores almost reach a speedup of $2$ and 8 cores reach a speedup of $\SI{5.9}{}$.
+The best case in this data set is for $\Delta_{\mathit{steps}} = \SI{1000}{\steps}$ and parallel fibers. There $\SI{2}{}$ cores almost reach a speedup of $\SI{2}{\cores}$ and $\SI{8}{\cores}$ reach a speedup of $\SI{5.9}{}$.
 However, crossing fiber bundles have a much lower speedup.
-There $\SI{8}{}$ cores reach only a speedup of $\SI{4.3}{}$.
-\\
-\dummy{} More cpu cores \cref{app:solverSpeedupAll}.
-% \par
-%
+There $\SI{8}{\cores}$ reach only a speedup of $\SI{4.3}{}$.
+More cpu cores are shown in \cref{app:solverSpeedupAll} which, however, do not \dummy{}.
+% 
+% 
+% 
 \subsection{Discussion}
 This most likely has to do with the fact that the data has to be transferred between all cores and this takes quite a lot of time.
 Even though the algorithm is specifically optimized to reduce the amount of data to be copied, the parallelized instructions are often very short (\eg{} move positions), except for the distance calculation.
@@ -587,7 +587,8 @@ If this is also true for anatomically tissue has to be explored.
 Measurements like electro microscopy make it difficult to analyse shuch structures because the necesarry vacuum deforms the tissue strongly.
 TPFM on the other hand has the disadvantage, that in densly \ac{WM} regions the fibers saturate the images and no individual fibers can be detected anymore.
 Nevertheless since real nerve fibers are not stiff and are also not perfectly cylindric, one can assume, that from a geometrical point of few the angular distribution should be smaller than in these generated models.
-However which effect the growing and myelination process of the axons have on there geometry is still \dummy{} research.
+However which effect the growing and myelination process of the axons have on there geometry is in this context an open question.
+\par
 %
 These models have the advantage to produce a naturaly inspired angular distribution which should lead in a more realistic distribution of the \ac{3D-PLI} simulation signal.
 There only the distribution, but not actually the position of the fiber (see \dummy{}) is of relevants.
