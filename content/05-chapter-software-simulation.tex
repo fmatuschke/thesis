@@ -46,8 +46,8 @@ This helps to drastically speed up the light matter interaction of the next step
 The discreticed tissue volume represents a cuboid sliced into equal sized smaller cubes called voxels, \ie 3d pixels (see \cref{fig:discVol}).
 Each voxel contains the physical properties of the tissue inside its current position.
 The overall volume is limited by an \ac{AABB} or \ac{VOI}, which is defined by a minimal and maximal value $\voi = [(x_{\mathit{min}}, y_{\mathit{min}}, z_{\mathit{min}}),(x_{\mathit{max}}, y_{\mathit{max}}, z_{\mathit{max}})]$.
-Additionally the \voxelsize{} parameter \voxels{} is set to a floating point number and defines the edge length of the voxels.
-If the division of the \voi{} by the \voxelsize{} is not an integer, the \voi{} is automatically increased to the next possible integer value to avoid boundary effects.
+Additionally the \Voxelsize{} parameter \voxelsize{} is set to a floating point number and defines the edge length of the voxels.
+If the division of the \voi{} by the \Voxelsize{} is not an integer, the \voi{} is automatically increased to the next possible integer value to avoid boundary effects.
 %
 %
 %
@@ -105,7 +105,7 @@ At the end the DV-Generator returns the arrays \tissue{}, \opticalaxis{} and the
 To discretize nerve fiber models (see \cref{chap:sof:modelling}) one can start with the discretization of a single nerve fiber segment, since a fiber is a chain of consecutive segment.
 The idea is, that if a voxel is inside a fiber segment, it will be marked as a tissue with the physical properties (absorption, optical axis and birefringece) from the voxels center position $\vec{q}$ (see \cref{fig:fiber_discretisation}).
 In this context \say{a voxel inside a fiber segment} means, that its center point is inside the volume of the fiber segment.
-The discretized tissue is designed in such a way that, that the arrays position $[i,j,k]$ takes up the space of $(i,j,k)$ to $(i+1,j+1,k+1)$ in the unit of \voxelsize{}.
+The discretized tissue is designed in such a way that, that the arrays position $[i,j,k]$ takes up the space of $(i,j,k)$ to $(i+1,j+1,k+1)$ in the unit of \Voxelsize{}.
 \par
 %
 Therefore the filling process can be integrated by looping over all voxels in the current volume.
@@ -161,24 +161,24 @@ The length of the optical axis vector is interpreted as strength. In this model 
 %
 %
 %
-\subsection{\voxelsize}
+\subsection{\Voxelsize}
 %
 \begin{figure}[!t]
 \centering
 % \tikzset{external/export=false}
 \setlength{\tikzwidth}{.24\textwidth}
 \input{gfx/simpli/vector_error}
-\caption[Discretization error]{Discretization error. Cross section of single fiber with one myelin layer inside discretized tissue volume. The couloured pattern show the resulting voxels which corresponds to the fiber. The smaller the \voxelsize{}, the smaller the representation error.}
+\caption[Discretization error]{Discretization error. Cross section of single fiber with one myelin layer inside discretized tissue volume. The couloured pattern show the resulting voxels which corresponds to the fiber. The smaller the \Voxelsize{}, the smaller the representation error.}
 \label{fig:vectorfield_disc_error}
 \end{figure}
 %
-The \voxelsize{} parameter is the most important property of the simulation.
+The \Voxelsize{} parameter is the most important property of the simulation.
 It will determine, how accurate the simulation is.
 This is first of all because it will change the number of voxels with which the nerve fiber model is discretized (see \cref{fig:vectorfield_disc_error}).
 Especially for the case of multiple layers this will have an major impact.
-Additionally it will also change the \stepsize{} of the light through the tissue.
-Usually the \stepsize{} is the same as the \voxelsize{}, but the user can change it if necessary.
-Also the number of light particels will increase with decreasing \voxelsize{} since for about each voxel at the bottom of the tissue a single light particle will be casted (see \cref{sec:pathOfLight}).
+Additionally it will also change the \Stepsize{} of the light through the tissue.
+Usually the \Stepsize{} is the same as the \Voxelsize{}, but the user can change it if necessary.
+Also the number of light particels will increase with decreasing \Voxelsize{} since for about each voxel at the bottom of the tissue a single light particle will be casted (see \cref{sec:pathOfLight}).
 Therefore the resulting intensity signal will also be more accurate.
 %
 %
@@ -322,7 +322,7 @@ In the case of already simulating an undistored view, the light paths have to sp
 %
 \subsection{Tissue voxel interpolation}
 %
-For a \stepsize{} unequal to the \voxelsize{} or a tilted light path the midpoint does not match the center point of the voxel anymore.
+For a \Stepsize{} unequal to the \Voxelsize{} or a tilted light path the midpoint does not match the center point of the voxel anymore.
 This means, that the physical properties stored in the arrays have to be interpolated.
 %
 \begin{figure}[!t]
