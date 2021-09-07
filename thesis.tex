@@ -47,22 +47,22 @@
 % \def\forcetikzscale{true}
 % \tikzset{external/force remake}
 % 
-\includeonly{%
-% content/titlepages,
-% content/abstract,
-% content/acknowledgment,
-% content/01-chapter-introduction,
-content/02-chapter-neuroanatomy,
-content/03-chapter-theory,
-% content/04-chapter-software-model,
-% content/05-chapter-software-simulation,
-% content/06-chapter-software,
-% content/07-chapter-analysis-model,
-% content/08-chapter-analysis-simulation,
-% content/09-chapter-conclusion,
-% content/declaration
-% content/appendix,
-} % end includeonly
+% \includeonly{%
+% % content/titlepages,
+% % content/abstract,
+% % content/acknowledgment,
+% % content/01-chapter-introduction,
+% % content/02-chapter-neuroanatomy,
+% % content/03-chapter-theory,
+% % content/04-chapter-software-model,
+% % content/05-chapter-software-simulation,
+% % content/06-chapter-software,
+% % content/07-chapter-analysis-model,
+% % content/08-chapter-analysis-simulation,
+% % content/09-chapter-conclusion,
+% % content/declaration
+% % content/appendix,
+% } % end includeonly
 %
 \input{content/acronyms}
 %
@@ -70,7 +70,8 @@ content/03-chapter-theory,
 % **************************************************
 % Warnings
 % **************************************************
-% \ActivateWarningFilters[references]
+\ActivateWarningFilters[references]
+\ActivateWarningFilters[citations]
 % \par
 % \noindent\rule{\textwidth}{2pt}
 % \par

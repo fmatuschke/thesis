@@ -702,14 +702,14 @@ Every optimization was checked for improvements for different types of volumes a
 %
 \paragraph{OpenMP}
 %
-To be able to use several \acp{CPU}, \openmp{} is used.
+To be able to use several \acp{CPU}, \ac{OpenMP} is used.
 A structure like an octree suggests to use a parallelization of 8 cores.
 However this would only be true, if the data is already available on each core and that the data does not have to be shared.
 This is not the case.
 One and the same object can be involed in multiple nodes.
 And after a branch is processd, the data of all branches has to be collected.
 During the development phase of this algorithm it was recogniced, that up to the second level the branches should be allowed to use multiple cores. At the 3rd level the speedup is already significant lower, since the data managment between the cores is a overhead.
-Additionally oher functions, wich are thead safe are parallized as well with \openmp{} like \eg{} the addition of the velocity to each object.
+Additionally oher functions, wich are thead safe are parallized as well with \ac{OpenMP} like \eg{} the addition of the velocity to each object.
 %
 %
 %
@@ -719,12 +719,12 @@ Additionally oher functions, wich are thead safe are parallized as well with \op
 %
 A visualization tool is available to visualize the nerve fiber configuration.
 This enables the user to get a direct feedback (\eg{} after each step) to adjust the initial fiber configuration or boundary condition.
-It is written in \cpp{} and \opengl{} 2 \cite{isocpp, khronos}.
+It is written in \cpp{} and \ac{OpenGL} 2 \cite{isocpp, khronos}.
 This implementation uses \code{gluCylinder} to represent a nerve fiber segment.
 This is at current standarts by no means the fastes approuch, but in contrast to the calculation time of a single step in the collision algorithm still fast enough.
 \\
 A more advanced interactive tool is available as well as open source, the FAConstructor \cite{Reuter2019}.
-It additionally provides interactive methods to build nerve fiber models and was written in \opengl{} 3.
+It additionally provides interactive methods to build nerve fiber models and was written in \ac{OpenGL} 3.
 \par
 %
 %

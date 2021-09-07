@@ -192,8 +192,8 @@ This was chosen so that later in the simulation part, where the light travels ma
 \par
 %
 Two methods are used to parallelize the algorithm on the \ac{CPU}.
-The first uses \openmp{} to parallelize the filling of the \ac{AABB} volume of each object.
-The second uses \mpi{} to allow distribution to multiple \ac{CPU} cores without sharing memory (detailed description in \cref{sec:mpiSim}).
+The first uses \ac{OpenMP} to parallelize the filling of the \ac{AABB} volume of each object.
+The second uses \ac{MPI} to allow distribution to multiple \ac{CPU} cores without sharing memory (detailed description in \cref{sec:mpiSim}).
 \par
 %
 The parallelization of filling the voxels of the discretized volume leads to a race condition if several threads want to write or read to the same memory address (or coordinate) (\eg{} two objects occupy the same space).
@@ -210,7 +210,7 @@ If the threads then execute a loop over all indices (or coordinates), thread $n$
 \centering
 \setlength{\tikzwidth}{0.5\textwidth}
 \inputtikz{gfx/simpli/disc_volume_thread}
-\caption[discretized volume parallelization]{discretisation volume parallelization with \openmp{}. Each thread handles every n-th yz-section. This ensures both thread safety and that the workload is more balanced, even with an inhomogeneous.}
+\caption[discretized volume parallelization]{discretisation volume parallelization with \ac{OpenMP}. Each thread handles every n-th yz-section. This ensures both thread safety and that the workload is more balanced, even with an inhomogeneous.}
 \label{fig:discVolThread}
 \end{figure}
 %
@@ -226,9 +226,9 @@ However since with this configuration only once threads are spawned, and the \ac
 Additionally the shared cache of the \acp{CPU} can speed up the memory retrieving process as well, if the \acp{CPU} workload do not differ that much.
 \par
 \paragraph{Note}
-Depending on the size of the volume and the acessable memory, the user is adviced to distribute the \openmp{} parallelization on one node and the \mpi{} distribution on multiple nodes. Depending onthe Architecture the distribution is not straightforword to optimize. Individual tests should be performed.
-The \openmp{} speedup is usually as fastest if the spawend threads are located on the same physical \ac{CPU} or even inside the same \acp{CPU} which uses the same cache.
-It can therefore be that the speedup is increased by reducing the \openmp{} threads and by increasing the \mpi{} threads instead.
+Depending on the size of the volume and the acessable memory, the user is adviced to distribute the \ac{OpenMP} parallelization on one node and the \ac{MPI} distribution on multiple nodes. Depending onthe Architecture the distribution is not straightforword to optimize. Individual tests should be performed.
+The \ac{OpenMP} speedup is usually as fastest if the spawend threads are located on the same physical \ac{CPU} or even inside the same \acp{CPU} which uses the same cache.
+It can therefore be that the speedup is increased by reducing the \ac{OpenMP} threads and by increasing the \ac{MPI} threads instead.
 %
 %
 %
@@ -384,7 +384,7 @@ for light in light_beams:
 %
 There are several optimizations used inside this pipeline.
 First the order of the tissue stored inside the memory is along the z-axis (as described in \cref{sec:dvOpti}).
-Secondly the main for loop for each light ray is parallized with \openmp{}.
+Secondly the main for loop for each light ray is parallized with \ac{OpenMP}.
 This threads are completely separated and no race conditions exists.
 %
 %
@@ -441,11 +441,11 @@ For this purpose \acreset{MPI} \ac{MPI} is used.
 A method is implemented that automatically divides the volume along the $x$-axis and $y$-axis into blocks with minimal surface area (see \cref{fig:com_halo}).
 The minimization of the $x-y$-surface area is important for the simulation algorithm.
 \\
-Once the volume is split into euqal parts, with respect to the nature of integers, the above mentioned algorithms can be performend completly analog on the \mpi{} ranks, as if they only would know about there volume.
+Once the volume is split into euqal parts, with respect to the nature of integers, the above mentioned algorithms can be performend completly analog on the \ac{MPI} ranks, as if they only would know about there volume.
 The only exception is the simulation for tilted light beams.
-This means, that at the boarder of the volume, when a light beam travels through the tissue, the light can leave the local volume of the \mpi{} rank.
-\mpi{} provides several methods to send information to another rank.
-Since this volume splitting is cartesion, the cartesion implementations of \mpi{} are used (\eg{} \code{MPI\tu Cart\tu create}).
+This means, that at the boarder of the volume, when a light beam travels through the tissue, the light can leave the local volume of the \ac{MPI} rank.
+\ac{MPI} provides several methods to send information to another rank.
+Since this volume splitting is cartesion, the cartesion implementations of \ac{MPI} are used (\eg{} \code{MPI\tu Cart\tu create}).
 However since the light beam also needs in the case of interpolation the information of the surrounding $\SI{8}{\voxel}$, this would mean that the missing voxels had to be transferred to the neighboring ranks.
 %
 \begin{figure}[!t]
@@ -472,10 +472,10 @@ This is also the reason, why the surface area is minimized, so that the number o
 \\
 To even more speed up the communication process, all leaving light beams are first stored locally in a communication buffer, and only after all local light beams were processed, the buffer will be communicated to the neighbors.
 This ensure a minimal communication cost.
-The main light beam algorithm loop is then started again on all \mpi{} ranks for the communicated light beams.
+The main light beam algorithm loop is then started again on all \ac{MPI} ranks for the communicated light beams.
 This is repeated until no more communications were necessary.
 \par
 %
-Each \mpi{} process can additionally use \openmp{} to create multiple threads for efficient use of shared memory if the architecture supports it.
+Each \ac{MPI} process can additionally use \ac{OpenMP} to create multiple threads for efficient use of shared memory if the architecture supports it.
 % 
 %

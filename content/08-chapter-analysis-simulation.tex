@@ -362,10 +362,10 @@ model delta rotation & $\SI{15}{\degree}$\\
 %
 %
 %
-As described in \cref{chap:Software}, \fastpli{} contains a pipeline implementation of the simulation with automatic analysis.
-This implementation is used to calculate the discretized volumes, simulate the signal, and apply the optical noise and tilt analysis to the resulting signal using the algorithm \rofl{}. \footnote{source code is available in the appendix \dummy{}}.
+As described in \cref{chap:Software}, \ac{fastPLI} contains a pipeline implementation of the simulation with automatic analysis.
+This implementation is used to calculate the discretized volumes, simulate the signal, and apply the optical noise and tilt analysis to the resulting signal using the algorithm \ac{ROFL}. \footnote{source code is available in the appendix \dummy{}}.
 This pipeline is used to simulate and analyze the \ac{3D-PLI} signal for the model library with different orientations of two crossing fiber populations.
-\Cref{tab:simParameters} lists the parameters of the simulation in the variable notation \fastpli{}.
+\Cref{tab:simParameters} lists the parameters of the simulation in the variable notation \ac{fastPLI}.
 With a pixel size of \SI{1.3}{\micro\meter}, $\SI{2500}{\pixel}$ is available per simulation for statistical analysis.
 The models are tilted in steps of $\Delta \modelInc = \SI{5}{\degree}$ for a single fiber population and by $\Delta \modelInc = \SI{30}{\degree}$ for intersecting fiber populations. The latter are then also rotated around the first fiber population (see \cref{fig:twomodelpopdesign}).
 Depending on the crossing angle \modelOmega{}, the step size is adjusted so that the spatial distance between two resulting rotations is close to $\Delta \modelRot = \SI{15}{\degree}$.
@@ -910,7 +910,7 @@ The \rvalue{} for higher proportions of the first fiber population $\modelPsi$ a
 Simulations were performed using a single compute node (\texttt{2x Intel(R) Xeon(R) CPU E5-4657L v2}).
 \\
 %
-Four speedup measurements are shown in \cref{fig:speedTissueMPI,fig:speedSimMPI} for parallelization \mpi{} and \cref{fig:speedTissueMP,fig:speedSimMP} for parallelization \openmp{}.
+Four speedup measurements are shown in \cref{fig:speedTissueMPI,fig:speedSimMPI} for parallelization \ac{MPI} and \cref{fig:speedTissueMP,fig:speedSimMP} for parallelization \ac{OpenMP}.
 To measure the speedup, each algorithm was run $N=10$ times.
 To calculate the speedup value, the mean measured time for $n_\mathit{cpu}=1$ was then divided by the measured time for the $n_\mathit{cpu}$ individual values.
 The volume used is the $\modelPsi=\SI{0}{\percent} / \modelInc=\SI{0}{\degree}$ from the \cref{sec:simParameterEnv} parameterization.
@@ -923,12 +923,12 @@ Looking at the plot the speedup values for the different tilting angles are show
 The centered $(C)$ position has a significant higher speedup then the tilts.
 \par
 %
-The \openmp{} speedup for tissue generation is significantly lower than that in the \mpi{} case.
+The \ac{OpenMP} speedup for tissue generation is significantly lower than that in the \ac{MPI} case.
 The speedup reaches a value of $\SI{3}{}$ for $\SI{8}{\cpus}$ and $\SI{5.23}{}$ for $\SI{48}{\cpus}$.
 The speed increase is almost linear for all tested cpus.
 \\
 %
-In the case of simulation acceleration, the values are similar to the case of \mpi{}.
+In the case of simulation acceleration, the values are similar to the case of \ac{MPI}.
 Up to $\SI{8}{\cpus}$ the speedup is almost identical and ideal.
 However, for a larger number of \acsp{CPU}, the speedup is higher with $\SI{42}{}$ for $\SI{48}{\cpus}$.
 %
@@ -1054,16 +1054,16 @@ However, compared to the other results at this orientation, the other parameters
 %
 \subsection{Speedup}
 %
-The simulation algorithm speedup results shown in \cref{fig:speedTissueMPI,fig:speedSimMPI,fig:speedTissueMP,fig:speedSimMP} show very good speedup with increasing \ac{CPU} number, except for the \openmp{} case for the tissue generation algorithm.
+The simulation algorithm speedup results shown in \cref{fig:speedTissueMPI,fig:speedSimMPI,fig:speedTissueMP,fig:speedSimMP} show very good speedup with increasing \ac{CPU} number, except for the \ac{OpenMP} case for the tissue generation algorithm.
 Here, since the \acsp{CPU} must write to the same memory in parallel, but not to the same memory address (see \cref{sec:dvOpti}), the overhead seems to slow down the algorithm quite a bit.
 From the results, no more than $\SI{4}{\cpus}$ is necessary, otherwise too much \dummy{} is lost.
-However, since the \mpi{} implementation is quite good, the algorithm should be sped up over this implementation if needed.
+However, since the \ac{MPI} implementation is quite good, the algorithm should be sped up over this implementation if needed.
 \\
 %
-The simulation, on the other hand, has a very good speedup to $\SI{48}{\cpus}$ for both the \mpi{} and the \openmp{}.
-The \openmp{} is even stronger here.
-This is the case because the \openmp{} implementation does not need to communicate with each other, and since the rest of the memory accesses are random anyway, the light beams can be ideally parallized.
-The same is true for the \mpi{} implementation except for the tilted case.
+The simulation, on the other hand, has a very good speedup to $\SI{48}{\cpus}$ for both the \ac{MPI} and the \ac{OpenMP}.
+The \ac{OpenMP} is even stronger here.
+This is the case because the \ac{OpenMP} implementation does not need to communicate with each other, and since the rest of the memory accesses are random anyway, the light beams can be ideally parallized.
+The same is true for the \ac{MPI} implementation except for the tilted case.
 Since here the volume is shared, the light rays have to be communicated, which costs time.
 Therefore, the speed increase is lower here.
 \\
