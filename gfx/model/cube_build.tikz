@@ -6,8 +6,7 @@
 \pgfmathsetmacro{\zrot}{21}
 %
 \begin{scope}[rotate around z=\zrot, shift={(4,0,0)}]
-\foreach \i in {0,1,...,359}{%
-\draw[BLUE] ($({0},{cos(\i)*3},{sin(\i)*3})$) -- ($({0},{cos(\i+1)*3},{sin(\i+1)*3})$);}
+\draw[GREEN, thick, dashed, domain=0:360, smooth, variable=\x] plot ({0},{cos(\x)*3},{sin(\x)*3});
 \end{scope}
 %
 \begin{scope}[shift={(-2.5,-2,-1.5)}]
@@ -28,8 +27,10 @@
 \end{scope}
 %
 \begin{scope}[rotate around z=\zrot, shift={(-4,0,0)}]
-\foreach \i in {0,1,...,359}{%
+\foreach \i in {0,2,...,359}{%
 \draw[BLUE] ($({0},{cos(\i)*3},{sin(\i)*3})$) -- ($({0},{cos(\i+1)*3},{sin(\i+1)*3})$);}
+% 
+\draw[GREEN, thick, fill=GREEN, domain=0:360, smooth, fill opacity=0.5, variable=\x] plot ({0},{cos(\x)*3},{sin(\x)*3});
 \end{scope}
 %
 \foreach \i in {1,2,...,21}{%

@@ -11,7 +11,7 @@
 \draw[thick] (-\d,-\d,0) -- (-\d,\d,0) -- (\d,\d,0) -- (\d,-\d,0) -- cycle;
 \draw[thick, RED, ->]   (0,0,0) -- (0.42*\d,0,0);
 \draw[thick, GREEN, ->] (0,0,0) -- (0,0.42*\d,0);
-\draw[thick, BLUE,  ->]  (0,0,0) -- (0,0,0.42*\d);
+\draw[thick, BLUE,  ->]  (0,0,0) -- (0,0,0.42*\d) node[pos=0.5, anchor=east] {$\vec{n}$};
 % \draw[BLUE, thick] (0,0,0) -- (10,0,0);
 %
 \definecolor{LINE}{RGB}{231,41,138}
@@ -64,7 +64,7 @@
 \draw[tdplot_rotated_coords, thick,] (-\d,-\d,0) -- (-\d,\d,0) -- (\d,\d,0) -- (\d,-\d,0) -- cycle;
 \draw[tdplot_rotated_coords, thick, RED, ->]   (0,0,0) -- (0.42*\d,0,0);
 \draw[tdplot_rotated_coords, thick, GREEN, ->] (0,0,0) -- (0,0.42*\d,0);
-\draw[tdplot_rotated_coords, thick, BLUE, ->]  (0,0,0) -- (0,0,0.42*\d);
+\draw[tdplot_rotated_coords, thick, BLUE, ->]  (0,0,0) -- (0,0,0.42*\d) node[pos=0.5, anchor=south east] {$\vec{t}$};;
 \end{scope}
 %
 %
