@@ -3,6 +3,8 @@
 % \draw (-4,-2) grid (4,2);
 %
 \draw[thick] (0,2)  -- (0,-2) node[pos=0.15, rotate=90, anchor=south] {\small border} ;
+\node[] at (-1.5,2) {$n_\alpha$};
+\node[] at (1.5,2) {$n_\beta$};
 %
 \draw[dashed] (-3,0)  -- (3,0) ;
 \draw[->] (-3,2)  -- (0,0)  -- (3,-1) ;

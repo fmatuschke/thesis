@@ -69,7 +69,7 @@ the identity $\nabla \times \left( \nabla \times \vec{A} \right) = \nabla(\nabla
 \end{split}
 \end{align}
 %
-This also shows that $c^2 \frac{\partial B} {\partial z} = \frac{\partial E}{\partial t} \rightarrow \vec{E} \cdot \vec{B} = 0$ and thus the electric and magnetic field components are perpendicular to each other.
+This shows that $c^2 \frac{\partial B} {\partial z} = \frac{\partial E}{\partial t} \Rightarrow \vec{E} \cdot \vec{B} = 0$ and thus the electric and magnetic field components are perpendicular to each other.
 In addition, this also means that space and time are connected and that light propagates in vacuum with the speed of light $c$.
 %
 \subsection{Solving Maxwells equations in vacuum}\label{sec::SolvMaxEqVac}
@@ -83,7 +83,7 @@ In addition, this also means that space and time are connected and that light pr
 \end{split}
 \end{align}
 %
-where $g$ is any well-behaved function (continuous and differentiable) and therefore also its superposition.
+where $g$ is any well-behaved function (continuous and differentiable) and therefore also its superposition, $\omega$ the circular frequency, $t$ the time, $\vec{k}$ the wave vector, $\vec{r}$ the spacial position and $\varphi$ the phase.
 %
 With the help of
 %
@@ -110,7 +110,7 @@ with $\vec{k}$ as wave vector pointing in the direction of the propagation of th
 \setlength{\tikzwidth}{\textwidth}
 \inputtikz{gfx/pli/polarization_state}
 \label{fig:polarization_state}
-\caption{Illustration of the polarization state of light. Unpolarized light passes through a linear polarizer, which polarizes the light in one direction (w.l.o.g. $E_x$ and $E_y$ in phase). It then passes through a quarter-wave retarder that converts linearly polarized light (of a given wavelength) into circularly polarized light, where $E_x$ and $E_y$ are $\pi/2$ in phase.}
+\caption{Illustration of the polarization state of light. Unpolarized light passes through a linear polarizer, which polarizes the light in one direction. It then passes through a quarter-wave retarder that converts linearly polarized light (of a given wavelength) into circularly polarized light, where $E_x$ and $E_y$ are $\pi/2$ in phase.}
 \end{figure}
 %
 Since the light wave propagates in one direction and the electric field and magnetic field are perpendicular to $\vec{k}$ as well as to each other, the orientation of the plane of oscillation is a fundamental property of light called polarization.
@@ -144,11 +144,14 @@ Here only the two decisive properties absorption and diffraction are described.\
 %
 \subsection{Absorption}
 %
+Absorption is the property of reducing the intensity or energy of a elecrtro magnetigt wave pasing thourgh a medium.
+It is described by Beersche law of absorption
+% 
 \begin{align}
     I = I_0 \exp(-\mu x)
 \end{align}
 %
-Beersche law of absorption with $\mu = \frac{4\pi \kappa}{\lambda_0}$ where $\kappa$ is the imaginary part of the complex refractive index.
+with $\mu = \frac{4\pi \kappa}{\lambda}$ where $\lambda$ is the wavelength and $\kappa$ is the imaginary part of the complex refractive index of the medium.
 %
 \subsection{Refraction}
 %
@@ -160,14 +163,14 @@ Beersche law of absorption with $\mu = \frac{4\pi \kappa}{\lambda_0}$ where $\ka
 \caption{Illustration of refraction.}
 \end{figure}
 %
-Refraction is the change of direction of light as it passes from one medium to another.
+Refraction is the change of direction of light as it passes from one medium to another (see \cref{fig:optic_refraction}).
 This can be shown by using the full Maxwell equations  for non-conductive material, \ie{} $\vec{j} = 0, \rho = 0$, that the differential equating consist out of a primary wave with from atomic medium induced secondary waves, which leads to a reduction of the velocity of the resulting wave.
 Mathematically this can be described by a complex number $n = c' / c$.
 Using this relationship at a boundary surface between two media, one can show that the incident light beam splits into a reflecting and transmitting light wave.
 The reflecting light wave has the same angle as the incident light beam relative to the surface normal.
 The transmitting light beam however due to the reduction of the velocity, changes its direction described by the Snellius law
 \begin{align}
-    n_0 \sin \alpha = n_1 \sin \beta \label{eq:Snellius}
+    n_\alpha \sin \alpha = n_\beta \sin \beta \label{eq:Snellius}
 \end{align}
 %
 %
@@ -199,8 +202,8 @@ A translucent material can have a different refractive index depending on the re
 This property is called birefringence.
 The refractive index can be described by the ordinary refractive index $n_o$ and the extraordinary $n_e$.
 Since these two are perpendicular to each other, the light ray can be split into the same perpendicular parts and each can be described by itself.
-These two light rays will have a different direction due to refraction, except for the trivial case where one light ray is perpendicular to the surface.
-If the relative length is small (depends on n, or the phase change), the two light beams leave the material at the same point and are recombined at the end.
+These two light rays will have a different direction due to refraction.
+If the relative length is small (depends on n, or the phase change), the two light beams can be recombined when leaving the material at the same point.
 The phase change is called birefringence and the physical property is described by:
 %
 \begin{align}
@@ -215,10 +218,10 @@ The phase change is called birefringence and the physical property is described 
 The Jones calculus, introduced by Robert Clark Jones in 1941, describes the polarization state of a light beam by a complex vector $J$:
 %
 \begin{align}
-    \vec{J} = \begin{pmatrix} E_x \exp(i \phi_x) \\ E_y \exp(i \phi_y) \end{pmatrix}
+    \vec{J} = \begin{pmatrix} E_x \exp(i \varphi_x) \\ E_y \exp(i \varphi_y) \end{pmatrix}
 \end{align}
 %
-The amplitude of the perpendicular components are $E_x$ and $E_y$ with their phase $\phi_x$ and $\phi_y$.
+The amplitude of the perpendicular components are $E_x$ and $E_y$ with their phase $\varphi_x$ and $\varphi_y$.
 Optical elements that change the polarization state, such as polarization filters and retarders, can be described by a matrix:
 %
 \begin{align}
@@ -235,7 +238,7 @@ Optical elements that change the polarization state, such as polarization filter
 , \enspace
 \mat{M} =
 \begin{pmatrix}
-e^{i \varphi_x} & 0 \\ 0 & e^{i \varphi_y}
+e^{i \delta_x} & 0 \\ 0 & e^{i \delta_y}
 \end{pmatrix}
 , \enspace
 \Lambda_{1/4}=
@@ -246,6 +249,7 @@ e^{\frac{i \pi}{4}}
 \end{split}
 \end{align}
 %
+with $\delta$ as retardation.
 A rotation of an optical element can be achieved by a 2d rotation matrix $\mat{R}$:
 %
 \begin{align}
@@ -277,23 +281,9 @@ S_1 &= I p \cos 2\psi \cos 2\chi \\
 S_2 &= I p \sin 2\psi \cos 2\chi \\
 S_3 &= I p \sin 2\chi
 \end{split}
-% \hspace{-3em}
-% \begin{split}
-% &= \vec{P}_{\SI{0}{\degree}} + \vec{P}_{\SI{90}{\degree}} \\
-% &= \vec{P}_{\SI{0}{\degree}} - \vec{P}_{\SI{90}{\degree}} \\
-% &= \vec{P}_{\SI{45}{\degree}} - \vec{P}_{\SI{135}{\degree}} \\
-% &= \vec{P}_{\mathit{RZ}} - \vec{P}_{\mathit{LZ}}
-% \end{split}
-% \hspace{0em}
-% \begin{split}
-% & \equiv \langle E_x^{2} \rangle + \langle E_y^{2} \rangle \\
-% %  & = \langle E_a^{2} \rangle + \langle E_b^{2} \rangle \\
-% %  & =  \langle E_l^{2} \rangle + \langle E_r^{2} \rangle \\
-% & \equiv \langle E_x^{2} \rangle - \langle E_y^{2} \rangle \\
-% & \equiv \langle E_a^{2} \rangle - \langle E_b^{2} \rangle \\
-% & \equiv  \langle E_l^{2} \rangle - \langle E_r^{2} \rangle
-% \end{split}
+% 
 \hspace{-7.5em}
+% 
 \begin{split}
 & \\
 & \\
@@ -314,10 +304,10 @@ S_3 &= I p \sin 2\chi
 \end{figure}
 %
 $I$ is the intensity, $p$ the polarization state, $\Psi$ and $\delta$ the relative phases between the $E_x$ and $E_y$ component.
-This can also be described b the two angles $\Psi$ and $\chi$ and visualized on the Poincar\'e sphere (see \cref{fig:stokesPoincare}).
-Therefore, the phase can no longer be described.
-However, the relative phase information is stored and can be used to describe also polarization states of polarization filters which cannot be described by Jones.
-Analogous to Jones one can formulate the matrices for the optical components:
+This can also be described by the two angles $\Psi$ and $\chi$ and visualized on the Poincar\'e sphere (see \cref{fig:stokesPoincare}).
+With this description the phase can no longer be described as in the Jones calculus.
+However, the relative phase information is stored and can be used to describe also polarization states of polarization filters which cannot be described by the Jones calculus.
+Analogous to the Jones calculus one can formulate the matrices for the optical components:
 %
 \paragraph{Linear Polarizer}
 \begin{align}
@@ -402,8 +392,8 @@ Analog to \cref{eq::JonesRotation} rotations are applied by
 	\label{fig:pli_setup}
 \end{figure}
 %
-There are three microscopic setups based on the same physical principle \cite{Axer2011} (see \cref{fig:pli_setup}).
-Polarized light with a wavelength of $\SI{525}{\nano\meter}$ is irradiated through a tissue section.
+In the institute of the \ac{INM-1} there are three microscopic setups based on the same physical principle \cite{Axer2011} (see \cref{fig:pli_setup}).
+Polarized light with a wavelength of $\SI{525}{\nano\meter}$ is irradiated through a tissue section \footnote{The wavelength is slightly different for the setups, which can be neglected here.}.
 A circular polarizer, a $\SI{45}{\degree}$ oriented quarter-wave retarder and polarizer, is placed behind the tissue.
 By rotating the polarizer, the change in intensity is measured with a \ac{CCD} sensor.
 \par
@@ -417,18 +407,18 @@ This produces the same results, but dust particles on one of the optical element
 The other microscopes are located in a closed container that protects the optical elements from contamination.
 \\
 % 
-A higher resolution microscope is the \ac{LMP}, which allows measurement of a $\num{2048}\times\num{2048}$ tile with a pixel size of $\SI{1.3}{\micro\meter}$.
+A higher resolution is achieved in the \ac{LMP} microscope, which allows measurement of a $\num{2048}\times\num{2048}$ tile with a pixel size of $\SI{1.3}{\micro\meter}$.
 By measuring the tissue with multiple overlapping images, the overlap can be used to combine them into an overall image.
 This setup is not able to change the light path.
 The 3d information can be estimated by analyzing the distribution of retardation and transmittance.
-However, the sign of the slope cannot be detected.
+However, the sign of the inclination cannot be detected.
 \\
 % 
-The third setup \ac{LMP3D} is able to change the light path \cite{Wiese:887678}.
+The third setup is the \ac{LMP3D} microscope which is able to change the light path \cite{Wiese:887678}.
 It makes this possible by using a conical light path.
-When using a slit, only light of a certain angle is allowed through the tissue.
-By changing the position of the slit, the different light paths can be measured.
-This microscope is currently under construction and will be modeled here with the characterization from the \ac{LMP} microscope with a tilt angle of $\SI{3.9}{\degree}$.
+By using a slit, only light of a certain angle can pass through it and therefore through the tissue.
+By changing the position of the slit, the different light paths can be applied.
+This microscope is currently under construction and will be modeled here with the characterization from the \ac{LMP} microscope with an expected tilt angle of $\SI{3.9}{\degree}$.
 \\
 %
 The tilted light beam (or tissue section) is normally measured in 4 perpendicular orientations: North, East, South and West.
@@ -441,7 +431,7 @@ After a readout process, which also includes electrical amplification, the resul
 Its value, as long as the capacitors are not saturated or the amplification does not exceed its limits, is linearly correlated with the number of photons.
 The noise of the signal comes mainly from two parts.
 The first is the thermal noise that can lead to electrical charges in the MOS capacitors.
-Second, the amplification of the signal underlies a noise usually from a non-ideal direct current which is needed for amplification.
+Second, the amplification of the signal underlies a noise usually from a non-ideal direct current as well as non-ideal electric components like transistors, which is needed for the amplification process.
 These noise sources combine to produce a poison-like distribution due to the nature of digital positive values produced by the analog-to-digital converter.
 For intensity values $\gg 0$ it can be modeled by a normal distribution.
 %
@@ -460,7 +450,7 @@ I(\rho, \varphi, \alpha, d) =\frac{I_0}{2}\bigl[ \sin\bigl(2\rho - 2\varphi \big
 \end{split}
 \end{align}
 %
-Since \cref{eq:pli_signal} describes a sinusoidal signal, Fourier analysis is an obvious choice.
+\cref{eq:pli_signal} describes a sinusoidal signal.
 For a discrete, equidistant measurement of the rotation angles $\rho$, one can use the Fourier series with the first three coefficients to describe the signal:
 %
 \begin{align}
@@ -472,6 +462,7 @@ b_1 &= \frac{2}{N} \sum_i^N I_i \cdot \cos(2 \cdot \rho_i)
 \end{split}
 \end{align}
 %
+The current routine measurements take $N=\SI{9}{}$ images.
 These are used to calculate the final \ac{3D-PLI} modalities:
 %
 \begin{align}
@@ -488,6 +479,9 @@ These are used to calculate the final \ac{3D-PLI} modalities:
 \end{split}
 \end{align}
 %
+The \textit{transmittance} describes the tissue light transmittance, \ie{} how much light passes through the tissue.
+\textit{Driection} describes the phase of the signal, corresponding to the direction of the macroscopic optical axis and therefore the direction of the nerve fibers.
+The \textit{retardation} corresponds to the amplitude of the signal, \ie{} the strength of the retardation.
 %
 \begin{figure}[t]
 \input{dev/vervet1818/images}
@@ -497,33 +491,32 @@ These are used to calculate the final \ac{3D-PLI} modalities:
 %
 \subsection{Inclination analysis} \label{sec::InclAnalysis}
 %
-To be able to analyze the inclination $\alpha$, one has to distinguish the relative strength of the birefringence from the $\cos^2(\alpha)$.
-For this purpose, a tiltable sample was developed that allows the light signal to be measured through the tissue at a different angle of incidence \cite{Axer2011}.
+To be able to analyze the inclination $\alpha$, one has to distinguish the relative strength of the birefringence from the term $\cos^2(\alpha)$.
+For this purpose, a tiltable sample was developed that allows the light signal to be measured through the tissue at a different angle of incidence \cite{Axer2011, Wiese:887678} (see \cref{sec:expSetup}).
 This means that the tissue, and therefore the nerve fibers, change their orientation due to the tilt angles $\theta, \varphi$.
 In addition, the distance the light travels through the tissue increases by $1/\cos(\theta)$ \cref{fig:tilted_side_view}.
 \\
 %
 Depending on the \Pixelsize{}, this light passes through the same volume but with a different orientation.
-Therefore, a measurement of multiple light paths can be captured and the resulting signals can be used to analyze the slope and relative birefringent tissue thickness \trel{}.
+Therefore, a measurement of multiple light paths can be captured and the resulting signals can be used to analyze the inclination and relative birefringent tissue thickness \trel{}.
 The angle of incidence of the light on the glass and tissue also changes the angle of the light by Snellius law \cref{eq:Snellius}.
 This also results in a perspective shift that must be corrected by a registration process.
-In this case, an affine transformation.
 However, this effect is neglected in the simulation, since it only adds a parallel offset.
 All angles mentioned here, if not specified, are always the angle change of light within the tissue (see \cref{fig:tilting_camera_view}).
 \\
 %
 To analyse the tilting signal an algorithm was developed under the name \ac{ROFL} \cite{Wiese:887678,Schmitz2018}.
 The idea is to fit the measured signals of all light paths simultaneously.
-However, since the change in the signal is proportional to $\cos(\alpha)$, this means that for steep fibers not only are the changes small, but also the amplitude of the signal is very small.
-This leads to the problem of increasing uncertainty with increasing slope angle.
+However, since the change in the signal is proportional to $\cos(\alpha)$, this means that for steep fibers not only are the changes $\partial / \partial \alpha \cos(\alpha)$ small, but also the amplitude of the signal is very small.
+This leads to the problem of increasing uncertainty with increasing inclination angle.
 \\
 %
 Another difficulty is that for a smaller \Pixelsize{} the light path can no longer be neglected.
-For the \ac{LMP3D} system, this means that for a maximum tilt angle of about $\SI{3.9}{\degree}$ and a usual tissue thickness of $\SI{60}{\micro\meter}$, the light path is measured about $\SI{4}{\pixel}$ away from the non-tilting case when the center of rotation is in the middle of the tissue.
+For the \ac{LMP3D}-system, this means that for an expected tilt angle of about $\SI{3.9}{\degree}$ and a usual tissue thickness of $\SI{60}{\micro\meter}$, the light path is measured about $\SI{4}{\pixel}$ away from the non-tilting case when the center of rotation is in the middle of the tissue.
 \\
 %
 For homogeneous tissue regions, such as parts in the dense \ac{WM}, this can be neglected.
-However, for single fiber paths crossing other fiber bundles or in the extreme single visible fibers in the \ac{GM} this is currently an unsolved problem.
+However, for single fiber paths crossing other fiber bundles or in the extreme single visible fibers in the \ac{GM} this is an open question.
 %
 %
 %
@@ -548,10 +541,17 @@ However, for single fiber paths crossing other fiber bundles or in the extreme s
 %
 %
 The orientation of the birefringence axis is described by the direction angle $\varphi$ and the inclination angle $\alpha$ (see \cref{fig:sphere}).
-To represent the 3D information, the \textit{hsv-black} is usually represented in \ac{3D-PLI}.
+To represent the 3D information, the \textit{hsv-bright} and \textit{hsv-dark} is usually represented in \ac{3D-PLI}. The bright values are used to indicate positive inclinations whereas the dark values are used for negative inclinations.
 It encodes the orientation in the color and the inclination in the saturation (see \cref{fig:exampleFom}):
 \begin{align}
 \begin{split}
+    \text{hsv-bright:}\\
+    H &= \varphi/\pi\\
+    S &= 1-\alpha / \pi/2\\
+    V &= 1
+\end{split}
+\begin{split}
+    \text{hsv-dark:}\\
     H &= \varphi/\pi\\
     S &= 1\\
     V &= 1-\alpha / \pi/2
@@ -589,7 +589,7 @@ For the wavelength used in \ac{3D-PLI} with $\lambda = \SI{525}{\nano\meter}$ an
 To account for optical setup, three things must be applied to a simulated measurement.
 %
 \paragraph{Blurring}
-In optical resolution, the light rays must be blurred.
+To acount for the bluring or out of focuse image, the light rays must be blurred on the ccd-array.
 This is done classically via a 2d Gaussian convolution:
 \begin{align}
     (f * g)(x) = \int f(\tau)g(x-\tau)d\tau
@@ -609,7 +609,7 @@ To account for this, a noise model must be applied to each image pixel.
 \cite{Wiese:887678} showed that this can be done via a normal distribution.
 %
 \begin{align}
-    I = I + \gauss(\sigma, \mu)
+    I = I + \gauss(\sigma, \mu=I)
 \end{align}
 %
 \par
@@ -625,20 +625,20 @@ Among other specific techniques described in the next chapers \cref{chap:sof:mod
 %
 The computationally intensive code is written in \cpp{}.
 There the \code{std::vector} has the advantage that the data in memory is linear.
-Modern \acp{CPU} have a built-in method called \say{ache prefetching}.
+Modern \acp{CPU} have a built-in method called \textit{cache prefetching}.
 The data must be prepared and sent from the \ac{RAM} to the cache of the \acp{CPU}.
 This takes time.
 The main advantage of the cache is that it is very fast.
 Even the distance is so small that the speed of light does not limit the connection of the \acp{CPU} to the cache.
 It is built inside the \ac{CPU}.
-Therefore, its size is very limited, usually around $\si{mega\byte}$.
+Therefore, its size is very limited, usually around several $\si{\mega\byte}$.
 The \ac{CPU} cache prefetcher is a sophisticated directive that requests not only the element at address $i$ in memory, but also the element next to it ($i+1$ or $i-1$, depending on the algorithm).
 Since many algorithms traverse arrays, the next element to be computed is usually the next (or previous) element.
 Therefore, the time required to copy the data from the memory to the cache is reduced.
 It can be shown that for linear operations on memory, the cache prefetcher reduces the time so much that it behaves as if the \ac{CPU} had an infinite cache.
 \par
 %
-Another technique is to use modern compilers such as Clang or GCC.
+Another technique is to use modern compilers such as Clang v11 or GCC v10.
 These have an optimization algorithms built in that optimizes the code to the architecture of the machine\footnote{And much more sophisticated methods.}.
 For example, if the number of iterations is known at compile time, a for loop can be \name{unrolled} to speed up the computations since it no longer needs to check if the conditions are met to end the loop.
 To review these optimizations, the code with bottlenecks was tested with \name{Compiler Explorer}\footnote{https://godbolt.org/} and \name{C++ Insight}\footnote{https://cppinsights.io/}.
