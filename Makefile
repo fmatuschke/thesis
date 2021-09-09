@@ -17,8 +17,9 @@ bibliography:
 	biber thesis
 
 .PHONY: thesis
-thesis: compile bibliography compile compile
-	xdg-open 2>/dev/null thesis.pdf
+thesis: compile bibliography
+	lualatex -interaction=nonstopmode -halt-on-error -shell-escape thesis.tex
+	lualatex -interaction=nonstopmode -halt-on-error -shell-escape thesis.tex
 
 .PHONY: tikz
 tikz:
@@ -39,7 +40,7 @@ textidote:
 tikz-clean:
 	rm -r tikz/*
 	touch tikz/dummy.tex
-	
+
 .PHONY: clean
 clean:
 	rm -f thesis.acr
