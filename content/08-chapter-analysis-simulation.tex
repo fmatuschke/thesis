@@ -109,7 +109,7 @@ As described in \cref{sec:ccdOptic}, optical noise must be modeled by a noise mo
 In \cite{Wiese:887678}, the gain factor $\opticgain$ of the microscopic setup was measured by multiple measurements of an image with a variety of intensity values.
 The gain factor describes the linearity between a measured signal and the corresponding noise.
 The same type of measurement and analysis is performed here with the \ac{LMP} setup.
-\\
+\par
 To obtain statistics for a large number of intensity values, the sample stage is covered with a fully absorbing cover so that half of the image is dark.
 In addition, the focal length is changed so that light is distributed over the entire image sensor below the cover (see \cref{fig:pliFocusImage}).
 By measuring $N=\SI{500}{}$ images, the variance for the different intensity values is determined.
@@ -244,7 +244,7 @@ A relative transmittance of about $\SIrange{20}{30}{\percent}$ is present within
 The simulation parameter must be set to achieve a similar transmission value for the models.
 This means that for a $\SI{60}{\micro\meter}$ thick section, the absorption coefficient $\absorp{}$ is about $\SI{30}{\milli\meter\tothe{-1}}$.
 The absorption for the roden is about $\SI{8}{\milli\meter\tothe{-1}}$, and that of the human is about $\SI{65}{\milli\meter\tothe{-1}}$.
-\\
+\par
 %
 \Cref{fig:simTransValues} shows the simulated transmittance values for different fiber radii.
 For smaler radii the variance of the transmittance is very small \dummy{} and increases with the radii.
@@ -405,14 +405,14 @@ Comparison between the two distributions shows agreement of the tilting analysis
 The transmittance increases slightly with inclination angle for tilts $\modelInc<\SI{75}{\degree}$.
 For $\modelInc \ge \SI{75}{\degree}$ the transmittance increases significantly, \ie{} the absorption decreases.
 The variance of transmittance is within a few percent for all inclinations and also increases slightly with inclination angle.
-\\
+\par
 %
 % Retardation
 The retardation plot shows the retardation of the non-tilted simulations and the theoretical curve that follows $(\cos(\modelInc) + 1) / 2 \cdot \mean(\mathit{ret}(\SI{0}{\degree})$.
 The retardation follows the theoretical line.
 However, at the intermediate tilt angles, the measured retardation is higher than the theoretical line.
 Otherwise, the variance along all fiber inclinations is equal to \modelInc{}.
-\\
+\par
 %
 % Direction
 The next graph shows the measured direction.
@@ -420,7 +420,7 @@ For inclination angles smaller than $\SI{75}{\degree}$ the variance remains quit
 For larger values, the variance increases.
 It should be remembered that the boxplot does not take into account that the values are periodic.
 Therefore, especially for $\modelInc=\SI{90}{\degree}$, the values from the $\SIrange{-90}{90}{\degree}$ are uniformly distributed.
-\\
+\par
 %
 % Inclination
 The inclination is drawn as a line, as well as the set angle of inclination.
@@ -428,14 +428,14 @@ The angles are shifted by the $\modelInc$ so that the allowed distribution value
 The median follows the theoretical curve.
 The $25-75$ values are \dummy{} \todo{accuracy analysis}.
 Again, for values above $\SI{75}{\degree}$, the variance increases significantly, except for $\modelInc = \SI{90}{\degree}$ it is similar to the first values.\todo{Why?}
-\\
+\par
 %
 % trel
 The median relative birefringence thickness \trel{} is stable for values up to $\modelInc < \SI{60}{\degree}$, but the variance increases slightly.
 For larger values, the median decreases while the variance increases.
 Some outliers reach values $>\SI{1}{}$.
 For inclination angles $\modelInc \ge \SI{85}{\degree}$, the quartile value $\SI{75}{\percent}$ increases by $\SI{1}{}$ and the median for $\SI{90}{\degree}$ reaches about $\SI{2}{}$.
-\\
+\par
 %
 % domega
 The opening angle \modelDOmega{} is stable with a median of \dummy{} up to an inclination angle of $\le \SI{70}{\degree}$.
@@ -477,31 +477,31 @@ For higher inclination angles, both the median and the variance increase signifi
 The next simulation focuses on two flat crossing fiber populations.
 Here, the results for the case $\modelPsi = \SI{30}{\percent}$ and $\modelPsi = \SI{50}{\percent}$ are examined.
 The other proportions of the fiber population are available in \todo{appendix}.
-\\
+\par
 %
 \Cref{fig:flat_03_fiber_pop_hist} shows the distribution of orientation for the simulation and model fiber segments.
 The resulting fiber orientation appears to follow only the second fiber orientation, which has a density of $\SI{70}{\percent}$.
-\\
+\par
 % Transmittance
 \Cref{fig:flat_03_fiber_pop_hist} shows the distribution of orientation for the simulation and model fiber segments.
 The resulting fiber orientation appears to follow only the second fiber orientation, which has a density of $\SI{70}{\percent}$.
-\\
+\par
 % Retardation
 The retardation seems to follow a negative linear \dummy{} with increasing crossing angle.
 Its variance increases with the crossing angle.
-\\
+\par
 % Direction
 The direction is plotted in \dummy{} with the direction of the fiber population values.
 The data follow the second fiber population, but are significantly lower in the middle section, albeit slightly with a delta of \todo{value}.
-\\
+\par
 % Inclination
 The inclination is about $\SI{0}{\degree}$ with its median for all crossing angles.
 The variance increases significantly with increasing crossing angle, up to \todo{3} times the lowest value.
-\\
+\par
 % Trel
 The relative thickness \trel{} decreases with increasing crossing angle \modelOmega{}.
 The curve is identical with the retardation value.
-\\
+\par
 % domega
 The opening angle is small in the first half of the crossing angle, but increases slightly.
 The variance for this range also increases slightly.
@@ -545,39 +545,39 @@ The median increases up to about a value of $\SI{5}{\degree}$.
 The final focus is on two intersecting fiber bundles with a rotation angle of $\modelRot = \SI{90}{\degree}$, \ie{} the first fiber population along the $x$-axis and the second population in the $xz$-axis.
 As before, the two parameters $\modelPsi = \SI{30}{\percent}$ and $\modelPsi = \SI{50}{\percent}$ are discussed.
 The other fiber percentages are listed in the \todo{appendix}.
-\\
+\par
 %
 The histogram data for both cases are show for the measurement only one visible orientation.
 \dummy{}.
-\\
+\par
 % Transmittance
 The transmittance is almost identical in both cases.
 It increases with increasing crossing angle, but the inclination decreases for larger $\modelOmega$.
 The median increases to a value of $\SI{110}{\percent}$ in both cases as opposed to the flat case.
 The variance remains similar for all values.
-\\
+\par
 % Retardation
 In both cases, the retardation decreases almost linearly with increasing crossing angle $\modelOmega$.
 In the case of $\modelPsi = \SI{30}{\percent}$, the final value is about $\SI{0.18}{}$ in contrast to $\modelPsi = \SI{50}{\percent}$ with a final value of $\SI{0.3}{}$.
 The variance increases significantly for larger crossing angles.
-\\
+\par
 % Direction
 The directional value is again very similar for both cases.
 The median is always around $\SI{0}{\degree}$.
 The quartile grows from about $\SI{0.5}{\degree}$ to $\SI{2}{\degree}$ with increasing crossing angle.
-\\
+\par
 % Inclination
 In the case of $\modelPsi = \SI{30}{\percent}$, the inclination is almost linear with increasing crossing angle from about $\modelOmega =\SI{60}{\degree}$.
 In the case of $\modelPsi = \SI{50}{\percent}$, the peak point is at about $\modelOmega = \SI{60}{\degree}$.
 The variance increases for both parameters as the crossing angle increases.
 The main difference between the two parameters is that in the case of $\modelPsi = \SI{30}{\percent}$, the maximum inclination achieved is significantly higher than in the case of $\modelPsi = \SI{50}{\percent}$.
 However, in both cases the inclination is always lower than the inclination value of the second fiber population.
-\\
+\par
 % Trel
 The relative effective thickness \trel{} decreases in both cases.
 In the case of $\modelPsi = \SI{50}{\percent}$, the correlation is nearly linear and the variance increases slightly with increasing crossing angle.
 In the case of $\modelPsi = \SI{30}{\percent}$, a small hill is visible around $\modelOmega = \SI{50}{\degree}$ where the value and variance increase slightly.
-\\
+\par
 % domega
 Both the opening angle and its variance appear to increase exponentially with increasing crossing angle in the case of $\modelPsi = \SI{30}{\percent}$.
 In the case of $\modelPsi = \SI{50}{\percent}$, both the median and variance also increase, but the increase in the largest crossing values ends at a median of about $\SI{6}{\degree}$.
@@ -587,7 +587,7 @@ In the case of $\modelPsi = \SI{50}{\percent}$, both the median and variance als
 %
 The following data shows the result of the tilt analysis without the orientation angles, since the mean value cannot be easily calculated for a single angle. \footnote{Orientations lie on a hemisphere with symmetries, and the angles are interdependent}.
 The data from the previous chapter had the advantage that the results of the angles are close enough to each other to make a conversion to the expected value.
-\\
+\par
 %
 The spherical plots in \cref{fig:sim_ana_acc,fig:sim_ana_ret,fig:sim_ana_trans,fig:sim_ana_trel} are designed so that the thick black circle shows the orientation of the first fiber population and the thin dashed circles show the orientation of the second fiber population.
 At the position of the second fiber population, the resulting mean value is inserted.
@@ -604,27 +604,27 @@ At the position of the second fiber population, the resulting mean value is inse
 \paragraph{\acc{}}
 \Cref{fig:sim_ana_acc} shows the \acc{} value, \ie{} how good the coefficient of the odf base function are in alignment.
 \todo{acc of psi = 1}.
-\\
+\par
 %
 The $\modelPsi=\SI{10}{\percent}$ show no significant reduction in \acc{} value for all $\modelInc$.
-\\
+\par
 %
 The most secondarily inclined values for $\modelPsi=\SI{30}{\percent}$ have a significant decrease in the \acc{} value.
 This is much less visible for the case $\modelInc = \SI{30}{\degree}$ and even less for the case $\modelInc = \SI{60}{\degree}$.
 The $\modelInc = \SI{90}{\degree}$ is less than for the case $\modelPsi=\SI{10}{\percent}$, but still constant for all secondary orientations.
-\\
+\par
 %
 For the equally proportional fiber population $\modelInc = \SI{50}{\degree}$, the \acc{} value reaches its lowest values at shallowly inclined first population $\modelInc = \SIlist{0;30}{\degree}$.
 In the case of $\modelInc = \SI{0}{\degree}$, the \acc{} value is lowest at a crossing angle of $\modelOmega = \SI{90}{\degree}$.
 This crossing angle for the slightly inclined has a higher \acc{}-value \todo{why?, -> show odf}.
 Otherwise, the distribution is similar with respect to 3d orientation symmetry.
 The most tilted angle $\modelInc=\SI{90}{\degree}$ shows a \acc{} value of about $\SI{0.5}{}$ for all orientations with an increase to $\SI{1}{}$ for the $\modelOmega = \SI{0}{\degree}$ ,\ie{} a single fiber population along the z-axis.
-\\
+\par
 %
 The $\modelPsi=\SI{70}{\percent}$ data show the same behavior with respect to inclined rotation for the first two inclination angles $\modelInc = \SIlist{0;30}{\degree}$.
 For the case $\modelInc=\SI{60}{\degree}$, the \acc{} value is high only by the first fiber population.
 In the case of $\modelInc=\SI{90}{\degree}$ this is also visible, but the smallest values are not as low as in the previous case.
-\\
+\par
 %
 The last case $\modelPsi=\SI{90}{\percent}$ shows a good agreement of the orientation coefficients of the model with the analyzed signal for the first three inclination angles $\modelInc=\SIlist{0;30;60}{\percent}$.
 The last tilt angle $\modelInc=\SI{90}{\degree}$ shows a reduction of the \acc{} value for the highest crossing angles $\modelOmega$.
@@ -640,19 +640,19 @@ The last tilt angle $\modelInc=\SI{90}{\degree}$ shows a reduction of the \acc{}
 %
 \paragraph{Retardation}
 The retardation results in \cref{fig:sim_ana_ret} show the least retardation for a tilt angle of $\alpha=\SI{90}{\degree}$ for the second fiber population in the case of the smallest first fiber population fraction $\modelPsi=\SI{10}{\percent}$ and an increase to the flat case of $\alpha=\SI{0}{\degree}$.
-\\
+\par
 %
 This is also visible for the second case of $\modelPsi=\SI{30}{\percent}$ and $\modelPsi=\SI{60}{\percent}$, however, for the first two $\modelInc = \SIlist{0;30}{\degree}$, the noncrossing fiber populations have significantly higher retardation.
 For higher $\modelInc$, the values decrease overall and crossing reduction is no longer visible.
-\\
+\par
 %
 In the case of $\modelPsi=\SI{60}{\percent}$, the retardation is very similar to the previous case $\modelPsi=\SI{30}{\percent}$, but the value is much lower.
-\\
+\par
 %
 In the case $\modelPsi=\SI{70}{\percent}$, an increase in retardation is again seen for the first two crossing angles $\modelInc=\SIlist{0;30}{\degree}$ in contrast to the previous values.
 A decrease in retardation at the highest crossing angles is still visible, but relatively small compared to the previous values.
 The last two crossing angles $\modelInc=\SIlist{60;90}{\degree}$ are significantly lower.
-\\
+\par
 %
 The last case of $\modelPsi=\SI{90}{\percent}$ shows a decrease in retardation with inclination angle $\modelInc$.
 The second fiber population orientation has almost no effect on the results.
@@ -671,15 +671,15 @@ The average transmission value is shown in \cref{fig:sim_ana_trans}.
 The fraction of the first fiber population of $\modelPsi=\SI{10}{\percent}$ is almost identical for all inclination angles $\modelInc$.
 The main difference is that the transmittance is lowest for models with a crossing angle of $\modelOmega = \SI{0}{\degree}$.
 Otherwise, the transmittance remains relatively stably low.
-\\
+\par
 %
 This changes a little for the next fiber population fraction of $\modelPsi=\SI{30}{\percent}$.
 Again, the transmittance is lowest at no crossing angle, but the increase in value is more pronounced than in the previous case.
-\\
+\par
 %
 In the next case of $\modelPsi=\SI{50}{\percent}$ the effect is even stronger.
 Nevertheless, the transmittance is lowest at no crossing angle.
-\\
+\par
 %
 The last two cases $\modelPsi=\SI{70}{\percent}$ and $\modelPsi=\SI{90}{\percent}$ are identical to the cases $\modelPsi=\SI{30}{\percent}$ and $\modelPsi=\SI{10}{\percent}$.
 %
@@ -719,7 +719,7 @@ For higher $\modelPsi$ the pattern changes and only the centered area is enlarge
 For $\modelInc = \SI{60}{\degree}$, an increase in \rvalue{} towards the outer regions is visible.
 As \modelInc{} increases, the pattern also changes and is increasingly visible up to $\modelPsi=\SI{70}{\percent}$ in the upper and lower parts of the polar diagram.
 Finally, for the case $\modelInc = \SI{90}{\degree}$, the \rvalue s are low again.
-\\
+\par
 %
 A significant difference has the $\modelPsi = \SI{10}{\percent} / \modelInc = \SI{90}{\degree}$.
 Here, the values for the crossing angles to $\modelOmega = \SI{90}{\degree}$ reach a higher value of $\approx \SI{2.2}{\percent}$.
@@ -908,13 +908,13 @@ The \rvalue{} for higher proportions of the first fiber population $\modelPsi$ a
 \end{figure}
 %
 Simulations were performed using a single compute node (\texttt{2x Intel(R) Xeon(R) CPU E5-4657L v2}).
-\\
+\par
 %
 Four speedup measurements are shown in \cref{fig:speedTissueMPI,fig:speedSimMPI} for parallelization \ac{MPI} and \cref{fig:speedTissueMP,fig:speedSimMP} for parallelization \ac{OpenMP}.
 To measure the speedup, each algorithm was run $N=10$ times.
 To calculate the speedup value, the mean measured time for $n_\mathit{cpu}=1$ was then divided by the measured time for the $n_\mathit{cpu}$ individual values.
 The volume used is the $\modelPsi=\SI{0}{\percent} / \modelInc=\SI{0}{\degree}$ from the \cref{sec:simParameterEnv} parameterization.
-\\
+\par
 %
 The \cref{fig:speedTissueMPI} shows the parallelization of the discrete tissue generation (see \cref{sec:dv_generator}).
 The speedup for $\SI{8}{\cores}$ about $\SI{6.8}{}$ and for $\SI{48}{\cores}$ about $\SI{30}{}$ for this architecture.
@@ -926,7 +926,7 @@ The centered $(C)$ position has a significant higher speedup then the tilts.
 The \ac{OpenMP} speedup for tissue generation is significantly lower than that in the \ac{MPI} case.
 The speedup reaches a value of $\SI{3}{}$ for $\SI{8}{\cores}$ and $\SI{5.23}{}$ for $\SI{48}{\cores}$.
 The speed increase is almost linear for all tested cpus.
-\\
+\par
 %
 In the case of simulation acceleration, the values are similar to the case of \ac{MPI}.
 Up to $\SI{8}{\cores}$ the speedup is almost identical and ideal.
@@ -945,7 +945,7 @@ In reality, however, one must take into account that \cite{Menzel2021}\todo{chec
 One of the most important effects is the significant change of transmittance with inclination.
 The effect on the results presented here is an increase/decrease in noise according to \cref{fig:parameterModelGain}.
 However, since the change in noise is linear with the square root of the intensity, the effect is rather small.
-\\
+\par
 %
 The retardation almost follows the theoretical curve for a single retardation signal (see \todo{pli formula}).
 However, the signal is higher for the mean values than the theoretically expected values.
@@ -956,13 +956,13 @@ Therefore, the normalization is underestimated and so is the theoretical curve.
 %
 The direction values have a very small variance, which increases strongly for high inclination values.
 Since the direction value is coupled to the inclination angle, there is no xy direction for an $\SI{90}{\degree}$ inclined orientation, as expected.
-\\
+\par
 %
 The same behavior can be seen in the inclination curve.
 Here, however, the variance for the last angle is smaller.
 It must be remembered that the change in the signal fitting the tilting analysis is the same for the non-inclined measurement as for the four inclined measurements.
 One possibility, therefore, is that the change in the signal is higher because the fibers are in their most extreme position here than in a slightly less inclined case.
-\\
+\par
 %
 The \trel{} value also follows the theoretical behavior up to the last value.
 For smaller \trel{} values, the algorithm is able to explain the signal.
@@ -971,13 +971,13 @@ This behavior could be constrained by a maximum \trel{} value of one in the opti
 This is true for the experimental tissue measurements, as there are many more effects than in this simulation.
 However, for this simulation, the inclination results suggest that it may still be possible for the algorithm to find a feasible \trel{} value that would be very small.
 Since \trel{} is the effective thickness of the parallel optical axis model, this value for inclined fiber configurations should theoretically be $\SI{0}{}$ for $\modelInc=\SI{90}{\degree}$.
-\\
+\par
 %
 As expected, the opening angle shows the combined information from the directional results and the inclination results.
 The inclination values $\modelInc <= \SI{75}{\degree}$ indicate an orientation distribution of \dummy{} with some outliers.
 This value can perhaps serve as an additional uncertainty for further calculations as in a tractography.
 However, this would be a lower bound on the uncertainty since effects of light scattering are not considered in this simulation.
-\\
+\par
 %
 In the case of a single fiber population, the resulting tilting analysis shows good agreement with the individual orientations of the model, except for very steeply inclined configurations.
 %
@@ -993,21 +993,21 @@ Since the retardation effect of is cancelled by a $\SI{90}{\degree}$ retarder, t
 The last value for the retardation is in agreement with the theoretical residual $\approx 0.8\cdot \SI{40}{\degree}$.
 However, its values are slightly but significantly lower for the mean \trel{} values.
 In the case of $\modelPsi{} = \SI{50}{\percent}$, they follow the midline between the two directions until $\modelOmega=\SI{90}{\degree}$, where the retardation is effectively $\SI{0}{}$ and therefore no direction can be identified.
-\\
+\par
 %
 The effect of a changed direction comes from \dummy{}.
 Since the optical axis is an orientation and not a vector, the signal is cancelled in a $\SI{90}{\degree}$ case.
 Lower values must therefore drive the resulting phase of the sinusoidal signal in the direction of the lower represented fiber bundle, which must be maximum at $\modelOmega=\SI{45}{\degree}$.
-\\
+\par
 %
 The variance of the inclination angle increases with increasing \modelOmega{}, which is to be expected as the amplitude, \ie{} the retardation decreases, making the model more uncertain.
 In the case of a uniformly distributed fiber crossing, the inclination can reach any value, since there is no longer any effective retardation.
-\\
+\par
 %
 This can also be seen in the decreasing \trel{} value.
 As expected, the decrease is linear as the signal becomes \dummy{}.
 For the uniformly distributed transition, the tilt analysis again reaches values of $\trel>1$.
-\\
+\par
 %
 The effects discussed above are reflected in the opening angle \modelDOmega{}, which has to increases with increasing \modelOmega{}.
 %
@@ -1027,7 +1027,7 @@ Otherwise, the other parameters do not behave differently from the single fiber 
 \Cref{sec:resFreeCross} shows the results of the \acc{} and other parameters for the free crossing fiber population.
 The \acc{} parameter, which is a measure of the agreement of the \ac{ODF} coefficient, is a key parameter for highlighting problematic orientations of the fiber population.
 However, the value itself is not easy to interpret.
-\\
+\par
 %
 From the \Cref{fig:sim_ana_acc}, a range of low \modelPsi{} and low \modelInc{} to higher low \modelPsi{} and higher \modelInc{} is evident where the \acc{} is significantly low, with larger areas near $\SI{0}{}$.
 These areas correspond to the already known problematic areas in intersection and inclined regions.
@@ -1041,7 +1041,7 @@ Note that these results are only valid for dense fiber populations, \ie{} dense 
 Retardation is also an indicator, but not as reliable, since its value is very low even for a single inclined fiber population, which can still be correctly determined with a high variance using tilt analysis (see \cref{fig:single_fiber_pop_rofl}).
 The \trel{} value is also reduced there, but not as much as in the crossing fiber populations.
 This effect results from the simple fact that a inclined single fiber population increases its retardation value when tilted, while a flat crossing population does not due to signal cancellation.
-\\
+\par
 %
 The relatively low \rvalue{} is consistent with the noise of \SI{14.3}{\percent} (see \cref{fig:noiseplot}).
 The increased patterns of \rvalue{} represent the range of a $\modelOmega \approx \SI{90}{\degree}$, where thus a lower retardation is expected.
@@ -1058,7 +1058,7 @@ The simulation algorithm speedup results shown in \cref{fig:speedTissueMPI,fig:s
 Here, since the \acsp{CPU} must write to the same memory in parallel, but not to the same memory address (see \cref{sec:dvOpti}), the overhead seems to slow down the algorithm quite a bit.
 From the results, no more than $\SI{4}{\cores}$ is necessary, otherwise too much \dummy{} is lost.
 However, since the \ac{MPI} implementation is quite good, the algorithm should be sped up over this implementation if needed.
-\\
+\par
 %
 The simulation, on the other hand, has a very good speedup to $\SI{48}{\cores}$ for both the \ac{MPI} and the \ac{OpenMP}.
 The \ac{OpenMP} is even stronger here.
@@ -1066,7 +1066,7 @@ This is the case because the \ac{OpenMP} implementation does not need to communi
 The same is true for the \ac{MPI} implementation except for the tilted case.
 Since here the volume is shared, the light rays have to be communicated, which costs time.
 Therefore, the speed increase is lower here.
-\\
+\par
 %
 Since the mesh generation algorithm is quite fast overall (\SI{30}{\second}), compared to the simulation (\SI{80}{\second}), which usually requires 5 times for the 4 additional tilt angles, the letter algorithm is the bottleneck anyway.
 Therefore, the user can use both implementations to significantly improve the overall speed of the calculations.

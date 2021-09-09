@@ -150,7 +150,7 @@ This module contains all functionalities to analyse the \ac{3D-PLI} simulations 
 This includes the analysis of the signal to the three image modalities transmittance, direcion and retardadation.
 Further it provides the tilting analysis known as \ac{ROFL} \cite{Schmitz2018}.
 The final helper functions provides methods to convert the direction and inclination results into a \ac{FOM}.
-\\
+\par
 For the analysis of fiber models, the module providing a few simple helper functions.
 This for example allow the user to generate a histogramm of the orientations of the fiber segments like the ones shown in this thesis.
 %
@@ -257,7 +257,7 @@ This modules provides wrapper class for \code{fastpli.objects.fibers} and \code{
 Essentially \code{layers} are a \code{list} of \code{layer}, which themself are a \code{tuple} of the 4 attributes \code{absorption}, \code{birefringence}, \code{model} and \code{scale} (see \cref{sec:dv_generator}).
 This wrapper class contains attributes which allows the user to acces this values by there name, instead of the \code{tuple} index \code{[i]}.
 This is helpful to reduce user errors.
-\\
+\par
 The same is acomblished for \code{fastpli.objects.fibers}, which contain \code{fastpli.objects.FiberBundles}, \code{fastpli.objects.FiberBundle} and \code{fastpli.objects.Fiber} classes with the same purpase.
 \code{FiberBundles} are a \code{list} of \code{FiberBundle}, which are a list of \code{Fiber}.
 The data of a fiber is stored in a \code{numpy.ndarray}, which stores the values contiguous in memory.
@@ -273,7 +273,7 @@ These two algorithms work seperatly, however since they share quite a few parame
 As in the \code{fastpli.model.solver.Solver} class, all necessary attributes are available and are checked for input errors.
 Since the analysis is usually always performed on the resulting simulations, they are also available in this class and performed with the same defined parameters as in the simulation.
 Methods to save the variables as \code{dict} or \ac{HDF5} files are available as well.
-\\
+\par
 As in the experiment, the simulations can run the same routine.
 This means, that many parameters and the simulation pipeline usually does not change.
 For this purpose \code{pipeline} methods exists (see \cref{alg:Pipeline}), to provide a high level abstraction.
