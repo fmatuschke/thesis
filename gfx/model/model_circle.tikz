@@ -1,8 +1,6 @@
 \begin{tikzsize}{\tikzwidth}{\tikzheight}
 \begin{tikzpicture}[scale=\tikzscale]
 %
-\path[] (-1.6,-1.6)--(1.6,1.6);
-%
 \begin{scope}[shift={({0.5*cos(60)},{0.5*sin(60)})}, rotate=150]
 \node[cylinder, draw, shape aspect=.5,
   cylinder uses custom fill, cylinder end fill=GREEN,
@@ -20,12 +18,12 @@
 \draw[fill=black] ({-cos(60)},{-sin(60)}) circle (0.05) node[below, yshift=-1em] {$\vec{p}_{i-1}$};
 \draw[fill=black] ({1},{0}) circle (0.05) node[right, xshift=1em] {$\vec{p}_{i+1}$};
 \draw[dashed] (0,0) circle (1);
-% \draw [] ({cos(210)},{sin(210)}) -- (-1.25,-0.8) node[anchor=east, pos=1] {$bending\_radius$};
-% \draw [] ({cos(60)},{sin(60)}) -- (0,1.42) node[anchor=east, pos=1] {\code{bending\tu radius}};
 \draw [] (0,0) -- ({cos(-30)},{sin(-30)}) node[below, sloped, pos=0.5] {$r_{\mathit{bend}}$};
-% \draw [] ({cos(120)},{sin(120)}) -- (-1.5,0.8) node[anchor=east, pos=1] {$fiber\_point$};
+% 
+\draw[RED, dashed] ($({-cos(60)},{-sin(60)})!0.5!({-cos(60)},{sin(60)})$) -- ({-cos(60)},{sin(60)}) -- ($({-cos(60)},{sin(60)})!0.5!({1},{0})$);
+\draw[RED] ($({-cos(60)},{sin(60)}) - (0,0.7)$) arc (-90:-30:0.7) node[midway, anchor=north] {$\varphi$};
 %
-\path[use as bounding box] (-1.75,-1.5) rectangle (1.75,1.5);
+\path[use as bounding box] (-1.75,-1.75) rectangle (1.75,1.75);
 %
 \end{tikzpicture}
 \end{tikzsize}

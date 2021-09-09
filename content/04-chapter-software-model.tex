@@ -621,18 +621,17 @@ r_{new} = \frac{r_{i} + r_{i+1}}{2},\enspace
     \begin{tabular}{C{0.5\textwidth}C{0.5\textwidth}}
     \inputtikz{gfx/model/model_circle} &
     \inputtikz{gfx/model/model_circular} \\
-    \subcaptiontab{0.475\textwidth}{Boundary segment length: lower bound $\varphi=\SI{60}{\degree} \xrightarrow{} r_{\mathit{min}} \geq \SI{0.5773}{} \cdot l_{\mathit{mean}}$} &
-    \subcaptiontab{0.475\textwidth}{\label{fig:boundaryLength}Boundary segment radii: lower bound $r_{\mathit{min}} \geq \fiberRadiusMean$}
+    \subcaptiontab{0.475\textwidth}{Boundary segment length: lower bound $\varphi=\SI{60}{\degree} \Rightarrow \segRadius \gtrsim \SI{0.58}{} \cdot \segLength$} &
+    \subcaptiontab{0.475\textwidth}{\label{fig:boundaryLength}Boundary segment radii: lower bound $\segRadius \geq \fiberRadiusMean$}
     \end{tabular}
-	\caption{Geometrical boundary condition for fiber segment length \segLength{} and fiber bending radius \segRadius{}.}
+	\caption{Determination of boundary values from geometric aspects for fiber segment length \segLength{} and fiber bending radius \segRadius{}. The first condition (a) takes into consideration, that the fiber segments and the minimal bending radius depending on each other. The second condition (b) is a limitation, that a single fiber should not be able to bend around another fiber. This would create arbitrary models.}
 	\label{fig:modelCircle}
 \end{figure}
 %
 The bending radius is defined as the circle radius corresponding to the circle defined by three adjacent points $\vec{p}_{i-1}, \vec{p}_{i}, \vec{p}_{i+1}$ (see \cref{fig:boundaryLength}).
 The limit is set as a minimum radius of $r_{\min}$.
 If a $p_{i}$ point in a fiber falls below this value, the three points are moved.
-$p_{i-1},p_{i+1}$ is moved along the shortest distance vector and $p_{i}$ in the opposite orientation.
-This reduces the curvature.
+$p_{i-1},p_{i+1}$ are moved parallel towords $p_{i}$ and vice versa to reduce the curvature.
 %
 % 
 % 
@@ -640,12 +639,11 @@ This reduces the curvature.
 % 
 All movements are added to the velocity vector before performing the overall movement.
 The algorithm performs each step sequentially (see \cref{alg:pseudocode_solver}).
-%
 Finally a volume is marked as collision free, if no collision are found and all boundary conditions are fulfilled.
-The boundary conditions can be set to 0 to ignore them.
+The boundary conditions can be set to $0$ to ignore them.
 Additionally a drag value can be set, to reduce the velocity by its factor after each step.
 It can help to reach a collision free volume faster, however the density will be significantly reduced.
-Therefore the value is to 0 so that after each step the velocity is reset to $\vec{0}$.
+Therefore the value is to $0$ so that after each step the velocity is reset to $\vec{0}$.
 % 
 % 
 % 
@@ -656,12 +654,10 @@ As later shown millions of objects have to be checked for collisions.
 The difference between a $O(n\log(n))$ and $O(n^2)$ is not to be underestimated here.
 %
 \paragraph{Memory alignment}
-As descibed in \todo{irgrndwo sollte etwas einleitendes zu optimierungen und parallelisierungen stehn} the memory alignment is a main optimization in this software package.
-For this in every function a \code{std::vector} of the objects is passed as reference.
-Of course this \code{std::vector} has at some point to be created.
-In the case of fiber objects, the \code{std::vector} inherets the indices of the fiber objects, so that later the correct element can be \dummy{}.
-%
-Every optimization was checked for improvements for different types of volumes and number of objects, whereas the biggest volumes and numbers were prefered.
+As described in \cref{sec:theorySpeedup}, memory alignment is the main optimization in this software package.
+For this purpose, all functions use \code{std::vector} as much as possible.
+During the development process of \name{octree}, it was found that creating a memory-aligned subset of the objects is faster than splitting the objects between branches.
+Each optimization was tested for improvements for different types of volumes and number of objects, with the largest volumes and number of objects optimized at the expense of small volumes, which also require relatively little computation time.
 %
 %
 \paragraph{OpenMP}
@@ -670,7 +666,7 @@ To be able to use several \acp{CPU}, \ac{OpenMP} is used.
 A structure like an octree suggests to use a parallelization of 8 cores.
 However this would only be true, if the data is already available on each core and that the data does not have to be shared.
 This is not the case.
-One and the same object can be involed in multiple nodes.
+One and the same object can be involed in multiple \name{tree nodes}.
 And after a branch is processd, the data of all branches has to be collected.
 During the development phase of this algorithm it was recogniced, that up to the second level the branches should be allowed to use multiple cores. At the 3rd level the speedup is already significant lower, since the data managment between the cores is a overhead.
 Additionally oher functions, wich are thead safe are parallized as well with \ac{OpenMP} like \eg{} the addition of the velocity to each object.
@@ -679,15 +675,14 @@ Additionally oher functions, wich are thead safe are parallized as well with \ac
 %
 \section{Visualization}\label{sec:visualization}
 %
-%
-%
 A visualization tool is available to visualize the nerve fiber configuration.
 This enables the user to get a direct feedback (\eg{} after each step) to adjust the initial fiber configuration or boundary condition.
 It is written in \cpp{} and \ac{OpenGL} 2 \cite{isocpp, khronos}.
 This implementation uses \code{gluCylinder} to represent a nerve fiber segment.
 This is at current standarts by no means the fastes approuch, but in contrast to the calculation time of a single step in the collision algorithm still fast enough.
 \par
-A more advanced interactive tool is available as well as open source, the FAConstructor \cite{Reuter2019}.
+% 
+A more advanced interactive tool is available as well as open source, the FAConstructor, developed by Jan Reuter during his Bachelor thesis \cite{Reuter2019}.
 It additionally provides interactive methods to build nerve fiber models and was written in \ac{OpenGL} 3.
 \par
 %
@@ -700,7 +695,7 @@ It additionally provides interactive methods to build nerve fiber models and was
 	\label{fig:vis_mesh}
 \end{figure}
 %
-Parallel to the above implementation a more advanced visualization was necesarry.
+As described in the next chapter (see \cref{sec:medusa}) a more suffisticated visualization was needed.
 During an cooperation with Neurospin at \ac{CEA} the goal was not only to provide nerve fiber models, but also to generate cells like astrocytes.
 This cells needed to be visualized as well as the inner axon.
 For this purpose an the first mentioned algorithm was rewritten.
@@ -710,7 +705,7 @@ This means, that in the visualization the computer has to remember, which object
 This is a huge amount of computational resources and the reason why it is not included in the \ac{fastPLI} package.
 \par
 The fiber segments are not anymore visualized like an cylinder, but as a \ac{CC} (see \cref{fig:vis_mesh}).
-The calculated meshes and resulting images look like (see \cref{fig:medusa_11})
+The calculated meshes and resulting images look like (see \cref{fig:medusa_8b})
 \par
 Further information how to generate meshes and visualization of such objects can be found in \cite{9780134495491}.
 This visualization algorithm can still be far improved by processing the hole calculations an the \ac{GPU}.
@@ -720,8 +715,10 @@ This visualization algorithm can still be far improved by processing the hole ca
 \section{Medusa - sphered nerve and cell modelling}
 \label{sec:medusa}
 %
-The above described algorithm is capable of generating dense \ac{WM} nerve fiber models.
-In \ac{dMRI} these models can be applied as well.
+The above described algorithm for generating dense \ac{WM} fiber models can be applied in \ac{dMRI} as well.
+However, due to other imaging techniques and study priorities, other types of models are required.
+\par
+% 
 There the movement and interaction of water molecules with the fiber models can be simulated.
 When the water moelcules are hitting the surface of a fiber segment, the diffusion model has to be taken into account.
 This, however, is not only true for nerve fibers but also for other types of cells.
@@ -732,23 +729,22 @@ Therefore an additional algorithm was developed in cooperation with Kevin Ginsbu
 This algorithm called \ac{MEDUSA} \cite{Ginsburger2019} is working similar to the above describe algorithm, however it is not modelling the 3d objects as tube segments, but as spheres.
 This has the advantage, that the objects are simpler, which leads to an increase in collision checking calculations, but spheres are capable of approximating a 3d object like a cell body.
 Latter is achieved by representing the surface of a cell body as the sum of multiple spheres. 
-Only the surface of a sphere, which is not colliding with another sphere is \dummy{} as the surface of the entire cell (see \cref{ig:medusaCell}).
+The resulting overall surface of all spheres is representing the cell (see \cref{ig:medusaCell}).
 By these means very complicated shapes are possible.
 The disadvantage however is for representing tube like objects a lot more spheres, and therefore objects to check for a collisions, are necesarry.
 \par
 % 
 Since the number ob objects, \ie{} spheres, is so much higher, the algorithm was implemented on the \ac{GPU} with a x-axes aligned bounding box search algorithm \cite{Karras2012}.
 \par
+% 
+
 A key feature of this algorithm is hoe to build other cell types and escpeccially how to design olegodendrites which arms connect to the myelin sheet of a near axon.
 Another focus was on the iniatial configurations of the cells.
-Nerve fibers are initialized as fiber populations with parameters like density and angular dispersion (see \cite[Ginsburger2019]).
+Nerve fibers are initialized as fiber populations with parameters like density and angular dispersion \cite[Ginsburger2019, ginsburgerDis2019].
 Analog to \cref{sec:Solver} algorithm the collisions of the objects are then checked and slighlty pushed appart until no more collisions can be detected.
+This algorithm is then capable of generating suffisticated libraries of fiber models with different number of individual fiber populations (see \cref{fig:medusa_8a}).
 % 
-% % ------------------------------------------------------------------------------
-% \par
-% \noindent\rule{\textwidth}{1pt}
-% \par
-% % ------------------------------------------------------------------------------
+% 
 %
 \subsection{Algorithm}
 %
@@ -794,7 +790,8 @@ d(i,j) &=
 Spheres inside cell bodys are not checked for collision, since their volume aproximate? the volume of the cell.
 \par
 %
-The calculation of collisions is done via the GPU architecture. For this a first implementation was written with the \name{AxisAligedSortedSearch} \cite{Karras2012}. It sorteds the spheres along one axis, \eg{} x-axis, x-axis, and search for each sphere the fist and last possible collision on this axis:
+The calculation of collisions is done via the GPU architecture. For this a first implementation was written with the \name{AxisAligedSortedSearch} \cite{Karras2012}. It sorteds the spheres along one axis, \obda{} x-axis, and search for each sphere $i$ the fist and last possible collision on this axis.
+This yield in a list of spheres $\mathcal{C}_i$ to be checked:
 \begin{align}
 \begin{split}
 \mathcal{C}_i = \{ s \in \mathcal{S} \mid \abs{s_i.x - s_j.x} < r_i+r_j \}
@@ -807,19 +804,21 @@ The calculation of collisions is done via the GPU architecture. For this a first
 	\label{alg:medusa_collision}
 \end{lstfloat}
 %
-The above described algorithm is currently used for volumes $\approx \SI{200}{\micro\meter}$. For this volume size the algorithm is for the current use fast enough. However, more advaned algorithm exist wich can be applied here (\eg{} \name{BoundindBoxHierarchy} \cite{Karras2012}).
+The above described algorithm is currently used for volumes $\approx \SI{200}{\micro\meter}$.
+For this volume size the algorithm is for the current useage fast enough.
+However, more advaned algorithm exist wich can be applied here.
+A prommising technique is the usage of \name{BoundindBoxHierarchy} \cite{Karras2012}.
 %
 \begin{figure}[!t]
     \centering
-    \subcaptionbox{\dummy{}}[0.75\textwidth]{
+    \subcaptionbox{\dummy{}}[0.75\textwidth]{\label{fig:medusa_8a}
     \resizebox{0.75\textwidth}{!}{
     \includegraphics{gfx/model/medusa/8.jpg}}}
     \\[2em]
-    \subcaptionbox{\dummy{}}[0.75\textwidth]{
+    \subcaptionbox{\dummy{}}[0.75\textwidth]{\label{fig:medusa_8b}
     \resizebox{0.75\textwidth}{!}{
     \includegraphics{gfx/model/medusa/11_.jpg}}}
 	\caption{\cite{Ginsburger2019}}
-
 	\label{fig:medusa_8}
 \end{figure}
 % 
