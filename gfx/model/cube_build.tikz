@@ -48,7 +48,7 @@
     \pgfmathparse{cos(\zrot)*0.1}\let\ex=\pgfmathresult
     \pgfmathparse{sin(\zrot)*0.1}\let\ey=\pgfmathresult
     %
-    \draw[BLUE, dashed] (\xx,\yy,\z) -- + ($({cos(\zrot)*8},{sin(\zrot)*8},0)$);
+    \draw[BLUE, dashed, thin] (\xx,\yy,\z) -- + ($({cos(\zrot)*8},{sin(\zrot)*8},0)$);
     %
     \foreach \j in {0,1,...,79}{%
         \pgfmathparse{(\xx+\j*\ex) > -2.5 && (\xx+\j*\ex) < 2.5
@@ -60,7 +60,7 @@
         \ifthenelse{\pgfmathresult>0}{%
         \pgfmathparse{\xx+\j*\ex}\let\xxx=\pgfmathresult
         \pgfmathparse{\yy+\j*\ey}\let\yyy=\pgfmathresult
-        \draw[GREEN, very thick] (\xxx,\yyy,\z) -- ++ (\ex,\ey,0);
+        \draw[BLUE, very thick] (\xxx,\yyy,\z) -- ++ (\ex,\ey,0);
         }{}
     }
 }
