@@ -18,8 +18,8 @@ bibliography:
 
 .PHONY: thesis
 thesis: compile bibliography
-	lualatex -interaction=nonstopmode -halt-on-error -shell-escape thesis.tex
-	lualatex -interaction=nonstopmode -halt-on-error -shell-escape thesis.tex
+	$(MAKE) compile
+	$(MAKE) compile
 
 .PHONY: tikz
 tikz:
