@@ -31,6 +31,7 @@
 	\shadedraw[fill opacity=0.5,top color=optical!150,bottom color=optical!50] ([shift=(\bot:1)]0,0,-0.125) arc (\bot:\top:1) -- ([shift=(\top:1)]0,0,0) arc (\top:\bot+10:1) -- cycle;
 	\node [yslant=tan(\xangle), below, font=\footnotesize] at
 	(-1.125,-1,0){Polarizer};
+	\draw[very thin] (-1,0,0) -- (1,0,0);
 	\draw [led, thick, -] (0,0,0) -- (0,0,\dz);
 	\draw[->,'] ([shift=(30:1.2)]0,0,-0.0675) arc (30:100:1.2) node[midway,yshift=1ex]{\footnotesize rotation};
 \end{scope}
@@ -58,7 +59,11 @@
 \shadedraw[fill opacity=0.5,top color=optical!150,bottom color=optical!50] ([shift=(\bot:1)]0,0,-0.125) arc (\bot:\top:1) -- ([shift=(\top:1)]0,0,0) arc (\top:\bot+10:1) -- cycle;
 \node [yslant=tan(\xangle), below, font=\footnotesize] at
 (-1.125,-1,0){Quarter Wave Plate};
+\draw[very thin] ({sin(45)},{cos(45)},0) -- ({sin(225)},{cos(225)},0);
+\draw[very thin] ({sin(-45)},{cos(-45)},0) -- ({sin(135)},{cos(135)},0);
 \draw [led, thick, -] (0,0,0) -- (0,0,\dz);
+% 
+\coordinate (A) at (0,1.5,0);
 \end{scope}
 %
 % PolY
@@ -69,7 +74,9 @@
 	\shadedraw[fill opacity=0.5,top color=optical!150,bottom color=optical!50] ([shift=(\bot:1)]0,0,-0.125) arc (\bot:\top:1) -- ([shift=(\top:1)]0,0,0) arc (\top:\bot+10:1) -- cycle;
 	\node [yslant=tan(\xangle), below, font=\footnotesize] at
 	(-1.125,-1,0){Polarizer};
+	\draw[very thin] (0,-1,0) -- (0,1,0);
 	\draw [led, thick, -] (0,0,0) -- (0,0,\dz);
+	\coordinate (B) at (0,1.5,0);
 \end{scope}
 %
 % CCD
@@ -89,6 +96,9 @@
 	\node [yslant=tan(\xangle), below, font=\footnotesize] at
 	(-1.125,-1,0){CCD};
 \end{scope}
+% 
+\draw[decorate,decoration={brace,amplitude=10pt}]
+	(A) -- (B) node[midway,yslant=tan(\zangle), font=\footnotesize,yshift=17.5pt] {Circular Polarizer};
 %
 \end{tikzpicture}
 \end{tikzsize}
