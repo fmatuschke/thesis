@@ -4,6 +4,12 @@
 \begin{tikzsize}{\tikzwidth}{\tikzheight}
 \begin{tikzpicture}[scale=\tikzscale,
                     x=(\xangle:1cm), y=(90:1cm), z=(\zangle:0.5cm)]
+    % 
+    \node[inner sep=0pt, opacity=0.5, rotate=90] at (4,5)
+    {\includegraphics[height=6.5cm, trim=0 75 0 75, clip]{gfx/neuroanatomy/axon.pdf}};
+    % \node[inner sep=0pt, opacity=0.25, rotate=90] at (4,3.5)
+    % {\includegraphics[height=6.5cm, trim=0 3 0 3, clip]{gfx/neuroanatomy/axon.pdf}};
+    % 
     \pgfmathsetmacro{\lx}{7}
     \pgfmathsetmacro{\ly}{5}
     \pgfmathsetmacro{\lz}{4}
