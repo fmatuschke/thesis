@@ -630,5 +630,5 @@ It can be shown that for linear operations on memory, the cache prefetcher reduc
 Another technique is to use modern compilers such as Clang v11\footnote{https://clang.llvm.org/} or G++ v10\footnote{https://gcc.gnu.org/}.
 These have an optimization algorithms built in that optimizes the code to the architecture of the machine, and much more sophisticated methods.
 For example, if the number of iterations is known at compile time, a for loop can be \name{unrolled} to speed up the computations since it no longer needs to check if the conditions are met to end the loop.
-To review these optimizations, the code with bottlenecks was tested with \name{Compiler Explorer}\footnote{https://godbolt.org/} and \name{C++ Insight}\footnote{https://cppinsights.io/}.
+To review these optimizations, the code with bottlenecks was tested with \name{Compiler Explorer}\footnote{\url{https://godbolt.org/}} and \name{C++ Insight}\footnote{\url{https://cppinsights.io/}}.
 %

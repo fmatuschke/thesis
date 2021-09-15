@@ -337,25 +337,21 @@ This means that the physical properties stored in the arrays have to be interpol
 \label{fig:vectorfield_disc}
 \end{figure}
 %
-There are currently three interpolation methods for this purpose implemented: \textit{nearest neighbor}, \textit{linear interpolation} and \textit{spherical interpolation}.
-The voxels taken into account for the interpolation are the nearest 8 adjacent voxels, so array indices $(\floor{x\pm0.5},\floor{y\pm0.5},\floor{y\pm0.5})$.
-%
-The \textit{nearest neighbor} is the most error-prone of the three methods and should be not to be used.
-However it is also the fastest method.
-The \textit{linear interpolation} was the first one implemented.
-However since the data contain orientation data, the \textit{spherical interpolation} method should be used.
-\par
-%
-To interpolate the data the trilinear interpolation will be performed (see \cref{fig:triInterp}).
+Currently three interpolation methods are implemented for this purpose: \name{nearest neighbor}, \name{linear interpolation} and \name{spherical interpolation}.
+The voxels considered for interpolation are the nearest eight neighboring voxels, i.e. array indices $(\floor{x\pm0.5},\floor{y\pm0.5},\floor{y\pm0.5})$.
+The \name{nearest neighbor} method is the most error-prone of the three methods and should not be used.
+However, it is also the fastest method.
+The \name{linear interpolation} is of the next higher order.
+However, since the data contains orientation data, the \name{spherical interpolation} method should be used (see \cref{fig:triInterp}).
 %
 %
 %
-\subsection{algorithm}
+\subsection{Simulation of light-tissue interaction}
 %
-First the starting points of all light beams will be calculated.
-hen each light beam can be traversed inside the tissue.
-To calculate the light matter interaction, the change of the Stokes vector will be calculated after each light beam step.
-As soon as the light hits the boarder of the tissue, the light beam will be the last optical elements and the intensity will be stored inside the \ac{CCD} array.
+First, the starting points of all light beams are calculated.
+Then, each light beam can be traversed within the tissue.
+To calculate the light-tissue interaction, the change of the Stokes vector is calculated after each light beam step.
+Once the light hits the boundary of the volume, the light beam is multiplied by the matrix of the last optical element and the intensity is stored in the \ac{CCD}-array.
 The pseudocode is shown in \cref{alg:simulationLoop}.
 %
 \begin{lstfloat}[!tb]
@@ -374,7 +370,7 @@ for light in light_beams:
     light = optical_elemts_end * light
     ccd_array[light.ccd_pos] = light.intensity
 \end{lstlisting}
-\caption{Discretized volume filling algorithm}
+\caption{Simulation of light-tissue interaction}
 \label{alg:simulationLoop}
 \end{lstfloat}
 %
@@ -382,50 +378,20 @@ for light in light_beams:
 %
 \subsection{Optimizations}
 %
-There are several optimizations used inside this pipeline.
-First the order of the tissue stored inside the memory is along the z-axis (as described in \cref{sec:dvOpti}).
-Secondly the main for loop for each light ray is parallized with \ac{OpenMP}.
-This threads are completely separated and no race conditions exists.
+Several optimizations are made in this pipeline.
+First, the order of the tissues stored in memory is along the z-axis (as described in \cref{sec:dvOpti}).
+Second, the for loop for the light beams is paralellized with \ac{OpenMP}.
+These threads are completely separated and there are no race conditions.
+In addition, all vector and matrix calculations are optimized for their small sizes by the compiler with the help of tools like \name{Compiler Explorer}\footnote{\url{https://godbolt.org/}} and \name{C++ Insight}\footnote{\url{https://cppinsights.io/}}.
 %
 %
-%
-\subsection{Optic}
+\section{Optical system and signal analysis}
 \label{sec:ccdOptic}
 %
-The image sensor as described in \cref{sec:expSetup} is a \ac{CCD} sensor.
-The calculations, \ie the resampling and noise modelling, are implemented according to \cref{sec:opticalResolution}.
-These calculations are performed on the python side of the algorithm and can be parallized with the \code{multiprocessing} library of \python{}.
-%
-% A general \ac{CCD} sensor consits out of an array of capacitors.
-% In each capacitor an electric charge will be stored, setted free by an incoming photons.
-% After a read out process, which also contains a electric gain, the resulting values can be stored as an image.
-% This process has two major noise parts. The first is the electic charge.
-% Its value is, as long as it is not saturated, linear correlated with the number of photons.
-% However internal noise like thermal, and a each photon statistically charges a number of electrons, the resulting capacity varies.
-% The second major noise comes from the gain process.
-% Here the electric voltage will be gained before a analog digital read out.
-% This process is also strong linear correlated around a operational point.
-% However due to the nature of the underlining circuit, i.e. usually transistors and their power source, the resulting value can vary.
-% All noise sources combined yield to an poison distributed noise, to too the nature of digital values.
-%
-% \\
-%
-% To account for the optical setup, three things have to be done.
-% \paragraph{Bluring}
-% The optical resolution the light rays have to be blurred.
-% This is classically done via a 2d gaussian convolution:
-%
-% \paragraph{Sampling}
-% Since the number and final position of the light rays is according to the voxels, all intensities of an image pixel have to be combined.
-% Here it is done via a mean value sampling.
-% This in contrast to resizing, does not interpolates the image.
-% %
-% \paragraph{Noise}
-% The last step is to replicate the noise of the image setup. To account for this a noise model has to be applied to each image pixel. \cite{Wiese:887678} showed that this can be done via a poisson/gaus model.
-%
-%
-%
-\section{Analysis}
+The image sensor, as described in \cref{sec:expSetup}, is a \ac{CCD}-sensor.
+The calculations, \ie the resampling and noise modeling, are implemented according to \cref{sec:opticalResolution}.
+These calculations are performed on the \python{} side of the algorithm and can be executed with the \code{multiprocessing} library of \python{} to use multiple \ac{CPU} cores.
+\par
 %
 The same algorithms are implemented as in the \ac{3D-PLI} routine pipeline (see \cref{sec::intSignal,sec::InclAnalysis}).
 This include the modalities analysis transmittance, direction and retardatation as well as the tilting analysis performend by \ac{ROFL}.
@@ -434,48 +400,43 @@ This include the modalities analysis transmittance, direction and retardatation 
 %
 \section{MPI parallelization}\label{sec:mpiSim}
 %
-Both algorithms, the DV generator and the simulation can use an additionally parallelization technique.
-%
-For huge volumes that are larger than the locally memory size, the calculation must be split onto several physical \acp{CPU} and \name{computation nodes}\footnote{A computing node is a processing unit in a computer network}.
-For this purpose \acreset{MPI} \ac{MPI} is used.
-A method is implemented that automatically divides the volume along the $x$-axis and $y$-axis into blocks with minimal surface area (see \cref{fig:com_halo}).
-The minimization of the $x-y$-surface area is important for the simulation algorithm.
+Both algorithms, the DV generator and the LT simulation, can additionally use a parallelization technique.
+For large volumes that are larger than the local memory size, the computation must be split among multiple physical \acp{CPU}s and \name{computation nodes}.
+For this purpose, \acreset{MPI} \ac{MPI} is used.
+A method is implemented to automatically partition the volume along the $x$-axis and the $y$-axis into blocks with minimal surface area (see \cref{fig:com_halo}).
+% Minimizing the $xy$-area is important for the simulation algorithm.
 \par
-Once the volume is split into euqal parts, with respect to the nature of integers, the above mentioned algorithms can be performend completly analog on the \ac{MPI} ranks, as if they only would know about there volume.
-The only exception is the simulation for tilted light beams.
-This means, that at the boarder of the volume, when a light beam travels through the tissue, the light can leave the local volume of the \ac{MPI} rank.
-\ac{MPI} provides several methods to send information to another rank.
-Since this volume splitting is cartesion, the cartesion implementations of \ac{MPI} are used (\eg{} \code{MPI\tu Cart\tu create}).
-However since the light beam also needs in the case of interpolation the information of the surrounding $\SI{8}{\voxel}$, this would mean that the missing voxels had to be transferred to the neighboring ranks.
+% 
+Each CPU can be performed on its volume the above algorithms analogously on the \ac{MPI} \name{ranks} as if they knew only their volume.
+The exception is the simulation for tilted light beams.
+Here, when a light ray leaves the local volume, it must be transmitted to the adjacent volume.
+\ac{MPI} provides several methods to send information to another \name{rank}.
+Since this volume sharing is cartesion, the cartesion implementations of \ac{MPI} are used (\eg{} \code{MPI\tu Cart\tu create}).
 %
 \begin{figure}[!t]
-\centering
-\setlength{\tikzwidth}{0.85\textwidth}
-\inputtikz{gfx/simpli/com_halo}
-\caption{comunication halos. The volume is split into six subvolumes, distributed to 6 mpi ranks. The coloured voxels have the same tissue information.  To calculate the value at a given point a eight-neighborhood is necessary.}
-\label{fig:com_halo}
+    \centering
+    \setlength{\tikzwidth}{0.85\textwidth}
+    \inputtikz{gfx/simpli/com_halo}
+    \caption{comunication halos. The volume is split into six subvolumes, distributed to 6 mpi ranks. The coloured voxels have the same tissue information.  To calculate the value at a given point a eight-neighborhood is necessary.}
+    \label{fig:com_halo}
 \end{figure}
 %
-This would mean a huge amount of communications, which are relatively slow.
-The solution is a so called \name{halo}.
-This is a commonly used concept, where the borders (in this case a volume) are enlarged by a a specific size (in this case $\SI{1}{\voxel}$) so that the same information of the shared regions is available everywhere (see \cref{fig:com_halo}).
-%
-% \begin{figure}[!t]
-% \centering
-% \def\tikzwidth{0.5\textwidth}
-% \inputtikz[]{gfx/simpli/com_halo_send}
-% \caption{Light ray send to another node. To calculate the \dummy{} a eight-neighborhood is necessary.}
-% \label{fig:com_halo_light}
-% \end{figure}
-Now the light beam can be communicated when it leaves the local volume to the next one (see \cref{fig:com_halo}).
-This is also the reason, why the surface area is minimized, so that the number of communications is also minimized.
-\par
-To even more speed up the communication process, all leaving light beams are first stored locally in a communication buffer, and only after all local light beams were processed, the buffer will be communicated to the neighbors.
-This ensure a minimal communication cost.
-The main light beam algorithm loop is then started again on all \ac{MPI} ranks for the communicated light beams.
-This is repeated until no more communications were necessary.
+A problem is the calculation at the edge of the volume, because the light beam needs the information of the surrounding eight voxels for the interpolation.
+If this voxel information were to be transmitted to the neighboring \name{rank} as well, this would mean a large amount of communication, which is much slower compared to the local \ac{CPU} or \ac{RAM} instructions.
+The solution is a so-called \name{halo}.
+This is a commonly used concept where the boundaries (in this case a volume) are increased by a certain size (in this case $\SI{1}{\voxel}$) so that the same information about the shared regions is available everywhere (see \cref{fig:com_halo}).
 \par
 %
-Each \ac{MPI} process can additionally use \ac{OpenMP} to create multiple threads for efficient use of shared memory if the architecture supports it.
+With this concept, only the light beam needs to be communicated to the neighbors when leaving the local volume (see \cref{fig:com_halo}).
+This is also the reason why the surface area is minimized, so the number of communications is also minimized.
+\par
+% 
+To further speed up the communication process, all outgoing light beams are first stored locally in a communication buffer, and only after all local light beams have been processed is the buffer passed on to the neighbors.
+This ensures minimal communication overhead.
+The main loop of the light beam algorithm is then restarted on all \ac{MPI} \name{ranks} for the communicated light beams.
+This is repeated until no more communication is required.
+\par
+%
+Each \ac{MPI} process can additionally use \ac{OpenMP} to allow multiple cores to benefit from shared memory. 
 % 
 %
