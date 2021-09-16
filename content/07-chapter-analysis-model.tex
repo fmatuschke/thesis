@@ -34,31 +34,33 @@ Finally, a set of models is created as a library for \ac{3D-PLI} simulations and
 %
 %
 %
-\section{Designing fiber populations}
+\section{Designing a library for fiber population models}
 %
 For the \ac{3D-PLI} simulation, a volume of size $\SI{65}{\micro\meter} \times \SI{65}{\micro\meter} \times \SI{60}{\micro\meter}$ is required (see \cref{cha:simulation_analysis}. \footnote{\SI{65}{\micro\meter} is divisible by \SI{1.3}{\micro\meter}, the pixel size of the microscope}.
-This volume will be filled with \say{fiber population}, which is a fiber bundle with a particular orientation, fiber density, and radius distribution.
-The strategy of statistically grouping fiber bundle into fiber populations is analogous to the work \cite{Ginsburger2018, Ginsburger2019,ginsburgerDis2019}.
-K{\'{e}}vin Ginsburger was able to show that one can build a library of models of specific parameters to use as training models in machine learning to predict these learned parameters in experimental measurements.
-These parameters of a fiber population have the advantage of being anatomically motivated and describing a nerve fiber volume based on statistical properties, which are also commonly used in \ac{dMRI}.
-Here, the idea needs some adaptation to fit the research questions given here.
+This volume is filled with one or more \say{fiber population}, which is a fiber bundle with a specific orientation, density, and radius distribution.
+The strategy of statistically grouping fiber bundles into fiber populations is analogous to the work of K{\'{e}}vin Ginsburger \cite{Ginsburger2018,Ginsburger2019,ginsburgerDis2019}.
+He was able to show that one can create a library of models of specific parameters that can be used as training models in machine learning to predict these learned parameters in experimental measurements.
+These parameters of a fiber population have the advantage of being anatomically motivated and describing a nerve fiber volume based on statistical properties that are also commonly used in magnetic resonance imaging.
+Here, the idea needs to be adapted somewhat to meet the research questions posed here and in the fiber tract architecture working group.
 %
-\subsection{Orientation and proportion}\label{sec:modelParamet}
+% 
+% 
+\subsection{Orientation and proportions}\label{sec:modelParamet}
 %
 \begin{figure}[p]
 \centering
 \setlength{\tikzwidth}{0.40\textwidth}
-\subcaptionbox{\label{fig:modelrotcube}A spherical volume with diameter $d$ is used as boundary, so that a cube of side length $1/1.5 \cdot d$ can be cut in any orientation inside the sphere.}
+\subcaptionbox{\label{fig:modelrotcube}A spherical volume of diameter $d$ is used as a boundary, so that a cube of side length $1/1.5 \cdot d$ can be cut in any orientation within the sphere.}
 [.49\textwidth]{\inputtikz{gfx/model/sphere_cube}}\hfill
-\subcaptionbox{\label{fig:modelinit}Initial orientation for two fiber populations $F_0$ and $F_1$. The angle between both populations is $\Omega$. The remaining degree of freedom are taken into account by rotating the whole volume (see \cref{fig:modelrotcube})}
+\subcaptionbox{\label{fig:modelinit}Initial orientation for two fiber populations $F_0$ and $F_1$. The angle between the two populations is $\Omega$. The remaining degrees of freedom are considered by rotating the whole volume (see \cref{fig:modelrotcube}).}
 [.49\textwidth]{\inputtikz{gfx/model/sphere_models}}
-\par
+\\
 %
 \subcaptionbox{fixed first fiber population; half rotation of second fiber population}
 [.49\textwidth]{\inputtikz{gfx/model/sphere_models_a}}\hfill
 \subcaptionbox{\label{subfig:Test1}increasing inclination for first fiber population}
 [.49\textwidth]{\inputtikz{gfx/model/sphere_models_b}}
-\par
+\\
 %
 \setlength{\tikzwidth}{0.40\textwidth}
 \subcaptionbox{\label{subfig:sphere:hista1} hist a}
