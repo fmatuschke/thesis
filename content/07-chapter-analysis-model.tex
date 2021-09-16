@@ -4,31 +4,32 @@
 %
 \section{Introduction}
 %
-In the previous chapter \cref{chap:sof:modelling} the module \pymodule{fastpli.model} was described to build non-colliding nerve fiber models \cite{Matuschke2019, Matuschke2021}.
-An open question, however, is how the parameters affect the resulting models.
+In the previous chapter \cref{chap:sof:modeling}, the module \pymodule{fastpli.model} was described to create non-colliding nerve fiber models \cite{Matuschke2019, Matuschke2021}.
+However, an open question is how the parameters affect the resulting models.
 Since the collision resolution algorithm divides the nerve fibers into fiber segments and also controls their motion and bending when the colliding parts are resolved, its parameters have an influence on the resulting nerve fiber configuration.
-How big this influence is is the first investigation of this chapter.
+How great this influence is is the first investigation in this chapter.
 \par
 %
-Three characteristics are crucial here.
-The first is to be able to produce a dense volume.
-This of course depends on the initial fiber configuration.
-In configurations such as crossings, the density is reduced.
+Three properties are crucial here.
+First, it must be possible to generate a dense volume.
+This, of course, depends on the original fiber configuration.
+In configurations  such as crossings, the density is lower.
 The second is the runtime.
-The lower this is, the more models the user can build in the same time, or a larger one.
+The lower this is, the more objects and larger models the user can create in the same time.
 The last condition is that the initial fiber orientations remain intact.
-Because of the motion phase in the collision solver algorithm, these will have to change.
+Because of the motion phase in the collision solver algorithm, they must change.
 The question is how much they change and whether the results match the user's expectations and anatomical reality.
 \par
 %
-The characterization process should be done on a statistically describable model in order to generalize the evaluation. The question, then, is what type of parameterization can be used to define a fiber configuration in a volume without having to describe each individual fiber.
-This statistical system must also be able to reproduce random volumes with the same fiber orientation statistics as another built with the same parameters.
-This description could then be used both for the study of the solver parameters and for the subsequent study of the \ac{3D-PLI} simulation.
+The characterization process should be done on a generalized, describable model for evaluation.
+The question then is, what type of parameterization can be used to define a fiber configuration in a volume without having to describe each individual fiber.
+This statistical system must also be able to reproduce random volumes with the same fiber orientation statistics as another created with the same parameters.
+This description could then be used for both the study of the solver parameters and the subsequent study of the \ac{3D-PLI} simulation.
 \par
 %
-This chapter is structured in three consecutive parts.
-First, the design of statistical volumes containing fiber populations is described.
-This is followed by the study of the solver parameters and their behavior on the resulting collision-free nerve fiber models.
+This chapter is divided into three consecutive parts.
+First, the design of statistical volumes with fiber populations is described.
+This is followed by an investigation of the solver parameters and their behavior on the resulting collision-free nerve fiber models.
 Finally, a set of models is created as a library for \ac{3D-PLI} simulations and their characterization.
 %
 %
