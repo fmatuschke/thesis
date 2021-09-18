@@ -1,5 +1,6 @@
 \begin{tikzsize}{\tikzwidth}{\tikzheight}
 \begin{tikzpicture}[scale=\tikzscale]
+\tikzstyle{every node}=[font=\small]
 %
 \begin{scope}[%
 3d view={52}{22},
@@ -24,7 +25,8 @@ arr/.style={-{latex[color=GREEN]},
 \foreach \i in {0,10,...,50}{\node[circle,fill,BLUE,inner sep=1.25pt] at ({cos(\i)},{sin(\i)}) {};}
 \draw[very thick, BLUE, ->] (0,0,0) -- ({\r*cos(\varomega)},{\r*sin(\varomega)},0) node [pos=1, anchor = west] {$F_1$};
 \begin{scope}[canvas is xy plane at z=0]
-    \draw[] (0.70,0) arc (0:\varomega:0.70) node [pos=0.50, anchor=east, xshift=-0.5ex, yshift=0.25ex] () {$\Omega$};
+    \draw[] (0.70,0) arc (0:\varomega:0.70);
+    \path[] (0.5,0) arc (0:\varomega/2:0.5) node[BLUE, pos=1, anchor=center] () {$\modelOmega$};
 \end{scope}
 %
 \end{scope}

@@ -1,5 +1,6 @@
 \begin{tikzsize}{\tikzwidth}{\tikzheight}
 \begin{tikzpicture}[scale=\tikzscale]
+\tikzstyle{every node}=[font=\small]
 %
 \begin{scope}[%
 3d view={52}{22},
@@ -29,7 +30,8 @@ arr/.style={-{latex[color=GREEN]},
     \draw[BLUE, dashed, thick] (1,0) arc (0:\varomega:1);
     \end{scope}
     \begin{scope}[canvas is yz plane at x=0.99]
-    \draw[BLUE,thick] (0.2,0) arc (0:\varomega:0.2) node [pos=1, anchor= west] () {$\Upsilon$};
+    \draw[BLUE,thick] (0.2,0) arc (0:\varomega:0.2);
+    \path[] (0.3,0) arc (0:\varomega/2:0.3) node[BLUE, pos=1, anchor=center] () {$\modelRot$};
     \end{scope}
     %
     \draw[very thick, GREEN, ->] (0,0,0) -- (\r,0,0) node [pos=1, anchor = north east] () {$F_0$};
@@ -37,7 +39,8 @@ arr/.style={-{latex[color=GREEN]},
     \begin{scope}[rotate around x=30]
         \draw[very thick, BLUE, ->] (0,0,0) -- ({\r*cos(\varomega)},{\r*sin(\varomega)},0) node [pos=1, anchor = west] () {$F_1$};
         \begin{scope}[canvas is xy plane at z=0]
-            \draw[] (0.60,0) arc (0:\varomega:0.60) node [pos=0.55, anchor= east] () {$\Omega$};
+            \draw[] (0.60,0) arc (0:\varomega:0.60);
+            \path[] (0.42,0) arc (0:\varomega/2:0.42) node[BLUE, pos=1, anchor=center] () {$\modelOmega$};
         \end{scope}
     \end{scope}
     %
