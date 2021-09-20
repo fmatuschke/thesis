@@ -475,6 +475,21 @@ However, the influence on the simulation must also be investigated here beforeha
 %
 \section{CPU Acceleration}
 %
+As described in \cref{sec:modelOpt}, \ac{OpenMP} is used to accelerate \code{for} loops.
+This means that it is currently not possible to use multiple compute nodes.
+\par
+% 
+To investigate the speedup runtime measurements the parameters from \cref{tab:parameterSetup} are used for parallel and crossing fibers.
+The chossen volume is of size $\SI{60}{\micro\meter} \times \SI{60}{\micro\meter} \times \SI{60}{\micro\meter}$.
+The speedup is calculated for an avarage of 100 consecutive steps.
+To measure if the speedup changes over time the time measurements are started after a certain number of steps $\Delta_{\mathit{steps}} = \SIlist{0;100;1000;10000}{\steps}$ .
+The calculation is repeated $n=\SI{24}{}$ times for each case.
+For the measurements the cores were bind to phyical cpu cores and not to hyperthreaded cores.
+%
+% 
+% 
+\subsection{Results}
+% 
 \begin{figure}[!t]
 \centering
 \includegraphics[page=1]{dev/rc1/speed/boxplot_output_r_0.5__.pkl_speedup.csv.pdf}
@@ -482,40 +497,34 @@ However, the influence on the simulation must also be investigated here beforeha
 \label{fig:solverSpeedup}
 \end{figure}
 % 
-\TODO{Rewrite to new results!}
-%
-As described in \cref{sec:modelOpt}, \ac{OpenMP} is used to accelerate \code{for} loops.
-This means that it is currently not possible to use multiple compute nodes.
-%
-\subsection{Results}
-For a single node, a volume of $\SI{60}{\micro\meter} \times \SI{60}{\micro\meter} \times \SI{60}{\micro\meter}$ measured with the above parameters $\SI{24}{}$ times.
-\cref{fig:solverSpeedup} shows the speedup of the measurements on up to eight cores.
-The speedup was calculated according to $\Delta_{\mathit{steps}}$ as the average of the closest $\SI{100}{\steps}$.
-For $\Delta_{\mathit{steps}} = \SI{0}{\steps}$, the speedup for $\SI{2}{}$ cores is about 1.5 for crossing and noncrossing fiber bundles.
-Additional cores increase the speedup, but only slightly.
-For parallel fibers, the speedup does not increase above $2$, and for crossing fibers, it does not increase above $\SI{2.5}{}$.
-For $\Delta_{\mathit{steps}} = \SI{100}{\steps}$, the speedup approaches the ideal curve.
-The best case in this data set is for $\Delta_{\mathit{steps}} = \SI{1000}{\steps}$ and parallel fibers.
-There, $\SI{2}{}$ cores almost reach a speedup of $\SI{2}{\cores}$ and $\SI{8}{\cores}$ reach a speedup of $\SI{5.9}{}$.
-However, crossing fiber bundles have a much lower speedup.
-There, $\SI{8}{\cores}$ only achieve a speedup of $\SI{4.3}{}$.
-A higher number of cores is shown in \cref{app:solverSpeedupAll}, but these do not improve.
+The plot \cref{fig:solverSpeedup} show for the different starting positions $\Delta_{\mathit{steps}}$ as well as for the parallel and crossing fiber bundles.
+Up to $\SI{4}{cores}$ the speedup inreases linear for $\SI{4}{cores}$ with a number of 3...
+After $\SI{4}{cores}$ the speedup increases slower until for $\SI{8}{cores}$ a significant increas tp a speedup of about $\SI{5}{}$ is visible.
+\par
+% 
+Overall there is no significant change for parallel or crossing fibers visible.
+A change in speedup is also not visible for different starting points $\Delta_{\mathit{steps}}$.
+\par
+% 
+Higher core numbers up to $\SI{48}{cores}$ are listed in \cref{app:solverSpeedupAll}.
+The speedup raises upt to $\SI{8}{}$ for the last case.
+There are also outliers visible which come from a slow $\SI{1}{core}$ measurement.
 % 
 % 
 % 
 \subsection{Discussion}
-This most likely has to do with the fact that the data has to be transferred between all cores, which takes quite a bit of time.
-Although the algorithm is specifically optimized to reduce the amount of data to be copied, the parallelized instructions are often very short (\eg{} move positions), except for the distance calculation.
-For the difference between the different $\Delta_{\mathit{steps}}$, note that the overlap is higher for crossing fibers than for parallel fibers.
-However, why the acceleration for $\Delta_{\mathit{steps}}=\SI{0}{\steps}$ is initially better for crossing fibers and then the behavior reverses for $\Delta_{\mathit{steps}}=\SI{1000}{\steps}$ is unclear at this point.
-A closer look at the data and the solution step is needed.
-Nonetheless, the data suggest that using a multicore system significantly reduces runtime.
-However, for small volumes or low-fiber objects, one should use only one or two cores and prefer to run multiple models in parallel.
+% 
+Up to $\SI{4}{cores}$ the speedup is with $\SI{3}{}$ ok.
+The slower rise and the jumpt for $\SI{8}{cores}$ is to be explained by the structure of the \name{octree}.
+Since for $\SI{8}{cores}$ the parallel balancing (can) be optimal on an \name{octree} the speedup has to rise.
+Higher cpu cores are not feasable.
 \par
-%
-The results show that an optimized algorithm is needed especially for increasing the volume.
-Here, the \ac{GPU} seems to be the hardware of choice \cite{Karras2012}.
-%
+% 
+Nonetheless, the data suggest that using a multicore system significantly reduces untime.
+However, for small volumes or low-fiber objects, one should use only one or two cores and prefer to run multiple models in parallel.
+The results also show that an optimized algorithm is needed especially for increasing the volume or object count.
+Here, the \ac{GPU} seems to be the hardware of choice with an more advanced algorithm \cite{Karras2012}.
+% 
 %
 %
 \section{Simulation nerve fiber model library}
