@@ -3,7 +3,7 @@
 width=\tikzwidth,
 height=\tikzheight,
 scale only axis,
-xlabel={\small intensity},
+xlabel={\small intensity / \si{\arbitraryunit}},
 ylabel={\small rel $\sigma$},
 log ticks with fixed point,
 ytick={0.01, 0.02, 0.03, 0.04},
