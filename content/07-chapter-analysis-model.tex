@@ -215,7 +215,7 @@ min segment bending radius factor & $\segRadiusFactor$ & $\numlist{1;2;4;8}$\\
 % fiber bundle crossing angle & $\textcolor{violet}{\modelOmega}$ & $\SIlist{0;10;...;90}{\degree}$\\
 fiber bundle crossing/proportion & $\modelPsi$/$\modelOmega$ & $\SI{1.0}{}/\SI{0}{\degree}$, $\SI{0.5}{}/\SI{90}{\degree}$\\
 }
-\caption{Selection of the parameter ranges for the characterization of the parameters}
+\caption{Selection of the parameter ranges for the characterization of the parameters.}
 \label{tab:parameterSetupChar}
 \end{table}
 %
@@ -433,7 +433,7 @@ In summary, the following parameters were chosen:
 \begin{table}[H]
 \sisetup{parse-numbers=false,open-bracket={\{}, close-bracket={\}}, list-final-separator={,},list-pair-separator={,}}%
 \centering
-\caption{Chosen model solver parameters}
+\caption{Recommended parameters of model generation.}
 \pgfplotstabletypeset[%
     thesisTableStyle,
     column type=lcc,
@@ -538,8 +538,6 @@ In this section, the resulting orientation within the volume, \ie{} the orientat
 %
 \subsection{Results}
 %
-\TODO{rewrite angular statistics}
-%
 \begin{figure}[!t]
 \centering
 % \resizebox{1.0\textwidth}{!}{
@@ -556,7 +554,6 @@ In this section, the resulting orientation within the volume, \ie{} the orientat
 \label{fig:modelImages}
 \end{figure}
 %
-%
 \begin{figure}[!t]
     \centering
     \includegraphics[]{dev/rc1/domega/cube_2pop_domega_analysis_output.pdf}
@@ -564,57 +561,52 @@ In this section, the resulting orientation within the volume, \ie{} the orientat
     % \label{fig:my_label}
 \end{figure}
 %
-%
-%
-\Cref{fig:modelOrientation} shows the orientation distribution as polar histogram for the fiber segments in a subset of the models.
-The hole dataset is available in \Cref{app:modelOrientation}.
-The distribution shows the symmetry which corresponds well with the initialized orientation.
-The analysed orientations as the statistic of the opening angle of each population $pop$ are shown in \cref{fig:modelImages} for the most inner $\SI{10}{\micro\meter}$ cube, so that the individual fibers become more recognisable.
+\Cref{fig:modelOrientation} shows the orientation distribution as a polar histogram for the fiber segments in a subset of the models.
+The hole dataset is available in \cref{app:modelOrientation}.
+The distribution shows symmetry that matches well with the initialized orientation.
+The analyzed orientations as statistics of the opening angle of each population \popa and \popb are shown in \cref{fig:modelImages} for the innermost $\SI{10}{\micro\meter}$ cube, making it easier to see the individual fibers.
 \par
 %
-The distribution of the models fiber segment orientation show a local delimitation of each fiber population with a variance round the main population orientation.
-The \cref{app:modelDistribution} show that for all crossing angles $\modelOmega$ the mean opening angle $\langle \openingAngle
- \rangle$ is around $\SI{20}{\degree}$ \todo{genauer wert}.
+The distribution of fiber segment orientation of the models shows a local boundary of each fiber population with a variance around the main population orientation.
+\Cref{app:modelDistribution} show that for all crossing angles $\modelOmega$, the mean opening angle $\langle \openingAngle
+ \rangle$ is around $\SI{20}{\degree}$ \todo{exact value}.
 The variance $\sigma_{\modelOmega}$ is around $\SI{11}{\degree}$.
-Since the distribution is not a normal distribution, the quantile are also specified.
+Since the distribution is not a normal distribution, the quantiles are also given.
 The upper quantile $\SI{75}{\percent}$ shows values up to $\SI{29}{\percent}$.
-It exists a significant difference between the first and second fiperpopulation distribution, that the one, which is higher represented, has smaller opening angle and lower variance and quantile.
+A significant difference between the first and second fiber population distributions is that the more strongly represented distribution has a smaller aperture angle and a lower variance and quantile.
 \par
-The inclination $\alpha$ and direction $\phi$ was calculated by centering the orientation to the fiber populations main orientation and then applying the functions.
-The mean as well as the median orientation of the populations is in good agreement with the targeted value.
-The standard deviation for the here presented subset is about $\SI{18}{\degree}$ for the inclination and $\SI{16}{\degree}$ \todo{nachrechnen!} for the direction.
-One has to bare in mind, that the angules for the inclination and direction are interdependent.
-Thats the reaseon the opening angle is calculated as well.
+% 
+The inclination $\alpha$ and direction $\phi$ were calculated by centering the orientation on the main orientation of the fiber populations and then applying the functions.
+Both the mean and median orientations of the populations agree well with the target value.
+The standard deviation for the subset presented here is about $\SI{18}{\degree}$ for the slope and $\SI{16}{\degree}$ \todo{recalculate!} for the direction.
+It is important to note that the angles for the inclination and the direction are dependent on each other.
+Therefore, the opening angle is also calculated.
 \par
 %
 The images in \cref{fig:modelImages} show the woven pattern within the collision-free model.
-Multiple layers of fibers are woven together, with one layer appearing to have a thickness of only one fiber diameter.
-Several instances are seen where multiple fibers appear to move as a unit through the woven pattern,\eg{} as the motion appears to be synchronized perpendicular to the main orientation.
-Wiggling of individual fibers is visible in fibers with a low density within the fiber population.
-\par
+Multiple layers of fibers are interwoven, with one layer appearing to have a thickness of about one fiber diameter.
+Several instances are seen where multiple fibers appear to move as a unit through the woven pattern.
+Wobbling of individual fibers is also visible in fibers with a low density within the fiber population.
+Depending on the parallel or crossing fibers, the runtime was in the range of $\SIrange{32}{40}{\hour}$ and $\SIrange{11000}{17000}{\steps}$.
 %
-Depending on parallel or crossing fibers the runtime was in the range of $\SIrange{32}{40}{\hour}$ and \SIrange{11000}{17000}{\steps}.
-%
+% 
+% 
 \subsection{Discussion}
-%
-\todo{rewrite}
-%
-- single layer not anayomical always presetn -> but simulation signal does not care. reason in model: presure from outside fibers.
-%
-The simulation model library orientation distribution is stable for all crossing angles.
-The distribution variance is however smaller for the main represented fiber bundle.
-This is reasonable, since the main fiber fundle applies more pressure radial to is orientiation yielding to a more stable configuration for cylinder shaped objects.
-This will have a small impact also on the simulation results yielding in a higher retardation for parallel or high dominant fiber populations compared to the crossing and more evenly distributed fiber poplations.
-However this effect will be less significant than the shrinking of the volume fraction which results in less fibers inside the volume and therefore also for a lower retardation next to the main reduce effect of a crossing region.
-For stiff models a higher variance of the angular distribution is reasonable.
-If this is also true for anatomically tissue has to be explored.
-Measurements like electro microscopy make it difficult to analyse shuch structures because the necesarry vacuum deforms the tissue strongly.
-TPFM on the other hand has the disadvantage, that in densly \ac{WM} regions the fibers saturate the images and no individual fibers can be detected anymore.
-Nevertheless since real nerve fibers are not stiff and are also not perfectly cylindric, one can assume, that from a geometrical point of few the angular distribution should be smaller than in these generated models.
-However which effect the growing and myelination process of the axons have on there geometry is in this context an open question.
+% 
+The orientation distribution of the simulation model library is stable for all crossing angles.
+However, the distribution variance is smaller for the main fiber bundle and larger for the other.
+This is plausible because the main fiber bundle exerts more radial pressure on the orientation, resulting in a more stable configuration for cylindrical objects.
+This will properly have a minor effect on the simulation results, leading to a higher retardation for parallel or highly dominant fiber bundles compared to intersecting and uniformly distributed fiber bundles.
+However, this effect is less significant than the shrinkage of the volume fraction, which results in fewer fibers within the volume and thus less retardation in addition to the main reduction effect of an intersecting region.
+For stiff models, a higher variance of the angular distribution is reasonable.
+Whether this is also true for anatomical tissue remains to be explored.
+Measurements such as electro-microscopy make the analysis of soft structures difficult, since the\textbf{} necessary vacuum strongly deforms the tissue.
+\ac{TPFM}, on the other hand, have the disadvantage that in densely populated regions the fibers overlap the images and individual fibers can no longer be detected.
+However, since real nerve fibers are not stiff and also not perfectly cylindrical, it can be assumed that from a geometric point of view the angular distribution should be smaller than in these generated models.
+Which influence the growth and myelination process of the axons has on their geometry, however, is an open question in this context.
 \par
 %
-These models have the advantage to produce a naturaly inspired angular distribution which should lead in a more realistic distribution of the \ac{3D-PLI} simulation signal.
-There only the distribution, but not actually the position of the fiber (see \dummy{}) is of relevants.
-This is also the resion why a homoginiously woven pattern of nerve fiber is acceptable, even if the anatomical crossing have different number of layers, as long as the ratio is the same in one image voxel or better in the path of the light rays.
-%
+These models have the advantage of producing a naturally inspired angular distribution, which should result in a more realistic distribution of the \ac{3D-PLI} simulation signal.
+The measured signal of the \ac{3D-PLI} is independent of the vertical position of the fiber, the optical axis, and therefore the interlacing pattern is not that important.
+This is also the reason why a homogeneously interwoven pattern of nerve fibers is acceptable even if the anatomical intersection has a different number of layers, as long as the ratio is the same in an image voxel or, better yet, in the path of the light beams.
+However, with an inclined light beam and inclination analysis, this becomes a source of error.
