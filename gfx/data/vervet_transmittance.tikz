@@ -7,6 +7,7 @@ point meta min=0,point meta max=5846,
 hide axis,
 colormap/cividis,
 colorbar,
+colorbar style={title=$\si{\arbitraryunit}$,}
 ]
 \addplot [forget plot] graphics
 [xmin=0,xmax=44364,ymin=0,ymax=33904] {dev/rc1/data/transmittance_vervet_thumbnail_0_5846.4.png};
