@@ -45,31 +45,30 @@ Optical resolution and resampling are modeled as described in \cref{sec:ccdOptic
 \label{fig:USAF}
 \end{figure}
 %
-In order to measure the optical resolution of the microscope, the measurements and analysis are performed again in the same way as \cite{MenzelMaster}.
-For this purpose, the \textit{1951 United States Air Force (USAF) resolution test chart}\footnote{U.S. Air Force MIL-STD-150A standard of 1951} is acquired.
-It consists of several patterns that have three slots with defined spacing and width (see \cref{fig:usaf}).
+To measure the optical resolution of the microscope, previous measurements and analyses are repeated \cite{MenzelMaster}.
+For this purpose, the \textit{1951 United States Air Force (USAF) resolution test chart}\footnote{U.S. Air Force MIL-STD-150A standard of 1951} is used.
+It consists of several patterns that have three slots with defined spacing and widths (see \cref{fig:usaf}).
 They are arranged in fields of three vertical and horizontal lines.
-The fields are arranged in a spiral, which shrinks by a factor of $\SI{0.5}{}$ from main group to main group.
-To determine the line width, the fields are numerically ordered according to a main group $i$ and a subgroup $j$.
-To determine the resolution of the microscope, the group corresponding to the imaging resolution system, \ie{} Rayleigh criteria (see \cref{fig:rayleigh}), must be identified.
-This is done by analyzing the intensity profiles along the perpendicular line of the three slits.
-The variance of the measured intensity is measured by analyzing all parallel lines in the slits. This measurement ensures that the results are reproducible.
+The fields are arranged in a spiral that shrinks from group to group by a factor $\SI{0.5}{}$.
+To determine the line width, the fields are ordered numerically by a main group $i$ and a subgroup $j$.
+To determine the resolution of the microscope, it is necessary to determine the group from which the slits can still be resolved according to the Rayleigh criteria (see \cref{fig:rayleigh}).
+For this purpose, the intensity profiles along the perpendicular line of the three slits (vertical and horizontal) are analyzed.
+The variance of the measured intensity is measured by analyzing all parallel lines in the slits.
 %
 \paragraph{Results and Discussion}
 \Cref{fig:usaf_image} shows a section of a captured \ac{LMP} setup image.
 The highlighted areas show the analyzed groups 7-6 to 8-2.
 The first area of group 7-6 \raisebox{.25em}{\tikzset{external/export next=false}\tikz \draw[RED,ultra thick,dashed](0,0)--(0.25,0);} has a line width of $\SI{2.19}{\micro\meter}$.
 The second group 8-1 \raisebox{.25em}{\tikzset{external/export next=false}\tikz \draw[GREEN,ultra thick,dashed](0,0)--(0.25,0);} has a line width of $\SI{1.95}{\micro\meter}$.
-The last group 8-2 \raisebox{.25em}{\tikzset{external/export next=false}\tikz \draw[BLUE,ultra thick,dashed](0,0)--(0.25,0);} has a line width of $\SI{1.74}{\micro\meter}$.
+The last group 8-2 \raisebox{.25em}{\tikzset{external/export next=false}\tikz \draw[BLUE,ultra thick,dashed](0,0)--(0.25,0);} has a linewidth of $\SI{1.74}{\micro\meter}$.
 The intensity line profiles for the vertical and horizontal cases are shown in \cref{fig:usaf_lines_lr,fig:usaf_lines_ud}.
-%
-Using the Rayleigh criterion, the resolution can be limited in the range of the second group and thus by $\SI{1.95}{\micro\meter}$.
+The Rayleigh criterion can be used to determine the resolution in the second group region and thus at $\SI{1.95}{\micro\meter}$.
 This reproduces the measurements in the \cite{MenzelMaster}.
 Therefore, the convolution to be applied (see \cref{sec:opticalResolution}) is set to $\opticsigma = \SI{0.75}{\pixel}$.
 %
 %
 %
-\subsection{Sensor gain and image noise}\label{sec:sensorGain}
+\subsection{Sensor gain and signal noise}\label{sec:sensorGain}
 %
 \begin{figure}[!t]
 \centering
