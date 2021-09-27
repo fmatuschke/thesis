@@ -160,14 +160,14 @@ For this purpose, two \acsp{ROI} are annotated with $\SI{1125858}{\pixel}$ on th
 \inputtikz{gfx/data/vervet_transmittance_hist} \\[-5mm]
 %
 \subcaptiontab{0.475\textwidth}{Zoom transmittance} &
-\subcaptiontab{0.475\textwidth}{Histogram transmittance} \\[10mm]
+\subcaptiontab{0.475\textwidth}{\label{fig:histTrans}Histogram transmittance} \\[10mm]
 %
 \tikzset{external/export next=false}
 \inputtikz{gfx/data/vervet_retardation_zoom} &
 \inputtikz{gfx/data/vervet_retardation_hist} \\[-5mm]
 %
 \subcaptiontab{0.475\textwidth}{Zoom retardation} &
-\subcaptiontab{0.475\textwidth}{Histogram retardation} \\
+\subcaptiontab{0.475\textwidth}{\label{fig:histRet}Histogram retardation} \\
 %
 \end{tabular}
 \caption{%
@@ -182,7 +182,7 @@ ret right: $0.80 \pm 0.07$
 \label{fig:brain_ret_trans_zoom}
 % \end{figure}
 %
-% analog roden:
+% analog rodent:
 % trans: $2100 \pm 600$,
 % bg: $4000 \pm 50$,
 % fuellgrad $0.75: \mu \approx 14 \pm 7$,
@@ -206,45 +206,44 @@ ret right: $0.80 \pm 0.07$
 \label{fig:parameterModelSim}
 \end{figure}
 %
-The absorption coefficient $\absorp{}$ and the birefringence $\dn{}$ have to be estimated from the tissue to use appropriate values in the simulation.
+The absorption coefficient $\absorp{}$ and the birefringence $\dn{}$ have to be estimated from the tissue to use appropriate values for the simulation.
 As the literature shows, these values are in the range of $\dn{}$ \dummy{}.
 Since the models created here use stiff fiber segments the volume density cannot reach the high density usually present in \ac{WM}.
 To overcome this problem, the absorption and birefringence strengths must be increased to obtain comparable results.
 \par
 %
-For a measurement of the properties it is important to ensure that a homogeneous region is chosen.
-In coronal section, the corpus callosum is suitable for this purpose. 
+For a measurement of the properties, it is important that a homogeneous region is selected.
+In the coronal section, the corpus callosum is suitable for this purpose. 
 It is the main fiber connection between the two cerebral hemispheres (see \cref{fig:brain_ret_trans}).
-In a central section, the nerve fibers generally lie flat in section.
-\Cref{fig:brain_ret_trans} shows transmission and retardation maps of the vervet monkey coronal section, and \cref{fig:brain_ret_trans_zoom} shows a zoomed version.
-The retardation map shows a visible reduction of retardation in the center of the corpus callosum.
-Therefore, because of the need for homogeneity, this central region is neglected.
-A left and a right region remain, which may be homoginous in both transmission and retardation (see histograms).
-The left region has $\SI{1125858}{}$ number of pixels, the right part $\SI{1064629}{}$
-%
-The same measurements are made for the human and rodent in the corpus callosum (see \todo{Appendix}). 
+In a central section, the nerve fibers generally lie flat in the section.
+\Cref{fig:brain_ret_trans} shows transmission and retardation maps of the coronal section of the velvet monkey, and \cref{fig:brain_ret_trans_zoom} shows a magnified version.
+The retardation map shows a visible reduction in retardation in the center of the corpus callosum.
+Therefore, this central region is neglected for homogeneity.
+A left and a right region remain, which may be homogeneous in both transmission and retardation (see \cref{fig:histTrans,fig:histRet}).
+The left region has $\SI{1125858}{}$ number of pixels, the right part $\SI{1064629}{}$.
+The same measurements are performed for human and rodent in the corpus callosum (see Appendix). 
 %
 %
 %
 \subsubsection{Absorption}
 %
-When the light passes through the tissue, it is absorbed in the matter on the one hand and scattered on the other.
+When the light penetrates the tissue, it is absorbed in the matter on the one hand and scattered on the other.
 Both effects can be modeled mathematically in this linear optical simulation as a decrease in intensity along the path.
 A drawback of this simulation is that the scattering is not constant for all fiber configurations and orientations \cite{MenzelDissertation}.
 Therefore, the measured absorption coefficient is only valid for the same fiber configurations as in the region.
-Absorption only changes the transmittance and hence the relative noise, not the delay or direction of the signal.
-Since the noise is quite low in this microscopic configuration, it should have little effect on the results.
+The absorption only changes the transmittance and thus the relative noise, but not the delay or direction of the signal.
+Since the noise is quite low in this microscopic configuration, it is unlikely to affect the results.
 \par
 %
-To measure absorption, the transmittance of the coronal slice in the \ac{ROI} of the corpus callosum is measured against the background value.
+To measure the absorption, the transmittance of the coronal slice in the \ac{ROI} of the corpus callosum is measured against the background value.
 The absorption coefficient is then calculated by applying \dummy{}.
-This values are then increased according to the volume fraction, of the models and then simulated to ensure that the same behavior can be modelled.
+These values are then increased according to the volume fraction of the models and then simulated to ensure that the same behavior can be modeled.
 %
 \paragraph{Results and Discussion}
 A relative transmittance of about $\SIrange{20}{30}{\percent}$ is present within the \ac{ROI} of the corpus callosum.
-The simulation parameter must be set to achieve a similar transmission value for the models.
+The simulation parameters must be set to achieve a similar transmittance value for the models.
 This means that for a $\SI{60}{\micro\meter}$ thick section, the absorption coefficient $\absorp{}$ is about $\SI{30}{\milli\meter\tothe{-1}}$.
-The absorption for the roden is about $\SI{8}{\milli\meter\tothe{-1}}$, and that of the human is about $\SI{65}{\milli\meter\tothe{-1}}$.
+The absorption for the rodent is about $\SI{8}{\milli-meter-tothe{-1}}$ and that of the human is about $\SI{65}{\milli-meter-tothe{-1}}$.
 \par
 %
 \Cref{fig:simTransValues} shows the simulated transmittance values for different fiber radii.
@@ -341,7 +340,7 @@ simpli.light\_intensity & $\SI{8000}{}$\\
 gain & \SI{0.1175}{}\\
 simpli.noise\_model & \code{lambda x: np.floor(np.random.normal(x,}\\
  & \ \ \ \ \ \code{np.sqrt(gain * x))+0.5).astype(np.uint16)}\\
-fiber absorption & Roden: $\SI{14}{\milli\meter\tothe{-1}}$, Vervet: $\SI{30}{\milli\meter\tothe{-1}}$, Human: $\SI{60}{\milli\meter\tothe{-1}}$\\
+fiber absorption & rodent: $\SI{14}{\milli\meter\tothe{-1}}$, Vervet: $\SI{30}{\milli\meter\tothe{-1}}$, human: $\SI{60}{\milli\meter\tothe{-1}}$\\
 fiber model & 'r'\\
 fiber birefringence & 0.008\\
 fiber radii & axon: \SI{0.75}{}, myelin: \SI{1}{}\\
