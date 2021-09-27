@@ -11,7 +11,7 @@ colorbar,
 \addplot [forget plot] graphics
 [xmin=0,xmax=44364,ymin=0,ymax=33904]
 {dev/rc1/data/retardation_vervet_thumbnail_0_1.png};
-\draw[magenta, very thick, ->] (axis cs: 25500,27000) -- (axis cs: 23500,23500);
+\draw[magenta, very thick, ->] (axis cs: 25500,27000) -- (axis cs: 23500,23500) node[pos=0, anchor=south] {\textbf{CC}};
 \draw[magenta, very thick]
 (axis cs: 25830, 22097) --
 (axis cs: 25458, 23025) --

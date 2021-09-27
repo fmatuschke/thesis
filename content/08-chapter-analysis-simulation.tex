@@ -111,11 +111,11 @@ The gain factor describes the linearity between a measured signal and the corres
 The same type of measurement and analysis is performed here with the \ac{LMP} setup.
 \par
 To obtain statistics for a large number of intensity values, the sample stage is covered with a fully absorbing cover so that half of the image is dark.
-In addition, the focal length is changed so that light is distributed over the entire image sensor below the cover (see \cref{fig:pliFocusImage}).
+In addition, the focal length is changed so that the light is spread over the entire image sensor under the cover (see \cref{fig:pliFocusImage}).
 By measuring $N=\SI{500}{}$ images, the variance for the different intensity values is determined.
 %
 \paragraph{Results and discussion}
-The results are shown in \cref{fig:parameterModelNoise} and show a gain value of $\opticgain_{\mathit{LMP}} = \SI{0.1175}{}(?)$ which is agreement to the hardware specifics \todo{check and ref}.
+The results are shown in \cref{fig:parameterModelNoise} and show a gain value of $\opticgain_{\mathit{LMP}} = \SI{0.1175}{}(?)$, which matches the hardware specifications \todo{check and ref}.
 This gain factor can be used by the model
 \begin{align}
 f(x) = \floor{\mathrm{normal}(\mu = x, \sigma=\sqrt{\opticgain x})+0.5}
@@ -140,15 +140,15 @@ for intensities $I > 0$, $I \gg \sqrt{\opticgain I}$ and integer values.
 %
 \end{tabular}
 \caption{%
-Transmittance and retardation map of a Vervet monkey coronal section $\SI{549}{}$.
-The absorption coefficient and birefingence strength can be estimated from flat fibers.
-Two \acsp{ROI} with $\SI{1125858}{\pixel}$ on the left and $\SI{1064629}{\pixel}$ on the right are annotated for this purpose.}
+Transmittance and retardation map of a coronal section of a Vervet monkey $\SI{549}{}$.
+The absorption coefficient and birefingence strength can be estimated from flat fibers, which are present in the corpus calosu (CC).
+For this purpose, two \acsp{ROI} are annotated with $\SI{1125858}{\pixel}$ on the left and $\SI{1064629}{\pixel}$ on the right.}
 \label{fig:brain_ret_trans}
 \end{figure}
 %
 %
 %
-\begin{figure}[!t]
+\begin{figure}[p]
 % 2_simulation/0_parameter/measure_vervet.ipy
 \centering
 \setlength{\tikzwidth}{0.425\textwidth}
@@ -180,7 +180,7 @@ ret left: $0.83 \pm 0.07$,
 ret right: $0.80 \pm 0.07$
 \todo{what happens in the center?}}
 \label{fig:brain_ret_trans_zoom}
-\end{figure}
+% \end{figure}
 %
 % analog roden:
 % trans: $2100 \pm 600$,
@@ -194,15 +194,15 @@ ret right: $0.80 \pm 0.07$
 % ret: $0.68 \pm 0.11$,
 %
 %
-\begin{figure}[!t]
-\centering
-% \begin{tabular}{c}
-\subcaptionbox{\label{fig:simTransValues}Transmittance}[0.95\textwidth]{
-\includegraphics[page=2]{dev/rc1/tissue/birefringence_output_bf_rc1.pdf}}\\[1em]
-\subcaptionbox{\label{fig:simRetValues}Retardation}[0.95\textwidth]{
-\includegraphics[page=5]{dev/rc1/tissue/birefringence_output_bf_rc1.pdf}}
-% \end{tabular}
-\caption{Simulations for Vervet LMP tissue for different absorption coef and birefringence values. \todo{exp messungen mit einzeichnen}}
+\vspace*{2em}
+% \begin{figure}[!t]
+% \centering
+\begin{tabular}{cc}
+\includegraphics[page=2]{dev/rc1/tissue/birefringence_output_bf_rc1.pdf}&
+\includegraphics[page=5]{dev/rc1/tissue/birefringence_output_bf_rc1.pdf}\\[1em]
+\multicolumn{2}{c}{\includegraphics[page=7]{dev/rc1/tissue/birefringence_output_bf_rc1.pdf}}
+\end{tabular}
+\caption{Simulations of tissue to investigate transmittance and birefringence strengths at different \Voxelsize s \voxelsize{}. The experimental values (see \cref{fig:brain_ret_trans_zoom}) are reached similar at a value of about $\si{0.008}{}$.}
 \label{fig:parameterModelSim}
 \end{figure}
 %
