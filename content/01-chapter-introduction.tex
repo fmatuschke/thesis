@@ -42,22 +42,25 @@ One of the biggest unsolved questions in science today is how the brain, especia
 An important role is played by the connectivity of neurons among each other.
 They may be connected by nerve fibers over a relatively short distance to neighboring cells or to neurons in another part of the brain.
 Understanding the connectome of the brain and the signal processing in the cells involved will allow us to investigate and harness the origin of the ability of such structures.
+Because the brain is such a large and complex structure relative to the size of its individual building blocks, neuroscientists are joining forces in collaborative projects such as the Human Brain Project to solve this problem together. \cite{Markram2006, Shen2012, Amunts2013, Amunts2016}
+\par
+% 
 This is already being done in machine learning techniques such as deep learning, where different types of neural networks are able to solve difficult problems that are almost impossible to solve with a classical algorithm.
-A better understanding of the neural network of brains can therefore help to design such networks to efficiently solve tasks like image recognition, and vice versa.
+A better understanding of the neural network of brains can therefore help to design such networks to efficiently solve tasks like image recognition, and vice versa. \cite{murphy2013machine, Goodfellow-et-al-2016}
 \par
 % 
 Invivo, \ie{} in the living brain, the only technique currently possible in humans is by using \ac{dMRI}.
 These have a rather low resolution of about one millimeter relative to the structural configuration of nerve fiber bundles of several micrometers.
 These can lead to misleading results due to the models and resolution limits involved (see ,meyer hein).
 Therefore, a higher resolution of the nerve fiber orientations is required.
-Such a dataset can then also be used to learn from and improve the models applied to the lower resolution datasets, which can help in diagnosis.
+Such a dataset can then also be used to learn from and improve the models applied to the lower resolution datasets, which can help in diagnosis. \cite{MaierHein2017, Schilling2021, Yendiki2021}
 \par
 % 
 \ac{3D-PLI} is a microscopic imaging technique that allows the measurement of orientation on brain slices by the polarization change of light on myelinated nerve fiber tracts.
 This is usually done on a brain slice of about $\SI{60}{\micro\meter}$ and an image resolution of a few micrometers.
 This gives a single optical axis orientation per image voxel corresponding to the underlying nerve fiber orientations.
 For a connectome of such data, one needs to understand how the signal corresponds to the entire data set so that a tractography algorithm can be applied with a correct model.
-This would yield a connectome for an entire human brain with unprecedented resolution.
+This would yield a connectome for an entire human brain with unprecedented resolution. \cite{Axer2011a, Axer2011, Axer2016}
 \par
 % 
 To improve the understanding of the underlying nerve fiber orientations, simulations play an important role.
@@ -65,27 +68,9 @@ In many other areas, simulations help to improve the understanding of the data a
 Here, simulation can also provide a link between the model and the histological dataset via algorithms such as deep learning.
 For such machine algorithms, the amount of training data plays an important role.
 Therefore, the simulated datasets should be as fast as possible to provide a large training dataset.
+\cite{Ginsburger2018, ginsburgerDis2019, Callaghan2019, Menzel2020}
 \par
 %
-This dissertation provides a novel open-source software package \ac{fastPLI} whose main purpose is to provide a method for dense, non-colliding 3D nerve fiber models and to simulate such models in a linear optics using the M\"{u}ller-Stokes calulus of the \ac{3D-PLI} experiment.
+This dissertation provides a novel open-source software package \ac{fastPLI} whose main purpose is to provide a method for dense, non-colliding 3D nerve fiber models and to simulate such models in a linear optics using the M\"{u}ller-Stokes calulus of the \ac{3D-PLI} experiment. \cite{Matuschke2019, Matuschke2021, Reuter2019}\\
 Another focus is the use of supercomputing architectures with efficiently developed algorithms to enable simulations of larger models and volumes.
 The usefulness will be investigated and limitations will be demonstrated.
-% 
-% ideen:
-% \begin{itemize}
-%    \item  connectivitätsanalyse großer aspekt der hrnfoschrung
-%    \item  rekonstrukton der nerverfaserverbindungswege
-%    \item  interesannta aus: neuronale netze, warum funktionieren sie, warum nicht z.b. bei erkrankung,
-%    \item  funktionalität von netzwerke (meyer hein traktography nature communictaion)
-%    \item  mri einzige invivo, aber geringe aufösung
-%    \item  histologie und simulation miteinander verbinden
-% \end{itemize}
-
-
-\section{Global todos}
-%
-\cite{Angles2019}\\
-\cite{Callaghan2019}\\
-%
-\todo{twoside = true, BCOR=25mm}
-\todo{alle axen gleiche schriftgroese, small?}
