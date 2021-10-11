@@ -7,9 +7,10 @@
 % 
 % 
 \paragraph{Nerve fiber modeling} %\nameref{chap:sof:modelling}}
-The tissue modeling software is able to create non-colliding, dense white nerve fiber models.
+The nerve fiber modeling software is able to create non-colliding, dense white nerve fiber models.
 In this way, any conceivable 3d configuration of fiber tissue can be generated.
-As long as the initial density is not too high, the resulting models hardly deviate from the input orientation statistics.
+As long as the original fiber configurations do not overlap in an excessive manner, the resulting models barely deviate from the input orientation statistics.
+Additional user-friendly functions ensure an easier building process and a quick result.
 The modeling software is part of the open source software package \ac{fastPLI}.
 \par
 % 
@@ -18,56 +19,70 @@ The results from the modeling characterization could identify a very good arguab
 The limiting factor is the runtime and therefore the number of objects in the \ac{VOI}.
 For \ac{3D-PLI} simulations a certain remaining overlapping percentage is probably vertretbar and therefore about a order of magnitude in runtime can be saved.
 Otherwise with a up to date computing systems a reasonable amount of models can be generated.
-However here the number of models were highly limited (considering anatomical and simulation constrains).
-A future study has to show, if certain configuration show a unique behavior.
-Specially for simulations like scattering light this can be quite important.
+However, the number of models and configurations was limited here to two fiber configurations with respect to anatomical and simulation constraints.
+A future study must show how the behavior is with more complex structures.
+Therefore, many more models are needed, which is already possible due to the fast generation of the models.
+Especially for simulations like scattered light, even small changes in the models can be very important.
 \par
 % 
 % outlook
 The algorithm is written for the \ac{CPU}.
 However, the use of a \ac{GPU} is strongly recommended for this type of algorithm.
-\cite{Karras2012} describes such an algorithm based on \ac{AABB} and a parallelized z-ordered tree instead of an octree.
-Since the ordered tree can be built in parallel, collision checking can begin almost immediately.
+In the literature there are already algorithms optimized for such a collision checking algorithm.
+One type of these algorithms that is particularly suitable here is based on the \ac{AABB} used here and a z-ordered tree instead of an octree.
+Not only is the collision checking computed in parallel, but the preparation of the data into a z-tree is also done in parallel on the \ac{GPU}.
+There is no longer a need to use the \ac{CPU} between steps or to copy data between the \ac{CPU} and \ac{GPU}.
+This drastically increases the speed of the collision check \cite{Karras2012}. 
 % 
 % 
 % 
 \paragraph{\acs{3D-PLI} simulation} %\nameref{cha:sof:simulation}}
-The simulation software for \ac{3D-PLI} is a faster, more accurate and resource-efficient improvement of the initial experiments.
-It is able to efficiently use the resources of a supercomputer facility.
+The simulation software for \ac{3D-PLI} is a faster, more accurate, more resource-efficient, and more user-friendly improvement to the previous software design.
+The algorithms are able to efficiently use the resources of a supercomputer facility.
 The simulation software is embedded in a user-friendly \python{} method that contains all the necessary functions to analyze the signal in the same way as the experimental data.
-The software is part of the open-source \ac{fastPLI} software package.
+Like all presented applications, the simulation software is part of the open source software package \ac{fastPLI}.
 \par
 % 
 % results
-The results with the new generated irregular dense white matter models could reproduce the experiments as well as old results.
-Additionally a lot more simulations and configurations could be investigated.
+The results with the newly created models of irregular dense white matter could reproduce the experiments as well as the previous simulation results.
+In addition, many more simulations and configurations could be investigated.
+For a single fiber population the bahavier show no significant ... to the analytical analysis model.
+For two crossing fiber populations the dominant fiber population is regognied in the resulting signal.
+In these densly interwoven models with a mean fiber radius of $\SI{0.5}{\micro\meter}$ the lesser fiber population is lost with the current inclination analysis model.
 \par
 % 
 % outlook 
-For the future the usage of machine learning can probably be used to try to find a new characterization of \ac{3D-PLI} signals to better be able to know he underlying fiber structure.
-Here \cite{ginsburgerDis2019} could show the first steps already for \ac{dMRI} with similar methods. 
+In the future, more complex models, probably up to three fiber populations, and different fiber radii need to be investigated.
+It is expected that larger fiber radii will have a stronger influence on the inclination measurements.
+How this can be properly analyzed is an open question at this time.
+Since these large fiber radii exist in brains, this is an important consideration for future studies.
+The use of machine learning can likely be used to find a new characterization of 3D PLI signals to better identify the underlying fiber structure.
+In \ac{dMRI}, nerve fiber models and their simulations and the use of deep learning have already shown that the underlying fiber structure can be identified from the original signals \cite{ginsburgerDis2019}.
+\ac{dMRI} is of course based on other physical models, but the use of deep learning can exploit effects on signals that are not easily analytically visible.
 \par
 % 
-As part of this thesis, two projects were completed to develop a parallel \ac{GPU} implementation for \ac{3D-PLI} simulation.
-The first was a Seminararbeit \cite{Kobusch:Seminar} which targeted the implementation of the light tissue voxel calculations \dummy{}.
-It was shown, that the speedup of the matrix calculus was very \dummy{}, however the large need of memory of the discretizied volume neglected this speedup in total.
-Therefore the next project \cite{Kobusch:887783} was to implement a raytracing algoithm, which would calculate a light matter collision and performing the matrix calculus on the fly without the need of precalculating the discretised volume.
-Due to the time limitations of a Bachelorthesis a simple collision checking algorithm on the \ac{GPU} was implemented, a single axis aligned search algorithm \cite{Karras2012}.
-At the end of the project it could be shown that the speedup capabilities are hughe.
-However due to the fact of the rather simple algorithm, the runtime was slighly larger, but in the same order of magnitude, then the \ac{CPU} version.
-However the algorithm was already implemented in such a way, that the light rays are also not limited to follow all the same parallel path.
-This can achieve in a future implementation also effects light scattering light rays.
-A probably perfect algorithm for this kind of code was described in \cite{Karras2012}.
-As in the case of the collision checking algorithm for the fibers \dummy{}, the same collision checking algorithm and z-orded tree can be used to identify the light fiber segments, \ie{} conical cones, and calculate on the fly with a much smaller step size the light matter calculations.
-Next to the speedup, which should be quite large compared to the \ac{CPU} version, the much smaller need of memory is a huge advantage.
-With such a implementation it is highly likely that there will be no need for reasonable simulations on multiple nodes on a super computing system.
+As part of this thesis, two proof of concept projects were accomplished to develop a parallel \ac{GPU} implementation for \ac{3D-PLI} simulations.
+The first was a Seminararbeit aimed at implementing a parallel algorithm to calculat the discrete tissue volume for the \ac{3D-PLI} simulation\cite{Kobusch:Seminar}.
+It was shown that the speedup of the discrete tissue computation was very fast, but the large memory requirements of the discretized volume negated this speedup overall, as current \acp{GPU} are relatively limited there.
+Also, the need to transfer the data back to the \ac{CPU} was a too high overhead.\\
+Therefore the second project was to implement a raytracing algoithm, which would calculate a light matter collision and performing the matrix calculus on the fly without the need of precalculating the discretised volume \cite{Kobusch:887783}.
+As a proof of concept a simple collision detection algorithm was implemented on the \ac{GPU}, a uniaxially aligned search algorithm (\cite{Karras2012}).
+It could be shown that the acceleration possibilities on the \ac{GPU} are enormous,
+However, due to the rather simple algorithm, the runtime was slightly longer, but still in the same order of magnitude as the \ac{CPU} version.
+The next logical step is therefore to use a more sophisticated algorithm.
+As in the case of the fiber collision detection algorithm, the same collision detection algorithm and z-ordered tree can be used to detect collisions between light particles and fiber segments \cite{Karras2012}.
+This has several advantages.
+The most important one is that the discretized volume is no longer necessary, which saves a lot of memory.
+With such an implementation, a normal computing system should already be fast enough for reasonable simulation sizes.
+The parallel algorithm developed above has already been implemented in such a way that the light rays can change their orientation.
+Thus, simulations of light scattering will also be possible in the future.
 % 
 % 
 % 
 \paragraph{\acs{fastPLI} software}%\nameref{chap:Software}}
 \ac{fastPLI} is published as an open source software package.
-The advantage of an open source cannot be underestimated.
-The shareability of knowledge is one, if not the key in science.
-Already for several years, the modeling algorithm has been used for different types of science, besides the obvious one in \ac{3D-PLI} and \ac{dMRI}.
-\cite{Ji2021} can use such non-colliding fiber models for simulations of \dummy{}.
-The \ac{fastPLI} software allows easy operation and fast creation of simple as well as complicated simulations.
+The \python{} implementation allows for a user friendly and sharable coding experiance.
+The open review helped to find flows in the implementation that complicated the usage.
+Solving them led to a much better understanding of the algorithms and the usage of the entire software package.
+The here presented modeling algorithm is already beeing used in other fields besideds nerve fiber modelling.
+It is used for non-colliding fiber models of scleral collagen fibers to investigate mechanical properties of the tissue \cite{Ji2021}.
