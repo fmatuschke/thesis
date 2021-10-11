@@ -1,76 +1,44 @@
 \setcounter{chapter}{0}
 \chapter{Introduction}
 \label{sec:intro}
-%
-% \cleanchapterquote{Inside you is the potential to make yourself better ... and that is what it is to be human.
-% To make yourself more than you are.}{Jean-Luc Picard}{Captain USS Enterprise NCC-1701-E} %Captain USS Enterprise NCC-1701-E
-%
-% 
-% 
-% 
-% Neuroscience is the scientific study of the nervous system.
-% The creation of a map of the nerve fiber tracts occupies a special position.
-% In the past, these were only studied postmortem. 
-% In modern times, diffusion MRI was added and is frequently used clinically.
-% However, it suffers from a resolution problem that cannot be readily increased in vivo.
-% Post-mortem studies currently achieve resolutions of a few hundred micrometers for an entire human brain.
-% Smaller fiber bundles or even individual fibers are lost at this resolution.
-% Other imaging techniques, such as clearing, make it possible to track individual nerve fibers even in small volumes (a few centimeters).
-% However, for larger volumes such as the entire human brain, the procedure is very difficult.
-% A special position is occupied by \ac{3D-PLI}, which allows the measurement of orientation on brain slices by the polarization change of light on myelinated nerve fiber tracts.
-% \par
-% % 
-% In \ac{3D-PLI} currently has challenges are
-% \begin{itemize}
-%    \item what is the underlying nerve fiber structure.
-%    \item what are the possible fiber orientations in crossing or stepp inclined nerve fiber regions
-%    \item distribution of orientations
-% \end{itemize}
-% where simulations could and can provide an answer.
-% \par
-% % 
-% The dissertation provides a novel open-source software package \ac{fastPLI} whose main purpose is to provide a method for densely non-colliding 3D nerve fiber models and to simulate such models in a linear optics using the M\"{u}ller-Stokes calulus of the \ac{3D-PLI} experiment.
-% Another focus is the use of supercomputing architectures with efficiently developed algorithms to enable simulations of larger models and volumes.
-% The usefulness will be investigated and limitations will be demonstrated.
-% \par
-% % 
-% \par
-% \noindent\rule{\textwidth}{2pt}
-% \par
 % 
 One of the biggest unsolved questions in science today is how the brain, especially the human brain, functions.
 An important role is played by the connectivity of neurons among each other.
-They may be connected by nerve fibers over a relatively short distance to neighboring cells or to neurons in another part of the brain.
-Understanding the connectome of the brain and the signal processing in the cells involved will allow us to investigate and harness the origin of the ability of such structures.
+They may be connected via nerve fibers (\ie{} axons, myelinated or not myelinated) over a relatively short distance to neighboring neurons or to more distant regions of the brain.
+Understanding the brain's connectome, \ie{} the totality of connections, and the signal processing in the cells involved will allow us to explore and harness the origin of specialized abilities such as object recognition or memory.
 Because the brain is such a large and complex structure relative to the size of its individual building blocks, neuroscientists are joining forces in collaborative projects such as the Human Brain Project to solve this problem together. \cite{Markram2006, Shen2012, Amunts2013, Amunts2016}
 \par
 % 
-This is already being done in machine learning techniques such as deep learning, where different types of neural networks are able to solve difficult problems that are almost impossible to solve with a classical algorithm.
-A better understanding of the neural network of brains can therefore help to design such networks to efficiently solve tasks like image recognition, and vice versa. \cite{murphy2013machine, Goodfellow-et-al-2016}
+Techniques in machine learning, especially deep learning, profit from a better undestanding of the brain. There different types of neural networks are able to solve difficult problems that are almost impossible to solve with a classical algorithm.
+A better understanding of the neural network as a subset of the connectome can therefore help to design artificial neural networks to efficiently solve tasks like image recognition, and vice versa. \cite{murphy2013machine, Goodfellow-et-al-2016}
 \par
 % 
-Invivo, \ie{} in the living brain, the only technique currently possible in humans is by using \ac{dMRI}.
-These have a rather low resolution of about one millimeter relative to the structural configuration of nerve fiber bundles of several micrometers.
-These can lead to misleading results due to the models and resolution limits involved (see ,meyer hein).
-Therefore, a higher resolution of the nerve fiber orientations is required.
-Such a dataset can then also be used to learn from and improve the models applied to the lower resolution datasets, which can help in diagnosis. \cite{MaierHein2017, Schilling2021, Yendiki2021}
+The only technique currently able to measure the connectome of humans in the living brain, \ie{} invivo, is by using \ac{dMRI}.
+\ac{dMRI} have a rather low resolution of about one millimeter relative to the structural configuration of nerve fiber bundles of several micrometers.
+This low resolution can lead to misleading results due to the models and resolution limits involved (see ,meyer hein).
+Therefore, a higher resolution of fiber pathways and the comprising individual fibers is required.
+Such a dataset can also be used to learn from and improve the models applied to the lower resolution datasets, which can help in diagnosis. \cite{MaierHein2017, Schilling2021, Yendiki2021}
 \par
 % 
-\ac{3D-PLI} is a microscopic imaging technique that allows the measurement of orientation on brain slices by the polarization change of light on myelinated nerve fiber tracts.
-This is usually done on a brain slice of about $\SI{60}{\micro\meter}$ and an image resolution of a few micrometers.
-This gives a single optical axis orientation per image voxel corresponding to the underlying nerve fiber orientations.
-For a connectome of such data, one needs to understand how the signal corresponds to the entire data set so that a tractography algorithm can be applied with a correct model.
-This would yield a connectome for an entire human brain with unprecedented resolution. \cite{Axer2011a, Axer2011, Axer2016}
+\ac{3D-PLI} is a microscopic imaging technique that allows the measurement of orientation of nerve fibers inside a brain section.
+The myelin sorounding the axons of nerve fibers have a birefringence property, which changes the polarization state of light in relation to its orientation.
+The change of the signal allows to analyse the underlying nerve fiber oritentation.
+The brain slices are about $\SI{60}{\micro\meter}$ thick and the image resolution is in the order of a few micrometers.
+This would yield a connectome for an entire human brain at unprecedented resolution. \cite{Axer2011a, Axer2011, Axer2016}
 \par
 % 
 To improve the understanding of the underlying nerve fiber orientations, simulations play an important role.
-In many other areas, simulations help to improve the understanding of the data and the model.
-Here, simulation can also provide a link between the model and the histological dataset via algorithms such as deep learning.
-For such machine algorithms, the amount of training data plays an important role.
-Therefore, the simulated datasets should be as fast as possible to provide a large training dataset.
+Because the signal from an image pixel originates from a volume that contains multiple nerve fiber orientations, the resulting interpretation can be challenging.
+Currently, there is no experimental model for nerve fibers that could serve as groundthruth.
+For this reason, simulations are used.
+They also help in the study of certain effects, as they allow full control over the experimental settings.
+In addition, simulations can also generate a large amount of simulated experimental data sets.
+For algorithms such as those used in machine learning, the amount of training data plays an important role.
+Therefore, the simulation and generation of such datasets should be done as fast as possible to obtain a large training dataset.
 \cite{Ginsburger2018, ginsburgerDis2019, Callaghan2019, Menzel2020}
 \par
 %
-This dissertation provides a novel open-source software package \ac{fastPLI} whose main purpose is to provide a method for dense, non-colliding 3D nerve fiber models and to simulate such models in a linear optics using the M\"{u}ller-Stokes calulus of the \ac{3D-PLI} experiment. \cite{Matuschke2019, Matuschke2021, Reuter2019}\\
-Another focus is the use of supercomputing architectures with efficiently developed algorithms to enable simulations of larger models and volumes.
+This dissertation provides a novel open-source software package \ac{fastPLI} whose main purpose is to provide a method for modeling dense, non-colliding 3D nerve fiber models.
+These models are then used to simulate them in a virtual \ac{3D-PLI} experiment by calculating the effect of birefringence on polarized light using the M\"{u}ller-Stokes calulus. \cite{Matuschke2019, Matuschke2021, Reuter2019}\\
+An important issue is the use of supercomputing architectures with efficiently developed algorithms to enable simulations of larger models and volumes.
 The usefulness will be investigated and limitations will be demonstrated.
