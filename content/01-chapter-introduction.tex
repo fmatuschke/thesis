@@ -5,35 +5,48 @@
 One of the biggest unsolved questions in science today is how the brain, especially the human brain, functions.
 An important role is played by the connectivity of neurons among each other.
 They may be connected via nerve fibers (\ie{} axons, myelinated or not myelinated) over a relatively short distance to neighboring neurons or to more distant regions of the brain.
-Understanding the brain's connectome, \ie{} the totality of connections, and the signal processing in the cells involved will allow us to explore and harness the origin of specialized abilities such as object recognition or memory.
-Because the brain is such a large and complex structure relative to the size of its individual building blocks, neuroscientists are joining forces in collaborative projects such as the Human Brain Project to solve this problem together. \cite{Markram2006, Shen2012, Amunts2013, Amunts2016}
+Understanding the brain's connectome, \ie{} the totality of reveal, and the signal processing in the cells involved will allow us to explore and harness the origin of cognitive abilities such as object recognition or memory.
+Since the brain is such a large and complex structure relative to the size of its individual building blocks, neuroscientists are joining forces in collaborative projects such as the Human Brain Project to solve this problem together. \cite{Markram2006, Shen2012, Amunts2013, Amunts2016}
 \par
 % 
-Techniques in machine learning, especially deep learning, profit from a better undestanding of the brain. There different types of neural networks are able to solve difficult problems that are almost impossible to solve with a classical algorithm.
+Techniques in machine learning, especially deep learning, profit from a better undestanding of the brain.
+Different types of neural networks are able to solve difficult problems that are almost impossible to solve with a classical algorithm.
 A better understanding of the neural network as a subset of the connectome can therefore help to design artificial neural networks to efficiently solve tasks like image recognition, and vice versa. \cite{murphy2013machine, Goodfellow-et-al-2016}
 \par
 % 
-The only technique currently able to measure the connectome of humans in the living brain, \ie{} invivo, is by using \ac{dMRI}.
-\ac{dMRI} have a rather low resolution of about one millimeter relative to the structural configuration of nerve fiber bundles of several micrometers.
-This low resolution can lead to misleading results due to the models and resolution limits involved (see ,meyer hein).
+The only technique currently able to measure the human connectome the in vivo (\ie{} the libing brain) is by using \ac{dMRI}.
+\ac{dMRI} provides a rather low resolution of about one millimeter relative to the structural configuration of nerve fiber bundles of several micrometers invivo.
+This imaging resolution at the \si{\milli\meter}-scale can lead to misleading results due to the models and resolution limits involved.
 Therefore, a higher resolution of fiber pathways and the comprising individual fibers is required.
-Such a dataset can also be used to learn from and improve the models applied to the lower resolution datasets, which can help in diagnosis. \cite{MaierHein2017, Schilling2021, Yendiki2021}
+Post morten the resolution of \ac{dMRI} reaches up to the order of $\SI{100}{\micro\meter}$.
+Mircoscopic imaging techniques on the other side can reach upt to the order of \si{\micro\meter} to hundreds of \si{\nano\meter}.
+Such a dataset can also be used to learn from and improve the models applied to the lower resolution datasets, which can help in diagnosis. \cite{MaierHein2017, Schilling2021, Yendiki2021, Costantini2021}
 \par
 % 
-\ac{3D-PLI} is a microscopic imaging technique that allows the measurement of orientation of nerve fibers inside a brain section.
-The myelin sorounding the axons of nerve fibers have a birefringence property, which changes the polarization state of light in relation to its orientation.
-The change of the signal allows to analyse the underlying nerve fiber oritentation.
-The brain slices are about $\SI{60}{\micro\meter}$ thick and the image resolution is in the order of a few micrometers.
-This would yield a connectome for an entire human brain at unprecedented resolution. \cite{Axer2011a, Axer2011, Axer2016}
-\par
-% 
-To improve the understanding of the underlying nerve fiber orientations, simulations play an important role.
+\ac{3D-PLI} is a microscopic imaging technique that allows the measurement of the orientation of nerve fibers inside a brain section.
+The myelin sheaths sorounding many axons of nerve fibers generate an optical property called birefringence.
+Birefringence is the presence of a refractive index that depends on the polarization and propagation direction of light.
+By analyzing this behavior, the underlying optical axis and thus the orientation of the nerve fiber can be determined.
+The brain slices are $\SI{60}{\micro\meter}$ thick and the image resolution is in the order of a few micrometers, \ie{} at axonal scales.
+However due to the fact that brain sections are needed, the tissue becomes quite fragile which leads to movements of the tissue and can also lead to fractions.
+This movements has to be later redu in a process caled image registration, allowing to build up an entire 3d dataset from the individual sections.
+Another challange comes in steep nerve fiber regions and nerve fiber corossings.
 Because the signal from an image pixel originates from a volume that contains multiple nerve fiber orientations, the resulting interpretation can be challenging.
-Currently, there is no experimental model for nerve fibers that could serve as groundthruth.
+Steep fibers are \eg{} orientated along the propagation direction of the light.
+Therefore the is no change for the polarization state of the light.
+Crossing nerve fibers on the other hand are a mixture of multiple lightwaves.
+Since however only the sum of all lightwaves reaching the same sensor pixel is measured, the individual information is lost.
+. \cite{Axer2011a, Axer2011, Axer2016}
+\par
+% 
+To improve the understanding of the underlying architecture including the nerve fiber orientations and its effect on the measured polarization signal, simulations plays therefore an important role.
+Due to the involed spatial sizes and shere number of possible nerve fiber orientations and involded cells, no phantom currently exists allowing to investigate all necesarry posibilities.
+Complementary imaging techniques, like two photon microscopy, allow to investigate the tissue in a higher resolution without deforming the tissue with the disadvantage of higher measuring time.
+\par
+% 
 For this reason, simulations are used.
-They also help in the study of certain effects, as they allow full control over the experimental settings.
-In addition, simulations can also generate a large amount of simulated experimental data sets.
-For algorithms such as those used in machine learning, the amount of training data plays an important role.
+Simulations make studies of physical effects possible which cannot be easily addressed by experimental setups.
+Clear benefits of simulations are the repeatability of experiments and the possibility to generate relevant statistics (\ie{} large data sets) to meet \eg{} the requirements of machine learning.
 Therefore, the simulation and generation of such datasets should be done as fast as possible to obtain a large training dataset.
 \cite{Ginsburger2018, ginsburgerDis2019, Callaghan2019, Menzel2020}
 \par
