@@ -444,7 +444,7 @@ For higher inclination angles, both the median and the variance increase signifi
 \begin{figure}[!p]
 \centering
 \includegraphics[page=3]{dev/rc1/analysis/plots_flat_pop_output_cube_2pop_135_rc1_flat.pdf}
-\caption{Crossing flat fiber population: $\modelPsi=\SI{30}{\percent}$. Inclination analysis results.}
+\caption{Crossing flat fiber population: $\modelPsi=\SI{30}{\percent}$. Inclination analysis results. \todo{domega, trel}}
 \label{fig:flat_03_fiber_pop_rofl}
 \end{figure}
 %
@@ -481,9 +481,10 @@ The linear curve drops to about $\SI{30}{}$ in the case of the first fiber popul
 For both fiber population proportions, the variance increases visibly with the crossing angle.
 \par
 % Direction
-The direction is plotted in the next graph with dashed lines for the direction of each fiber population.
+The direction is plotted in the next graph with dotted lines for the direction of each fiber population.
 In the case of $\modelPsi = \SI{30}{\percent}$, the direction follows the second fiber population, but there are slightly but significantly lower values in the central region.
 In the case of $\modelPsi = \SI{50}{\percent}$, the values are exactly between the two fiber populations, with an exception for the last crossing angle $\modelOmega = \SI{90}{\degree}$, where the values are evenly distributed.
+In both cases the analyed values follow the predicted circular mean value (dashed line).
 \par
 % Inclination
 The inclination is about $\SI{0}{\degree}$ with its median for all crossing angles.
@@ -562,7 +563,7 @@ In the case of $\modelPsi = \SI{30}{\percent}$, the inclination is almost linear
 In the case of $\modelPsi = \SI{50}{\percent}$, the peak value is at about $\modelOmega = \SI{60}{\degree}$.
 The variance increases for both parameters as the crossing angle increases.
 The main difference between the two parameters is that in the case of $\modelPsi = \SI{30}{\percent}$, the maximum inclination achieved is significantly higher than in the case of $\modelPsi = \SI{50}{\percent}$.
-In both cases, however, the inclination is always lower than the inclination value of the second fiber population.
+In both cases, however, the inclination only follows the circular mean value (dashed line) vor the lower crossing values.
 \par
 % Trel
 The relative effective thickness \trel{} decreases in both cases.
@@ -987,6 +988,8 @@ In the case of $\modelPsi{} = \SI{50}{\percent}$, they follow the midline betwee
 The effect of a change of direction results from \dummy{}.
 Since the optical axis is an orientation and not a vector, the signal is cancelled in the case of $\SI{90}{\degree}$.
 Lower values must therefore drive the resulting phase of the sinusoidal signal in the direction of the lower represented fiber bundle, which must be maximum at $\modelOmega=\SI{45}{\degree}$.
+In both cases the predicting circular mean value is fullfilled.
+This is also true for the other fiber fractions (\todo{see appendix})
 \par
 %
 The variance of the inclination angle increases with increasing \modelOmega{}, which is to be expected as the amplitude, \ie{} the retardation decreases, making the model more uncertain.
@@ -1008,6 +1011,9 @@ With the exception of inclination, the results are very similar to the previous 
 This is to be expected since inclined fibers do not contribute to retardation.
 The inclination in the case of $\modelPsi=\SI{30}{\percent}$ initially increases as the main fiber population, \ie{} the second, contributes more to retardation until eventually the median falls back to $\SI{0}{\degree}$.
 In the case of $\modelPsi=\SI{50}{\degree}$, the tipping point is earlier and lower because the second nerve fiber bundle contributes less.
+The circular mean value is only followed for lower crossing angles.
+For larger values the measured inclinations deviate from the theoretical line since the inclined nerve fibers contribute less to the overall signal and cannot anymore deteced.
+For large fiber population fractions (\todo{see ...}) where the flat fiber population has a lower influence, the circular mean value applies also for larger crossing angles.
 Otherwise, the other parameters do not behave differently with respect to the reduced signal and its effects than in the case of the single fiber population.
 %
 %
