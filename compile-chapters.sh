@@ -17,6 +17,8 @@ compile-chapter(){
 	lualatex -interaction=nonstopmode -halt-on-error -shell-escape thesis-chapter-$j.tex &>/dev/null
 	lualatex -interaction=nonstopmode -halt-on-error -shell-escape thesis-chapter-$j.tex &>/dev/null
 	# cp thesis-chapter.pdf thesis-chapter-$j.pdf
+
+	echo "$1 done"
 }
 
 for i in content/*chap*.tex content/appendix.tex; do
