@@ -20,7 +20,7 @@ bibliography:
 thesis: compile bibliography
 	$(MAKE) compile
 	$(MAKE) compile
-	open thesis.pdf
+	xdg-open thesis.pdf
 
 .PHONY: thesis-mp
 thesis-mp:
@@ -38,7 +38,7 @@ zip:
 .PHONY: textidote
 textidote:
 	textidote --output html --check en thesis.tex > thesis.html
-	open thesis.html
+	xdg-open thesis.html
 #  textidote --output html --check en content/03-chapter-theory.tex > thesis.html
 
 .PHONY: tikz-clean
