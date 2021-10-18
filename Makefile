@@ -20,6 +20,11 @@ bibliography:
 thesis: compile bibliography
 	$(MAKE) compile
 	$(MAKE) compile
+	open thesis.pdf
+
+.PHONY: thesis-mp
+thesis-mp:
+	bash compile-chapters.sh
 
 .PHONY: tikz
 tikz:
@@ -65,6 +70,7 @@ clean:
 	rm -f thesis.run.xml
 	rm -f thesis.tdo
 	rm -f thesis.toc
+	rm -f thesis-chapter*
 	rm -f content/*.aux
 
 .PHONY: clean-all

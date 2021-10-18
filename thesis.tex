@@ -65,22 +65,6 @@
 % content/appendix,
 % }
 % 
-\includeonly{% %gitignore
-% content/titlepages, %gitignore
-% content/abstract, %gitignore
-% content/acknowledgment, %gitignore
-content/01-chapter-introduction, %gitignore
-% content/02-chapter-neuroanatomy, %gitignore
-% content/03-chapter-theory, %gitignore
-% content/04-chapter-software-model, %gitignore
-% content/05-chapter-software-simulation, %gitignore
-% content/06-chapter-software, %gitignore
-% content/07-chapter-analysis-model, %gitignore
-% content/08-chapter-analysis-simulation, %gitignore
-content/09-chapter-conclusion, %gitignore
-% content/declaration %gitignore
-% content/appendix, %gitignore
-} %gitignore
 % 
 \input{content/acronyms}
 %
@@ -148,53 +132,18 @@ content/09-chapter-conclusion, %gitignore
 % --------------------------
 % Chapters
 % --------------------------
-\todo{twoside = true, BCOR=25mm}
-\todo{alle axen gleiche schriftgroese, small?}
-% 
-% 
-\cleanchapterquote{Inside you is the potential to make yourself better ... and that is what it is to be human.
-To make yourself more than you are.}{Jean-Luc Picard}{Captain USS Enterprise NCC-1701-E} %Captain USS Enterprise NCC-1701-E
-% 
-\cleardoublepage
 \include{content/01-chapter-introduction}
-%
-\cleardoublepage
-\part{Theory/Background}
-% \cleanchapterquote{We are part of the universe that has developed a remarkable ability: We can hold an image of the world in our minds. We are matter contemplating itself.}{Sean Carroll}{The Particle at the End of the Universe}
-% \acbarrier
-\parttoc
+% 
 \include{content/02-chapter-neuroanatomy}
-%
-\cleardoublepage
 \include{content/03-chapter-theory}
 %
-\cleardoublepage
-\part{Software}
-% \acbarrier
-\parttoc
 \include{content/04-chapter-software-model}
-%
-\cleardoublepage
 \include{content/05-chapter-software-simulation}
-%
-\cleardoublepage
 \include{content/06-chapter-software}
 %
-\cleardoublepage
-\part{Results}
-% \acbarrier
-\parttoc
 \include{content/07-chapter-analysis-model}
-%
-\cleardoublepage
 \include{content/08-chapter-analysis-simulation}
-
-% \part{To infinity and beyond}
-% \parttoc
-% \acbarrier
 %
-\cleardoublepage
-\part{Conclusion}
 \include{content/09-chapter-conclusion}
 %
 % --------------------------
@@ -235,8 +184,6 @@ To make yourself more than you are.}{Jean-Luc Picard}{Captain USS Enterprise NCC
 % \include{content/declaration}
 % \clearpage
 %
-\appendix\cleardoublepage
-\part{Appendices}
 \include{content/appendix}
 % %
 % %
