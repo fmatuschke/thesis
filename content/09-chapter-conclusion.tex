@@ -8,35 +8,67 @@
 \chapter{Outlook}
 \label{sec:outlook}
 % 
-%  
+\paragraph{Nerve fiber modelling software}
 % 
+Currently the collision free nerve fiber modelling alrotihm is capable of generating suitable nerve fiber models for \ac{3D-PLI} simulations.
+However it has two limiting factors.
+The first is it takes depending on the parameters a certain amount of computational effort to generate such collision free models.
+The second is, due to he fact the amount of individual nerve fiber segments raises with the volume, \ie{} the third potenz, one cannot generate hughe volumes relativ to the nerve fiber radiius in a reasonable amount of time.
 \par
-\noindent\rule{\textwidth}{2pt}
+% 
+Many optimizations exists, to enhanve this behavier.
+First one can already try to design a better initial nerve fiber model, which does not need as much time to solve.
+This however limits the users capabilities to produce any kind of initial configuration. 
+Additionally it has been shown, that the last $\SI{90}{\percent}$ of the steps are used to solve the quite few remaining colissions.
 \par
 % 
-\TODO{REWRITE}
+Therefore a more suitable stategy is to try to design the algorithm in such a way, that the number of needed steps is reduced.
+This however is a very complicated tasks.
+For example one could increase the movement a fiber segemnt is allowed to move.
+However this can lead to less densly packed models since without an external force or attractive force between the nerve fibers the nerve fibers can only move apart.
+Such forces however would also lead to oscilations witch would increase the solving time since collision occour over and over again.
+\par
 % 
-% \paragraph{Nerve fiber modelling}
-% % 
-% The algorithm is written for the \ac{CPU}.
-% However, the use of a \ac{GPU} is strongly recommended for this type of algorithm.
-% In the literature there are already algorithms optimized for such a collision checking algorithm.
-% One type of these algorithms that is particularly suitable here is based on the \ac{AABB} used here and a z-ordered tree instead of an octree.
-% Not only is the collision checking computed in parallel, but the preparation of the data into a z-tree is also done in parallel on the \ac{GPU}.
-% There is no longer a need to use the \ac{CPU} between steps or to copy data between the \ac{CPU} and \ac{GPU}.
-% This drastically increases the speed of the collision check \cite{Karras2012}. 
-% % 
-% % 
-% % 
-% \paragraph{Simulation}
-% % 
-% In the future, more complex models, probably up to three fiber populations, and different fiber radii need to be investigated.
-% It is expected that larger fiber radii will have a stronger influence on the inclination measurements.
-% How this can be properly analyzed is an open question at this time.
-% Since these large fiber radii exist in brains, this is an important consideration for future studies.
-% The use of machine learning can likely be used to find a new characterization of 3D PLI signals to better identify the underlying fiber structure.
-% In \ac{dMRI}, nerve fiber models and their simulations and the use of deep learning have already shown that the underlying fiber structure can be identified from the original signals \cite{ginsburgerDis2019}.
-% \ac{dMRI} is of course based on other physical models, but the use of deep learning can exploit effects on signals that are not easily analytically visible.
+Another way is to speed up the runtime per step.
+This can for example be done by choosing a more easier calculations.
+This for example has already be utalized by the \ac{MEDUSA} agorithm which uses spheres instead of fiber segments.
+This however increases the number of objects, since far more spheres are needed instead of conical fiber segments.
+\par
+% 
+A currently limitation of the algorithm is also the parallelization on a multi core (or even multi node) system.
+The problem with such an algorithm is, that the system has to communicate a lot, which takes relativ long times comparing to instructions on a \ac{CPU}.
+Therefore one has to probably redesign the algorithm and finding an algorithm wich is capable of computing without the need of many communications.
+For example one could already split the volume in sub volumes at the beginning of the algorithm and distributing the tasks onto multiple \acp{CPU}.
+On the boundry between sub volumes one still has to exchange the positions of the nerve fiber segments, however one could do this for example only after a certain amount of steps, by that reducing the number of communications.
+This however can lead to artifacts at the boundries.
+\par
+% 
+At this point most promissing optimization would be to utalize the architecture of the \ac{GPU} like in the \ac{MEDUSA} algorithm.
+a collision checking algorithm.
+One type of these algorithms that is particularly suitable here is based on the \ac{AABB} used here and a z-ordered tree instead of an octree.
+Not only is the collision checking computed in parallel, but the preparation of the data into a z-tree is also done in parallel on the \ac{GPU}.
+There is no longer a need to use the \ac{CPU} between steps or to copy data between the \ac{CPU} and \ac{GPU}.
+This drastically increases the speed of the collision check \cite{Karras2012}. 
+% 
+% 
+% 
+\paragraph{\ac{3D-PLI} software}
+% 
+GPU, Kobusch
+% 
+\paragraph{Nerve fiber modelling simulation}
+% 
+More models, maybe with minor collisions to reduce the computation time.
+% 
+\paragraph{\ac{3D-PLI} simulation}
+% 
+In the future, more complex models, probably up to three fiber populations, and different fiber radii need to be investigated.
+It is expected that larger fiber radii will have a stronger influence on the inclination measurements.
+How this can be properly analyzed is an open question at this time.
+Since these large fiber radii exist in brains, this is an important consideration for future studies.
+The use of machine learning can likely be used to find a new characterization of 3D PLI signals to better identify the underlying fiber structure.
+In \ac{dMRI}, nerve fiber models and their simulations and the use of deep learning have already shown that the underlying fiber structure can be identified from the original signals \cite{ginsburgerDis2019}.
+\ac{dMRI} is of course based on other physical models, but the use of deep learning can exploit effects on signals that are not easily analytically visible.
 % 
 % 
 % 
@@ -52,6 +84,7 @@ These models can then be used inside the second algorithm, which simulated the p
 Each algorithm was implemented as a independent \python{} module capable of utalizing multicore systems.
 % 
 \paragraph{Nerve fiber modelling software}
+% 
 The algorithm to desining non colliding nerve fiber models takes as input a list of 4d points for each nerve fiber, where the first three values indicate the $x,y,z$ coordinate in space and the forth value the radii of the nerve fiber at this point.
 A nerve fiber is represented with this configuration as a cylindrical tube, capable of changin its radiius along the path.
 Each fiber segments containing two adjecent points is checked if a collision occours with another fiber segment.
@@ -92,6 +125,7 @@ This allows to simulate large volume of nerve fibers which due to the necesarry 
 % 
 % 
 \paragraph{Software package \acs{fastPLI}}
+% 
 All algorithms are written as modules in \python{} inside the software package \ac{fastPLI}.
 The Software package is published as open source software package allowing users to share, ask and further develop the software for a high exchangeability. 
 The software was tested by ultiple users and published inside the revied \ac{JOSS}.
@@ -120,6 +154,7 @@ The orientation distribution was analysed to be able to use as a comparison for 
 % 
 % 
 \paragraph{\acs{3D-PLI} simulation results}
+% 
 Analog to the nerve fiber modelling software first the simulation software parameters were charackerized and measured.
 The optical resolution of the used micrsoscope was reproduced with former results as well as the optical noise of the system.
 From in \ac{3D-PLI} measured tissue samples the tissues properties were derived so that the simulation with means of its limitations can reproduce the results.
