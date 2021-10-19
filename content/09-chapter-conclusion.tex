@@ -70,7 +70,7 @@ This octree can be parallel build and treversed on the \ac{CPU}.
 A visualization is available to render the volume allowing a user to interact with the algorithm after each calculation step.
 \par
 % 
-Additional projects were desinged ... MEDUSA
+An additional project called \ac{MEDUSA} was desinged in cooperation with \ac{CEA} Neurospin allowing to desing non colliding nerve fiber modles with cells like astrocytes or olegodendrocytes which connect to myelin sorounding axons.
 % 
 % 
 % 
@@ -100,82 +100,68 @@ The software was tested by ultiple users and published inside the revied \ac{JOS
 % 
 \paragraph{Nerve fiber modelling results}
 % 
-The nerve fiber modelling algorithm is .. by the fiber segment length and the fiber bending radius.
-Borth parameters were characterized against the computational speed and the resulting orientations in means of anatomical aspects.
-To reduce the dimensionaioty of the posible configurations a ... was designed.
-It allows to investigate nerve fiber models up to two nerve fiber populations with any crossing angle in 3d.
-The focus lied on dense white matter models containing only models
-
+The nerve fiber modelling algorithm controlls the necesarry fiber movement to solve the collisions by the fiber segment length and the fiber bending radius.
+Both parameters were characterized against the resulting orientations and computational speed.
+To reduce the dimensionality of the possible configurations a set of parameters to describe the model was designed.
+This set consit out of 2 relativ angles between the two fiber populations, an inclination angle of the entire model and a population fraction parameter.
+This set allows to investigate nerve fiber models up to two nerve fiber populations with any crossing angle in 3d without describing every fiber by itself.
+\par
+% 
+Using this parameters first the characteristics of the modelling parameters was charakterized.
+A set of values could be identified which is suitable to generate non colliding nerve fiber models without distoring the initial configuration too much.
+Additionally this parameter values are suitable to reduce the runtime in a reasanable amount without loosing any configuration charachteristics or impliing a bias on the resulting models.
+To reduce the runtime even further it could be identified that about 1 order of magnitude the processing time can be reduced by not solving the models completly.
+The influance of a non collision free model however has to be investigated in an aditionall study.
+\par
+% 
+With the found model software parameters a library of up to two nerve fiber models described by the four model parameters was generated fo the later \ac{3D-PLI} simulation.
+The orientation distribution was analysed to be able to use as a comparison for the simulation orientation analysis.
 % 
 % 
 % 
-% \par
-% \noindent\rule{\textwidth}{2pt}
-% \par
-% % 
-% \TODO{REWRITE}
-% % 
-% \ac{fastPLI} is a unique tool that provides user-friendly methods capable of designing non-colliding dense white matter nerve fiber bundles and simulating them within a virtual \ac{3D-PLI} microscopy.
-% % 
-% % 
-% % 
-% \paragraph{Nerve fiber modeling} %\nameref{chap:sof:modelling}}
-% The nerve fiber modeling software is able to create non-colliding, dense white nerve fiber models.
-% In this way, any conceivable 3d configuration of fiber tissue can be generated.
-% As long as the original fiber configurations do not overlap in an excessive manner, the resulting models barely deviate from the input orientation statistics.
-% Additional user-friendly functions ensure an easier building process and a quick result.
-% The modeling software is part of the open source software package \ac{fastPLI}.
-% \par
-% % 
-% % results
-% The results from the modeling characterization could identify a very good arguable working point for the models.
-% The limiting factor is the runtime and therefore the number of objects in the \ac{VOI}.
-% For \ac{3D-PLI} simulations a certain remaining overlapping percentage is probably vertretbar and therefore about a order of magnitude in runtime can be saved.
-% Otherwise with a up to date computing systems a reasonable amount of models can be generated.
-% However, the number of models and configurations was limited here to two fiber configurations with respect to anatomical and simulation constraints.
-% A future study must show how the behavior is with more complex structures.
-% Therefore, many more models are needed, which is already possible due to the fast generation of the models.
-% Especially for simulations like scattered light, even small changes in the models can be very important.
-% %  
-% \paragraph{\acs{3D-PLI} simulation} %\nameref{cha:sof:simulation}}
-% The simulation software for \ac{3D-PLI} is a faster, more accurate, more resource-efficient, and more user-friendly improvement to the previous software design.
-% The algorithms are able to efficiently use the resources of a supercomputer facility.
-% The simulation software is embedded in a user-friendly \python{} method that contains all the necessary functions to analyze the signal in the same way as the experimental data.
-% Like all presented applications, the simulation software is part of the open source software package \ac{fastPLI}.
-% \par
-% % 
-% % results
-% The results with the newly created models of irregular dense white matter could reproduce the experiments as well as the previous simulation results.
-% In addition, many more simulations and configurations could be investigated.
-% For a single fiber population the bahavier show no significant ... to the analytical analysis model.
-% For two crossing fiber populations the dominant fiber population is regognied in the resulting signal.
-% In these densly interwoven models with a mean fiber radius of $\SI{0.5}{\micro\meter}$ the lesser fiber population is lost with the current inclination analysis model.
-% \par
-% %
-% \paragraph{\acs{fastPLI} software}%\nameref{chap:Software}}
-% \ac{fastPLI} is published as an open source software package.
-% The \python{} implementation allows for a user friendly and sharable coding experiance.
-% The open review helped to find flows in the implementation that complicated the usage.
-% Solving them led to a much better understanding of the algorithms and the usage of the entire software package.
-% The here presented modeling algorithm is already beeing used in other fields besideds nerve fiber modelling.
-% It is used for non-colliding fiber models of scleral collagen fibers to investigate mechanical properties of the tissue \cite{Ji2021}.
-% % 
-% \par
-% \noindent\rule{\textwidth}{2pt}
-% \par
-% % 
-% As part of this thesis, two proof of concept projects were accomplished to develop a parallel \ac{GPU} implementation for \ac{3D-PLI} simulations.
-% The first was a Seminararbeit aimed at implementing a parallel algorithm to calculat the discrete tissue volume for the \ac{3D-PLI} simulation\cite{Kobusch:Seminar}.
-% It was shown that the speedup of the discrete tissue computation was very fast, but the large memory requirements of the discretized volume negated this speedup overall, as current \acp{GPU} are relatively limited there.
-% Also, the need to transfer the data back to the \ac{CPU} was a too high overhead.\\
-% Therefore the second project was to implement a raytracing algoithm, which would calculate a light matter collision and performing the matrix calculus on the fly without the need of precalculating the discretised volume \cite{Kobusch:887783}.
-% As a proof of concept a simple collision detection algorithm was implemented on the \ac{GPU}, a uniaxially aligned search algorithm (\cite{Karras2012}).
-% It could be shown that the acceleration possibilities on the \ac{GPU} are enormous,
-% However, due to the rather simple algorithm, the runtime was slightly longer, but still in the same order of magnitude as the \ac{CPU} version.
-% The next logical step is therefore to use a more sophisticated algorithm.
-% As in the case of the fiber collision detection algorithm, the same collision detection algorithm and z-ordered tree can be used to detect collisions between light particles and fiber segments \cite{Karras2012}.
-% This has several advantages.
-% The most important one is that the discretized volume is no longer necessary, which saves a lot of memory.
-% With such an implementation, a normal computing system should already be fast enough for reasonable simulation sizes.
-% The parallel algorithm developed above has already been implemented in such a way that the light rays can change their orientation.
-% Thus, simulations of light scattering will also be possible in the future.
+\paragraph{\acs{3D-PLI} simulation results}
+Analog to the nerve fiber modelling software first the simulation software parameters were charackerized and measured.
+The optical resolution of the used micrsoscope was reproduced with former results as well as the optical noise of the system.
+From in \ac{3D-PLI} measured tissue samples the tissues properties were derived so that the simulation with means of its limitations can reproduce the results.
+The most important characteristica of the simulations accuracy and speed, the \Voxelsize{} was characterized by using the upper prepaired models.
+A lower limit could be identified which has to be used for a given nerve fiber radius.
+\par
+% 
+Using the found software parameters and the prepaird nerve fiber models simulations were performed with a orientation analysis.
+The models were spit into four groups, a single, a flat crossing, an inclined crossing and freely crossing nerve fiber populations.
+This allowed to concentraid on specific behavier.
+\par
+% 
+In the case of a single nerve fiber population only the inclination of the models was a variable.
+With the simulation results it coud be shown, that in the case of a single fiber population the orientation can be correctly identified with an increased uncertanty for very stepp fibers.
+Given multiple image pixel statistically the mean value can be correctly measured.
+For very steep nerve fibers the relative effective tissue thickness becomes unstable in the inclination analysis.
+This behavier can be used to take as an hint how uncertain the results are.
+\par
+% 
+The flat crossing nerve fiber population results for the inclination analysis in a single value, which seems to follows the circular mean value of the individual orientations.
+With this behavier mostly the dominant present nerve fiber population is visible, with a slighly systematic error prown to the orientation to the second nerve fiber direction.
+With the here choosen nerve fiber radiius distribution and image resolution the involed nerve fiber population orientation could not be resolved.
+\par
+% 
+The inclined crossing nerve fiber population has similar characteristics to the flat crossing case.
+The inclination seems also to follor the circular mean value of each population, however due to the fact that inclined nerv fibers result in a smaller change of the polarization of the light, the resulting orientation is distorted to the less inclined fiber population.
+Here also no individual orientation of one of the nerve fiber population can be identified from the inclination analysis.
+\par
+% 
+The last studied models were a freely ... nerve fiber populations, so any configuration describable by the four model parameters were possible.
+From a \ac{ODF} comparison metric model angles could be identified where the incination analysis of the \ac{3D-PLI} signal is tendet to an error prown and were it is very reliable.
+The individual parameters were discussed as well and the underliing behavier could be identified leading to the error prown orientations.
+\par
+% 
+A speedup analysis of the simulation showed that the simulation software with the capabilities of the \ac{MPI} is very parallizable and can utalize a multi node system which makes it possible to simulate large sections without the loss of computation time.
+However the tissue generation process is sighly less performend.
+However since multiple \ac{3D-PLI} tilted light beam simulation are run on the same discterized tissue this is not an issue.
+\par
+% 
+Many possible further optimizations of the algorithm could be identified.
+The overall ... is to increase the computation by utalizing parallel architecuters like an \ac{GPU}.
+Already existing algorithms suitable for this kind of calculations, the nerve fiber modelling as well as the \ac{3D-PLI} simulations, could be identified.
+\par
+% 
+Overall this thesis \dummy{}.
