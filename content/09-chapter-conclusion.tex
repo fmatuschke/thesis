@@ -54,11 +54,34 @@ This drastically increases the speed of the collision check \cite{Karras2012}.
 % 
 \paragraph{\ac{3D-PLI} software}
 % 
-GPU, Kobusch
+\TODO{check Inahlt}
+% 
+As part of this thesis, two proof of concept projects were accomplished to develop a parallel GPU implementation for 3D-PLI simulations.
+The first was a Seminararbeit aimed at implementing a parallel algorithm to calculat the discrete tissue volume for the 3D-PLI simulation \cite{Kobusch:Seminar}.
+It was shown that the speedup of the discrete tissue computation was very fast, but the large memory requirements of the discretized volume negated this speedup overall, as current GPUs are relatively limited there.
+Also, the need to transfer the data back to the CPU was a too high overhead.
+Therefore the second project was to implement a raytracing algoithm, which would calculate a light matter collision and performing the matrix calculus on the fly without the need of precalculating the discretised volume \cite{Kobusch:887783}.
+As a proof of concept a simple collision detection algorithm was implemented on the GPU, a uniaxially aligned search algorithm \cite{Karras2012}.
+It could be shown that the acceleration possibilities on 125the GPU are enormous, However, due to the rather simple algorithm, the runtime was slightly longer, but still in the same order of magnitude as the CPU version.
+The next logical step is therefore to use a more sophisticated algorithm.
+As in the case of the fiber collision detection algorithm, the same collision detection algorithm and z-ordered tree can be used to detect collisions between light particles and fiber segments [Kar12].
+This has several advantages.
+The most important one is that the discretized volume is no longer necessary, which saves a lot of memory.
+With such an implementation, a normal computing system should already be fast enough for reasonable simulation sizes.
+The parallel algorithm developed above has already been implemented in such a way that the light rays can change their orientation.
+Thus, simulations of light scattering will also be possible in the future.
+% 
+% 
 % 
 \paragraph{Nerve fiber modelling simulation}
 % 
-More models, maybe with minor collisions to reduce the computation time.
+To improve the statistik of these models one can enhance the number of models.
+Another improvment would also be, if a simpler, \ie{} less dimensionality, parameterset can be identified to classify the fiber populations or individual fiber configurations.
+Also this these has its focus on rather small nerve fibers, one should also focus in the future on larger nerve fibers.
+Not only to investigate anatomical larger nerve fibers but also because one could model a nerve fiber bundle, constitingc out of small fibers by a large single nerve fiber bundle object.
+If this is possible one could reduce the number of objects quite significant which means, either one has very smal runtimes or one can model large volumes.
+% 
+% 
 % 
 \paragraph{\ac{3D-PLI} simulation}
 % 
