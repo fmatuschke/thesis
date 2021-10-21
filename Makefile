@@ -22,8 +22,8 @@ thesis: compile bibliography
 	$(MAKE) compile
 	xdg-open thesis.pdf
 
-.PHONY: thesis-mp
-thesis-mp:
+.PHONY: chapters
+chapters:
 	bash compile-chapters.sh
 
 .PHONY: tikz
