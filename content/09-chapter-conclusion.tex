@@ -147,77 +147,77 @@ This allows the simulation of a large volume of nerve fibers, which takes up a l
 % 
 \paragraph{Software package \acs{fastPLI}}
 % 
-All algorithms are written as modules in \python{} inside the software package \ac{fastPLI}.
-The Software package is published as open source software package allowing users to share, ask and further develop the software for a high exchangeability. 
-The software was tested by ultiple users and published inside the revied \ac{JOSS}.
+All algorithms are written as modules in \python{} within the software package \ac{fastPLI}.
+The software package is published as an open source software package so that users can share, ask, and further develop the software to ensure high interchangeability. 
+The software has been tested by several users and published in \ac{JOSS}.
 % 
 % 
 % 
 \paragraph{Nerve fiber modelling results}
 % 
-The nerve fiber modelling algorithm controlls the necesarry fiber movement to solve the collisions by the fiber segment length and the fiber bending radius.
-Both parameters were characterized against the resulting orientations and computational speed.
-To reduce the dimensionality of the possible configurations a set of parameters to describe the model was designed.
-This set consit out of 2 relativ angles between the two fiber populations, an inclination angle of the entire model and a population fraction parameter.
-This set allows to investigate nerve fiber models up to two nerve fiber populations with any crossing angle in 3d without describing every fiber by itself.
+The nerve fiber modeling algorithm controls the necessary movement of the fibers to solve the collisions via the length of the fiber segments and the bending radius of the fibers.
+Both parameters were characterized in terms of the resulting orientations and computational speed.
+To reduce the dimensionality of the possible configurations, a set of parameters was designed to describe the model.
+This set consists of two relative angles between the two fiber populations, a inclination angle of the whole model, and a population fraction parameter.
+The set allows nerve fiber models with up to two nerve fiber populations with arbitrary crossing angles to be examined in 3D without describing each fiber separately.
 \par
 % 
-Using this parameters first the characteristics of the modelling parameters was charakterized.
-A set of values could be identified which is suitable to generate non colliding nerve fiber models without distoring the initial configuration too much.
-Additionally this parameter values are suitable to reduce the runtime in a reasanable amount without loosing any configuration charachteristics or impliing a bias on the resulting models.
-To reduce the runtime even further it could be identified that about 1 order of magnitude the processing time can be reduced by not solving the models completly.
-The influance of a non collision free model however has to be investigated in an aditionall study.
+Based on these parameters, the properties of the modeling parameters were first characterized.
+A number of values were identified that are suitable for generating non-colliding nerve fiber models without distorting the initial configuration too much.
+In addition, these parameter values are suitable to reduce the runtime to a reasonable extent without losing configuration characteristics or distorting the resulting models.
+To reduce the runtime even further, it was found that about an order of magnitude of computation time can be reduced by not solving the models completely.
+However, the impact of a non-collision-free model remains to be investigated in an additional study.
 \par
 % 
-With the found model software parameters a library of up to two nerve fiber models described by the four model parameters was generated fo the later \ac{3D-PLI} simulation.
-The orientation distribution was analysed to be able to use as a comparison for the simulation orientation analysis.
+With the model software parameters found, a library of up to two nerve fiber models described by the four model parameters was created for later \ac{3D-PLI} simulation.
+The orientation distribution was analyzed to be used as a comparison for the orientation analysis of the simulation.
 % 
 % 
 % 
 \paragraph{\acs{3D-PLI} simulation results}
 % 
-Analog to the nerve fiber modelling software first the simulation software parameters were charackerized and measured.
-The optical resolution of the used micrsoscope was reproduced with former results as well as the optical noise of the system.
-From in \ac{3D-PLI} measured tissue samples the tissues properties were derived so that the simulation with means of its limitations can reproduce the results.
-The most important characteristica of the simulations accuracy and speed, the \Voxelsize{} was characterized by using the upper prepaired models.
-A lower limit could be identified which has to be used for a given nerve fiber radius.
+Analogous to the nerve fiber modeling software, the parameters of the simulation software were first characterized and measured.
+The optical resolution of the microscope used was reproduced with previous results, as was the optical noise of the system.
+Tissue properties were derived from tissue samples measured in \ac{3D-PLI} so that the simulation could reproduce the results with its limitations.
+The most important characteristic of simulation accuracy and speed, \Voxelsize{}, was characterized by using the upper prebuilt models.
+It was possible to identify a lower bound that must be used for a given nerve fiber radius.
 \par
 % 
-Using the found software parameters and the prepaird nerve fiber models simulations were performed with a orientation analysis.
-The models were spit into four groups, a single, a flat crossing, an inclined crossing and freely crossing nerve fiber populations.
-This allowed to concentraid on specific behavier.
+Using the found software parameters and the prepared nerve fiber models, simulations were performed with orientation analysis.
+The models were divided into four groups: a single, a flat crossing, an oblique crossing, and a free crossing nerve fiber population.
+This allowed to focus on a specific behavior.
 \par
 % 
-In the case of a single nerve fiber population only the inclination of the models was a variable.
-With the simulation results it coud be shown, that in the case of a single fiber population the orientation can be correctly identified with an increased uncertanty for very stepp fibers.
-Given multiple image pixel statistically the mean value can be correctly measured.
-For very steep nerve fibers the relative effective tissue thickness becomes unstable in the inclination analysis.
-This behavier can be used to take as an hint how uncertain the results are.
+In the case of a single nerve fiber population, only the slope of the models was a variable.
+With the simulation results, it was shown that in the case of a single fiber population, the orientation can be correctly identified, with an increased uncertainty for very steep fibers.
+In the case of multiple pixels, statistically the mean can be measured correctly.
+For very steep nerve fibers, the relative effective tissue thickness becomes unstable in the inclination analysis.
+This behavior can be used as an indication of how uncertain the results are.
 \par
 % 
-The flat crossing nerve fiber population results for the inclination analysis in a single value, which seems to follows the circular mean value of the individual orientations.
-With this behavier mostly the dominant present nerve fiber population is visible, with a slighly systematic error prown to the orientation to the second nerve fiber direction.
-With the here choosen nerve fiber radiius distribution and image resolution the involed nerve fiber population orientation could not be resolved.
+The flat crossing nerve fiber population results in a single value for the slope analysis that appears to follow the circular mean value of the individual orientations.
+With this behavior, the predominant nerve fiber population is mostly visible, with a slight systematic error due to the orientation to the second nerve fiber direction.
+With the nerve fiber radius distribution and image resolution chosen here, the underlying orientation of the individual nerve fiber population could not be resolved.
 \par
 % 
-The inclined crossing nerve fiber population has similar characteristics to the flat crossing case.
-The inclination seems also to follor the circular mean value of each population, however due to the fact that inclined nerv fibers result in a smaller change of the polarization of the light, the resulting orientation is distorted to the less inclined fiber population.
-Here also no individual orientation of one of the nerve fiber population can be identified from the inclination analysis.
+The population of inclined crossing nerve fibers has similar characteristics to the population of flat crossing nerve fibers.
+The inclination also appears to follow the circular mean value of each population, but due to the fact that inclined nerve fibers result in less change in the polarization of the light, the resulting orientation is biased toward the less inclined fiber population.
+Again, no individual orientation of any of the nerve fiber populations can be identified from the inclination analysis.
 \par
 % 
-The last studied models were a freely ... nerve fiber populations, so any configuration describable by the four model parameters were possible.
-From a \ac{ODF} comparison metric model angles could be identified where the incination analysis of the \ac{3D-PLI} signal is tendet to an error prown and were it is very reliable.
-The individual parameters were discussed as well and the underliing behavier could be identified leading to the error prown orientations.
+The last models examined were unrestricted nerve fiber populations, so any configuration describable by the four model parameters was possible.
+Comparison of an \ac{ODF} metric was used to determine the orientations of the models for which the inclination analysis of the \ac{3D-PLI} signal was error-prone and which were highly reliable.
+In addition, the individual parameters were discussed and the underlying behavior leading to the erroneous orientations was determined.
 \par
 % 
-A speedup analysis of the simulation showed that the simulation software with the capabilities of the \ac{MPI} is very parallizable and can utalize a multi node system which makes it possible to simulate large sections without the loss of computation time.
-However the tissue generation process is sighly less performend.
-However since multiple \ac{3D-PLI} tilted light beam simulation are run on the same discterized tissue this is not an issue.
+An analysis of the simulation speed has shown that the simulation software can be parallelized very well with the capabilities of \ac{MPI} and can use a multi-node system that allows large volumes to be simulated without loss of computation time.
+However, the tissue generation process is slightly less efficient.
+However, since multiple \ac{3D-PLI} simulations with tilted light beams are run on the same discretized tissue, this is not a critical issue.
 \par
 % 
 Many possible further optimizations of the algorithm could be identified.
-The overall ... is to increase the computation by utalizing parallel architecuters like an \ac{GPU}.
-Already existing algorithms suitable for this kind of calculations, the nerve fiber modelling as well as the \ac{3D-PLI} simulations, could be identified.
+The general advice is to increase the computational power by using parallel computing units like a \ac{GPU}.
+Existing algorithms suitable for this type of computation, nerve fiber modeling and \ac{3D-PLI} simulations, could be identified and should be implemented in the future.
 \par
 % 
 Overall this thesis \dummy{}.
