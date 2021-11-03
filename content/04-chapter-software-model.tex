@@ -558,7 +558,7 @@ v_i = \dummy{}
 %
 The velocity is stored in an array for each point reached.
 If the object collides with multiple objects, the velocity is summed up.
-The maximum velocity is finally bounded by a value of $v_{\max} = 0.1 \times \min(\mathit{object radius})$.\footnote{This value has proven to be appropriate during the testing phase of this algorithm. Speedup may still be possible by changing this value without significantly changing the results}.
+The maximum velocity is finally bounded by a value of $v_{\max} = 0.1 \times \min(\mathit{object radius})$.\footnote{This value has proven to be appropriate during the testing phase of this algorithm. Speedup may still be possible by changing this value without significantly changing the results.}.
 This is constrained by the following two required properties:
 First, it prevents motion by another object.
 Second, it smooths the motion and thus the maximum achievable density of the resulting models.
