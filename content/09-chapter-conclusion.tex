@@ -10,44 +10,47 @@
 % 
 \paragraph{Nerve fiber modelling software}
 % 
-Currently, the collisionless nerve fiber modeling alrotihm is capable of generating densly packed fiber models which are suitable nerve fiber models for \ac{3D-PLI} simulations.
-However, the algorithm is limited in terms of computational time in the volume that can be generated.
-Since the number of individual nerve fiber segments increases with volume by the third power, it is not possible to generate large volumes in a reasonable time relative to the nerve fiber radii.
+Currently, the collisionless nerve fiber modeling algortihm is capable of generating densly packed fiber models which are suitable nerve fiber models for \ac{3D-PLI} simulations.
+However, the algorithm is limited in terms of computational time or more specific, the number of objects in the volume to be solved.
+Since the number of individual nerve fiber segments increases with volume, it is not possible to generate large volumes in a reasonable time.
 \par
 % 
-There are many optimization possibilities to improve the performance.
-First, one can already try to design a better initial model for the nerve fibers that takes less time to solve.
-However, this limits the user's ability to generate an arbitrary initial configuration. 
-In addition, it was also found that in the first $\SI{10}{\percent}$ most of the collisions can be solved and the remaining time is needed for the remaining minimal overlaps.
+There are optimization options to improve performance.
+First, one can improve the sandbox design models so that the initial fiber configurations have less overlap.
+This would also mean that for a given volume, the number of objects is reduced.
+However, it was found that in the first $\approx \SI{10}{\percent}$ most collisions can be solved and the remaining time is needed for the remaining minimal overlaps \cref{sec:solverParameterResults}.
+Therefore, the total runtime would probably not decrease significantly.
 \par
 % 
-A more suitable strategy is therefore to try to design the algorithm in such a way that the number of steps required is reduced.
+A more suitable strategy is to design the algorithm in such a way that the number of calculation steps is reduced.
 However, this is a very complicated task.
 For example, one could increase the motion that a fiber segment is allowed to perform.
-This strategy would probably lead to less densely packed models, since without an external force or attraction between the nerve fibers, they can only move apart.
+This strategy would probably lead to less densely packed models, since without an external force or attraction between the nerve fibers, they can only move apart. \footnote{With an external force one would introduce oscilations.}
 Another possibility is to speed up the runtime per step.
 This can be done, for example, by choosing a simpler calculation.
 In the \ac{MEDUSA} algorithm this is already been realized by using spheres instead of fiber segments.
-The collision of spheres is only be calculated by the euclidian distance with respect to the sum of the radii.
+The collision of spheres is only be calculated by the euclidian distance with respect to the sum of the spheres radii.
 However, the use of spheres is associated with a disadvantage.
-The number of objects increases drastically, since many more spheres are needed instead of conical fiber segments.
-Otherwise, the surface of the fiber cannot be scanned.
+The number of objects increases dramatically as many spheres are needed to approximate the surface of a single conical fiber segment.
 \par
 % 
-A current limitation of the algorithm presented here is also parallelization on a multi-core (or even multi-node) system.
-The problem with such an algorithm is that the system needs to communicate a lot, which takes a relatively long time compared to instructions on a \ac{CPU}.
-Therefore, one probably needs to redesign the algorithm and find one that does not require much communication.
-For example, one could divide the volume into subvolumes at the very beginning of the algorithm and distribute the tasks among several \acp{CPU}.
-At the boundary between the subvolumes, one still needs to exchange the positions of the nerve fiber segments, but one could do this, for example, only after a certain number of steps, thus reducing the number of communications.
-However, this may lead to artifacts at the boundaries.
+A current limitation of the algorithm presented here is parallelization on a multi-core system.
+For shared memory parallelization, atomic operations must be introduced, which takes a lot of time.
+For an algorithm without shared memory, the required data must be exchanged between the individual CPUs. 
+This communication introduces an overhead compared to the \ac{CPU} instructions.
+However, such an algorithm could work on a multi-node system if the performance does not decrease drastically with increasing number of CPUs involved, as is currently the case.
+Therefore, one needs to redesign the algorithm.
+Common solutions are to divide the volume into sub-volumes (as in the case of \ac{3D-PLI} simulation), where each volume can be computed separately.
+However, since the boundaries of such subvolumes contain objects from neighboring volumes, it is necessary to merge the information of neighboring subvolumes.
+In a sense, this is already happening in the current implementation of the octree, but the volume is split into sub-volumes at each step.
+If this can be improved so that only the necessary information needs to be transmitted, performance should increase by quite a bit.
 \par
 % 
 At this point, the most promising optimization would be to use the architecture of the \ac{GPU} as in the \ac{MEDUSA} algorithm.
-A collision detection algorithm.
-One type of these algorithms that is particularly appropriate here is based on the \ac{AABB} used here and a z-ordered tree instead of an octree.
-Not only is the collision checking computed in parallel, but also the preparation of the data into a z-tree is done in parallel on the \ac{GPU}.
-There is no longer a need to use the \ac{CPU} between steps or to copy data between the \ac{CPU} and \ac{GPU}.
-This drastically increases the speed of collision checking \cite{Karras2012}. 
+One type of these algorithms that is particularly appropriate here is based on the \ac{AABB} used here and a z-ordered tree instead of an octree \cite{Karras2012}.
+Not only is the collision checking computed in parallel, but also the generation of the z-tree is done in parallel on the \ac{GPU}.
+Also the algorithm completly runs on the \ac{GPU} and therefore does not need to communicate with the \ac{CPU} or \ac{RAM} as long as the complete information fits on the \ac{GPU} memory.
+This drastically increases the speed of collision checking.
 % 
 % 
 % 
