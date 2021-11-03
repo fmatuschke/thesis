@@ -65,8 +65,8 @@ the identity $\nabla \times \left( \nabla \times \vec{A} \right) = \nabla(\nabla
 %
 \begin{align}
 \begin{split} \label[pluralequation]{eq::maxwell_wave_equations}
-  \frac{1}{c^2} \frac{\partial^2 \vec{E}}{\partial t^2} - \nabla^2 \vec{E} &= 0 \\
-  \frac{1}{c^2} \frac{\partial^2 \vec{B}}{\partial t^2} - \nabla^2 \vec{B} &= 0
+  \frac{1}{c^2} \frac{\partial^2 \vec{E}}{\partial t^2} - \nabla^2 \vec{E} &= \vec{0} \\
+  \frac{1}{c^2} \frac{\partial^2 \vec{B}}{\partial t^2} - \nabla^2 \vec{B} &= \vec{0}
 \end{split}
 \end{align}
 %
@@ -143,18 +143,19 @@ In addition, the states can be described by the Jones or Stokes calculation, whi
 The general Maxwell's equations \cref{eq::maxwell_general} can be solved analog to \cref{sec::SolvMaxEqVac}. This yields to some special behavior, \eg{} the magnetic and electric field component get out of phase.
 Here only the two decisive properties absorption and diffraction are described.\footnote{For their derivation, \eg{} see \cite{demtroeder2, Fliebach2012}.}
 %
-\subsection{Absorption}
+\subsection{Absorption}\label{sec:theoAbsorption}
 %
 Absorption is the property of reducing the intensity or energy of an electromagnetic wave passing though a medium.
 It is described by Beersche law of absorption
 % 
-\begin{align}
-    I = I_0 \exp(-\mu x)
+\begin{align} 
+    I = I_0 \exp(-\mu x) \label{eq:absorption}
 \end{align}
 %
-with $\mu = \frac{4\pi \kappa}{\lambda}$ where $\lambda$ is the wavelength and $\kappa$ is the imaginary part of the complex refractive index of the medium.
+with $\mu = \frac{4\pi \kappa}{\lambda}$ where $\lambda$ is the wavelength and $\kappa$ is the imaginary part of the complex refractive index of the medium (see \cref{sec:theoRefraction}).
+If the complex number is inserted into the wave equation, the intensity is reduced exponentially along the path (see \cref{eq:absorption}).
 %
-\subsection{Refraction}
+\subsection{Refraction}\label{sec:theoRefraction}
 %
 \begin{figure}[!t]
 \centering
@@ -165,7 +166,7 @@ with $\mu = \frac{4\pi \kappa}{\lambda}$ where $\lambda$ is the wavelength and $
 \end{figure}
 %
 Refraction is the change of direction of light as it passes from one medium to another (see \cref{fig:optic_refraction}).
-This can be shown by using the full Maxwell equations  for non-conductive material, \ie{} $\vec{j} = 0, \rho = 0$, that the differential equating consist out of a primary wave with from atomic medium induced secondary waves, which leads to a reduction of the velocity of the resulting wave.
+This can be shown by using the full Maxwell equations  for non-conductive material, \ie{} $\vec{j} = \vec{0}, \rho = 0$, that the differential equating consist out of a primary wave with from atomic medium induced secondary waves, which leads to a reduction of the velocity of the resulting wave.
 Mathematically, this can be described by a complex number $n = c' / c$.
 Using this relationship at a boundary surface between two media, one can show that the incident light beam splits into a reflecting and transmitting light wave.
 The reflecting light wave has the same angle as the incident light beam relative to the surface normal.
@@ -173,7 +174,9 @@ The transmitting light beam however, due to the reduction of the velocity, chang
 \begin{align}
     n_\alpha \sin \alpha = n_\beta \sin \beta \label{eq:Snellius}
 \end{align}
-%
+% 
+The refractive index $n$ can also be desribed inside a complex refraction index, where the imaginar part describes the absoption of the light along the material (see \cref{sec:theoAbsorption}):
+% 
 \begin{align}
 \underline{n} = n + i\kappa
 \end{align}
@@ -433,14 +436,15 @@ From the Mueller-Stokes matrices (\cref{sec:Mueller-Stokes}), the intensity sign
 %
 \begin{align}
 \label{eq:pli_signal}
-\begin{split}
+\centering
+\begin{gathered}
 I(\rho, \varphi, \alpha, d) =\frac{I_0}{2}\bigl[ \sin\bigl(2\rho - 2\varphi \bigr)\cdot \sin \bigl( 2\pi\frac{d \dn}{\lambda} \cos^2\left( \alpha \right) \bigr) \bigr] \\
 \text{with} \enspace \delta \coloneqq 2\pi\frac{d \dn}{\lambda} \cos^2\left( \alpha \right) \enspace
 \text{and} \enspace \trel \coloneqq 4 \frac{d \dn}{\lambda}
-\end{split}
+\end{gathered}
 \end{align}
 %
-\cref{eq:pli_signal} describes a sinusoidal signal.
+\Cref{eq:pli_signal} describes a sinusoidal signal.
 For a discrete, equidistant measurement of the rotation angles $\rho$, one can use the Fourier series with the first three coefficients to describe the signal:
 %
 \begin{align}
@@ -497,7 +501,7 @@ All angles mentioned here, if not specified, are always the angle change of ligh
 %
 To analyse the tilting signal, an algorithm was developed under the name \ac{ROFL} \cite{Wiese:887678,Schmitz2018}.
 The idea is to fit the measured signals of all light paths simultaneously.
-However, since the change in the signal is proportional to $\cos(\alpha)$, this means that for steep fibers not only are the changes $\partial / \partial \alpha \cos(\alpha)$ small, but also the amplitude of the signal is very small.
+However, since the change in the signal is proportional to $\cos(\alpha)$, this means that for steep fibers not only are the changes $\frac{\partial}{\partial \alpha} \cos(\alpha)$ small, but also the amplitude of the signal is very small.
 This leads to the problem of increasing uncertainty with increasing inclination angle.
 \par
 %
@@ -561,11 +565,11 @@ If diffraction is caused by many small objects in relation to the resolution, th
 %
 Ernst Abbe was one of the first to describe that the resolution correlates with the light wave $\lambda$:
 \begin{align}
-d=\frac{ \lambda}{2 n \sin \theta} = \frac{\lambda}{2\mathrm{NA}} \> .
+d=\frac{ \lambda}{2 n \sin \theta} = \frac{\lambda}{2\mathrm{NA}} 
 \end{align}
 $d$ is the minimum resolvable distance, $n$ the refractive index, $\theta$ the angle of a light spot, which can be combined to the better known numerical aperture $\mathrm{NA}$.
 This gives an absolute threshold for a light microscope, above which the resolution cannot be improved.
-For the wavelength used in \ac{3D-PLI} with $\lambda = \SI{525}{\nano\meter}$ and a numerical aperture of $\mathrm{NA} \approx \SI{0.15}{}$ , which results in a limit of $\SI{2.1}{\micro\meter}$ (see \cite{MenzelDissertation}.
+For the wavelength used in \ac{3D-PLI} with $\lambda = \SI{525}{\nano\meter}$ and a numerical aperture of $\mathrm{NA} \approx \SI{0.15}{}$ , which results in a limit of $\SI{2.1}{\micro\meter}$ (see \cite{MenzelDissertation}).
 %
 \begin{figure}[!t]
 \setlength{\tikzwidth}{0.45\textwidth}
@@ -596,7 +600,7 @@ Unlike resizing, this does not interpolate the image.
 \paragraph{Noise}
 The final step is to recreate the noise of the image composition.
 To account for this, a noise model must be applied to each image pixel.
-\cite{Wiese:887678} showed that this can be done via a normal distribution.
+\cite{Wiese:887678} showed that this can be done via a normal distribution:
 %
 \begin{align}
     I = I + \gauss(\sigma, \mu=I)
