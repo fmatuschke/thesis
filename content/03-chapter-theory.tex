@@ -7,7 +7,7 @@
 %
 \section{Introduction}
 The following chapter lists the physical theories needed to describe the mathematics behind \ac{3D-PLI}.
-These include the basic properties of light with the description of their polarization state, the optical models of the tissue, \ie{} the nerve fibers, the mathematical description of the experimental setup of \ac{3D-PLI} and the analysis of its signal.
+These include the basic properties of light with the description of their polarization state, the optical properties of the tissue, \ie{} the nerve fibers, the mathematical description of the experimental setup of \ac{3D-PLI} and the analysis of its signal.
 The first part of this chapter was written with the aid of \cite{demtroeder2, Fliebach2012}.
 %
 %
@@ -19,7 +19,7 @@ The theory of electromagnetism was first fully described by James Clerk Maxwell.
 He formulated Maxwell's equations \cref{eq::maxwell_general}, generalized from the previous work of Johann Carl Friedrich Gau{\ss}, Michael Faraday and Andr\'{e}-Marie Amp\`{e}re and others:
 %
 \begin{align}
-\begin{split} \label{eq::maxwell_general}
+\begin{split} \label[pluralequation]{eq::maxwell_general}
     \nabla \cdot \vec{E} &= \frac {\rho} {\varepsilon_0}\\
     \nabla \cdot \vec{B} &= 0\\
     \nabla \times \vec{E} &= -\frac{\partial \vec{B}} {\partial t}\\
@@ -45,7 +45,7 @@ This means that neither an electric field nor a magnetic field can be generated 
 In a vacuum, \cref{eq::maxwell_general} simplifies with $\rho = 0$ and $\vec{j} = \vec{0}$ to:
 %
 \begin{align}
-\begin{split} \label{eq::maxwell_vacuum}
+\begin{split} \label[pluralequation]{eq::maxwell_vacuum}
   \nabla \cdot \vec{E} &= 0 \quad\\
   \nabla \cdot \vec{B} &= 0 \quad\\
   \nabla \times \vec{E} &= -\frac{\partial\vec B}{\partial t}\\
@@ -78,7 +78,7 @@ In addition, this also means that space and time are connected and that light pr
 \Cref{eq::maxwell_wave_equations} have the form of a wave equation and therefore, as it is well-known, can be solved by
 %
 \begin{align}
-\begin{split} \label{eq::dgl_solution}
+\begin{split} \label[pluralequation]{eq::dgl_solution}
   \vec{E}( \vec{r}, t ) &= g(\phi( \vec{r}, t )) = g( \omega t - \vec{k} \cdot \vec{r} + \varphi)\\
   \vec{B}( \vec{r}, t ) &= g(\phi( \vec{r}, t )) = g( \omega t - \vec{k} \cdot \vec{r} + \varphi )
 \end{split}
@@ -95,29 +95,28 @@ k = \mathopen| \vec{k} \mathclose| = \frac{\omega}{c} =  \frac{2 \pi}{\lambda}
 a planar wave can be described by
 %
 \begin{align}
-\begin{split} \label{eq::plane_wave}
+\begin{split} \label[pluralequation]{eq::plane_wave}
 \vec{E}(\vec{r}) &= \vec{E}_0 \cdot e^{ -i \, \vec{k} \cdot \vec{r} }\\
  \vec{B}(\vec{r}) &= \vec{B}_0 \cdot e^{ -i \, \vec{k} \cdot \vec{r} }
 \end{split}
 \end{align}
 %
-with $\vec{k}$ as wave vector pointing in the direction of the propagation of the light wave.
+with $\vec{k}$ as wave vector pointing in the direction of the propagation of the light wave (see \cref{fig:polarization_state}).
 %
 %
-\subsection{Polarization}
+\subsection{Polarization}\label{sec:polarization}
 %
 \begin{figure}[!t]
 \centering
 \setlength{\tikzwidth}{\textwidth}
 \inputtikz{gfx/pli/polarization_state}
+\caption{Illustration of the polarization state of light. Unpolarized light passes through a linear polarizer, which polarizes the light in one direction. It then passes through a quarter-wave retarder that converts linearly polarized light (of a specific wavelength) into circularly polarized light, where $E_x$ and $E_y$ are $\pi/2$ in phase.}
 \label{fig:polarization_state}
-\caption{Illustration of the polarization state of light. Unpolarized light passes through a linear polarizer, which polarizes the light in one direction. It then passes through a quarter-wave retarder that converts linearly polarized light (of a given wavelength) into circularly polarized light, where $E_x$ and $E_y$ are $\pi/2$ in phase.}
 \end{figure}
 %
 Since the light wave propagates in one direction and the electric field and magnetic field are perpendicular to $\vec{k}$ as well as to each other, the orientation of the plane of oscillation is a fundamental property of light called polarization.
 Without additional information, the polarization orientation is conventionally in the direction of the electric field component.
-%
-A superposition of x- and y-wave with z equal to the propagation direction gives the general form:
+A superposition of x- and y-wave with z-axis equal to the propagation direction gives the general form:
 \begin{align}
 \vec{E}(z,t) &= \begin{pmatrix} E_{0x} \cdot e^{ -i \phi_x } \\ E_{0y} \cdot e^{ -i \phi_y } \\ 0 \end{pmatrix}
 e^{ -i (kz - \omega t)}
@@ -141,7 +140,9 @@ In addition, the states can be described by the Jones or Stokes calculation, whi
 \subsection{Light in a medium}
 %
 The general Maxwell's equations \cref{eq::maxwell_general} can be solved analog to \cref{sec::SolvMaxEqVac}. This yields to some special behavior, \eg{} the magnetic and electric field component get out of phase.
-Here only the two decisive properties absorption and diffraction are described.\footnote{For their derivation, \eg{} see \cite{demtroeder2, Fliebach2012}.}
+Here only the two decisive properties absorption and diffraction are described.
+% 
+% 
 %
 \subsection{Absorption}\label{sec:theoAbsorption}
 %
@@ -155,22 +156,24 @@ It is described by Beersche law of absorption
 with $\mu = \frac{4\pi \kappa}{\lambda}$ where $\lambda$ is the wavelength and $\kappa$ is the imaginary part of the complex refractive index of the medium (see \cref{sec:theoRefraction}).
 If the complex number is inserted into the wave equation, the intensity is reduced exponentially along the path (see \cref{eq:absorption}).
 %
+% 
+% 
 \subsection{Refraction}\label{sec:theoRefraction}
 %
 \begin{figure}[!t]
 \centering
 \setlength{\tikzwidth}{\textwidth}
 \inputtikz{gfx/pli/refraction}
+\caption{Illustration of refraction by Snellius law.}
 \label{fig:optic_refraction}
-\caption{Illustration of refraction.}
 \end{figure}
 %
-Refraction is the change of direction of light as it passes from one medium to another (see \cref{fig:optic_refraction}).
-This can be shown by using the full Maxwell equations  for non-conductive material, \ie{} $\vec{j} = \vec{0}, \rho = 0$, that the differential equating consist out of a primary wave with from atomic medium induced secondary waves, which leads to a reduction of the velocity of the resulting wave.
+Refraction is the change of direction of light as it passes from one medium to another.
+This can be shown by using the full Maxwell equations  for non-conductive material, \ie{} $\vec{j} = \vec{0}$ \TODO{$, \rho = 0$}, that the differential equating consist out of a primary wave with from atomic medium induced secondary waves, which leads to a reduction of the velocity of the resulting wave.
 Mathematically, this can be described by a complex number $n = c' / c$.
 Using this relationship at a boundary surface between two media, one can show that the incident light beam splits into a reflecting and transmitting light wave.
 The reflecting light wave has the same angle as the incident light beam relative to the surface normal.
-The transmitting light beam however, due to the reduction of the velocity, changes its direction described by the Snellius law
+The transmitting light beam however, due to the reduction of the velocity, changes its direction described by the Snellius law (see \cref{fig:optic_refraction})
 \begin{align}
     n_\alpha \sin \alpha = n_\beta \sin \beta \label{eq:Snellius}
 \end{align}
@@ -195,10 +198,10 @@ The refractive index $n$ can also be desribed inside a complex refraction index,
 %
 A translucent material can have a different refractive index depending on the relative orientation and polarization of the light beam.
 This property is called birefringence.
-The refractive index can be described by the ordinary refractive index $n_o$ and the extraordinary $n_e$.
-Since these two are perpendicular to each other, the light ray can be split into the same perpendicular parts and each can be described by itself.
-These two light rays will have a different direction due to refraction.
-If the relative length is small (depends on n, or the phase change), the two light beams can be recombined when leaving the material at the same point.
+The refractive index can be described by the ordinary refractive index $n_o$ and the extraordinary $n_e$, which are perpendicular to each other.
+Therefore, the light ray can be split into the same perpendicular parts and each can be described by itself.
+These two light rays can have a different direction due to refraction.
+If the seperation is relative small, the two light beams (or multiple light beams) can be modeled as they would recombined when leaving the material.
 The phase change is called birefringence and the physical property is described by:
 %
 \begin{align}
@@ -209,8 +212,8 @@ The phase change is called birefringence and the physical property is described 
 %
 \subsection{Jones calculus}
 \label{sec:jones}
-%
-The Jones calculus, introduced by Robert Clark Jones in 1941, describes the polarization state of a light beam by a complex vector $J$:
+% 
+The Jones calculus, introduced by Robert Clark Jones in 1941, describes the polarization state of a light beam by a complex vector $J$ (see \cref{fig:polarization_state_vectors}):
 %
 \begin{align}
     \vec{J} = \begin{pmatrix} E_x \exp(i \varphi_x) \\ E_y \exp(i \varphi_y) \end{pmatrix}
@@ -219,8 +222,8 @@ The Jones calculus, introduced by Robert Clark Jones in 1941, describes the pola
 The amplitude of the perpendicular components are $E_x$ and $E_y$ with their phase $\varphi_x$ and $\varphi_y$.
 Optical elements that change the polarization state, such as polarization filters and retarders, can be described by a matrix:
 %
+\paragraph{Linear polarizer}
 \begin{align}
-\begin{split}
 \mat{P}_x =
 \begin{pmatrix}
 1 & 0 \\ 0 & 0
@@ -230,26 +233,30 @@ Optical elements that change the polarization state, such as polarization filter
 \begin{pmatrix}
 0 & 0 \\ 0 & 1
 \end{pmatrix}
-, \enspace
+\end{align}
+% 
+\paragraph{Retarder (fast axis x-axis)}
+\begin{align}
 \mat{M} =
 \begin{pmatrix}
 e^{i \delta_x} & 0 \\ 0 & e^{i \delta_y}
 \end{pmatrix}
 , \enspace
+% 
 \Lambda_{1/4}=
 e^{\frac{i \pi}{4}}
 \begin{pmatrix}
 1 & 0 \\ 0 & -i
 \end{pmatrix}
-\end{split}
 \end{align}
+% 
+with $\delta$ as retardation and $\Lambda_{1/4}$ as quarter-wave retarder.
 %
-with $\delta$ as retardation.
-A rotation of an optical element can be achieved by a 2d rotation matrix $\mat{R}$:
-%
+\paragraph{Rotation matrix}
+A rotation of an optical element $\mat{E}$ can be achieved by a 2d rotation matrix $\mat{R}$:
 \begin{align}
-\begin{split}
-\mat{M}(\theta )=\mat{R}(\theta )\cdot\mat{M}\cdot\mat{R}(-\theta )
+\begin{split}\label{eq::JonesRotation}
+\mat{A}(\theta )=\mat{R}(\theta )\cdot\mat{A}\cdot\mat{R}(-\theta )
 , \enspace
 \mat{R}(\theta ) =
 \begin{pmatrix}
@@ -257,19 +264,21 @@ A rotation of an optical element can be achieved by a 2d rotation matrix $\mat{R
 \sin \theta & \cos \theta
 \end{pmatrix}
 \end{split}
-\label{eq::JonesRotation}
 \end{align}
+% 
 %
 %
-%
-\subsection{M{\"u}ller-Stokes}\label{sec:Mueller-Stokes}
-\label{sec:mueller_stokes}
+\subsection{M{\"u}ller-Stokes}\label{sec:MuellerStokes}
 %
 In analogy to \cref{sec:jones}, the M{\"u}ller-Stokes formalism, described by George Gabriel Stokes in 1852, also describes the polarization state of a light beam.
-However, it does not use the absolute electric components, but the relative polarization between both components:
+However, it does not use the absolute electric components, but the relative polarization between both components (see \cref{fig:polarization_state_vectors}):
 %
 \paragraph{Stokes vector}
 \begin{align}
+% 
+\vec{S} =
+\begin{pmatrix} S_0 \\ S_1 \\ S_2 \\ S_3\end{pmatrix} , \quad
+% 
 \begin{split}
 S_0 &= I \\
 S_1 &= I p \cos 2\psi \cos 2\chi \\
@@ -277,7 +286,7 @@ S_2 &= I p \sin 2\psi \cos 2\chi \\
 S_3 &= I p \sin 2\chi
 \end{split}
 % 
-\hspace{-7.5em}
+\hspace{-7em}
 % 
 \begin{split}
 & \\
@@ -285,17 +294,14 @@ S_3 &= I p \sin 2\chi
 &= 2 E_x E_y \cos \delta \\
 &= 2 E_x E_y \sin \delta
 \end{split}
-\: , \enspace
-\vec{S} =
-\begin{pmatrix} S_0 \\ S_1 \\ S_2 \\ S_3\end{pmatrix}
 \end{align}
 %
 \begin{figure}[!t]
-    % \setlength{\tikzwidth}{\textwidth}
-	\centering
-		\inputtikz{gfx/pli/poincare}
-	\caption{Poincar\'e sphere illustrating Stokes component.}
-	\label{fig:stokesPoincare}
+% \setlength{\tikzwidth}{\textwidth}
+\centering
+\inputtikz{gfx/pli/poincare}
+\caption{Poincar\'{e} sphere illustrating Stokes component.}
+\label{fig:stokesPoincare}
 \end{figure}
 %
 $I$ is the intensity, $p$ the polarization state, $\Psi$ and $\delta$ the relative phases between the $E_x$ and $E_y$ component.
@@ -323,7 +329,7 @@ Analogous to the Jones calculus one can formulate the matrices for the optical c
 \end{pmatrix}
 \end{align}
 %
-\paragraph{Retarder (fast-axis x-axis)}
+\paragraph{Retarder (fast axis x-axis)}
 \begin{align}
 \mat{M}=\
 \begin{pmatrix}
@@ -332,10 +338,8 @@ Analogous to the Jones calculus one can formulate the matrices for the optical c
     0 & 0 & \cos \delta & \sin \delta \\
     0 & 0 & -\sin \delta &  \cos \delta
 \end{pmatrix}
-\end{align}
-%
-\paragraph{Quarter-wave plate (fast-axis x-axis)}
-\begin{align}
+, \enspace
+% 
 \Lambda_{1/4}=\
 \begin{pmatrix}
     1 & 0 & 0 &  0 \\
@@ -344,28 +348,26 @@ Analogous to the Jones calculus one can formulate the matrices for the optical c
     0 & 0 & 1 &  0
 \end{pmatrix}
 \end{align}
+with $\delta$ as retardation and $\Lambda_{1/4}$ as quarter-wave retarder.
 %
-\paragraph{Rotation Matrix}
+\paragraph{Rotation matrix}
+Analog to \cref{eq::JonesRotation} rotations of a optical element $\mat{E}$ are applied by
 \begin{align}
+\centering
+\begin{gathered}
 \mat{R}(\theta)=
-\begin{split}
 \begin{pmatrix}
     1 &                0 &               0 & 0 \\
     0 & \cos{(2\theta)} & -\sin{(2\theta)} & 0 \\
     0 & \sin{(2\theta)} & \cos{(2\theta)} & 0 \\
     0 &                0 &               0 & 1
-  \end{pmatrix}
-\end{split}
-\end{align}
-%
-Analog to \cref{eq::JonesRotation} rotations are applied by
-\begin{align}
-\mat{M}(\theta )=\mat{R}(\theta )\cdot\mat{M}\cdot\mat{R}(-\theta )
+\end{pmatrix} \\[0.5em]
+\mat{A}(\theta)
+=\mat{R}(\theta )\cdot\mat{A}\cdot\mat{R}(-\theta )
+\end{gathered}
 \end{align}
 %
 %
-\todo{sind matrizen kommutative?}
-% 
 %
 \section{3D-PLI setup}\label{sec:expSetup}
 %
@@ -373,16 +375,7 @@ Analog to \cref{eq::JonesRotation} rotations are applied by
     \captionsetup[sub]{position=top}
     \setlength{\tikzwidth}{\textwidth}
 	\centering
-% 	\subcaptionbox{\label{setup-lap} \ac{LAP}}[\textwidth]{
-% % 		\resizebox{0.95\textwidth}{!}{
-% 		\inputtikz{gfx/pli/pli_setup}
-% % 	}
-% 	}\\
-% 	\subcaptionbox{\label{setup-pm} \ac{PM}}[\textwidth]{
-% % 		\resizebox{0.95\textwidth}{!}{
-		\inputtikz{gfx/pli/pli_setup_pm}
-% % 	}
-% 	}
+    \inputtikz{gfx/pli/pli_setup_pm}
 	\caption{Illustration of PLI setup.}
 	\label{fig:pli_setup}
 \end{figure}
@@ -432,10 +425,10 @@ For intensity values $\gg 0$ it can be modeled by a normal distribution.
 %
 \subsection{Intensity signal}\label{sec::intSignal}
 %
-From the Mueller-Stokes matrices (\cref{sec:Mueller-Stokes}), the intensity signal, which is the first component of the Stokes vector, follows a sinusoidal curve \cite{MenzelMaster,MenzelDissertation}:
+From the Mueller-Stokes matrices (\cref{sec:MuellerStokes}), the intensity signal, which is the first component of the Stokes vector, follows a sinusoidal curve \cite{MenzelMaster,MenzelDissertation}:
 %
 \begin{align}
-\label{eq:pli_signal}
+\label[pluralequation]{eq:pli_signal}
 \centering
 \begin{gathered}
 I(\rho, \varphi, \alpha, d) =\frac{I_0}{2}\bigl[ \sin\bigl(2\rho - 2\varphi \bigr)\cdot \sin \bigl( 2\pi\frac{d \dn}{\lambda} \cos^2\left( \alpha \right) \bigr) \bigr] \\

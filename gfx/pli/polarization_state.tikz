@@ -41,7 +41,7 @@ pics/plate/.style args={#1}{code={%
 \end{scope}
 %
 \begin{scope}[shift={(4*\n,0,0)}]
-\draw (0,0,0) pic {plate={Quarter Wave Plate}};
+\draw (0,0,0) pic {plate={\hspace{2em}Quarter Wave Plate}};
 \draw [RED, thick] plot[domain=0:360,samples=90,smooth] (0,{cos(\x)},{sin(\x)});
 \draw [axis, ->] (0,0,0) -- (2.2*\n,0,0) node[pos=1, anchor=west] {$\vec{k}$};
 \node [yslant=-sin(\azimuth)*sin(\elevation), above=0.25cm, align=center] at (\n,1,1){circular-polarized
