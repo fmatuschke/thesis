@@ -12,7 +12,7 @@ This chapter focuses on the simulation of \ac{3D-PLI}.
 The first part focuses on the determination of all required physical parameters of the tissue and the microscope as well as on the characterization of the simulation parameters.
 These parameters are used to simulate the previously created models.
 The simulations are evaluated using the routine algorithms implemented in \ac{fastPLI}.
-The focus of the evaluations of the results is on the accuracy of the inclination analysis for different orientations and crossing configurations.
+The focus of the evaluations of the results is on the accuracy of the tilting analysis for different orientations and crossing configurations.
 %
 %
 %
@@ -352,7 +352,7 @@ model delta rotation & $\SI{15}{\degree}$\\
 \end{table}
 %
 As described in \cref{chap:Software}, \ac{fastPLI} contains a pipeline implementation of the simulation with automatic analysis.
-This implementation is used to compute the discretized volumes, simulate the signal, and apply the optical noise and inclination analysis to the resulting signal using the algorithm \ac{ROFL}. \footnote{source code is available in the appendix \dummy{}}.
+This implementation is used to compute the discretized volumes, simulate the signal, and apply the optical noise and tilting analysis to the resulting signal using the algorithm \ac{ROFL}. \footnote{source code is available in the appendix \dummy{}}.
 This pipeline is used to simulate and analyze the \ac{3D-PLI} signal for the model library with different orientations of two crossing fiber populations.
 \Cref{tab:simParameters} lists the parameters of the simulation in the variable notation of \ac{fastPLI}.
 With a pixel size of \SI{1.3}{\micro\meter}, $\SI{2500}{\pixel}$ are available per simulation for statistical analysis.
@@ -368,14 +368,14 @@ This ensures that the sphere is sampled reasonably equidistantly given the compu
 \begin{figure}[!t]
 \centering
 \includegraphics[page=1]{dev/rc1/analysis/plots_single_pop_hist_output_cube_2pop_135_rc1_single.pdf}
-\caption{Single inclined fiber population. Left: 2d log histogram of orientation from inclination analysis of simulation. Right: 2d log histogram of orientation from model segments.}
+\caption{Single inclined fiber population. Left: 2d log histogram of orientation from tilting analysis of simulation. Right: 2d log histogram of orientation from model segments.}
 \label{fig:single_fiber_pop_hist}
 \end{figure}
 %
 \begin{figure}[!p]
 \centering
 \includegraphics[]{dev/rc1/analysis/plots_single_pop_output_cube_2pop_135_rc1_single.pdf}
-\caption{Single tilted fiber population. Results of the inclination analysis.}
+\caption{Single tilted fiber population. Results of the tilting analysis.}
 \label{fig:single_fiber_pop_rofl}
 \end{figure}
 %
@@ -384,9 +384,9 @@ Since the direction is negligible for a single population, only the inclination 
 \par
 %
 \Cref{fig:single_fiber_pop_hist} shows the orientation distribution of a single population of fibers for different inclinations $\modelInc{}$.
-The distributions of the orientations of the model segments are shown on the left side, and those of the inclination analysis of the simulated images are shown on the right side.
+The distributions of the orientations of the model segments are shown on the left side, and those of the tilting analysis of the simulated images are shown on the right side.
 The distributions are logarithmic and weighted by the area of the 2d binning.
-The comparison between the two distributions shows the agreement of the inclination analysis with the model orientations for all inclinations.
+The comparison between the two distributions shows the agreement of the tilting analysis with the model orientations for all inclinations.
 \par
 %
 %Transmittance
@@ -445,21 +445,21 @@ For higher inclination angles, both the median and the variance increase signifi
 \begin{figure}[!p]
 \centering
 \includegraphics[page=3]{dev/rc1/analysis/plots_flat_pop_output_cube_2pop_135_rc1_flat.pdf}
-\caption{Crossing flat fiber population: $\modelPsi=\SI{30}{\percent}$. Inclination analysis results. \todo{domega, trel}}
+\caption{Crossing flat fiber population: $\modelPsi=\SI{30}{\percent}$. Tilting analysis results. \todo{domega, trel}}
 \label{fig:flat_03_fiber_pop_rofl}
 \end{figure}
 %
 \begin{figure}[!t]
 \centering
 \includegraphics[page=5]{dev/rc1/analysis/plots_flat_pop_hist_output_cube_2pop_135_rc1_flat.pdf}
-\caption{Crossing flat fiber population: $\modelPsi=\SI{50}{\percent}$. Left: 2d log histogram of the orientation from the inclination analysis of the simulation, right: 2d log histogram of the orientation of the model segments.}
+\caption{Crossing flat fiber population: $\modelPsi=\SI{50}{\percent}$. Left: 2d log histogram of the orientation from the tilting analysis of the simulation, right: 2d log histogram of the orientation of the model segments.}
 \label{fig:flat_05_fiber_pop_hist}
 \end{figure}
 %
 \begin{figure}[!p]
 \centering
 \includegraphics[page=5]{dev/rc1/analysis/plots_flat_pop_output_cube_2pop_135_rc1_flat.pdf}
-\caption{Crossing flat fiber population: $\modelPsi=\SI{50}{\percent}$. Inclination analysis results.}
+\caption{Crossing flat fiber population: $\modelPsi=\SI{50}{\percent}$. Tilting analysis results.}
 \label{fig:flat_05_fiber_pop_rofl}
 \end{figure}
 %
@@ -510,28 +510,28 @@ The same is true for the case $\modelPsi = \SI{50}{\percent}$, but the \openingA
 \begin{figure}[!t]
 \centering
 \includegraphics[page=3]{dev/rc1/analysis/plots_inclined_pop_hist_output_cube_2pop_135_rc1_inclined.pdf}
-\caption{Population of inclined crossing fibers: $\modelPsi=\SI{30}{\percent}$. Left: 2d log histogram of orientation from inclination analysis of simulation, right: 2d log histogram of orientation of model segments.}
+\caption{Population of inclined crossing fibers: $\modelPsi=\SI{30}{\percent}$. Left: 2d log histogram of orientation from tilting analysis of simulation, right: 2d log histogram of orientation of model segments.}
 \label{fig:inclined_03_fiber_pop_hist}
 \end{figure}
 %
 \begin{figure}[!p]
 \centering
 \includegraphics[page=3]{dev/rc1/analysis/plots_inclined_pop_output_cube_2pop_135_rc1_inclined.pdf}
-\caption{Population of inclined crossing fibers: $\modelPsi=\SI{30}{\percent}$. Results of inclination analysis.}
+\caption{Population of inclined crossing fibers: $\modelPsi=\SI{30}{\percent}$. Results of tilting analysis.}
 \label{fig:inclined_03_fiber_pop_rofl}
 \end{figure}
 %
 \begin{figure}[!t]
 \centering
 \includegraphics[page=5]{dev/rc1/analysis/plots_inclined_pop_hist_output_cube_2pop_135_rc1_inclined.pdf}
-\caption{Population of inclined crossing fibers: $\modelPsi=\SI{50}{\percent}$. left: 2d log histogram of orientation from inclination analysis of simulation, right: 2d log histogram of orientation of model segments.}
+\caption{Population of inclined crossing fibers: $\modelPsi=\SI{50}{\percent}$. left: 2d log histogram of orientation from tilting analysis of simulation, right: 2d log histogram of orientation of model segments.}
 \label{fig:inclined_05_fiber_pop_hist}
 \end{figure}
 %
 \begin{figure}[!p]
 \centering
 \includegraphics[page=5]{dev/rc1/analysis/plots_inclined_pop_output_cube_2pop_135_rc1_inclined.pdf}
-\caption{Population of inclined crossing fibers: $\modelPsi=\SI{50}{\percent}$. Results of inclination analysis.}
+\caption{Population of inclined crossing fibers: $\modelPsi=\SI{50}{\percent}$. Results of tilting analysis.}
 \label{fig:inclined_05_fiber_pop_rofl}
 \end{figure}
 %
@@ -578,7 +578,7 @@ In the case of $\modelPsi = \SI{50}{\percent}$, both the median and variance als
 \subsection{Free crossing fiber populations}
 \label{sec:resFreeCross}
 %
-The following data shows the result of the inclination analysis without the orientation angles, because the mean value for a single angle cannot be calculated easily. \footnote{Orientations lie on a hemisphere with symmetries, and angles are interdependent}
+The following data shows the result of the tilting analysis without the orientation angles, because the mean value for a single angle cannot be calculated easily. \footnote{Orientations lie on a hemisphere with symmetries, and angles are interdependent}
 The data from the previous chapter had the advantage that the results of the angles are close enough to each other to make a conversion to the expected value.
 \par
 %
@@ -590,7 +590,7 @@ At the position of the second fiber population, the resulting mean value is inse
 \begin{figure}[!p]
 \centering
 \includegraphics[]{dev/rc1/analysis/simulation_analysis_hist_0.5_setup_PM_s_Vervet_m_r_acc.pdf}
-\caption{Mean \ac{ACC} value between model and inclination analysis orientations. \todo{x,y labels}}
+\caption{Mean \ac{ACC} value between model and tilting analysis orientations. \todo{x,y labels}}
 \label{fig:sim_ana_acc}
 \end{figure}
 %
@@ -677,7 +677,7 @@ The last two cases $\modelPsi=\SI{70}{\percent}$ and $\modelPsi=\SI{90}{\percent
 \begin{figure}[!p]
 \centering
 \includegraphics[]{dev/rc1/analysis/simulation_analysis_hist_0.5_setup_PM_s_Vervet_m_r_rtrel_mean.pdf}
-\caption{Mean \trel{} from inclination analysis. \todo{x,y labels}}
+\caption{Mean \trel{} from tilting analysis. \todo{x,y labels}}
 \label{fig:sim_ana_trel}
 \end{figure}
 %
@@ -694,13 +694,13 @@ Here the interpolation of the spherical background values should not be taken to
 \begin{figure}[!p]
 \centering
 \includegraphics[]{dev/rc1/analysis/simulation_analysis_hist_0.5_setup_PM_s_Vervet_m_r_R.pdf}
-\caption{Mean \rvalue{} from inclination analysis. \todo{x,y labels}}
+\caption{Mean \rvalue{} from tilting analysis. \todo{x,y labels}}
 \label{fig:sim_ana_rvalue}
 \end{figure}
 %
 \paragraph{\rvalue}
 The last value is the \rvalue{} (see \cref{fig:sim_ana_rvalue}).
-It describes the mean absolute difference between the data and the fitted data from the inclination analysis.
+It describes the mean absolute difference between the data and the fitted data from the tilting analysis.
 Its value is overall in the range of $\SIrange{1.2}{1.8}{\percent}$.
 For $\modelInc = \SI{0}{\degree}$, the \rvalue{} increases in the middle of the polar diagram for higher \modelPsi{} values.
 The $\modelInc = \SI{30}{\degree}$ show towards the $\modelPsi = \SI{50}{\percent}$ a curved pattern with slightly higher \rvalue{}.
@@ -950,7 +950,7 @@ Since the direction value is coupled to the inclination angle, there is no xy di
 %
 The same behavior can be observed for the inclination curve.
 However, here the variance for the last angle is lower.
-It should be noted that the change in the signal that fits the inclination analysis is the same for the non-inclined measurement as for the four inclined measurements.
+It should be noted that the change in the signal that fits the tilting analysis is the same for the non-inclined measurement as for the four inclined measurements.
 Therefore, one possibility is that the signal change is higher because the fibers are in their most extreme position here than in a slightly less inclined case.
 \par
 %
@@ -969,7 +969,7 @@ This value can perhaps serve as an additional uncertainty for further computatio
 However, this would be a lower bound on the uncertainty since the effects of light scattering are not considered in this simulation.
 \par
 %
-In the case of a single fiber population, the resulting inclination analysis shows good agreement with the individual orientations of the model, except for very steeply inclined configurations.
+In the case of a single fiber population, the resulting tilting analysis shows good agreement with the individual orientations of the model, except for very steeply inclined configurations.
 %
 \subsection{Crossing flat fiber population}
 \Cref{sec:resCrossFlat} shows the results of the flat crossing configurations.
@@ -999,7 +999,7 @@ In the case of a uniformly distributed fiber crossing, the inclination can reach
 %
 This can also be seen in the decreasing value of \trel{}.
 As expected, the decrease is linear when the signal becomes \dummy{}.
-For the uniformly distributed transition, the inclination analysis again reaches values of $\trel>1$.
+For the uniformly distributed transition, the tilting analysis again reaches values of $\trel>1$.
 \par
 %
 The effects described above are reflected in the opening angle \openingAngle{}, which must increase with increasing \modelOmega{}.
@@ -1035,7 +1035,7 @@ This would then also be an indicator for further data processing \eg{} a tractog
 Note that these results are only valid for dense fiber populations, \ie{} dense white matter.
 \par
 %
-Retardation is also an indicator, but not as reliable, since its value is very low even for a single inclined fiber population, which can still be correctly determined with a high variance using inclination analysis (see \cref{fig:single_fiber_pop_rofl}).
+Retardation is also an indicator, but not as reliable, since its value is very low even for a single inclined fiber population, which can still be correctly determined with a high variance using tilting analysis (see \cref{fig:single_fiber_pop_rofl}).
 There, too, the \trel{} value is reduced, but not as much as in the crossing fiber populations.
 This effect results from the simple fact that an inclined single fiber population increases its retardation value when tilted, while a flat crossing population does not due to signal cancellation.
 \par
