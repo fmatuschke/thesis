@@ -24,7 +24,7 @@
 {anchor=north}{$2\Psi$}
 \tdplotsetthetaplanecoords{\phivec}
 \tdplotdrawarc[->,tdplot_rotated_coords]{(0,0,0)}{0.3}{90}{\thetavec}
-{anchor=south west}{$2\chi$}
+{anchor=south west, xshift=-1ex}{$2\chi$}
 %
 % sphere
 \tdplotsetthetaplanecoords{\phivec}

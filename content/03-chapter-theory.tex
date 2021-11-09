@@ -380,17 +380,17 @@ Analog to \cref{eq::JonesRotation} rotations of a optical element $\mat{E}$ are 
 	\label{fig:pli_setup}
 \end{figure}
 %
-In the institute of the \ac{INM-1} there are three microscopic setups based on the same physical principle \cite{Axer2011} (see \cref{fig:pli_setup}).
-Polarized light with a wavelength of $\SI{525}{\nano\meter}$ is irradiated through a tissue section \footnote{The wavelength is slightly different for the setups, which can be neglected here.}.
+In the institute of the \ac{INM-1} are three microscopic setups based on the same physical principle \cite{Axer2011} (see \cref{fig:pli_setup}).
+Polarized light with a wavelength of about $\SI{525}{\nano\meter}$ is irradiated through a tissue section \footnote{The exact wavelength depends on the microscop.}.
 A circular polarizer, a $\SI{45}{\degree}$ oriented quarter-wave retarder and polarizer, is placed behind the tissue.
 By rotating the polarizer, the change in intensity is measured with a \ac{CCD}-sensor.
 \par
 %
-The first microscopic setup called \ac{LAP} is capable of measuring an entire human brain slice in a single image with a pixel size of \SI{60}{\micro\meter} \footnote{It is also possible to measure with a pixel size of $\approx \SI{40}{\micro\meter}$ and $\approx \SI{20}{\micro\meter}$ is also possible}.
+The first microscopic setup called \ac{LAP} is capable of measuring an entire human brain slice in a single image with a pixel size of $\SI{60}{\micro\meter}$ \footnote{It is also possible to aquire images with a pixel size of $\approx \SI{40}{\micro\meter}$ and $\approx \SI{20}{\micro\meter}$}.
 In addition, the tissue sample can be tilted.
 This causes a change in the orientation of the nerve fibers, resulting in a change in the measured signal.
 This change is later used to analyze the 3d orientation of the nerve fibers inside the section (see \cref{sec::InclAnalysis}).
-The optical setup of \ac{LAP} is slightly different in that the quarter-wave retarder is placed between the first polarizer and the tissue section, and all three optical elements are rotated simultaneously.
+The optical setup of the \ac{LAP} is slightly different in that the quarter-wave retarder is placed between the first polarizer and the tissue section, and all three optical elements are rotated simultaneously.
 This produces the same results, but dust particles on one of the optical elements can be identified more easily because they are also rotating.
 The other microscopes are located in a closed container that protects the optical elements from contamination.
 \par
@@ -407,7 +407,7 @@ It makes this possible by using a conical light path.
 By using a slit, only light of a certain angle can pass through it and therefore through the tissue.
 By changing the position of the slit, the different light paths can be applied.
 This microscope is currently under construction and will be modeled here with the characterization from the \ac{LMP} microscope with an expected tilt angle of $\SI{3.9}{\degree}$.
-The tilted light beam (or tissue section) is normally measured in 4 perpendicular orientations: North, East, South and West.
+The tilted light beam (or tissue section) is normally measured in four perpendicular orientations: North, East, South and West.
 \par
 %
 The final image is captured by a camera that uses an \ac{CCD}-sensor.
@@ -456,18 +456,18 @@ These are used to calculate the final \ac{3D-PLI} modalities:
 \begin{split}
 \mathit{transmittance} &\coloneqq 2 \cdot a_0 \vphantom{I_0/2} \\
 \mathit{direction} &\coloneqq 0.5 \cdot \atantwo(-b_1 / a_1) \vphantom{\varphi} \\
-\mathit{retardation} &\coloneqq \frac{\sqrt{a_1^2 + b_1^2}}{a_0}  \vphantom{\sin(...)}
+\mathit{retardation} &\coloneqq \frac{\sqrt{a_1^2 + b_1^2}}{a_0}  \vphantom{\sin(\delta)}
 \end{split}
 \hspace{-7em}
 \begin{split}
 & \mathrel{\widehat{=}} I_0/2 \vphantom{2 \cdot a_0}\\
 & \mathrel{\widehat{=}} \varphi \vphantom{0.5 \cdot \atantwo(-b_1 / a_1)} \\
-& \mathrel{\widehat{=}} \sin(...) \vphantom{\frac{\sqrt{a_1^2 + b_1^2}}{a_0}}
+& \mathrel{\widehat{=}} |\sin(\delta)| \vphantom{\frac{\sqrt{a_1^2 + b_1^2}}{a_0}}
 \end{split}
 \end{align}
 %
 The \textit{transmittance} describes the tissue light transmittance, \ie{} how much light passes through the tissue.
-\textit{Driection} describes the phase of the signal, corresponding to the direction of the macroscopic optical axis and therefore the direction of the nerve fibers.
+The \textit{direction} describes the phase of the signal, corresponding to the direction of the macroscopic optical axis and therefore the direction of the nerve fibers.
 The \textit{retardation} corresponds to the amplitude of the signal, \ie{} the strength of the retardation.
 %
 \begin{figure}[t]
