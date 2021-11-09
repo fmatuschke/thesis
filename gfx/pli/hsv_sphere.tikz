@@ -1,54 +1,75 @@
-\begin{tikzpicture}[inner sep=0pt]
+\begin{tikzsize}{\tikzwidth}{\tikzheight}
+\begin{tikzpicture}[scale=\tikzscale,
+    % every node/.style={scale=1/\tikzscale}
+    ]
 %
 \begin{axis}[%
-axis equal,
-axis lines=none,
-ticks=none,
-% scale only axis,
-width=\tikzwidth,
-height=\tikzwidth,
-% enlargelimits=0,
-view/h=45,
+    axis equal,
+    axis lines=none,
+    ticks=none,
+    scale only axis,
+    width=\tikzwidth,
+    height=\tikzwidth,
+    enlargelimits=0,
+    view={50}{20},
+    clip=false,
 ]
-%
+% 
 \addplot3 [%
-    patch,
-    patch type=bilinear,
+    surf,
     shader=interp,
-    shader=faceted interp,
     z buffer = sort,
-    faceted color=white!20!black,
     mesh/color input=explicit mathparse,
-    mesh/colorspace explicit color output=cmyk,
     variable = \u,
     variable y = \v,
     domain = 0:360,
     y domain = 0:180,
-    samples = 36,
-    samples y = 18,
-    opacity=0.2,
-    fill opacity=1.0,
-    % point meta={symbolic={Hsb=deg(v),u,u}},
+    samples = 37,
+    samples y = 19,
     point meta={%
         symbolic={hsb=(
             {abs(mod(u,180))/180},
-            {1},
-            {1-(2*abs(90-v)/180)}
-            % h = 360.0 * np.abs(directionValue) / np.pi
-            % s = 1.0
-            % v = 1.0 - (2 * np.abs(inclinationValue) / np.pi)
+            {notless(u,180)*(less(v,90)+notless(v,90)*(1-(2*abs(90-v)/180)))+less(u,180)*(less(v,90)*(1-(2*abs(90-v)/180))+notless(v,90))},
+            {less(u,180)*(less(v,90)+notless(v,90)*(1-(2*abs(90-v)/180)))+ notless(u,180)*(less(v,90)*(1-(2*abs(90-v)/180))+notless(v,90))}
         }},
     ]
 ({cos(u)*sin(v)}, {sin(u)*sin(v)}, {cos(v)});
+% 
+\addplot3 [%
+    variable = \v,
+    domain = -20:160,
+    samples = 42,
+    samples y=0,
+    dashed,
+    black,
+    ]
+({cos(0)*sin(v)}, {sin(0)*sin(v)}, {cos(v)});
+% 
+\addplot3 [%
+    mesh,
+    draw=black,
+    opacity=0.05,
+    variable = \u,
+    variable y = \v,
+    domain = 0:360,
+    y domain = 0:180,
+    samples = 37,
+    samples y = 19,
+    ]
+({cos(u)*sin(v)}, {sin(u)*sin(v)}, {cos(v)});
 %
-\draw[dashed, white!0!black] (axis cs:-1.5,0,0) -- (axis cs:1,0,0);
-\draw[white!0!black, ->] (axis cs:1,0,0) -- (axis cs:1.5,0,0) node[pos=0.75, anchor=south west, yshift=0.5ex] {$x$};
-\draw[dashed, white!0!black] (axis cs:0,-1,0) -- (axis cs:0,1,0);
-\draw[white!0!black] (axis cs:0,-1.5,0) -- (axis cs:0,-1,0);
-\draw[white!0!black, ->] (axis cs:0,1,0) -- (axis cs:0,1.5,0)
+\draw[black] (axis cs:-1.5,0,0) -- (axis cs:-1,0,0);
+\draw[dashed, black] (axis cs:-1,0,0) -- (axis cs:1,0,0);
+\draw[black, ->] (axis cs:1,0,0) -- (axis cs:1.5,0,0) node[pos=0.75, anchor=south west, yshift=0.5ex] {$x$};
+% 
+\draw[dashed, black] (axis cs:0,-1,0) -- (axis cs:0,1,0);
+\draw[black] (axis cs:0,-1.5,0) -- (axis cs:0,-1,0);
+\draw[black, ->] (axis cs:0,1,0) -- (axis cs:0,1.5,0)
 node[pos=0.75, anchor=south west, yshift=0.5ex] {$y$};
-\draw[dashed, white!0!black] (axis cs:0,0,-1.5) -- (axis cs:0,0,1);
-\draw[white!0!black, ->] (axis cs:0,0,1) -- (axis cs:0,0,1.5) node[pos=0.75, anchor=west, xshift=0.5ex] {$z$};
+% 
+\draw[black] (axis cs:0,0,-1.25) -- (axis cs:0,0,-1);
+\draw[dashed, black] (axis cs:0,0,-1) -- (axis cs:0,0,1);
+\draw[black, ->] (axis cs:0,0,1) -- (axis cs:0,0,1.25) node[pos=0.75, anchor=west, xshift=0.5ex] {$z$};
 %
 \draw[->] (axis cs:0.0,0.0,0.0) -- (axis cs:{cos(45)*sin(45)},{sin(45)*sin(45)},{cos(45)});
 \draw[->] (axis cs:0.0,0.0,0.0) -- (axis cs:0.5,0.5,0.0);
@@ -72,7 +93,8 @@ node[pos=0.75, anchor=south west, yshift=0.5ex] {$y$};
 \node[anchor=west, xshift=0.5ex] at
     (axis cs:{cos(45)*sin(67.5)*0.3},{sin(45)*sin(67.5)*0.3},{cos(67.5)*0.3})
     {$\alpha$};
-%
-\coordinate (C) at (0,0,0);
+% \coordinate (C) at (0,0,0);
 \end{axis}
+% \path[draw] ($(C)-(2,2)$)--($(C)+(2,2)$);
 \end{tikzpicture}
+\end{tikzsize}

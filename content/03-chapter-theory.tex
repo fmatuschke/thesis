@@ -124,7 +124,7 @@ e^{ -i (kz - \omega t)}
 %
 \begin{figure}[!t]
 \centering
-\tikzset{external/export=false}
+% \tikzset{external/export=false}
 \input{gfx/pli/pol_states}
 \caption{Polarization states in Jones and Stokes convention.}
 \label{fig:polarization_state_vectors}
@@ -478,18 +478,17 @@ The \textit{retardation} corresponds to the amplitude of the signal, \ie{} the s
 %
 \subsection{Tilting analysis} \label{sec::InclAnalysis}
 %
-To be able to analyze the inclination $\alpha$, one has to distinguish the relative strength of the birefringence from the term $\cos^2(\alpha)$.
+To be able to analyze the optical axis inclination $\alpha$, one has to distinguish the relative strength of the birefringence from the term $\cos^2(\alpha)$.
 For this purpose, a tiltable sample was developed that allows the light signal to be measured through the tissue at a different angle of incidence \cite{Axer2011, Wiese:887678} (see \cref{sec:expSetup}).
 This means that the tissue, and therefore the nerve fibers, change their orientation due to the tilt angles $\theta, \varphi$.
 In addition, the distance the light travels through the tissue increases by $1/\cos(\theta)$ \cref{fig:tilted_side_view}.
 \par
 %
 Depending on the \Pixelsize{}, this light passes through the same volume but with a different orientation.
-Therefore, a measurement of multiple light paths can be captured, and the resulting signals can be used to analyze the inclination and relative birefringence tissue thickness \trel{}.
-The angle of incidence of the light on the glass and tissue also changes the angle of the light by Snellius law \cref{eq:Snellius}.
-This also results in a perspective shift that must be corrected by a registration process.
+Therefore, a measurement of multiple light paths can be captured, and the resulting signals can be used to analyze the inclination $\alpha$ and relative birefringence tissue thickness \trel{}.
+The angle of incidence of the light changes the path of the light by Snellius law \cref{eq:Snellius}.
+This results in a perspective shift that must be corrected by a registration process.
 However, this effect is neglected in the simulation, since it only adds a parallel offset.
-All angles mentioned here, if not specified, are always the angle change of light within the tissue (see \cref{fig:tilting_camera_view}).
 \par
 %
 To analyse the tilting signal, an algorithm was developed under the name \ac{ROFL} \cite{Wiese:887678,Schmitz2018}.
@@ -499,33 +498,14 @@ This leads to the problem of increasing uncertainty with increasing inclination 
 \par
 %
 Another difficulty is that for a smaller \Pixelsize{} the light path can no longer be neglected.
-For the \ac{LMP3D}-system, this means that for an expected tilt angle of about $\SI{3.9}{\degree}$ and a usual tissue thickness of $\SI{60}{\micro\meter}$, the light path is measured about $\SI{4}{\pixel}$ away from the non-tilting case when the center of rotation is in the middle of the tissue.
-\par
-%
+For the \ac{LMP3D}-system, this means that for an expected tilt angle of about $\SI{3.9}{\degree}$ and a tissue thickness of $\SI{60}{\micro\meter}$, the light path is measured about $\SI{4}{\pixel}$ away from the non-tilting case when the center of rotation is in the middle of the tissue.
+Additionally these means, that the light from the different tilt views has effected by other parts inside the tissue.
 For homogeneous tissue regions, such as parts in the dense \ac{WM}, this can be neglected.
-However, for single fiber paths crossing other fiber bundles or in the extreme single visible fibers in the \ac{GM} this is an open question.
+However, for single fiber paths such as visible in the \ac{GM} or complicated paths like in crossing the effect on th inclination analysis is an open question.
 %
 %
 %
 \section{Orientation visualization}
-%
-\begin{figure}[!t]
-\centering
-\setlength{\tikzwidth}{0.8\textwidth}
-\setlength{\tabcolsep}{0pt}
-\begin{tabular}{M{0.5\textwidth}M{0.5\textwidth}}
-\includegraphics[width=0.41\tikzwidth]{gfx/pli/color_sphere.png} &
-% \tikzset{external/remake next=true}
-\inputtikz{gfx/pli/hsv_sphere}\\
-\subcaptiontab{0.475\textwidth}{2d hsv sphere} &
-\subcaptiontab{0.475\textwidth}{\label{fig:sphere}3d hsv sphere}
-\end{tabular}
-%
-% \vspace{-1em} % because of tabular?
-\caption{Color spheres decoding the direction $\varphi$ and inclination $\alpha$ of a orientation.}
-\label{fig:spheres}
-\end{figure}
-%
 %
 The orientation of the birefringence axis is described by the direction angle $\varphi$ and the inclination angle $\alpha$ (see \cref{fig:sphere}).
 To represent the 3D information, the \textit{hsv-bright} and \textit{hsv-dark} is usually represented in \ac{3D-PLI}. The bright values are used to indicate positive inclinations, whereas the dark values are used for negative inclinations.
@@ -546,6 +526,14 @@ It encodes the orientation in the color and the inclination in the saturation (s
 \end{align}
 Since the orientation, unlike a vector, covers only a half sphere, the colors are point symmetric.
 %
+\begin{figure}[!t]
+\centering
+\setlength{\tikzwidth}{0.42\textwidth}
+\tikzset{external/export next=false}
+\inputtikz{gfx/pli/hsv_sphere}
+\caption{Color spheres decoding the direction $\varphi$ and inclination $\alpha$ of the orientation. For directions from \SIrange[]{0}{180}{\degree} the positive inilination is decoded in hsv-bright and the lower in hsv-dark. For directions from \SIrange[]{180}{360}{\degree} the colors are point symmetric.}
+\label{fig:spheres}
+\end{figure}
 %
 \section{Optical resolution}
 \label{sec:opticalResolution}
@@ -561,13 +549,18 @@ Ernst Abbe was one of the first to describe that the resolution correlates with 
 d=\frac{ \lambda}{2 n \sin \theta} = \frac{\lambda}{2\mathrm{NA}} 
 \end{align}
 $d$ is the minimum resolvable distance, $n$ the refractive index, $\theta$ the angle of a light spot, which can be combined to the better known numerical aperture $\mathrm{NA}$.
-This gives an absolute threshold for a light microscope, above which the resolution cannot be improved.
-For the wavelength used in \ac{3D-PLI} with $\lambda = \SI{525}{\nano\meter}$ and a numerical aperture of $\mathrm{NA} \approx \SI{0.15}{}$ , which results in a limit of $\SI{2.1}{\micro\meter}$ (see \cite{MenzelDissertation}).
+A more comman definition is Rayleigh limit given by
+\begin{align}
+d=1.22\frac{\lambda}{2\mathrm{NA}} 
+\end{align}
+, where $d$ is the distance between two light spots, where the first light spots maxima is in the seconds light spots first minima (see \cref{fig:rayleigh}).
+For the wavelength used in \ac{3D-PLI} with $\lambda = \SI{525}{\nano\meter}$ and a numerical aperture of $\mathrm{NA} \approx \SI{0.15}{}$ , which results in a limit of about $\SI{2.1}{\micro\meter}$ (see \cite{MenzelDissertation}).
 %
 \begin{figure}[!t]
-\setlength{\tikzwidth}{0.45\textwidth}
+\setlength{\tikzwidth}{0.5\textwidth}
 \centering
 % \subcaptionbox{}{
+% \tikzset{external/force remake=true}
 \inputtikz{gfx/pli/rayleigh}
 \caption[Raylay criterium]{Rayleigh's criteria. The minima of the one function is in the maxima of the other.}
 \label{fig:rayleigh}
@@ -576,24 +569,27 @@ For the wavelength used in \ac{3D-PLI} with $\lambda = \SI{525}{\nano\meter}$ an
 To account for optical setup, three things must be applied to a simulated measurement.
 %
 \paragraph{Blurring}
-To account for the blurring or out of focus image, the light rays must be blurred on the \ac{CCD}-array.
-This is done classically via a 2d Gaussian convolution:
+To account for the blurring or out of focus image, the light rays intensity must be blurred on the \ac{CCD}-array.
+This is done via a 2d gaussian convolution $g$ ith the image $f$:
 \begin{align}
-    (f * g)(x) = \int f(\tau)g(x-\tau)d\tau
+\begin{split}
+    (f * g)(x,y) =& \iint f(\tau,\upsilon) \cdot g(x-\tau, y-\upsilon)d\tau \, d\upsilon\\
+    g(x,y) =& \frac{1}{2\pi\sigma^2} \exp(-\frac{x^2+y^2}{2\sigma^2})
+\end{split}
 \end{align}
 %
 \paragraph{Sampling}
-Since the number and final position of the light rays correspond to the voxels, all intensities of an image pixel must be combined.
+Since the number and final position of the light rays correspond to the voxels (see \cref{sec:simulation}), all intensities of an image pixel must be combined.
 Here, this is done via a mean value scan:
 \begin{align}
-    \hat{I}(n,m) = \sum_{i=n \cdot dx}^{(n+1) \cdot dx-1}\sum_{j=m \cdot dy}^{(m+1) \cdot dy-1} I(i,j)
+    \hat{I}(n,m) =\frac{1}{N_x \cdot N_y} \sum_{i=n \cdot N_x}^{(n+1) \cdot N_x-1}\sum_{j=m \cdot N_y}^{(m+1) \cdot N_y-1} I(i,j)
 \end{align}
 Unlike resizing, this does not interpolate the image.
 %
 \paragraph{Noise}
 The final step is to recreate the noise of the image composition.
 To account for this, a noise model must be applied to each image pixel.
-\cite{Wiese:887678} showed that this can be done via a normal distribution:
+\cite{Wiese:887678} showed that this can be modelled via a normal distribution:
 %
 \begin{align}
     I = I + \gauss(\sigma, \mu=I)
@@ -607,26 +603,24 @@ All three effects must be characterized for the system being simulated.
 %
 \section{Computational speedup techniques}\label{sec:theorySpeedup}
 %
-Among other specific techniques described in the next chapters \cref{chap:sof:modelling,cha:sof:simulation}, two important technique was used to speed up the calculations.
+Among other specific techniques described in the next chapters \cref{chap:sof:modelling,cha:sof:simulation}, two important technique are used to speed up the calculations.
 \par
 %
 The computationally intensive code is written in \cpp{}.
-There the \code{std::vector} has the advantage that the data in memory is linear.
-Modern \acp{CPU} have a built-in method called \textit{cache prefetching}.
+There, the \code{std::vector} has the advantage that the data in memory is linear.
 The data must be prepared and sent from the \ac{RAM} to the cache of the \acp{CPU}.
-This takes time.
-The main advantage of the cache is that it is very fast.
-Even the distance is so small that the speed of light does not limit the connection of the \acp{CPU} to the cache.
+This takes relative to the time for a singlue \ac{CPU} instruction a very long time.
+The main advantage of the cache is that it is very fast, however its capacities are usually in the order of a few mega bytes and therefore quite limited.
 It is built inside the \ac{CPU}.
-Therefore, its size is very limited, usually around several $\si{\mega\byte}$.
-The \ac{CPU} cache prefetcher is a sophisticated directive that requests not only the element at address $i$ in memory, but also the element next to it ($i+1$ or $i-1$, depending on the algorithm).
+Modern \acp{CPU} have a built-in method called \textit{cache prefetching}.
+The \ac{CPU} cache prefetcher is a sophisticated directive that requests not only the element at address $i$ in memory, but also the elements next to it ($i+1$ or $i-1$, depending on the algorithm).
 Since many algorithms traverse arrays, the next element to be computed is usually the next (or previous) element.
-Therefore, the time required to copy the data from the memory to the cache is reduced.
+Therefore, the total time required to copy the data from the memory to the cache is reduced.
 It can be shown that for linear operations on memory, the cache prefetcher reduces the time so much that it behaves as if the \ac{CPU} had an infinite cache.
 \par
 %
-Another technique is to use modern compilers such as Clang v11\footnote{https://clang.llvm.org/} or G++ v10\footnote{https://gcc.gnu.org/}.
+Another technique is to use modern compilers such as \name{Clang v11}\footnote{\url{https://clang.llvm.org/}} or \name{G++ v10}\footnote{\url{https://gcc.gnu.org/}}.
 These have an optimization algorithms built in that optimizes the code to the architecture of the machine, and much more sophisticated methods.
-For example, if the number of iterations is known at compile time, a for loop can be \name{unrolled} to speed up the computations since it no longer needs to check if the conditions are met to end the loop.
-To review these optimizations, the code with bottlenecks was tested with \name{Compiler Explorer}\footnote{\url{https://godbolt.org/}} and \name{C++ Insight}\footnote{\url{https://cppinsights.io/}}.
+For example, if the number of iterations is known at compile time, a for loop can be \name{unrolled} to speed up the computations since it no longer needs to check if the conditions are met to end of each loop cycle.
+To review these optimizations, the time critical code was tested with tools like \name{Compiler Explorer}\footnote{\url{https://godbolt.org/}} and \name{C++ Insight}\footnote{\url{https://cppinsights.io/}}.
 %

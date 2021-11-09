@@ -1,0 +1,101 @@
+\begin{tikzsize}{\tikzwidth}{\tikzheight}
+\begin{tikzpicture}[scale=\tikzscale,
+    % every node/.style={scale=1/\tikzscale}
+    ]
+%
+\begin{axis}[%
+    axis equal,
+    axis lines=none,
+    ticks=none,
+    scale only axis,
+    width=\tikzwidth,
+    height=\tikzwidth,
+    enlargelimits=0,
+    view={45}{30},
+    clip=false,
+]
+%
+\addplot3 [%
+    surf,
+    shader=interp,
+    % shader=faceted interp,
+    z buffer = sort,
+    % faceted color=white!20!black,
+    mesh/color input=explicit mathparse,
+    variable = \u,
+    variable y = \v,
+    domain = 0:360,
+    % domain = 270:450,
+    y domain = 0:90,
+    samples = 73,
+    samples y = 9,
+    point meta={%
+        symbolic={hsb=(
+            {abs(mod(u,180))/180},
+            {1},
+            {1-(2*abs(90-v)/180)}
+        }},
+    ]
+({cos(u)*sin(v)}, {sin(u)*sin(v)}, {cos(v)});
+% 
+% \addplot3 [%
+%     surf,
+%     shader=interp,
+%     % shader=faceted interp,
+%     z buffer = sort,
+%     % faceted color=white!20!black,
+%     mesh/color input=explicit mathparse,
+%     variable = \u,
+%     variable y = \v,
+%     domain = 90:270,
+%     y domain = 0:90,
+%     samples = 37,
+%     samples y = 10,
+%     point meta={%
+%         symbolic={hsb=(
+%             {abs(mod(u,180))/180},
+%             {1-(2*abs(90-v)/180)},
+%             {1}
+%         }},
+%     ]
+% ({cos(u)*sin(v)}, {sin(u)*sin(v)}, {cos(v)});
+% 
+\addplot3 [%
+    mesh,
+    draw=black,
+    opacity=0.05,
+    variable = \u,
+    variable y = \v,
+    domain = 0:360,
+    y domain = 0:90,
+    samples = 37,
+    samples y = 9,
+    ]
+({cos(u)*sin(v)}, {sin(u)*sin(v)}, {cos(v)});
+%
+\draw[dashed, white!0!black] (axis cs:-1,0,0) -- (axis cs:1,0,0);
+\draw[white!0!black] (axis cs:-1,0,0) -- (axis cs:-1.25,0,0);
+\draw[white!0!black, ->] (axis cs:1,0,0) -- (axis cs:1.25,0,0)
+   node[pos=0.75, anchor=south west, yshift=0.5ex] {$x$};
+\draw[dashed, white!0!black] (axis cs:0,-1,0) -- (axis cs:0,1,0);
+\draw[white!0!black] (axis cs:0,-1,0) -- (axis cs:0,-1.25,0);
+\draw[white!0!black, ->] (axis cs:0,1,0) -- (axis cs:0,1.25,0) 
+   node[pos=0.75, anchor=south west, yshift=0.5ex] {$y$};
+% % 
+\draw[white, ->] (axis cs:0.0,0.0,0.0) -- (axis cs:0.5,0.5,0.0);
+\draw[white, dotted] (axis cs:0.0,0.5,0.0) -- (axis cs:0.5,0.5,0.0);
+\draw[white, dotted] (axis cs:0.5,0.0,0.0) -- (axis cs:0.5,0.5,0.0);
+% 
+\addplot3[%
+    white, no marks,
+    domain = 0:45, samples = 45,
+    variable = \u, samples y=1,
+    {Latex[scale=0.5]}-{Latex[scale=0.5]},]
+    ({cos(u)*0.3},{sin(u)*0.3},{0});
+\node[anchor=west] at (axis cs:{cos(22.5)*0.33},{sin(22.5)*0.33},0)
+    {\textcolor{white}{$\varphi$}};
+% \coordinate (C) at (0,0,0);
+\end{axis}
+% \path[draw] ($(C)-(2,2)$)--($(C)+(2,2)$);
+\end{tikzpicture}
+\end{tikzsize}
