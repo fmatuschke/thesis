@@ -11,31 +11,31 @@
 \label{chap:sof:modelling}
 % 
 In \cref{chap:neuro} both the structure of nerve fibers and the macroscopic structure of \ac{WM} were described.
-The question is how to represent such a structure in a computer algorithm.
-For simple fiber configurations, \eg{} parallel, linear nerve fibers, this may be quite straightforward.
-However, it has been shown that irregular, non-symmetric nerve fiber configurations are necessary to obtain a realistic result without diffraction patterns \cite{MenzelDissertation}.
-This means that any kind of pattern that may exist should ideally be representable.
+The question is how to represent such a structure in a computer algorithm?
+For simple fiber configurations, \eg{} parallel, linear nerve fibers, this is quite straightforward.
+However, it has been shown that irregular, non-symmetric nerve fiber configurations are necessary to obtain a realistic result for microscopy simulations based on the wave nature of the light \cite{MenzelDissertation}.
+Therefore one needs ideally a representation, which allows to build any kind of pattern.
 \par
 %
 Many solutions are already available.
-A common one comes from visualization.
+A common one is used in graphical visualizations.
 A rope or fiber, \ie{} a raw object, is defined by a trajectory with a radius.
 From this, a surrounding mesh is generated.
 In visualization, the mesh is used to apply textures to represent a surface.
-The same meshes are used in Monte Carlo simulations \ac{dMRI} \cite{Ginsburger2019,ginsburgerDis2019}, among others.
+Such meshes are \eg{} used in Monte Carlo simulations of \ac{dMRI} \cite{Ginsburger2019,ginsburgerDis2019}.
 In this type of simulation, the meshes help calculate whether a water molecule travels through the surface of a nerve fiber, i.e., the surface of the mesh.
-However, this representation is very computationally intensive because the number of triangles that must be present in the mesh is quite high for useful accuracy.
+However, this representation is very computationally intensive because the number of triangles that must be present in the mesh is quite high.
 \par
 %
-An even more crucial task is to ensure that the nerve fibers do not overlap.
-In simulations where the wave nature of light is modeled, this leads otherwise to incorrect results.
+When creating complex nerve fiber structures, it is even more important that the nerve fibers do not overlap.
+In simulations in which the wave nature of light is modeled, this otherwise leads to significantly altered results.
 To achieve this, either the user must define such a structure in advance, or a computer algorithm must build such structures from input parameters.
 Considering the immense number of configuration possibilities that nerve fibers can have even in a small volume, the task is almost impossible for a user to solve except for trivial configurations.
 The same is true for a computer algorithm.
 One could write an algorithm that defines a single fiber in a volume and then places the next one, making sure that none overlaps and so on.
 This works well up to a point.
-Even if an algorithm always finds a solution to find a path through an already filled volume, at some point the volume will appear to be full, but still have plenty of free space between fibers.
-Of course, one can minimize this behavior by trying to place nearly parallel fibers, but again, looking at real tissue data, \eg{} \cref{fig:brainTPFM}, this does not reflect reality.
+Even if an algorithm always finds a solution to find a path through an partially filled volume, at some point the volume will appear to be full, but still have plenty of free space between fibers.
+Of course, one can minimize this behavior by trying to place nearly parallel fibers, but again, looking at real tissue data, \eg{} \cref{fig:brainTPFM, fig:elecMic}, this does not reflect reality.
 Even in a fiber bundle, the fibers are so densely packed that you can't just add another fiber in a way that wastes volume over time (\ie{} add more fibers).
 \par
 %
@@ -176,14 +176,14 @@ y = r \sin(\varphi)
 %
 \subsection{Populating fiber bundles}\label{sec:fillBundle}
 %
-\begin{figure}[!t]
-    \centering
-    \resizebox{.75\textwidth}{!}{
-    \includegraphics{dev/gfx/circle_bundle.png}}
-    % }
-	\caption{Bending fibers along trajectory $\vec{f}(t) = \left(\cos(t), \sin(t), 0 \right)$ \todo{more interesting example}}
-	\label{fig:bendingFiberBundle}
-\end{figure}
+% \begin{figure}[!t]
+%     \centering
+%     \resizebox{.75\textwidth}{!}{
+%     \includegraphics{dev/gfx/circle_bundle.png}}
+%     % }
+% 	\caption{Bending fibers along trajectory $\vec{f}(t) = \left(\cos(t), \sin(t), 0 \right)$ \todo{more interesting example}}
+% 	\label{fig:bendingFiberBundle}
+% \end{figure}
 %
 \begin{figure}[!t]
     \centering
@@ -234,7 +234,7 @@ To smooth the transition, the tangential vector at step $i$ is calculated as fol
 \end{align}
 %
 Finally, all points belonging to a fiber can be stored in a fiber bundle object.
-An example is shown in \cref{fig:bendingFiberBundle}.
+% An example is shown in \cref{fig:bendingFiberBundle}.
 %
 %
 %
