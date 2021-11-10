@@ -27,57 +27,58 @@ In this type of simulation, the meshes help calculate whether a water molecule t
 However, this representation is very computationally intensive because the number of triangles that must be present in the mesh is quite high.
 \par
 %
-When creating complex nerve fiber structures, it is even more important that the nerve fibers do not overlap.
+When creating complex nerve fiber structures, it is important that the nerve fibers do not overlap.
 In simulations in which the wave nature of light is modeled, this otherwise leads to significantly altered results.
-To achieve this, either the user must define such a structure in advance, or a computer algorithm must build such structures from input parameters.
+To achieve non overlapping fibers, either the user must define such a structure in advance, or a computer algorithm must build such structures automatically.
 Considering the immense number of configuration possibilities that nerve fibers can have even in a small volume, the task is almost impossible for a user to solve except for trivial configurations.
 The same is true for a computer algorithm.
 One could write an algorithm that defines a single fiber in a volume and then places the next one, making sure that none overlaps and so on.
 This works well up to a point.
 Even if an algorithm always finds a solution to find a path through an partially filled volume, at some point the volume will appear to be full, but still have plenty of free space between fibers.
-Of course, one can minimize this behavior by trying to place nearly parallel fibers, but again, looking at real tissue data, \eg{} \cref{fig:brainTPFM, fig:elecMic}, this does not reflect reality.
+Of course, one can minimize this behavior by trying to place nearly parallel fibers, but again, looking at real tissue data, \eg{} \cref{fig:brainTPFM,fig:elecMic}, this does not reflect reality.
 Even in a fiber bundle, the fibers are so densely packed that you can't just add another fiber in a way that wastes volume over time (\ie{} add more fibers).
 \par
 %
 The solution found in this work is to allow the placement of nerve fibers in any way and without any restriction.
-However, the overlap must then be removed.
-The idea is quite simple.
+The overlap will be removed in the folliwing step.
 Check all fibers for collisions with each other.
 If a collision occurs, try to remove it by moving the colliding parts slightly away from each other.
 Repeat this step until all collisions are removed.
 \par
 %
-This idea \cite{Matuschke2019} with all its necessary prerequisites is described in detail in the following chapter.
+This idea with all its necessary prerequisites is described in detail in the following chapter.
 First, the representation of a nerve fiber is defined in a way that it already takes into account to be as performant as possible for the collision process.
 Then, additional \textit{building} functions are designed to help the user quickly define a volume with nerve fibers.
-Finally, the solution algorithm for resolving the collisions with its parallel components is explained in detail.
+Finally, the algorithm for resolving the collisions with the parallelization components is explained in detail.
 In addition, another approach based on this idea and developed in this work with colleagues from \ac{dMRI} is explained in detail.
-This one focuses on the placement of neurons such as astrocytes or olegodendrocytes with their (arms) in the volume.
-The collaboration is obvious since both simulation techniques study the same type of tissue models.
-Since these models focus on non-overlapping tubular structures, they can also be applied to other fibrous structures such as skeletal muscle fiber.
+This one focuses on the placement of neurons such as astrocytes or olegodendrocytes in a volume with fibers.
+The collaboration is possible since both simulation techniques study the same type of tissue models.
+Since these models focus on non-overlapping tubular structures, they can also be applied to other fibrous structures such as skeletal muscle fiber \cite{Ji2021}.
 \par
 %
 All described algorithms here are part of the toolbox \ac{fastPLI} \cite{Matuschke2019, Matuschke2021}, which is described in detail in \cref{chap:Software}.
+The original idea of a collison free algorithm was published in \cite{Matuschke2019}.
 %
 %
 %
 \section{Nerve fiber representation}
 \label{sec:nerve_fiber_representation}
 %
-Nerve fibers themselves are cable-like structures surrounded by an electrically insulating lipid layer of myelin (see \cref{sec:fiberArchitecture}).
+Nerve fibers themselves are tube-like structures surrounded by an electrically insulating lipid layer of myelin (see \cref{sec:fiberArchitecture}).
 Both the diameter of the axon and the thickness of the myelin can vary greatly from fiber to fiber (see \cref{sec:axonMicroscopy}).
 This means that the representation of nerve fiber models should be able to represent such variations as well.
 \par
 %
 As described in \cref{sec:fiberArchitecture} \ac{WM} consist of nerve fibers packed tightly together in nerve fiber bundles.
-These bundles can join/divide with other bundles and traverse the brain to connect one region to another.
-The bundles are able to cross each other, either by crossing the individual nerve fibers or bypassing the fiber bundles in some sort of interwoven structure.
-These structures are a key element in the study of \ac{3D-PLI}.
+These bundles can join with other bundles and traverse the brain to connect one region to another.
+The bundles are able to cross each other, either by crossing the individual nerve fibers or bypassing the fiber bundles.
+This can \eg{} generate interwoven structures.
+Such structures are a key element in the study of \ac{3D-PLI}.
 Therefore, it is particularly important that the models are able to form such structures without overlapping individual fibers.
 \par
 %
-One way of representing it is a parametric function describing a path in 3D space, a trajectory.
-In addition, a fourth element could describe the radius of the fiber at the same point:
+One way of representing individual nerve fibers is a parametric function describing a path in 3d space, \ie{} a trajectory.
+In addition, a fourth element describes the radius of the fiber at the same point:
 % 
 \begin{align}
 f(t) \rightarrow (x(t),y(t), z(t), r(t))
@@ -98,22 +99,22 @@ Therefore, the function or fiber is divided into smaller discrete segments.
 %
 Therefore, the fiber can be described by a list of 4d points $(x,y,z,r)$, which can be interpreted as a chain of cylindrical fiber segments (see \cref{fig:fiberReb}):
 \begin{align}
-\begin{split}
+\begin{gathered}
 \mathit{fiber} = \left\{ \vec{p}_i=(x_i,y_i,z_i), r_i \mid x,y,z \in \mathbb{R}, \, r \in \mathbb{R^+}, \, i \in \{0,1,...,N_{\mathit{points}}-1\}\right\} \\
 \mathit{fiber\_segment}_i = (\vec{p}_i, \vec{p}_{i+1}, r_i, r_{i+1}), \, i \in \{0,1,...,N_{\mathit{points}}-2\}
-\end{split}
+\end{gathered}
 \end{align}
 %
 \begin{figure}[!t]
     \centering
     \setlength{\tikzwidth}{0.5\textwidth}
     \inputtikz{gfx/model/capsule}
-	\caption{schematic \acreset{CC} \ac{CC}}
+	\caption{Schematic of a fiber segment represented by a  \acreset{CC} \ac{CC}}
 	\label{fig:conical}
 \end{figure}
 %
-Since the fiber radius can change from one point to an adjacent point, the segment can be conical (see \cref{fig:conical}).
-Therefore, the fiber segments describe a \ac{CC}.
+Since the fiber radius can change from one point to an adjacent point, the segment can be conical.
+Therefore, the fiber segments describe a \ac{CC} (see \cref{fig:conical}).
 \par
 %
 This representation has the advantage over a mesh representation of a surface that much less data is needed for the representation.
@@ -144,7 +145,7 @@ The first module handles the seeding process, while the second part builds up a 
     \hfill
     \subcaptionbox{\label{fig:crossBundle}populated fiber bundles}[.32\textwidth]{
     \inputtikz{gfx/model/crossing_bundle}}
-	\caption{Populating fiber bundles with seed points.}
+	\caption{Populating fiber bundles with 2d seed points.}
 % 	\label{fig:}
 \end{figure}
 %
@@ -155,7 +156,7 @@ Seed points are stored as a list of 2d points:
 %
 To form particularly dense fiber bundles, a method for generating an equilateral triangular grid was implemented (see \ref{fig:triGrid}).
 Mathematically, this yields the most densely packed pattern for a 2d circle with equal radius packed area.
-However, this very regular symmetric grid can lead to unrealistic results (\eg{} diffraction pattern in Maxwell simulation).
+However, this very regular symmetric grid can lead to unrealistic results (\eg{} diffraction pattern in light wave simulation \cite{MenzelDissertation}).
 It should therefore only be used as an initial configuration.
 Since the initial configurations are often unknown, it is probably best to choose a random distribution (see \cref{fig:rndGrid}).
 For a circular boundary, this is done with:
@@ -176,20 +177,11 @@ y = r \sin(\varphi)
 %
 \subsection{Populating fiber bundles}\label{sec:fillBundle}
 %
-% \begin{figure}[!t]
-%     \centering
-%     \resizebox{.75\textwidth}{!}{
-%     \includegraphics{dev/gfx/circle_bundle.png}}
-%     % }
-% 	\caption{Bending fibers along trajectory $\vec{f}(t) = \left(\cos(t), \sin(t), 0 \right)$ \todo{more interesting example}}
-% 	\label{fig:bendingFiberBundle}
-% \end{figure}
-%
 \begin{figure}[!t]
     \centering
     \setlength{\tikzwidth}{0.75\textwidth}
     \inputtikz{gfx/model/min_torsion}
-	\caption[]{Left: Plane of seed points. Right: plane are rotated and placed along the path. At the end, the plane has the same normal vector as the starting plane, but due to the principle of minimum rotation, the plane is rotated along the normal vector.}
+	\caption{Left: Plane of seed points. Right: Plane are rotated and placed along the path. At the end, the plane has the same normal vector as the starting plane, but due to the principle of minimum rotation, the plane is rotated along the normal vector.}
 	\label{fig:torsion}
 \end{figure}
 %
@@ -201,15 +193,15 @@ Essentially, for each resulting $\mathit{fiber}_j$, this means:
 \end{align}
 % 
 However, the question is which rotation matrix $\mat{R}$ has to be applied.
-Since a trajectory is only a 2d object, \ie{} is a line, so no unique normal vector can be defined in space.
+Since a trajectory is only a 2d object, \ie{} a line, no unique normal vector can be defined in space.
 In mathematics, the torsion of a curve can be defined with a principal normal vector and a binormal vector.
-However, this has the problem that the line has a torsion for a helical function, meaning that the line rotates along its path.
+However, this has the problem that a line such as a helical function has a torsion, \ie{} the line rotates along its path.
 This would mean that the individual fibers would rotate around the path of the fiber bundle if the seed point plane were placed according to the principal and binormal vectors.
 This is possible in principle, but practically non-existent in real tissue.
 \par
 % 
-A more reasonable solution would be to perform a rotation such that the rotation along the fiber bundle trajectory is minimal.
-This can be achieved by computing the rotation matrix that would rotate the current tangent vector \textcolor{BLUE}{$\vec{t}(i)$} to that of the nearest point $\vec{t}(i+1)$.
+A more reasonable solution is to perform a rotation such that the rotation along the fiber bundle trajectory is minimal.
+This can be achieved by computing the rotation matrix that would rotate the current tangent vector $\vec{t}(i)$ to that of the nearest point $\vec{t}(i+1)$.
 The rotation matrix $\mat{R}(\vec{a}, \vec{b})$ can be calculated, except for $\vec{a} || \vec{b}$ via
 \begin{align}
 \begin{split}
@@ -225,6 +217,9 @@ The rotation matrix $\mat{R}(\vec{a}, \vec{b})$ can be calculated, except for $\
 \end{split}
 \end{align}
 % 
+In the case of $\vec{a} || \vec{b}$ no roation is necesarry.
+\par
+% 
 This tool enables the following procedure:
 First, place the seed point plane at the first fiber bundle point $\vec{fb}_0$ and rotate it by $\mat{R}(\hat{\vec{e}}_z, \vec{t}_0)$.
 Then, for each step, the plane is rotated at its original origin according to $\mat{R}(\vec{t}_i, \vec{t}_{i+1})$ and placed on $\vec{fb}_{i+1}$.
@@ -233,7 +228,7 @@ To smooth the transition, the tangential vector at step $i$ is calculated as fol
     \vec{t} = \frac{1}{2} \frac{\vec{fb}_{i-1} + \vec{fb}_{i+1}}{|\vec{fb}_{i-1} + \vec{fb}_{i+1}|}
 \end{align}
 %
-Finally, all points belonging to a fiber can be stored in a fiber bundle object.
+Finally, all points belonging to a fiber can be stored in a fiber bundle object as $(n \times 4)$-array.
 % An example is shown in \cref{fig:bendingFiberBundle}.
 %
 %
@@ -248,7 +243,7 @@ Finally, all points belonging to a fiber can be stored in a fiber bundle object.
     \label{fig:cubeBuild}%
 \end{figure}
 %
-As will be shown later, cube-shaped models are very interesting to study, since a pixel in the \ac{3D-PLI} setup is a cube with the height of the tissue thickness.
+As will be shown later, the \ac{3D-PLI} simulation wil calculate a image based on a cubical volume.
 Therefore, a method exists to fill such a volume with a fiber population of orientation $\vec{v}$ (see \cref{fig:cubeBuild}).
 The individual fibers are initialized as usual with a seed point plane.
 This plane is virtually placed in front of the cubic volume end behind it in the direction of the orientation, so that the origins of the seed point planes coincide with the origin of the cube.
@@ -276,27 +271,27 @@ When a line meets the volume, the entry and exit points are calculated and store
         Parallel population.
     }[.33\textwidth-1ex]{
     \inputtikz{gfx/model/cylinder_parallel}}
-	\caption{Colonization of cylindrical objects. The green area shows the area corresponding to the seed points in the xy-plane. The coordinate system \textcolor{RED}{red} indicates the coordinate origin for the seed points.}
+	\caption{Populating of cylindrical objects. The green area shows the area corresponding to the seed points in the xy-plane. The coordinate system indicates the coordinate origin coresponding to the seed points origin.}
 \end{figure}
 %
-The last method allows, among other things, to create circular arcs from fibers.
-It uses a cylindrical volume as a template.
-Since a cylinder has three symmetries, a radial, an angular and the length, all three have been implemented to provide a way to populate the volume.
+The last method allows to populate a cylindrical volume with fibers.
+Since a cylinder has three symmetries, a radial, an angular and the length, those three methods have been implemented to provide a way to populate the volume.
 \par
 %
 First, the coordinate system must be defined.
 The cylinder with outer radius $r_{\mathit{out}}$ and inner radius $r_{\mathit{in}}$ is aligned along the z-axis with height $h$ and starts at $(0,0,0)$.
 In addition, the cylinder can be cut radially at a directional angle $\alpha$ to $\beta$ to fill only a portion of it.
+The angles corresponds to the cylindrical coordinate system of the resulting model.
 \par
 %
 The following applies to all methods used: If the seed point plane leaves the cross-section plane to be filled, the seed points lying outside are ignored.
 %
 \paragraph{a) circular}
-mimics a radial path of the cylinder (see \cref{fig:cylCircular}).
+Mimics a radial path of the cylinder (see \cref{fig:cylCircular}).
 The seed points are placed along the surface of the cross section of the first $\alpha$ direction angle.
 The origin of the seed point plane is placed on the origin of the cylinder.
 From there, the fiber is circular to the second $\beta$ direction angle.
-The step size of the circular path can be changed.
+The step size of the circular path can be costamized.
 %
 \paragraph{b) radial}
 The fibers are placed from the inner wall to the outer wall of the cylinder.
@@ -306,7 +301,7 @@ Thus, the density of the fibers decreases along their path.
 %
 \paragraph{c) parallel}
 The fibers are aligned along the cylinder (see \cref{fig:cylParallel}).
-Here, the seed points are in the lower plane, with the two origins in the same point (see \cref{fig:cylParallel}). The orientation of the plane is aligned with the x-axis at $\SI{0}{\degree}$
+Here, the seed points are in the lower plane, with both coordinate origins in the same point (see \cref{fig:cylParallel}). The orientation of the plane is aligned with the x-axis at $\SI{0}{\degree}$
 %
 %
 %
@@ -314,19 +309,16 @@ Here, the seed points are in the lower plane, with the two origins in the same p
 \label{sec:Solver}
 %
 The focus of the following algorithm is to allow the user to define any fiber path.
-This allows for the greatest possible freedom in initialization.
-Of course, since the fibers are 3D volume objects, in most cases there will be overlaps with other fibers.
+This allows a wide range of freedom in the initialization process.
+Of course, since the fibers are 3d volume objects,  there will probably overlaps with other fibers.
 The aim of the following algorithm is to find and solve such collisions by moving the affected fiber segment in such a way that a collision-free volume is created by minimal displacement.
 This allows the user to specify complex interwoven structures such as nerve fiber crossings in a fairly straightforward manner.
-The algorithm allows the user to specify certain boundary conditions, \eg{} the mean value of the fiber segments, since the shape can change quite a bit during the solution process depending on the initial condition.
+Additionally the algorithm allows the user to specify boundary conditions like the mean fiber segment length or minimal bending radius.
 \par
 % 
 An important feature is the visualization of the solution process.
 This allows the user to see what is happening and intervene as early as possible if necessary.
-This is very important because the solution process can take a lot of time, depending on the volume slice and the number of objects.
-\par
-%
-Pseudocode of the algorithm \code{main}: The function \code{FiberCollisionSolver} goes through the following four steps in parallel until no collisions are detected: 1. building an \code{octree} from all objects, 2. \code{Collision Detection}, 3. \code{Seperation Process}, and 4. \code{Shape Control}.
+This is very important because the solution process can take a lot of time, depending on the volume and the number of objects.
 %
 %
 % 
@@ -356,7 +348,7 @@ def step():
 
     return colliding_list.is_empty()
 \end{lstlisting}
-\caption{Pseudocode of the \code{main} algorithm: The function \code{FiberCollisionSolver} will loop the followings four steps, which are run in parallel, until no collision are detected anymore: 1. build an \code{octree} from all objects, 2. \code{Collision Detection}, 3. \code{Seperation Process} and 4. \code{Shape Control}. \todo{check algorithm, spetially movement phase}}
+\caption{Main structure in a single step of the collision checking and shape controlling algorithm.}
 \label{alg:pseudocode_solver}
 \end{lstfloat}
 %
@@ -364,7 +356,7 @@ Apart from the initialization of the parameters, the main function of the solver
 The algorithm is with reason not a loop by itself.
 This allows the user to interact with the data or parameters at each step, if necessary.
 This \code{step} function (see \cref{alg:pseudocode_solver}) can be divided into the following sequential parts:
-Ordering the objects in a figure-of-eight tree, checking each branch of the figure-of-eight tree for colliding objects, separating the colliding objects, and checking the shape of the fibers.
+Ordering the objects in a octree, checking each branch of the octree for colliding objects, separating the colliding objects, and checking the shape of the fibers.
 The return value of the function is a boolean if no colliding objects were found.
 A stand-alone algorithm is published in \cite{Matuschke2019}.
 At this point it is integrated into the \ac{fastPLI} package under \pymodule{fastpli.model.solver.Solver}.
@@ -379,7 +371,7 @@ At this point it is integrated into the \ac{fastPLI} package under \pymodule{fas
     \setlength{\tikzwidth}{0.75\textwidth}
     \inputtikz{gfx/model/conical_capsule_bb}
     \tikzset{external/export=false}
-	\caption[cc and co]{Fiber segment representations with there \acp{AABB}: \raisebox{.25em}{\tikz \draw[black](0,0)--(0.275,0);} \ac{CC}, \raisebox{.25em}{\tikz \draw[blue, dash pattern=on 2.5pt off 2.5pt](0,0)--(0.275,0);} capsule, \raisebox{.25em}{\tikz \draw[red, dash pattern={on 2.5pt off 0.9pt on 0.42pt off 0.9pt}](0,0)--(0.275,0);} bounding box.}
+	\caption[]{Fiber segment representations with the \acp{AABB}: \raisebox{.25em}{\tikz \draw[black](0,0)--(0.275,0);} \ac{CC}, \raisebox{.25em}{\tikz \draw[blue, dash pattern=on 2.5pt off 2.5pt](0,0)--(0.275,0);} capsule, \raisebox{.25em}{\tikz \draw[red, dash pattern={on 2.5pt off 0.9pt on 0.42pt off 0.9pt}](0,0)--(0.275,0);} bounding box.}
 	\label{fig:conical_capsule}
 \end{figure}
 % 
@@ -397,7 +389,7 @@ def aabb_collide(aabb_0, aabb_1):
          return false
   return true
 \end{lstlisting}
-\caption{Pseudocode collision between \acp{AABB}.}
+\caption{Calculation if a collission between \acp{AABB} exists.}
 \label{alg:collisionAABB}
 \end{lstfloat}
 %
@@ -416,16 +408,16 @@ This has the obvious disadvantage that space is lost. However, for small changes
 \hline
 \hspace{1em} &
 \begin{minipage}{0.4625\textwidth}
-\lstinputlisting[style=cpp,basicstyle=\scriptsize\ttfamily,firstline=1,lastline=32]{code/collision_detection.py}
+\lstinputlisting[style=python,basicstyle=\scriptsize\ttfamily,firstline=1,lastline=32]{code/collision_detection.py}
 \end{minipage} & \hspace{1em} &
 \begin{minipage}{0.4625\textwidth}
-\lstinputlisting[style=cpp,basicstyle=\scriptsize\ttfamily,firstline=33,lastline=64,firstnumber=35]{code/collision_detection.py}
+\lstinputlisting[style=python,basicstyle=\scriptsize\ttfamily,firstline=33,lastline=64,firstnumber=35]{code/collision_detection.py}
 \end{minipage} \\
 \hline
 \end{tabular}
 % \end{sideways}
 }
-\caption{Collision detection between two capsule objects. The distance and the points on the line segments are returned. A collision occurs if the distance is less than $\mathit{cone_a.r}+\mathit{cone_b.r} > d$.}
+\caption{Collision detection between two capsule objects. A collision occurs if the distance is less than $\mathit{cone_a.r}+\mathit{cone_b.r} > d$.}
 \label{alg:pseudocodeCollisionDetection}
 \end{lstfloat}
 % 
@@ -473,7 +465,8 @@ Therefore, another strategy must be chosen to reduce the number of computations.
 \end{figure}
 %
 A \name{tree} is a data structure consisting of a collection of \name{nodes} that are connected to each other.
-A \name{node} is connected to a single parent \name{node} called \name{root}, and to multiple \name{children} via \name{branches}.
+A \name{node} is connected to a single parent \name{node}, and to multiple \name{children} via \name{branches}.
+The first parent node is called \name{root}.
 The final \name{nodes} at the end of a \name{branch} are called \name{leafs}, which contain the data.
 Traversing a uniformly distributed \name{tree} has the advantage that the cost of traversal is $\mathcal{O}(\log(n))$.
 \par
@@ -483,7 +476,7 @@ This allows a cubic volume to be divided into eight subvolumes, which in this ca
 An example is shown in \cref{fig:octreeCube}.
 This means that the length of the volumes shrinks exponentially with $(1/2)^\mathit{level}$.
 An \name{octree} can be implemented in several ways.
-Here, a recursion function was chosen (see \cref{alg:pseudocode_octree}), which is a function that can call itself.
+Here, a recursion function was chosen (see \cref{alg:pseudocode_octree}), which is a function which that calls itself.
 %
 \begin{lstfloat}[!tb]
 \lstset{style=python}
@@ -496,80 +489,87 @@ def octree(volume, objects):
         leafs = [objects]
     return leafs
 \end{lstlisting}
-\caption{Pseudocode of octree}
+\caption{Generation of an octree.}
 \label{alg:pseudocode_octree}
 \end{lstfloat}
 %
 The idea of tree generation is the following:
 At the beginning, all objects must be sorted into the eight \name{leafs} of the current node (if the number of objects is not too small).
-This means that for each object it must be checked whether there is a collision with one or more of the eight \name{leafs}, \ie{} the cubic sub-volumes.
+This means that for each object it must be checked whether there is a collision with one or more of the eight \name{leafs}, \ie{} the cubic subvolumes.
 However, since this already implies a high checking effort, the checking function should be as fast as possible.
-For this purpose, analogous to the object collision check (see \cref{fig:collision2D}), only the \ac{AABB} of the object is checked for collision with the leaf volume (which is its own \ac{AABB}).
-This means that there may be cases where an object is placed in a sub-volume with which it does not collide.
+For this purpose, analogous to the object collision check (see \cref{fig:collision2D}), only the \ac{AABB} of the object is checked for collision with the leaf volume, which is also a \ac{AABB}.
+This means that there may be cases where an object is placed in a subvolume to which it does not belong.
 However, in this case, the increasing speed of the checking process is an advantage.
-Once all objects are sorted into their respective sub-volumes, recursion can begin.
+Once all objects are sorted into their respective subvolumes, recursion can begin.
 Since a branch can be considered a node, the same algorithm can be executed until a desired boundary or property is reached, \ie{} recursive execution.
-This means that the current (sub-)volume is split into eight sub-volumes again, if necessary, and the objects of the current (sub-)volume are sorted into the new sub-volumes.
+This means that the current (sub-)volume is split into eight subvolumes again, if necessary, and the objects of the current (sub-)volume are sorted into the new subvolumes.
 The recursion also means that the next function call must contain a list of the current objects.
-This means that the objects must either be copied, which is time consuming, or referenced by \eg{} and index, which is time consuming because the data is accessed randomly in memory.
+This means that the objects must either be copied, which is time consuming, or referenced by \eg{} and index, which is aso time consuming because the data is accessed randomly in memory.
 The first option was chosen because it proved to be the fastest in a speed test during implementation.
-The next question is what is the desired goal to end the branching process and mark the node as a leaf.
+The next question is what is the desired goal to end the branching process and mark the node as a leaf and therefore the collision checking algorithm can be applied between all objects in each leaf.
 \par
 %
 The goal is to reduce the computation time.
-Unfortunately, with a structure like an octree, there is no simple answer that can give a definite answer.
+Unfortunately, with a structure like an octree, there is no straightforward way to give a definitive answer.
 It depends on the scope and the contained objects themselves.
-For example, if all the objects overlapped, all the objects would be sorted into all the leaves and thus 8 times as much would be tested.
-This is of course an extreme case, but depending on the user's input, such as intersecting regions, many objects could be positioned at the same point in space.
+For example, if all the objects overlapped, all the objects would be sorted into all the leaves and thus eight times as much would be tested.
+This is of course an extreme case, but depending on the user's input, can occure.
 The user should therefore separate the fibers as much and as sensibly as possible during initialization.
 The usual approach is to impose the following two constraints:
 %
-\paragraph{Maximum number of levels:}
+\paragraph{Maximum number of levels}
 In the case of nerve fibers, it can be assumed that the size of the objects is approximately in the same order of magnitude.
-This means that the largest object in a volume can be used to decide whether it is possible to dive the volume again.
-In the case of object sizes that differ in higher orders of magnitude, this will consequently increase the computational cost to the point where each object must be retested with each object.\footnote{In this case, there are other, more suitable algorithms. However, since this case is not expected, they will not be implemented}.
+This means that the largest object in a volume can be used as the lower bound for the smallest volume in the octree.
+In the case of object sizes that differ in higher orders of magnitude, this will consequently increase the computational cost to the point where each object must be retested with each object.\footnote{There are other, more suitable algorithms for this case. However, since this case is not expected, they are not implemented}.
 %
-\paragraph{Minimal number of objects:}
+\paragraph{Minimal number of objects}
 Once a \name{leaf} could be created, all objects contained in it must be checked for collisions.
 As mentioned above, this is a task of $O(n^2)$.
-However, there will be a number of objects for which it is faster to calculate whether they collide than to further partition the volume.
-This number must be checked at runtime, as it depends on many factors such as computer architecture.
+However, there is also an upper bound of a number of objects for which it is faster to calculate whether they collide than to further partition the volume.
+This number must be checked at runtime, since it depends on many factors.
 In the development phase of this algorithm, a value of $\approx \SI{20}{}$ for the involved computer architectures could be determined.
 \par
 %
-At this point the colliding objects can be performed (see \cref{sec:collisionDetection}) and identified.
+At this point the collision checking algorithm is performent on each leaft (see \cref{sec:collisionDetection}) and all colliding objects are be identified.
 The next step is to change their positions so that their collision is reduced or completely separated.
 %
 \subsection{Separation Phase}
-To resolve a collision between two \ac{CC} objects, each point $\vec{p}_i$ and $\vec{p}_{i+1}$ of the two objects must be moved.
-To effectively move the objects apart and move them as little as possible, the direction of motion for each point is the same, since the two \ac{CC} would have an elastic collision with each other.
-This means that if the two objects collided exactly in the middle, they would simply bounce off each other.
-However, if the ends collide, only the end pieces should move.
-This results in a rotation within the inertial system of the objects.
-\par
 % 
-To speed up the calculation process, this is also simplified.
-First, the direction parallel to the smallest distance line between the two objects is calculated.
-To account for 3D placement, the direction of motion is weighted by the distance of each point from the intersection with the smallest distance line (see \cref{fig:shortDist}):
-\begin{align}
-v_i = \dummy{}
-\end{align}
+To resolve a collision between two \ac{CC} objects, each point $\vec{p}_i$ and $\vec{p}_{i+1}$ of the two objects is moved.
+To effective move the objects aport with a small effort, the fiber objets are translated and rotated away from the other coliding object.
+The translation is parallel to the shortest distance vector of the collision.
+For the rotation the direction of motion is weighted by the distance of each point from the intersection with the smallest distance line (see \cref{fig:shortDist,alg:push_apart}).
+% 
+\begin{lstfloat}[!h]
+\lstinputlisting[style=python]{code/push_apart.py}
+\caption{Velocity calculation of coliding objects.}
+\label{alg:push_apart}
+\end{lstfloat}
+% 
+% \begin{align}
+% v_i = \dummy{}
+% \end{align}
 \par
 %
-The velocity is stored in an array for each point reached.
+The velocity is stored in an array for each fiber corresponding to the fibers points.
 If the object collides with multiple objects, the velocity is summed up.
-The maximum velocity is finally bounded by a value of $v_{\max} = 0.1 \times \min(\mathit{object radius})$.\footnote{This value has proven to be appropriate during the testing phase of this algorithm. Speedup may still be possible by changing this value without significantly changing the results.}.
-This is constrained by the following two required properties:
-First, it prevents motion by another object.
+The maximum velocity is finally bounded by a value of $v_{\max} = 0.1 \times \min(\mathit{object radius})$.\footnote{This value has proven to be appropriate during the testing phase of this algorithm. Speedup may still be possible by changing this value without significantly changing the results.}
+This is a constraint that is necesarry due to the following two required properties:
+First, an object should not be allowed passing thorugh another object, \ie{} the velocity should always be $<min(r_i)$.
 Second, it smooths the motion and thus the maximum achievable density of the resulting models.
 However, this means that the solution process takes more time.
-The first and last points of the fiber are a special case.
+\par
+% 
+A special case is the movement of the first and last point of a fiber.
 These may only move perpendicular to the first/last segment line.
 This prevents the fibers from growing to infinity.
+% 
+% 
 %
 \section{Shape control}\label{chap5:ShapeControl}
+% 
 The movement of single points can lead to a distorted fiber model, \eg{} two points move very far apart.
-Therefore, boundary conditions must be specified.
+Therefore, boundary conditions are specified.
 It was decided to use the following two conditions.
 %
 % 

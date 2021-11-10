@@ -40,9 +40,9 @@ For an algorithm without shared memory, the required data must be exchanged betw
 This communication introduces an overhead compared to the \ac{CPU} instructions.
 However, such an algorithm could work on a multi-node system if the performance does not decrease drastically with increasing number of CPUs involved, as is currently the case.
 Therefore, one needs to redesign the algorithm.
-Common solutions are to divide the volume into sub-volumes (as in the case of \ac{3D-PLI} simulation), where each volume can be computed separately.
+Common solutions are to divide the volume into subvolumes (as in the case of \ac{3D-PLI} simulation), where each volume can be computed separately.
 However, since the boundaries of such subvolumes contain objects from neighboring volumes, it is necessary to merge the information of neighboring subvolumes.
-In a sense, this is already happening in the current implementation of the octree, but the volume is split into sub-volumes at each step.
+In a sense, this is already happening in the current implementation of the octree, but the volume is split into subvolumes at each step.
 If this can be improved so that only the necessary information needs to be transmitted, performance should increase by quite a bit.
 \par
 % 
@@ -142,7 +142,7 @@ The simulation is divided into two consistent parts.
 The first part generates a discretized 3d volume.
 This volume is used by the second part, which calculates the resulting light intensity using the M\"{u}ller-Stokes calculation and the simulation of several light vectors through the volume.
 The final light intensity is stored in a 2d array, which can be modeled as an \ac{CCD} array with a specified resolution and noise model.
-The simulation is capable of simulating multiple tilted light beam, allowing multiple views of the same sub-volume that the light is traversing.
+The simulation is capable of simulating multiple tilted light beam, allowing multiple views of the same subvolume that the light is traversing.
 In addition, the analysis algorithms are implemented into the software package, allowing the nerve fiber orientation to be calculated using the tilting analysis \ac{ROFL}.
 \par
 % 

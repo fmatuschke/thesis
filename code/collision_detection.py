@@ -1,5 +1,5 @@
 def MinDistance(cone_a, cone_b):
-   // from https://www.john.geek.nz
+   # from https://www.john.geek.nz
 
    u = cone_a.p1 - cone_a.p0
    v = cone_b.p1 - cone_b.p0
