@@ -17,11 +17,28 @@ bibliography:
 	biber thesis
 
 .PHONY: thesis
-thesis: compile bibliography
+thesis:
+	sed -i '/^[^%].*\%gitignore/ s/./\% &/' thesis.tex
+	$(MAKE) compile
+	$(MAKE) bibliography
 	$(MAKE) compile
 	$(MAKE) compile
 	xdg-open thesis.pdf
 
+.PHONY: split
+split: 
+	pdftk thesis.pdf cat 17-18 output thesis-chapter-01.pdf
+	pdftk thesis.pdf cat 23-31 output thesis-chapter-02.pdf
+	pdftk thesis.pdf cat 33-48 output thesis-chapter-03.pdf
+	pdftk thesis.pdf cat 55-77 output thesis-chapter-04.pdf
+	pdftk thesis.pdf cat 79-91 output thesis-chapter-05.pdf
+	pdftk thesis.pdf cat 93-101 output thesis-chapter-06.pdf
+	pdftk thesis.pdf cat 107-125 output thesis-chapter-07.pdf
+	pdftk thesis.pdf cat 127-160 output thesis-chapter-08.pdf
+	pdftk thesis.pdf cat 165-167 output thesis-chapter-09.pdf
+	pdftk thesis.pdf cat 169-172 output thesis-chapter-10.pdf
+	pdftk thesis.pdf cat 183-end output thesis-chapter-appendix.pdf
+	
 .PHONY: chapters
 chapters:
 	bash compile-chapters.sh
