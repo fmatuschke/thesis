@@ -238,14 +238,15 @@ However, since the threads are spawned only one time in this configuration and t
 The simulation algorithm performs the Mueller-Stokes calculation (see \cref{sec:Mueller-Stokes}) on the previously calculated discrete volume (see \cref{sec:dv_generator}) for the light rays along their paths.
 Since no scattering or refraction effects are considered in this simulation, each light path follows a straight line.
 Initially, the light vector is multiplied by the first polarizer of the optical system (see \cref{sec:expSetup}).
-The interaction between the light ray and the tissue is calculated according to $ \vec{S}' = \prod_i \left(\mat{R}_i \mat{M}_i \mat{R}_i\right) \cdot \vec{S}$ (see \cref{sec:mueller_stokes}).
+The path inside the tissue is discretized into steps.
+The interaction between the light ray and the tissue is calculated after each step according to $ \vec{S}' = \prod_i \left(\mat{R}_i \mat{M}_i \mat{R}_i\right) \cdot \vec{S}$ (see \cref{sec:mueller_stokes, sec:simLightTissue}).
 After a light beam reaches the end of the tissue, the last optical elements of the setup are applied to the lights vector.
 Finally, the light intensity is stored in the \acs{CCD} image array, which at this point of the algorithm has the same size as the 2d $xy$ grid of the discretized tissue.
 In a later step, the intensities will be blurred and resampled to the acually \ac{CCD} pixels size and noise will we added according to the users specifications.
 % 
 %
 %
-\subsection{Light path}
+\subsection{Light ray path}
 \label{sec:pathOfLight}
 %
 \begin{figure}[!t]
@@ -261,12 +262,39 @@ In a later step, the intensities will be blurred and resampled to the acually \a
 %
 The simulation allows for a tilting light beam.
 For this purpose, the \ac{LAP} uses a tilting stage to which the tissue sections are attached (see \cref{fig:tilted_side_view}).
-The new designed microscope, on the other hand, has an tilted light beam.
+The \ac{LMP3D}, on the other hand, has an tilted light beam.
 This is achieved by a conical light path, from which an aperture is then used to sample the desired light direction \cite{Wiese:887678}.
-Both methods give the same light paths in good approximation.
+Both methods can be mathematically represented by the same procedure.
 \par
 %
-The tilting can lead to a distortion of the image (see \cref{fig:tilting_camera_view}).
+An additional effect changing the light path is the refraction at the tissue-air boundary, which is described by Snell's law for isotropic media (see \cref{eq:Snellius}).
+Since this only adds a parallel shift, simulation is only necessary when the effects of the resampling process and image registration is to be investigated.
+\par
+%
+\begin{figure}[!t]
+\setlength{\tikzwidth}{0.42\textwidth}
+\subcaptionbox{normal}[.495\textwidth]{
+\def\tilt{0}
+\def\nindex{2.25}
+\inputtikz{gfx/simpli/tilting_a}}\hfill
+\subcaptionbox{tilted}[.495\textwidth]{
+\inputtikz{gfx/simpli/tilting_b}}
+\caption[Light path]{Light ray path for a normal (a) and a tilted (b) case. In the tilted case, the light beam $\vec{l}_1$ is tilted within the tissue and thus experiences an optical shift $\Delta$.}
+\label{fig:tilted_side_view}
+\end{figure}
+%
+The initial position of the light beam is calculated by traversing the light path backwards (see \cref{fig:tilted_side_view}).
+This has the advantage, that the each index inside the \ac{CCD} receives always exactly one light beam.
+
+From the \ac{CCD} array, the light path can be shifted back to the top plane of the tissue $\mathfrak{S}_{top}$.
+Subsequently, the light beam $\vec{l}_1$ is traced back through the tissue to the bottom plane $\mathfrak{S}_{bottom}$.
+The point on the lower tissue plane corresponds to the initial position of the light beam.
+This light path change results in a shift $\delta$ along the same direction of the tilting.
+In the simulation only light rays are considered, which will go at least partially through the volume.
+All remaining \ac{CCD} elements are left with a \textit{NaN} value.
+\par
+%
+The tilting of the tissue leads to a distortion of the image (see \cref{fig:tilting_camera_view}).
 This distortion can be described by an affine transformation (see \cref{fig::affine_transformation}):
 %
 \begin{figure}[!t]
@@ -282,47 +310,15 @@ f(\vec{x}) = \mat{A} \cdot \vec{x} + \vec{t}
 where $\vec{x}$ is the coordinate input, $\mat{A}$ and $\vec{t}$ are the transformation values, and $f(\vec{x}$ is the transformed coordinate.
 \par
 %
-The simulation is able to account for the distorted view and can resample the initial positions of the light rays so that the distortion is reversed.
-This is the same as the distortion of the \ac{CCD} sensor, but without the need for interpolation of the \ac{CCD} image sensor.
-In the case of simulation of the distortion, the in the 
-\ac{fastPLI} software provided affine inverse transform $f^{-1}(\vec{x}) = \mat{A}^{-1} \cdot \vec{x} - \vec{t}$ can be applied.
-Since this leads to interpolation artifacts, both techniques are available to investigate this effect in more detail.
-\par
-%
-An additional effect is the simulation of refraction at the tissue-air boundary, which is described by Snell's law for isotropic media (see \cref{eq:Snellius}).
-Since this only adds a parallel shift, simulation is only necessary when the resampling of an image registration is to be investigated.
-\par
-%
-\begin{figure}[!t]
-\setlength{\tikzwidth}{0.42\textwidth}
-\subcaptionbox{normal}[.495\textwidth]{
-\def\tilt{0}
-\def\nindex{2.25}
-\inputtikz{gfx/simpli/tilting_a}}\hfill
-\subcaptionbox{tilted}[.495\textwidth]{
-\inputtikz{gfx/simpli/tilting_b}}
-\caption[Light path]{Light path for a normal (a) and a tilted (b) case. In the tilted case, the light beam $\vec{l}_1$ is tilted within the tissue and thus experiences an optical shift $\Delta$.}
-\label{fig:tilted_side_view}
-\end{figure}
-%
-The initial position of the light beam is calculated by traversing the light path backwards (see \cref{fig:tilted_side_view}).
-Each light beam $\vec{l}_0$ ends in the center of a \ac{CCD} array. 
-From there, it can be shifted back to the plane of the tissue top $\mathfrak{S}_{top}$.
-Subsequently, the light beam $\vec{l}_1$ is traced back through the tissue to the lower plane $\mathfrak{S}_{bottom}$.
-The point on the lower tissue plane corresponds to the initial position of the light beam.
-In the case of a tilted light beam or tilted tissue, there is an offset along the tilting direction $\theta$ of $\delta$.
-By tracing the light from the \ac{CCD}-array to the tissue, resampling is avoided so that no edge effects can occur.
-\par
-%
-\begin{lstfloat}[!p]
-	\lstinputlisting[style=cpp,basicstyle=\scriptsize\ttfamily,]{code/simulation.cpp}
-	\caption{Pseudocode simulation \todo{anhang}}
-	\label{alg:simulation}
-\end{lstfloat}
-%
+The simulation with the light paths sampling as described above takes this distorted view into acount.
+The simulation is also capable of sampling the light rays in such a way, that the distortion occurs.
+In that case the resulting images have to be registered onto each other \eg{} by an affine transformation wich is also available.
+% 
+% 
+% 
 \subsection{Tissue voxel interpolation}
 %
-If the \Stepsize is not equal to the \Voxelsize or if the light path is tilted, the light path points no longer matches the center of the voxels.
+If the \Stepsize{} of the light ray is not equal to the \Voxelsize{} or if the light path is tilted, the light rays position after a step does not longer matches the center of the voxel.
 This means that the physical properties stored in the arrays have to be interpolated.
 %
 \begin{figure}[!t]
@@ -337,21 +333,20 @@ This means that the physical properties stored in the arrays have to be interpol
 \label{fig:vectorfield_disc}
 \end{figure}
 %
-Currently three interpolation methods are implemented for this purpose: \name{nearest neighbor}, \name{linear interpolation} and \name{spherical interpolation}.
+Currently three interpolation methods are implemented: \name{nearest neighbor}, \name{linear interpolation} and \name{spherical interpolation}.
 The voxels considered for interpolation are the nearest eight neighboring voxels, i.e. array indices $(\floor{x\pm0.5},\floor{y\pm0.5},\floor{y\pm0.5})$.
-The \name{nearest neighbor} method is the most error-prone of the three methods and should not be used.
-However, it is also the fastest method.
-The \name{linear interpolation} is of the next higher order.
-However, since the data contains orientation data, the \name{spherical interpolation} method should be used (see \cref{fig:triInterp}).
+The \name{nearest neighbor} and \name{linear interpolation} are still present from the development phase.
+However, they should not be used because they are error-prone.
+Since the data are orientations, the default value for the interpolation method \name{spherical interpolation} should be used.
 %
 %
 %
-\subsection{Simulation of light-tissue interaction}
+\subsection{Simulation of light-tissue interaction}\label{sec:simLightTissue}
 %
-First, the starting points of all light beams are calculated.
-Then, each light beam can be traversed within the tissue.
+After the initial light positions are calculated each light beam is traversed within the tissue.
 To calculate the light-tissue interaction, the change of the Stokes vector is calculated after each light beam step.
-Once the light hits the boundary of the volume, the light beam is multiplied by the matrix of the last optical element and the intensity is stored in the \ac{CCD}-array.
+The step size is a user defined value with a default value of the \Voxelsize{} $\voxelsize$.
+Once the light hits the boundary of the volume, the light beam is multiplied by the matrix of the remaining optical elements of the microscop and the intensity is stored in the \ac{CCD}-array.
 The pseudocode is shown in \cref{alg:simulationLoop}.
 %
 \begin{lstfloat}[!tb]
@@ -370,7 +365,7 @@ for light in light_beams:
     light = optical_elemts_end * light
     ccd_array[light.ccd_pos] = light.intensity
 \end{lstlisting}
-\caption{Simulation of light-tissue interaction}
+\caption{Loop over the light vectors for the light-tissue interaction. Their intensity value is stored inside the \ac{CCD} array.}
 \label{alg:simulationLoop}
 \end{lstfloat}
 %
@@ -378,9 +373,9 @@ for light in light_beams:
 %
 \subsection{Optimizations}
 %
-Several optimizations are made in this pipeline.
-First, the order of the tissues stored in memory is along the z-axis (as described in \cref{sec:dvOpti}).
-Second, the for loop for the light beams is paralellized with \ac{OpenMP}.
+Several optimizations exists in this pipeline.
+First, the order of the tissues stored in memory is along the z-axis (as described in \cref{sec:dvOpti}) so that the light ray \textit{traverses} along the aligned memory.
+Second, the for-loop for the light beams (see \cref{alg:simulationLoop}) is paralellized with \ac{OpenMP}.
 These threads are completely separated and there are no race conditions.
 In addition, all vector and matrix calculations are optimized for their small sizes by the compiler with the help of tools like \name{Compiler Explorer}\footnote{\url{https://godbolt.org/}} and \name{C++ Insight}\footnote{\url{https://cppinsights.io/}}.
 %
@@ -389,35 +384,38 @@ In addition, all vector and matrix calculations are optimized for their small si
 \label{sec:ccdOptic}
 %
 The image sensor, as described in \cref{sec:expSetup}, is a \ac{CCD}-sensor.
-The calculations, \ie the resampling and noise modeling, are implemented according to \cref{sec:opticalResolution}.
-These calculations are performed on the \python{} side of the algorithm and can be executed with the \code{multiprocessing} library of \python{} to use multiple \ac{CPU} cores.
+The the resampling and noise modeling, are implemented according to \cref{sec:opticalResolution}.
+These calculations are performed on the \python{} side of the algorithm (\code{fastpli.simulation.Simpli}) and can be executed with the \code{multiprocessing} library of \python{} to use multiple \ac{CPU} cores.
+Therefore when using \ac{MPI} (see \cref{sec:mpiSim}) the intensity image has to be reduced to a single process.
+Since this image is only two dimensional, there is no need to speed up the process with \ac{MPI} further.
 \par
 %
-The same algorithms are implemented as in the \ac{3D-PLI} routine pipeline (see \cref{sec::intSignal,sec::InclAnalysis}).
+To analyse the signal, the same algorithms are implemented as in the \ac{3D-PLI} routine pipeline (see \cref{sec::intSignal,sec::InclAnalysis}).
 This include the modalities analysis transmittance, direction and retardatation as well as the tilting analysis performend by \ac{ROFL}.
+The tilting analysis takes quite a lot time.
+Therefore it can also be executed with the \code{multiprocessing} library of \python{}.
 %
 %
 %
 \section{MPI parallelization}\label{sec:mpiSim}
 %
-Both algorithms, the DV generator and the LT simulation, can additionally use a parallelization technique.
+Both algorithms, the discrete volume generator and the simulation, can additionally use a parallelization technique.
 For large volumes that are larger than the local memory size, the computation must be split among multiple physical \acp{CPU}s and \name{computation nodes}.
 For this purpose, \acreset{MPI} \ac{MPI} is used.
-A method is implemented to automatically partition the volume along the $x$-axis and the $y$-axis into blocks with minimal surface area (see \cref{fig:com_halo}).
-% Minimizing the $xy$-area is important for the simulation algorithm.
+A method is implemented to automatically partition the volume along the $x$-axis and the $y$-axis into blocks with minimal surface area along both axis (see \cref{fig:com_halo}).
 \par
 % 
-Each CPU can be performed on its volume the above algorithms analogously on the \ac{MPI} \name{ranks} as if they knew only their volume.
+Each \ac{CPU} can performed the discrete volume generation without the knowlege of each other.
 The exception is the simulation for tilted light beams.
 Here, when a light ray leaves the local volume, it must be transmitted to the adjacent volume.
 \ac{MPI} provides several methods to send information to another \name{rank}.
-Since this volume sharing is cartesion, the cartesion implementations of \ac{MPI} are used (\eg{} \code{MPI\tu Cart\tu create}).
+Since the subvolumes are splitted along a cartesion grid, the cartesion implementations of \ac{MPI} are used (\eg{} \code{MPI\tu Cart\tu create}).
 %
 \begin{figure}[!t]
     \centering
     \setlength{\tikzwidth}{0.85\textwidth}
     \inputtikz{gfx/simpli/com_halo}
-    \caption{comunication halos. The volume is split into six subvolumes, distributed to 6 mpi ranks. The coloured voxels have the same tissue information.  To calculate the value at a given point a eight-neighborhood is necessary.}
+    \caption{ This example uses six \ac{MPI} ranks to split the entire volume into six subvolumes. To calculate the value at a given point a eight-neighborhood is necessary. Therefore a \name{halo} area (coloured voxels) with the same information shared by neighboring \ac{MPI} process is necesarry.}
     \label{fig:com_halo}
 \end{figure}
 %
@@ -437,6 +435,4 @@ The main loop of the light beam algorithm is then restarted on all \ac{MPI} \nam
 This is repeated until no more communication is required.
 \par
 %
-Each \ac{MPI} process can additionally use \ac{OpenMP} to allow multiple cores to benefit from shared memory. 
-% 
-%
+Each \ac{MPI} process can additionally use \ac{OpenMP} to allow multiple cores to benefit from shared memory.
