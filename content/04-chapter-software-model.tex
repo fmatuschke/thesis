@@ -57,7 +57,7 @@ Since these models focus on non-overlapping tubular structures, they can also be
 \par
 %
 All described algorithms here are part of the toolbox \ac{fastPLI} \cite{Matuschke2019, Matuschke2021}, which is described in detail in \cref{chap:Software}.
-The original idea of a collison free algorithm was published in \cite{Matuschke2019}.
+The original idea of a collison free algorithm is published in \cite{Matuschke2019}.
 %
 %
 %
@@ -154,7 +154,7 @@ Seed points are stored as a list of 2d points:
 \mathit{seeds} = \left\{ \vec{p}_i=(x_i,y_i) \mid x,y \in \mathbb{R} , \, i \in \{0,1,...,N_{\mathit{seed\_points}}-1\}\right\}
 \end{align}
 %
-To form particularly dense fiber bundles, a method for generating an equilateral triangular grid was implemented (see \ref{fig:triGrid}).
+To form particularly dense fiber bundles, a method for generating an equilateral triangular grid is implemented (see \ref{fig:triGrid}).
 Mathematically, this yields the most densely packed pattern for a 2d circle with equal radius packed area.
 However, this very regular symmetric grid can lead to unrealistic results (\eg{} diffraction pattern in light wave simulation \cite{MenzelDissertation}).
 It should therefore only be used as an initial configuration.
@@ -449,7 +449,7 @@ Therefore, another strategy must be chosen to reduce the number of computations.
 %
 % 
 % 
-\subsection{Octree}
+\subsection{Octree}\label{sec:octree}
 %
 \begin{figure}[!t]
     \centering
@@ -552,12 +552,8 @@ For the rotation the direction of motion is weighted by the distance of each poi
 \par
 %
 The velocity is stored in an array for each fiber corresponding to the fibers points.
-If the object collides with multiple objects, the velocity is summed up.
-The maximum velocity is finally bounded by a value of $v_{\max} = 0.1 \times \min(\mathit{object radius})$.\footnote{This value has proven to be appropriate during the testing phase of this algorithm. Speedup may still be possible by changing this value without significantly changing the results.}
-This is a constraint that is necesarry due to the following two required properties:
-First, an object should not be allowed passing thorugh another object, \ie{} the velocity should always be $<min(r_i)$.
-Second, it smooths the motion and thus the maximum achievable density of the resulting models.
-However, this means that the solution process takes more time.
+All velocities for a single point will be summed up.
+
 \par
 % 
 A special case is the movement of the first and last point of a fiber.
@@ -570,11 +566,23 @@ This prevents the fibers from growing to infinity.
 % 
 The movement of single points can lead to a distorted fiber model, \eg{} two points move very far apart.
 Therefore, boundary conditions are specified.
-It was decided to use the following two conditions.
+It was decided to use the following two properties, the mean segment length and the minimum bending radius, as parameters for the shape control.
+Each parameter can be set to $\SI{0}{}$ to disable the boundary condition.
 %
 % 
 % 
 \subsection{Mean segment length}
+%
+\begin{figure}[!t]
+    \centering
+    \setlength{\tikzwidth}{0.75\textwidth}
+    % disable tikz externalize for overlayed circle lines
+    % \def\forcetikzscale{true}
+    % \tikzset{external/export=false}
+    \inputtikz{gfx/model/model_length}
+	\caption{Different fiber segment lengths as factor of the mean fiber radius $\fiberRadiusMean$.}
+	\label{fig:modelLength}
+\end{figure}
 %
 \begin{figure}[!t]
     \centering
@@ -589,31 +597,19 @@ It was decided to use the following two conditions.
     \subcaptiontab{0.475\textwidth}{merge} &
     \subcaptiontab{0.475\textwidth}{split}
     \end{tabular}
-	\caption{Length control for the $f$ and $f'$ fibers. Illustrated is the merging and splitting of points, if necessary.}
+	\caption{Length control for the $f$ and $f'$ fibers. Illustrated is the merging and splitting of points, if necessary. The first and last point are never removed.}
 	\label{fig:mergeSplit}
 \end{figure}
 %
-%
-\begin{figure}[!t]
-    \centering
-    \setlength{\tikzwidth}{0.75\textwidth}
-    % disable tikz externalize for overlayed circle lines
-    % \def\forcetikzscale{true}
-    % \tikzset{external/export=false}
-    \inputtikz{gfx/model/model_length}
-	\caption{Different fiber segment lengths with the same fiber trajectory.}
-	\label{fig:modelLength}
-\end{figure}
-%
-The average segment length is the distance between the two points of a fiber segment.
-When the segment length becomes too small/large, the points within a fiber corresponding to the object are merged/separated and one less point/one new point is added.
-The minimum/maximum distance of the object is set to $d_{\min} = \frac{2}{3} \overline{d}$ and $d_{\max} = \frac{4}{3}\overline{d}$.
+The average segment length is the distance between the two points of a fiber segment (see \cref{modelLength}).
+When the segment length becomes too small/large, the points within a fiber corresponding to the object are merged/separated and one less point/one new point is added (see \cref{mergeSplit}).
+The segment is alowed to have a length inside $[\frac{2}{3} \overline{d},\frac{4}{3} \overline{d}]$. 
 Thus, the mean value of the object is:
 \begin{align}
 \frac{d_{\min} + d_{\max}}{2} = \overline{d}
 \end{align}
 %
-If a new point is created due to exceeding the maximum limit, the new point $\vec{p}_{new}$ radius $r_{new}$ and velocity $\vec{v}_{new}$ are
+If a new point is created due to exceeding the maximum limit, the new point $\vec{p}_{new}$ with a radius $r_{new}$ and velocity $\vec{v}_{new}$ are calculated by a linear interpolation:
 \begin{align}
 \vec{p}_{new} = \frac{\vec{p}_{i} + \vec{p}_{i+1}}{2},\enspace
 r_{new} = \frac{r_{i} + r_{i+1}}{2},\enspace
@@ -626,35 +622,36 @@ r_{new} = \frac{r_{i} + r_{i+1}}{2},\enspace
 %
 \begin{figure}[!t]
     \centering
-    % \tikzset{external/force remake}
-    \setlength{\tikzheight}{.42\textwidth}
-    \setlength{\tabcolsep}{0pt}
-    \begin{tabular}{C{0.5\textwidth}C{0.5\textwidth}}
-    \inputtikz{gfx/model/model_circle} &
-    \inputtikz{gfx/model/model_circular} \\
-    \subcaptiontab{0.475\textwidth}{Boundary segment length: lower bound $\varphi=\SI{60}{\degree} \Rightarrow \segRadius \gtrsim \SI{0.58}{} \cdot \segLength$} &
-    \subcaptiontab{0.475\textwidth}{\label{fig:boundaryLength}Boundary segment radii: lower bound $\segRadius \geq \fiberRadiusMean$}
-    \end{tabular}
-	\caption{Determination of the boundary values from geometrical points of view for fiber segment length \segLength{} and fiber bending radius \segRadius{}. The first constraint (a) considers that the fiber segments and the minimum bending radius depend on each other. The second condition (b) is a constraint that a single fiber cannot be bent around another fiber. This would lead to arbitrary models.}
+    \setlength{\tikzheight}{.75\textwidth}
+    % \tikzset{external/export next=false}
+    \inputtikz{gfx/model/model_circle}
+	\caption{A fiber along its path can be characterized by circles from three adjacent points. A minimal radius for these circles is applied as boundry condition. Additionally the inner angle has to be $\eta \geq \SI{60}{\degree}$. If a condition is not fullfiled, a force is applied to smoothen the curviture at these points.}
 	\label{fig:modelCircle}
 \end{figure}
 %
-The bending radius is defined as the circle radius corresponding to the circle defined by three adjacent points $\vec{p}_{i-1}, \vec{p}_{i}, \vec{p}_{i+1}$ (see \cref{fig:boundaryLength}).
+The bending radius is defined as the circle radius corresponding to the circle defined by three adjacent points $\vec{p}_{i-1}, \vec{p}_{i}, \vec{p}_{i+1}$ (see \cref{fig:modelCircle}).
 The limit is defined as the minimum radius of $r_{\min}$.
-If any $p_{i}$ point in a fiber falls below this value, the three points are shifted.
+For adjecent points with an inner angle $\eta \geq \SI{60}{\degree}$ the circles radius would increase again.
+Also this would mean, that a fiber can be circular with three points.
+Therefore the additional boundry condition of an angle $\eta \geq \SI{60}{\degree}$ is always applied.
+If any $p_{i}$ point in a fiber fails these boundry conditions, the three points are shifted.
 $p_{i-1},p_{i+1}$ are shifted parallel to $p_{i}$ and vice versa to reduce curvature.
 %
 % 
 % 
 \subsection{Movement phase}
 % 
-All movements are added to the velocity vector before the total movement is executed.
-The algorithm executes each step sequentially (see \cref{alg:pseudocode_solver}).
-Finally, a volume is marked as collision-free if no collisions are found and all boundary conditions are satisfied.
-The boundary conditions can be set to $0$ to ignore them.
-Additionally, a resistance value can be set to reduce the velocity by the appropriate factor after each step.
-This can help to reach a collision free volume faster, but the density will be significantly reduced.
-Therefore, set the value to $0$ so that after each step the velocity is reset to $\vec{0}$.
+All movements are added to the velocity array before the total movement is executed.
+The maximum velocity is bounded by a value of $v_{\max} = 0.1 \times \min(\mathit{object radius})$.\footnote{This value has proven to be appropriate during the testing phase of this algorithm. Speedup may still be possible by changing this value without significantly changing the results.}
+This is a constraint that is necesarry due to the following two required properties:
+First, an object should not be allowed passing thorugh another object, \ie{} the velocity should always be $<min(r_i)$.
+Second, it smooths the motion and thus the maximum achievable density of the resulting models.
+However, this means that the solution process takes more time.
+\par
+The movement of all points is then executed.
+A resistance value is applied to reduce the velocity by the appropriate factor after each step.
+This can help to reach a collision free volume faster, but the density will be reduced.
+Its default value is set to $\SI{0}{}$ so that the velocity is reseted to $\vec{0}$ after each step.
 % 
 % 
 % 
@@ -668,35 +665,47 @@ The difference between an $O(n\log(n))$ and $O(n^2)$ cannot be underestimated he
 \paragraph{Memory alignment}
 As described in \cref{sec:theorySpeedup}, memory alignment is the most important optimization in this software package.
 To this end, all functions use \code{std::vector} as much as possible.
-During the development process of \name{octree}, it was found that creating a memory-aligned subset of the objects is faster than splitting the objects into different branches.
-Each optimization was tested for improvements for different types of volumes and number of objects, with the largest volumes and number of objects optimized at the expense of small volumes, which also require relatively little computation time.
+During the development process of \name{octree}, it was found that creating a memory-aligned copy of the subset of the objects is faster than refering to the objects by reference in the different branches.
+Each optimization was tested for improvements for different types of volumes and number of objects.
+The focus is on larger volumes and a larger number of objects, since smaller volumes or a smaller number of objects require significantly less computing time.
 %
 %
 \paragraph{OpenMP}
-In order to be able to use several \acp{CPU}, \ac{OpenMP} is used.
-A structure like an octree suggests parallelization of $\SI{8}{\cores}$.
-However, this would only be the case if the data already existed on each core and did not need to be shared.
-However, this is not the case.
-The same object can be accounted for in multiple tree nodes.
-And after a branch is processed, the data from all branches must be collected.
-During the development phase of this algorithm, it was realized that up to the second stage, branches may use multiple cores. From the 3rd stage on, the speedup is already much lower, since data management between cores is an overhead.
-In addition, other functions that are thead safe are also parallized with \ac{OpenMP}, such as adding the speed to each object.
+To be able to use multiple \acp{CPU}, \ac{OpenMP} is used.
+A structure like an octree suggests the parallelization of $\SI{8}{\cores}$.
+During the development phase of this algorithm it was found that up to the second level of the octree (see \cref{sec:octree}) further parallelization in the next branches is beneficial.
+From the third level on, the speedup is already significantly lower, since data management between cores is an overhead.
+In summary this means a parallelization up to $\SI{64}{\cores}$ for the traversing of the octree.
+\par
+% 
+In addition, other functions that are thread-safe are parallelized with \ac{OpenMP}, e.g. by adding speed to each object.
 %
 %
 %
 \section{Visualization}\label{sec:visualization}
+% 
+\begin{figure}[!t]
+    \centering
+    \setlength{\tikzwidth}{0.242\textwidth}
+    \includegraphics[width=\tikzwidth]{gfx/fastpli/solver-10}\hfill
+    \includegraphics[width=\tikzwidth]{gfx/fastpli/solver-20}\hfill
+    \includegraphics[width=\tikzwidth]{gfx/fastpli/solver-50}\hfill
+    \includegraphics[width=\tikzwidth]{gfx/fastpli/solver-99}
+	\caption{Exemplary visualization in the collision solving process. The red color indicates that a collision is detected in the fiber segment.}
+	\label{fig:vis_solver}
+\end{figure}
 %
-A visualization tool is available to visualize the nerve fiber configuration.
+A visualization tool is available to visualize the nerve fiber configuration (see \cref{fig:vis_solver}).
 This allows the user to get direct feedback (\eg{} after each step) to adjust the initial fiber configuration or boundary conditions.
-It is written in \cpp{} and \ac{OpenGL} 2 \cite{isocpp, khronos}.
+It is written in \cpp{} and \ac{OpenGL} \textit{v2} \cite{isocpp, khronos}.
 This implementation uses \code{gluCylinder} to represent a nerve fiber segment.
 As it stands, this is by no means the fastest approach, but it is still fast enough compared to the computation time of a single step in the collision algorithm.
 \par
 % 
 A further advanced interactive tool is also available as open source, the FAConstructor, which was developed by Jan Reuter as part of his bachelor thesis \cite{Reuter2019}.
-It provides additional interactive methods for creating nerve fiber models and was written in \ac{OpenGL}. 3.
-\par
-%
+It provides additional interactive methods for creating nerve fiber models and was written in \textit{OpenGL\,v3}.
+% \par
+\subsection{Transperent objects and cells}
 %
 \begin{figure}[!t]
     \centering
@@ -706,23 +715,20 @@ It provides additional interactive methods for creating nerve fiber models and w
 	\label{fig:vis_mesh}
 \end{figure}
 %
-However, as described in the next chapter (see \cref{sec:medusa}), better visualization was needed.
-During a collaboration with Neurospin at \ac{CEA}, the goal was not only to provide nerve fiber models, but also to generate cells such as astrocytes.
-These cells should be visualized as well as the inner axon.
+In \cref{sec:medusa} the need of transperent objects is necesarry.
+Not only the outer hull of the myelin, but also the inner axon needs to be seen in the visualization.
+Additionally cells, \eg{} astrocytes, have to be visualized.
 For this purpose, the former algorithm was rewritten.
-The network of objects was now calculated by a separate algorithm.
-In order to visualize both the axon and the myelin simultaneously, the myelin had to be transparent.
-This means that during visualization the computer has to remember which object is in front of another object in the scene in the correct order, i.e. the objects have to be sorted in z-direction (parallel to the viewing direction).
-This is a huge amount of computational resources and the reason why it is not included in the \ac{fastPLI} package.
+For the transparent effects the algorithm needs to know the order in which the objects or triangular surfaces needs to be renderd.
+This means, that the triangular surfaces have to be sorted in z-direction, \ie{} the view direction.
+To order the triangular surfaces, they first have to be calculated.
+The fiber segments are no longer represented as a cylinder, but as \ac{CC} which consist out of a hexagonal grid (see \cref{fig:vis_mesh}).
 \par
 % 
-The fiber segments are no longer represented as a cylinder, but as \ac{CC} (see \cref{fig:vis_mesh}).
-The calculated meshes and the resulting images look like this (see \cref{fig:medusa_8b})
-\par
+This is a huge amount of computational resources and currently a special non ye optimized case.
+It is not yet included in the \ac{fastPLI} package.
+The resulting visualization is shown in \cref{fig:medusa_8b}.
 % 
-More information about the generation of meshes and the visualization of such objects can be found in \cite{9780134495491}.
-This visualization algorithm can be further improved by processing the hole calculations on the \ac{GPU}.
-%
 % 
 % 
 \section{Medusa - sphered nerve and cell modelling}
@@ -732,29 +738,29 @@ The algorithm described above for generating dense \ac{WM} fiber models can also
 However, due to other imaging techniques and study priorities, other types of models are required.
 \par
 % 
-There, the movement and interaction of water molecules can be simulated with the fiber models.
-When the water molecules collide with the surface of a fiber segment, the diffusion model must be taken into account.
+In \ac{dMRI} the movement and interaction of water molecules with the fiber models is simulated.
+When the water molecules collide with the surface of a fiber segment, the moleculs behavier, like diffusion though the surface, must be taken into account.
 However, this applies not only to nerve fibers but also to other cell types.
-Since the \ac{WM} consists not only of axons, but also of other cells such as glial cells, astrocytes and olegodendrites, these are also involved in the movement of water molecules.
+Since the \ac{WM} consists not only of axons, but also of other cells such as glial cells, astrocytes and olegodendrites, these are also changing the signal of the \ac{dMRI}.
 \par
 % 
 Therefore, an additional algorithm was developed in collaboration with Kevin Ginsburger and Cyril Poupon (Neurospin, \ac{CEA}).
-This algorithm called \ac{MEDUSA} \cite{Ginsburger2019} works similarly to the algorithm described above, but models the 3D objects as spheres rather than pipe segments.
+This algorithm called \ac{MEDUSA} \cite{Ginsburger2019} works similarly to the algorithm described above, but models the 3d objects as spheres rather than pipe segments.
 This has the advantage that the objects are simpler, which leads to an increase in collision detection, but spheres are able to approximate a 3d object like a cell body.
 The latter is achieved by representing the surface of a cell body as the sum of several spheres. 
 The resulting total surface of all spheres represents the cell (see \cref{ig:medusaCell}).
 In this way, very complicated shapes are possible.
-The disadvantage, however, is that for the representation of tubular objects many more spheres and thus objects for collision control are needed.
 \par
-% 
-Since the number ob objects, \ie{} spheres, is so much higher, the algorithm was implemented on the \ac{GPU} with a axes aligned bounding box search algorithm \cite{Karras2012}.
-\par
-% 
+%  
 A major feature of this algorithm is how to construct other cell types and, in particular, olegodendrites whose arms connect to the myelin layer of a nearby axon.
-Another focus was on the internal configurations of the cells.
+Another focus is on the internal configurations of the cells.
 Nerve fibers are initialized as fiber populations with parameters such as density and angular dispersion \cite[Ginsburger2019, ginsburgerDis2019].
 Analogous to the \cref{sec:Solver} algorithm, the collisions of the objects are then checked and slowly pushed forward until no more collisions can be detected.
 This algorithm is then capable of generating extensive libraries of fiber models with varying numbers of individual fiber populations (see \cref{fig:medusa_8a}).
+\par
+% 
+The disadvantage of the spheres is that for the representation of tubular objects many more spheres and thus objects for collision control are needed.
+Since the number ob objects, \ie{} spheres, is so much higher, the algorithm was implemented on the \ac{GPU} with a axes aligned bounding box search algorithm \cite{Karras2012}.
 % 
 % 
 %
@@ -773,7 +779,7 @@ This algorithm is then capable of generating extensive libraries of fiber models
     \label{fig:medusaCell}
 \end{figure}
 %
-Since all objects are represented as a collection of spheres (see \cref{fig:model:medusa_4})
+Since all objects are represented as a collection of spheres (see \cref{fig:medusaCell})
 \begin{align}
     \mathcal{S} = \{ (x_i,y_i,z_i,r_i) : i \in \{0, 1, ..., n_\text{objects}-1\}  \}
 \end{align}
@@ -781,29 +787,19 @@ Since all objects are represented as a collection of spheres (see \cref{fig:mode
 , a collision occurs when
 %
 \begin{align}
-\begin{split}
-d<r_i+r_j\\
-d = \abs{\vec{p}_i - \vec{p}_j}
-\end{split}
+d<r_i+r_j \enspace \text{with} \enspace d = \abs{\vec{p}_i - \vec{p}_j}
 \end{align}
 %
-However, since adjacent spheres in a fiber collide when the fiber is densely populated, they must be excluded if
+However, since adjacent spheres in a fiber collide when the fiber is densely populated, they must be excluded if the length of the partial trajectory is smaler then the sum of the radii of the two spheres:
 \begin{align}
-\begin{split}
-d(i,j) &\leq  r_i + r_j\\
-d(i,j) &=
-\begin{cases}
-\sum_{n=i}^{j-1} \abs{\vec{p}_n - \vec{p}_{n+1}},& \text{if } j-i \geq 1\\
-0 & \text{otherwise}
-\end{cases}
-\end{split}
+\text{ignore if} \enspace \sum_{n=i}^{j-1} \, \abs{\vec{p}_n - \vec{p}_{n+1}} \leq  r_i + r_j 
 \end{align}
 %
 Spheres inside cell bodies are not checked for collisions because their volume is approximately equal to the volume of the cell.
 \par
 %
 The calculation of the collisions is performed using the GPU architecture.
-For this first implementation, the algorithm \name{AxisAligedSortedSearch} \cite{Karras2012} was used.
+For this first implementation, the algorithm \name{AxisAligedSortedSearch} \cite{Karras2012} is used.
 It sorts the spheres along an axis, \obda{} x-axis, and for each sphere $i$ searches for the first and last possible collision on that axis.
 This results in a list of balls $\mathcal{C}_i$ to be tested:
 \begin{align}
@@ -818,21 +814,34 @@ This results in a list of balls $\mathcal{C}_i$ to be tested:
 	\label{alg:medusa_collision}
 \end{lstfloat}
 %
-The algorithm described above is currently used for volumes of about $\SI{200}{\micro\meter}$.
+The algorithm described above is currently used for volumes of about $\SI{200}{\micro\meter}$ for different number of fiber populations and other properties (see \cref{fig:medusa_8a}).
 For this volume size, the algorithm is fast enough for current use.
 However, there are more advanced algorithms that can be used here.
 One promising technique is to use a \name{BoundindBoxHierarchy} \cite{Karras2012}.
 %
 \begin{figure}[!t]
     \centering
-    \subcaptionbox{\dummy{}}[0.75\textwidth]{\label{fig:medusa_8a}
+    \subcaptionbox{Cubic volumes with different number pf fiber populations and volume fractions (VF) are generated.}[0.75\textwidth]{\label{fig:medusa_8a}
     \resizebox{0.75\textwidth}{!}{
     \includegraphics{gfx/model/medusa/8.jpg}}}
     \\[2em]
-    \subcaptionbox{\dummy{}}[0.75\textwidth]{\label{fig:medusa_8b}
+    \subcaptionbox{Exemplary visualization of a volume filled with a single fiber population and astrocytes.}[0.75\textwidth]{\label{fig:medusa_8b}
     \resizebox{0.75\textwidth}{!}{
     \includegraphics{gfx/model/medusa/11_.jpg}}}
-	\caption{\cite{Ginsburger2019}}
+	\caption{Original images from \cite{Ginsburger2019}.}
 	\label{fig:medusa_8}
 \end{figure}
 % 
+% 
+% 
+% \subsection{Visualization of transperent objects}
+% % 
+% \begin{figure}[!t]
+%     \centering
+%     \setlength{\tikzwidth}{0.75\textwidth}
+%     \inputtikz{gfx/model/vis_a}
+% 	\caption{Generate a mesh for visualization. A mesh perpendicular to the fiber trajectory is calculated from n points. Triangles defined by these points are used as surfaces for the visualization of the object. Normal vectors can be used to smooth the visualization, and flash effects contribute to a more natural representation.}
+% 	\label{fig:vis_mesh}
+% \end{figure}
+% % 
+% \todo{write}
