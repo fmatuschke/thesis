@@ -17,7 +17,7 @@ However, it has been shown that irregular, non-symmetric nerve fiber configurati
 Therefore one needs ideally a representation, which allows to build any kind of pattern.
 \par
 %
-Many solutions are already available.
+Many solutions are available.
 A common one is used in graphical visualizations.
 A rope or fiber, \ie{} a raw object, is defined by a trajectory with a radius.
 From this, a surrounding mesh is generated.
@@ -47,7 +47,7 @@ Repeat this step until all collisions are removed.
 \par
 %
 This idea with all its necessary prerequisites is described in detail in the following chapter.
-First, the representation of a nerve fiber is defined in a way that it already takes into account to be as performant as possible for the collision process.
+First, the representation of a nerve fiber is defined in a way that it takes into account to be as performant as possible for the collision process.
 Then, additional \textit{building} functions are designed to help the user quickly define a volume with nerve fibers.
 Finally, the algorithm for resolving the collisions with the parallelization components is explained in detail.
 In addition, another approach based on this idea and developed in this work with colleagues from \ac{dMRI} is explained in detail.
@@ -674,7 +674,7 @@ The focus is on larger volumes and a larger number of objects, since smaller vol
 To be able to use multiple \acp{CPU}, \ac{OpenMP} is used.
 A structure like an octree suggests the parallelization of $\SI{8}{\cores}$.
 During the development phase of this algorithm it was found that up to the second level of the octree (see \cref{sec:octree}) further parallelization in the next branches is beneficial.
-From the third level on, the speedup is already significantly lower, since data management between cores is an overhead.
+From the third level on, the speedup is significantly lower, since data management between cores is an overhead.
 In summary this means a parallelization up to $\SI{64}{\cores}$ for the traversing of the octree.
 \par
 % 
