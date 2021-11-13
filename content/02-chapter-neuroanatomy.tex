@@ -21,54 +21,74 @@
 \section{Introduction}
 %
 Neuroanatomy is the study of the structure of the brain.
-Its task is to study the sizes, regions and structure of the nervous system in humans and animals.
-This is quite a difficult task because the brain, especially the human brain, is one of the most complex organs with a great diversity of cells, connections, topography and resulting functionalities.
-Recently, techniques such as \ac{dMRI}, fluorescence microscopy, stained microscopy, autoradiography (to name a few), have been able to study more and more structures from different perspectives in the brain with different resolutions, modalities and contrasts on different species.
-Different species help to understand the evolution of the brain. The brains of rodents and monkeys are not as large or as evolved as the human brain, but are still close in evolutionary terms.
+Its describing regions and the structure of the nervous system in humans and animals.
+Techniques such as \ac{dMRI}, fluorescence microscopy, microscopy on stained tissue, autoradiography (to name a few), have been able to study more and more structures from different perspectives in the brain with different resolutions, modalities and contrasts on different species.
+% 
 \par
 %
-This chapter gives a general overview of the structure of the brain with its most important structures.
-The main focus is on the nerve fiber architecture, since this is the focus of this work.
-Additionally information can be found \eg{} \dummy{}.
+This chapter gives a general overview of the structure of the brain with its most important regions as well as the nerve fiber architecture.
+More in-depth information can be found, for example, in the following literatures \dummy{}.
+% 
 %
-%
+% 
+% The human brain is one of the most complex organs with a great diversity of cells, connections, topography and resulting functionalities.
+% 
+% 
 %
 \section{Brain Architecture}
 %
-The human brain (see \cref{fig:humanBrain}) consists of three main parts: the cerebellum, located at the rear bottom, the cerebrum, located at the top, and the brainstem.
-The brainstem is the connection between the different brain areas and the spinal cord.
-It can be further subdivided into the midbrain, the pons and the medulla obiongata, which in turn are further specialized.
-The most important function of the cerebellum in the human brain is motor control.
-It is highly folded and therefore has a particularly large surface area, which will be important for cell architecture.
+The mammal brain consists of three main parts: the brainstem, the cerebellum and the cerebrum (see \cref{fig:humanBrain}).
+% 
+The brainstem is the connection between the different brain areas and the spinal cord located at the bottom of the brain.
+It can be further subdivided into the midbrain, the pons and the medulla obiongata.
+The cerebellum is located at the lower rear of the brain. Its most important function is motor control.
+It is highly folded \todo{species?} and therefore has a particularly large surface area.
+The cerebrum is the largest part of the human brain.
+As the cerebellum its surface is folded as well \todo{species?}.
+The cerebrum is split into a left and right hemisphere.
+In addition, the cerebrum can be divided into four parts:
+the frontal, parietal, temporal, and occipital lobes (see \cref{fig:brainLobes}).
+The frontal lobe is responsible for voluntary movements of specific body parts as well as the human personality.
+The parietal lobe's main functionalities are the processsing of the sensory informations.
+The primary function of the occipital lobe is signal processing of the visual system.
+The temporal lobe contains auditory functions and language perception in addition to visual memories.
+Beneath the brain surface there are also other structures such as the basal gangila or the thalamus.
 \par
-%
-The cerebrum in the human brain is the largest part.
-It is also folded and has a left and right hemisphere.
-In addition, the cerebrum can be divided into four visible parts, which are separated by commissures (\eg{} sulcus centralis):
-%
+% 
 \begin{figure}[!t]
 \centering
-% \hspace*{\fill}
-\subcaptionbox{\label{fig:brainLobes}Sagital view of the human brain with lobes colored in: {\color[RGB]{117,112,179}frontal}, {\color[RGB]{230,171,2}parietal}, {\color[RGB]{27,158,119}temporal} and {\color[RGB]{231,41,138}occipital} lobe. The {\color[RGB]{102,166,30}cerebellum} is at the bottom, with the {\color[RGB]{217,95,2}brainstem} next to it. Modivied version of \url{https://en.wikipedia.org/wiki/Frontal_lobe}}[.47\textwidth]{\includegraphics[height=3.25cm]{gfx/neuroanatomy/brain_lobes.pdf}}
-\hspace*{\fill}
-\subcaptionbox{\label{fig:nerveFiber}Sagital view of exemplary dominant fiber pathways. Modivied version of \url{https://en.wikipedia.org/wiki/Association_fiber}}[.47\textwidth]{\includegraphics[height=3.25cm]{gfx/neuroanatomy/brain_fiber_paths.pdf}}
-% \hspace*{\fill}
-\caption{Illustration of the human brain with lobes \subref{fig:brainLobes} and fiber pathways \subref{fig:nerveFiber}.}
+\subcaptionbox{%
+        \label{fig:brainLobes}%
+        Sagital view of the human brain with lobes colored in: {\color[RGB]{117,112,179}frontal}, {\color[RGB]{230,171,2}parietal}, {\color[RGB]{27,158,119}temporal} and {\color[RGB]{231,41,138}occipital} lobe.
+        The {\color[RGB]{102,166,30}cerebellum} is at the bottom, with the {\color[RGB]{217,95,2}brainstem} next to it.
+        Modivied version of \url{https://en.wikipedia.org/wiki/Frontal_lobe}%
+    }[.47\textwidth]{\includegraphics[height=0.3\textwidth]{gfx/neuroanatomy/brain_lobes.pdf}}
+\hfill
+\tikzset{external/export next=false}
+\subcaptionbox{%
+        \label{fig:coronalStained}%
+        \todo{BB 4201} Coronal section stained for cell bodies. The \ac{GM} is dark while the \ac{WM} is bright. The left and right hemisphere is connected via the corpus calosum.}%
+    [0.47\textwidth]{\includegraphics[height=0.3\textwidth]{dev/brain/BB_4201.png}}
+    % \begin{tikzpicture}[]
+    %     \node[inner sep=0pt, anchor = south west] (fig) at (0,0)
+    %     {\includegraphics[height=0.3\textwidth]{dev/brain/BB_4201.png}};
+    %     \coordinate (WM1) at ($(fig.north west)!0.6!(fig.north east)$);
+    %     \coordinate (WM2) at ($(fig.north east)!0.35!(fig.south east)$);
+    %     \draw[RED, ultra thick, <-] (WM1 |- WM2) -- ++ (-42:0.75) node[pos=1, anchor=north] {\textbf{WM}};
+    %     \coordinate (GM1) at ($(fig.north west)!0.275!(fig.north east)$);
+    %     \coordinate (GM2) at ($(fig.north east)!0.125!(fig.south east)$);
+    %     \draw[GREEN, ultra thick, <-] (GM1 |- GM2) -- ++ (-65:0.75) node[pos=1, anchor=north] {\textbf{GM}};
+    % \end{tikzpicture}
+% }
+\caption{Illustration of the human brain and a cell body stained coronal section.}
 \label{fig:humanBrain}
 \end{figure}
 %
-the frontal, parietal, temporal, and ocipital lobes (see \cref{fig:brainLobes}).
-The frontal lobe contains the voluntary movements of specific body parts as well as the human personality.
-The parietal lobe main functionalities are the processsing of the sensory informations like touch.
-The primary function of the occipital lobe is signal processing of the visual system.
-The temporal lobes contain auditory functions and language in addition to visual memories.
-\par
-%
-In the inner part of the brain there are also other structures such as the hippocampus or the thalamus (to name only a few).
-All these structures in the cerebellum and cerebrum contain along their surface a layer filled with cell bodies.
-These cells have the task of processing the information of all signals coming from inside and outside of the brain to the cells position.
-In addition, these cells are also arranged in cortical layers that have different thicknesses, cell types, and densities specific to a brain area.
-These cells have a relative high density and are not only locally interconnected with each other, but also with different brain areas (see \cref{fig:nerveFiber,fig:cortLayers}).
+The cerebellum and cerebrum contain a \ac{GM} stucture at the brain surface.
+This structure is filled with neurons.
+These cells have the task of processing the information of all signals coming from inside and outside of the brain.
+These cells are arranged in cortical layers that have different thicknesses, cell types, and densities specific to a brain area.
+These cells have a relatively high density and are not only locally interconnected with each other, but connect also with different brain areas (see \cref{fig:nerveFiber,fig:cortLayers}).
 Therefore, the folding of the brain is particularly important to increase this layer and therefore the number of cells.
 In the human brain there are several billions nerve cells.
 There are many types of cells, \eg{} granule or pyramidal cells.
@@ -83,59 +103,42 @@ This may lead to, among other things, a better understanding of the brain's func
 %
 \begin{figure}[!t]
 \centering
-% \hspace*{\fill}
+% \subcaptionbox{
+%     \label{fig:cortLayers}
+%     Cortical layers \todo{wichtig?}
+%     }[0.225\textwidth]{\includegraphics[height=4.5cm]{dev/wiki/layers.png}}
+% \hfill
 \tikzset{external/export next=false}
-\subcaptionbox{\label{fig:coronalStained}BB 4201: Gray, White Matter, Coronal Section, Stained}[0.64\textwidth]{
-\begin{tikzpicture}[]
-    \node[inner sep=0pt, anchor = south west] (fig) at (0,0)
-    {\includegraphics[height=0.42\textwidth]{dev/brain/BB_4201.png}};
-    \coordinate (WM1) at ($(fig.north west)!0.6!(fig.north east)$);
-    \coordinate (WM2) at ($(fig.north east)!0.35!(fig.south east)$);
-    \draw[RED, ultra thick, <-] (WM1 |- WM2) -- ++ (-42:0.75) node[pos=1, anchor=north] {\textbf{WM}};
-    \coordinate (GM1) at ($(fig.north west)!0.275!(fig.north east)$);
-    \coordinate (GM2) at ($(fig.north east)!0.125!(fig.south east)$);
-    \draw[GREEN, ultra thick, <-] (GM1 |- GM2) -- ++ (-65:0.75) node[pos=1, anchor=north] {\textbf{GM}};
-    % \draw (0,5) -- (10,5);
-\end{tikzpicture}
-}
-\hspace*{\fill}
-\subcaptionbox{Cortical layers\label{fig:cortLayers}}[0.34\textwidth]{
-\includegraphics[height=0.42\textwidth]{dev/wiki/layers.png}
-}
-% \hspace*{\fill}
-%
-\caption[GM, WM, layers]{}
-\label{fig:BBrain}
-\end{figure}
-%
-%
-%
-\begin{figure}[!t]
-\centering
-% gfx/neuroanatomy/neuron-axon_.pdf
+% \subcaptionbox{
+%     \label{fig:nerveCell}
+%     Nerve cell structure.
+% }[0.75\textwidth]{
 \begin{tikzpicture}[every node/.style={font=\small,},]
-\node[anchor=south west] (F) at (0,0) {\includegraphics[angle=90,width=0.75\textwidth,]{gfx/neuroanatomy/neuron-axon.pdf}};
-\begin{scope}[overlay]
-    % \draw[] (0,0) grid (11,6);
-    \node[] at (7.5,6.25) {Oligodendrocyte};
-    \node[] at (2.5,1) {Cell Body};
-    \node[anchor=west] at (10.5,3.9) {Axon};
-    \node[] at (7.5,2.25) {Myelin};
-    \draw[->] (2.75,2.75) -- (3.15,3.15) node[pos=0, anchor=north] {Nucleus};
-    %
-    \node[anchor=south] at (2.5,4.5) {Dendrites};
-    \draw[->] (2.75,4.5) -- (3.5,4.25){};
-    \draw[->] (2.25,4.5) -- (1.5,4.25){};
-\end{scope}
-\path[] ($(F.south west)-(1,0)$) -- ($(F.north east)+(1,0.6)$);
+    \node[inner sep=0pt, anchor = south west] (fig) at (0,0) {\includegraphics[ angle=90,width=0.75\textwidth]{gfx/neuroanatomy/neuron-axon.pdf}}; %height=4.2cm
+    \begin{scope}[overlay]
+        % \foreach \p in {0,0.1,0.2,0.3,0.4}{
+        %     \draw[blue] (rel cs:name=fig,x=\p,y=\p) rectangle (rel cs:name=fig,x=1-\p,y=1-\p);
+        % }
+        % 
+        \node[anchor=south] at (rel cs:name=fig,x=0.72,y=1.025) {Oligodendrocyte};
+        \node[anchor=north] at (rel cs:name=fig,x=0.235,y=0.22) {Cell Body};
+        \node[anchor=west] at (rel cs:name=fig,x=1,y=0.675) {Axon};
+        \node[anchor=north] at (rel cs:name=fig,x=0.7,y=0.4) {Myelin};
+        \draw[<-] (rel cs:name=fig,x=0.9,y=0.5) -- ++(-69:0.5) node[pos=1,anchor=north] {Node of Ranvier};
+        \draw[<-] (rel cs:name=fig,x=0.295,y=0.53) -- ++(-140:0.75) node[pos=1,anchor=north] {Nucleus};
+        \node[anchor=south] at (rel cs:name=fig,x=0.24,y=0.8) (D) {Dendrites};
+        \draw[->] (rel cs:name={D},x=0.3,y=0) -- ++(-155:0.6){};
+        \draw[->] (rel cs:name={D},x=0.7,y=0) -- ++(-25:0.6){};
+    \end{scope}
+    \path[] ($(fig.south west)-(0,0)$) rectangle ($(fig.north east)+(1,0.75)$);
 \end{tikzpicture}
-\caption{
-Illustration of a neuron with axon and oligodendrocytes. The olegodendrocyte build up a layered lipid structure up, surrounding the axon. The myelin layers are separated along the axon by nodes of Ranvier.}
-\label{fig:human-brain}
+% }
+\caption{Illustration of a neuron with axon and oligodendrocytes. The olegodendrocyte build up a layered lipid structure up, surrounding the axon. The myelin layers are separated along the axon by nodes of Ranvier.}
+\label{fig:CortexAndNerveCell}
 \end{figure}
 %
 Nerve cells are connected by nerve fibers.
-A typical nerve cell (see \cref{fig:human-brain}) \todo{if there is such a thing} has a cell body, called a soma, that processes incoming information.
+A typical nerve cell (see \cref{fig:nerveCell}) \todo{if there is such a thing} has a cell body, called a soma, that processes incoming information.
 The information arrives via dendrites, which are star-shaped branches that connect to an incoming axon.
 The axon is the cell's only information output.
 It travels through the brain often associated with nerve fiber bundles to its destination, where it connects with the axon terminal to another brain cells.
@@ -157,6 +160,20 @@ This color difference is clearly visible in a Nissle stain, in which neurons abs
 \par
 %
 Because this \ac{WM} has such a high density of fibers, up to billions in the corpus calosum, which connects the left and right brain hemisphere, it is almost impossible, even under the microscope, to examine individual fiber tracts through the brain without additional aids.
+% 
+% 
+% 
+\section{WM imaging techniques}
+\subsection{dMRI}
+\subsection{Stained tissue microscopy}
+\subsection{EM}
+\subsection{3D-PLI}
+\subsubsection{Sectioning}
+
+\par
+\noindent\rule{\textwidth}{2pt}
+\par
+
 One approach is myelin staining (see \cref{fig:brainMyelinStain}).
 Here, nerve fibers that are myelinated absorb more light than their surroundings, resulting in high contrast.
 Thus, even individual nerve fibers can be followed in section.
@@ -234,7 +251,7 @@ Since \ac{3D-PLI} uses the already known sectioning techniques that have been de
 %
 % 
 %
-\section{Sectioning}
+\section{3D-PLI sectioning}
 %
 \begin{figure}[!t]
 	\centering

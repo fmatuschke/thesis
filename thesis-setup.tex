@@ -391,6 +391,38 @@
 % 	}}
 % }
 % \makeatother
+% 
+\makeatletter
+% 
+\tikzdeclarecoordinatesystem{rel}{%
+    \tikzset{cs/.cd,x=0pt,y=0pt,#1}%
+    \pgfpointlineattime{(\tikz@cs@x)}%
+       {\pgfpointanchor{\tikz@pp@name{\tikz@cs@node}}{south west}}%
+       {\pgfpointanchor{\tikz@pp@name{\tikz@cs@node}}{south east}}%
+    \edef\tikz@cs@x{\the\pgf@x}%
+    \pgfpointlineattime{(\tikz@cs@y)}%
+       {\pgfpointanchor{\tikz@pp@name{\tikz@cs@node}}{south west}}%
+       {\pgfpointanchor{\tikz@pp@name{\tikz@cs@node}}{north west}}%
+    \pgfpoint{\tikz@cs@x}{\pgf@y}%
+  }
+% 
+% % Hook into Tikz coordinate parse to provide (<name>:<rel x>x<rel y>)
+% \def\tikz@parse@relcs#1(#2:#3,#4){%
+% \tikz@parse@coordinatesystem#1(rel cs:name={#2},x={#3},y={#4})%
+% }
+% \let\tikz@parse@relcs@polar@saved=\tikz@parse@polar
+% \def\tikz@parse@polar#1(#2:#3){%
+%   \pgfutil@in@{,}{#3}%
+%   \ifpgfutil@in@%
+%     \let\@next\tikz@parse@relcs%
+%   \else%
+%     \let\@next\tikz@parse@relcs@polar@saved%
+%   \fi%
+%   \@next#1(#2:#3)%
+% }
+
+\makeatother
+% 
 %
 \usepackage{environ}
 \makeatletter
