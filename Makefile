@@ -28,16 +28,16 @@ thesis:
 .PHONY: split
 split: 
 	pdftk thesis.pdf cat 17-18 output thesis-chapter-01.pdf
-	pdftk thesis.pdf cat 23-31 output thesis-chapter-02.pdf
-	pdftk thesis.pdf cat 33-48 output thesis-chapter-03.pdf
-	pdftk thesis.pdf cat 55-77 output thesis-chapter-04.pdf
-	pdftk thesis.pdf cat 79-90 output thesis-chapter-05.pdf
-	pdftk thesis.pdf cat 91-99 output thesis-chapter-06.pdf
-	pdftk thesis.pdf cat 105-123 output thesis-chapter-07.pdf
-	pdftk thesis.pdf cat 125-158 output thesis-chapter-08.pdf
-	pdftk thesis.pdf cat 162-165 output thesis-chapter-09.pdf
-	pdftk thesis.pdf cat 167-170 output thesis-chapter-10.pdf
-	pdftk thesis.pdf cat 181-end output thesis-chapter-appendix.pdf
+	pdftk thesis.pdf cat 23-29 output thesis-chapter-02.pdf
+	pdftk thesis.pdf cat 31-46 output thesis-chapter-03.pdf
+	pdftk thesis.pdf cat 53-75 output thesis-chapter-04.pdf
+	pdftk thesis.pdf cat 77-88 output thesis-chapter-05.pdf
+	pdftk thesis.pdf cat 89-97 output thesis-chapter-06.pdf
+	pdftk thesis.pdf cat 103-121 output thesis-chapter-07.pdf
+	pdftk thesis.pdf cat 123-156 output thesis-chapter-08.pdf
+	pdftk thesis.pdf cat 161-163 output thesis-chapter-09.pdf
+	pdftk thesis.pdf cat 165-168 output thesis-chapter-10.pdf
+	pdftk thesis.pdf cat 179-end output thesis-chapter-appendix.pdf
 	
 .PHONY: chapters
 chapters:
