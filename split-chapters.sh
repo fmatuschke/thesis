@@ -12,8 +12,8 @@ done < <(fgrep chapter\}\{\\nu thesis.toc)
 # echo "${pages[@]}"
 # echo $((${!pages[@]}))
 
-first=("${pages[@]:0:10}")
-last=("${pages[@]:1:11}")
+first=("${pages[@]:0:11}")
+last=("${pages[@]:1:12}")
 
 # echo "${first[@]}"
 # echo "${last[@]}"
@@ -21,7 +21,7 @@ last=("${pages[@]:1:11}")
 # echo ${!last[@]}
 
 delta=12
-dpages=( 5 2 7 2 1 6 2 5 2 15)
+dpages=(5 2 2 7 2 1 7 2 5 2 15)
 
 for i in "${!dpages[@]}"; do
    ii=$(printf "%02d" $(($i+1)))
@@ -31,5 +31,5 @@ for i in "${!dpages[@]}"; do
    pdftk thesis.pdf cat $((${first[i]} + $delta))-$((${last[i]} + $delta - ${dpages[i]})) output thesis-chapter-${ii}.pdf
 done
 
-echo "appendix: $((${pages[10]} + 8 )) - end"
-pdftk thesis.pdf cat $((${pages[10]} + 8))-end output thesis-appendix.pdf
+echo "appendix: $((${pages[11]} + 8 )) - end"
+pdftk thesis.pdf cat $((${pages[11]} + 8))-end output thesis-appendix.pdf

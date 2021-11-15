@@ -1,5 +1,5 @@
 \cleardoublepage
-\setcounter{chapter}{5}
+\setcounter{chapter}{6}
 \chapter{\acs{fastPLI}}
 \label{chap:Software}
 % 
@@ -301,3 +301,30 @@ Here, all data is automatically analyzed and stored.
 The last module contains a set of helper functions.
 They provide access to the current version as well as to the git hash so that all calculations can be reproduced.
 For fiber modeling, rotation matrices are provided to allow the use of linear algebra.
+% 
+% 
+% 
+
+\section{Computational speedup techniques}\label{sec:theorySpeedup}
+%
+Among other specific techniques described in the next chapters \cref{chap:sof:modelling,cha:sof:simulation}, two important technique are used to speed up the calculations.
+\par
+%
+The computationally intensive code is written in \cpp{}.
+There, the \code{std::vector} has the advantage that the data in memory is linear.
+The data must be prepared and sent from the \ac{RAM} to the cache of the \acp{CPU}.
+This takes relative to the time for a singlue \ac{CPU} instruction a very long time.
+The main advantage of the cache is that it is very fast, however its capacities are usually in the order of a few mega bytes and therefore quite limited.
+It is built inside the \ac{CPU}.
+Modern \acp{CPU} have a built-in method called \textit{cache prefetching}.
+The \ac{CPU} cache prefetcher is a sophisticated directive that requests not only the element at address $i$ in memory, but also the elements next to it ($i+1$ or $i-1$, depending on the algorithm).
+Since many algorithms traverse arrays, the next element to be computed is usually the next (or previous) element.
+Therefore, the total time required to copy the data from the memory to the cache is reduced.
+It can be shown that for linear operations on memory, the cache prefetcher reduces the time so much that it behaves as if the \ac{CPU} had an infinite cache.
+\par
+%
+Another technique is to use modern compilers such as \name{Clang v11}\footnote{\url{https://clang.llvm.org/}} or \name{G++ v10}\footnote{\url{https://gcc.gnu.org/}}.
+These have an optimization algorithms built in that optimizes the code to the architecture of the machine, and much more sophisticated methods.
+For example, if the number of iterations is known at compile time, a for loop can be \name{unrolled} to speed up the computations since it no longer needs to check if the conditions are met to end of each loop cycle.
+To review these optimizations, the time critical code was tested with tools like \name{Compiler Explorer}\footnote{\url{https://godbolt.org/}} and \name{C++ Insight}\footnote{\url{https://cppinsights.io/}}.
+%

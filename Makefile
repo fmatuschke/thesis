@@ -74,6 +74,9 @@ clean:
 	rm -f thesis.tdo
 	rm -f thesis.toc
 	rm -f thesis-tikz*
+	rm -f thesis-chapter*
+	rm -f thesis-appendix.pdf
+	rm -f thesis.html
 	rm -f content/*.aux
 
 .PHONY: clean-all
