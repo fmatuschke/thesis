@@ -23,7 +23,7 @@ thesis:
 	$(MAKE) bibliography
 	$(MAKE) compile
 	$(MAKE) compile
-	xdg-open thesis.pdf
+	xdg-open thesis.pdf 2>/dev/null
 
 .PHONY: split
 split: 

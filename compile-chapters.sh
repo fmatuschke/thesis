@@ -2,7 +2,7 @@
 set -e
 
 compile-chapter(){
-	echo $1
+	# echo $1
 	j=$(echo $1 | tr -dc '0-9')
 	if [ -z "$j" ]; then
 		j="appendix"
@@ -13,9 +13,19 @@ compile-chapter(){
 	sed -i 's&\%\\include{content/'"$j"'&\\include{content/'"$j"'&g' thesis-tikz-$j.tex
 
 	lualatex -interaction=nonstopmode -halt-on-error -shell-escape thesis-tikz-$j.tex &>/dev/null
+	rm thesis-tikz-$j*
 	echo "$1 done"
 }
 
+c=0
 for i in content/*chap*.tex content/appendix.tex; do
 	compile-chapter $i &
+	pids[${c}]=$!
+	let "c+=1" 
 done
+
+# wait for all pids
+for pid in ${pids[*]}; do
+    wait $pid
+done
+echo "All done"
