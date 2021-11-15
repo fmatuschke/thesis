@@ -4,8 +4,10 @@
 \definecolor{led}{rgb}{0.29,1,0}
 %
 \begin{tikzsize}{\tikzwidth}{\tikzheight}
-\begin{tikzpicture}[scale=\tikzscale, x=(\xangle:0.75cm), y=(90:1cm), z=(\zangle:1.5cm),
-plate/.style={fill}]z
+\begin{tikzpicture}[scale=\tikzscale,%
+		x=(\xangle:0.75cm), y=(90:1cm), z=(\zangle:1.5cm),
+		plate/.style={fill}%
+	]
 %
 % TissueBlock
 \begin{scope}[shift={(0,0,0)}]
