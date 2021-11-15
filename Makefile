@@ -27,25 +27,11 @@ thesis:
 
 .PHONY: split
 split: 
-	pdftk thesis.pdf cat 17-18 output thesis-chapter-01.pdf
-	pdftk thesis.pdf cat 23-29 output thesis-chapter-02.pdf
-	pdftk thesis.pdf cat 31-46 output thesis-chapter-03.pdf
-	pdftk thesis.pdf cat 53-75 output thesis-chapter-04.pdf
-	pdftk thesis.pdf cat 77-88 output thesis-chapter-05.pdf
-	pdftk thesis.pdf cat 89-97 output thesis-chapter-06.pdf
-	pdftk thesis.pdf cat 103-121 output thesis-chapter-07.pdf
-	pdftk thesis.pdf cat 123-156 output thesis-chapter-08.pdf
-	pdftk thesis.pdf cat 161-163 output thesis-chapter-09.pdf
-	pdftk thesis.pdf cat 165-168 output thesis-chapter-10.pdf
-	pdftk thesis.pdf cat 179-end output thesis-chapter-appendix.pdf
+	bash split-chapters.sh
 	
-.PHONY: chapters
-chapters:
-	bash compile-chapters.sh
-
 .PHONY: tikz
 tikz:
-	make -j$(shell nproc) -f thesis.makefile
+	bash compile-chapters.sh
 
 .PHONY: zip
 zip:
@@ -87,7 +73,7 @@ clean:
 	rm -f thesis.run.xml
 	rm -f thesis.tdo
 	rm -f thesis.toc
-	rm -f thesis-chapter*
+	rm -f thesis-tikz*
 	rm -f content/*.aux
 
 .PHONY: clean-all
