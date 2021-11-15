@@ -21,7 +21,7 @@ last=("${pages[@]:1:12}")
 # echo ${!last[@]}
 
 delta=12
-dpages=(5 2 2 7 2 1 7 2 5 2 15)
+dpages=(5 2 2 7 2 1 7 2 5 4 15)
 
 for i in "${!dpages[@]}"; do
    ii=$(printf "%02d" $(($i+1)))
