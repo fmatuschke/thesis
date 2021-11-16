@@ -157,8 +157,8 @@ This allows to follow small nerve fibers down to individual nerves depending on 
 Larger nerve fiber bundles are such dark, that mostly no orientation can be exracted.
 \par
 % 
-\Cref{fig:brainMyelinStain} shows a nissle stained example. 
-\todo{...}.
+\Cref{fig:brainMyelinStain} shows a nissle stained brain section.
+Individual nerve fibers as well as nerve fiber bundles are visible.
 \par
 % 
 \begin{figure}[!t]
@@ -173,7 +173,7 @@ Larger nerve fiber bundles are such dark, that mostly no orientation can be exra
         %  
         \draw[Orange, ultra thick] (7.65,6.15) ellipse (1 and 0.5);
         \draw[ProcessBlue, ultra thick] (10,4.5) ellipse (2 and 1);
-        % \draw[yellow, ultra thick] (fig.north west) -- ++ (13.87303cm,0);
+        \draw[yellow, ultra thick] (fig.north west) -- ++ (13.87303cm,0);
     \end{tikzpicture}
 	\caption[Myelin staining of the human thalamus]{Myelin staining of the human thalamus, sagital section. \textcolor{Orange}{Nerve fiber bundle} structures are visiable as \dummy{}. In between \textcolor{ProcessBlue}{net-like structures} are fromed from individual nerve fibers. \url{http://brainmaps.org/HBP3/h.sapiens/sag/h5thal-myelin/17a}}
 	\label{fig:brainMyelinStain}
@@ -184,11 +184,11 @@ A nerve fiber bundle is a very complex structure, usually formed by multiple ner
 % 
 \begin{figure}[!t]
 	\centering
-	\subcaptionbox{}[.49\textwidth]{
+	\subcaptionbox{Automatic 3d segmentation of axons.}[.49\textwidth]{
 	    \includegraphics[width=0.45\textwidth]{dev/brain/auto_seg_axon_0.png}}\hfill
-    \subcaptionbox{}[.49\textwidth]{
+    \subcaptionbox{Slice view. The myelin sorounding the axons are \dummy{...}}[.49\textwidth]{
         \includegraphics[width=0.45\textwidth]{dev/brain/auto_seg_axon_1.png}}
-	\caption{Automatic segmentet nerve fiber tissue from an electron microscope \cite{Abdollahzadeh2019}.}
+	\caption{Automatic segmentet axons from an electron microscope \cite{Abdollahzadeh2019}.}
 	\label{fig:elecMic}
 \end{figure}
 % 
