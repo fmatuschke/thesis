@@ -21,14 +21,15 @@ last=("${pages[@]:1:12}")
 # echo ${!last[@]}
 
 delta=12
-dpages=(5 2 2 7 2 1 7 2 5 4 15)
+dpages=(5 1 1 7 1 1 7 1 5 1 15)
 
 for i in "${!dpages[@]}"; do
    ii=$(printf "%02d" $(($i+1)))
-
-   # echo "$ii: ${first[i]} - ${last[i]}: $((${first[i]} + $delta)) - $((${last[i]} + $delta - ${dpages[i]}))"
-   echo "${ii}: $((${first[i]} + $delta)) - $((${last[i]} + $delta - ${dpages[i]}))"
-   pdftk thesis.pdf cat $((${first[i]} + $delta))-$((${last[i]} + $delta - ${dpages[i]})) output thesis-chapter-${ii}.pdf
+   cbegin=$((${first[i]} + $delta))
+   clast=$((${last[i]} + $delta - ${dpages[i]}))
+   clast=$((${clast} + (${clast}-${cbegin}+1)%2 )) # chapter ends even
+   echo "${ii}: ${cbegin} - ${clast}"
+   pdftk thesis.pdf cat ${cbegin}-${clast} output thesis-chapter-${ii}.pdf
 done
 
 echo "appendix: $((${pages[11]} + 8 )) - end"
