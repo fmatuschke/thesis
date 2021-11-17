@@ -4,7 +4,8 @@
 % 
 \clip (-1,-1.25) rectangle (8.25,2.25);
 %
-% \begin{pgfinterruptboundingbox}   
+\draw[thin] (1.0833333333333333,-0.08333333333333333) -- ++ (-42:1.0865337342004415) node[above,midway,sloped] {$r$};
+% 
 \foreach \p/\r in {%
 {(1.0833333333333333,-0.08333333333333333)/1.0865337342004415},%
 {(1.9375,1.625)/1.1267347735824966},%
@@ -50,7 +51,7 @@
 {(6.0,0.95)/(6.5,-0.25)/(7.0,0.7)}%
 }{%
 \path \c coordinate (a) -- \b coordinate (b) -- \a coordinate (c) 
-   pic["\textcolor{RED}{$\varphi$}", draw=RED, <->, angle eccentricity=1.42, angle radius=0.75cm] {angle=a--b--c};
+   pic["\textcolor{RED}{$\eta$}", draw=RED, <->, angle eccentricity=1.42, angle radius=0.75cm] {angle=a--b--c};
 }
 % 
 \draw[GREEN, <-, thick] (6.0,0.95) -- ++ (0,0.25);

@@ -10,7 +10,7 @@
 \chapter{Dense nerve fiber modelling}
 \label{chap:sof:modelling}
 % 
-In \cref{chap:neuro} both the structure of nerve fibers and the macroscopic structure of \ac{WM} were described.
+In \cref{chap:neuro} the structure of nerve fibers and the macroscopic structure of \ac{WM} were described.
 The question is how to represent such a structure in a computer algorithm?
 For simple fiber configurations, \eg{} parallel, linear nerve fibers, this is quite straightforward.
 However, it has been shown that irregular, non-symmetric nerve fiber configurations are necessary to obtain a realistic result for microscopy simulations based on the wave nature of the light \cite{MenzelDissertation}.
@@ -35,7 +35,7 @@ The same is true for a computer algorithm.
 One could write an algorithm that defines a single fiber in a volume and then places the next one, making sure that none overlaps and so on.
 This works well up to a point.
 Even if an algorithm always finds a solution to find a path through an partially filled volume, at some point the volume will appear to be full, but still have plenty of free space between fibers.
-Of course, one can minimize this behavior by trying to place nearly parallel fibers, but again, looking at real tissue data, \eg{} \cref{fig:brainTPFM,fig:elecMic}, this does not reflect reality.
+Of course, one can minimize this behavior by trying to place nearly parallel fibers, but again, looking at real tissue data, \eg{} \cref{fig:brainMyelinStain,fig:elecMic}, this does not reflect reality.
 In a fiber bundle, the fibers are so densely packed that they touch and deform each other.
 \par
 %
@@ -63,26 +63,26 @@ The original idea of a collison solving algorithm is published in \cite{Matuschk
 \label{sec:nerve_fiber_representation}
 %
 Nerve fibers themselves are tube-like structures surrounded by an electrically insulating lipid layer of myelin (see \cref{sec:fiberArchitecture}).
-Both the diameter of the axon and the thickness of the myelin can vary greatly from fiber to fiber (see \cref{sec:axonMicroscopy}).
+Both the diameter of the axon and the thickness of the myelin can vary greatly from fiber to fiber (see \cref{sec:axonMicroscopy,tab:gratio}).
 This means that the representation of nerve fiber models should be able to represent such variations as well.
 \par
 %
-As described in \cref{sec:fiberArchitecture} \ac{WM} consist of nerve fibers packed tightly together in nerve fiber bundles.
+As described in \cref{sec:fiberArchitecture} \ac{WM} consist of nerve fibers packed tightly together in nerve fiber bundles (see \cref{fig:elecMic}).
 These bundles can join with other bundles and traverse the brain to connect one region to another.
-The bundles are able to cross each other, either by crossing the individual nerve fibers or bypassing the fiber bundles.
-This can \eg{} generate interwoven structures.
-Such structures are a key element in the study of \ac{3D-PLI}.
+The bundles are able to cross each other, either by crossing the individual nerve fibers or bypassing the fiber bundles, which can form interwoven structures.
+\footnote{The terminology \say{crossing} is relative to the resolition and voxel size.}
+Such structures are a key element to increase the understanding \ac{3D-PLI}.
 Therefore, it is particularly important that the models are able to form such structures without overlapping individual fibers.
 \par
 %
-One way of representing individual nerve fibers is a parametric function describing a path in 3d space, \ie{} a trajectory.
+To represent individual nerve fibers a parametric function describing a path in 3d space, \ie{} a trajectory, is used.
 In addition, a fourth element describes the radius of the fiber at the same point:
 % 
 \begin{align}
 f(t) \rightarrow (x(t),y(t), z(t), r(t))
 \end{align}
 % 
-However, this representation does not allow simple subsequent changes, such as resolving collisions.
+However, a continuous representation does not allow simple subsequent changes, such as resolving collisions.
 For this purpose, individual elements are more manageable, allowing movement or deformation.
 Therefore, the function or fiber is divided into smaller discrete segments.
 %
@@ -122,14 +122,16 @@ This will increase the computational speed, which will be crucial for a collisio
 % 
 \section{Sandbox}\label{sec:sandbox}
 %
-In computer game terminology, a \textit{sandbox mode} is a game mode that allows the player to build and design anything at no cost.
-Analogous to this feature is the \pymodule{fastpli.model.sandbox}, which allows the user to easily and quickly design standard geometric configurations of nerve fibers and bundles.
-Since nerve fibers are usually arranged in bundles, the design methods focus on generating nerve fiber bundles from a 2d pattern (seed points) and a nerve fiber bundle trajectory.
+To build dense \ac{WM} models one needs to fill a volume with individual nerve fibers.
+To allow the user to build such volumes the \pymodule{fastpli.model.sandbox} was developed.
+The user is able to define a nerve fiber bundle geometry and fill it with a pattern of fibers and to generate nerve fiber bundles from cylindicals or cubical shapes.
 \par
 %
-This module is divided into two successive submodules.
+The \pymodule{fastpli.model.sandbox} module is divided into two successive submodules.
 The first module handles the seeding process, while the second part builds up a nerve fiber bundle or volume filled with individual fibers from seed points.
 %
+% 
+% 
 \subsection{Seeding fiber bundles}\label{sec:seeds}
 %
 \begin{figure}[!t]
@@ -153,11 +155,11 @@ Seed points are stored as a list of 2d points:
 \end{align}
 %
 To form particularly dense fiber bundles, a method for generating an equilateral triangular grid is implemented (see \ref{fig:triGrid}).
-Mathematically, this yields the most densely packed pattern for a 2d circle with equal radius packed area.
+Mathematically, this yields the most densely packed pattern for circles with equal radius in a 2d area.
 However, this very regular symmetric grid can lead to unrealistic results (\eg{} diffraction pattern in light wave simulation \cite{MenzelDissertation}).
 It should therefore only be used as an initial configuration.
 Since the initial configurations are often unknown, it is probably best to choose a random distribution (see \cref{fig:rndGrid}).
-For a circular boundary, this is done with:
+For a circular boundary, this can be generate for example with:
 % 
 \begin{equation}
 \begin{split}
@@ -178,6 +180,7 @@ y = r \sin(\varphi)
 \begin{figure}[!t]
     \centering
     \setlength{\tikzwidth}{0.75\textwidth}
+    \tikzset{external/export=false}
     \inputtikz{gfx/model/min_torsion}
 	\caption{Left: Plane of seed points. Right: Plane are rotated and placed along the path. At the end, the plane has the same normal vector as the starting plane, but due to the principle of minimum rotation, the plane is rotated along the normal vector.}
 	\label{fig:torsion}
@@ -632,8 +635,8 @@ The limit is defined as the minimum radius of $r_{\min}$.
 For adjecent points with an inner angle $\eta \geq \SI{60}{\degree}$ the circles radius would increase again.
 Also this would mean, that a fiber can be circular with three points.
 Therefore the additional boundry condition of an angle $\eta \geq \SI{60}{\degree}$ is always applied.
-If any $p_{i}$ point in a fiber fails these boundry conditions, the three points are shifted.
-$p_{i-1},p_{i+1}$ are shifted parallel to $p_{i}$ and vice versa to reduce curvature.
+If any $\vec{p}_{i}$ point in a fiber fails these boundry conditions, the three points are shifted.
+$\vec{p}_{i-1},\vec{p}_{i+1}$ are shifted parallel to $\vec{p}_{i}$ and vice versa to reduce curvature.
 %
 % 
 % 

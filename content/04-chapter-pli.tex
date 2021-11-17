@@ -24,7 +24,7 @@ This allows the plate with the brain be placed within a microtom.
 The microtome consist out of a chamber cooled with about $\SI{-70}{\celsius}$.
 A vibrating very sharp knife is placed in such a way, that the brain can be moved along it to section the brain into $\SI{60}{\micro\meter}$ sections (see \cref{fig:brain_sectioning}).
 The sections are manually placed after each cut onto a glass specimen.
-The tissue is finally be \dummy{} with glycrin and siled with another thin optical glass.
+The tissue is finally be \dummy{} with glycrin and siled with another thin optical glass (see \cref{fig:brain_section}).
 To store the section until the microscopic ... they are placed within a freecer at about $\SI{-70}{\celsius}$.
 To measare the section under the microscope they are placed at room temperature in the \ac{3D-PLI} setup.
 % 
@@ -41,7 +41,6 @@ To measare the section under the microscope they are placed at room temperature 
         Seald brain section on specimen.
     }[0.475\textwidth]{\inputtikz{gfx/neuroanatomy/brain_section}}
 	\caption{\dummy{}}
-	\label{fig:brain_sectioning}
 \end{figure}
 % 
 % 
@@ -181,36 +180,6 @@ For homogeneous tissue regions, such as parts in the dense \ac{WM}, this can be 
 However, for single fiber paths such as visible in the \ac{GM} or complicated paths like in crossing the effect on th inclination analysis is an open question.
 %
 %
-%
-\section{Orientation visualization}
-%
-The orientation of the birefringence axis is described by the direction angle $\varphi$ and the inclination angle $\alpha$ (see \cref{fig:sphere}).
-To represent the 3D information, the \textit{hsv-bright} and \textit{hsv-dark} is usually represented in \ac{3D-PLI}. The bright values are used to indicate positive inclinations, whereas the dark values are used for negative inclinations.
-It encodes the orientation in the color and the inclination in the saturation (see \cref{fig:exampleFom}):
-\begin{align}
-\begin{split}
-    \text{hsv-bright:}\\
-    H &= \varphi/\pi\\
-    S &= 1-\alpha / \pi/2\\
-    V &= 1
-\end{split}
-\begin{split}
-    \text{hsv-dark:}\\
-    H &= \varphi/\pi\\
-    S &= 1\\
-    V &= 1-\alpha / \pi/2
-\end{split}
-\end{align}
-Since the orientation, unlike a vector, covers only a half sphere, the colors are point symmetric.
-%
-\begin{figure}[!t]
-\centering
-\setlength{\tikzwidth}{0.42\textwidth}
-\tikzset{external/export next=false}
-\inputtikz{gfx/pli/hsv_sphere}
-\caption{Color spheres decoding the direction $\varphi$ and inclination $\alpha$ of the orientation. For directions from \SIrange[]{0}{180}{\degree} the positive inilination is decoded in hsv-bright and the lower in hsv-dark. For directions from \SIrange[]{180}{360}{\degree} the colors are point symmetric.}
-\label{fig:spheres}
-\end{figure}
 %
 \section{Optical resolution}
 \label{sec:opticalResolution}
