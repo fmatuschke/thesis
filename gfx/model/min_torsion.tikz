@@ -13,7 +13,7 @@
 %
 \draw[thick] (-\d,-\d,0) -- (-\d,\d,0) -- (\d,\d,0) -- (\d,-\d,0) -- cycle;
 \pgfmathsetseed{42}
-\foreach \yValue in {0,1,...,42} {%
+\foreach \yValue in {0,...,42} {%
    \pgfmathparse{rnd*360}\let\phi=\pgfmathresult
    \pgfmathparse{sqrt(rnd*0.99)}\let\r=\pgfmathresult
    \pgfmathparse{\r*cos(\phi)}\let\x=\pgfmathresult
@@ -25,111 +25,162 @@
 \draw[very thick, GREEN, ->] (0,0,0) -- (0,0.42*\d,0);
 \draw[very thick, BLUE,  ->]  (0,0,0) -- (0,0,0.42*\d) node[pos=0.5, anchor=east] {$\vec{n}$};
 %
-\draw[very thick, dark24] plot [smooth, tension=0.75] coordinates {(3,0,0)(4,0,0)(5,1,0)(5,2,0)(5,3,1)(5,3,2)};
 %
 \begin{scope}[shift={(3,0,0)}]
-\tdplotsetrotatedcoords{0}{90}{0}
-\draw[tdplot_rotated_coords, thick,] (-\d,-\d,0) -- (-\d,\d,0) -- (\d,\d,0) -- (\d,-\d,0) -- cycle;
-\pgfmathsetseed{42}
-\foreach \yValue in {0,1,...,42} {%
-   \pgfmathparse{rnd*360}\let\phi=\pgfmathresult
-   \pgfmathparse{sqrt(rnd*0.99)}\let\r=\pgfmathresult
-   \pgfmathparse{\r*cos(\phi)}\let\x=\pgfmathresult
-   \pgfmathparse{\r*sin(\phi)}\let\y=\pgfmathresult
-   \draw[tdplot_rotated_coords,fill] (\x,\y,0) circle (0.42pt) {};
-}
-\draw[tdplot_rotated_coords] (0.75,-0.75,0) pic[thick,dark27,local bounding box=B] {cross=0.06pt};
-\draw[tdplot_rotated_coords, very thick, RED, ->]   (0,0,0) -- (0.42*\d,0,0);
-\draw[tdplot_rotated_coords, very thick, GREEN,  ->] (0,0,0) -- (0,0.42*\d,0);
-\draw[tdplot_rotated_coords, very thick, BLUE, ->]  (0,0,0) -- (0,0,0.42*\d);
-\end{scope}
-%
-\begin{scope}[shift={(4,0,0)}]
-\tdplotsetrotatedcoords{22.5}{90}{0}
-\draw[tdplot_rotated_coords, thick,] (-\d,-\d,0) -- (-\d,\d,0) -- (\d,\d,0) -- (\d,-\d,0) -- cycle;
-\pgfmathsetseed{42}
-\foreach \yValue in {0,1,...,42} {%
-   \pgfmathparse{rnd*360}\let\phi=\pgfmathresult
-   \pgfmathparse{sqrt(rnd*0.99)}\let\r=\pgfmathresult
-   \pgfmathparse{\r*cos(\phi)}\let\x=\pgfmathresult
-   \pgfmathparse{\r*sin(\phi)}\let\y=\pgfmathresult
-   \draw[tdplot_rotated_coords,fill] (\x,\y,0) circle (0.42pt) {};
-}
-\draw[tdplot_rotated_coords] (0.75,-0.75,0) pic[thick,dark27,local bounding box=C] {cross=0.06pt};
-\draw[tdplot_rotated_coords, very thick, RED, ->]   (0,0,0) -- (0.42*\d,0,0);
-\draw[tdplot_rotated_coords, very thick, GREEN, ->] (0,0,0) -- (0,0.42*\d,0);
-\draw[tdplot_rotated_coords, very thick, BLUE, ->]  (0,0,0) -- (0,0,0.42*\d);
-\end{scope}
-%
-\begin{scope}[shift={(5,1,0)}]
-\tdplotsetrotatedcoords{67.5}{90}{0}
-\draw[tdplot_rotated_coords, thick,] (-\d,-\d,0) -- (-\d,\d,0) -- (\d,\d,0) -- (\d,-\d,0) -- cycle;
-\pgfmathsetseed{42}
-\foreach \yValue in {0,1,...,42} {%
-   \pgfmathparse{rnd*360}\let\phi=\pgfmathresult
-   \pgfmathparse{sqrt(rnd*0.99)}\let\r=\pgfmathresult
-   \pgfmathparse{\r*cos(\phi)}\let\x=\pgfmathresult
-   \pgfmathparse{\r*sin(\phi)}\let\y=\pgfmathresult
-   \draw[tdplot_rotated_coords,fill] (\x,\y,0) circle (0.42pt) {};
-}
-\draw[tdplot_rotated_coords] (0.75,-0.75,0) pic[thick,dark27,local bounding box=D] {cross=0.06pt};
-\draw[tdplot_rotated_coords, very thick, RED, ->]   (0,0,0) -- (0.42*\d,0,0);
-\draw[tdplot_rotated_coords, very thick, GREEN, ->] (0,0,0) -- (0,0.42*\d,0);
-\draw[tdplot_rotated_coords, very thick, BLUE, ->]  (0,0,0) -- (0,0,0.42*\d);
-\end{scope}
-% %
-\begin{scope}[shift={(5,2,0)}]
-\tdplotsetrotatedcoords{90}{45}{0}
-\draw[tdplot_rotated_coords, thick,] (-\d,-\d,0) -- (-\d,\d,0) -- (\d,\d,0) -- (\d,-\d,0) -- cycle;
-\pgfmathsetseed{42}
-\foreach \yValue in {0,1,...,42} {%
-   \pgfmathparse{rnd*360}\let\phi=\pgfmathresult
-   \pgfmathparse{sqrt(rnd*0.99)}\let\r=\pgfmathresult
-   \pgfmathparse{\r*cos(\phi)}\let\x=\pgfmathresult
-   \pgfmathparse{\r*sin(\phi)}\let\y=\pgfmathresult
-   \draw[tdplot_rotated_coords,fill] (\x,\y,0) circle (0.42pt) {};
-}
-\draw[tdplot_rotated_coords] (0.75,-0.75,0) pic[thick,dark27,local bounding box=E] {cross=0.06pt};
-\draw[tdplot_rotated_coords, very thick, RED, ->]   (0,0,0) -- (0.42*\d,0,0);
-\draw[tdplot_rotated_coords, very thick, GREEN, ->] (0,0,0) -- (0,0.42*\d,0);
-\draw[tdplot_rotated_coords, very thick, BLUE, ->]  (0,0,0) -- (0,0,0.42*\d);
-\end{scope}
-% %
-\begin{scope}[shift={(5,3,1)}]
-\tdplotsetrotatedcoords{90}{22.5}{0}
-\draw[tdplot_rotated_coords, thick,] (-\d,-\d,0) -- (-\d,\d,0) -- (\d,\d,0) -- (\d,-\d,0) -- cycle;
-\pgfmathsetseed{42}
-\foreach \yValue in {0,1,...,42} {%
-   \pgfmathparse{rnd*360}\let\phi=\pgfmathresult
-   \pgfmathparse{sqrt(rnd*0.99)}\let\r=\pgfmathresult
-   \pgfmathparse{\r*cos(\phi)}\let\x=\pgfmathresult
-   \pgfmathparse{\r*sin(\phi)}\let\y=\pgfmathresult
-   \draw[tdplot_rotated_coords,fill] (\x,\y,0) circle (0.42pt) {};
-}
-\draw[tdplot_rotated_coords] (0.75,-0.75,0) pic[thick,dark27,local bounding box=F] {cross=0.06pt};
-\draw[tdplot_rotated_coords, very thick, RED, ->]   (0,0,0) -- (0.42*\d,0,0);
-\draw[tdplot_rotated_coords, very thick, GREEN, ->] (0,0,0) -- (0,0.42*\d,0);
-\draw[tdplot_rotated_coords, very thick, BLUE, ->]  (0,0,0) -- (0,0,0.42*\d);
-\end{scope}
-% %
-\begin{scope}[shift={(5,3,2)}]
-\tdplotsetrotatedcoords{90}{0}{0}
-\draw[tdplot_rotated_coords, thick,] (-\d,-\d,0) -- (-\d,\d,0) -- (\d,\d,0) -- (\d,-\d,0) -- cycle;
-\pgfmathsetseed{42}
-\foreach \yValue in {0,1,...,42} {%
-   \pgfmathparse{rnd*360}\let\phi=\pgfmathresult
-   \pgfmathparse{sqrt(rnd*0.99)}\let\r=\pgfmathresult
-   \pgfmathparse{\r*cos(\phi)}\let\x=\pgfmathresult
-   \pgfmathparse{\r*sin(\phi)}\let\y=\pgfmathresult
-   \draw[tdplot_rotated_coords,fill] (\x,\y,0) circle (0.42pt) {};
-}
-\draw[tdplot_rotated_coords] (0.75,-0.75,0) pic[thick,dark27,local bounding box=G] {cross=0.06pt};
-\draw[tdplot_rotated_coords, thick, RED, ->]   (0,0,0) -- (0.42*\d,0,0);
-\draw[tdplot_rotated_coords, thick, GREEN, ->] (0,0,0) -- (0,0.42*\d,0);
-\draw[tdplot_rotated_coords, thick, BLUE, ->]  (0,0,0) -- (0,0,0.42*\d) node[pos=0.5, anchor=south east] {$\vec{t}$};
+   \draw[very thick, dark24] plot [smooth, tension=0.75] coordinates {%
+      (0,0,0)(1,0,0)(2,1,0)(3.5,2,1)(3.5,3,2)(3.5,3,3)
+      };
+   \begin{scope}[shift={(0,0,0)}]
+      \tdplotsetrotatedcoords{0}{90}{0}
+      \draw[tdplot_rotated_coords, thick,] (-\d,-\d,0) -- (-\d,\d,0) -- (\d,\d,0) -- (\d,-\d,0) -- cycle;
+      \pgfmathsetseed{42}
+      \foreach \yValue in {0,...,42} {%
+         \pgfmathparse{rnd*360}\let\phi=\pgfmathresult
+         \pgfmathparse{sqrt(rnd*0.99)}\let\r=\pgfmathresult
+         \pgfmathparse{\r*cos(\phi)}\let\x=\pgfmathresult
+         \pgfmathparse{\r*sin(\phi)}\let\y=\pgfmathresult
+         \draw[tdplot_rotated_coords,fill] (\x,\y,0) circle (0.42pt) {};
+      }
+      \draw[tdplot_rotated_coords] (0.75,-0.75,0) pic[thick,dark27,local bounding box=B] {cross=0.06pt};
+      \draw[tdplot_rotated_coords, very thick, RED, ->]   (0,0,0) -- (0.42*\d,0,0);
+      \draw[tdplot_rotated_coords, very thick, GREEN,  ->] (0,0,0) -- (0,0.42*\d,0);
+      \draw[tdplot_rotated_coords, very thick, BLUE, ->]  (0,0,0) -- (0,0,0.42*\d);
+   \end{scope}
+   %
+   \begin{scope}[shift={(1,0,0)}]
+      \tdplotsetrotatedcoords{22.5}{90}{0}
+      \draw[tdplot_rotated_coords, thick,] (-\d,-\d,0) -- (-\d,\d,0) -- (\d,\d,0) -- (\d,-\d,0) -- cycle;
+      \pgfmathsetseed{42}
+      \foreach \yValue in {0,...,42} {%
+         \pgfmathparse{rnd*360}\let\phi=\pgfmathresult
+         \pgfmathparse{sqrt(rnd*0.99)}\let\r=\pgfmathresult
+         \pgfmathparse{\r*cos(\phi)}\let\x=\pgfmathresult
+         \pgfmathparse{\r*sin(\phi)}\let\y=\pgfmathresult
+         \draw[tdplot_rotated_coords,fill] (\x,\y,0) circle (0.42pt) {};
+      }
+      \draw[tdplot_rotated_coords] (0.75,-0.75,0) pic[thick,dark27,local bounding box=C] {cross=0.06pt};
+      \draw[tdplot_rotated_coords, very thick, RED, ->]   (0,0,0) -- (0.42*\d,0,0);
+      \draw[tdplot_rotated_coords, very thick, GREEN, ->] (0,0,0) -- (0,0.42*\d,0);
+      \draw[tdplot_rotated_coords, very thick, BLUE, ->]  (0,0,0) -- (0,0,0.42*\d);
+   \end{scope}
+   %
+   \begin{scope}[shift={(2,1,0)}]
+      \tdplotsetrotatedcoords{67.5}{90}{0}
+      \draw[tdplot_rotated_coords, thick,] (-\d,-\d,0) -- (-\d,\d,0) -- (\d,\d,0) -- (\d,-\d,0) -- cycle;
+      \pgfmathsetseed{42}
+      \foreach \yValue in {0,...,42} {%
+         \pgfmathparse{rnd*360}\let\phi=\pgfmathresult
+         \pgfmathparse{sqrt(rnd*0.99)}\let\r=\pgfmathresult
+         \pgfmathparse{\r*cos(\phi)}\let\x=\pgfmathresult
+         \pgfmathparse{\r*sin(\phi)}\let\y=\pgfmathresult
+         \draw[tdplot_rotated_coords,fill] (\x,\y,0) circle (0.42pt) {};
+      }
+      \draw[tdplot_rotated_coords] (0.75,-0.75,0) pic[thick,dark27,local bounding box=D] {cross=0.06pt};
+      \draw[tdplot_rotated_coords, very thick, RED, ->]   (0,0,0) -- (0.42*\d,0,0);
+      \draw[tdplot_rotated_coords, very thick, GREEN, ->] (0,0,0) -- (0,0.42*\d,0);
+      \draw[tdplot_rotated_coords, very thick, BLUE, ->]  (0,0,0) -- (0,0,0.42*\d);
+   \end{scope}
+   % %
+   \begin{scope}[shift={(3.5,2,1)}]
+      \tdplotsetrotatedcoords{90}{45}{0}
+      \draw[tdplot_rotated_coords, thick,] (-\d,-\d,0) -- (-\d,\d,0) -- (\d,\d,0) -- (\d,-\d,0) -- cycle;
+      \pgfmathsetseed{42}
+      \foreach \yValue in {0,...,42} {%
+         \pgfmathparse{rnd*360}\let\phi=\pgfmathresult
+         \pgfmathparse{sqrt(rnd*0.99)}\let\r=\pgfmathresult
+         \pgfmathparse{\r*cos(\phi)}\let\x=\pgfmathresult
+         \pgfmathparse{\r*sin(\phi)}\let\y=\pgfmathresult
+         \draw[tdplot_rotated_coords,fill] (\x,\y,0) circle (0.42pt) {};
+      }
+      \draw[tdplot_rotated_coords] (0.75,-0.75,0) pic[thick,dark27,local bounding box=E] {cross=0.06pt};
+      \draw[tdplot_rotated_coords, very thick, RED, ->]   (0,0,0) -- (0.42*\d,0,0);
+      \draw[tdplot_rotated_coords, very thick, GREEN, ->] (0,0,0) -- (0,0.42*\d,0);
+      \draw[tdplot_rotated_coords, very thick, BLUE, ->]  (0,0,0) -- (0,0,0.42*\d);
+   \end{scope}
+   % %
+   \begin{scope}[shift={(3.5,3,2)}]
+      \tdplotsetrotatedcoords{90}{22.5}{0}
+      \draw[tdplot_rotated_coords, thick,] (-\d,-\d,0) -- (-\d,\d,0) -- (\d,\d,0) -- (\d,-\d,0) -- cycle;
+      \pgfmathsetseed{42}
+      \foreach \yValue in {0,...,42} {%
+         \pgfmathparse{rnd*360}\let\phi=\pgfmathresult
+         \pgfmathparse{sqrt(rnd*0.99)}\let\r=\pgfmathresult
+         \pgfmathparse{\r*cos(\phi)}\let\x=\pgfmathresult
+         \pgfmathparse{\r*sin(\phi)}\let\y=\pgfmathresult
+         \draw[tdplot_rotated_coords,fill] (\x,\y,0) circle (0.42pt) {};
+      }
+      \draw[tdplot_rotated_coords] (0.75,-0.75,0) pic[thick,dark27,local bounding box=F] {cross=0.06pt};
+      \draw[tdplot_rotated_coords, very thick, RED, ->]   (0,0,0) -- (0.42*\d,0,0);
+      \draw[tdplot_rotated_coords, very thick, GREEN, ->] (0,0,0) -- (0,0.42*\d,0);
+      \draw[tdplot_rotated_coords, very thick, BLUE, ->]  (0,0,0) -- (0,0,0.42*\d);
+   \end{scope}
+   % %
+   \begin{scope}[shift={(3.5,3,3)}]
+      \tdplotsetrotatedcoords{90}{0}{0}
+      \draw[tdplot_rotated_coords, thick,] (-\d,-\d,0) -- (-\d,\d,0) -- (\d,\d,0) -- (\d,-\d,0) -- cycle;
+      \pgfmathsetseed{42}
+      \foreach \yValue in {0,...,42} {%
+         \pgfmathparse{rnd*360}\let\phi=\pgfmathresult
+         \pgfmathparse{sqrt(rnd*0.99)}\let\r=\pgfmathresult
+         \pgfmathparse{\r*cos(\phi)}\let\x=\pgfmathresult
+         \pgfmathparse{\r*sin(\phi)}\let\y=\pgfmathresult
+         \draw[tdplot_rotated_coords,fill] (\x,\y,0) circle (0.42pt) {};
+      }
+      \draw[tdplot_rotated_coords] (0.75,-0.75,0) pic[thick,dark27,local bounding box=G] {cross=0.06pt};
+      \draw[tdplot_rotated_coords, thick, RED, ->]   (0,0,0) -- (0.42*\d,0,0);
+      \draw[tdplot_rotated_coords, thick, GREEN, ->] (0,0,0) -- (0,0.42*\d,0);
+      \draw[tdplot_rotated_coords, thick, BLUE, ->]  (0,0,0) -- (0,0,0.42*\d) node[pos=0.5, anchor=south east] {$\vec{t}$};
+   \end{scope}
+   % 
+   \draw [dark27, dashed,] plot[smooth, tension=0.75] coordinates {(B) (C) (D) (E) (F) (G)};
 \end{scope}
 % 
-\draw [dark27, dashed,] plot[smooth, tension=0.75] coordinates {(B) (C) (D) (E) (F) (G)};
+% \begin{scope}[shift={(6,5)}]
+%    %
+%    \pgfmathsetseed{42}
+%    \foreach \yValue in {0,...,42} {%
+%       \pgfmathparse{rnd*360}\let\phi=\pgfmathresult
+%       \pgfmathparse{sqrt(rnd*0.99)}\let\r=\pgfmathresult
+%       \pgfmathparse{\r*cos(\phi)}\let\x=\pgfmathresult
+%       \pgfmathparse{\r*sin(\phi)}\let\y=\pgfmathresult
+%       % 
+%       \begin{scope}[shift={(0,0,0)}]
+%          \tdplotsetrotatedcoords{0}{90}{0}
+%          % \draw[tdplot_rotated_coords, thick,] (-\d,-\d,0) -- (-\d,\d,0) -- (\d,\d,0) -- (\d,-\d,0) -- cycle;
+%          \path[tdplot_rotated_coords] (\x,\y,0) node (A) {};
+%       \end{scope}
+%       \begin{scope}[shift={(1,0,0)}]
+%          \tdplotsetrotatedcoords{22.5}{90}{0}
+%          % \draw[tdplot_rotated_coords, thick,] (-\d,-\d,0) -- (-\d,\d,0) -- (\d,\d,0) -- (\d,-\d,0) -- cycle;
+%          \path[tdplot_rotated_coords] (\x,\y,0) node (B) {};
+%       \end{scope}
+%       %
+%       \begin{scope}[shift={(2,1,0)}]
+%          \tdplotsetrotatedcoords{67.5}{90}{0}
+%          % \draw[tdplot_rotated_coords, thick,] (-\d,-\d,0) -- (-\d,\d,0) -- (\d,\d,0) -- (\d,-\d,0) -- cycle;
+%          \path[tdplot_rotated_coords] (\x,\y,0) node (C) {};
+%       \end{scope}
+%       % %
+%       \begin{scope}[shift={(3.5,2,1)}]
+%          \tdplotsetrotatedcoords{90}{45}{0}
+%          % \draw[tdplot_rotated_coords, thick,] (-\d,-\d,0) -- (-\d,\d,0) -- (\d,\d,0) -- (\d,-\d,0) -- cycle;
+%          \path[tdplot_rotated_coords] (\x,\y,0) node (D) {};
+%       \end{scope}
+%       % %
+%       \begin{scope}[shift={(3.5,3,2)}]
+%          \tdplotsetrotatedcoords{90}{22.5}{0}
+%          % \draw[tdplot_rotated_coords, thick,] (-\d,-\d,0) -- (-\d,\d,0) -- (\d,\d,0) -- (\d,-\d,0) -- cycle;
+%          \path[tdplot_rotated_coords] (\x,\y,0) node (E) {};
+%       \end{scope}
+%       % %
+%       \begin{scope}[shift={(3.5,3,3)}]
+%       \tdplotsetrotatedcoords{90}{0}{0}
+%          % \draw[tdplot_rotated_coords, thick,] (-\d,-\d,0) -- (-\d,\d,0) -- (\d,\d,0) -- (\d,-\d,0) -- cycle;
+%          \path[tdplot_rotated_coords] (\x,\y,0) node (F) {};
+%       \end{scope}
+%       \draw [dark27, dashed,] plot[smooth, tension=0.75] coordinates {(A) (B) (C) (D) (E) (F)};
+%    }
+% \end{scope}
 %
 \end{tikzpicture}
 \end{tikzsize}
