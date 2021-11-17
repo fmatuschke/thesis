@@ -2,43 +2,45 @@
 \setcounter{chapter}{3}
 \chapter{3D-PLI}
 \label{sec:theory}
+%
+\section{Introduction}
 % 
-\section{Brain sectioning}
-%
-From Miriam thesis:
-Brain removed from skull within \SI{24}{\hour} and immersed in a buffered solution of $\SI{4}{\percent}$ formaldehyde
-$\SI{20}{\percent}$ glycerin solution for several days after \dummy{}.
-$\SI{2}{\percent}$ Dimethyl sulfoxide (DMSO) and $\SI{4}{\percent}$ formaldehyde.
-\par
+In the folowing section the preparation of the brain tissue is described.
+It includes the ... process as well as the sectioning up to the ... for the microscopic measuremnts.
+The second part describes the \ac{3D-PLI} technique which allows to measure the orientation of the opical axis which corresponds to the orientation of the myelinated nerve fibers.
+The .. of the \ac{3D-PLI} signal are explained in detail with the necesarry optical limits as preparation for the \ac{3D-PLI} simulations in the following chapters.
 % 
-For the cutting process, the tissue, \ie{} the brain, has to be frozen and imbedded into a solid material.
-One commen material is parafine, however this is not possible for \ac{3D-PLI} \todo{why?}.
-For \ac{3D-PLI} it very is important, that the tissue does not build up crystal structures, \eg{} from sugar molecules, because these are also birefringence.
-Therefore the tissue is first \dummy{} into a \dummy{} liquid \dummy{}
-After a time of a few months the tissue will then be frozen into a $\SI{-80}{\degree}$.
-Then the frozen tissue can be fixated with a liquid glue on a cutting plate.
-The glue is \dummy{}
-It is also be used to build up a surrounding fixating material to stabilize the brain in the cutting process.
-Additionally markers are fixed which help in the later registration process, which will align the tissue sections in a 3d volume again \cite{Schober2016,Ali2018,Schmitz2018}.
-\par
-%
-The cutting is done in a microtome (see \cref{fig:brain_sectioning}).
-In there the temperature can be held at about $\SI{-70}{\degree}$ and allows no heating of the tissue.
-The brain is moved against a vibrating very sharp knife.
-This allows for the thin sectioning of about $\SI{60}{\micro\meter}$.
-After the cutting, the tissue is put onto a glass specimen.
-Since the tissue is such thin and filigran, it is not always possible to avoid cracks for example.
-This also will be as best as possible corrected in the registration process.
-The tissue will be \dummy{} with a glycerin \dummy{} and finally siled with another glass.
-To prevent the formation of waves in the tissue, the glass is weighted.
-The tissue sections are then stored into a refrigerator at $\SI{-70}{\degree\celsius}$.
-The tissue can then finally be measured in the \ac{3D-PLI} microscopes (see \cref{sec:expSetup} for further techniqule informations).
-%
+% 
+% 
+\section{Brain tissue preparation and sectioning}
+% 
+The brain is removed after the death from the skull within \SI{24}{\hour}.
+To .. the brain from further degeneration the tissue is immersed in a solution of $\SI{4}{\percent}$ formaldehyde
+$\SI{20}{\percent}$ glycerin for several days.
+% 
+To prepair the brain for the sectioning it is froces to $\SI{-80}{\celsius}$.
+Then the tissue is fixated with a liquid glue on a plate.
+This allows the plate with the brain be placed within a microtom.
+The microtome consist out of a chamber cooled with about $\SI{-70}{\celsius}$.
+A vibrating very sharp knife is placed in such a way, that the brain can be moved along it to section the brain into $\SI{60}{\micro\meter}$ sections (see \cref{fig:brain_sectioning}).
+The sections are manually placed after each cut onto a glass specimen.
+The tissue is finally be \dummy{} with glycrin and siled with another thin optical glass.
+To store the section until the microscopic ... they are placed within a freecer at about $\SI{-70}{\celsius}$.
+To measare the section under the microscope they are placed at room temperature in the \ac{3D-PLI} setup.
+% 
 \begin{figure}[!t]
 	\centering
-    \setlength{\tikzwidth}{0.75\textwidth}
-	\inputtikz{gfx/neuroanatomy/brain_sectioning}
-	\caption{Illustration of sectioning. a)-b) block with imbedded brain, c) vibrating knife.}
+    \setlength{\tikzwidth}{0.475\textwidth}
+    \subcaptionbox{%
+        \label{fig:brain_sectioning}
+        Illustration of sectioning.
+    }[0.475\textwidth]{\inputtikz{gfx/neuroanatomy/brain_sectioning}}
+    \hfill
+    \subcaptionbox{%
+        \label{fig:brain_section}
+        Seald brain section on specimen.
+    }[0.475\textwidth]{\inputtikz{gfx/neuroanatomy/brain_section}}
+	\caption{\dummy{}}
 	\label{fig:brain_sectioning}
 \end{figure}
 % 
@@ -52,7 +54,7 @@ A circular polarizer, a $\SI{45}{\degree}$ oriented quarter-wave retarder and po
 By rotating the polarizer, the change in intensity is measured with a \ac{CCD}-sensor.
 \par
 %
-The first microscopic setup called \ac{LAP} is capable of measuring an entire human brain slice in a single image with a pixel size of $\SI{60}{\micro\meter}$ \footnote{It is also possible to aquire images with a pixel size of $\approx \SI{40}{\micro\meter}$ and $\approx \SI{20}{\micro\meter}$}.
+The first microscopic setup called \ac{LAP} is capable of measuring an entire human brain slice in a single image with a pixel size of $\SI{60}{\micro\meter}$. \footnote{It is also possible to aquire images with a pixel size of $\approx \SI{40}{\micro\meter}$ and $\approx \SI{20}{\micro\meter}$ by changing the distance from the camera to the tissue.}
 In addition, the tissue sample can be tilted.
 This causes a change in the orientation of the nerve fibers, resulting in a change in the measured signal.
 This change is later used to analyze the 3d orientation of the nerve fibers inside the section (see \cref{sec::InclAnalysis}).
