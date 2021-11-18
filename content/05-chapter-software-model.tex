@@ -324,7 +324,7 @@ This is very important because the solution process can take a lot of time, depe
 %
 %
 % 
-\subsection{Solver main}
+\subsection{Solver main function}
 %
 \begin{lstfloat}[!tb]
 \lstset{style=python}
@@ -354,7 +354,7 @@ def step():
 \label{alg:pseudocode_solver}
 \end{lstfloat}
 %
-Apart from the initialization of the parameters, the main function of the solver algorithm is a computational \code{step} of the solution procedure.
+Tthe main function of the solver algorithm is a computational \code{step} of the solution procedure.
 The algorithm is with reason not a loop by itself.
 This allows the user to interact with the data or parameters at each step, if necessary.
 This \code{step} function (see \cref{alg:pseudocode_solver}) can be divided into the following sequential parts:
@@ -370,15 +370,15 @@ At this point it is integrated into the \ac{fastPLI} package under \pymodule{fas
 %
 \begin{figure}[!t]
     \centering
-    \setlength{\tikzwidth}{0.75\textwidth}
+    \setlength{\tikzwidth}{0.6\textwidth}
     \inputtikz{gfx/model/conical_capsule_bb}
     \tikzset{external/export=false}
 	\caption[]{Fiber segment representations with the \acp{AABB}: \raisebox{.25em}{\tikz \draw[black](0,0)--(0.275,0);} \ac{CC}, \raisebox{.25em}{\tikz \draw[blue, dash pattern=on 2.5pt off 2.5pt](0,0)--(0.275,0);} capsule, \raisebox{.25em}{\tikz \draw[red, dash pattern={on 2.5pt off 0.9pt on 0.42pt off 0.9pt}](0,0)--(0.275,0);} bounding box.}
 	\label{fig:conical_capsule}
 \end{figure}
 % 
-As described in \cref{sec:nerve_fiber_representation}, nerve fibers are represented as a chain of spheres, with two adjacent spheres combined into a fiber segment that forms a \ac{CC} (see \cref{fig:conical_capsule}).
-To simplify the calculation, only the \acp{AABB} is initially checked for collision.
+As described in \cref{sec:nerve_fiber_representation}, nerve fibers are represented as a chain of spheres, with two adjacent spheres representing a fiber segment that forms a \ac{CC} (see \cref{fig:conical_capsule}).
+However a collision between two \ac{CC} involes quite a few calculations. To reduce the runtime only the \acp{AABB} is in a first step checked for collision.
 %
 \begin{lstfloat}[!tb]
 \lstset{style=python}
