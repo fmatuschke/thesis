@@ -23,7 +23,7 @@
 \draw (0.75,-0.75,0) pic[thick,dark27,local bounding box=A] {cross=0.06pt};
 \draw[very thick, RED, ->]   (0,0,0) -- (0.42*\d,0,0);
 \draw[very thick, GREEN, ->] (0,0,0) -- (0,0.42*\d,0);
-\draw[very thick, BLUE,  ->]  (0,0,0) -- (0,0,0.42*\d) node[pos=0.5, anchor=east] {$\vec{n}$};
+\draw[very thick, BLUE,  ->]  (0,0,0) -- (0,0,0.42*\d);% node[pos=0.5, anchor=east, fill=white, xshift=-1ex] {$\vec{n}$};
 %
 %
 \begin{scope}[shift={(3,0,0)}]
@@ -129,7 +129,7 @@
       \draw[tdplot_rotated_coords] (0.75,-0.75,0) pic[thick,dark27,local bounding box=G] {cross=0.06pt};
       \draw[tdplot_rotated_coords, thick, RED, ->]   (0,0,0) -- (0.42*\d,0,0);
       \draw[tdplot_rotated_coords, thick, GREEN, ->] (0,0,0) -- (0,0.42*\d,0);
-      \draw[tdplot_rotated_coords, thick, BLUE, ->]  (0,0,0) -- (0,0,0.42*\d) node[pos=0.5, anchor=south east] {$\vec{t}$};
+      \draw[tdplot_rotated_coords, thick, BLUE, ->]  (0,0,0) -- (0,0,0.42*\d);% node[pos=0.5, anchor=south east, fill=white, xshift=-1ex] {$\vec{t}$};
    \end{scope}
    % 
    \draw [dark27, dashed,] plot[smooth, tension=0.75] coordinates {(B) (C) (D) (E) (F) (G)};
