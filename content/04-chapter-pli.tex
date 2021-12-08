@@ -1,0 +1,272 @@
+\cleardoublepage
+\setcounter{chapter}{3}
+\chapter{3D-PLI}
+\label{sec:theory}
+%
+\section{Introduction}
+% 
+In the folowing section the preparation of the brain tissue is described.
+It includes the ... process as well as the sectioning up to the ... for the microscopic measuremnts.
+The second part describes the \ac{3D-PLI} technique which allows to measure the orientation of the opical axis which corresponds to the orientation of the myelinated nerve fibers.
+The .. of the \ac{3D-PLI} signal are explained in detail with the necesarry optical limits as preparation for the \ac{3D-PLI} simulations in the following chapters.
+% 
+% 
+% 
+\section{Brain tissue preparation and sectioning}
+% 
+The brain is removed after the death from the skull within \SI{24}{\hour}.
+To .. the brain from further degeneration the tissue is immersed in a solution of $\SI{4}{\percent}$ formaldehyde
+$\SI{20}{\percent}$ glycerin for several days.
+% 
+To prepair the brain for the sectioning it is froces to $\SI{-80}{\celsius}$.
+Then the tissue is fixated with a liquid glue on a plate.
+This allows the plate with the brain be placed within a microtom.
+The microtome consist out of a chamber cooled with about $\SI{-70}{\celsius}$.
+A vibrating very sharp knife is placed in such a way, that the brain can be moved along it to section the brain into $\SI{60}{\micro\meter}$ sections (see \cref{fig:brain_sectioning}).
+The sections are manually placed after each cut onto a glass specimen.
+The tissue is finally be \dummy{} with glycrin and siled with another thin optical glass (see \cref{fig:brain_section}).
+To store the section until the microscopic ... they are placed within a freecer at about $\SI{-70}{\celsius}$.
+To measare the section under the microscope they are placed at room temperature in the \ac{3D-PLI} setup.
+% 
+\begin{figure}[!t]
+	\centering
+    \setlength{\tikzwidth}{0.475\textwidth}
+    \subcaptionbox{%
+        \label{fig:brain_sectioning}
+        Illustration of sectioning.
+    }[0.475\textwidth]{\inputtikz{gfx/neuroanatomy/brain_sectioning}}
+    \hfill
+    \subcaptionbox{%
+        \label{fig:brain_section}
+        Seald brain section on specimen.
+    }[0.475\textwidth]{\inputtikz{gfx/neuroanatomy/brain_section}}
+	\caption{\dummy{}}
+\end{figure}
+% 
+% 
+% 
+\section{Experimental setup}\label{sec:expSetup}
+%
+In the institute of the \ac{INM-1} are three microscopic setups based on the same physical principle \cite{Axer2011} (see \cref{fig:pli_setup}).
+Polarized light with a wavelength of about $\SI{525}{\nano\meter}$ is irradiated through a tissue section \footnote{The exact wavelength depends on the microscop.}.
+A circular polarizer, a $\SI{45}{\degree}$ oriented quarter-wave retarder and polarizer, is placed behind the tissue.
+By rotating the polarizer, the change in intensity is measured with a \ac{CCD}-sensor.
+\par
+%
+The first microscopic setup called \ac{LAP} is capable of measuring an entire human brain slice in a single image with a pixel size of $\SI{60}{\micro\meter}$. \footnote{It is also possible to aquire images with a pixel size of $\approx \SI{40}{\micro\meter}$ and $\approx \SI{20}{\micro\meter}$ by changing the distance from the camera to the tissue.}
+In addition, the tissue sample can be tilted.
+This causes a change in the orientation of the nerve fibers, resulting in a change in the measured signal.
+This change is later used to analyze the 3d orientation of the nerve fibers inside the section (see \cref{sec::InclAnalysis}).
+The optical setup of the \ac{LAP} is slightly different in that the quarter-wave retarder is placed between the first polarizer and the tissue section, and all three optical elements are rotated simultaneously.
+This produces the same results, but dust particles on one of the optical elements can be identified more easily because they are also rotating.
+The other microscopes are located in a closed container that protects the optical elements from contamination.
+\par
+% 
+A higher resolution is achieved in the \ac{LMP} microscope, which allows measurement of a $\num{2048}\times\num{2048}$ tile with a pixel size of $\SI{1.3}{\micro\meter}$.
+By measuring the tissue with multiple overlapping images, the overlap can be used to combine them into an overall image.
+This setup is not able to change the light path.
+The 3d information can be estimated by analyzing the distribution of retardation and transmittance.
+However, the sign of the inclination cannot be detected.
+\par
+% 
+\begin{figure}[!t]
+    \captionsetup[sub]{position=top}
+    \setlength{\tikzwidth}{\textwidth}
+	\centering
+    \inputtikz{gfx/pli/pli_setup_pm}
+	\caption{Illustration of PLI setup.}
+	\label{fig:pli_setup}
+\end{figure}
+% 
+The third setup is the \ac{LMP3D}  microscope, which is able to change the light path \cite{Wiese:887678}.
+It makes this possible by using a conical light path.
+By using a slit, only light of a certain angle can pass through it and therefore through the tissue.
+By changing the position of the slit, the different light paths can be applied.
+This microscope is currently under construction and will be modeled here with the characterization from the \ac{LMP} microscope with an expected tilt angle of $\SI{3.9}{\degree}$.
+The tilted light beam (or tissue section) is normally measured in four perpendicular orientations: North, East, South and West.
+\par
+%
+The final image is captured by a camera that uses an \ac{CCD}-sensor.
+In general, an \ac{CCD}-sensor consists of an array of metal oxide semiconductor (MOS) capacitors.
+Each capacitor stores an electric charge that is released by incident photons using the photoelectric effect.
+After a readout process, which also includes electrical amplification, the resulting values can be stored as an image.
+Its value, as long as the capacitors are not saturated or the amplification does not exceed its limits, is linearly correlated with the number of photons.
+The noise of the signal comes mainly from two parts.
+The first is the thermal noise that can lead to electrical charges in the MOS capacitors.
+Second, the amplification of the signal underlies a noise usually from a non-ideal direct current as well as non-ideal electric components like transistors, which is needed for the amplification process.
+These noise sources combine to produce a poison-like distribution due to the nature of digital positive values produced by the analog-to-digital converter.
+For intensity values $\gg 0$ it can be modeled by a normal distribution.
+%
+%
+%
+\section{Intensity signal}\label{sec::intSignal}
+%
+From the Mueller-Stokes matrices (\cref{sec:MuellerStokes}), the intensity signal, which is the first component of the Stokes vector, follows a sinusoidal curve \cite{MenzelMaster,MenzelDissertation}:
+%
+\begin{align}
+\label[pluralequation]{eq:pli_signal}
+\centering
+\begin{gathered}
+I(\rho, \varphi, \alpha, d) =\frac{I_0}{2}\bigl[ 1+ \sin\bigl(2\rho - 2\varphi \bigr)\cdot \sin \bigl( 2\pi\frac{d \dn}{\lambda} \cos^2\left( \alpha \right) \bigr) \bigr] \\
+\text{with} \enspace \delta \coloneqq 2\pi\frac{d \dn}{\lambda} \cos^2\left( \alpha \right) \enspace
+\text{and} \enspace \trel \coloneqq 4 \frac{d \dn}{\lambda}
+\end{gathered}
+\end{align}
+%
+\Cref{eq:pli_signal} describes a sinusoidal signal.
+For a discrete, equidistant measurement of the rotation angles $\rho$, one can use the Fourier series with the first three coefficients to describe the signal:
+%
+\begin{align}
+\begin{split}
+\rho &= [\SI{0}{\degree}, \frac{1\cdot180}{N+1}\si{\degree}, \frac{2\cdot180}{N+1}\si{\degree}, ..., \frac{N\cdot180}{N+1}\si{\degree}]\\
+a_0 &= \frac{1}{N} \sum_i^N I_i\\
+a_1 &= \frac{2}{N} \sum_i^N I_i \cdot \sin(2 \cdot \rho_i)\\
+b_1 &= \frac{2}{N} \sum_i^N I_i \cdot \cos(2 \cdot \rho_i)
+\end{split}
+\end{align}
+%
+The current routine measurements take $N=\SI{9}{}$ images.
+These are used to calculate the final \ac{3D-PLI} modalities:
+%
+\begin{align}
+\begin{split}
+\mathit{transmittance} &\coloneqq 2 \cdot a_0 \vphantom{I_0/2} \\
+\mathit{direction} &\coloneqq 0.5 \cdot \atantwo(-b_1 / a_1) \vphantom{\varphi} \\
+\mathit{retardation} &\coloneqq \frac{\sqrt{a_1^2 + b_1^2}}{a_0}  \vphantom{\sin(\delta)}
+\end{split}
+\hspace{-7em}
+\begin{split}
+& \mathrel{\widehat{=}} I_0/2 \vphantom{2 \cdot a_0}\\
+& \mathrel{\widehat{=}} \varphi \vphantom{0.5 \cdot \atantwo(-b_1 / a_1)} \\
+& \mathrel{\widehat{=}} |\sin(\delta)| \vphantom{\frac{\sqrt{a_1^2 + b_1^2}}{a_0}}
+\end{split}
+\end{align}
+%
+The \textit{transmittance} describes the tissue light transmittance, \ie{} how much light passes through the tissue.
+The \textit{direction} describes the phase of the signal, corresponding to the direction of the macroscopic optical axis and therefore the direction of the nerve fibers.
+The \textit{retardation} corresponds to the amplitude of the signal, \ie{} the strength of the retardation.
+%
+\begin{figure}[t]
+\input{dev/vervet1818/images}
+\caption[3D-PLI modalities]{3D-PLI modalities for a coronal section of a Vervet monkey brain.}
+\end{figure}
+%
+%
+\section{Tilting analysis} \label{sec::InclAnalysis}
+%
+To be able to analyze the optical axis inclination $\alpha$, one has to distinguish the relative strength of the birefringence from the term $\cos^2(\alpha)$.
+For this purpose, a tiltable sample was developed that allows the light signal to be measured through the tissue at a different angle of incidence \cite{Axer2011, Wiese:887678} (see \cref{sec:expSetup}).
+This means that the tissue, and therefore the nerve fibers, change their orientation due to the tilt angles $\theta, \varphi$.
+In addition, the distance the light travels through the tissue increases by $1/\cos(\theta)$ (see \cref{fig:tilted_side_view}).
+\par
+%
+Depending on the \Pixelsize{}, this light passes through the same volume but with a different orientation.
+Therefore, a measurement of multiple light paths can be captured, and the resulting signals can be used to analyze the inclination $\alpha$ and relative birefringence tissue thickness \trel{}.
+The angle of incidence of the light changes the path of the light by Snellius law \cref{eq:Snellius}.
+This results in a perspective shift that must be corrected by a registration process.
+However, this effect is neglected in the simulation, since it only adds a parallel offset.
+\par
+%
+To analyse the tilting signal, an algorithm was developed under the name \ac{ROFL} \cite{Wiese:887678,Schmitz2018}.
+The idea is to fit the measured signals of all light paths simultaneously.
+However, since the change in the signal is proportional to $\cos(\alpha)$, this means that for steep fibers not only are the changes $\frac{\partial}{\partial \alpha} \cos(\alpha)$ small, but also the amplitude of the signal is very small.
+This leads to the problem of increasing uncertainty with increasing inclination angle.
+\par
+%
+Another difficulty is that for a smaller \Pixelsize{} the light path can no longer be neglected.
+For the \ac{LMP3D}-system, this means that for an expected tilt angle of about $\SI{3.9}{\degree}$ and a tissue thickness of $\SI{60}{\micro\meter}$, the light path is measured about $\SI{4}{\pixel}$ away from the non-tilting case when the center of rotation is in the middle of the tissue.
+Additionally these means, that the light from the different tilt views has effected by other parts inside the tissue.
+For homogeneous tissue regions, such as parts in the dense \ac{WM}, this can be neglected.
+However, for single fiber paths such as visible in the \ac{GM} or complicated paths like in crossing the effect on th inclination analysis is an open question.
+%
+%
+%
+\section{Optical resolution}
+\label{sec:opticalResolution}
+%
+The optical resolution of an imaging system describes the minimum size of an object that can still be resolved.
+This property is limited by aberration and diffraction.
+Aberration causes blurring of the image, while diffraction can lead to superimposed diffraction patterns.
+If diffraction is caused by many small objects in relation to the resolution, this also looks like blurring.
+\par
+%
+Ernst Abbe was one of the first to describe that the resolution correlates with the light wave $\lambda$:
+\begin{align}
+d=\frac{ \lambda}{2 n \sin \theta} = \frac{\lambda}{2\mathrm{NA}} 
+\end{align}
+$d$ is the minimum resolvable distance, $n$ the refractive index, $\theta$ the angle of a light spot, which can be combined to the better known numerical aperture $\mathrm{NA}$.
+A more comman definition is Rayleigh limit given by
+\begin{align}
+d=1.22\frac{\lambda}{2\mathrm{NA}} 
+\end{align}
+, where $d$ is the distance between two light spots, where the first light spots maxima is in the seconds light spots first minima (see \cref{fig:rayleigh}).
+For the wavelength used in \ac{3D-PLI} with $\lambda = \SI{525}{\nano\meter}$ and a numerical aperture of $\mathrm{NA} \approx \SI{0.15}{}$ , which results in a limit of about $\SI{2.1}{\micro\meter}$ (see \cite{MenzelDissertation}).
+%
+\begin{figure}[!t]
+\setlength{\tikzwidth}{0.5\textwidth}
+\centering
+% \subcaptionbox{}{
+% \tikzset{external/force remake=true}
+\inputtikz{gfx/pli/rayleigh}
+\caption[Raylay criterium]{Rayleigh's criteria. The minima of the one function is in the maxima of the other.}
+\label{fig:rayleigh}
+\end{figure}
+%
+To account for optical setup, three things must be applied to a simulated measurement.
+%
+\paragraph{Blurring}
+To account for the blurring or out of focus image, the light rays intensity must be blurred on the \ac{CCD}-array.
+This is done via a 2d gaussian convolution $g$ ith the image $f$:
+\begin{align}
+\begin{split}
+    (f * g)(x,y) =& \iint f(\tau,\upsilon) \cdot g(x-\tau, y-\upsilon)d\tau \, d\upsilon\\
+    g(x,y) =& \frac{1}{2\pi\sigma^2} \exp(-\frac{x^2+y^2}{2\sigma^2})
+\end{split}
+\end{align}
+%
+\paragraph{Sampling}
+Since the number and final position of the light rays correspond to the voxels (see \cref{sec:simulation}), all intensities of an image pixel must be combined.
+Here, this is done via a mean value scan:
+\begin{align}
+    \hat{I}(n,m) =\frac{1}{N_x \cdot N_y} \sum_{i=n \cdot N_x}^{(n+1) \cdot N_x-1}\sum_{j=m \cdot N_y}^{(m+1) \cdot N_y-1} I(i,j)
+\end{align}
+Unlike resizing, this does not interpolate the image.
+%
+\paragraph{Noise}
+The final step is to recreate the noise of the image composition.
+To account for this, a noise model must be applied to each image pixel.
+\cite{Wiese:887678} showed that this can be modelled via a normal distribution:
+%
+\begin{align}
+    I = I + \gauss(\sigma, \mu=I)
+\end{align}
+%
+\par
+%
+All three effects must be characterized for the system being simulated.
+%
+%
+% %
+% \section{Computational speedup techniques}\label{sec:theorySpeedup}
+% %
+% Among other specific techniques described in the next chapters \cref{chap:sof:modelling,cha:sof:simulation}, two important technique are used to speed up the calculations.
+% \par
+% %
+% The computationally intensive code is written in \cpp{}.
+% There, the \code{std::vector} has the advantage that the data in memory is linear.
+% The data must be prepared and sent from the \ac{RAM} to the cache of the \acp{CPU}.
+% This takes relative to the time for a singlue \ac{CPU} instruction a very long time.
+% The main advantage of the cache is that it is very fast, however its capacities are usually in the order of a few mega bytes and therefore quite limited.
+% It is built inside the \ac{CPU}.
+% Modern \acp{CPU} have a built-in method called \textit{cache prefetching}.
+% The \ac{CPU} cache prefetcher is a sophisticated directive that requests not only the element at address $i$ in memory, but also the elements next to it ($i+1$ or $i-1$, depending on the algorithm).
+% Since many algorithms traverse arrays, the next element to be computed is usually the next (or previous) element.
+% Therefore, the total time required to copy the data from the memory to the cache is reduced.
+% It can be shown that for linear operations on memory, the cache prefetcher reduces the time so much that it behaves as if the \ac{CPU} had an infinite cache.
+% \par
+% %
+% Another technique is to use modern compilers such as \name{Clang v11}\footnote{\url{https://clang.llvm.org/}} or \name{G++ v10}\footnote{\url{https://gcc.gnu.org/}}.
+% These have an optimization algorithms built in that optimizes the code to the architecture of the machine, and much more sophisticated methods.
+% For example, if the number of iterations is known at compile time, a for loop can be \name{unrolled} to speed up the computations since it no longer needs to check if the conditions are met to end of each loop cycle.
+% To review these optimizations, the time critical code was tested with tools like \name{Compiler Explorer}\footnote{\url{https://godbolt.org/}} and \name{C++ Insight}\footnote{\url{https://cppinsights.io/}}.
+% %

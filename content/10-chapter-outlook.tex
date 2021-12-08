@@ -1,0 +1,106 @@
+\newpage\null\thispagestyle{empty}\newpage
+\clearpage{\thispagestyle{empty}\cleardoublepage}
+\part{Next/Finalize/Closing}
+% 
+% 
+% 
+\setcounter{chapter}{9}
+\chapter{Outlook}
+\label{sec:outlook}
+% 
+\paragraph{Nerve fiber modelling software}
+% 
+Currently, the collisionless nerve fiber modeling algortihm is capable of generating densly packed fiber models which are suitable nerve fiber models for \ac{3D-PLI} simulations.
+However, the algorithm is limited in terms of computational time or more specific, the number of objects in the volume to be solved.
+Since the number of individual nerve fiber segments increases with volume, it is not possible to generate large volumes in a reasonable time.
+\par
+% 
+There are optimization options to improve performance.
+First, one can improve the sandbox design models so that the initial fiber configurations have less overlap.
+This would also mean that for a given volume, the number of objects is reduced.
+However, it was found that in the first $\approx \SI{10}{\percent}$ most collisions can be solved and the remaining time is needed for the remaining minimal overlaps \cref{sec:solverParameterResults}.
+Therefore, the total runtime would probably not decrease significantly.
+\par
+% 
+A more suitable strategy is to design the algorithm in such a way that the number of calculation steps is reduced.
+However, this is a very complicated task.
+For example, one could increase the motion that a fiber segment is allowed to perform.
+This strategy would probably lead to less densely packed models, since without an external force or attraction between the nerve fibers, they can only move apart. \footnote{With an external force one would introduce oscilations.}
+Another possibility is to speed up the runtime per step.
+This can be done, for example, by choosing a simpler calculation.
+In the \ac{MEDUSA} algorithm this is already been realized by using spheres instead of fiber segments.
+The collision of spheres is only be calculated by the euclidian distance with respect to the sum of the spheres radii.
+However, the use of spheres is associated with a disadvantage.
+The number of objects increases dramatically as many spheres are needed to approximate the surface of a single conical fiber segment.
+\par
+% 
+A current limitation of the algorithm presented here is parallelization on a multi-core system.
+For shared memory parallelization, atomic operations must be introduced, which takes a lot of time.
+For an algorithm without shared memory, the required data must be exchanged between the individual CPUs. 
+This communication introduces an overhead compared to the \ac{CPU} instructions.
+However, such an algorithm could work on a multi-node system if the performance does not decrease drastically with increasing number of CPUs involved, as is currently the case.
+Therefore, one needs to redesign the algorithm.
+Common solutions are to divide the volume into subvolumes (as in the case of \ac{3D-PLI} simulation), where each volume can be computed separately.
+However, since the boundaries of such subvolumes contain objects from neighboring volumes, it is necessary to merge the information of neighboring subvolumes.
+In a sense, this is already happening in the current implementation of the octree, but the volume is split into subvolumes at each step.
+If this can be improved so that only the necessary information needs to be transmitted, performance should increase by quite a bit.
+\par
+% 
+At this point, the most promising optimization would be to use the architecture of the \ac{GPU} as in the \ac{MEDUSA} algorithm.
+One type of these algorithms that is particularly appropriate here is based on the \ac{AABB} used here and a z-ordered tree instead of an octree \cite{Karras2012}.
+Not only is the collision checking computed in parallel, but also the generation of the z-ordered tree is done in parallel on the \ac{GPU}.
+Also the algorithm completly runs on the \ac{GPU} and therefore does not need to communicate with the \ac{CPU} or \ac{RAM} as long as the complete information fits on the \ac{GPU} memory.
+This drastically increases the speed of collision checking.
+% 
+% 
+% 
+\paragraph{\ac{3D-PLI} software}
+% 
+As part of this work, two proof-of-concept projects were conducted to develop a parallel GPU implementation for \ac{3D-PLI} simulations.
+The first was a seminar project to implement a parallel discrete tissue volume computation algorithm for the \ac{3D-PLI} simulation on the \ac{GPU} architecture \cite{Kobusch:Seminar}.
+It was shown that the speedup of the discrete volume computation was very fast, but the large memory requirements of the discretized volume negated this speedup overall, as \acp{GPU} are relatively limited here.
+In addition, the need to transfer the data back to \ac{RAM} was too much of an overhead.
+Therefore, the second project was to implement a ray tracing algorithm that computes a light matter collision and matrix computation without pre-computing the discretized volume \cite{Kobusch:887783}.
+Therefore a light particle only computes the M\"{u}ller-Stokes calculus if it collides fith a fiber object.
+This second project includes a proof of concept that implements a simple collision detection algorithm on the \ac{GPU}, a uniaxially aligned collision search algorithm \cite{Karras2012}.
+The results showed that the acceleration possibilities on the \ac{GPU} are enormous.
+However, due to the rather simple algorithm, the runtime was slightly longer, but still in the same order of magnitude as the \ac{CPU} version.
+\par
+% 
+The next logical step is therefore to use a more sophisticated algorithm.
+As in the case of the fiber collision detection algorithm, the same collision detection algorithm and z-ordered tree can be used to detect collisions between light particles and fiber segments \cite{Karras2012}.
+This has several advantages.
+The most important is that the discretized volume is no longer necessary, which saves a lot of memory.
+With such an implementation, a normal computing system should already be fast enough for reasonable simulation sizes.
+Additionally the parallel algorithm developed above also allows light rays to change their orientation.
+This will allow simulations of light scattering in the future.
+% 
+% 
+% 
+\paragraph{Nerve fiber modelling and \ac{3D-PLI} simulation}
+% 
+To increase the statistical significance of the results, the number of nerve fiber models and simulations should be increased.
+Since two models are independent, all models can be generated in parallel using the entire computer architecture.
+However, a more appropriate step would be to determine the essential parameters for the models and simulations, thus reducing the number of model generation required.
+Modern machine learning algorithms are a suitable tool for this purpose.
+\par
+% 
+Another important task is the study of larger nerve fiber radii.
+This would include the larger nerve fiber radii that are anatomically present in the brain.
+In addition, larger nerve fiber radii could also be an approximation for a nerve fiber bundle consisting of multiple nerve fibers in the \ac{3D-PLI} simulation.
+They should then be simulated with a macroscopic birefringent model \cite{Menzel2015}.
+If this is possible, one could significantly reduce the number of objects for model generation, which means that one could have either very small run times or larger volumes.
+Further optimization can be achieved by using nerve fiber models that are not fully solved.
+If the effect is negligible in the \ac{3D-PLI} simulation, the runtime for the models can be significantly reduced.
+\par
+% 
+In addition, more complex models, \eg{} three fiber populations, should be investigated.
+Furthermore, boundary regions consisting of neighboring nerve fiber tracts must also be investigated because they significantly change the signal when the light beam is tilted.
+This change is currently not accounted for by tilting analysis.
+Here, the use of machine learning can be used to find a new characterization of the \ac{3D-PLI} signals and better identify the underlying fiber structure.
+In \ac{dMRI}, nerve fiber models and their simulations, as well as the use of deep learning, have already shown that the underlying fiber structure can be identified from the original signals \cite{ginsburgerDis2019}.
+This can potentially be applied to \ac{3D-PLI} in a similar way.
+% 
+\par
+These type of models also can be used in other field of research.
+Since all these models focus on non-overlapping tubular structures, they could already be applied to skeletal muscle fiber \cite{Ji2021}.

@@ -1,5 +1,5 @@
 \cleardoublepage
-\setcounter{chapter}{4}
+\setcounter{chapter}{5}
 \chapter{\acs{3D-PLI} simulation}
 \label{cha:sof:simulation}
 %
@@ -55,11 +55,11 @@ If the division of \voi{} by \voxelsize{} is not an integer, \voi{} is automatic
 %
 \subsection{Nerve fiber layers}
 %
-As described in \cref{sec:fiberArchitecture}, nerve fibers are axons that can be wrapped by multiple turns of myelin (see \cref{fig:fiberLayer}).
+As described in \cref{sec:fiberArchitecture}, nerve fibers are axons that can be wrapped by multiple turns of myelin (see \cref{fig:myelinLayer}).
 Especially for light wave simulations, the myelin windings are an important feature \cite{MenzelDissertation}.
 \par
 %
-The windings are represented as individual layers (see \cref{fig:myelinLayer}).
+The windings are represented as individual layers (see \cref{fig:fiberLayer}).
 This greatly simplifies the creation process.
 A layer is defined by a factor between $\SI{0}{}$ and $\SI{1}{}$ that scales with the radius of the nerve fiber.
 For example, $\SI{0.75}{}$ means that from $0 \leq r < 0.75$ of radii is interpreted as the first layer (see \cref{fig:fiberLayer}).
@@ -68,9 +68,9 @@ For example, $\SI{0.75}{}$ means that from $0 \leq r < 0.75$ of radii is interpr
 Each layer requires a number of physical properties in addition to its radius:
 %
 \begin{itemize}[nosep]
-    \item birefringence value $\dn$
-    \item absorption coefficient $\mu$
-    \item optical axsis model $p=\mathit{parallel}$, $r=\mathit{radial}$, $b=\mathit{background}$
+    \item birefringence value: $\dn$
+    \item absorption coefficient: $\mu$
+    \item optical axsis model: $p=\mathit{parallel}$, $r=\mathit{radial}$, $b=\mathit{background}$
 \end{itemize}
 %
 These properties are specified as a list of tuples within the algorithm (see \cref{alg:fiberbundleprops}).
@@ -261,7 +261,7 @@ In a later step, the intensities will be blurred and resampled to the acually \a
 \end{figure}
 %
 The simulation allows for a tilting light beam.
-For this purpose, the \ac{LAP} uses a tilting stage to which the tissue sections are attached (see \cref{fig:tilted_side_view}).
+For this purpose, the \ac{LAP} uses a tilting stage to which the tissue sections are attached (see \cref{fig:tilting_camera_view}).
 The \ac{LMP3D}, on the other hand, has an tilted light beam.
 This is achieved by a conical light path, from which an aperture is then used to sample the desired light direction \cite{Wiese:887678}.
 Both methods can be mathematically represented by the same procedure.

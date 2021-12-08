@@ -1,6 +1,6 @@
 \newpage\null\thispagestyle{empty}\newpage
 \clearpage{\thispagestyle{empty}\cleardoublepage}
-\part{Theory/Background}
+\part{Basics}
 % \cleanchapterquote{We are part of the universe that has developed a remarkable ability: We can hold an image of the world in our minds. We are matter contemplating itself.}{Sean Carroll}{The Particle at the End of the Universe}
 % \acbarrier
 \parttoc
@@ -150,147 +150,89 @@ There are many different types of axons.
 Some contain a very thick myelin layer, while others have none.
 The high density of axons and myelin makes the brainappear white and is therefore called \ac{WM}, whereas the outer cell bodys appear darker and ist called \ac{GM}.
 This color difference is clearly visible in a Nissle stained histological sections (see \cref{fig:coronalStained}).
-% \par
-%
-% \ac{WM} has a relativly high density of fibers, for example up to about $\SI{200}{\million}$ in the corpus callosum connecting the left and right brain hemisphere.
-% 
-% 
-% 
-\section{WM imaging techniques}
-% 
-\subsection{diffusion MRI}
-% 
-\ac{dMRI} is used to measure the diffusion of water molecules inside a volume.
-Since inside the brain nerve fibers form high density of nerve fiber bundles, the water molecules have another diffusion constant along the nerve fibers orienation in contrast to the perpenticular diretion.
-Therefore it is posible to extract the orientation of nerve fibers inside a subvolume of the brain.
-Depending on the \ac{MRI}, the sequence and the measurment time, the resolution can be in the order of several hundres of micro meter up to several milli meters.
-Compared to other techniques this resolution is rather small. 
-However up to this point it is the only existinc technique capable of measuring in vivo.
-Therefore it is ecential for diognoses in the medical feald.
-% 
-% 
-% 
-\subsection{Stained tissue microscopy}
-% 
-With a microscope it is possible to measure up to a resolution in the order of the wavelength of the light.
-For visible light this is in the range of several hundres of nanometer.
-This makes it possible to study brain sections under the microscop.
-Since nerve fibers are quite small, the brain section also has to be small to be able to see the orientation and path of individual nerve fibers.
-However one cannot section the brain arbitrary thin, since it becomes qute unstable.
-Typical section thickness for a light microscopy is in the order of several 10th of micrometers.
 \par
-% 
-\begin{figure}[!t]
-	\centering
-	\tikzset{external/export next=false}
-	\begin{tikzpicture}[]  
-        \node[inner sep=0pt, anchor = south west] (fig) at (0,0)
-           {\includegraphics[width=\textwidth]{gfx/neuroanatomy/NeuralNet-BrainAtlasDotOrg.png}};
-        %  
-        \coordinate (A) at (fig.west);
-        \coordinate (B) at (fig.west);
-        %  
-        \draw[Orange, ultra thick] (7.65,6.15) ellipse (1 and 0.5);
-        \draw[ProcessBlue, ultra thick] (10,4.5) ellipse (2 and 1);
-        % \draw[yellow, ultra thick] (fig.north west) -- ++ (13.87303cm,0);
-    \end{tikzpicture}
-	\caption[Myelin staining of the human thalamus]{Myelin staining of the human thalamus, sagital section. \textcolor{Orange}{nerve fiber bundles}, \textcolor{ProcessBlue}{"neural net"}. \url{http://brainmaps.org/HBP3/h.sapiens/sag/h5thal-myelin/17a}}
-	\label{fig:brainMyelinStain}
-\end{figure}
-% 
+%
 To enhance the contrast of the nerve fibers to the background, staining like Nissle is used to darken the myelin (see \cref{fig:brainMyelinStain}).
 This allows to follow small nerve fibers down to individual nerves depending on their myelination degree.
 Larger nerve fiber bundles are such dark, that mostly no orientation can be exracted.
+\par
 % 
+\Cref{fig:brainMyelinStain} shows a nissle stained brain section.
+% Both single nerve fibers and nerve fiber bundles are visible.
+Between neurons, individual nerve fibers form complex reticular structures.
+Several nerve fiber bundles trace their paths through the thalamus and are visible as dark structures.
 % 
+A closer look with an electron microscope into a nerve fiber bundle of the corpus callosum of a rodent is shown in \cref{fig:elecMic}.
+The nerve fibers of the $\SI{100}{\nano\meter}$ thin section are densely packed together.
+Axon diameter and myelin thickness vary from nerve fiber to nerve fiber.
 % 
-\subsection{Electron microscop}
-% 
-Due to the ... principle of quantum mechanic, an electron also behaves light a wave with a wave length of hundreds of femtometer and less, depending on the energy of the electron.
-This makes it possible to measure with an electron microscop images of very high resolutions.
-However, to be able to measure the electron, one needs a vacuum.
-Therefore if one images a tissue sample of the brain, the tissue sample dries out.
-This process deforms the tissue and therefore the nerve fiber paths.
-Still it is possible to study the small samples of nerve fiber tissue.
-% 
-% 
-% 
-\subsection{3D-PLI}
-% 
-\ac{3D-PLI} is an imaging techique based on the change of polarization of the light due to the birefingence property of myeling (see \cref{sec:expSetup}).
-The from this it is possible to extract the orientation of the nerve fibers.
-% 
-\todo{was sollte in diesm abschnitt stehen? mindestens fom?}
-% 
-% 
-% 
-\subsubsection{Sectioning}
-%
 \begin{figure}[!t]
 	\centering
-    \setlength{\tikzwidth}{0.75\textwidth}
-	\inputtikz{gfx/neuroanatomy/brain_sectioning}
-	\caption{Illustration of sectioning. a)-b) block with imbedded brain, c) vibrating knife.}
-	\label{fig:brain_sectioning}
+    \tikzset{external/export=false}
+    \subcaptionbox{%
+        \label{fig:brainMyelinStain}
+        Myelin staining of the human thalamus, sagital section. \textcolor{Orange}{Nerve fiber bundle} structures are visiable as \dummy{}. In between \textcolor{ProcessBlue}{net-like structures} are fromed from individual nerve fibers. \url{http://brainmaps.org/HBP3/h.sapiens/sag/h5thal-myelin/17a}}
+    [.49\textwidth]{
+        \begin{tikzpicture}[]  
+            \node[inner sep=0pt, anchor = south west] (fig) at (0,0)
+            {\includegraphics[width=0.49\textwidth, trim=281 152 0 0, clip]{gfx/neuroanatomy/NeuralNet-BrainAtlasDotOrg.png}};
+            %  
+            \draw[Orange, ultra thick] (rel cs:name=fig,x=0.42,y=0.49) ellipse (0.75 and 0.375);
+            \draw[ProcessBlue, ultra thick] (rel cs:name=fig,x=0.7,y=0.3) ellipse (1.1 and 0.7);
+            % 
+            \draw[white, ultra thick] let
+                \p1=(rel cs:name=fig,x=0,y=0), 
+                \p2=(rel cs:name=fig,x=0.1041,y=0), 
+                \n1={veclen(\x1-\x2,\y1-\y2)}
+            in
+                ($(fig.south east)+(-0.2,0.2)$) -- ++ (180:\n1) node[above, midway, anchor=south]{$\SI{50}{\micro\meter}$};
+        \end{tikzpicture}        
+    }
+    \hfill
+    \subcaptionbox{%
+        \label{fig:elecMic} Electron microscope image of a $\SI{100}{\nano\meter}$ thin section of rodent corpus callosum \cite{WALHOVD20142}. The myelin is visible as dark soroundings around the inner axon.}
+    [.49\textwidth]{
+        \begin{tikzpicture}[]  
+            \node[inner sep=0pt, anchor = south west] (fig) at (0,0)
+            {\includegraphics[width=0.49\textwidth]{dev/brain/elec_micrograph_rodent_cc.jpg}};
+            \draw[white, ultra thick] let
+                \p1=(rel cs:name=fig,x=0,y=0), 
+                \p2=(rel cs:name=fig,x=0.1347,y=0), 
+                \n1={veclen(\x1-\x2,\y1-\y2)}
+            in
+                ($(fig.south east)+(-0.2,0.2)$) -- ++ (180:\n1) node[above, midway, anchor=south]{$\SI{1}{\micro\meter}$};
+        \end{tikzpicture}
+    }
 \end{figure}
-%
-From Miriam thesis:
-Brain removed from skull within \SI{24}{\hour} and immersed in a buffered solution of $\SI{4}{\percent}$ formaldehyde
-$\SI{20}{\percent}$ glycerin solution for several days after \dummy{}.
-$\SI{2}{\percent}$ Dimethyl sulfoxide (DMSO) and $\SI{4}{\percent}$ formaldehyde.
-\par
 % 
-For the cutting process, the tissue, \ie{} the brain, has to be frozen and imbedded into a solid material.
-One commen material is parafine, however this is not possible for \ac{3D-PLI} \todo{why?}.
-For \ac{3D-PLI} it very is important, that the tissue does not build up crystal structures, \eg{} from sugar molecules, because these are also birefringence.
-Therefore the tissue is first \dummy{} into a \dummy{} liquid \dummy{}
-After a time of a few months the tissue will then be frozen into a $\SI{-80}{\degree}$.
-Then the frozen tissue can be fixated with a liquid glue on a cutting plate.
-The glue is \dummy{}
-It is also be used to build up a surrounding fixating material to stabilize the brain in the cutting process.
-Additionally markers are fixed which help in the later registration process, which will align the tissue sections in a 3d volume again \cite{Schober2016,Ali2018,Schmitz2018}.
-\par
-%
-The cutting is done in a microtome (see \cref{fig:brain_sectioning}).
-In there the temperature can be held at about $\SI{-70}{\degree}$ and allows no heating of the tissue.
-The brain is moved against a vibrating very sharp knife.
-This allows for the thin sectioning of about $\SI{60}{\micro\meter}$.
-After the cutting, the tissue is put onto a glass specimen.
-Since the tissue is such thin and filigran, it is not always possible to avoid cracks for example.
-This also will be as best as possible corrected in the registration process.
-The tissue will be \dummy{} with a glycerin \dummy{} and finally siled with another glass.
-To prevent the formation of waves in the tissue, the glass is weighted.
-The tissue sections are then stored into a refrigerator at $\SI{-70}{\degree\celsius}$.
-The tissue can then finally be measured in the \ac{3D-PLI} microscopes (see \cref{sec:expSetup} for further techniqule informations).
 %
 %
 \section{Axon Literature}
 \label{sec:axonMicroscopy}
-% 
-\TODO{umschreiben, die tabelle ist nicht wichtig, die grossenordnung ist fuer diese arbeit entscheident.}
 %
-Axon diameter \cite{Liewald2014}:
+\Cref{tab:axonDiameter} lists the results of the nerve fiber diameter.
+The diameter and their standard deviation are region-specific.
+The $g_{\mathit{ratio}}$ describes the fraction of the axon to the entire nerve fiber diameter.
+From studies with \ac{dMRI} and electron microscopy
+\cite{Stikov2015,Dean2016,Mohammadi2015,Cercignani2017,Berman2018,Jung2018} the $g_{\mathit{ratio}}$ is in the range of $\SI{0.6}{}$ to $\SI{0.9}{}$, depending on the region (see \cref{tab:gratio}).
 %
 \begin{table}[!b]
 \centering
 \pgfplotstabletypeset[
-thesisTableStyle,
-font=\footnotesize,
-col sep=comma,
-columns/Name/.style={string type},
-columns/Mean/.style={fixed zerofill},
-columns/SD/.style={fixed zerofill},
-columns/Median/.style={fixed zerofill},
-columns/Max/.style={fixed zerofill},
-columns/Min/.style={fixed zerofill},
-columns/n/.style={dec sep align},
-rowbf={1},rowbf={8},rowbf={19},
-rowem={2},rowem={5},
-rowem={9},rowem={12},rowem={15},
-rowem={20},rowem={23},rowem={26},
-]{data/axon_distribution.csv}
-\caption{axon diameter distribution of the human brain in $\si{\micro\meter}$ \cite{Liewald2014}.}
-\label{tag:axonDiameter}
+    thesisTableStyle,
+    font=\footnotesize,
+    % col sep=comma,
+    columns/area/.style={string type},
+    columns/mean/.style={string type},
+    columns/std/.style={string type},
+]{
+    area mean std
+    {sup. longitudinal fascide} $\SI{0.8}{\micro\meter}$ $\SI{0.2}{\micro\meter}$
+    {Unicate/inferior occipital fasc.} $\SI{0.51}{\micro\meter}$ $\SI{0.05}{\micro\meter}$
+    {corpus calosum} $\SI{0.69}{\micro\meter}$ $\SI{0.04}{\micro\meter}$
+}
+\caption{Nerve fiber diameter distribution of the human brain. Mean values over three human brains \cite{Liewald2014}.}
+\label{tab:axonDiameter}
 \end{table}
 %
 \begin{table}[!b]
@@ -300,33 +242,10 @@ thesisTableStyle,
 font=\footnotesize,
 col sep=semicolon,
 columns={article,cite,gratio},
-columns/article/.style={string type, column name=name, column type = {l}},
+columns/article/.style={string type, column name=study, column type = {l}},
 columns/cite/.style={string type, column name=cite, column type = {l}},
 columns/gratio/.style={string type, column name=$g_{\mathit{ratio}}$},
 ]{data/gratio.csv}
 \caption{human $g_{\mathit{ratio}}$ from invivo mri studies.}
 \label{tab:gratio}
 \end{table}
-%
-axon = 0.5-1.0 diameter (most frequent
-thickness of myelin mean = 0.09, median 0.08
--> g-ratio 0.9 (electron microscop, upper boundry)
-%
-g-ratio
-\cite{Cercignani2017} -> 0.65-0.8 mrt, healty male and female different age, different regions\\
-\cite{FitzGibbon2013} -> 0.58-0.84 (Retina), electron microscopy
-%
-\todo{brechungsindex}
-%
-% \begin{figure}[!t]
-% 	\centering
-% 	 \includegraphics[clip, trim=0.65cm 6.25cm 0.4cm 0.5cm]{gfx/neuroanatomy/nature_3d_em_optical_nerve.png}
-% 	\caption{\dummy{only show a} Three dimensional electron microscopy reveals changing axonal and myelin morphology along normal and partially injured (*, light green) optic nerves. Origin: \cite{Giacci2018} (reative Commons Attribution 4.0 International License).}
-% % 	\label{fig:brain_sectioning}
-% \end{figure}
-%
-%
-% \par
-% \noindent\rule{\textwidth}{2pt}
-% \par
-%

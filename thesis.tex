@@ -55,18 +55,19 @@
 % content/01-chapter-introduction,
 % content/02-chapter-neuroanatomy,
 % content/03-chapter-theory,
-% content/04-chapter-software-model,
-% content/05-chapter-software-simulation,
-% content/06-chapter-software,
-% content/07-chapter-analysis-model,
-% content/08-chapter-analysis-simulation,
-% content/09-chapter-conclusion,
+% content/04-chapter-pli,
+% content/05-chapter-software-model,
+% content/06-chapter-software-simulation,
+% content/07-chapter-software,
+% content/08-chapter-analysis-model,
+% content/09-chapter-analysis-simulation,
+% content/10-chapter-outlook,
+% content/11-chapter-conclusion,
 % content/declaration
 % content/appendix,
 % }
 % 
 % 
-
 \input{content/acronyms}
 %
 %
@@ -137,21 +138,25 @@
 % 
 \include{content/02-chapter-neuroanatomy}
 \include{content/03-chapter-theory}
+\include{content/04-chapter-pli}
 %
-\include{content/04-chapter-software-model}
-\include{content/05-chapter-software-simulation}
-\include{content/06-chapter-software}
+\include{content/05-chapter-software-model}
+\include{content/06-chapter-software-simulation}
+\include{content/07-chapter-software}
 %
-\include{content/07-chapter-analysis-model}
-\include{content/08-chapter-analysis-simulation}
+\include{content/08-chapter-analysis-model}
+\include{content/09-chapter-analysis-simulation}
 %
-\include{content/09-chapter-conclusion}
+\include{content/10-chapter-outlook}
+\include{content/11-chapter-conclusion}
 %
 % --------------------------
 % Back matter
 % --------------------------
 %
 % \part{Bibliography}
+\newpage\null\thispagestyle{empty}\newpage
+\clearpage{\thispagestyle{empty}\cleardoublepage}
 \addtocontents{toc}{\vspace{\normalbaselineskip}}
 {%
 % \pdfbookmark[0]{Bibliography}{Bibliography}
@@ -183,7 +188,6 @@
 %
 % \cleardoublepage
 % \include{content/declaration}
-% \clearpage
 %
 \include{content/appendix}
 % %

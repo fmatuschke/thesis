@@ -8,6 +8,8 @@
 # wget https://ftp.tu-chemnitz.de/pub/tug/historic/systems/texlive/2020/tlnet-final/install-tl-unx.tar.gz
 # sudo ./install-tl --repository=https://ftp.tu-chemnitz.de/pub/tug/historic/systems/texlive/2020/tlnet-final/
 
+TIKZ=all
+
 .PHONY: compile
 compile:
 	lualatex -interaction=nonstopmode -halt-on-error -shell-escape thesis.tex
@@ -23,7 +25,7 @@ thesis:
 	$(MAKE) bibliography
 	$(MAKE) compile
 	$(MAKE) compile
-	xdg-open thesis.pdf
+	xdg-open thesis.pdf 2>/dev/null
 
 .PHONY: split
 split: 
@@ -31,7 +33,7 @@ split:
 	
 .PHONY: tikz
 tikz:
-	bash compile-chapters.sh
+	bash compile-chapters.sh $(TIKZ)
 
 .PHONY: zip
 zip:
@@ -74,6 +76,9 @@ clean:
 	rm -f thesis.tdo
 	rm -f thesis.toc
 	rm -f thesis-tikz*
+	rm -f thesis-chapter*
+	rm -f thesis-appendix.pdf
+	rm -f thesis.html
 	rm -f content/*.aux
 
 .PHONY: clean-all

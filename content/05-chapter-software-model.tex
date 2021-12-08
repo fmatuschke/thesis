@@ -1,46 +1,46 @@
 \newpage\null\thispagestyle{empty}\newpage
 \clearpage{\thispagestyle{empty}\cleardoublepage}
-\part{Software}
+\part{Software implementation}
 % \acbarrier
 \parttoc
 % 
 % 
 % 
-\setcounter{chapter}{3}
-\chapter{Nerve fiber modelling}
+\setcounter{chapter}{4}
+\chapter{Dense nerve fiber modelling}
 \label{chap:sof:modelling}
 % 
-In \cref{chap:neuro} both the structure of nerve fibers and the macroscopic structure of \ac{WM} were described.
+In \cref{chap:neuro} the structure of nerve fibers and the macroscopic structure of \ac{WM} were described.
 The question is how to represent such a structure in a computer algorithm?
 For simple fiber configurations, \eg{} parallel, linear nerve fibers, this is quite straightforward.
 However, it has been shown that irregular, non-symmetric nerve fiber configurations are necessary to obtain a realistic result for microscopy simulations based on the wave nature of the light \cite{MenzelDissertation}.
 Therefore one needs ideally a representation, which allows to build any kind of pattern.
 \par
 %
-Many solutions are available.
+Many representations are already available.
 A common one is used in graphical visualizations.
-A rope or fiber, \ie{} a raw object, is defined by a trajectory with a radius.
-From this, a surrounding mesh is generated.
-In visualization, the mesh is used to apply textures to represent a surface.
+A rope or fiber, \ie{} a tubical object, is defined by a trajectory with a radius.
+From this, a surrounding mesh is generated with n-poligonal vertices.
+In visualization, the mesh is used to apply textures onto the surface.
 Such meshes are \eg{} used in Monte Carlo simulations of \ac{dMRI} \cite{Ginsburger2019,ginsburgerDis2019}.
-In this type of simulation, the meshes help calculate whether a water molecule travels through the surface of a nerve fiber, i.e., the surface of the mesh.
-However, this representation is very computationally intensive because the number of triangles that must be present in the mesh is quite high.
+Using a meshes helps to calculate whether a water molecule travels through the surface of a nerve fiber, \ie{} the surface of the mesh.
+However, this representation is very computationally intensive because the number of triangular faces that must be present in the mesh is quite high.
+Here a different aprouch was chosen due to an additional requirement.
 \par
 %
 When creating complex nerve fiber structures, it is important that the nerve fibers do not overlap.
-In simulations in which the wave nature of light is modeled, this otherwise leads to significantly altered results.
 To achieve non overlapping fibers, either the user must define such a structure in advance, or a computer algorithm must build such structures automatically.
 Considering the immense number of configuration possibilities that nerve fibers can have even in a small volume, the task is almost impossible for a user to solve except for trivial configurations.
 The same is true for a computer algorithm.
 One could write an algorithm that defines a single fiber in a volume and then places the next one, making sure that none overlaps and so on.
 This works well up to a point.
 Even if an algorithm always finds a solution to find a path through an partially filled volume, at some point the volume will appear to be full, but still have plenty of free space between fibers.
-Of course, one can minimize this behavior by trying to place nearly parallel fibers, but again, looking at real tissue data, \eg{} \cref{fig:brainTPFM,fig:elecMic}, this does not reflect reality.
-Even in a fiber bundle, the fibers are so densely packed that you can't just add another fiber in a way that wastes volume over time (\ie{} add more fibers).
+Of course, one can minimize this behavior by trying to place nearly parallel fibers, but again, looking at real tissue data, \eg{} \cref{fig:brainMyelinStain,fig:elecMic}, this does not reflect reality.
+In a fiber bundle, the fibers are so densely packed that they touch and deform each other.
 \par
 %
 The solution found in this work is to allow the placement of nerve fibers in any way and without any restriction.
-The overlap will be removed in the folliwing step.
+The overlap will be removed in a secondary step.
 Check all fibers for collisions with each other.
 If a collision occurs, try to remove it by moving the colliding parts slightly away from each other.
 Repeat this step until all collisions are removed.
@@ -50,14 +50,12 @@ This idea with all its necessary prerequisites is described in detail in the fol
 First, the representation of a nerve fiber is defined in a way that it takes into account to be as performant as possible for the collision process.
 Then, additional \textit{building} functions are designed to help the user quickly define a volume with nerve fibers.
 Finally, the algorithm for resolving the collisions with the parallelization components is explained in detail.
-In addition, another approach based on this idea and developed in this work with colleagues from \ac{dMRI} is explained in detail.
-This one focuses on the placement of neurons such as astrocytes or olegodendrocytes in a volume with fibers.
-The collaboration is possible since both simulation techniques study the same type of tissue models.
-Since these models focus on non-overlapping tubular structures, they can also be applied to other fibrous structures such as skeletal muscle fiber \cite{Ji2021}.
+In addition, another approach based on this idea and developed in this work with colleagues from \ac{dMRI} is described as well.
+In the additional algorithm one focuses also on the placement of neurons such as astrocytes or olegodendrocytes in a volume with fibers.
 \par
 %
 All described algorithms here are part of the toolbox \ac{fastPLI} \cite{Matuschke2019, Matuschke2021}, which is described in detail in \cref{chap:Software}.
-The original idea of a collison free algorithm is published in \cite{Matuschke2019}.
+The original idea of a collison solving algorithm is published in \cite{Matuschke2019}.
 %
 %
 %
@@ -65,26 +63,26 @@ The original idea of a collison free algorithm is published in \cite{Matuschke20
 \label{sec:nerve_fiber_representation}
 %
 Nerve fibers themselves are tube-like structures surrounded by an electrically insulating lipid layer of myelin (see \cref{sec:fiberArchitecture}).
-Both the diameter of the axon and the thickness of the myelin can vary greatly from fiber to fiber (see \cref{sec:axonMicroscopy}).
+Both the diameter of the axon and the thickness of the myelin can vary greatly from fiber to fiber (see \cref{sec:axonMicroscopy,tab:gratio}).
 This means that the representation of nerve fiber models should be able to represent such variations as well.
 \par
 %
-As described in \cref{sec:fiberArchitecture} \ac{WM} consist of nerve fibers packed tightly together in nerve fiber bundles.
+As described in \cref{sec:fiberArchitecture} \ac{WM} consist of nerve fibers packed tightly together in nerve fiber bundles (see \cref{fig:elecMic}).
 These bundles can join with other bundles and traverse the brain to connect one region to another.
-The bundles are able to cross each other, either by crossing the individual nerve fibers or bypassing the fiber bundles.
-This can \eg{} generate interwoven structures.
-Such structures are a key element in the study of \ac{3D-PLI}.
+The bundles are able to cross each other, either by crossing the individual nerve fibers or bypassing the fiber bundles, which can form interwoven structures.
+\footnote{The terminology \say{crossing} is relative to the resolition and voxel size.}
+Such structures are a key element to increase the understanding \ac{3D-PLI}.
 Therefore, it is particularly important that the models are able to form such structures without overlapping individual fibers.
 \par
 %
-One way of representing individual nerve fibers is a parametric function describing a path in 3d space, \ie{} a trajectory.
+To represent individual nerve fibers a parametric function describing a path in 3d space, \ie{} a trajectory, is used.
 In addition, a fourth element describes the radius of the fiber at the same point:
 % 
 \begin{align}
 f(t) \rightarrow (x(t),y(t), z(t), r(t))
 \end{align}
 % 
-However, this representation does not allow simple subsequent changes, such as resolving collisions.
+However, a continuous representation does not allow simple subsequent changes, such as resolving collisions.
 For this purpose, individual elements are more manageable, allowing movement or deformation.
 Therefore, the function or fiber is divided into smaller discrete segments.
 %
@@ -124,14 +122,16 @@ This will increase the computational speed, which will be crucial for a collisio
 % 
 \section{Sandbox}\label{sec:sandbox}
 %
-In computer game terminology, a \textit{sandbox mode} is a game mode that allows the player to build and design anything at no cost.
-Analogous to this feature is the \pymodule{fastpli.model.sandbox}, which allows the user to easily and quickly design standard geometric configurations of nerve fibers and bundles.
-Since nerve fibers are usually arranged in bundles, the design methods focus on generating nerve fiber bundles from a 2d pattern (seed points) and a nerve fiber bundle trajectory.
+To build dense \ac{WM} models one needs to fill a volume with individual nerve fibers.
+To allow the user to build such volumes the \pymodule{fastpli.model.sandbox} was developed.
+The user is able to define a nerve fiber bundle geometry and fill it with a pattern of fibers and to generate nerve fiber bundles from cylindicals or cubical shapes.
 \par
 %
-This module is divided into two successive submodules.
+The \pymodule{fastpli.model.sandbox} module is divided into two successive submodules.
 The first module handles the seeding process, while the second part builds up a nerve fiber bundle or volume filled with individual fibers from seed points.
 %
+% 
+% 
 \subsection{Seeding fiber bundles}\label{sec:seeds}
 %
 \begin{figure}[!t]
@@ -155,11 +155,11 @@ Seed points are stored as a list of 2d points:
 \end{align}
 %
 To form particularly dense fiber bundles, a method for generating an equilateral triangular grid is implemented (see \ref{fig:triGrid}).
-Mathematically, this yields the most densely packed pattern for a 2d circle with equal radius packed area.
+Mathematically, this yields the most densely packed pattern for circles with equal radius in a 2d area.
 However, this very regular symmetric grid can lead to unrealistic results (\eg{} diffraction pattern in light wave simulation \cite{MenzelDissertation}).
 It should therefore only be used as an initial configuration.
 Since the initial configurations are often unknown, it is probably best to choose a random distribution (see \cref{fig:rndGrid}).
-For a circular boundary, this is done with:
+For a circular boundary, this can be generate for example with:
 % 
 \begin{equation}
 \begin{split}
@@ -180,6 +180,7 @@ y = r \sin(\varphi)
 \begin{figure}[!t]
     \centering
     \setlength{\tikzwidth}{0.75\textwidth}
+    % \tikzset{external/export=false}
     \inputtikz{gfx/model/min_torsion}
 	\caption{Left: Plane of seed points. Right: Plane are rotated and placed along the path. At the end, the plane has the same normal vector as the starting plane, but due to the principle of minimum rotation, the plane is rotated along the normal vector.}
 	\label{fig:torsion}
@@ -193,16 +194,16 @@ Essentially, for each resulting $\mathit{fiber}_j$, this means:
 \end{align}
 % 
 However, the question is which rotation matrix $\mat{R}$ has to be applied.
-Since a trajectory is only a 2d object, \ie{} a line, no unique normal vector can be defined in space.
+Since a trajectory is only a 2d object, \ie{} a line, no unique normal vector can be defined.
 In mathematics, the torsion of a curve can be defined with a principal normal vector and a binormal vector.
 However, this has the problem that a line such as a helical function has a torsion, \ie{} the line rotates along its path.
-This would mean that the individual fibers would rotate around the path of the fiber bundle if the seed point plane were placed according to the principal and binormal vectors.
+This would mean that  individual fibers rotate around the path of the fiber bundle if the seed point plane were placed according to the principal and binormal vectors.
 This is possible in principle, but practically non-existent in real tissue.
 \par
 % 
 A more reasonable solution is to perform a rotation such that the rotation along the fiber bundle trajectory is minimal.
-This can be achieved by computing the rotation matrix that would rotate the current tangent vector $\vec{t}(i)$ to that of the nearest point $\vec{t}(i+1)$.
-The rotation matrix $\mat{R}(\vec{a}, \vec{b})$ can be calculated, except for $\vec{a} || \vec{b}$ via
+This can be achieved by computing the rotation matrix that rotates the current tangent vector $\vec{t}(i)$ to that of the next point $\vec{t}(i+1)$.
+The rotation matrix $\mat{R}(\vec{a}, \vec{b})$ for $\vec{a} \nparallel \vec{b}$ is
 \begin{align}
 \begin{split}
     \vec{a} =& \; \vec{a} / |\vec{a}|\\
@@ -217,18 +218,18 @@ The rotation matrix $\mat{R}(\vec{a}, \vec{b})$ can be calculated, except for $\
 \end{split}
 \end{align}
 % 
-In the case of $\vec{a} || \vec{b}$ no roation is necesarry.
+In the case of $\vec{a} \parallel \vec{b}$ no roation is necesarry.
 \par
 % 
-This tool enables the following procedure:
-First, place the seed point plane at the first fiber bundle point $\vec{fb}_0$ and rotate it by $\mat{R}(\hat{\vec{e}}_z, \vec{t}_0)$.
+This allows the following method to generate a filled nerve fiber bundle.
+First, the seed point plane is placed at the first fiber bundle point $\vec{fb}_0$ and rotate it by $\mat{R}(\hat{\vec{e}}_z, \vec{t}_0)$.
 Then, for each step, the plane is rotated at its original origin according to $\mat{R}(\vec{t}_i, \vec{t}_{i+1})$ and placed on $\vec{fb}_{i+1}$.
-To smooth the transition, the tangential vector at step $i$ is calculated as follows.
+To smooth the transition, the tangential vector at step $i$ is the average of the neighboring points:
 \begin{align}
     \vec{t} = \frac{1}{2} \frac{\vec{fb}_{i-1} + \vec{fb}_{i+1}}{|\vec{fb}_{i-1} + \vec{fb}_{i+1}|}
 \end{align}
 %
-Finally, all points belonging to a fiber can be stored in a fiber bundle object as $(n \times 4)$-array.
+Finally, all points belonging to a fiber are stored in a fiber bundle object as $(n \times 4)$-array.
 % An example is shown in \cref{fig:bendingFiberBundle}.
 %
 %
@@ -243,12 +244,13 @@ Finally, all points belonging to a fiber can be stored in a fiber bundle object 
     \label{fig:cubeBuild}%
 \end{figure}
 %
-As will be shown later, the \ac{3D-PLI} simulation wil calculate a image based on a cubical volume.
-Therefore, a method exists to fill such a volume with a fiber population of orientation $\vec{v}$ (see \cref{fig:cubeBuild}).
-The individual fibers are initialized as usual with a seed point plane.
-This plane is virtually placed in front of the cubic volume end behind it in the direction of the orientation, so that the origins of the seed point planes coincide with the origin of the cube.
-Then the seed points are virtually connected.
-When a line meets the volume, the entry and exit points are calculated and stored as fibers of the fiber bundle.
+\ac{3D-PLI} simulations calculate all light vector inside a cubical volume (see \cref{cha:sof:simulation}).
+Therefore, a method exists to fill a cube with a fiber population of orientation $\vec{v}$ (see \cref{fig:cubeBuild}).
+The individual fibers are initialized with a seed point plane.
+This plane is placed virtually in front of and behind the cubic volume with a user-defined orientation.
+The coordinate origins of the cube and the two seed point planes are on a line.
+To fill the volume with nerve fibers the seed points are connected.
+When a line hits the volume, the entry and exit points are calculated and stored as fibers of the returned fiber bundle.
 %
 %
 %
@@ -271,17 +273,17 @@ When a line meets the volume, the entry and exit points are calculated and store
         Parallel population.
     }[.33\textwidth-1ex]{
     \inputtikz{gfx/model/cylinder_parallel}}
-	\caption{Populating of cylindrical objects. The green area shows the area corresponding to the seed points in the xy-plane. The coordinate system indicates the coordinate origin coresponding to the seed points origin.}
+	\caption{Populating of cylindrical objects. The green area shows the area corresponding to the seed point plane. The coordinate system indicates the coordinate origin coresponding to the seed points origin. The resulting coordinate system is at the botom center as shown in \cref{fig:cylParallel}.}
 \end{figure}
 %
 The last method allows to populate a cylindrical volume with fibers.
-Since a cylinder has three symmetries, a radial, an angular and the length, those three methods have been implemented to provide a way to populate the volume.
+Since a cylinder has three symmetries, a radial, an angular and the height, those three symmetries have been implemented to provide a way to populate the volume.
 \par
 %
-First, the coordinate system must be defined.
-The cylinder with outer radius $r_{\mathit{out}}$ and inner radius $r_{\mathit{in}}$ is aligned along the z-axis with height $h$ and starts at $(0,0,0)$.
-In addition, the cylinder can be cut radially at a directional angle $\alpha$ to $\beta$ to fill only a portion of it.
-The angles corresponds to the cylindrical coordinate system of the resulting model.
+The cylinder has an outer radius $r_{\mathit{out}}$ and an inner radius $r_{\mathit{in}}$.
+The height $h$ is aligned along the z-axis and starts at $(0,0,0)$.
+In addition, the cylinder can be cut radially between the directional angles $\alpha$ and $\beta$ to fill only a portion of it.
+The angles corresponds to the cylindrical coordinate system.
 \par
 %
 The following applies to all methods used: If the seed point plane leaves the cross-section plane to be filled, the seed points lying outside are ignored.
@@ -290,39 +292,39 @@ The following applies to all methods used: If the seed point plane leaves the cr
 Mimics a radial path of the cylinder (see \cref{fig:cylCircular}).
 The seed points are placed along the surface of the cross section of the first $\alpha$ direction angle.
 The origin of the seed point plane is placed on the origin of the cylinder.
-From there, the fiber is circular to the second $\beta$ direction angle.
-The step size of the circular path can be costamized.
+From there, the fiber is circular bend until the second direction angle $\beta$.
+The step size of the circular path can be customized.
 %
 \paragraph{b) radial}
-The fibers are placed from the inner wall to the outer wall of the cylinder.
-The seed point plane is therefore placed at the inner wall with the origin at the bottom corner of the first angle $\alpha$ (see \cref{fig:cylRadial}).
+The seed point plane is placed at the inner wall with the origin at the bottom corner of the first angle $\alpha$ (see \cref{fig:cylRadial}).
 The fibers are then generated radially until they meet the outer wall of the cylinder.
 Thus, the density of the fibers decreases along their path.
 %
 \paragraph{c) parallel}
-The fibers are aligned along the cylinder (see \cref{fig:cylParallel}).
-Here, the seed points are in the lower plane, with both coordinate origins in the same point (see \cref{fig:cylParallel}). The orientation of the plane is aligned with the x-axis at $\SI{0}{\degree}$
+The fibers are aligned along height of the cylinder (see \cref{fig:cylParallel}).
+The seed points are placed on the lower plane, with identical coordinate origins and orientations (see \cref{fig:cylParallel}).
 %
+\par
+Only seed points that are in contact with the cylinder are considered in all methods.
 %
 %
 \section{Solving fiber collisions}
 \label{sec:Solver}
 %
-The focus of the following algorithm is to allow the user to define any fiber path.
-This allows a wide range of freedom in the initialization process.
-Of course, since the fibers are 3d volume objects,  there will probably overlaps with other fibers.
-The aim of the following algorithm is to find and solve such collisions by moving the affected fiber segment in such a way that a collision-free volume is created by minimal displacement.
-This allows the user to specify complex interwoven structures such as nerve fiber crossings in a fairly straightforward manner.
-Additionally the algorithm allows the user to specify boundary conditions like the mean fiber segment length or minimal bending radius.
+The following algorithm allows the user to define any fiber path, which allows a wide range of freedom in the initialization process.
+Since the fibers are 3d volume objects, there will probably overlaps with other fibers.
+These collisions have to be find and solved by moving the affected fiber segment in such a way that a collision-free volume is created by minimal displacement.
+This allows the user to specify complex interwoven structures such as nerve fiber crossings in any configuration.
+The algorithm allows the user to specify boundary conditions like the mean fiber segment length or minimal bending radius.
 \par
 % 
-An important feature is the visualization of the solution process.
-This allows the user to see what is happening and intervene as early as possible if necessary.
+An important feature is the visualization of the displacement process.
+This allows the user to see the movement and intervene as early as possible if necessary.
 This is very important because the solution process can take a lot of time, depending on the volume and the number of objects.
 %
 %
 % 
-\subsection{Solver main}
+\subsection{Solver main function}
 %
 \begin{lstfloat}[!tb]
 \lstset{style=python}
@@ -352,7 +354,7 @@ def step():
 \label{alg:pseudocode_solver}
 \end{lstfloat}
 %
-Apart from the initialization of the parameters, the main function of the solver algorithm is a computational \code{step} of the solution procedure.
+Tthe main function of the solver algorithm is a computational \code{step} of the solution procedure.
 The algorithm is with reason not a loop by itself.
 This allows the user to interact with the data or parameters at each step, if necessary.
 This \code{step} function (see \cref{alg:pseudocode_solver}) can be divided into the following sequential parts:
@@ -368,15 +370,15 @@ At this point it is integrated into the \ac{fastPLI} package under \pymodule{fas
 %
 \begin{figure}[!t]
     \centering
-    \setlength{\tikzwidth}{0.75\textwidth}
+    \setlength{\tikzwidth}{0.6\textwidth}
     \inputtikz{gfx/model/conical_capsule_bb}
     \tikzset{external/export=false}
 	\caption[]{Fiber segment representations with the \acp{AABB}: \raisebox{.25em}{\tikz \draw[black](0,0)--(0.275,0);} \ac{CC}, \raisebox{.25em}{\tikz \draw[blue, dash pattern=on 2.5pt off 2.5pt](0,0)--(0.275,0);} capsule, \raisebox{.25em}{\tikz \draw[red, dash pattern={on 2.5pt off 0.9pt on 0.42pt off 0.9pt}](0,0)--(0.275,0);} bounding box.}
 	\label{fig:conical_capsule}
 \end{figure}
 % 
-As described in \cref{sec:nerve_fiber_representation}, nerve fibers are represented as a chain of spheres, with two adjacent spheres combined into a fiber segment that forms a \ac{CC} (see \cref{fig:conical_capsule}).
-To simplify the calculation, only the \acp{AABB} is initially checked for collision.
+As described in \cref{sec:nerve_fiber_representation}, nerve fibers are represented as a chain of spheres, with two adjacent spheres representing a fiber segment that forms a \ac{CC} (see \cref{fig:conical_capsule}).
+However a collision between two \ac{CC} involes quite a few calculations. To reduce the runtime only the \acp{AABB} is in a first step checked for collision.
 %
 \begin{lstfloat}[!tb]
 \lstset{style=python}
@@ -634,8 +636,8 @@ The limit is defined as the minimum radius of $r_{\min}$.
 For adjecent points with an inner angle $\eta \geq \SI{60}{\degree}$ the circles radius would increase again.
 Also this would mean, that a fiber can be circular with three points.
 Therefore the additional boundry condition of an angle $\eta \geq \SI{60}{\degree}$ is always applied.
-If any $p_{i}$ point in a fiber fails these boundry conditions, the three points are shifted.
-$p_{i-1},p_{i+1}$ are shifted parallel to $p_{i}$ and vice versa to reduce curvature.
+If any $\vec{p}_{i}$ point in a fiber fails these boundry conditions, the three points are shifted.
+$\vec{p}_{i-1},\vec{p}_{i+1}$ are shifted parallel to $\vec{p}_{i}$ and vice versa to reduce curvature.
 %
 % 
 % 
