@@ -7,18 +7,16 @@
 % 
 \section{Introduction}\label{sec:fastpliIntro}
 %
-The previous chapters described the algorithms for creating dense \ac{WM} fiber models (see \cref{chap:sof:modeling}) and for simulating such models in \ac{3D-PLI} (see \cref{cha:sof:simulation}).
+The previous chapters described the algorithms for creating dense \ac{WM} fiber models (see \cref{chap:sof:modelling}) and for simulating such models in \ac{3D-PLI} (see \cref{cha:sof:simulation}).
 Both algorithms are designed to operate autonomously without knowledge of the other.
-This can simplify the use of the algorithms for other domains. For example, the fiber models can be used in other in the field of \ac{dMRI} as well (\cite{Ginsburger2019,ginsburgerDis2019}).
-However, besides providing algorithms that should be very fast and therefore in this case at a very low level of the programming language (very few abstractions), it is also necessary to provide an API that provides an interface for the user.
-This interface must be designed in such a way that the user has a good experience with the algorithms.
-Among other things, this means a high level of abstraction with logical and easy-to-use naming systems.
-A high level of abstraction in software design means eliminating unnecessary systems and generalizations of functionalities.
-\par
-%
-In addition, the algorithms should be accessible to a wide audience.
-Among other things, this means that the program must be installable and easy to understand, even if hardly any programming knowledge is available.
-The latter is of course a problem, however, more and more high-level languages have been designed to be easy to understand in the last decades.
+This can simplify the use of the algorithms for other domains.
+For example, the fiber models can be used in \ac{dMRI} as well (\cite{Ginsburger2019,ginsburgerDis2019}).
+
+These algorithms are designed to be fast.
+This usually means code design with very few abstractions.
+Therefore an \ac{API} is needed on top of the algorithms, which provide a user interface which is easy to use.
+Among other things, this means a high level of abstraction.
+In addition, the algorithms should be easy installable to provide easy access.
 \par
 %
 In summary, this means that a software package must be developed that contains the algorithms and helper functions.
@@ -37,9 +35,9 @@ The core algorithms remain in \cpp{} as described in their chapters to ensure ef
 \label{fig:fastpli}
 \end{figure}
 %
-The \python{} package is called \acreset{fastPLI} \ac{fastPLI}.
+The here designed \python{} package is called \acreset{fastPLI} \ac{fastPLI}.
 Its source code is publicly available and reviewed in the \ac{JOSS} \cite{fastpli,Matuschke2021}.
-The software package includes functionalities for the analysis and visualization of the nerve fiber models as well as for the analysis of the simulation analogous to the current routine experimental measurements, \eg{} tilting analysis.
+The software package includes functionalities for the analysis and visualization of the nerve fiber models as well as for the analysis of the simulation analogous to the current routine experimental measurements, \eg{} tilting analysis (see \cref{fig:fastpli}).
 %
 %
 %
@@ -57,15 +55,16 @@ The software package includes functionalities for the analysis and visualization
 	\label{fig:fastpli_wiki}
 \end{figure}
 %
-As is common in software development, all methods are provided with docstrings (documentation strings) so that the user understands their function.
-These are, for example, automatically displayed by modern editors during programming to provide assistance.
-These docstrings are also used for an automatic release of a \ac{API} documentation.
+All methods are provided with documentation strings (docstrings)
+These are automatically displayed by modern editors during programming, for example, to provide direct assistance during programming.
+These docstrings are also used for an automatic release of the \ac{API} documentation.
 \footnote{\url{https://3d-pli.github.io/fastpli/}}
 In addition to the API, there is a wiki page (see \cref{fig:fastpli_wiki}) that describes the main features, which is an essential part of the review process for release in \ac{JOSS} \cite{Matuschke2021}. 
 \footnote{review openly accessible at \url{https://github.com/openjournals/joss-reviews/issues/3042}}
-The wiki page is structured like a guide that walks through the aspects of designing nerve fiber models, applying the collision solution algorithm, visualizing nerve fibers, a simple tutorial on \ac{3D-PLI}, and finally applying the models in simulation.
-Both executable \python{} scripts and Jupyter notebooks are provided as tutorials to get you started quickly.
-For the linking of the individual processes, i.e. generation, simulation and analysis, an example is given of the optic chiasm, the nerve fiber transition of the light pathway from the eyes to the occipital lobe.
+The wiki page is structured as a guide that walks through the aspects of designing nerve fiber models, applying the collision solution algorithm, visualizing nerve fibers, a introduction in \ac{3D-PLI}, and finally applying the models in the simulation.
+Both executable \python{} scripts and Jupyter notebooks are provided as examples to get users started quickly.
+As a general example using all presented methods, a nerve fiber crossing is presented.
+This is based on the optic chiasm which is the nerve fiber pathway from the eyes to the occipital lobe.
 %
 %
 %
@@ -98,7 +97,7 @@ For the linking of the individual processes, i.e. generation, simulation and ana
 %
 %
 At this point, only Linux builds are supported.
-However, for current Windows versions, the \ac{WSL} provides a fully functional Linux kernel within Windows.
+However, for current Windows versions ($10\geq$), the \ac{WSL} provides a fully functional Linux kernel within Windows.
 This makes it possible to run the same software as on native Linux distributions.
 Current macOS versions are not supported, but due to the minimalistic style of the \ac{fastPLI} package, the required changes should be feasible with minimal modifications.
 %
@@ -121,10 +120,9 @@ pip3 install .
 %
 %
 %
-\subsection{Tests, Verification \& Issues}
+\subsection{Tests, verification \& issue tracking}
 %
-To provide a fully tested software, each module with its main methods is automatically tested with a \name{Github action} after each \name{git push}.
-\footnote{github actions are commonly used to automatically build, test, and deploy the software and documentation}.
+Each module with its main methods is automatically tested with a \name{Github action} \footnote{github actions are commonly used to automatically build, test, and deploy the software and documentation}. after each \name{git push}.
 \footnote{uploud of the current \textit{software stage}.}
 This action runs the two latest Ubuntu Long Term Support versions (currently 18.04 LTS and 20.04 LTS) and the most commonly used Python3 versions (currently 3.6 and 3.8) to provide a wide range of supported common versions.
 In addition, the \name{Github actions} run all test scripts, check tutorial files, check code format and linting for consistency, and publish the latest documentation after a sucessfull tested release.
@@ -135,13 +133,13 @@ This feature is originally used to document software bugs.
 However, it is also used to discuss ideas, new features, and so on.
 As part of the open source release, it was also used communicate with the reviewer.
 \footnote{\url{https://github.com/openjournals/joss-reviews/issues/3042}}
-This allows to always track back the development process and code changes in addition with the git \name{commits}.
+This allows to track the development process.
 %
 % 
 % 
 \section{Modules}
 %
-A \python{} \name{package} consists of \name{modules} which contain the definitions of functions, classes and so on.
+A \python{} \name{package} consists of \name{modules} which contain the definitions of functions, classes and so on (see \cref{fig:fastpli}).
 In the following the different modules are listed alphabetically.
 %
 %
@@ -163,7 +161,7 @@ This for example allow the user to generate a histogramm of the orientations of 
 %
 This method provides the read and write routines that allow the user to load and save fiber models (\ie{} \code{fiber\_bundles}) to or from disk.
 There are two formats available.
-The first is a simple text file with the extension \code{.dat} (see \cref{alg:dat-file}).
+The first is a text file with the extension \code{.dat} (see \cref{alg:dat-file}).
 Here, each $(x,y,z,r)$ tuple of a fiber point is stored as a single line in the file.
 Two fibers are separated by one blank line, while two fiber bundles are separated by two blank lines.
 This data format is provided to allow a very simple format for manipulating, exchanging and \eg{} reading the files into other programs.
@@ -235,7 +233,7 @@ GROUP "/" { # fiber_bundles path
 %
 \subsection{\Code{fastpli.model.sandbox}}
 %
-This module provides all the functions described in \cref{sec:sandbox}.
+The sandbox module provides all the functions described in \cref{sec:sandbox}.
 The module is divided into two submodules: \code{fastpli.sandbox.build} and \code{fastpli.sandbox.seeds}.
 \code{fastpli.sandbox.seeds} contains all the methods for populating a 2d-plane, as described in \cref{sec:seeds}.
 To populate the fiber from the seeds, the \code{sandbox.build} module provides the methods.
@@ -248,23 +246,23 @@ This includes all the described functions from \cref{sec:fillBundle}.
 The module \code{fastpli.model.solver} contains the compiled solver algorithm, which is explained in detail in \crefrange{sec:Solver}{sec:modelOpt}.
 Additionally, the solver algorithm is wrapped in the \code{fastpli.model.solver.Solver} class.
 This wrapper class provides a higher level of abstraction (see \cref{sec:fastpliIntro}).
-It contains all necessary variables as attributes and therefore provides read/write access via class properties, \eg{} \code{Solver.obj\_mean\_length}.
-Each write method checks the input for user errors and returns an appropriate warning or error message.
+All variables are read and writable by attributes, \eg{} \code{Solver.obj\_mean\_length}.
+Each attribute checks if the user input valid and returns an appropriate warning or error message if necesarry.
 This class also includes a \code{Solver.get\_dict()} method that returns a \python{} dictionary containing all variables and their values for reproducibility.
 It is also possible to store the state of the class with the current state of the \code{fiber\_bundles} as an \ac{HDF5} object.
-Finally, this class also provides the possibility to use a simple visualization (see \cref{sec:visualization}) of the solution process.
+Finally, this class also provides the possibility to use a simple visualization of the solution process (see \cref{sec:visualization}).
 %
 %
 %
 \subsection{\Code{fastpli.objects}}
 %
 This module provides a wrapper class for \code{fastpli.objects.fibers} and \code{fastpli.objects.layers}.
-Essentially, \code{layers} are a \code{list} of \code{layers}, which in turn are a \code{tuple} of the four attributes \code{absorption}, \code{birefringence}, \code{model}, and \code{scale} (see \cref{sec:dv_generator}).
+Essentially, \code{layers} are a \code{list} of \code{layer}, which in turn are a \code{tuple} of the four attributes \code{absorption}, \code{birefringence}, \code{model}, and \code{scale} (see \cref{sec:dv_generator}).
 This wrapper class contains attributes that allow the user to access these values by name, rather than by index \code{tuple} \code{[i]}.
 This is helpful to reduce user errors.
 \par
 % 
-The same is true for \code{fastpli.objects.fibers} which contain \code{fastpli.objects.FiberBundles}, \code{fastpli.objects.FiberBundle} and \code{fastpli.objects.Fiber} classes with the same purpose.
+The same is also provided for the classes \code{fastpli.objects.fibers} which contain \code{fastpli.objects.FiberBundles}, \code{fastpli.objects.FiberBundle} and \code{fastpli.objects.Fiber}.
 \code{FiberBundles} are a \code{list} of \code{FiberBundle} which are a list of \code{Fiber}.
 The data of a fiber is stored in a \code{numpy.ndarray} which stores the values contiguously in memory.
 Manipulation methods are provided for each class, allowing the user to \code{translate}, \code{rotate}, \code{scale}, and \code{cut} the model.
@@ -279,11 +277,11 @@ It contains the two algorithms \code{generator} and \code{simulation} described 
 These two algorithms operate separately, but since they share a number of parameters, they coexist within the class.
 As in the \code{fastpli.model.solver.Solver} class, all necessary attributes are available and checked for input errors.
 Since analysis is usually always performed on the resulting simulations, they are also available in this class and are performed with the same defined parameters as in the simulation.
-Methods for saving the variables as \code{dict} or \ac{HDF5} files are also available.
+Methods for saving the variables as \code{dict} or \ac{HDF5} files are available as well.
 \par
 % 
-As in the experiment, the simulations can run with the same routine.
-This means that many parameters and the simulation pipeline usually do not change.
+Usually as in the experiment the flat and four tilt measurments are simulated.
+This means that many parameters of the simulation pipeline does not change.
 For this purpose there are \code{pipeline} methods (see \cref{alg:Pipeline}) which provide a high level of abstraction.
 Here, all data is automatically analyzed and stored.
 %
@@ -293,7 +291,7 @@ Here, all data is automatically analyzed and stored.
 \begin{minipage}{\the\textwidth}
 \lstinputlisting[style=python]{code/pipeline.py.tex}
 \end{minipage}}
-\caption{Simulation pipeline \code{simpli.run\_pipeline()}.}
+\caption{Simulation pipeline \code{simpli.run\_pipeline}.}
 \label{alg:Pipeline}
 \end{lstfloat}
 %
@@ -309,7 +307,7 @@ For fiber modeling, rotation matrices are provided to allow the use of linear al
 
 \section{Computational speedup techniques}\label{sec:theorySpeedup}
 %
-Among other specific techniques described in the next chapters \cref{chap:sof:modelling,cha:sof:simulation}, two important technique are used to speed up the calculations.
+Among other specific techniques described in the previous chapters \cref{chap:sof:modelling,cha:sof:simulation}, two important technique are used to speed up the calculations.
 \par
 %
 The computationally intensive code is written in \cpp{}.

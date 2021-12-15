@@ -428,7 +428,7 @@ If we consider the results of the volume fraction, it should be as small as poss
 But since the difference between $\segLengthFactor=\SI{1}{}$ and $\segLengthFactor=\SI{2}{}$ is small, and for $\segLengthFactor=\SI{4}{}$ a big jump becomes visible, one can reduce the running time significantly with $\segLengthFactor=\SI{2}{}$.
 \par
 %
-The choice of the fiber bending radius factor \segRadiusFactor{} is an anatomical ... constraint.
+The choice of the fiber bending radius factor \segRadiusFactor{} is an anatomical \dummy{} constraint.
 To counteract excessive deformation, a value of at least $\segRadiusFactor = \SI{2}{}$ should be chosen.
 An even larger value is especially important for large \segLengthFactor{} to greatly increase the runtime and unnatural stiffness mentioned above.
 The \segLengthFactor{} should be as small as possible to achieve the highest accuracy.
@@ -506,7 +506,7 @@ For the measurements the cores were bind to phyical cpu cores and not to hyperth
 \end{figure}
 % 
 The plot \cref{fig:solverSpeedup} show for the different starting positions $\Delta_{\mathit{steps}}$ as well as for the parallel and crossing fiber bundles.
-Up to $\SI{4}{cores}$ the speedup inreases linear for $\SI{4}{cores}$ with a number of 3...
+Up to $\SI{4}{cores}$ the speedup inreases linear for $\SI{4}{cores}$ with a number of 3 \dummy{}.
 After $\SI{4}{cores}$ the speedup increases slower until for $\SI{8}{cores}$ a significant increas tp a speedup of about $\SI{5}{}$ is visible.
 \par
 % 

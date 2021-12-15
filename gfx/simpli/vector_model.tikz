@@ -22,10 +22,10 @@
         \fi\fi
     }
 }
-\path[BLUE,thick, ->] (\xc,\yc) -- ++(-30:\rin) node[midway, anchor=north, xshift=-0.75ex, preaction={fill, white}]{$r_{\text{min}}$};
+\path[BLUE,thick, ->] (\xc,\yc) -- ++(-30:\rin) node[midway,sloped, anchor=north, preaction={fill, white}]{$r_{\text{min}}$};
 \draw[BLUE,thick, ->] (\xc,\yc) -- ++(-30:\rin);
 %
-\path[BLUE,thick, ->] (\xc,\yc) -- ++(-150:\rout) node[pos=0.25, anchor=south, yshift=2mm, preaction={fill, white}]{$r_{\text{max}}$};
+\path[BLUE,thick, ->] (\xc,\yc) -- ++(-150:\rout) node[midway,sloped, anchor=south, preaction={fill, white}]{$r_{\text{max}}$};
 \draw[BLUE,thick, ->] (\xc,\yc) -- ++(-150:\rout);
 %
 \path[RED,thick, {Circle[length=1mm]}-{Circle[length=1mm]},

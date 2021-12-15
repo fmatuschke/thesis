@@ -603,8 +603,8 @@ Each parameter can be set to $\SI{0}{}$ to disable the boundary condition.
 	\label{fig:mergeSplit}
 \end{figure}
 %
-The average segment length is the distance between the two points of a fiber segment (see \cref{modelLength}).
-When the segment length becomes too small/large, the points within a fiber corresponding to the object are merged/separated and one less point/one new point is added (see \cref{mergeSplit}).
+The average segment length is the distance between the two points of a fiber segment (see \cref{fig:modelLength}).
+When the segment length becomes too small/large, the points within a fiber corresponding to the object are merged/separated and one less point/one new point is removed/added (see \cref{fig:mergeSplit}).
 The segment is alowed to have a length inside $[\frac{2}{3} \overline{d},\frac{4}{3} \overline{d}]$. 
 Thus, the mean value of the object is:
 \begin{align}
@@ -627,30 +627,27 @@ r_{new} = \frac{r_{i} + r_{i+1}}{2},\enspace
     \setlength{\tikzheight}{.75\textwidth}
     % \tikzset{external/export next=false}
     \inputtikz{gfx/model/model_circle}
-	\caption{A fiber along its path can be characterized by circles from three adjacent points. A minimal radius for these circles is applied as boundry condition. Additionally the inner angle has to be $\eta \geq \SI{60}{\degree}$. If a condition is not fullfiled, a force is applied to smoothen the curviture at these points.}
+	\caption{A fiber along its path can be characterized by circles from three adjacent points. A minimal radius for these circles is applied as boundry condition. Additionally the inner angle has to be $\eta \geq \SI{60}{\degree}$. If a condition is not fullfiled, a force (\textcolor{GREEN}{arrows}) is applied to smoothen the curviture at these points.}
 	\label{fig:modelCircle}
 \end{figure}
 %
 The bending radius is defined as the circle radius corresponding to the circle defined by three adjacent points $\vec{p}_{i-1}, \vec{p}_{i}, \vec{p}_{i+1}$ (see \cref{fig:modelCircle}).
-The limit is defined as the minimum radius of $r_{\min}$.
-For adjecent points with an inner angle $\eta \geq \SI{60}{\degree}$ the circles radius would increase again.
-Also this would mean, that a fiber can be circular with three points.
-Therefore the additional boundry condition of an angle $\eta \geq \SI{60}{\degree}$ is always applied.
-If any $\vec{p}_{i}$ point in a fiber fails these boundry conditions, the three points are shifted.
-$\vec{p}_{i-1},\vec{p}_{i+1}$ are shifted parallel to $\vec{p}_{i}$ and vice versa to reduce curvature.
+To limit the bending radius of the fiber a minimal allowed radius $r_{\min}$ is defined.
+Additionaly three adjecent points are not allowed to have an enclosing angle $\eta \geq \SI{60}{\degree}$.
+If any point $\vec{p}_{i}$ in a fiber fails these boundry conditions, the three points are shifted $\vec{p}_{i-1}, \vec{p}_{i}$ and $\vec{p}_{i+1}$ are moved parallel to reduce curvature (see \cref{fig:modelCircle}).
 %
 % 
 % 
 \subsection{Movement phase}
 % 
-All movements are added to the velocity array before the total movement is executed.
-The maximum velocity is bounded by a value of $v_{\max} = 0.1 \times \min(\mathit{object radius})$.\footnote{This value has proven to be appropriate during the testing phase of this algorithm. Speedup may still be possible by changing this value without significantly changing the results.}
+All movements are stored additave in a velocity array before the total movement is executed.
+The maximum velocity is limited by $v_{\max} = 0.1 \times \min(\mathit{\fiberRadius})$.\footnote{This value has proven to be appropriate during the testing phase of this algorithm. Speedup may still be possible by changing this value without significantly changing the results.}
 This is a constraint that is necesarry due to the following two required properties:
-First, an object should not be allowed passing thorugh another object, \ie{} the velocity should always be $<min(r_i)$.
+First, an object should not be allowed passing thorugh another object, \ie{} the velocity should always be $<min(\fiberRadius)$.
 Second, it smooths the motion and thus the maximum achievable density of the resulting models.
-However, this means that the solution process takes more time.
 \par
-The movement of all points is then executed.
+% 
+After limiting the velocity the movement of all points is executed.
 A resistance value is applied to reduce the velocity by the appropriate factor after each step.
 This can help to reach a collision free volume faster, but the density will be reduced.
 Its default value is set to $\SI{0}{}$ so that the velocity is reseted to $\vec{0}$ after each step.
@@ -659,28 +656,28 @@ Its default value is set to $\SI{0}{}$ so that the velocity is reseted to $\vec{
 % 
 \subsection{Optimization and parallelisation}\label{sec:modelOpt}
 % 
-The biggest optimization in this algorithm is the use of the octree.
+To optimize the collision solving algorithm the octree is used (see \cref{sec:octree}).
 As will be shown later, millions of objects must be checked for collisions.
 The difference between an $O(n\log(n))$ and $O(n^2)$ cannot be underestimated here.
 % 
 %
 \paragraph{Memory alignment}
-As described in \cref{sec:theorySpeedup}, memory alignment is the most important optimization in this software package.
+As will be described in \cref{sec:theorySpeedup}, memory alignment is an important optimization in this software package.
 To this end, all functions use \code{std::vector} as much as possible.
-During the development process of \name{octree}, it was found that creating a memory-aligned copy of the subset of the objects is faster than refering to the objects by reference in the different branches.
+During the development process of the \name{octree}, it was found that creating a memory-aligned copy of the subset of the objects is faster than refering to the objects by reference in the different branches.
 Each optimization was tested for improvements for different types of volumes and number of objects.
 The focus is on larger volumes and a larger number of objects, since smaller volumes or a smaller number of objects require significantly less computing time.
 %
 %
 \paragraph{OpenMP}
-To be able to use multiple \acp{CPU}, \ac{OpenMP} is used.
+To be able to use multiple \acp{CPU}, the \ac{OpenMP} library is used.
 A structure like an octree suggests the parallelization of $\SI{8}{\cores}$.
 During the development phase of this algorithm it was found that up to the second level of the octree (see \cref{sec:octree}) further parallelization in the next branches is beneficial.
 From the third level on, the speedup is significantly lower, since data management between cores is an overhead.
 In summary this means a parallelization up to $\SI{64}{\cores}$ for the traversing of the octree.
 \par
 % 
-In addition, other functions that are thread-safe are parallelized with \ac{OpenMP}, e.g. by adding speed to each object.
+In addition, other functions that are thread-safe are parallelized with \ac{OpenMP}, \eg{} moving the points.
 %
 %
 %
@@ -693,15 +690,15 @@ In addition, other functions that are thread-safe are parallelized with \ac{Open
     \includegraphics[width=\tikzwidth]{gfx/fastpli/solver-20}\hfill
     \includegraphics[width=\tikzwidth]{gfx/fastpli/solver-50}\hfill
     \includegraphics[width=\tikzwidth]{gfx/fastpli/solver-99}
-	\caption{Exemplary visualization in the collision solving process. The red color indicates that a collision is detected in the fiber segment.}
+	\caption{Exemplary visualization in the collision solving process. The red color indicates that a collision is detected in the fiber segment. \todo{image steps, time progression}}
 	\label{fig:vis_solver}
 \end{figure}
 %
 A visualization tool is available to visualize the nerve fiber configuration (see \cref{fig:vis_solver}).
-This allows the user to get direct feedback (\eg{} after each step) to adjust the initial fiber configuration or boundary conditions.
+This allows the user to get direct feedback, \eg{} after each step, to adjust the initial fiber configuration or boundary conditions.
 It is written in \cpp{} and \ac{OpenGL} \textit{v2} \cite{isocpp, khronos}.
 This implementation uses \code{gluCylinder} to represent a nerve fiber segment.
-As it stands, this is by no means the fastest approach, but it is still fast enough compared to the computation time of a single step in the collision algorithm.
+This is not the fastest approach, but it is still fast enough compared to the computation time of a single step in the collision algorithm.
 \par
 % 
 A further advanced interactive tool is also available as open source, the FAConstructor, which was developed by Jan Reuter as part of his bachelor thesis \cite{Reuter2019}.
@@ -727,7 +724,7 @@ To order the triangular surfaces, they first have to be calculated.
 The fiber segments are no longer represented as a cylinder, but as \ac{CC} which consist out of a hexagonal grid (see \cref{fig:vis_mesh}).
 \par
 % 
-This is a huge amount of computational resources and currently a special non ye optimized case.
+This is a huge amount of computational resources.
 It is not yet included in the \ac{fastPLI} package.
 The resulting visualization is shown in \cref{fig:medusa_8b}.
 % 
@@ -737,32 +734,29 @@ The resulting visualization is shown in \cref{fig:medusa_8b}.
 \label{sec:medusa}
 %
 The algorithm described above for generating dense \ac{WM} fiber models can also be applied in \ac{dMRI}.
-However, due to other imaging techniques and study priorities, other types of models are required.
-\par
 % 
 In \ac{dMRI} the movement and interaction of water molecules with the fiber models is simulated.
 When the water molecules collide with the surface of a fiber segment, the moleculs behavier, like diffusion though the surface, must be taken into account.
-However, this applies not only to nerve fibers but also to other cell types.
+This applies not only to nerve fibers but also to other cell types.
 Since the \ac{WM} consists not only of axons, but also of other cells such as glial cells, astrocytes and olegodendrites, these are also changing the signal of the \ac{dMRI}.
 \par
 % 
 Therefore, an additional algorithm was developed in collaboration with Kevin Ginsburger and Cyril Poupon (Neurospin, \ac{CEA}).
 This algorithm called \ac{MEDUSA} \cite{Ginsburger2019} works similarly to the algorithm described above, but models the 3d objects as spheres rather than pipe segments.
-This has the advantage that the objects are simpler, which leads to an increase in collision detection, but spheres are able to approximate a 3d object like a cell body.
-The latter is achieved by representing the surface of a cell body as the sum of several spheres. 
-The resulting total surface of all spheres represents the cell (see \cref{ig:medusaCell}).
-In this way, very complicated shapes are possible.
+This has the advantage that the objects are simpler, which leads faster collison checking calculations.
+Additionally the spheres are also used to represent other type of cells.
+The overall volume of a cell is represented the sum of all spheres corresponding to the cell (see \cref{fig:medusaCell}).
+In this way any shape is possible.
+To generate realistic shaped cells this algorithm is specialiced to produce Olegodendrites and Astrocytes.
 \par
-%  
-A major feature of this algorithm is how to construct other cell types and, in particular, olegodendrites whose arms connect to the myelin layer of a nearby axon.
-Another focus is on the internal configurations of the cells.
-Nerve fibers are initialized as fiber populations with parameters such as density and angular dispersion \cite[Ginsburger2019, ginsburgerDis2019].
-Analogous to the \cref{sec:Solver} algorithm, the collisions of the objects are then checked and slowly pushed forward until no more collisions can be detected.
-This algorithm is then capable of generating extensive libraries of fiber models with varying numbers of individual fiber populations (see \cref{fig:medusa_8a}).
+% 
+Another focus of the algorithm is to be able to generate a volumefrom statistical parameters such as density and angular dispersion \cite[Ginsburger2019, ginsburgerDis2019].
+Analogous to the \cref{sec:Solver} algorithm, the collisions of the objects are checked and slowly pushed appard until no more collisions can be detected.
+The usage of the statistical parameters allows to generate a general purpase labrary of volumes filled with nerve fibers and cells (see \cref{fig:medusa_8a}).
 \par
 % 
 The disadvantage of the spheres is that for the representation of tubular objects many more spheres and thus objects for collision control are needed.
-Since the number ob objects, \ie{} spheres, is so much higher, the algorithm was implemented on the \ac{GPU} with a axes aligned bounding box search algorithm \cite{Karras2012}.
+Therefore the algorithm was implemented on the \ac{GPU} with an axes aligned bounding box search algorithm \cite{Karras2012}.
 % 
 % 
 %
@@ -803,7 +797,7 @@ Spheres inside cell bodies are not checked for collisions because their volume i
 The calculation of the collisions is performed using the GPU architecture.
 For this first implementation, the algorithm \name{AxisAligedSortedSearch} \cite{Karras2012} is used.
 It sorts the spheres along an axis, \obda{} x-axis, and for each sphere $i$ searches for the first and last possible collision on that axis.
-This results in a list of balls $\mathcal{C}_i$ to be tested:
+This results in a list of spheres $\mathcal{C}_i$ to be tested:
 \begin{align}
 \begin{split}
 \mathcal{C}_i = \{ s \in \mathcal{S} \mid \abs{s_i.x - s_j.x} < r_i+r_j \}
@@ -816,14 +810,14 @@ This results in a list of balls $\mathcal{C}_i$ to be tested:
 	\label{alg:medusa_collision}
 \end{lstfloat}
 %
-The algorithm described above is currently used for volumes of about $\SI{200}{\micro\meter}$ for different number of fiber populations and other properties (see \cref{fig:medusa_8a}).
+The algorithm (see \cref{alg:medusa_collision}) described above is currently used for volumes of about $\SI{200}{\micro\meter}$ for different number of fiber populations and other properties (see \cref{fig:medusa_8a}).
 For this volume size, the algorithm is fast enough for current use.
 However, there are more advanced algorithms that can be used here.
-One promising technique is to use a \name{BoundindBoxHierarchy} \cite{Karras2012}.
+One promising technique is the use of a \name{Boundind Box Hierarchy} \cite{Karras2012}.
 %
 \begin{figure}[!t]
     \centering
-    \subcaptionbox{Cubic volumes with different number pf fiber populations and volume fractions (VF) are generated.}[0.75\textwidth]{\label{fig:medusa_8a}
+    \subcaptionbox{Cubic volumes with different number of fiber populations and volume fractions (VF) are generated.}[0.75\textwidth]{\label{fig:medusa_8a}
     \resizebox{0.75\textwidth}{!}{
     \includegraphics{gfx/model/medusa/8.jpg}}}
     \\[2em]

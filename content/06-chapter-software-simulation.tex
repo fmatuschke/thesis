@@ -3,28 +3,25 @@
 \chapter{\acs{3D-PLI} simulation}
 \label{cha:sof:simulation}
 %
-Simulations of \ac{3D-PLI} have been used to study multiple effects of the microscopic technique with brain sections \cite{Dohmen2015,Menzel2015,Menzel2016,Menzel2020,Menzel2021,MenzelMaster,MenzelDissertation}.
+Simulations of \ac{3D-PLI} have been used to study multiple effects of the microscopic technique involved with brain sections \cite{Dohmen2015,Menzel2015,Menzel2016,Menzel2020,Menzel2021,MenzelMaster,MenzelDissertation}.
 The algorithm presented here for designing new collision-free fiber models allowed for the first time to simulate the effect of scattering light in light wave simulations base on finite-difference time domain agorithm without superimposed interference signals.
 This enabled the understanding of scattering effects due to fiber bundle and crossing configurations as well as the transmission change for tilted fiber configurations \cite{MenzelDissertation,Menzel2020,Menzel2021}.
 \par
 % 
 In the case of linear optics simulation, the optical system could be successfully simulated and the experimental results could be reproduced \cite{Dohmen2015,Menzel2016}.
-However, the algorithm developed at that time is very computationally intensive and also very memory intensive due to the precomputations of a discretized tissue volume.
-The foundations for a more efficient parallel algorithm for supercomputer use were developed in response \cite{Lucksch2016}.
-However, the new tilt design of the LMP3D microscope led to an unnecessary duplication of calculations in the simulations, which could not be easily changed in the algorithm designed at that time.
-Therefore, the algorithm was redesigned from scratch and rewritten.
+The algorithm developed at that time is very computationally intensive and also very memory intensive due to the precomputations of a discretized tissue volume.
+The foundations for a more efficient parallel algorithm for supercomputer architecture use were developed in response \cite{Lucksch2016}.
+The new tilt design of the LMP3D microscope led to an unnecessary duplication of calculations in the simulations, which could not be easily changed in the algorithm designed at that time.
+Therefore, the algorithm was redesigned from scratch.
 Additionally, the fiber models presented here had to be incorporated as well.
 Finally, the decision was made to switch to the M\"{u}ller-Stokes calculation in order to also take polarization effects of filters into account.
 \par
 %
-The simulation is divided into two consecutive parts: the discrete volume generator and the simulation.
+The \ac{3D-PLI} simulation is divided into two consecutive parts: the discrete volume generator and the light matter simulation.
 The discrete volume generator discretizes the virtual nerve fiber models onto a cartesian grid, which is then used to compute the light-matter interaction in the second step.
 A parallelization technique with \ac{MPI} allows the volume to be partitioned among different \acp{CPU} or compute nodes.
-Due to the tilting approach, the light vector in such a paralized volume must be able to leave the current volume of a single \ac{CPU} and traverse to the next volume/process.
-The computationally intensive algorithms are written in \cpp{} with a user-friendly wrapper function in \python{}.
-\par
-% 
-This simulation algorithm as well as the optical characterization of the system and the tilting analysis are discussed in the following.
+Due to the tilting approach, the light vector in such a parallelized volume must be able to leave the current volume of a single \ac{CPU} and traverse to the next volume/process.
+The computationally intensive algorithms are written in \cpp{} with an additionally user-friendly designed wrapper function in \python{}.
 %
 % 
 % 
@@ -36,20 +33,20 @@ This simulation algorithm as well as the optical characterization of the system 
 \setlength{\tikzwidth}{0.5\textwidth}
 \inputtikz{gfx/simpli/disc_volume}
 
-\caption{Discretized tissue volume with a voxel size \voxelsize. The boundry is defined by a \ac{AABB}, which itself is defined by the lower and upper corner values $v_\mathit{min}$ and $v_\mathit{max}$.}
+\caption{Discretized tissue volume with a voxel size \voxelsize. The volume is defined by a \ac{AABB}, which itself is defined by two points $\vec{v}_\mathit{min}$ and $\vec{v}_\mathit{max}$.}
 \label{fig:discVol}
 \end{figure}
 %
-The idea of the simulation is to divide the necessary calculations into two consecutive parts. The first part is the calculation of a discretized tissue volume.
+The \ac{3D-PLI} simulation is to divide the necessary calculations into two consecutive parts. The first part is the calculation of a discretized tissue volume.
 It represents a discrete, voxel model of the tissue.
 This helps to drastically speed up the light-matter interaction of the next step (see \cref{sec:simulation}), at the cost of a large memory requirement.
 \par
 %
 The discretized tissue volume represents a cuboid divided into smaller cubes of equal size, called voxels, \ie{} 3d pixels (see \cref{fig:discVol}).
-Each voxel contains the physical properties, absorption, birefringence and optical axis orientation, of the tissue at its current position.
+Each voxel contains the physical properties absorption, birefringence and optical axis orientation of the tissue at its current position.
 The total volume is bounded by a \ac{AABB} or \ac{VOI} defined by a minimum and maximum value $\voi = [(x_{\mathit{min}}, y_{\mathit{min}}, z_{\mathit{min}}), (x_{\mathit{max}}, y_{\mathit{max}}, z_{\mathit{max}})]$.
-Additionally, the parameter \Voxelsize{} \voxelsize{} is set to a floating point number and defines the edge length of the voxels.
-If the division of \voi{} by \voxelsize{} is not an integer, \voi{} is automatically incremented to the nearest possible integer value to avoid edge effects.
+Additionally, the parameter \Voxelsize{} \voxelsize{} is set to a floating point number and defines the edge length of the equilateral voxels.
+If the division of any of the \voi{} axis by \voxelsize{} is not an integer, the corresponding axis of the \voi{} is incremented to the nearest possible integer value to avoid edge effects.
 %
 %
 %
@@ -62,7 +59,7 @@ Especially for light wave simulations, the myelin windings are an important feat
 The windings are represented as individual layers (see \cref{fig:fiberLayer}).
 This greatly simplifies the creation process.
 A layer is defined by a factor between $\SI{0}{}$ and $\SI{1}{}$ that scales with the radius of the nerve fiber.
-For example, $\SI{0.75}{}$ means that from $0 \leq r < 0.75$ of radii is interpreted as the first layer (see \cref{fig:fiberLayer}).
+For example, $\SI{0.75}{}$ means that from $0 \leq r < 0.75$ of the radii is interpreted as the first layer (see \cref{fig:fiberLayer}).
 \par
 %
 Each layer requires a number of physical properties in addition to its radius:
@@ -76,7 +73,7 @@ Each layer requires a number of physical properties in addition to its radius:
 These properties are specified as a list of tuples within the algorithm (see \cref{alg:fiberbundleprops}).
 %
 %
-At the end, the discretize volume generator returns the arrays \tissue{}, \opticalaxis{} and \propertylist{} for use in the simulation.
+At the end, the discretize volume generator returns the arrays \tissue{}, \opticalaxis{} and \propertylist{} for use in the light matter simulation.
 Since the arrays are quite large, the transfer is performed as a ownership movemend of a \name{numpy-array} without having to copy the data.
 % 
 \begin{lstfloat}[!ht]
@@ -104,28 +101,28 @@ fbs_properties = [[(r, dn, mu, 'p'), (second layer), ...],
 \subcaptionbox{\label{fig:vectormodel}Cross section of a discretized nerve fiber with resulting optical axis vectors}[.32\textwidth]{
 \inputtikz{gfx/simpli/vector_model}\vspace{-5mm}}
 \caption{Discretization of nerve fibers with layered structure.}
-\label{fig:fiber_discretisation}
+\label{fig:fiber_discretization}
 \end{figure}
 %
-To discretize nerve fiber models an individual nerve fiber segment needs to be discretized, since a fiber is a chain of consecutive segments.
-Each voxel inside a fiber segment has to be labled as a tissue with the physical properties (absorption, optical axis, and birefringence) at the voxel center position $\vec{q}$ (see \cref{fig:fiber_discretization}).
+To discretize nerve fiber models individual nerve fiber segment are discretized after each other, since a fiber is a chain of consecutive segments.
+Each voxel inside a fiber segment has to be labled as a tissue with the physical properties at the voxel center position $\vec{q}$ (see \cref{fig:fiber_discretization}).
 The discretized mesh represents an array, where an element at position $[i,j,k]$ occupies the space from $(i,j,k)$ to $(i+1,j+1,k+1)$ in the unit of $\SI{1}{\voxelsize}$.
 \par
 %
-To identify all voxels inside a fiber segment all voxels inside the fiber segments are checked if they are inside the fiber segment.
+To identify all voxels inside a volume all voxels inside the fiber segments are checked if they are inside the fiber segment.
 Therefore a loop over all voxels is performed.
 \par
 %
-To checked if a voxels is inside the nerve fiber segment,
+To calculate if a voxels is inside the nerve fiber segment,
 a computation analogously to the collision between two nerve fiber segments is calculated (see \cref{alg:pseudocodeCollisionDetection}).
 The difference is, that only one point on a the fiber segment line has to be calculated.
 The second point is the voxels center $\vec{q}$.
 From this calculation, not only the nearest points $\vec{p}_a$ and $\vec{p}_b$ are returned, but also the distance vector $\vec{d}$.
 The distance of the vector is used to check whether the voxel is inside the fiber segment, and if so, in which layer of the fiber segment it is located.
-In addition, the distance vector $\vec{d}$ is used to calculate the optical axis orientation if the current layer is set to a microscopic model.
+if the optical axis orientation follows a macroscopic model, the points $\vec{p}_a, \vec{p}_b$ are used to calculate the orientation.
 \par
 %
-In case of a voxel occupied by a fiber segment, two values must be stored.
+In case of a voxel occupied by a fiber segment, two values are stored.
 The first one is an index within an array \name{tissue} which will be used later to retrieve the properties from a list with the same index order.
 The second information is the orientation of the optical axis within the current layer, stored in the array \name{optical\_axis}.
 The orientation is either parallel to the fiber segment in the case of the macroscopic model, or radial in the case of the microscopic model.
@@ -135,11 +132,11 @@ A layer can also be marked as \say{background}, allowing the user to specify an 
 The next step is to loop aver all fiber segments and fill the volume.
 However, another problem must be solved first.
 Since two consecutive fiber segments occupy the same space because they have a common point, they also fill some voxels of the tissue volume simultaneously.
-This is a problem because now the second fiber segment overwrites the values of the first.
+This is a problem because the processed second fiber segment overwrites the values of the first.
 This is solved by using an additional array that stores the smallest distance calculated when filling the voxels space.
 The values are only overwritten when a new distance is calculated that is smaller than the one already stored.
 This solves also the problem that in a radial optical axis model, the optical axis is star-shaped at the end points of each fiber segment inside the fiber.
-With this solution this only applies to the first and last point of a fiber.
+The first and last point of a fiber, however, are not affected by this.
 \par
 %
 The algorithm for the discretization loop is shown in \cref{alg:fillVolume}.
@@ -163,10 +160,10 @@ for fiber_segment in fiber_bundle:
 \end{lstfloat}
 %
 \paragraph{Additional Information}
-Since the simulation algorithm requies an \name{tissue}, \name{optical\_axis} and \name{propertie} array, the user can also calculate them by any other method.
+Since the light matter simulation algorithm recieves an \name{tissue}, \name{optical\_axis} and \name{propertie} array, the user can also change the values in between both algorithms.
 In the upper algorithm, the optical axis vectors length is $\SI{1}{}$.
-The length of the vector is in the simulation part interpreted as the birefringence strength factor.
-Therefore the user can \eg{} add additionall variability of the strength of the birefringence for one tissue index occupied space.
+The length of the vector is in the light matter simulation part interpreted as the birefringence strength factor.
+Therefore the user can \eg{} add additionall variability of the strength of the birefringence.
 %
 %
 %
@@ -181,20 +178,19 @@ Therefore the user can \eg{} add additionall variability of the strength of the 
 \label{fig:vectorfield_disc_error}
 \end{figure}
 %
-The parameter \Voxelsize{} is a very important property of the simulation.
-It determines how accurate the volume is represented.
-Its value has a significant impact, especially in the case of multiple layers (see \cref{fig:vectorfield_disc_error}).
-Additionally the in the simulation part one light ray is casted from each voxel of the bottom plane (see \cref{sec:pathOfLight}). 
-Therefore it is also responisble for the sampling of the intensities in the resulting images.
+The parameter \Voxelsize{} is a very important property of the light matter simulation.
+It determines how accurate the volume is represented (see \cref{fig:vectorfield_disc_error}).
+Additionally the in the light matter simulation one light ray is casted from each voxel of the bottom plane (see \cref{sec:pathOfLight}). 
+Therefore it is also responisble for the sampling of the resulting intensities.
 %
 %
 % 
 \subsection{Optimizations}\label{sec:dvOpti}
 %
 All arrays are implemented as contiguous c-arrays, accessible externally as \name{numpy-arrays} without the need to copy the data.
-Since these arrays grow with $\mathcal{O}(n^3)$, the ownership of the data is movable in both the \cpp{} libraries and \python{} code.
+Since these arrays grow with $\mathcal{O}(\frac{1}{\voxelsize}^3)$, the ownership of the data is movable in both the \cpp{} libraries and \python{} code.
 The memory order of the arrays is in the $x\text{-}y\text{-}z$ direction, so the largest memory shift is in $x$ and the smallest in $z$.
-This was chosen so that later in the simulation part, where the light moves mainly in the $z$-direction, the memory is aligned with the traversed information and thus the \acp{CPU} cache prefetcher can be used effectively.
+This was chosen so that later in the light matter simulation part, where the light moves mainly in the $z$-direction, the memory is aligned with the traversed information and thus the \acp{CPU} cache prefetcher can be used effectively.
 \par
 %
 Two methods are used to parallelize the algorithm on the \ac{CPU}.
@@ -202,13 +198,9 @@ The first uses \ac{OpenMP} to parallelize the filling of the \ac{AABB} volume of
 The second uses \ac{MPI} to allow distribution across multiple \ac{CPU} cores without sharing memory (detailed description in \cref{sec:mpiSim}).
 \par
 %
-Parallelizing the filling of the voxels of the discretized volume leads to a race condition when multiple threads want to write or read to the same memory address, \ie{} the same coordinate in the volume, as it is the case two objects occupy the same space.
+Parallelizing the filling prozess of the voxels of the discretized volume leads to a race condition when multiple threads want to write or read to the same memory address, \ie{} the same coordinate in the volume.
 A solution with a lock would be very slow and since many of the voxels do not need to be overwritten, most of the locks would be unnecessary.
-Since the loop runs over all $(i,j,k)$ indices of the three spatial dimensions, parallelization can be done by a parallel for loop.
-However, this leads to a slow implementation since new threads have to be created for each fiber segment, which takes time.
-It was therefore decided that the parallel call would create all threads before the first loop over all objects.
-This means that all threads process all objects.
-To share the work, thread $n$ processes only the memory for the first index $i$ or volume dimension $x$ if:
+To share the work, thread $n$ processes only the memory for the first index $i$ (or volume dimension $x$) if:
 %
 \begin{align}
 \begin{split}
@@ -228,21 +220,20 @@ This means that each thread loops over every $N_{\mathit{num\_threads}}$ slice o
 This is done instead of dividing the volume to n sub volumes to distribute the work in case that the volume is not filled homogeniously with fibers.
 This procedure leads to a thread-safe writable operation.
 One disatvantage of this algorithm is, that all threads have to check if the \ac{AABB} of all fiber segments is inside the current \ac{VOI}.
-However, since the threads are spawned only one time in this configuration and the collision checking of \acp{AABB} is very efficient in terms of computation time, it is quite fast.
 % 
 % 
 %
-\section{Simulation}
+\section{Light matter Simulation}
 \label{sec:simulation}
 %
-The simulation algorithm performs the Mueller-Stokes calculation (see \cref{sec:Mueller-Stokes}) on the previously calculated discrete volume (see \cref{sec:dv_generator}) for the light rays along their paths.
+The light matter simulation algorithm performs the Mueller-Stokes calculation (see \cref{sec:Mueller-Stokes}) on the previously calculated discrete volume (see \cref{sec:dv_generator}) for the light rays along their paths.
 Since no scattering or refraction effects are considered in this simulation, each light path follows a straight line.
 Initially, the light vector is multiplied by the first polarizer of the optical system (see \cref{sec:expSetup}).
 The path inside the tissue is discretized into steps.
 The interaction between the light ray and the tissue is calculated after each step according to $ \vec{S}' = \prod_i \left(\mat{R}_i \mat{M}_i \mat{R}_i\right) \cdot \vec{S}$ (see \cref{sec:mueller_stokes, sec:simLightTissue}).
-After a light beam reaches the end of the tissue, the last optical elements of the setup are applied to the lights vector.
-Finally, the light intensity is stored in the \acs{CCD} image array, which at this point of the algorithm has the same size as the 2d $xy$ grid of the discretized tissue.
-In a later step, the intensities will be blurred and resampled to the acually \ac{CCD} pixels size and noise will we added according to the users specifications.
+% After a light beam reaches the end of the tissue, the last optical elements of the setup are applied to the lights vector.
+% Finally, the light intensity is stored in the \acs{CCD} image array, which at this point of the algorithm has the same size as the 2d $xy$ grid of the discretized tissue.
+% In a later step, the intensities will be blurred and resampled to the acually \ac{CCD} pixels size and noise will we added according to the users specifications.
 % 
 %
 %
@@ -260,7 +251,7 @@ In a later step, the intensities will be blurred and resampled to the acually \a
 \label{fig:tilting_camera_view}
 \end{figure}
 %
-The simulation allows for a tilting light beam.
+The light matter simulation allows for a tilting light beam.
 For this purpose, the \ac{LAP} uses a tilting stage to which the tissue sections are attached (see \cref{fig:tilting_camera_view}).
 The \ac{LMP3D}, on the other hand, has an tilted light beam.
 This is achieved by a conical light path, from which an aperture is then used to sample the desired light direction \cite{Wiese:887678}.
@@ -290,7 +281,7 @@ From the \ac{CCD} array, the light path can be shifted back to the top plane of 
 Subsequently, the light beam $\vec{l}_1$ is traced back through the tissue to the bottom plane $\mathfrak{S}_{bottom}$.
 The point on the lower tissue plane corresponds to the initial position of the light beam.
 This light path change results in a shift $\delta$ along the same direction of the tilting.
-In the simulation only light rays are considered, which will go at least partially through the volume.
+In the light matter simulation only light rays are considered, which will go at least partially through the volume.
 All remaining \ac{CCD} elements are left with a \textit{NaN} value.
 \par
 %
@@ -310,7 +301,7 @@ f(\vec{x}) = \mat{A} \cdot \vec{x} + \vec{t}
 where $\vec{x}$ is the coordinate input, $\mat{A}$ and $\vec{t}$ are the transformation values, and $f(\vec{x}$ is the transformed coordinate.
 \par
 %
-The simulation with the light paths sampling as described above takes this distorted view into acount.
+The light matter simulation with the light paths sampling as described above takes this distorted view into acount and removes it.
 The simulation is also capable of sampling the light rays in such a way, that the distortion occurs.
 In that case the resulting images have to be registered onto each other \eg{} by an affine transformation wich is also available.
 % 
@@ -341,7 +332,7 @@ Since the data are orientations, the default value for the interpolation method 
 %
 %
 %
-\subsection{Simulation of light-tissue interaction}\label{sec:simLightTissue}
+\subsection{Simulation of light matter interaction}\label{sec:simLightTissue}
 %
 After the initial light positions are calculated each light beam is traversed within the tissue.
 To calculate the light-tissue interaction, the change of the Stokes vector is calculated after each light beam step.
@@ -369,7 +360,9 @@ for light in light_beams:
 \label{alg:simulationLoop}
 \end{lstfloat}
 %
-%
+To resample the array to the final size of the \ac{CCD} sensor and apply noise model python funcions exits outside of the parralized simulation software.
+% 
+% 
 %
 \subsection{Optimizations}
 %
@@ -399,14 +392,14 @@ Therefore it can also be executed with the \code{multiprocessing} library of \py
 %
 \section{MPI parallelization}\label{sec:mpiSim}
 %
-Both algorithms, the discrete volume generator and the simulation, can additionally use a parallelization technique.
+Both algorithms, the discrete volume generator and the light matter simulation, can additionally use a parallelization technique.
 For large volumes that are larger than the local memory size, the computation must be split among multiple physical \acp{CPU}s and \name{computation nodes}.
 For this purpose, \acreset{MPI} \ac{MPI} is used.
 A method is implemented to automatically partition the volume along the $x$-axis and the $y$-axis into blocks with minimal surface area along both axis (see \cref{fig:com_halo}).
 \par
 % 
 Each \ac{CPU} can performed the discrete volume generation without the knowlege of each other.
-The exception is the simulation for tilted light beams.
+The exception is the light matter simulation for tilted light beams.
 Here, when a light ray leaves the local volume, it must be transmitted to the adjacent volume.
 \ac{MPI} provides several methods to send information to another \name{rank}.
 Since the subvolumes are splitted along a cartesion grid, the cartesion implementations of \ac{MPI} are used (\eg{} \code{MPI\tu Cart\tu create}).
