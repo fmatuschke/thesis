@@ -135,16 +135,16 @@ The first module handles the seeding process, while the second part builds up a 
 \subsection{Seeding fiber bundles}\label{sec:seeds}
 %
 \begin{figure}[!t]
-    \def\tikzheight{0.25\textwidth}
+    \setlength{\tikzheight}{0.25\textwidth}
     \centering
-    \subcaptionbox{\label{fig:triGrid}equilateral triangle grid}[.32\textwidth]{
-    \inputtikz{gfx/model/triangular_grid}}
+    \subcaptionbox{\label{fig:triGrid}equilateral triangle grid}
+    [0.3\textwidth]{\inputtikz{gfx/model/triangular_grid}}
     \hfill
-    \subcaptionbox{\label{fig:rndGrid}random grid}[.32\textwidth]{
-    \inputtikz{gfx/model/rnd_circle_points}}
+    \subcaptionbox{\label{fig:rndGrid}random grid}
+    [0.3\textwidth]{\inputtikz{gfx/model/rnd_circle_points}}
     \hfill
-    \subcaptionbox{\label{fig:crossBundle}populated fiber bundles}[.32\textwidth]{
-    \inputtikz{gfx/model/crossing_bundle}}
+    \subcaptionbox{\label{fig:crossBundle}populated fiber bundles}
+    [0.3\textwidth]{\inputtikz{gfx/model/crossing_bundle}}
 	\caption{Populating fiber bundles with 2d seed points.}
 % 	\label{fig:}
 \end{figure}
@@ -258,20 +258,20 @@ When a line hits the volume, the entry and exit points are calculated and stored
 %
 \begin{figure}[!t]
     \centering
-    \setlength{\tikzwidth}{0.31\textwidth}
+    \setlength{\tikzwidth}{0.3\textwidth}
     \subcaptionbox{\label{fig:cylCircular}%
         Circular population.
-    }[.33\textwidth-1ex]{
+    }[\tikzwidth]{
     \inputtikz{gfx/model/cylinder_circular}}\hfill
     %
     \subcaptionbox{\label{fig:cylRadial}%
         Radial population.
-    }[.33\textwidth-1ex]{
+    }[\tikzwidth]{
     \inputtikz{gfx/model/cylinder_radial}}\hfill
     %
     \subcaptionbox{\label{fig:cylParallel}%
         Parallel population.
-    }[.33\textwidth-1ex]{
+    }[\tikzwidth]{
     \inputtikz{gfx/model/cylinder_parallel}}
 	\caption{Populating of cylindrical objects. The green area shows the area corresponding to the seed point plane. The coordinate system indicates the coordinate origin coresponding to the seed points origin. The resulting coordinate system is at the botom center as shown in \cref{fig:cylParallel}.}
 \end{figure}
@@ -455,11 +455,13 @@ Therefore, another strategy must be chosen to reduce the number of computations.
 %
 \begin{figure}[!t]
     \centering
-    \subcaptionbox{\label{fig:octreeCube}Exemplary octree subdivision of a cube.}[.3\textwidth]{
+    \subcaptionbox{\label{fig:octreeCube}Exemplary octree subdivision of a cube.}
+    [.3\textwidth]{
     \def\tikzheight{0.6\textwidth}
     \inputtikz{gfx/model/oct_tree}}
     \hfill
-    \subcaptionbox{\label{fig:collision2D}Exemplary collision in 2d. The \textcolor{RED}{boxes} corresponds to the \acp{AABB} }[.65\textwidth]{
+    \subcaptionbox{\label{fig:collision2D}Exemplary collision in 2d. The \textcolor{RED}{boxes} corresponds to the \acp{AABB}.}
+    [.65\textwidth]{
     \def\tikzheight{0.6\textwidth}
     \inputtikz{gfx/model/collision_tree}}
 	\caption{Exemplary tree subdivision.}
@@ -765,12 +767,12 @@ Therefore the algorithm was implemented on the \ac{GPU} with an axes aligned bou
 \begin{figure}[!t]
     \centering
     \setlength{\tikzwidth}{0.75\textwidth}
-    \subcaptionbox{modified from \cite{Ginsburger2019}. Outer blue spheres myelin, inner red spheres axon}[0.75\textwidth]{
-    \inputtikz{gfx/model/medusa/medusa_spheres}}
+    \subcaptionbox{modified from \cite{Ginsburger2019}. Outer blue spheres myelin, inner red spheres axon}
+    [0.75\textwidth]{\inputtikz{gfx/model/medusa/medusa_spheres}}
     \\[2em]
     % 
-    \subcaptionbox{Cell aproximation by overlapping spheres.}[0.75\textwidth]{
-    \inputtikz{gfx/model/medusa/medusa_cells}}
+    \subcaptionbox{Cell aproximation by overlapping spheres.}
+    [0.75\textwidth]{\inputtikz{gfx/model/medusa/medusa_cells}}
     \caption{\ac{MEDUSA} sphere approximation.}
     \label{fig:medusaCell}
 \end{figure}
@@ -817,11 +819,13 @@ One promising technique is the use of a \name{Boundind Box Hierarchy} \cite{Karr
 %
 \begin{figure}[!t]
     \centering
-    \subcaptionbox{Cubic volumes with different number of fiber populations and volume fractions (VF) are generated.}[0.75\textwidth]{\label{fig:medusa_8a}
+    \subcaptionbox{Cubic volumes with different number of fiber populations and volume fractions (VF) are generated.}
+    [0.75\textwidth]{\label{fig:medusa_8a}
     \resizebox{0.75\textwidth}{!}{
     \includegraphics{gfx/model/medusa/8.jpg}}}
     \\[2em]
-    \subcaptionbox{Exemplary visualization of a volume filled with a single fiber population and astrocytes.}[0.75\textwidth]{\label{fig:medusa_8b}
+    \subcaptionbox{Exemplary visualization of a volume filled with a single fiber population and astrocytes.}
+    [0.75\textwidth]{\label{fig:medusa_8b}
     \resizebox{0.75\textwidth}{!}{
     \includegraphics{gfx/model/medusa/11_.jpg}}}
 	\caption{Original images from \cite{Ginsburger2019}.}

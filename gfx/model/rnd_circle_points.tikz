@@ -10,7 +10,7 @@
 \node[circle,fill,inner sep=1.0pt] at (\x,\y) {};
 }
 \draw[] (0,0) circle (1);
-\path[] (0,-1.25)--(0,1.25);
+% \path[] ($(-1.25,-1.25)$)--($(1.25,1.25)$); %bb
 %
 \end{tikzpicture}
 \end{tikzsize}

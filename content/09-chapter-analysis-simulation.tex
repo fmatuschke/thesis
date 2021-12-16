@@ -5,6 +5,20 @@
 % \minitoc
 %
 \todo{ylabel sideways or next to (0,1)?}
+Only the inclination angle $\modelInc$ of the fiber population for \ac{3D-PLI} is important for a single fiber popuation since the direction only adds a shift in the sinosoidal phase.
+Also only positive inclination angles need to be simulated since it would be a directional shift of $\SI{180}{\degree}$.
+This needs to be done for every inclination angle of the first fiber population.
+\begin{figure}[t]
+\centering
+\setlength{\tikzwidth}{0.40\textwidth}
+\subcaptionbox{\label{subfig:sphere:hista1} The 3d plots above can be represented as 2d polar plots. The thicker circle indicates the currect orientation of the first fiber population.}
+[.475\textwidth]{\inputtikz{gfx/model/sphere_hist_a}}\hfill
+\subcaptionbox{\label{subfig:sphere:histb} The 3d plots above can be represented as 2d polar plots.}
+[.475\textwidth]{\inputtikz{gfx/model/sphere_hist_b}}
+\caption{Design of polar plots.}
+\label{fig:polarplotdesign}
+\end{figure}
+% 
 %
 \section{Introduction}
 %
@@ -111,7 +125,7 @@ In \cite{Wiese:887678}, the gain factor $\opticgain$ of the microscopic setup wa
 The gain factor describes the linearity between a measured signal and the corresponding noise.
 The same type of measurement and analysis is performed here with the \ac{LMP} setup.
 \par
-To obtain statistics for a large number of intensity values, the sample stage is covered with a fully absorbing cover so that half of the image is dark.
+To obtain statistics for a large number of intensity values, the specimen stage is covered with a fully absorbing cover so that half of the image is dark.
 In addition, the focal length is changed so that the light is spread over the entire image sensor under the cover (see \cref{fig:pliFocusImage}).
 By measuring $N=\SI{500}{}$ images, the variance for the different intensity values is determined.
 %
@@ -928,7 +942,7 @@ However, for a larger number of \acsp{CPU}, the speedup is higher at $\SI{42}{}$
 \subsection{Single inclined fiber population}
 \Cref{sec:resSingleIncl} shows the results for the case of a single fiber population with inclined configurations.
 The transmittance values show an increase for the last free inclination values.
-This is to be expected since the 3D model configurations are aligned in parallel along an axis with some randomness.
+This is to be expected since the 3d model configurations are aligned in parallel along an axis with some randomness.
 When this axis is aligned along the z-axis, \ie{} $\modelInc=\SI{90}{\degree}$, the light rays, which also travel along the z-axis, statistically strike less tissue, so the transmittance must increase.
 Since the density of the tissue is quite high, the effect is only a few percent.
 In reality, however, one must take into account that \cite{Menzel2021}\todo{check ref} could show that the change in transmittance is much more complicated.

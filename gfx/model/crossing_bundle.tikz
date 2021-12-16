@@ -59,11 +59,12 @@
     \addplot3[domain=-3:-1,y domain=-10:150, samples=20,surf,z buffer=sort, colormap/summer]
         ({cos(y)} , {x}, {sin(y)});  
     %
-    % \coordinate (A) at (axis description cs: 0,0);
-    % \coordinate (B) at (axis description cs: 1,1);
+    % \coordinate (A) at (rel axis cs: 0.5,0.5,0.5);
+    % \draw[green] ($(A) + (2.5,2.5)$) rectangle ($(A) - (2.5,2.5)$);
 \end{axis}
-%
-% \path[] let \p1=(current bounding box.north west), \p2=(current bounding box.south east), \n1={0.5*max(\x2-\x1,\y2-\y1)} in ($(0.5*\x1,0.5*\y1)+(0.5*\x2,0.5*\y2)+(\n1,\n1)$) -- ($(0.5*\x1,0.5*\y1)+(0.5*\x2,0.5*\y2)-(\n1,\n1)$);
+% 
+\coordinate (C) at (current bounding box.center);
+\path[] ($(C) + (2.75,2.75)$) rectangle ($(C) - (2.75,2.75)$);
 %
 \end{tikzpicture}
 \end{tikzsize}

@@ -32,7 +32,6 @@ The computationally intensive algorithms are written in \cpp{} with an additiona
 \centering
 \setlength{\tikzwidth}{0.5\textwidth}
 \inputtikz{gfx/simpli/disc_volume}
-
 \caption{Discretized tissue volume with a voxel size \voxelsize. The volume is defined by a \ac{AABB}, which itself is defined by two points $\vec{v}_\mathit{min}$ and $\vec{v}_\mathit{max}$.}
 \label{fig:discVol}
 \end{figure}
@@ -93,13 +92,13 @@ fbs_properties = [[(r, dn, mu, 'p'), (second layer), ...],
 %
 \begin{figure}[!t]
 \centering
-\setlength{\tikzwidth}{0.32\textwidth}
-\subcaptionbox{\label{fig:myelinLayer}Schematic representation of a nerve fiber with axon and myelin sheath}[.32\textwidth]{
-\includegraphics[height=0.3\textwidth]{dev/brain/myelin_layers.pdf}\vspace{0mm}}\hfill
-\subcaptionbox{\label{fig:fiberLayer}Cross section through a nerve fiber with layered structure defined by $n$ radii}[.32\textwidth]{
-\inputtikz{gfx/simpli/fiber_layer}\vspace{-5mm}}\hfill
-\subcaptionbox{\label{fig:vectormodel}Cross section of a discretized nerve fiber with resulting optical axis vectors}[.32\textwidth]{
-\inputtikz{gfx/simpli/vector_model}\vspace{-5mm}}
+\setlength{\tikzwidth}{0.3\textwidth}
+\subcaptionbox{\label{fig:myelinLayer}Schematic representation of a nerve fiber with axon and myelin sheath}
+[\tikzwidth]{\includegraphics[height=\tikzwidth]{dev/brain/myelin_layers.pdf}\vspace{0mm}}\hfill
+\subcaptionbox{\label{fig:fiberLayer}Cross section through a nerve fiber with layered structure defined by $n$ radii}
+[\tikzwidth]{\inputtikz{gfx/simpli/fiber_layer}\vspace{-5mm}}\hfill
+\subcaptionbox{\label{fig:vectormodel}Cross section of a discretized nerve fiber with resulting optical axis vectors}
+[\tikzwidth]{\inputtikz{gfx/simpli/vector_model}\vspace{-5mm}}
 \caption{Discretization of nerve fibers with layered structure.}
 \label{fig:fiber_discretization}
 \end{figure}
@@ -242,10 +241,10 @@ The interaction between the light ray and the tissue is calculated after each st
 %
 \begin{figure}[!t]
 \setlength{\tikzheight}{0.42\textwidth}
-\subcaptionbox{camera view}[.49\textwidth]{
-\inputtikz{gfx/simpli/tilting_3d_a}}\hfill
-\subcaptionbox{perspective view}[.49\textwidth]{
-\inputtikz{gfx/simpli/tilting_3d_b}}
+\subcaptionbox{camera view}
+[.475\textwidth]{\inputtikz{gfx/simpli/tilting_3d_a}}\hfill
+\subcaptionbox{perspective view}
+[.475\textwidth]{\inputtikz{gfx/simpli/tilting_3d_b}}
 \tikzset{external/export=false}
 \caption[3d tilting]{3d tilting: around $xy$-axis, \raisebox{.25em}{\tikz \draw[red,thick](0,0)--(0.25,0);} top, \raisebox{.25em}{\tikz \draw[green,thick](0,0)--(0.25,0);} middle, \raisebox{.25em}{\tikz \draw[blue,thick](0,0)--(0.25,0);} bottom, \raisebox{.25em}{\tikz \draw[dash pattern=on 1.25pt off 1.25pt,thick](0,0)--(0.25,0);} original, \raisebox{.25em}{\tikz \draw[gray](0,0)--(0.25,0);} axis of rotation.}
 \label{fig:tilting_camera_view}
@@ -263,12 +262,12 @@ Since this only adds a parallel shift, simulation is only necessary when the eff
 \par
 %
 \begin{figure}[!t]
-\setlength{\tikzwidth}{0.42\textwidth}
-\subcaptionbox{normal}[.495\textwidth]{
+\setlength{\tikzwidth}{0.45\textwidth}
+\subcaptionbox{normal}[.475\textwidth]{
 \def\tilt{0}
 \def\nindex{2.25}
 \inputtikz{gfx/simpli/tilting_a}}\hfill
-\subcaptionbox{tilted}[.495\textwidth]{
+\subcaptionbox{tilted}[.475\textwidth]{
 \inputtikz{gfx/simpli/tilting_b}}
 \caption[Light path]{Light ray path for a normal (a) and a tilted (b) case. In the tilted case, the light beam $\vec{l}_1$ is tilted within the tissue and thus experiences an optical shift $\Delta$.}
 \label{fig:tilted_side_view}
@@ -314,11 +313,13 @@ This means that the physical properties stored in the arrays have to be interpol
 %
 \begin{figure}[!t]
 \centering
-\setlength{\tikzwidth}{0.45\textwidth}
+\setlength{\tikzwidth}{0.475\textwidth}
 % \tikzset{external/force remake=true}
-\subcaptionbox{\label{fig:triInterp}Trilinear interpolation}[\tikzwidth]{
+\subcaptionbox{\label{fig:triInterp}Trilinear interpolation}
+[\tikzwidth]{
 \hfill\inputtikz{gfx/simpli/trilinear_interpolation}\hfill}\hfill
-\subcaptionbox{\label{fig:sphInterp}Spherical interpolation}[\tikzwidth]{
+\subcaptionbox{\label{fig:sphInterp}Spherical interpolation}
+[\tikzwidth]{
 \inputtikz{gfx/simpli/vector_interpolation}}
 \caption{Interpolation techniques: Trilinear interpolation can be represented as an axial step interpolation. The difference between linear and spherical interpolation is that linear interpolation has a constant distance $s$ between each point, while spherical interpolation has a constant angle $\varphi$ between two steps.}
 \label{fig:vectorfield_disc}
