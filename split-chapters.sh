@@ -3,9 +3,8 @@ set -e
 
 # pages=()
 while read -r line ; do
-   values=$(echo "$line" | egrep -o '\{[0-9]*\}' )
-   num1=$(echo "$values" | cut -f1 -d$'\n' | sed 's/[^0-9]*//g')
-   num2=$(echo "$values" | cut -f2 -d$'\n' | sed 's/[^0-9]*//g')
+   num1=$(echo "$line" | grep -o -P '(?<=numberline {).\d*')
+   num2=$(echo "$line" | grep -o -P '(?<=}{)\d.*(?=}{ch|}{ap)')
    pages+=("$num2")
 done < <(fgrep chapter\}\{\\nu thesis.toc)
 
