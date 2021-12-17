@@ -41,7 +41,7 @@ The final part investigates the orientation distribution of the generated models
 %
 \section{Designing fiber populations}
 %
-For the \ac{3D-PLI} simulation, a volume of size $\SI{65}{\micro\meter} \times \SI{65}{\micro\meter} \times \SI{60}{\micro\meter}$ is required (see \cref{cha:simulation_analysis}. \footnote{\SI{65}{\micro\meter} is divisible by \SI{1.3}{\micro\meter}, the pixel size of the microscope}
+For the \ac{3D-PLI} simulation, a volume of size $\SI{65}{\micro\meter} \times \SI{65}{\micro\meter} \times \SI{60}{\micro\meter}$ is required (see \cref{cha:simulation_analysis}). \footnote{\SI{65}{\micro\meter} is divisible by \SI{1.3}{\micro\meter}, the pixel size of the investigated microscope.}
 In this thesis, up to two fiber populations are investigated.
 A fiber population is a fiber bundle with a specific orientation, density, and radius distribution.
 \footnote{This strategy is also used in \ac{dMRI} \cite{Ginsburger2018,Ginsburger2019,ginsburgerDis2019}.}
@@ -55,15 +55,21 @@ The number of fiber populations is limited to two in order to reduce the degrees
 \begin{figure}[t]
 \centering
 \setlength{\tikzwidth}{0.40\textwidth}
-\subcaptionbox{\label{fig:modelrotcube}A spherical volume of diameter $d$ is used as a boundary, so that a cube of side length $1/1.5 \cdot d$ can be cut in any orientation within the sphere.}
-[.475\textwidth]{\inputtikz{gfx/model/sphere_cube}}\hfill
-\subcaptionbox{\label{fig:modelinit}Initial orientation for two fiber populations $F_0$ and $F_1$. The angle between the two populations is $\modelOmega$. The remaining degrees of freedom are considered by rotating the whole volume (see \cref{fig:modelrotcube}).}
-[.475\textwidth]{\inputtikz{gfx/model/sphere_models}}
+% \subcaptionbox{\label{fig:modelrotcube}
+% A fiber population $F_0$ kan be rotated into any 3d orientation.}
+% [.475\textwidth]{\inputtikz{gfx/model/sphere_cube}}
+% \hfill
+\subcaptionbox{\label{fig:modelinit}
+Initial orientation for two fiber populations $F_0$ and $F_1$. The angle between the two populations is $\modelOmega$. The remaining degrees of freedom are considered by rotating the whole volume (see \cref{fig:modelrotcube}).}
+[\textwidth]{\inputtikz{gfx/model/sphere_models}}
+% \hfill
 \\
 %
-\subcaptionbox{The first fiber population is stationary. The second fiber population is described by the opening angle $\modelOmega$ and a rotation $\modelRot$ around the first fiber population.}
+\subcaptionbox{\label{fig:modelrota}
+The first fiber population is stationary. The second fiber population is described by the opening angle $\modelOmega$ and a rotation $\modelRot$ around the first fiber population.}
 [.475\textwidth]{\inputtikz{gfx/model/sphere_models_a}}\hfill
-\subcaptionbox{\label{subfig:Test1}increasing inclination for first fiber population}
+\subcaptionbox{\label{fig:modelrotb}
+The inclination of the first fiber population is changed by $\modelInc$}
 [.475\textwidth]{\inputtikz{gfx/model/sphere_models_b}}
 % \\
 % %
@@ -72,32 +78,40 @@ The number of fiber populations is limited to two in order to reduce the degrees
 % [.475\textwidth]{\inputtikz{gfx/model/sphere_hist_a}}\hfill
 % \subcaptionbox{\label{subfig:sphere:histb} The 3d plots above can be represented as 2d polar plots.}
 % [.475\textwidth]{\inputtikz{gfx/model/sphere_hist_b}}
-% \caption{Parameterization of two mutually relatively oriented fiber populations for the creation of a library.}
+\caption{Parameterization of two mutually relatively oriented fiber populations for the creation of a library.}
 \label{fig:twomodelpopdesign}
 \end{figure}
 %
-Only one model is needed to study a single fiber population, since the model can be rotated to any 3d orientation (see \cref{fig:modelrotcube}). 
+Only one model is needed to study a single fiber population, since the model can be rotated to any 3d orientation. 
 For two fiber populations, the crossing angle $\modelOmega$ between the two fiber population orientations is relevant (see \cref{fig:modelinit}).
-Because \ac{3D-PLI} measures the orientation the crossing angle only needs to be varried in between $\SI{0}{\degree}$ and $\SI{90}{\degree}$.
-As in the case of a single fiber population, two a model of two fiber populations with a specific crossing angle can be rotated into any 3d orientation.
+By introducing a rotating $\modelRot$ along the first fiber population the orientation of the second fiber population can be changed (see \cref{modelrota}).
+If then the first fiber population also is inclined by a angle $\modelInc$, any fiber configuration with two fiber populations can be described (see \cref{modelrotb}).
 \par
 % 
 An additional parameter for both models is the population fraction $\modelPsi=\frac{N_0}{N_0+N_1}$.
 This can range between $\SI{0}{}$ and $\SI{1}{}$.
-Since only dense \ac{WM} phantoms are generated in this study, a lower density of $\SI{1}{}$ is not investigated.
+Since only dense \ac{WM} phantoms are generated in this study, a lower total density of $\SI{1}{}$ is not investigated.
 \par
 %
-Therefore the following parameters are chosen, allowing up to two fiber populations to be studied:
+To reduce the number of models required, the parameters are sampled.
+Ideally, the surface of a sphere is sampled equidistantly.
+However, this is impossible.
+Fairly good approximations exist, but one would still have to generate a model for each sampled point.
+For simplicity, the intersection angle $\modelOmega$ is sampled.
+By rotating the model along the first fiber population for all crossing angles, one can generate a sampling of the sphere (see \cref{subfig:Test1}).
+\par
+% 
+Therefore, the following parameter samples are chosen:
 % 
 \begin{align}
     \begin{split}
-        \modelOmega &= \{\SI{0}{\degree}, \SI{10}{\degree}, ..., \SI{90}{\degree}\}\\
+        \modelOmega &= \{\SI{10}{\degree}, ..., \SI{90}{\degree}\}\\
         \modelPsi &= \{\SI{0.1}{}, \SI{0.2}{}, ..., \SI{0.9}{}\}
     \end{split}
 \end{align}
 % 
-In the case of $\modelPsi = 0$ or $\modelPsi = 1$, no second fiber population exists, so the single fiber population model can be applied.
-This results in a total of $\SI{91}{}$ required models.
+In the case of $\modelOmega = \SI{0}{\degree}, \modelPsi = 0$ or $\modelPsi = 1$, no second unique orientation exists, so the single fiber population model can be applied.
+This results in a total of $\SI{82}{}$ required models.
 %
 % 
 % 
@@ -106,21 +120,18 @@ This results in a total of $\SI{91}{}$ required models.
 To design the individual fiber configurations for each fiber population, the methods described in \cref{sec:sandbox} are used, \ie{} generating fiber bundles with seed points.
 The seed points on a 2d plane are generated with a uniform distribution:
 \begin{align}
-p = (\mathrm{Uniform}(-\frac{1}{2}\mathit{L}, \, \frac{1}{2}\mathit{L}), \mathrm{Uniform}(-\frac{1}{2}\mathit{L}, \, \frac{1}{2}\mathit{L}))
+p_i = (\mathrm{Uniform}(-\frac{1}{2}\mathit{L}, \, \frac{1}{2}\mathit{L}), \mathrm{Uniform}(-\frac{1}{2}\mathit{L}, \, \frac{1}{2}\mathit{L}))
 \end{align}
-The size $\mathit{L}$ of the seed points surface must be chosen so that it later completely fills the volume of the model.
-Since the simulation model will be cubic and the model will be rotated, a spherical boundary with diameter $d_{\mathit{sphere}}=\sqrt{3} \cdot \mathit{L}$ is chosen, where $\mathit{L}$ is the length of the largest edge length of the cube.
-To ensure complete filling, $\mathit{L}$ is increased by two fiber diameters.
-This ensures that objects exist outside the volume that can build up pressure on the interior.
-In this way, edge effects should be prevented.
+Since the simulation volumes will be cubic and the model will be rotated, a spherical boundary with diameter $d_{\mathit{sphere}}=\sqrt{3} \cdot \mathit{L}$ is chosen, where $\mathit{L}=\SI{65}{\micro\meter}$ is the length of the largest edge length of the cube.
+This ensures that objects exist outside the simulation volume that can build up pressure on the interior, $\mathit{L}$ is increased by two fiber diameters.
+This also prevents edge effects in the simulation.
 The number of seed points is set to a value of
 \begin{align}
-N_{0,\mathit{seeds}} &= \modelPsi \frac{A}{\pi \cdot \fiberRadiusMean}\\
-N_{1,\mathit{seeds}} &= (1-\modelPsi) \frac{A}{\pi \cdot \fiberRadiusMean}
+N_{0,\mathit{seeds}} &= \round \left(\modelPsi \frac{A_{\Box}}{\pi \cdot \fiberRadiusMean}\right)\\
+N_{1,\mathit{seeds}} &= \round \left((1-\modelPsi) \frac{A_{\Box}}{\pi \cdot \fiberRadiusMean}\right)
 \end{align}
-which corresponds to filling the entire cross-sectional area with the sum of all fiber cross-sections, taking into account the proportion of fiber populations.
-In this way, more fibers are placed in the volume than they have space for, since the stacking of circles is mathematically reduced to a volume fraction of $\frac{\pi \sqrt{3}}{6} \approx 0.9$.
-Statistically, this leads to overlapping of areas and displacement of fibers from the \ac{VOI}.
+with $A_{\Box}=L^2$ as the surface area of the seed point plane.
+Thus, there are enough fibers also with respect to the soon introduced fiber radius distribution to fill the 2d plane.
 \par
 %
 \begin{figure}[!t]
@@ -147,16 +158,17 @@ Statistically, this leads to overlapping of areas and displacement of fibers fro
 \label{fig:logNormal}
 \end{figure}
 %
-These seed points are used to place straight, parallel fibers within a cubic volume.
+These seed points are then used to place straight, parallel fibers within a cubic volume with edge length $L$.
 To add a random distribution of fiber radii, the target mean fiber radius $\fiberRadiusMean$ is multiplied by a random value of the LogNormal distribution (see \cref{fig:logNormal}) to ensure that the mean value is preserved:
 \begin{align}
 \fiberRadius = \fiberRadiusMean \cdot \mathrm{sample}\left(\mathrm{LogNormal}(\mu=0, \, \sigma=0.1)\right)
 \end{align}
 %
-To achieve a more random distribution along the fibers, the fibers must first be divided into fiber segments.
-This is where the \code{Solver} class helps with its \code{Solver.apply\_boundaries()} method.
-It applies the set fiber segment length to the fiber configuration, which in this case divides the fiber along its trajectory into fiber segments of equal length (except for the last segment).
-The fiber points generated in this way are then randomly shifted in all three dimensions with a normal distribution and a value that depends on the average fiber radii \fiberRadiusMean{}.
+To achieve a random distribution of positions and radii along the fibers, the fibers must first be divided into fiber segments.
+The function \code{Solver.apply\_boundaries} is used for exactly such a case.
+It applies the fiber segment length $\segLength$ to the fiber configuration, which in this case divides the fiber along its trajectory into fiber segments of equal length (except for the last segment).
+The fiber points thus generated are then randomly shifted in all three dimensions with a normal distribution.
+The standard diviation of the normal distribution is set to a factor of the average fiber radii \fiberRadiusMean{}.
 In addition, the radius of the point is changed with a random multiplicative factor from a LogNormal distribution:
 %
 \begin{align}
@@ -168,11 +180,11 @@ r_i &= r_i \cdot \mathrm{LogNormal}(\mu=0,\sigma=0.05)
 %
 %
 %
-\subsection{Parameter characterization}\label{sec:modelSetup}
+\section{Software parameter characterization}\label{sec:modelSetup}
 %
-The control mechanisms described in the algorithm of the collision solver \code{fastpli.model.solver} (see \cref{chap:sof:modeling}) have to be characterized.
+The shape control mechanisms used in the algorithm of the collision solver \code{fastpli.model.solver} (see \cref{chap:sof:modeling}) have to be characterized.
 These are the mean segment length \segLength{} and the minimum allowed radius of curvature \segRadius{}.
-It must be ensured that a parameter set is identified that ensures that the configurations entered by the user remain the same, i.e., the orientation distributions remain intact with respect to the fact that the fiber segments must move.
+It must be ensured that a parameter set is identified that ensures that the configurations entered by the user remain the same, \ie{} the orientation distributions remain intact with respect to the fact that the fiber segments must move.
 In addition, the achievable fiber density should remain high for this set of parameters.
 Finally, it must also be ensured that a parameter set can be chosen that has an acceptable runtime.
 If possible, the runtime time should be minimized, since it is a limited resource.
@@ -207,24 +219,21 @@ The parameter ranges chosen to study the effects are listed in \cref{tab:paramet
 mean fiber radius & $\fiberRadiusMean$ & $\SIlist{0.5;1;2;5;10}{\micro\meter}$\\
 mean segment length factor & $\segLengthFactor$ & $\numlist{1;2;4;8}$\\
 min segment bending radius factor & $\segRadiusFactor$ & $\numlist{1;2;4;8}$\\
-% fiber bundle distribution value & $\textcolor{violet}{\modelPsi}$ & $\numlist{0.1;0.2;...;1.0}$ \\
-% fiber bundle crossing angle & $\textcolor{violet}{\modelOmega}$ & $\SIlist{0;10;...;90}{\degree}$\\
 fiber bundle crossing/proportion & $\modelPsi$/$\modelOmega$ & $\SI{1.0}{}/\SI{0}{\degree}$, $\SI{0.5}{}/\SI{90}{\degree}$\\
 }
-\caption{Selection of the parameter ranges for the characterization of the parameters.}
+\caption{Parameter sets for the characterization of the software parameters $\segLengthFactor$ and $\segRadiusFactor$.}
 \label{tab:parameterSetupChar}
 \end{table}
 %
-To be able to statistically verify the results, the generation of the models $n_{\mathit{repeat}} = \SI{24}{}$ was repeated.
-For characterization, only $\modelPsi/\modelOmega$ pair of $\SI{1.0}{}/\SI{0}{\degree}(||)$ and $\SI{0.5}{}/\SI{90}{\degree}(\times)$ are considered as extreme cases.
-The number of steps is limited to $\SI{100000}{}$ to constrain the computation.\footnote{In hindsight, this should have been limited by the runtime}
-A cubic volume of $\SI{60}{\micro\meter} \times \SI{60}{\micro\meter} \times \SI{60}{\micro\meter}$ is chosen for this characterization.
-Every 50 steps, the fiber model is cut into a $\SI{60}{\micro\meter}+4 \cdot \fiberRadiusMean$ cube to delete unnecessary fibers and reduce the number of objects.
-After this process, the metainformation is stored for time evaluation.
-For orientation analysis, the volume is reduced to $\SI{60}{\micro\meter}$ to neglect the protruding fiber segments.
+To be able to statistically verify the results, the generation of the models with different seed points is repeated $n_{\mathit{repeat}} = \SI{24}{}$ times.\footnote{The choosen \ac{CPU} architeture has $\SI{24}{\cores}$.}
+For characterization, the $\modelPsi/\modelOmega$ pair of $\SI{1.0}{}/\SI{0}{\degree}(||)$ and $\SI{0.5}{}/\SI{90}{\degree}(\times)$ are considered as edge cases.
+The number of steps is limited to $n_{\mathit{max}}=\SI{100000}{}$ to constrain the computation.\footnote{In hindsight, this should have been limited by the runtime.}
+A cubic volume of $\SI{60}{\micro\meter} \times \SI{60}{\micro\meter} \times \SI{60}{\micro\meter}$ is chosen.
+Every $\SI{50}{}$ steps, the fiber model is cut into a $\SI{60}{\micro\meter}+4 \cdot \fiberRadiusMean$ cube to delete unnecessary fibers and reduce the number of objects.\footnote{This strategy is recommendet.}
 To measure the volume fraction, the discretized volume from the simulation is generated from the simulation module.
-There, the individual label IDs are counted to calculate the volume fraction.
-The machine used to calculate all models is an
+There, the individual label IDs are counted and divided by the total number of voxels to calculate the volume fraction.
+To investigate the final orientation of the model the volume is reducet $\SI{60}{\micro\meter}$.
+The \ac{CPU} arhitecture used to generate the models is a
 Intel(R) Xeon(R) CPU E5-4657L v2 @ \SI{2.4}{\giga\hertz}, L1d cache: \SI{1.5}{\mega\byte}, L1i cache: \SI{1.5}{\mega\byte}, L2 cache: \SI{12}{\mega\byte}, L3 cache: \SI{120}{\mega\byte}.
 %
 %
@@ -234,41 +243,38 @@ Intel(R) Xeon(R) CPU E5-4657L v2 @ \SI{2.4}{\giga\hertz}, L1d cache: \SI{1.5}{\m
 \begin{figure}[t]
 \centering
 \includegraphics{dev/rc1/mpara/pre_stats_box_plot_volume_05_output_parameter_statistic_rc1.pdf}
-\caption[Volume fraction]{Volume fractions for parameter set.}
+\caption{Volume fractions $V_f/V_0$ for parallel $(||)$ and crossing $(\times)$ fiber populations of different relative fiber segment length $\segLengthFactor$ and relative fiber bending radii $\segRadiusFactor$.}
 \label{fig:psbp1}
 \end{figure}
 %
 \paragraph{Volume fraction}
 %
 \Cref{fig:psbp1} show the resulting volume fraction $V_f/V_0$ for the parameter series.
-% The additional fiber radii results are available in \cref{app:appModelVolumeBoxPlot}.
 \par
 %
 % single fiber
 The single fiber populations $(||)$ have volume fractions greater than $\SI{0.74}{}$.
-For constant values of the fiber segment length factor, except in the case of $\segLengthFactor = \SI{1}{}$, there is no significant change from the fiber bending radius factor.
+For constant $\segLengthFactor$, there is no significant change from the fiber bending radius factor $\segRadiusFactor$.
 In the case of $\segLengthFactor = \SI{1}{}$, there is a small decrease in volume fraction with increasing bend radius.
-A decrease with increasing fiber segment length factor \segLengthFactor{} is more pronounced, but still small.
+A significant small reduction of the volume fraction is noticible with an increase of the fiber segment length factor $\segLengthFactor$.
 \par
 %
 % crossing fiber
-This behavior changes significantly for the crossing fiber population $(\times)$.
-There the values are always smaller than in the case of the single fiber population.
-For $\segLengthFactor{}=\SI{1}{}$ the volume fraction decreases abruptly between $\segRadiusFactor{} = \SI{2}{}$ and $\segRadiusFactor{} = \SI{4}{}$.
-For $\segLengthFactor{}=\SI{2}{}$, the change becomes smoother.
-The total volume fraction decreases for values $\segLengthFactor{} \geq \SI{4}{}$ compared to the previous values.
-For $\segLengthFactor{}=\SI{8}{}$ the change with \segRadiusFactor{} disappears and the volume fraction reaches only a value around $\SI{0.57}{}$.
+In contrast, the crossing fiber population $(\times)$ volume fraction is significantly reduced.
+For $\segLengthFactor=\SI{1}{}$ and $\segLengthFactor=\SI{2}{}$ the volume fraction decreases strongly between $\segRadiusFactor = \SI{2}{}$ and $\segRadiusFactor = \SI{4}{}$.
+For $\segLengthFactor=\SI{2}{}$ the values become more similar.
+At $\segLengthFactor=\SI{8}{}$ the change with $\segRadiusFactor$ disappears and the volume fraction reaches only a value around $\SI{0.57}{}$.
 \par
 %
 % radius
-The behavior is the same for higher mean fiber radii (see \cref{app:appModelVolumeBoxPlot}). For values $\geq \SI{5}{\micro\meter}$, the variance increases and the median decreases significantly.
-However, even when the median becomes smaller, it behaves the same across all parameters as for the smaller fiber radii.
-The results show that, except for the median fiber radii $\geq \SI{5}{\micro\meter}$, the volume fraction does not change its behavior when the median fiber radii are changed.
+For mean fiber radii $\fiberRadiusMean = \SIlist{1,2}{\micro\meter}$ the behavier is very similar (see \cref{app:appModelVolumeBoxPlot}). For $\fiberRadiusMean \geq \SI{5}{\micro\meter}$, the variance increases and the median decreases significantly.
+The effect of the parameter is not changed otherwise
+For mean fiber radii $\fiberRadiusMean \geq \SI{5}{\micro\meter}$, the volume fraction does not significantly reduce.
 \par
 %
 %
 %
-\paragraph{Runtime}
+\paragraph{Development over time}
 %
 \begin{figure}[p]
 \centering

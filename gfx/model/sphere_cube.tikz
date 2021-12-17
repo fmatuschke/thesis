@@ -4,14 +4,18 @@
 \begin{scope}[%
 3d view={52}{22},
 cube/.style={white, line width=1pt, double=black, double distance=0.75mm, join=bevel},
-arr/.style={-{latex[color=GREEN]},
-    white, double=GREEN, line width=1pt, double distance=0.75mm,  shorten <= 2pt, shorten >=2pt
+arr/.style={-{latex[color=BLUE]},
+    white, double=BLUE, line width=1pt, double distance=0.75mm,  shorten <= 2pt, shorten >=2pt
   }
 ]
 %
-\path[->] (-1.30,0,0)-- (1.75,0,0)node[pos=1, anchor = north west]{\phantom{x}};
-\path[->] (0,-1.25,0)-- (0,1.4,0)node[pos=1, anchor = west]{\phantom{y}};
-\path[->] (0,0,-1.35)-- (0,0,1.25)node[pos=1, anchor = west]{\phantom{z}};
+% \path[->] (-1.30,0,0)-- (1.75,0,0)node[pos=1, anchor = north west]{\phantom{x}};
+% \path[->] (0,-1.25,0)-- (0,1.4,0)node[pos=1, anchor = west]{\phantom{y}};
+% \path[->] (0,0,-1.35)-- (0,0,1.25)node[pos=1, anchor = west]{\phantom{z}};
+% 
+\draw[->] (-1.30,0,0)-- (1.75,0,0)node[pos=1, anchor = north west]{x};
+\draw[->] (0,-1.25,0)-- (0,1.4,0)node[pos=1, anchor = west]{y};
+\draw[->] (0,0,-1.35)-- (0,0,1.25)node[pos=1, anchor = west]{z};
 %
 \shade[ball color = lightgray, opacity = 0.5] (0,0,0) circle (1cm);
 %
@@ -26,8 +30,8 @@ arr/.style={-{latex[color=GREEN]},
 \coordinate (B3) at (\d,\d,\d);
 \coordinate (B4) at (\d,-\d,\d);
 %
-\draw[cube] (A2) -- (B2) -- (B3) -- (A3) -- cycle;
-\draw[cube] (A2) -- (B2) -- (B1) -- (A1) -- cycle;
+% \draw[cube] (A2) -- (B2) -- (B3) -- (A3) -- cycle;
+% \draw[cube] (A2) -- (B2) -- (B1) -- (A1) -- cycle;
 %
 \begin{scope}[%,
 rotate around z={42},
@@ -42,14 +46,16 @@ rotate around x={-22},
 \draw[arr, canvas is zx plane at y=0] (0,0,0) +(0:0.5) arc (0:180:0.5);
 \end{scope}
 %
-\begin{scope}[%
-rotate around y={0},
-rotate around x={45},
-rotate around z={45},
-]
-\draw[cube] (A4) -- (B4) -- (B3) -- (A3) -- cycle;
-\draw[cube] (A4) -- (B4) -- (B1) -- (A1) -- cycle;
-\end{scope}
+\draw[very thick, GREEN, ->] (0,0,0) -- (1,0,0) node [pos=1, anchor = north east] {$F_0$};
+% 
+% \begin{scope}[%
+% rotate around y={0},
+% rotate around x={45},
+% rotate around z={45},
+% ]
+% \draw[cube] (A4) -- (B4) -- (B3) -- (A3) -- cycle;
+% \draw[cube] (A4) -- (B4) -- (B1) -- (A1) -- cycle;
+% \end{scope}
 %
 \end{scope}
 \pgfresetboundingbox

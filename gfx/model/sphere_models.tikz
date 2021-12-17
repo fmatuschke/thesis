@@ -25,7 +25,7 @@ arr/.style={-{latex[color=GREEN]},
 \foreach \i in {0,10,...,50}{\node[circle,fill,BLUE,inner sep=1.25pt] at ({cos(\i)},{sin(\i)}) {};}
 \draw[very thick, BLUE, ->] (0,0,0) -- ({\r*cos(\varomega)},{\r*sin(\varomega)},0) node [pos=1, anchor = west] {$F_1$};
 \begin{scope}[canvas is xy plane at z=0]
-    \draw[] (0.70,0) arc (0:\varomega:0.70);
+    \draw[BLUE] (0.70,0) arc (0:\varomega:0.70);
     \path[] (0.5,0) arc (0:\varomega/2:0.5) node[BLUE, pos=1, anchor=center] () {$\modelOmega$};
 \end{scope}
 %
