@@ -1,0 +1,19 @@
+\begin{tikzpicture}[baseline, trim axis left]
+\begin{axis}[
+width=\tikzwidth,
+height=\tikzheight,
+point meta min=0,point meta max=1670,
+xmin=0,xmax=1,ymin=0,ymax=1,
+scale only axis,
+hide axis,
+colorbar left,colormap/gray,
+colorbar/width=3mm,
+colorbar style={every y tick label/.append style={font=\small},
+                ytick={0,1670}, yticklabels={0,$I_{\mathit{max}}$,}},
+]
+\addplot[]graphics [
+xmin=0,xmax=1,
+ymin=0,ymax=1,
+] {dev/gfx/2/PM_000_vmin_0_vmax_1670.png};
+\end{axis}
+\end{tikzpicture}

@@ -1,0 +1,43 @@
+% \tikzset{external/export next=false}
+% 
+\pgfplotsset{opt_axis/.style={
+	width=\tikzwidth,
+    height=\tikzwidth,
+    % axis background/.style={fill=black},
+    % axis line style={white},
+    axis on top,
+    ymajorticks=false,
+    scale only axis,
+    axis x line = center,
+    axis y line = center,
+    % axis y line = center,
+    table/col sep=comma,
+}}
+% 
+\begin{tikzpicture}[]
+\begin{axis}[%
+opt_axis,
+every axis plot/.append style={ultra thin},
+legend style={at={(0.5,-0.15)},anchor=north},
+legend columns=3, 
+]
+% 
+\addplot[BLUE, mark=*, error bars/.cd,y dir=both, y explicit] %cyan
+table[x=x82ud, y=y82ud, y error=e82ud] {\currfiledir/usaf.csv};
+% 
+\addplot[GREEN, mark=triangle*,mark size=3pt, error bars/.cd,y dir=both, y explicit] %yellow
+table[x=x81ud, y=y81ud, y error=e81ud] {\currfiledir/usaf.csv};
+% 
+\addplot[RED, mark=square*, error bars/.cd,y dir=both, y explicit] %magenta
+table[x=x76ud, y=y76ud, y error=e76ud] {\currfiledir/usaf.csv};
+% 
+\legend{8-2,8-1,7-6};
+% 
+\coordinate (A) at (rel axis cs:0,0);
+\coordinate (B) at (rel axis cs:1,0);
+% 
+\end{axis}
+% 
+\path[] ($(A)!-0.1!(B)$) -- ($(A)!1.1!(B)$);
+% 
+\end{tikzpicture}

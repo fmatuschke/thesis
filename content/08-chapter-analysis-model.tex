@@ -182,7 +182,7 @@ r_i &= r_i \cdot \mathrm{LogNormal}(\mu=0,\sigma=0.05)
 %
 \section{Software parameter characterization}\label{sec:modelSetup}
 %
-The shape control mechanisms used in the algorithm of the collision solver \code{fastpli.model.solver} (see \cref{chap:sof:modeling}) have to be characterized.
+The shape control mechanisms used in the algorithm of the collision solver \code{fastpli.model.solver} (see \cref{chap:sof:modelling}) have to be characterized.
 These are the mean segment length \segLength{} and the minimum allowed radius of curvature \segRadius{}.
 It must be ensured that a parameter set is identified that ensures that the configurations entered by the user remain the same, \ie{} the orientation distributions remain intact with respect to the fact that the fiber segments must move.
 In addition, the achievable fiber density should remain high for this set of parameters.
@@ -239,40 +239,6 @@ Intel(R) Xeon(R) CPU E5-4657L v2 @ \SI{2.4}{\giga\hertz}, L1d cache: \SI{1.5}{\m
 %
 %
 \subsection{Results} \label{sec:solverParameterResults}
-%
-\begin{figure}[t]
-\centering
-\includegraphics{dev/rc1/mpara/pre_stats_box_plot_volume_05_output_parameter_statistic_rc1.pdf}
-\caption{Volume fractions $V_f/V_0$ for parallel $(||)$ and crossing $(\times)$ fiber populations of different relative fiber segment length $\segLengthFactor$ and relative fiber bending radii $\segRadiusFactor$.}
-\label{fig:psbp1}
-\end{figure}
-%
-\paragraph{Volume fraction}
-%
-\Cref{fig:psbp1} show the resulting volume fraction $V_f/V_0$ for the parameter series.
-\par
-%
-% single fiber
-The single fiber populations $(||)$ have volume fractions greater than $\SI{0.74}{}$.
-For constant $\segLengthFactor$, there is no significant change from the fiber bending radius factor $\segRadiusFactor$.
-In the case of $\segLengthFactor = \SI{1}{}$, there is a small decrease in volume fraction with increasing bend radius.
-A significant small reduction of the volume fraction is noticible with an increase of the fiber segment length factor $\segLengthFactor$.
-\par
-%
-% crossing fiber
-In contrast, the crossing fiber population $(\times)$ volume fraction is significantly reduced.
-For $\segLengthFactor=\SI{1}{}$ and $\segLengthFactor=\SI{2}{}$ the volume fraction decreases strongly between $\segRadiusFactor = \SI{2}{}$ and $\segRadiusFactor = \SI{4}{}$.
-For $\segLengthFactor=\SI{2}{}$ the values become more similar.
-At $\segLengthFactor=\SI{8}{}$ the change with $\segRadiusFactor$ disappears and the volume fraction reaches only a value around $\SI{0.57}{}$.
-\par
-%
-% radius
-For mean fiber radii $\fiberRadiusMean = \SIlist{1,2}{\micro\meter}$ the behavier is very similar (see \cref{app:appModelVolumeBoxPlot}). For $\fiberRadiusMean \geq \SI{5}{\micro\meter}$, the variance increases and the median decreases significantly.
-The effect of the parameter is not changed otherwise
-For mean fiber radii $\fiberRadiusMean \geq \SI{5}{\micro\meter}$, the volume fraction does not significantly reduce.
-\par
-%
-%
 %
 \paragraph{Development over time}
 %
@@ -380,6 +346,38 @@ The strongest difference is a very significant decrease in runtime with an incre
 %
 %
 %
+\paragraph{Volume fraction}
+%
+\begin{figure}[t]
+\centering
+\includegraphics{dev/rc1/mpara/pre_stats_box_plot_volume_05_output_parameter_statistic_rc1.pdf}
+\caption{Volume fractions $V_f/V_0$ for parallel $(||)$ and crossing $(\times)$ fiber populations of different relative fiber segment length $\segLengthFactor$ and relative fiber bending radii $\segRadiusFactor$.}
+\label{fig:psbp1}
+\end{figure}
+\Cref{fig:psbp1} show the resulting volume fraction $V_f/V_0$ for the parameter series.
+\par
+%
+% single fiber
+The single fiber populations $(||)$ have volume fractions greater than $\SI{0.74}{}$.
+For constant $\segLengthFactor$, there is no significant change from the fiber bending radius factor $\segRadiusFactor$.
+In the case of $\segLengthFactor = \SI{1}{}$, there is a small decrease in volume fraction with increasing bend radius.
+A significant small reduction of the volume fraction is noticible with an increase of the fiber segment length factor $\segLengthFactor$.
+\par
+%
+% crossing fiber
+In contrast, the crossing fiber population $(\times)$ volume fraction is significantly reduced.
+For $\segLengthFactor=\SI{1}{}$ and $\segLengthFactor=\SI{2}{}$ the volume fraction decreases strongly between $\segRadiusFactor = \SI{2}{}$ and $\segRadiusFactor = \SI{4}{}$.
+For $\segLengthFactor=\SI{2}{}$ the values become more similar.
+At $\segLengthFactor=\SI{8}{}$ the change with $\segRadiusFactor$ disappears and the volume fraction reaches only a value around $\SI{0.57}{}$.
+\par
+%
+% radius
+For mean fiber radii $\fiberRadiusMean = \SIlist{1,2}{\micro\meter}$ the behavier is very similar (see \cref{app:appModelVolumeBoxPlot}). For $\fiberRadiusMean \geq \SI{5}{\micro\meter}$, the variance increases and the median decreases significantly.
+The effect of the parameter is not changed otherwise
+For mean fiber radii $\fiberRadiusMean \geq \SI{5}{\micro\meter}$, the volume fraction does not significantly reduce.
+% 
+% 
+% 
 \subsection{Discussion}
 %
 The goal is to find a parameter set that is a) fast, b) collision-free, and c) allows a high volume fraction for dense fibers.

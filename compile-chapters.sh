@@ -1,12 +1,12 @@
 #!/bin/bash
 # set -e
 
-compile-chapter(){
+compile-chapter() {
 	j=$(echo $1 | tr -dc '0-9')
 	if [ -z "$j" ]; then
 		j="appendix"
 	fi
-	grep -vwE "(%gitignore)" thesis.tex > thesis-tikz-$j.tex
+	grep -vwE "(%gitignore)" thesis.tex >thesis-tikz-$j.tex
 	sed -i 's&\% \\includeonly{\%&\\includeonly{'"$1"'}&g' thesis-tikz-$j.tex
 	sed -i 's&\\include{content&\%\\include{content&g' thesis-tikz-$j.tex
 	sed -i 's&\%\\include{content/'"$j"'&\\include{content/'"$j"'&g' thesis-tikz-$j.tex
@@ -26,7 +26,7 @@ compile-chapter(){
 }
 
 if [ $# -eq 0 ]; then
-    echo "No arguments supplied"
+	echo "No arguments supplied"
 fi
 
 if [ $1 = "all" ]; then
@@ -34,7 +34,7 @@ if [ $1 = "all" ]; then
 	for i in content/*chap*.tex content/appendix.tex; do
 		compile-chapter $i &
 		pids[${c}]=$!
-		let "c+=1" 
+		let "c+=1"
 	done
 
 	# wait for all pids

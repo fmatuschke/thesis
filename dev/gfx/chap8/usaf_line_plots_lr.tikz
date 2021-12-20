@@ -1,0 +1,33 @@
+% \tikzset{external/export = false}
+% 
+\begin{tikzpicture}[]
+\begin{axis}[%
+	width=\tikzwidth, height=\tikzwidth,
+    axis on top, scale only axis,
+    ymajorticks=false,
+    axis x line = center, axis y line = center,
+    table/col sep=comma,
+    every axis plot/.append style={ultra thin},
+    legend style={at={(0.5,-0.15)},anchor=north},
+    legend columns=3, 
+]
+% 
+\addplot[BLUE, mark=*, error bars/.cd,y dir=both, y explicit] %cyan
+table[x=x82lr, y=y82lr, y error=e82lr] {\currfiledir/usaf.csv};
+% 
+\addplot[GREEN, mark=triangle*,mark size=3pt, error bars/.cd,y dir=both, y explicit] %yellow
+table[x=x81lr, y=y81lr, y error=e81lr] {\currfiledir/usaf.csv};
+% 
+\addplot[RED, mark=square*, error bars/.cd,y dir=both, y explicit] %magenta
+table[x=x76lr, y=y76lr, y error=e76lr] {\currfiledir/usaf.csv};
+% 
+\legend{8-2,8-1,7-6};
+% 
+\coordinate (A) at (rel axis cs:0,0);
+\coordinate (B) at (rel axis cs:1,0);
+% 
+\end{axis}
+% 
+\path[] ($(A)!-0.1!(B)$) -- ($(A)!1.1!(B)$);
+% 
+\end{tikzpicture}

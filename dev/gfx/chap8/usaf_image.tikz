@@ -1,0 +1,27 @@
+\begin{tikzpicture}[baseline, trim axis left]
+\begin{axis}[
+width=\tikzwidth,
+height=\tikzwidth,
+axis x line = center,
+axis y line = center,
+y dir=reverse,
+scale only axis,
+hide x axis,
+hide y axis,
+]
+\addplot graphics [%
+xmin=1034,xmax=1126,
+ymin=744,ymax=836,
+includegraphics={%
+    width=\tikzwidth,
+    trim = 1034 1212 922 744, clip, interpolate=false},
+] {data/Taorad_USAF_AB4_LB85_5pct_5ms_a00_t000_1.png};
+% 
+\draw[BLUE,ultra thick,dashed,rounded corners] (axis cs: 1071,802) rectangle (axis cs:1085,809) node (A) {};
+\path (axis cs: 1071,802) --  (axis cs:1085,802) node[midway,above] {\textcolor{BLUE}{\textbf{8-2}}};
+\draw[GREEN,ultra thick,dashed,rounded corners] (axis cs:1083,821) rectangle (axis cs:1099,830);
+\path (axis cs: 1083,821) --  (axis cs:1099,821) node[midway,above] {\textcolor{GREEN}{\textbf{8-1}}};
+\draw[RED,ultra thick,dashed,rounded corners] (axis cs:1107,825) rectangle (axis cs:1124,834);
+\path (axis cs: 1107,825) --  (axis cs:1124,825) node[midway,above] {\textcolor{RED}{\textbf{7-6}}};
+\end{axis}
+\end{tikzpicture}
