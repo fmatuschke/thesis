@@ -28,9 +28,9 @@ thesis:
 	xdg-open thesis.pdf 2>/dev/null
 
 .PHONY: split
-split: 
+split:
 	bash split-chapters.sh
-	
+
 .PHONY: tikz
 tikz:
 	bash compile-chapters.sh $(TIKZ)
