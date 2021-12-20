@@ -61,7 +61,7 @@ These docstrings are also used for an automatic release of the \ac{API} document
 \footnote{\url{https://3d-pli.github.io/fastpli/}}
 In addition to the API, there is a wiki page (see \cref{fig:fastpli_wiki}) that describes the main features, which is an essential part of the review process for release in \ac{JOSS} \cite{Matuschke2021}. 
 \footnote{review openly accessible at \url{https://github.com/openjournals/joss-reviews/issues/3042}}
-The wiki page is structured as a guide that walks through the aspects of designing nerve fiber models, applying the collision solution algorithm, visualizing nerve fibers, a introduction in \ac{3D-PLI}, and finally applying the models in the simulation.
+The wiki page is structured as a guide that walks through the aspects of designing nerve fiber models, applying the collision solver algorithm, visualizing nerve fibers, a introduction in \ac{3D-PLI}, and finally applying the models in the simulation.
 Both executable \python{} scripts and Jupyter notebooks are provided as examples to get users started quickly.
 As a general example using all presented methods, a nerve fiber crossing is presented.
 This is based on the optic chiasm which is the nerve fiber pathway from the eyes to the occipital lobe.
@@ -250,7 +250,7 @@ All variables are read and writable by attributes, \eg{} \code{Solver.obj\_mean\
 Each attribute checks if the user input valid and returns an appropriate warning or error message if necesarry.
 This class also includes a \code{Solver.get\_dict()} method that returns a \python{} dictionary containing all variables and their values for reproducibility.
 It is also possible to store the state of the class with the current state of the \code{fiber\_bundles} as an \ac{HDF5} object.
-Finally, this class also provides the possibility to use a simple visualization of the solution process (see \cref{sec:visualization}).
+Finally, this class also provides the possibility to use a simple visualization of the solver process (see \cref{sec:visualization}).
 %
 %
 %
@@ -266,7 +266,7 @@ The same is also provided for the classes \code{fastpli.objects.fibers} which co
 \code{FiberBundles} are a \code{list} of \code{FiberBundle} which are a list of \code{Fiber}.
 The data of a fiber is stored in a \code{numpy.ndarray} which stores the values contiguously in memory.
 Manipulation methods are provided for each class, allowing the user to \code{translate}, \code{rotate}, \code{scale}, and \code{cut} the model.
-The latter helps especially in the solution process to reduce the number of objects if only a certain volume is to be generated, since the solution process pushes the fiber objects apart and thus the volume would be increased.
+The latter helps especially in the collision solver process to reduce the number of objects if only a certain volume is to be generated, since the collision solver process pushes the fiber objects apart and thus the volume would be increased.
 %
 %
 %
