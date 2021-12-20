@@ -245,7 +245,7 @@ Intel(R) Xeon(R) CPU E5-4657L v2 @ \SI{2.4}{\giga\hertz}, L1d cache: \SI{1.5}{\m
 \begin{figure}[p]
 \centering
 Single fiber population\\[0em]
-\includegraphics[page=1]{dev/rc1/mpara/pre_stats_time_evolve_r05_output_parameter_statistic_rc1.pdf}
+\includegraphics[page=1]{gfx/rc1/mpara/pre_stats_time_evolve_r05_output_parameter_statistic_rc1.pdf}
 \caption{Time evolution of the model building process of parallel fiber populations. Error bars indicate $\SI{25}{\percent}$ and $\SI{75}{\percent}$ quantiles.}
 \label{fig:timeDevelopmentNone}
 \end{figure}
@@ -253,7 +253,7 @@ Single fiber population\\[0em]
 \begin{figure}[p]
 \centering
 Crossing fiber population\\[0ex]
-\includegraphics[page=2]{dev/rc1/mpara/pre_stats_time_evolve_r05_output_parameter_statistic_rc1.pdf}
+\includegraphics[page=2]{gfx/rc1/mpara/pre_stats_time_evolve_r05_output_parameter_statistic_rc1.pdf}
 \caption{Time evolution of the model building process of crossing fiber populations. Error bars indicate $\SI{25}{\percent}$ and $\SI{75}{\percent}$ quantiles.}
 \label{fig:timeDevelopmentCross}
 \end{figure}
@@ -350,7 +350,7 @@ The strongest difference is a very significant decrease in runtime with an incre
 %
 \begin{figure}[t]
 \centering
-\includegraphics{dev/rc1/mpara/pre_stats_box_plot_volume_05_output_parameter_statistic_rc1.pdf}
+\includegraphics{gfx/rc1/mpara/pre_stats_box_plot_volume_05_output_parameter_statistic_rc1.pdf}
 \caption{Volume fractions $V_f/V_0$ for parallel $(||)$ and crossing $(\times)$ fiber populations of different relative fiber segment length $\segLengthFactor$ and relative fiber bending radii $\segRadiusFactor$.}
 \label{fig:psbp1}
 \end{figure}
@@ -492,7 +492,7 @@ For the measurements the cores were bind to phyical cpu cores and not to hyperth
 % 
 \begin{figure}[!t]
 \centering
-\includegraphics[page=1]{dev/rc1/speed/boxplot_output_r_0.5__.pkl_speedup.csv.pdf}
+\includegraphics[page=1]{gfx/rc1/speed/boxplot_output_r_0.5__.pkl_speedup.csv.pdf}
 \caption{\code{model.Sovler} speedup. Timing measurements are performed after $\Delta_{\mathit{steps}}$ for the next $\SI{25}{\steps}$ for parallel $(||)$ and crossing $(\times)$ fiber configurations.}
 \label{fig:solverSpeedup}
 \end{figure}
@@ -541,7 +541,7 @@ In this section, the resulting orientation within the volume, \ie{} the orientat
 \begin{figure}[!t]
 \centering
 % \resizebox{1.0\textwidth}{!}{
-\includegraphics[width=\textwidth, page=1]{dev/rc1/model/cube_2pop_orientation_hist2d_output_cube_2pop_135_rc1.pdf}
+\includegraphics[width=\textwidth, page=1]{gfx/rc1/model/cube_2pop_orientation_hist2d_output_cube_2pop_135_rc1.pdf}
 % }
 \caption{Density distribution of fiber segment orientation in the simulation models. The color of the segments is weighted by the area on a spherical surface. The value is normalized so that the integral over a hemisphere is 1. The dashed white line indicates the orientation of the two fiber populations.}
 \label{fig:modelOrientation}
@@ -549,14 +549,14 @@ In this section, the resulting orientation within the volume, \ie{} the orientat
 %
 \begin{figure}[!t]
 \centering
-\includegraphics[page=1]{dev/rc1/images/cube_2pop_images_output_cube_2pop_135_rc1.pdf}
+\includegraphics[page=1]{gfx/rc1/images/cube_2pop_images_output_cube_2pop_135_rc1.pdf}
 \caption[solved model images]{Simulation model library. The inner $\SI{10}{\micro\meter} \times \SI{10}{\micro\meter} \times \SI{10}{\micro\meter}$ of the volume is shown.}
 \label{fig:modelImages}
 \end{figure}
 %
 \begin{figure}[!t]
     \centering
-    \includegraphics[]{dev/rc1/domega/cube_2pop_domega_analysis_output.pdf}
+    \includegraphics[]{gfx/rc1/domega/cube_2pop_domega_analysis_output.pdf}
     \caption{Direction and inclination distribution of simulation model library. \todo{benutze ich das irgendwo?}}
     % \label{fig:my_label}
 \end{figure}

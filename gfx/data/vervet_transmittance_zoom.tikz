@@ -14,7 +14,7 @@ colorbar style={xticklabel style={font=\footnotesize},
                 ylabel={\footnotesize $\si{\arbitraryunit}$},
                 y label style={at={(axis description cs:-0.05,.5)},rotate=0,anchor=center}}
 ]
-\addplot [forget plot] graphics [xmin=20000,xmax=27000,ymin=21000,ymax=24500] {dev/rc1/data/transmittance_vervet_cc_0_5846.png};
+\addplot [forget plot] graphics [xmin=20000,xmax=27000,ymin=21000,ymax=24500] {gfx/rc1/data/transmittance_vervet_cc_0_5846.png};
 \draw[magenta, very thick, ->] (axis cs: 25500,27000) -- (axis cs: 23500,23500);
 \draw[magenta, very thick]
 (axis cs: 25830, 22097) --

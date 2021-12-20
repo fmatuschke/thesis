@@ -69,10 +69,10 @@ Beneath the brain surface there are also other structures such as the basal gang
 \subcaptionbox{%
         \label{fig:coronalStained}%
         \todo{BB 4201} Coronal section stained for cell bodies. The \ac{GM} is dark while the \ac{WM} is bright. The left and right hemisphere is connected via the corpus calosum.}%
-    [\tikzwidth]{\includegraphics[height=0.3\textwidth]{dev/brain/BB_4201.png}}
+    [\tikzwidth]{\includegraphics[height=0.3\textwidth]{gfx/brain/BB_4201.png}}
     % \begin{tikzpicture}[]
     %     \node[inner sep=0pt, anchor = south west] (fig) at (0,0)
-    %     {\includegraphics[height=0.3\textwidth]{dev/brain/BB_4201.png}};
+    %     {\includegraphics[height=0.3\textwidth]{gfx/brain/BB_4201.png}};
     %     \coordinate (WM1) at ($(fig.north west)!0.6!(fig.north east)$);
     %     \coordinate (WM2) at ($(fig.north east)!0.35!(fig.south east)$);
     %     \draw[RED, ultra thick, <-] (WM1 |- WM2) -- ++ (-42:0.75) node[pos=1, anchor=north] {\textbf{WM}};
@@ -183,7 +183,7 @@ Axon diameter and myelin thickness vary from nerve fiber to nerve fiber.
     [\tikzwidth]{
         \begin{tikzpicture}[]  
             \node[inner sep=0pt, anchor = south west] (fig) at (0,0)
-            {\includegraphics[width=\tikzwidth]{dev/brain/elec_micrograph_rodent_cc.jpg}};
+            {\includegraphics[width=\tikzwidth]{gfx/brain/elec_micrograph_rodent_cc.jpg}};
             \draw[white, ultra thick] let
                 \p1=(rel cs:name=fig,x=0,y=0), 
                 \p2=(rel cs:name=fig,x=0.1347,y=0), 
@@ -234,7 +234,7 @@ columns={article,cite,gratio},
 columns/article/.style={string type, column name=study, column type = {l}},
 columns/cite/.style={string type, column name=cite, column type = {l}},
 columns/gratio/.style={string type, column name=$g_{\mathit{ratio}}$},
-]{data/gratio.csv}
+]{gfx/gratio.csv}
 \caption{human $g_{\mathit{ratio}}$ from invivo mri studies.}
 \label{tab:gratio}
 \end{table}
