@@ -41,7 +41,7 @@ It represents a discrete, voxel model of the tissue.
 This helps to drastically speed up the light-matter interaction of the next step (see \cref{sec:simulation}), at the cost of a large memory requirement.
 \par
 %
-The discretized tissue volume represents a cuboid divided into smaller cubes of equal size, called voxels, \ie{} 3d pixels (see \cref{fig:discVol}).
+The discretized tissue volume represents a cuboid divided into smaller cubes of equal size, called voxels, \ie{} 3D pixels (see \cref{fig:discVol}).
 Each voxel contains the physical properties absorption, birefringence and optical axis orientation of the tissue at its current position.
 The total volume is bounded by a \ac{AABB} or \ac{VOI} defined by a minimum and maximum value $\voi = [(x_{\mathit{min}}, y_{\mathit{min}}, z_{\mathit{min}}), (x_{\mathit{max}}, y_{\mathit{max}}, z_{\mathit{max}})]$.
 Additionally, the parameter \Voxelsize{} \voxelsize{} is set to a floating point number and defines the edge length of the equilateral voxels.
@@ -231,7 +231,7 @@ Initially, the light vector is multiplied by the first polarizer of the optical 
 The path inside the tissue is discretized into steps.
 The interaction between the light ray and the tissue is calculated after each step according to $ \vec{S}' = \prod_i \left(\mat{R}_i \mat{M}_i \mat{R}_i\right) \cdot \vec{S}$ (see \cref{sec:mueller_stokes, sec:simLightTissue}).
 % After a light beam reaches the end of the tissue, the last optical elements of the setup are applied to the lights vector.
-% Finally, the light intensity is stored in the \acs{CCD} image array, which at this point of the algorithm has the same size as the 2d $xy$ grid of the discretized tissue.
+% Finally, the light intensity is stored in the \acs{CCD} image array, which at this point of the algorithm has the same size as the 2D $xy$ grid of the discretized tissue.
 % In a later step, the intensities will be blurred and resampled to the acually \ac{CCD} pixels size and noise will we added according to the users specifications.
 % 
 %
@@ -246,7 +246,7 @@ The interaction between the light ray and the tissue is calculated after each st
 \subcaptionbox{perspective view}
 [.475\textwidth]{\inputtikz{gfx/simpli/tilting_3d_b}}
 \tikzset{external/export=false}
-\caption[3d tilting]{3d tilting: around $xy$-axis, \raisebox{.25em}{\tikz \draw[red,thick](0,0)--(0.25,0);} top, \raisebox{.25em}{\tikz \draw[green,thick](0,0)--(0.25,0);} middle, \raisebox{.25em}{\tikz \draw[blue,thick](0,0)--(0.25,0);} bottom, \raisebox{.25em}{\tikz \draw[dash pattern=on 1.25pt off 1.25pt,thick](0,0)--(0.25,0);} original, \raisebox{.25em}{\tikz \draw[gray](0,0)--(0.25,0);} axis of rotation.}
+\caption[3D tilting]{3D tilting: around $xy$-axis, \raisebox{.25em}{\tikz \draw[red,thick](0,0)--(0.25,0);} top, \raisebox{.25em}{\tikz \draw[green,thick](0,0)--(0.25,0);} middle, \raisebox{.25em}{\tikz \draw[blue,thick](0,0)--(0.25,0);} bottom, \raisebox{.25em}{\tikz \draw[dash pattern=on 1.25pt off 1.25pt,thick](0,0)--(0.25,0);} original, \raisebox{.25em}{\tikz \draw[gray](0,0)--(0.25,0);} axis of rotation.}
 \label{fig:tilting_camera_view}
 \end{figure}
 %

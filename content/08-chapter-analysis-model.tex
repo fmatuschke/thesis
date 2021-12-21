@@ -56,7 +56,7 @@ The number of fiber populations is limited to two to reduce the degrees of freed
 \centering
 \setlength{\tikzwidth}{0.40\textwidth}
 % \subcaptionbox{\label{fig:modelrotcube}
-% A fiber population $F_0$ kan be rotated into any 3d orientation.}
+% A fiber population $F_0$ kan be rotated into any 3D orientation.}
 % [.475\textwidth]{\inputtikz{gfx/model/sphere_cube}}
 % \hfill
 \subcaptionbox{\label{fig:modelinit}
@@ -77,15 +77,15 @@ The inclination of the first fiber population is modified by $\modelInc$.}
 % \\
 % %
 % \setlength{\tikzwidth}{0.40\textwidth}
-% \subcaptionbox{\label{subfig:sphere:hista1} The 3d plots above can be represented as 2d polar plots. The thicker circle indicates the currect orientation of the first fiber population.}
+% \subcaptionbox{\label{subfig:sphere:hista1} The 3D plots above can be represented as 2D polar plots. The thicker circle indicates the currect orientation of the first fiber population.}
 % [.475\textwidth]{\inputtikz{gfx/model/sphere_hist_a}}\hfill
-% \subcaptionbox{\label{subfig:sphere:histb} The 3d plots above can be represented as 2d polar plots.}
+% \subcaptionbox{\label{subfig:sphere:histb} The 3D plots above can be represented as 2D polar plots.}
 % [.475\textwidth]{\inputtikz{gfx/model/sphere_hist_b}}
 \caption{Parameterization of two mutually relatively oriented fiber populations for the creation of a library.}
 \label{fig:twomodelpopdesign}
 \end{figure}
 %
-For the study of a single fiber population, only one model is needed, since the model can be rotated to any 3d orientation. 
+For the study of a single fiber population, only one model is needed, since the model can be rotated to any 3D orientation. 
 For two fiber populations, the crossing angle $\modelOmega$ between the two fiber population orientations is relevant (see \cref{fig:modelinit}).
 By introducing a rotation $\modelRot$ along the first fiber population, the orientation of the second fiber population can be changed (see \cref{modelrota}).
 If then the first fiber population is tilted by an angle $\modelInc$, an arbitrary fiber configuration with two fiber populations can be described (see \cref{modelrotb}).
@@ -124,7 +124,7 @@ This results in a total number of $\SI{82}{}$ models are required.
 \subsection{Fiber placement}
 %
 To design the individual fiber configurations for each fiber population, the methods described in \cref{sec:sandbox} are used, \ie{} generating fiber bundles with seed points.
-Seed points on a 2d plane are generated with a uniform distribution:
+Seed points on a 2D plane are generated with a uniform distribution:
 \begin{align}
 p_i = (\mathrm{Uniform}(-\frac{1}{2}\mathit{L}, \, \frac{1}{2}\mathit{L}), \mathrm{Uniform}(-\frac{1}{2}\mathit{L}, \, \frac{1}{2}\mathit{L}))
 \end{align}
@@ -137,7 +137,7 @@ N_{0,\mathit{seeds}} &= \round \left(\modelPsi \frac{A_{\Box}}{\pi \cdot \fiberR
 N_{1,\mathit{seeds}} &= \round \left((1-\modelPsi) \frac{A_{\Box}}{\pi \cdot \fiberRadiusMean}\right)
 \end{align}
 with $A_{\Box}=L^2$ as the area of the seed point plane.
-Thus, also with respect to the fiber radius distribution introduced next, there are enough fibers to fill the 2d plane.
+Thus, also with respect to the fiber radius distribution introduced next, there are enough fibers to fill the 2D plane.
 \par
 %
 \begin{figure}[!t]

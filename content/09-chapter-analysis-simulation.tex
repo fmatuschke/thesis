@@ -11,9 +11,9 @@ This needs to be done for every inclination angle of the first fiber population.
 \begin{figure}[t]
 \centering
 \setlength{\tikzwidth}{0.40\textwidth}
-\subcaptionbox{\label{subfig:sphere:hista1} The 3d plots above can be represented as 2d polar plots. The thicker circle indicates the currect orientation of the first fiber population.}
+\subcaptionbox{\label{subfig:sphere:hista1} The 3D plots above can be represented as 2D polar plots. The thicker circle indicates the currect orientation of the first fiber population.}
 [.475\textwidth]{\inputtikz{gfx/model/sphere_hist_a}}\hfill
-\subcaptionbox{\label{subfig:sphere:histb} The 3d plots above can be represented as 2d polar plots.}
+\subcaptionbox{\label{subfig:sphere:histb} The 3D plots above can be represented as 2D polar plots.}
 [.475\textwidth]{\inputtikz{gfx/model/sphere_hist_b}}
 \caption{Design of polar plots.}
 \label{fig:polarplotdesign}
@@ -382,7 +382,7 @@ This ensures that the sphere is sampled reasonably equidistantly given the compu
 \begin{figure}[!t]
 \centering
 \includegraphics[page=1]{gfx/rc1/analysis/plots_single_pop_hist_output_cube_2pop_135_rc1_single.pdf}
-\caption{Single inclined fiber population. Left: 2d log histogram of orientation from tilting analysis of simulation. Right: 2d log histogram of orientation from model segments.}
+\caption{Single inclined fiber population. Left: 2D log histogram of orientation from tilting analysis of simulation. Right: 2D log histogram of orientation from model segments.}
 \label{fig:single_fiber_pop_hist}
 \end{figure}
 %
@@ -399,7 +399,7 @@ Since the direction is negligible for a single population, only the inclination 
 %
 \Cref{fig:single_fiber_pop_hist} shows the orientation distribution of a single population of fibers for different inclinations $\modelInc{}$.
 The distributions of the orientations of the model segments are shown on the left side, and those of the tilting analysis of the simulated images are shown on the right side.
-The distributions are logarithmic and weighted by the area of the 2d binning.
+The distributions are logarithmic and weighted by the area of the 2D binning.
 The comparison between the two distributions shows the agreement of the tilting analysis with the model orientations for all inclinations.
 \par
 %
@@ -452,7 +452,7 @@ For higher inclination angles, both the median and the variance increase signifi
 \begin{figure}[!t]
 \centering
 \includegraphics[page=3]{gfx/rc1/analysis/plots_flat_pop_hist_output_cube_2pop_135_rc1_flat.pdf}
-\caption{Crossing flat fiber population: $\modelPsi=\SI{30}{\percent}$. Left: 2d log histogram orientation from rofl analysis of simulation. Right: 2d log histogram of model segment orientation.}
+\caption{Crossing flat fiber population: $\modelPsi=\SI{30}{\percent}$. Left: 2D log histogram orientation from rofl analysis of simulation. Right: 2D log histogram of model segment orientation.}
 \label{fig:flat_03_fiber_pop_hist}
 \end{figure}
 %
@@ -466,7 +466,7 @@ For higher inclination angles, both the median and the variance increase signifi
 \begin{figure}[!t]
 \centering
 \includegraphics[page=5]{gfx/rc1/analysis/plots_flat_pop_hist_output_cube_2pop_135_rc1_flat.pdf}
-\caption{Crossing flat fiber population: $\modelPsi=\SI{50}{\percent}$. Left: 2d log histogram of the orientation from the tilting analysis of the simulation, right: 2d log histogram of the orientation of the model segments.}
+\caption{Crossing flat fiber population: $\modelPsi=\SI{50}{\percent}$. Left: 2D log histogram of the orientation from the tilting analysis of the simulation, right: 2D log histogram of the orientation of the model segments.}
 \label{fig:flat_05_fiber_pop_hist}
 \end{figure}
 %
@@ -524,7 +524,7 @@ The same is true for the case $\modelPsi = \SI{50}{\percent}$, but the \openingA
 \begin{figure}[!t]
 \centering
 \includegraphics[page=3]{gfx/rc1/analysis/plots_inclined_pop_hist_output_cube_2pop_135_rc1_inclined.pdf}
-\caption{Population of inclined crossing fibers: $\modelPsi=\SI{30}{\percent}$. Left: 2d log histogram of orientation from tilting analysis of simulation, right: 2d log histogram of orientation of model segments.}
+\caption{Population of inclined crossing fibers: $\modelPsi=\SI{30}{\percent}$. Left: 2D log histogram of orientation from tilting analysis of simulation, right: 2D log histogram of orientation of model segments.}
 \label{fig:inclined_03_fiber_pop_hist}
 \end{figure}
 %
@@ -538,7 +538,7 @@ The same is true for the case $\modelPsi = \SI{50}{\percent}$, but the \openingA
 \begin{figure}[!t]
 \centering
 \includegraphics[page=5]{gfx/rc1/analysis/plots_inclined_pop_hist_output_cube_2pop_135_rc1_inclined.pdf}
-\caption{Population of inclined crossing fibers: $\modelPsi=\SI{50}{\percent}$. left: 2d log histogram of orientation from tilting analysis of simulation, right: 2d log histogram of orientation of model segments.}
+\caption{Population of inclined crossing fibers: $\modelPsi=\SI{50}{\percent}$. left: 2D log histogram of orientation from tilting analysis of simulation, right: 2D log histogram of orientation of model segments.}
 \label{fig:inclined_05_fiber_pop_hist}
 \end{figure}
 %
@@ -620,7 +620,7 @@ The $\modelInc = \SI{90}{\degree}$ is less than for the case $\modelPsi=\SI{10}{
 For the equally proportional fiber population $\modelInc = \SI{50}{\degree}$, the \ac{ACC} value reaches its lowest values at the shallowly inclined first population $\modelInc = \SIlist{0;30}{\degree}$.
 In the case of $\modelInc = \SI{0}{\degree}$, the \ac{ACC} value is lowest at a crossing angle of $\modelOmega = \SI{90}{\degree}$.
 This crossing angle for the slightly inclined has a higher \ac{ACC} value \todo{why?, -> show odf}.
-Otherwise, the distribution is similar with respect to 3d orientation symmetry.
+Otherwise, the distribution is similar with respect to 3D orientation symmetry.
 The most inclined angle $\modelInc=\SI{90}{\degree}$ shows an \ac{ACC} value of about $\SI{0.5}{}$ for all orientations with an increase to $\SI{1}{}$ for the $\modelOmega = \SI{0}{\degree}$ ,\ie{} a single fiber population along the z-axis.
 \par
 %
@@ -942,7 +942,7 @@ However, for a larger number of \acsp{CPU}, the speedup is higher at $\SI{42}{}$
 \subsection{Single inclined fiber population}
 \Cref{sec:resSingleIncl} shows the results for the case of a single fiber population with inclined configurations.
 The transmittance values show an increase for the last free inclination values.
-This is to be expected since the 3d model configurations are aligned in parallel along an axis with some randomness.
+This is to be expected since the 3D model configurations are aligned in parallel along an axis with some randomness.
 When this axis is aligned along the z-axis, \ie{} $\modelInc=\SI{90}{\degree}$, the light rays, which also travel along the z-axis, statistically strike less tissue, so the transmittance must increase.
 Since the density of the tissue is quite high, the effect is only a few percent.
 In reality, however, one must take into account that \cite{Menzel2021}\todo{check ref} could show that the change in transmittance is much more complicated.

@@ -4,14 +4,14 @@
 \label{sec:conclusion}
 % 
 In this work, two algorithms were presented within the software package \ac{fastPLI}.
-The first algorithm is capable of designing non-colliding nerve fiber models in a 3d volume.
+The first algorithm is capable of designing non-colliding nerve fiber models in a 3D volume.
 These models can then be used in the second algorithm, which simulates the interaction of polarized light with the modeled nerve fibers in a virtual \ac{3D-PLI} microscopic setup.
 % 
 % 
 % 
 \paragraph{Nerve fiber modelling software}
 % 
-The algorithm for developing non-colliding nerve fiber models takes as input a list of 4d points for each nerve fiber, where the first three values are the $x,y,z$ coordinate in space and the fourth value is the radius of the nerve fiber at that point.
+The algorithm for developing non-colliding nerve fiber models takes as input a list of 4D points for each nerve fiber, where the first three values are the $x,y,z$ coordinate in space and the fourth value is the radius of the nerve fiber at that point.
 Therefore a nerve fiber is represented as a cylindrical conical segments that can change its radius along the path.
 For each fiber segment containing two adjacent points, a test is performed to determine if there is a collision with another fiber segment.
 If this is the case, both fiber segments are moved slightly away from each other.
@@ -33,9 +33,9 @@ An additional project called \ac{MEDUSA} was developed in collaboration with Neu
 % 
 The simulation software for \ac{3D-PLI} takes a configuration of nerve fibers as input and simulates the light-matter interaction within a \ac{3D-PLI} setup.
 The simulation is divided into two consistent parts.
-The first part generates a discretized 3d volume.
+The first part generates a discretized 3D volume.
 This volume is used by the second part, which calculates the resulting light intensity using the M\"{u}ller-Stokes calculation and the simulation of several light vectors through the volume.
-The final light intensity is stored in a 2d array, which can be modeled as an \ac{CCD} array with a specified resolution and noise model.
+The final light intensity is stored in a 2D array, which can be modeled as an \ac{CCD} array with a specified resolution and noise model.
 The simulation is capable of simulating multiple tilted light beam, allowing multiple views of the same subvolume that the light is traversing.
 In addition, the analysis algorithms are implemented into the software package, allowing the nerve fiber orientation to be calculated using the tilting analysis \ac{ROFL}.
 \par
@@ -59,7 +59,7 @@ The nerve fiber modeling algorithm controls the necessary movement of the fibers
 Both parameters were characterized in terms of the resulting orientations and computational speed.
 To reduce the dimensionality of the possible configurations, a set of parameters was designed to describe the model.
 This set consists of a relative angle between the two fiber populations, an inclination angle of the first fiber population, a rotation angle of the second fiber population around the first one and a population fraction parameter.
-The set allows nerve fiber models with up to two nerve fiber populations with arbitrary crossing angles to be examined in 3d without describing each fiber separately.
+The set allows nerve fiber models with up to two nerve fiber populations with arbitrary crossing angles to be examined in 3D without describing each fiber separately.
 \par
 % 
 Based on these parameters, the properties of the modeling parameters were first characterized.

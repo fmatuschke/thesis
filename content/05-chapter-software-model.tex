@@ -75,7 +75,7 @@ Such structures are a key element to increase the understanding \ac{3D-PLI}.
 Therefore, it is particularly important that the models are able to form such structures without overlapping individual fibers.
 \par
 %
-To represent individual nerve fibers a parametric function describing a path in 3d space, \ie{} a trajectory, is used.
+To represent individual nerve fibers a parametric function describing a path in 3D space, \ie{} a trajectory, is used.
 In addition, a fourth element describes the radius of the fiber at the same point:
 % 
 \begin{align}
@@ -95,7 +95,7 @@ Therefore, the function or fiber is divided into smaller discrete segments.
 	\label{fig:fiberReb}
 \end{figure}
 %
-Therefore, the fiber can be described by a list of 4d points $(x,y,z,r)$, which can be interpreted as a chain of cylindrical fiber segments (see \cref{fig:fiberReb}):
+Therefore, the fiber can be described by a list of 4D points $(x,y,z,r)$, which can be interpreted as a chain of cylindrical fiber segments (see \cref{fig:fiberReb}):
 \begin{align}
 \begin{gathered}
 \mathit{fiber} = \left\{ \vec{p}_i=(x_i,y_i,z_i), r_i \mid x,y,z \in \mathbb{R}, \, r \in \mathbb{R^+}, \, i \in \{0,1,...,N_{\mathit{points}}-1\}\right\} \\
@@ -145,17 +145,17 @@ The first module handles the seeding process, while the second part builds up a 
     \hfill
     \subcaptionbox{\label{fig:crossBundle}populated fiber bundles}
     [0.3\textwidth]{\inputtikz{gfx/model/crossing_bundle}}
-	\caption{Populating fiber bundles with 2d seed points.}
+	\caption{Populating fiber bundles with 2D seed points.}
 % 	\label{fig:}
 \end{figure}
 %
-Seed points are stored as a list of 2d points:
+Seed points are stored as a list of 2D points:
 \begin{align}
 \mathit{seeds} = \left\{ \vec{p}_i=(x_i,y_i) \mid x,y \in \mathbb{R} , \, i \in \{0,1,...,N_{\mathit{seed\_points}}-1\}\right\}
 \end{align}
 %
 To form particularly dense fiber bundles, a method for generating an equilateral triangular grid is implemented (see \ref{fig:triGrid}).
-Mathematically, this yields the most densely packed pattern for circles with equal radius in a 2d area.
+Mathematically, this yields the most densely packed pattern for circles with equal radius in a 2D area.
 However, this very regular symmetric grid can lead to unrealistic results (\eg{} diffraction pattern in light wave simulation \cite{MenzelDissertation}).
 It should therefore only be used as an initial configuration.
 Since the initial configurations are often unknown, it is probably best to choose a random distribution (see \cref{fig:rndGrid}).
@@ -194,7 +194,7 @@ Essentially, for each resulting $\mathit{fiber}_j$, this means:
 \end{align}
 % 
 However, the question is which rotation matrix $\mat{R}$ has to be applied.
-Since a trajectory is only a 2d object, \ie{} a line, no unique normal vector can be defined.
+Since a trajectory is only a 2D object, \ie{} a line, no unique normal vector can be defined.
 In mathematics, the torsion of a curve can be defined with a principal normal vector and a binormal vector.
 However, this has the problem that a line such as a helical function has a torsion, \ie{} the line rotates along its path.
 This would mean that  individual fibers rotate around the path of the fiber bundle if the seed point plane were placed according to the principal and binormal vectors.
@@ -312,7 +312,7 @@ Only seed points that are in contact with the cylinder are considered in all met
 \label{sec:Solver}
 %
 The following algorithm allows the user to define any fiber path, which allows a wide range of freedom in the initialization process.
-Since the fibers are 3d volume objects, there will probably overlaps with other fibers.
+Since the fibers are 3D volume objects, there will probably overlaps with other fibers.
 These collisions have to be find and solved by moving the affected fiber segment in such a way that a collision-free volume is created by minimal displacement.
 This allows the user to specify complex interwoven structures such as nerve fiber crossings in any configuration.
 The algorithm allows the user to specify boundary conditions like the mean fiber segment length or minimal bending radius.
@@ -744,7 +744,7 @@ Since the \ac{WM} consists not only of axons, but also of other cells such as gl
 \par
 % 
 Therefore, an additional algorithm was developed in collaboration with Kevin Ginsburger and Cyril Poupon (Neurospin, \ac{CEA}).
-This algorithm called \ac{MEDUSA} \cite{Ginsburger2019} works similarly to the algorithm described above, but models the 3d objects as spheres rather than pipe segments.
+This algorithm called \ac{MEDUSA} \cite{Ginsburger2019} works similarly to the algorithm described above, but models the 3D objects as spheres rather than pipe segments.
 This has the advantage that the objects are simpler, which leads faster collison checking calculations.
 Additionally the spheres are also used to represent other type of cells.
 The overall volume of a cell is represented the sum of all spheres corresponding to the cell (see \cref{fig:medusaCell}).
