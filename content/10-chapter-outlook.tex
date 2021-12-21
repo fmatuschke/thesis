@@ -12,7 +12,7 @@
 % 
 \paragraph{Nerve fiber modelling software}
 % 
-The collisionless nerve fiber modeling algortihm is capable of generating densly packed fiber models which are suitable nerve fiber models for \ac{3D-PLI} simulations.
+The collision-free nerve fiber modelling algorithm is capable of generating densely packed fiber models which are suitable nerve fiber models for \ac{3D-PLI} simulations.
 However, the algorithm is limited in terms of computation time for larger volumes or, more precisely, the number of objects in the volume to be solved.
 \par
 % 
@@ -35,20 +35,20 @@ However, the use of spheres is associated with a disadvantage.
 The number of objects increases dramatically as many spheres are needed to approximate the surface of a single conical fiber segment.
 \par
 % 
-A current limitation of the algorithm is the parallelization on a multi-core system.
+A current limitation of the algorithm is the parallelization on a multicore system.
 For shared memory parallelization, atomic operations must be introduced, which takes a lot of time.
 For an algorithm without shared memory, the required data must be exchanged between the individual CPUs, which takes also quite some time. 
-Therefore, one needs to redesign the algorithm to limit the necesarry locks or data exchange.
-Common solutions are to divide the volume into subvolumes (as in the case of \ac{3D-PLI} simulation), where each volume can be computed separately.
-The boundaries of such subvolumes contain then the objects from neighboring volumes (halo).
+Therefore, one needs to redesign the algorithm to limit the necessary locks or data exchange.
+Common solutions are to divide the volume into sub-volumes (as in the case of \ac{3D-PLI} simulation), where each volume can be computed separately.
+The boundaries of such sub-volumes contain then the objects from neighboring volumes (halo).
 Therefore only the information of the halo needs to be exchanged.
 \par
 % 
 At this point, the most promising optimization is to use the architecture of the \ac{GPU} as \eg{} in the \ac{MEDUSA} algorithm.
-A algorithm exists, which operates on \ac{AABB} of the objects and uses a z-ordered tree instead of an octree \cite{Karras2012}.
-This algorithm also hase the advantage that not only the collision checking computation is excecuted in parallel on the \ac{GPU}, but also the generation of the z-ordered tree.
+An algorithm exists, which operates on \ac{AABB} of the objects and uses a z-ordered tree instead of an octree \cite{Karras2012}.
+This algorithm also has the advantage that not only the collision checking computation is executed in parallel on the \ac{GPU}, but also the generation of the z-ordered tree.
 The entire algorithm runs on the \ac{GPU} and therefore does not need to communicate with the \ac{CPU} or \ac{RAM} as long as the complete information fits on the \ac{GPU} memory.
-This will drastically increases the speed of the collision checking.
+This will drastically increase the speed of the collision checking.
 The remaining steps of the modeling algorithm, such as the movement of the fiber segments, can also be easily performed in parallel on the \ac{GPU}.
 % 
 % 
@@ -60,16 +60,16 @@ The first was a seminar project to implement a parallel discrete tissue volume c
 It was shown that the speedup of the discrete volume computation was very high, but the large memory requirements of the discretized volume negated this speedup overall, as \acp{GPU} are relatively limited here.
 In addition, the need to transfer the data back to \ac{RAM} was too much of an overhead.
 Therefore, the second project was to implement a ray tracing algorithm that computes a light matter collision and matrix computation without pre-computing the discretized volume \cite{Kobusch:887783, GPUfastpli}.
-A light particle only computes the M\"{u}ller-Stokes calculus only if it collides fith a fiber object.
+A light particle only computes the M\"{u}ller-Stokes calculus only if it collides fifth a fiber object.
 This means, that a collision algorithm needs to be used.
-As a first implementation a collision detection algorithm on the \ac{GPU}, a uniaxially aligned collision search algorithm \cite{Karras2012} was implemented.
+As a first implementation a collision detection algorithm on the \ac{GPU}, an uniaxially aligned collision search algorithm \cite{Karras2012} was implemented.
 The results showed that the acceleration possibilities on the \ac{GPU} are enormous.
 However, due to the rather simple collision checking algorithm, the runtime was slightly longer, but still in the same order of magnitude as the \ac{CPU} version.
 As with fiber generation, implementing the z-order algorithm mentioned above \cite{Karras2012} would be a vast improvement and solve the runtime issue.
 %
 \par
 This second work also implemented the algorithm is such a way, that the light rays can have any direction in space.
-This allows for the future an implementation of directional change such as it would be necesarry for light scattering simulations.
+This allows for the future an implementation of directional change such as it would be necessary for light scattering simulations.
 % 
 % 
 % 
@@ -85,7 +85,7 @@ Modern machine learning algorithms are a suitable tool for this purpose.
 Another important task is the study of larger nerve fiber radii.
 This would include the larger nerve fiber radii that are anatomically present in the brain.
 In addition, larger nerve fiber radii could also be an approximation for a nerve fiber bundle consisting of multiple nerve fibers in the \ac{3D-PLI} simulation.
-They should then be simulated with a macroscopic birefringent model \cite{Menzel2015}.
+They should then be simulated with a macroscopic birefringence model \cite{Menzel2015}.
 If this is possible, one could significantly reduce the number of objects for model generation, which means that one could have either very small runtimes or larger volumes.
 \par
 % 
@@ -94,10 +94,10 @@ Since about $\SI{90}{\percent}$ of the runtime is used on the last small remaini
 \par
 % 
 Another interesting study is to investigate more complex models, \eg{} three fiber populations or boundary regions consisting of neighboring nerve fiber tracts.
-Later is very interesting since this could improve the understanding how the signal changes when the light beam is tilted and therefore improve the tilting analysis further.
+This can be very interesting since this could improve the understanding how the signal changes when the light beam is tilted and therefore improve the tilting analysis further.
 For more complex models, machine learning can possibly be used to identify the underlying fiber structure within a voxel using the \ac{3D-PLI} signals. 
 In \ac{dMRI}, nerve fiber models and their simulations, as well as the use of deep learning, have already shown that the underlying fiber structure can be identified from the original signals \cite{ginsburgerDis2019}.
-This can potentially be applied to \ac{3D-PLI} in a similar way.
+This can potentially be applied to \ac{3D-PLI} similarly.
 \par
 % 
 By publishing the code as open access software other researcher could already use the fiber modelling software to generate non colliding fiber models and use them as skeletal muscle fiber models \cite{Ji2021}.

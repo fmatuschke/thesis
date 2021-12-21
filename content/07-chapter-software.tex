@@ -14,9 +14,9 @@ For example, the fiber models can be used in \ac{dMRI} as well (\cite{Ginsburger
 
 These algorithms are designed to be fast.
 This usually means code design with very few abstractions.
-Therefore an \ac{API} is needed on top of the algorithms, which provide a user interface which is easy to use.
+Therefore, an \ac{API} is needed on top of the algorithms, which provide a user interface which is easy to use.
 Among other things, this means a high level of abstraction.
-In addition, the algorithms should be easy installable to provide easy access.
+In addition, the algorithms should be easily installable to provide easy access.
 \par
 %
 In summary, this means that a software package must be developed that contains the algorithms and helper functions.
@@ -51,7 +51,7 @@ The software package includes functionalities for the analysis and visualization
  	\includegraphics[valign=T,trim=0 0 0 1580, clip]{gfx/fastpli/fastpli_wiki.png} \\
     \end{tabular}
     }}
-	\caption{Documentation wiki page of the Github repository \url{https://github.com/3d-pli/fastpli/wiki}.}
+	\caption{Documentation wiki page of the \name{Github} repository \url{https://github.com/3d-pli/fastpli/wiki}.}
 	\label{fig:fastpli_wiki}
 \end{figure}
 %
@@ -61,7 +61,7 @@ These docstrings are also used for an automatic release of the \ac{API} document
 \footnote{\url{https://3d-pli.github.io/fastpli/}}
 In addition to the API, there is a wiki page (see \cref{fig:fastpli_wiki}) that describes the main features, which is an essential part of the review process for release in \ac{JOSS} \cite{Matuschke2021}. 
 \footnote{review openly accessible at \url{https://github.com/openjournals/joss-reviews/issues/3042}}
-The wiki page is structured as a guide that walks through the aspects of designing nerve fiber models, applying the collision solver algorithm, visualizing nerve fibers, a introduction in \ac{3D-PLI}, and finally applying the models in the simulation.
+The wiki page is structured as a guide that walks through the aspects of designing nerve fiber models, applying the collision solver algorithm, visualizing nerve fibers, an introduction in \ac{3D-PLI}, and finally applying the models in the simulation.
 Both executable \python{} scripts and Jupyter notebooks are provided as examples to get users started quickly.
 As a general example using all presented methods, a nerve fiber crossing is presented.
 This is based on the optic chiasm which is the nerve fiber pathway from the eyes to the occipital lobe.
@@ -122,13 +122,13 @@ pip3 install .
 %
 \subsection{Tests, verification \& issue tracking}
 %
-Each module with its main methods is automatically tested with a \name{Github action} \footnote{github actions are commonly used to automatically build, test, and deploy the software and documentation}. after each \name{git push}.
+Each module with its main methods is automatically tested with a \name{Github action} \footnote{\name{Github actions} are commonly used to automatically build, test, and deploy the software and documentation}. after each \name{git push}.
 \footnote{uploud of the current \textit{software stage}.}
 This action runs the two latest Ubuntu Long Term Support versions (currently 18.04 LTS and 20.04 LTS) and the most commonly used Python3 versions (currently 3.6 and 3.8) to provide a wide range of supported common versions.
 In addition, the \name{Github actions} run all test scripts, check tutorial files, check code format and linting for consistency, and publish the latest documentation after a sucessfull tested release.
 \par
 %
-Github allows to track \name{Issues}.
+\name{Github} allows to tracking \name{Issues}.
 This feature is originally used to document software bugs.
 However, it is also used to discuss ideas, new features, and so on.
 As part of the open source release, it was also used communicate with the reviewer.
@@ -247,7 +247,7 @@ The module \code{fastpli.model.solver} contains the compiled solver algorithm, w
 Additionally, the solver algorithm is wrapped in the \code{fastpli.model.solver.Solver} class.
 This wrapper class provides a higher level of abstraction (see \cref{sec:fastpliIntro}).
 All variables are read and writable by attributes, \eg{} \code{Solver.obj\_mean\_length}.
-Each attribute checks if the user input valid and returns an appropriate warning or error message if necesarry.
+Each attribute checks if the user input valid and returns an appropriate warning or error message if necessarry.
 This class also includes a \code{Solver.get\_dict()} method that returns a \python{} dictionary containing all variables and their values for reproducibility.
 It is also possible to store the state of the class with the current state of the \code{fiber\_bundles} as an \ac{HDF5} object.
 Finally, this class also provides the possibility to use a simple visualization of the solver process (see \cref{sec:visualization}).
@@ -280,7 +280,7 @@ Since analysis is usually always performed on the resulting simulations, they ar
 Methods for saving the variables as \code{dict} or \ac{HDF5} files are available as well.
 \par
 % 
-Usually as in the experiment the flat and four tilt measurments are simulated.
+Typically, as in the experiment the flat and four tilt measurements are simulated.
 This means that many parameters of the simulation pipeline does not change.
 For this purpose there are \code{pipeline} methods (see \cref{alg:Pipeline}) which provide a high level of abstraction.
 Here, all data is automatically analyzed and stored.
@@ -313,12 +313,12 @@ Among other specific techniques described in the previous chapters \cref{chap:so
 The computationally intensive code is written in \cpp{}.
 There, the \code{std::vector} has the advantage that the data in memory is linear.
 The data must be prepared and sent from the \ac{RAM} to the cache of the \acp{CPU}.
-This takes relative to the time for a singlue \ac{CPU} instruction a very long time.
-The main advantage of the cache is that it is very fast, however its capacities are usually in the order of a few mega bytes and therefore quite limited.
+This takes relative to the time for a single \ac{CPU} instruction a very long time.
+The main advantage of the cache is that it is very fast, however its capacities are usually in the order of a few \si{\mega\bytes} and therefore quite limited.
 It is built inside the \ac{CPU}.
 Modern \acp{CPU} have a built-in method called \textit{cache prefetching}.
 The \ac{CPU} cache prefetcher is a sophisticated directive that requests not only the element at address $i$ in memory, but also the elements next to it ($i+1$ or $i-1$, depending on the algorithm).
-Since many algorithms traverse arrays, the next element to be computed is usually the next (or previous) element.
+Since many algorithms traverse arrays, the next element to be computed is typically the next (or previous) element.
 Therefore, the total time required to copy the data from the memory to the cache is reduced.
 It can be shown that for linear operations on memory, the cache prefetcher reduces the time so much that it behaves as if the \ac{CPU} had an infinite cache.
 \par

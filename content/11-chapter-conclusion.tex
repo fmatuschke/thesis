@@ -12,7 +12,7 @@ These models can then be used in the second algorithm, which simulates the inter
 \paragraph{Nerve fiber modelling software}
 % 
 The algorithm for developing non-colliding nerve fiber models takes as input a list of 4D points for each nerve fiber, where the first three values are the $x,y,z$ coordinate in space and the fourth value is the radius of the nerve fiber at that point.
-Therefore a nerve fiber is represented as a cylindrical conical segments that can change its radius along the path.
+Therefore, a nerve fiber is represented as a cylindrical conical segments that can change its radius along the path.
 For each fiber segment containing two adjacent points, a test is performed to determine if there is a collision with another fiber segment.
 If this is the case, both fiber segments are moved slightly away from each other.
 This is done for all fiber segments in the volume as long as a collision is detected.
@@ -20,7 +20,7 @@ Both the length of a fiber segment and the bending radius of a nerve fiber are c
 These parameters change the discretization and stiffness of the fiber models.
 \par
 % 
-To speed up model generation, an octree is used in the algorithm to divide the volume into subvolumes.
+To speed up model generation, an octree is used in the algorithm to divide the volume into sub-volumes.
 This octree can be executed in parallel on multiple \acp{CPU}.
 A visualization is provided to display the volume, allowing the user to interact with the algorithm after each computation step.
 \par
@@ -36,7 +36,7 @@ The simulation is divided into two consistent parts.
 The first part generates a discretized 3D volume.
 This volume is used by the second part, which calculates the resulting light intensity using the M\"{u}ller-Stokes calculation and the simulation of several light vectors through the volume.
 The final light intensity is stored in a 2D array, which can be modeled as an \ac{CCD} array with a specified resolution and noise model.
-The simulation is capable of simulating multiple tilted light beam, allowing multiple views of the same subvolume that the light is traversing.
+The simulation is capable of simulating multiple tilted light beam, allowing multiple views of the same sub-volume that the light is traversing.
 In addition, the analysis algorithms are implemented into the software package, allowing the nerve fiber orientation to be calculated using the tilting analysis \ac{ROFL}.
 \par
 % 
@@ -79,18 +79,18 @@ The orientation distribution was analyzed to be used as a comparison for the ori
 Analogous to the nerve fiber modeling software, the parameters of the simulation software were first characterized and measured.
 The optical resolution of the microscope used was reproduced with previous results, as was the optical noise of the system.
 Tissue properties were derived from tissue samples measured in \ac{3D-PLI} so that the simulation could reproduce the results with its limitations.
-The most important characteristic of the simulation, the accuracy and runtime, was characterized by studien multiple \Voxelsize{}.
+The most important characteristic of the simulation, the accuracy and runtime, was characterized by study multiple \Voxelsize{}.
 It was possible to identify a lower bound that must be used for a given nerve fiber radius.
 \par
 % 
-Using the identified software parameters and the prepared nerve fiber models, simulations were performed and analiesed with the tilting analysis.
+Using the identified software parameters and the prepared nerve fiber models, simulations were performed and analysed with the tilting analysis.
 The models were divided into four groups: a single, a flat crossing, an oblique crossing, and a free crossing nerve fiber population.
 This allowed to focus on a specific behavior.
 \par
 % 
 In the case of a single nerve fiber population, only the inclination of the models was a variable.
 With the simulation results, it was shown that in the case of a single fiber population, the orientation can be correctly identified, with an increased uncertainty for very steep fibers.
-Statistically the mean can be measured correctly when measuring a homoginous volume with multiple image pixel.
+Statistically the mean can be measured correctly when measuring a homogenous volume with multiple image pixel.
 For very steep nerve fibers, the relative effective tissue thickness becomes unstable in the tilting analysis.
 This behavior can be used as an indication of how uncertain the results are.
 \par
@@ -120,18 +120,14 @@ The general advice is to increase the computational power by using parallel comp
 Existing algorithms suitable for this type of computation for both the nerve fiber modeling and \ac{3D-PLI} simulations could be identified and should be implemented in the future.
 \par
 % 
-Overall this thesis presents a software package able to generate complex non colliding tubical nerve fiber models which can be simulated inside a virtual \ac{3D-PLI} microscop setup.
-This allowes to investigate \dummy{}.
+Overall this thesis presents a software package able to generate complex non colliding tubic nerve fiber models which can be simulated inside a virtual \ac{3D-PLI} microscope setup.
+This allows to investigate \dummy{}.
 % 
 The algorithms are highly parallelized and able to run on current super computing facilities.
-Additionally the software packe was designed with ease of use in mind.
+Additionally, the software package was designed with ease of use in mind.
 % 
 For the future, possible improvements were presented that further reduce the runtime.
 % 
 During the development phase of this software package, several publications with a release of the final software code in the \ac{JOSS} were created.
 % 
-Simulation showed the behavier of the \ac{3D-PLI} signal for multiple fiber populations for the first time.
-
-% 
-% By publishing the open access software other researcher could already use the fiber modelling software to generate non colliding fiber models and use them as skeletal muscle fiber \cite{Ji2021}.
-% Because of the geometric representation of the tubular nerve fiber models, the software has already been shared with several researchers who have been able to incorporate it into their current work.
+Simulation showed the behavior of the \ac{3D-PLI} signal for multiple fiber populations for the first time.
