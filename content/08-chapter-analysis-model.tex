@@ -12,45 +12,45 @@
 % 
 \section{Introduction}
 %
-In the previous chapter \cref{chap:sof:modelling}, the module \pymodule{fastpli.model} was described to create non-colliding nerve fiber models.
+In the previous chapter \cref{chap:sof:modelling}, the module \pymodule{fastpli.model} was described for creating non-colliding nerve fiber models.
 An important question is how the software parameters affect the resulting models.
 \par
 %
-Three conditions are requiret from the software.
-First, it must be possible to generate a dense volume.
+Three conditions are required of the software.
+First, it must be possible to create a dense volume.
 This, of course, depends on the original fiber configuration.
-For exampe in configurations such as crossings, the density is lower.
+For example, the density is lower for configurations such as crossings.
 The second requirement is the runtime.
-The lower the runtime is, the more objects and larger volumes the user can create in the same time.
-The last condition is that the initial fiber orientations remain intact.
+The lower the runtime, the more objects and larger volumes the user can create in the same time.
+The last requirement is that the original fiber orientations remain intact.
 Because of the motion phase in the collision solver algorithm, they will change.
-The question is how much they change and whether the results match still the user's expectations and anatomical constrains.
+The question is how much they change and whether the results still meet the user's expectations and anatomical constraints.
 \par
 %
-To study the above requirements, generalized model parameters have to be found.
+To investigate the above requirements, generalized model parameters are needed.
 These parameters should be able to define a fiber configuration in a volume without having to describe each individual fiber.
 This description could then be used for both the study of the solver parameters and the subsequent study of the \ac{3D-PLI} simulation.
 \par
 %
-The first part of this chapter is the presentation of the parameterization to describe fiber populations.
-This is followed by an study of the solver parameters on the behavior of the resulting collision-free nerve fiber models.
-On this basis, a set of software parameters will be determined to create a library of nerve fiber models for \ac{3D-PLI} simulations.
-The final part investigates the orientation distribution of the generated models.
+The first part of this chapter is the presentation of the parameterization used to describe the fiber populations.
+This is followed by an investigation of the collision solver parameters on the behavior of the resulting collision-free nerve fiber models.
+On this basis, a set of software parameters is determined to create a library of nerve fiber models for \ac{3D-PLI} simulations.
+In the last part, the orientation distribution of the generated models is investigated.
 %
 %
 %
 \section{Designing fiber populations}
 %
-For the \ac{3D-PLI} simulation, a volume of size $\SI{65}{\micro\meter} \times \SI{65}{\micro\meter} \times \SI{60}{\micro\meter}$ is required (see \cref{cha:simulation_analysis}). \footnote{\SI{65}{\micro\meter} is divisible by \SI{1.3}{\micro\meter}, the pixel size of the investigated microscope.}
-In this thesis, up to two fiber populations are investigated.
+For the \ac{3D-PLI} simulation, a volume of size $\SI{65}{\micro\meter} \times \SI{65}{\micro\meter} \times \SI{60}{\micro\meter}$ is required (see \cref{cha:simulation_analysis}). \footnote{\SI{65}{\micro\meter} is divisible by \SI{1.3}{\micro\meter}, the pixel size of the microscope under study}.
+In this work, up to two fiber populations are studied.
 A fiber population is a fiber bundle with a specific orientation, density, and radius distribution.
-\footnote{This strategy is also used in \ac{dMRI} \cite{Ginsburger2018,Ginsburger2019,ginsburgerDis2019}.}
-These parameters of a fiber population have the advantage of being anatomically motivated and describing a nerve fiber volume based on statistical properties that are also commonly used in \ac{dMRI}.
-The number of fiber populations is limited to two in order to reduce the degrees of freedom within the models.
+These parameters of a fiber population have the advantage of being anatomically motivated and describe a nerve fiber volume based on statistical properties.
+This is for example also used in \ac{dMRI} simulations \cite{Ginsburger2018,Ginsburger2019,ginsburgerDis2019}.
+The number of fiber populations is limited to two to reduce the degrees of freedom within the models.
 %
 % 
 % 
-\subsection{Orientation and proportions}\label{sec:modelParamet}
+\subsection{Orientation and proportion}\label{sec:modelParamet}
 %
 \begin{figure}[t]
 \centering
@@ -60,16 +60,19 @@ The number of fiber populations is limited to two in order to reduce the degrees
 % [.475\textwidth]{\inputtikz{gfx/model/sphere_cube}}
 % \hfill
 \subcaptionbox{\label{fig:modelinit}
-Initial orientation for two fiber populations $F_0$ and $F_1$. The angle between the two populations is $\modelOmega$. The remaining degrees of freedom are considered by rotating the whole volume (see \cref{fig:modelrotcube}).}
+Initial orientation for two fiber populations $\popa$ and $\popb$.
+The angle between the two populations is $\modelOmega$.
+The remaining degrees of freedom are accounted for by rotating the entire volume (see \cref{fig:modelrotcube}).}
 [\textwidth]{\inputtikz{gfx/model/sphere_models}}
 % \hfill
 \\
 %
 \subcaptionbox{\label{fig:modelrota}
-The first fiber population is stationary. The second fiber population is described by the opening angle $\modelOmega$ and a rotation $\modelRot$ around the first fiber population.}
+The first fiber population is stationary.
+The second fiber population is described by the opening angle $\modelOmega$ and a rotation $\modelRot$ around the first fiber population.}
 [.475\textwidth]{\inputtikz{gfx/model/sphere_models_a}}\hfill
 \subcaptionbox{\label{fig:modelrotb}
-The inclination of the first fiber population is changed by $\modelInc$}
+The inclination of the first fiber population is modified by $\modelInc$.}
 [.475\textwidth]{\inputtikz{gfx/model/sphere_models_b}}
 % \\
 % %
@@ -82,23 +85,26 @@ The inclination of the first fiber population is changed by $\modelInc$}
 \label{fig:twomodelpopdesign}
 \end{figure}
 %
-Only one model is needed to study a single fiber population, since the model can be rotated to any 3d orientation. 
+For the study of a single fiber population, only one model is needed, since the model can be rotated to any 3d orientation. 
 For two fiber populations, the crossing angle $\modelOmega$ between the two fiber population orientations is relevant (see \cref{fig:modelinit}).
-By introducing a rotating $\modelRot$ along the first fiber population the orientation of the second fiber population can be changed (see \cref{modelrota}).
-If then the first fiber population also is inclined by a angle $\modelInc$, any fiber configuration with two fiber populations can be described (see \cref{modelrotb}).
+By introducing a rotation $\modelRot$ along the first fiber population, the orientation of the second fiber population can be changed (see \cref{modelrota}).
+If then the first fiber population is tilted by an angle $\modelInc$, an arbitrary fiber configuration with two fiber populations can be described (see \cref{modelrotb}).
 \par
 % 
-An additional parameter for both models is the population fraction $\modelPsi=\frac{N_0}{N_0+N_1}$.
+A further parameter is the first population proportion:
+\begin{align}
+    \modelPsi=\frac{N_0}{N_0+N_1}
+\end{align}
 This can range between $\SI{0}{}$ and $\SI{1}{}$.
-Since only dense \ac{WM} phantoms are generated in this study, a lower total density of $\SI{1}{}$ is not investigated.
+Since only dense \ac{WM} phantoms are generated in this study, a lower overall density of $\SI{1}{}$ is not investigated.
 \par
 %
 To reduce the number of models required, the parameters are sampled.
 Ideally, the surface of a sphere is sampled equidistantly.
 However, this is impossible.
-Fairly good approximations exist, but one would still have to generate a model for each sampled point.
+There are fairly good approximations, but one would still have to create a model for each sampled point.
 For simplicity, the intersection angle $\modelOmega$ is sampled.
-By rotating the model along the first fiber population for all crossing angles, one can generate a sampling of the sphere (see \cref{subfig:Test1}).
+By rotating the model with $\modelRot$ along the first fiber population axis for all sampled crossing angles $\modelOmega$, one can sample the sphere (see \cref{subfig:Test1}).
 \par
 % 
 Therefore, the following parameter samples are chosen:
@@ -111,27 +117,27 @@ Therefore, the following parameter samples are chosen:
 \end{align}
 % 
 In the case of $\modelOmega = \SI{0}{\degree}, \modelPsi = 0$ or $\modelPsi = 1$, no second unique orientation exists, so the single fiber population model can be applied.
-This results in a total of $\SI{82}{}$ required models.
+This results in a total number of $\SI{82}{}$ models are required.
 %
 % 
 % 
-\subsection{Fiber placement and randomization}
+\subsection{Fiber placement}
 %
 To design the individual fiber configurations for each fiber population, the methods described in \cref{sec:sandbox} are used, \ie{} generating fiber bundles with seed points.
-The seed points on a 2d plane are generated with a uniform distribution:
+Seed points on a 2d plane are generated with a uniform distribution:
 \begin{align}
 p_i = (\mathrm{Uniform}(-\frac{1}{2}\mathit{L}, \, \frac{1}{2}\mathit{L}), \mathrm{Uniform}(-\frac{1}{2}\mathit{L}, \, \frac{1}{2}\mathit{L}))
 \end{align}
-Since the simulation volumes will be cubic and the model will be rotated, a spherical boundary with diameter $d_{\mathit{sphere}}=\sqrt{3} \cdot \mathit{L}$ is chosen, where $\mathit{L}=\SI{65}{\micro\meter}$ is the length of the largest edge length of the cube.
-This ensures that objects exist outside the simulation volume that can build up pressure on the interior, $\mathit{L}$ is increased by two fiber diameters.
+Since the simulation volumes are cubic and the model is rotated, a spherical boundary with diameter $d_{\mathit{sphere}}=\sqrt{3} \cdot \mathit{L}$ is chosen, where $\mathit{L}=\SI{65}{\micro\meter}$ is the length of the largest edge length of the cube.
+To ensure that objects exist outside the simulation volume that can build up pressure on the interior, $\mathit{L}$ is increased by two fiber diameters.
 This also prevents edge effects in the simulation.
 The number of seed points is set to a value of
 \begin{align}
 N_{0,\mathit{seeds}} &= \round \left(\modelPsi \frac{A_{\Box}}{\pi \cdot \fiberRadiusMean}\right)\\
 N_{1,\mathit{seeds}} &= \round \left((1-\modelPsi) \frac{A_{\Box}}{\pi \cdot \fiberRadiusMean}\right)
 \end{align}
-with $A_{\Box}=L^2$ as the surface area of the seed point plane.
-Thus, there are enough fibers also with respect to the soon introduced fiber radius distribution to fill the 2d plane.
+with $A_{\Box}=L^2$ as the area of the seed point plane.
+Thus, also with respect to the fiber radius distribution introduced next, there are enough fibers to fill the 2d plane.
 \par
 %
 \begin{figure}[!t]
@@ -154,7 +160,9 @@ Thus, there are enough fibers also with respect to the soon introduced fiber rad
         \addplot[GREEN,thick,domain=0.6:1.4, samples=2*42, smooth]{1/(\sigmaValue*x*sqrt(2*pi))*exp(-(ln(x)-\muValue)^2/(2*\sigmaValue^2))}; \addlegendentry{$\mu=0.0,\sigma=0.1$}
     \end{axis}
 \end{tikzpicture}
-\caption[]{Probability density function of a multiplicative \name{log normal} distribution. $\sigma=0.1$ is used for the initial variation of each fiber radius. $\sigma=0.05$ for the variation along the fiber for each fiber point.}
+\caption[]{Probability density function of a multiplicative \name{log normal} distribution.
+$\sigma=0.1$ is used for the initial variation of each fiber radius.
+$\sigma=0.05$ for the variation along the fiber for each fiber point.}
 \label{fig:logNormal}
 \end{figure}
 %
@@ -168,7 +176,7 @@ To achieve a random distribution of positions and radii along the fibers, the fi
 The function \code{Solver.apply\_boundaries} is used for exactly such a case.
 It applies the fiber segment length $\segLength$ to the fiber configuration, which in this case divides the fiber along its trajectory into fiber segments of equal length (except for the last segment).
 The fiber points thus generated are then randomly shifted in all three dimensions with a normal distribution.
-The standard diviation of the normal distribution is set to a factor of the average fiber radii \fiberRadiusMean{}.
+The standard deviation of the normal distribution is set to a factor of the average fiber radii \fiberRadiusMean{}.
 In addition, the radius of the point is changed with a random multiplicative factor from a LogNormal distribution:
 %
 \begin{align}
@@ -180,17 +188,17 @@ r_i &= r_i \cdot \mathrm{LogNormal}(\mu=0,\sigma=0.05)
 %
 %
 %
-\section{Software parameter characterization}\label{sec:modelSetup}
+\section{Software parameters characterization}\label{sec:modelSetup}
 %
-The shape control mechanisms used in the algorithm of the collision solver \code{fastpli.model.solver} (see \cref{chap:sof:modelling}) have to be characterized.
+The shape control mechanisms used in the algorithm of the collision solver \code{fastpli.model.solver} (see \cref{chap:sof:modelling}) must be characterized.
 These are the mean segment length \segLength{} and the minimum allowed radius of curvature \segRadius{}.
-It must be ensured that a parameter set is identified that ensures that the configurations entered by the user remain the same, \ie{} the orientation distributions remain intact with respect to the fact that the fiber segments must move.
-In addition, the achievable fiber density should remain high for this set of parameters.
+It must be ensured that a set of parameters is identified that ensures that the configurations entered by the user remain the same \ie{} the orientation distributions remain intact with respect to the fact that the fiber segments must move.
+In addition, the achievable fiber density for this parameter set should remain high.
 Finally, it must also be ensured that a parameter set can be chosen that has an acceptable runtime.
-If possible, the runtime time should be minimized, since it is a limited resource.
+The runtime should be minimized if possible, since it is a limited resource.
 \par
 %
-To investigate the behavior of \segLength{} and \segRadius{}, the two factor variables \segLengthFactor{} and \segRadiusFactor{} are defined:
+To investigate the behavior of \segLength{} and \segRadius{}, the two relative factor variables \segLengthFactor{} and \segRadiusFactor{} are defined:
 \begin{align}
     \begin{split}
         \segLength &= \segLengthFactor \cdot \fiberRadiusMean\\
@@ -225,14 +233,14 @@ fiber bundle crossing/proportion & $\modelPsi$/$\modelOmega$ & $\SI{1.0}{}/\SI{0
 \label{tab:parameterSetupChar}
 \end{table}
 %
-To be able to statistically verify the results, the generation of the models with different seed points is repeated $n_{\mathit{repeat}} = \SI{24}{}$ times.\footnote{The choosen \ac{CPU} architeture has $\SI{24}{\cores}$.}
-For characterization, the $\modelPsi/\modelOmega$ pair of $\pfbs = \SI{1.0}{}/\SI{0}{\degree}$ and $\cfbs=\SI{0.5}{}/\SI{90}{\degree}$ are considered as edge cases.
+To be able to check the results statistically, the generation of the models with different seed points is repeated  $n_{\mathit{repeat}} = \SI{24}{}$ times.\footnote{The choosen \ac{CPU} architeture has $\SI{24}{\cores}$.}
+For characterization, the pairs $\modelPsi/\modelOmega$ with $\pfbs = \SI{1.0}{}/\SI{0}{\degree}$ and $\cfbs=\SI{0.5}{}/\SI{90}{\degree}$ are considered since they are edge cases.
 The number of steps is limited to $n_{\mathit{max}}=\SI{100000}{}$ to constrain the computation.\footnote{In hindsight, this should have been limited by the runtime.}
 A cubic volume of $\SI{60}{\micro\meter} \times \SI{60}{\micro\meter} \times \SI{60}{\micro\meter}$ is chosen.
-Every $\SI{50}{}$ steps, the fiber model is cut into a $\SI{60}{\micro\meter}+4 \cdot \fiberRadiusMean$ cube to delete unnecessary fibers and reduce the number of objects.\footnote{This strategy is recommendet.}
-To measure the volume fraction, the discretized volume from the simulation is generated from the simulation module.
+Every $\SI{50}{}$ steps, the fiber model is cut into a $\SI{60}{\micro\meter}+4 \cdot \fiberRadiusMean$ cube to delete unnecessary fibers and reduce the number of objects and therefore the runtime.
+To measure the volume fraction, the discretized volume from the simulation is generated by the simulation module.
 There, the individual label IDs are counted and divided by the total number of voxels to calculate the volume fraction.
-To investigate the final orientation of the model the volume is reducet $\SI{60}{\micro\meter}$.
+To examine the final orientation of the model, the volume is reduced to $\SI{60}{\micro\meter}$.
 The \ac{CPU} arhitecture used to generate the models is a
 Intel(R) Xeon(R) CPU E5-4657L v2 @ $\SI{2.4}{\giga\hertz}$, L1d cache: $\SI{1.5}{\mega\byte}$, L1i cache: $\SI{1.5}{\mega\byte}$, L2 cache: $\SI{12}{\mega\byte}$, L3 cache: $\SI{120}{\mega\byte}$.
 %
@@ -258,8 +266,8 @@ Crossing fiber population \cfbs{}\\[0ex]
 \label{fig:timeDevelopmentCross}
 \end{figure}
 %
-The timeing results for the parameter set \cref{tab:parameterSetup} is shown in \cref{fig:timeDevelopmentNone} for the single fiber population \pfbs{} and in \cref{fig:timeDevelopmentCross} for the crossing fiber population \cfbs{}.
-They include the number of steps $\# steps$, the number of colliding fiber segments $\# objcol$, the overlap fraction of colliding fiber segments $\# overlapfrac$, the number of objects $\# obj$ and the current step time $\Delta t$.
+The results of the time measurement for the parameter set \cref{tab:parameterSetup} are shown in \cref{fig:timeDevelopmentNone} for the single fiber population \pfbs{} and in \cref{fig:timeDevelopmentCross} for the crossing fiber population \cfbs{}.
+They include the number of steps $\# steps$, the number of colliding fiber segments $\# objcol$, the overlap fraction of colliding fiber segments $\# overlapfrac$, the number of objects $\# obj$, and the current step time $\Delta t$.
 The overlap fraction of colliding fiber segments is defined as the average of the minimum distance between two colliding fiber segments divided by their combined radii.
 The results of the additional fiber radii are available in \cref{app:pste1,app:pste2,app:pste3,app:pste4,app:pste5}.
 \par
@@ -269,7 +277,7 @@ The single fiber populations \pfbs{} show a strong linear correlation between th
 The number of steps increases significantly with decreasing \segLengthFactor{}.
 A change in the running time when changing the fiber bending radius \segRadiusFactor{} is not visible in the logarithmic plot.
 The total number of steps increases slightly with an increase in the fiber segment length factor \segLengthFactor{}.
-The total running time increases significantly with a decrease in \segLengthFactor{}.
+The total runtime increases significantly with a decrease in \segLengthFactor{}.
 All models of all parameter sets were able to solve the collisions in the maximum number of steps.
 \par
 %
@@ -278,16 +286,16 @@ The total number increases with decreasing \segLengthFactor{}.
 The \segRadiusFactor{} also has no significant effect here.
 \par
 %
-The overlap fraction for all parameters is about $\SI{5}{\percent}$ at the beginning and decreases over time to about $\SI{1}{\percent}$.
+The overlap fraction for all parameters is about $\SI{5}{\percent}$ at the beginning and decreases with time to about $\SI{1}{\percent}$.
 The decrease is approximately linear after the initial phase
 At the end of the collision solver process, the variance increases significantly.
-The curve behavior between the different \segLengthFactor{} is roughly the same, except of course for an offset in the total runtime.
+The curve behavior between the different \segLengthFactor{} is about the same, except of course for an offset in the total runtime.
 A difference when changing the \segRadiusFactor{} is again not visible.
 \par
 %
 The number of objects decreases slightly over time.
-A significant increase can be seen in a decreasing value of \segLengthFactor{}.
-The \segRadiusFactor{} is negligible except in the case of $\segLengthFactor = \SI{1}{}$, where the number of objects is increased.
+A significant increase can be seen by a decreasing value of \segLengthFactor{}.
+The \segRadiusFactor{} is negligible except in the case of $\segLengthFactor = \SI{1}{}$ where the number of objects is increased.
 \par
 %
 The last diagram shows the average time $\Delta t$ needed for a single step.
@@ -310,22 +318,21 @@ In the case of $\segLengthFactor = \SI{1}{}$ and $\segLengthFactor = \SI{2}{}$, 
 For $\segLengthFactor = \SI{1}{}$ this has happened after $\SI{24}{\hour}$.
 \par
 %
-The number of colliding fiber segments shows the same decreasing behavior in the case of the smallest \segRadiusFactor{} as for the single fiber population.
+The number of colliding fiber segments shows the same decreasing behavior in the case of the smallest \segRadiusFactor{} as in the case of the single fiber population.
 The key difference is that this behavior changes significantly with an increase in the minimum fiber bending radius factor \segRadiusFactor{}.
-The curves appear to split at a critical number of steps and from then on they fall off in an increasingly linear fashion for higher \segRadiusFactor{} and smaller \segLengthFactor{}.
-The number of splits increases with decreasing \segLengthFactor{} and does not increase in the case of $\segLengthFactor = \SI{8}{}$.
+The curves appear to split at a critical number of steps and progressively drop linearly from then on for higher \segRadiusFactor{} and smaller \segLengthFactor{}.
 \par
 %
 The overlap fraction shows a significant difference for the smaller fiber segment length factor \segLengthFactor{} compared to the single fiber population \pfbs{} case.
 For high \segLengthFactor{} values, the curve follows almost the same path as in the single fiber population case, ending in the collision free state.
 However, for lower values and depending on the \segRadius{}, the curve continues at about $\SI{1}{\percent}$ overlap.
-In the case of $\segLengthFactor = \SI{1}{}$ and $\segRadiusFactor = \SI{8}{}$ it starts to grow slightly again at the end of its lifetime.
+In the case of $\segLengthFactor = \SI{1}{}$ and $\segRadiusFactor = \SI{8}{}$, it starts to grow slightly again at the end of its lifetime.
 \par
 %
 The number of objects shows the same behavior as in the case of the single fiber population.
-A slight decrease in the number and a significant increase for a decreasing value of the \segLengthFactor{} is visible.
+There is a slight decrease in the number and a significant increase with a decreasing value of the \segLengthFactor{}.
 The splitting of the curves for the \segRadiusFactor{} is also visible, but not as pronounced as in the case of the number of colliding objects.
-In the case of $\segLengthFactor = \SI{1}{}$ and $\segRadiusFactor = \SI{8}{}$, an increase of objects is observed in the last phase of the collision solver algorithm.
+In the case of $\segLengthFactor = \SI{1}{}$ and $\segRadiusFactor = \SI{8}{}$, an increase in the number of objects is observed in the last phase of the collision solver algorithm.
 \par
 % 
 The time per step decreases for all parameters over the number of steps until it reaches a constant value for each \segLengthFactor{}.
@@ -335,7 +342,7 @@ In the case of $\segLengthFactor{} = \SI{1}{}$ and $\segRadiusFactor = \SI{8}{}$
 \par
 %
 The total runtime is influenced by both the \segLengthFactor{} and the \segRadiusFactor{}.
-The splitting behavior visible in the graph of the number of colliding objects show the significant difference in runtime for the \segRadiusFactor{}.
+The splitting behavior visible in the graph of the number of colliding objects shows the significant difference in runtime for the \segRadiusFactor{}.
 Increasing the \segRadiusFactor{} results in an increase in runtime for this parameter by up to an order of magnitude.
 The differences between the \segLengthFactor{} are comparable to the single fiber case.
 \par
@@ -350,74 +357,75 @@ The strongest difference is a very significant decrease in runtime with an incre
 \begin{figure}[t]
 \centering
 \includegraphics{gfx/rc1/mpara/pre_stats_box_plot_volume_05_output_parameter_statistic_rc1.pdf}
-\caption{Volume fractions $V_f/V_0$ for parallel \pfbs{} and crossing \cfbs{} fiber populations of different relative fiber segment length $\segLengthFactor$ and relative fiber bending radii $\segRadiusFactor$.}
+\caption{Volume fractions $V_f/V_0$ for parallel \pfbs{} and crossing \cfbs{} fiber populations of different relative fiber segment lengths $\segLengthFactor$ and relative fiber bending radii $\segRadiusFactor$.}
 \label{fig:psbp1}
 \end{figure}
 \Cref{fig:psbp1} show the resulting volume fraction $V_f/V_0$ for the parameter series.
 \par
 %
 % single fiber
-The single fiber populations \pfbs{} have volume fractions greater than $\SI{0.74}{}$.
-For constant $\segLengthFactor$, there is no significant change from the fiber bending radius factor $\segRadiusFactor$.
+The populations with a single fiber orientation \pfbs{} have volume fractions greater than $\SI{0.74}{}$.
+For constant $\segLengthFactor$, there is no significant change with respect to the fiber bending radius factor $\segRadiusFactor$.
 In the case of $\segLengthFactor = \SI{1}{}$, there is a small decrease in volume fraction with increasing bend radius.
-A significant small reduction of the volume fraction is noticible with an increase of the fiber segment length factor $\segLengthFactor$.
+There is a significant small decrease in the volume fraction when the fiber segment length factor $\segLengthFactor$ is increased.
 \par
 %
 % crossing fiber
-In contrast, the crossing fiber population \cfbs{} volume fraction is significantly reduced.
-For $\segLengthFactor=\SI{1}{}$ and $\segLengthFactor=\SI{2}{}$ the volume fraction decreases strongly between $\segRadiusFactor = \SI{2}{}$ and $\segRadiusFactor = \SI{4}{}$.
+In contrast, the volume fraction of the crossing fiber population \cfbs{} is significantly reduced.
+For $\segLengthFactor=\SI{1}{}$ and $\segLengthFactor=\SI{2}{}$, the volume fraction decreases sharply between $\segRadiusFactor = \SI{2}{}$ and $\segRadiusFactor = \SI{4}{}$.
 For $\segLengthFactor=\SI{2}{}$ the values become more similar.
-At $\segLengthFactor=\SI{8}{}$ the change with $\segRadiusFactor$ disappears and the volume fraction reaches only a value around $\SI{0.57}{}$.
+For $\segLengthFactor=\SI{8}{}$ the change with $\segRadiusFactor$ disappears and the volume fraction reaches only a value around $\SI{0.57}{}$.
 \par
 %
 % radius
-For mean fiber radii $\fiberRadiusMean = \SIlist{1,2}{\micro\meter}$ the behavier is very similar (see \cref{app:appModelVolumeBoxPlot}). For $\fiberRadiusMean \geq \SI{5}{\micro\meter}$, the variance increases and the median decreases significantly.
+For mean fiber radii $\fiberRadiusMean = \SIlist{1,2}{\micro\meter}$ the behavier is very similar (see \cref{app:appModelVolumeBoxPlot}).
+For $\fiberRadiusMean \geq \SI{5}{\micro\meter}$, the variance increases and the median decreases significantly.
 The effect of the parameter is not changed otherwise
-For mean fiber radii $\fiberRadiusMean \geq \SI{5}{\micro\meter}$, the volume fraction does not significantly reduce.
+For mean fiber radii $\fiberRadiusMean \geq \SI{5}{\micro\meter}$, the volume fraction does not decrease significantly.
 % 
 % 
 % 
 \subsection{Discussion}
 %
-For parallel fibers, the collison solver process is always faster than for intersecting bundles.
-This is visible in the overlap fraction \cref{fig:timeDevelopmentNone,fig:timeDevelopmentCross} plot.
-The overlap is significantly higher in the crossing fibers than in the single fiber case.
+For parallel fibers, the collision solving process is always faster than for crossing bundles.
+This is visible in the plot of the overlap fraction \cref{fig:timeDevelopmentNone,fig:timeDevelopmentCross}.
+The overlap is significantly higher for the crossing fibers than for the single fibers.
 This not only means that the fiber segments that need to be moved out of the way are longer, but also that the fiber segments that are inserted into the octree contain more multiple cases and the number of objects per octree leaf is higher.
-This significantly increases the runtime to solve the volume.
+This significantly increases the runtime for solving the volume.
 \par
 %
 % \segLengthFactor
 The segment length factor \segLengthFactor{} is the most important parameter to reduce the runtime for constant mean fiber radii \fiberRadiusMean{} because the number of objects is smaller.
-However, a larger \segLengthFactor{} results for crossing fibers, as would be expected with a smaller volume fraction.
-For parallel fibers \pfbs{}, it makes sense that the volume fraction does not change, since the direction of motion to prevent the overlap for all fiber segments is radially symmetric along their principal orientation axis.
+However, as expected, a larger \segLengthFactor{} leads to a lower volume fraction, especially for crossing fibers.
+For a single fiber population \pfbs{}, it makes sense that the volume fraction does not change, since the direction of motion is radially symmetric along their main orientation axis for all fiber segments to avoid overlap.
 \par
 %
 % \segRadiusFactor{}
 The fiber segment bending radius factor \segRadiusFactor{} restricts the bending radius, it is to be expected and visible in the results that the volume fraction is strongly influenced since the volume can no longer be filled optimally.
-As before, changing \segRadiusFactor{} should not lead to any difference in the single fiber bundle case.
-However, crossing fibers are strongly influenced.
+As before, changing the \segRadiusFactor{} in the case of a single fiber bundle should not lead to any difference.
+However, crossing fibers will be strongly affected.
 This is especially evident in the number of colliding objects, where the \segRadiusFactor{} splits the data into individual branches over time.
-Here, smaller values of \segRadiusFactor{} allow for more curved geometries.
+Smaller values of \segRadiusFactor{} allow more curved geometries here.
 However, this can lead to unnatural results in terms of anatomical structure.
-Consequently, much of the volume would be filled with fibers, or rather fiber segments, but the actual number of fibers would be reduced.
-An not intuitive effect for smaller \segLengthFactor{} and higher \segRadiusFactor{} is visible.
-The number of colliding objects starts increases again, as does the total number of objects.
-Therefore larger \segRadiusFactor{} should be avoided, as this effect also affects the data for $\segLengthFactor = 2$ and $\segRadiusFactor \geq 4$.
-since such a large radius factor represents an unnatural stiffness for a nerve fiber, this is not a problem for this type of model.
+As a result, a large part of the volume would be filled with fibers or rather fiber segments, but the actual number of fibers would be smaller.
+A non-intuitive effect for smaller \segLengthFactor{} and higher \segRadiusFactor{} is visible.
+The number of colliding objects increases again, as does the total number of objects.
+Therefore, larger \segRadiusFactor{} should be avoided, as this effect also occurs when $\segLengthFactor = 2$ and $\segRadiusFactor \geq 4$.
+Since such a large radius factor represents an unnatural stiffness for a nerve fiber, this is not a major concern for this type of models.
 \par
 %
 To narrow down the selection of a parameter set, the crossover fiber population \cfbs{} is the most important data set.
 The most essential parameter is the length factor \segLengthFactor{}.
-From the results of the volume fraction \segLengthFactor should be as small as possible.
-But since the difference between $\segLengthFactor=\SI{1}{}$ and $\segLengthFactor=\SI{2}{}$ is small, and for $\segLengthFactor=\SI{4}{}$ a big jump becomes visible, one can reduce the running time significantly with $\segLengthFactor=\SI{2}{}$.
+From the results of the volume fraction, it can be concluded that the \segLengthFactor{} should be as small as possible.
+However, since the difference between $\segLengthFactor=\SI{1}{}$ and $\segLengthFactor=\SI{2}{}$ is small, and a large jump is visible for $\segLengthFactor=\SI{4}{}$, $\segLengthFactor=\SI{2}{}$ can be used to significantly reduce the runtime.
 \par
 %
-The choice of the fiber bending radius factor \segRadiusFactor{} is an anatomical one.
+The choice of the fiber bending radius factor \segRadiusFactor{} is an anatomical decision.
 To counteract excessive deformation, a value of at least $\segRadiusFactor = \SI{2}{}$ should be chosen.
-A larger value of \segRadiusFactor{} would increases the runtime significantly and add a unnatural stiffness.
+A larger value of \segRadiusFactor{} would significantly increase the runtime and add unnatural stiffness.
 The \segLengthFactor{} should be as small as possible to achieve the highest accuracy.
-However the runtime would increase to high for very low values.
-Therefore, a value of $\segLengthFactor = \SI{2}{}$ was chosen, since higher values start to show a significant influence on the volume fraction.
+However, the runtime would increase too much for very small values.
+Therefore, a value of $\segLengthFactor = \SI{2}{}$ was chosen, since higher values already have a significant impact on the volume fraction.
 \par
 %
 In summary, the following parameters are chosen:
@@ -425,7 +433,7 @@ In summary, the following parameters are chosen:
 \begin{table}[H]
 \sisetup{parse-numbers=false,open-bracket={\{}, close-bracket={\}}, list-final-separator={,},list-pair-separator={,}}%
 \centering
-\caption{Recommended parameters of model generation.}
+\caption{Selection of parameters for the creation of the \ac{3D-PLI} simulation model.}
 \pgfplotstabletypeset[%
     thesisTableStyle,
     column type=lcc,
@@ -449,19 +457,19 @@ min segment bending radius factor & $\segRadiusFactor$ & $\num{2}$\\
 For fiber radii $\fiberRadiusMean > \SI{0.5}{\micro\meter}$, the most important effect is the shortening of the runtime at constant volume.
 In addition, boundary effects become apparent due to the limited volume.
 For example, the mean volume fraction for each configuration decreases significantly and the variance increases.
-This is the effect of being able to fit only a few fibers in a $\SI{60}{\micro\meter}$ thick volume.
-If these are then randomly arranged and deformed, as in this case, the volume fraction must decrease.
+This is the effect of being able to place only a few fibers into a $\SI{60}{\micro\meter}$ thick volume.
+If they are then randomly arranged and deformed, as in this case, the volume fraction must decrease.
 If the volume were infinite, there would be no difference between the results since all parameters are independent of the radii.
-Therefore, an increase in the fiber radii should be considered if the volume to be calculated is larger or the runtime is imperative.
+Therefore, an increase in the fiber radii should be considered if the volume to be calculated is larger or the runtime is finite.
 It should then be verified that the simulation does not cause significant changes in the results.
 \par
 %
 Another way to shorten the runtime is to not solve the model completely.
-Looking at the overlap fraction, a value of $<\SI{1}{\percent}$ may be feasible.
+Looking at the overlap fraction, a value of $<\SI{1}{\percent}$ might be feasible.
 It should be noted that this is only the fraction of the fiber segment that still overlaps.
 The number of colliding fiber segments decreases steadily for the chosen parameters.
-This can potentially save an order of magnitude in runtime.
-The influence on the simulation must also be investigated here beforehand.
+This potentially saves an order of magnitude in runtime.
+Here, the influence on the simulation must also be investigated in advance.
 %
 %
 %
@@ -471,12 +479,12 @@ As described in \cref{sec:modelOpt}, \ac{OpenMP} is used to accelerate \code{for
 This means that it is currently not possible to use multiple compute nodes.
 \par
 % 
-To investigate the speedup runtime measurements the parameters from \cref{tab:parameterSetup} are used for parallel and crossing fibers.
-The chossen volume is of size $\SI{60}{\micro\meter} \times \SI{60}{\micro\meter} \times \SI{60}{\micro\meter}$.
-The speedup is calculated for an avarage of 100 consecutive steps.
-To measure if the speedup changes over time the measurements are started after a certain number of steps $\Delta_{\mathit{steps}} = \SIlist{0;100;1000;10000}{\steps}$.
-The calculation is repeated $n=\SI{24}{}$ times for each case.
-For the measurements the cores were bind to phyical cpu cores.
+To investigate the speedup, the runtime for the parameters from \cref{tab:parameterSetup} is measured for parallel and crossing fibers.
+The volume used is $\SI{60}{\micro\meter} \times \SI{60}{\micro\meter} \times \SI{60}{\micro\meter}$.
+Speedup is calculated for an average of 100 consecutive steps.
+To measure whether the speedup changes with time, the measurements are started after a certain number of steps $\Delta_{\mathit{steps}} = \SIlist{0;100;1000;10000}{\steps}$.
+The calculation is repeated for each case $n=\SI{24}{}$ times.
+For the measurements, the cores were bound to physical CPU cores.
 %
 % 
 % 
@@ -485,43 +493,41 @@ For the measurements the cores were bind to phyical cpu cores.
 \begin{figure}[!t]
 \centering
 \includegraphics[page=1]{gfx/rc1/speed/boxplot_output_r_0.5__.pkl_speedup.csv.pdf}
-\caption{\code{model.Sovler} speedup. Timing measurements are performed after $\Delta_{\mathit{steps}}$ for the next $\SI{25}{\steps}$ for parallel \pfbs{} and crossing \cfbs{} fiber configurations.}
+\caption{\code{model.Sovler} speedup. Time measurements are performed after $\Delta_{\mathit{steps}}$ for the next $\SI{25}{\steps}$ for parallel \pfbs{} and crossing \cfbs{} fiber configurations.}
 \label{fig:solverSpeedup}
 \end{figure}
 % 
 \Cref{fig:solverSpeedup} shows the speedup for different starting positions $\Delta_{\mathit{steps}}$ for the parallel \pfbs{} and crossing \cfbs{} fiber bundles.
-Up to $\SI{4}{cores}$ the speedup inreases linear to a speedup of $\SI{3}{}$.
-More then $\SI{4}{cores}$ the speedup increases slower until for $\SI{8}{cores}$ a significant increase to a speedup of about $\SI{5}{}$ is visible.
+Up to $\SI{4}{cores}$, the speedup increases linearly to a speedup of $\SI{3}{}$.
+From $\SI{4}{cores}$, the speedup increases more slowly until a significant increase to a speedup of about $\SI{5}{}$ is observed for $\SI{8}{cores}$.
 \par
 % 
-Overall there is no significant change for parallel or crossing fibers visible.
-A change in speedup is also not visible for different starting points $\Delta_{\mathit{steps}}$.
-\par
-% 
-Higher core numbers up to $\SI{48}{cores}$ are shown in \cref{app:solverSpeedupAll}.
+Overall, no significant change is visible for parallel or crossing fibers.
+Also for different starting points $\Delta_{\mathit{steps}}$ no change in acceleration is visible.
+Higher core numbers up to $\SI{48}{cores}$ are displayed in \cref{app:solverSpeedupAll}.
 The speedup increases up to $\SI{8}{}$.
 % 
 % 
 % 
 \subsection{Discussion}
 % 
-Up to $\SI{4}{cores}$ the speedup is with $\SI{3}{}$ to be expected.
-The slower rise and the jumpt for $\SI{8}{cores}$ is to be explained by the structure of the \name{octree}.
-Since for $\SI{8}{cores}$ the parallel balancing (can) be optimal on an \name{octree} the speedup rises.
-Higher cpu cores are not feasable.
+Up to $\SI{4}{cores}$ the speedup is expected with $\SI{3}{}$.
+The slower increase and jump for $\SI{8}{cores}$ can be explained by the structure of the \name{octree}.
+Since for $\SI{8}{cores}$ the parallel alignment on a \name{octree} (can) be optimal, the speedup increases.
+More cores are not feasible.
 \par
 % 
-Nonetheless, the data suggest that using a multicore system significantly reduces runtime.
+Nevertheless, the data suggest that using a multicore system shortens the runtime considerably.
 However, for small volumes or low-fiber objects, one should use only one or two cores and prefer to run multiple models in parallel.
-The results also show that an optimized algorithm is needed especially for increasing the volume or object count.
-Here, the \ac{GPU} seems to be the hardware of choice with an more advanced algorithm \cite{Karras2012} (see \cref{sec:outlook}).
+The results also show that an optimized algorithm is needed, especially when the volume or the number of objects increases.
+Here, the \ac{GPU} seems to be the hardware of choice with a more advanced algorithm \cite{Karras2012} (see \cref{sec:outlook}).
 % 
 %
 %
 \section{Nerve fiber model library for \acs{3D-PLI} simulations}
 %
-With the model parameters selected above (see \cref{sec:modelSetup}), the simulation models are be generated.
-As described in \cref{sec:modelParamet}, only fibers with a $\modelOmega = \SIrange{10}{90}{\degree}$ and $\modelPsi = \SIrange{0.1}{0.9}{}$ are generated with the addition of $\modelOmega=\SI{0}{\degree}, \modelPsi=\SI{1.0}{}$.
+With the model parameters selected above (see \cref{sec:modelSetup}), the simulation models are generated.
+As described in \cref{sec:modelParamet}, only fibers with $\modelOmega = \SIrange{10}{90}{\degree}$ and $\modelPsi = \SIrange{0.1}{0.9}{}$ are generated with the addition of $\modelOmega=\SI{0}{\degree}, \modelPsi=\SI{1.0}{}$.
 The volume for the simulation is scaled up to a sphere with a diameter of \SI{135}{\micro\meter} so that a simulated volume can be generated from the sphere in any orientation.
 % 
 %
@@ -533,13 +539,15 @@ The volume for the simulation is scaled up to a sphere with a diameter of \SI{13
 % \resizebox{1.0\textwidth}{!}{
 \includegraphics[width=\textwidth, page=1]{gfx/rc1/model/cube_2pop_orientation_hist2d_output_cube_2pop_135_rc1.pdf}
 % }
-\caption{Density distribution of fiber segment orientation in the simulation models. The color of the segments is weighted by the area on a spherical surface. The value is normalized so that the integral over a hemisphere is 1. The dashed white line indicates the orientation of the two fiber populations.}
+\caption{Density distribution of fiber segment orientation in the simulation models.
+The value of the segments is weighted according to the area on a spherical surface and normalized so that the integral over one hemisphere is $\SI{1}{}$.
+The dashed white line indicates the orientation of the two fiber populations.}
 \label{fig:modelOrientation}
 \end{figure}
 %
-\Cref{fig:modelOrientation} shows the orientation distribution of the fiber segments as polar histogram.
-The remaining dataset is available in \cref{app:modelOrientation}.
-The orientation distributions show that the individual fiber segments follow statistically the fiber populations orientation.
+\Cref{fig:modelOrientation} shows the orientation distribution of the fiber segments as a polar histogram.
+The rest of the dataset is available in \cref{app:modelOrientation}.
+The orientation distributions show that the individual fiber segments statistically follow the orientation of the fiber population.
 The density reflects the population fraction $\modelPsi$ of the fiber populations.
 \par
 % 
@@ -550,58 +558,60 @@ The density reflects the population fraction $\modelPsi$ of the fiber population
     \label{fig:modelAngleBoxPlot}
 \end{figure}
 %
-\Cref{fig:modelAngleBoxPlot} shows the distirutions of the direction $\varphi$, inclination $\modelInc$ and the opening angle $\openingAngle$ (relativ angle from the mean fiber population orientation).
+\Cref{fig:modelAngleBoxPlot} shows the distributions of direction $\varphi$, inclination $\modelInc$, and opening angle $\openingAngle$, which is the relative angle to the mean fiber population orientation.
 \dummy{}.
-Because the inclination is depending on the direction, the opening angle analysed as well.
-The individual measurments of the opening angle distributions are available in \cref{app:modelDistribution}.
+Since the slope depends on the direction, the opening angle is also analyzed.
+The individual measurements of the opening angle distributions are available in \cref{app:modelDistribution}.
 \par
 % 
-The direction and inclination angles lie around $\SI{0}{\degree}$ for the first fiber population $\popa$ for all parameter combinations.
+The direction and inclination angles are around $\SI{0}{\degree}$ for the first fiber population $\popa$ for all parameter combinations.
 The variance decreases with increasing population fraction $\modelPsi$ of the second fiber population.
-The crossing angle $\modelOmega$ seems to have no effect.
-The opening angle $\openingAngle$ lies between around $\SI{10}{\degree}$ and $\SI{20}{\degree}$ with its mean value for all parameter configurations.
-The variance decreases with incraesing fiber population fraction $\modelPsi$.
-The crossing angle $\modelOmega$ seems to have no effect.
+The crossing angle $\modelOmega$ does not seem to have any influence.
+The opening angle $\openingAngle$ has its mean value between about $\SI{10}{\degree}$ and $\SI{20}{\degree}$ for all parameter configurations.
+The variance decreases with increasing fiber population fraction $\modelPsi$.
+The crossing angle $\modelOmega$ does not seem to have any influence.
 \par
+% 
 % second fiber population
-The diretion $\modelDir$ follows with its mean value the initial crossing angle $\modelOmega$.
-The fiber population fraction $\modelPsi$ seems to have no significant effect. 
-The inclination $\modelInc$ is stable for all parameters around $\SI{0}{\degree}$.
-The parameters seems to have no significant effect on its distribution.
-The opening angle $\openingAngle$ lies in between $\SI{15}{\degree}$ and $\SI{20}{\degree}$ for the second fiber population.
-For smaller crossing angles the mean values does almost not change.
-For large crossing angles the mean value of the opening angle increases with increasing $\modelPsi$.
+The direction $\modelDir$ follows with its mean value the initial crossing angle $\modelOmega$.
+The fiber population fraction $\modelPsi$ does not seem to have a significant influence. 
+The inclination $\modelInc$ is stable around $\SI{0}{\degree}$ for all parameters.
+The parameters do not seem to have a significant effect on their distribution.
+The opening angle $\openingAngle$ is between $\SI{15}{\degrees}$ and $\SI{20}{\degrees}$ for the second fiber population.
+For smaller crossing angles, the mean values almost do not change.
+For large crossing angles, the mean value of the opening angle increases with increasing $\modelPsi$.
 \par
 %
 \begin{figure}[!t]
 \centering
 \includegraphics[page=1]{gfx/rc1/images/cube_2pop_images_output_cube_2pop_135_rc1.pdf}
-\caption[solved model images]{Simulation model library. The inner $\SI{10}{\micro\meter} \times \SI{10}{\micro\meter} \times \SI{10}{\micro\meter}$ of the volume is shown.}
+\caption[]{3D visualization of the simulation model library \ac{3D-PLI}.
+The inner $\SI{10}{\micro\meter} \times \SI{10}{\micro\meter} \times \SI{10}{\micro\meter}$ of the volumes are shown.}
 \label{fig:modelImages}
 \end{figure}
 % 
-\Cref{fig:modelImages} shows for the subset the visualization of the fiber models.
-The visualization shows only the inner $\SI{10}{\micro\meter} \times \SI{10}{\micro\meter} \times \SI{10}{\micro\meter}$ cube so that more details are visible.
-Depending on the population fraction $\modelPsi$ more or less layered ausgepraegte structures parallel to the crossing plane are visible.
+\Cref{fig:modelImages} shows the visualization of the fiber models.
+The visualization shows the inner $\SI{10}{\micro\meter} \times \SI{10}{\micro\meter} \times \SI{10}{\micro\meter}$ cube, so more details are visible.
+Depending on the population $\modelPsi$, more or less layered distinct structures are visible parallel to the intersection plane.
 \par
 % 
-Depending on the parallel or crossing fibers populations, the runtime was in the range of $\SIrange{32}{40}{\hour}$ per model with $\SIrange{11000}{17000}{\steps}$.
+% Depending on the parallel or crossing fiber populations, the runtime was in the range of $\SIrange{32}{40}{\hour}$ per model with $\SIrange{11000}{17000}{\steps}$.
 %
 % 
 % 
 \subsection{Discussion}
 % 
 These models have the advantage of producing a naturally inspired angular distribution, which should result in a more realistic distribution.
-The orientation distribution of the simulation model library is stable for all crossing angles.
-However, the distribution variance is smaller for the fiber population with higher population fraction and vice versa.
+The orientation distribution of the simulation model library is stable at all crossing angles.
+However, the distribution variance is lower for the fiber population with higher population fraction and vice versa.
 This is plausible because the main fiber bundle exerts more radial pressure on the orientation, resulting in a more stable configuration for cylindrical objects.
-This will properly have a minor effect on the simulation results.
-The stiff models lead to a volume fraction depending on the crossing angle.
+This probably has little effect on the simulation results.
+The stiff models lead to a volume fraction that depends on the crossing angle.
 Whether this is also true for anatomical tissue remains to be explored.
-However, since real nerve fibers are not stiff and also not perfectly cylindrical, it can be assumend that it can be higher.
-Also the orientation distribution can be because of the models stiffness be slightly different from real tissue.
-The layered structure is reasanable for a random introduced pattern.
-Real tissue will also have different pattern, \eg{} interwoven fiber bundles instead of interwoven individual fibers.
-For the linear \ac{3D-PLI} simulations this hat no effect, since the order of the fibers the light is heating is kommutative for the intensity signal.
-Or more general, the order of the tissue matrices is kommutative for the intesity signal.
-Other field like \ac{dMRI} probably needs additional models concerning this.
+However, since real nerve fibers are not stiff and also not perfectly cylindrical, it can be expected to be higher.
+Also, the orientation distribution may differ slightly from real tissue due to the stiffness of the model.
+The layered structure can be understood for a randomly introduced pattern.
+Real fabric will also have a different pattern, \eg{} interwoven fiber bundles instead of interwoven single fibers.
+In linear \ac{3D-PLI} simulations, this has no effect because the order of fibers that light heats is commutative for the intensity signal.
+Or more generally, the order of the tissue matrices is commutative for the intensity signal.
+In other fields, such as \ac{dMRI}, additional models are probably required in this regard.
