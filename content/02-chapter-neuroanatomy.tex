@@ -1,8 +1,6 @@
 \newpage\null\thispagestyle{empty}\newpage
 \clearpage{\thispagestyle{empty}\cleardoublepage}
 \part{Basics}
-% \cleanchapterquote{We are part of the universe that has developed a remarkable ability: We can hold an image of the world in our minds. We are matter contemplating itself.}{Sean Carroll}{The Particle at the End of the Universe}
-% \acbarrier
 \parttoc
 % 
 % 
@@ -12,26 +10,14 @@
 \chapter{Neuroanatomy}
 \label{chap:neuro}
 %
-% \paragraph{TODO}
-% \begin{itemize}
-%     \item was für parameter treten wo im Gehirn auf
-% \end{itemize}
-%
-%
 \section{Introduction}
 %
 Neuroanatomy is the study of the structure of the brain.
 Its describing regions and the structure of the nervous system in humans and animals.
 Techniques such as \ac{dMRI}, fluorescence microscopy, microscopy on stained tissue, autoradiography (to name a few), have been able to study more and more structures from different perspectives in the brain with different resolutions, modalities and contrasts on different species.
-% 
 \par
 %
 This chapter gives a general overview of the structure of the brain with its most important regions as well as the nerve fiber architecture.
-% More in-depth information can be found, for example, in the following literatures \dummy{}.
-% 
-%
-% 
-% The human brain is one of the most complex organs with a great diversity of cells, connections, topography and resulting functionalities.
 % 
 % 
 %
@@ -41,18 +27,19 @@ The mammal brain consists of three main parts: the brainstem, the cerebellum and
 % 
 The brainstem is the connection between the different brain areas and the spinal cord located at the bottom of the brain.
 It can be further subdivided into the midbrain, the pons and the medulla obiongata.
-The cerebellum is located at the lower rear of the brain. Its most important function is motor control.
-It is highly folded \todo{species?} and therefore has a particularly large surface area.
+The cerebellum is located at the lower rear of the brain.
+Its most important function is motor control.
+It is highly folded and therefore has a particularly large surface area.
 The cerebrum is the largest part of the human brain.
-As the cerebellum its surface is folded as well \todo{species?}.
+As the cerebellum its surface is folded as well.
 The cerebrum is split into a left and right hemisphere.
 In addition, the cerebrum can be divided into four parts:
 the frontal, parietal, temporal, and occipital lobes (see \cref{fig:brainLobes}).
 The frontal lobe is responsible for voluntary movements of specific body parts as well as the human personality.
-The parietal lobe's main functionalities are the processsing of the sensory informations.
+The parietal lobe's main functionalities are the processing of the sensory information.
 The primary function of the occipital lobe is signal processing of the visual system.
 The temporal lobe contains auditory functions and language perception in addition to visual memories.
-Beneath the brain surface there are also other structures such as the basal gangila or the thalamus.
+Beneath the brain surface there are other structures such as the basal gangila or the thalamus.
 \par
 % 
 \begin{figure}[!t]
@@ -70,32 +57,20 @@ Beneath the brain surface there are also other structures such as the basal gang
         \label{fig:coronalStained}%
         \todo{BB 4201} Coronal section stained for cell bodies. The \ac{GM} is dark while the \ac{WM} is bright. The left and right hemisphere is connected via the corpus calosum.}%
     [\tikzwidth]{\includegraphics[height=0.3\textwidth]{gfx/brain/BB_4201.png}}
-    % \begin{tikzpicture}[]
-    %     \node[inner sep=0pt, anchor = south west] (fig) at (0,0)
-    %     {\includegraphics[height=0.3\textwidth]{gfx/brain/BB_4201.png}};
-    %     \coordinate (WM1) at ($(fig.north west)!0.6!(fig.north east)$);
-    %     \coordinate (WM2) at ($(fig.north east)!0.35!(fig.south east)$);
-    %     \draw[RED, ultra thick, <-] (WM1 |- WM2) -- ++ (-42:0.75) node[pos=1, anchor=north] {\textbf{WM}};
-    %     \coordinate (GM1) at ($(fig.north west)!0.275!(fig.north east)$);
-    %     \coordinate (GM2) at ($(fig.north east)!0.125!(fig.south east)$);
-    %     \draw[GREEN, ultra thick, <-] (GM1 |- GM2) -- ++ (-65:0.75) node[pos=1, anchor=north] {\textbf{GM}};
-    % \end{tikzpicture}
-% }
 \caption{Illustration of the human brain and a cell body stained coronal section.}
 \label{fig:humanBrain}
 \end{figure}
 %
-The cerebellum and cerebrum contain a \ac{GM} stucture at the brain surface.
+The cerebellum and cerebrum contain a \ac{GM} structure at the brain surface.
 This structure is filled with neurons.
-These cells have the task of processing the information of all signals coming from inside and outside of the brain.
-These cells are arranged in cortical layers that have different thicknesses, cell types, and densities specific to a brain area.
+These cells have the task of processing the information of all signals coming from inside and outside the brain.
+Such cells are arranged in cortical layers that have different thicknesses, cell types, and densities specific to a brain area.
 These cells have a relatively high density and are not only locally interconnected with each other, but connect also with different brain areas.
-%  (see \cref{fig:nerveFiber,fig:cortLayers}).
 Therefore, the folding of the brain is particularly important to increase the surface and therefore the number of cells.
 In the human brain there are several billions of nerve cells.
 There are many types of cells, \eg{} granule or pyramidal cells.
 The highly interconnected structure and arrangement of the various cells is the source of its high number of different functionalities.
-It is imporatant to investiagte the human brain to gain a better understanding of the brain's function and an improved understanding of pathophysiological processes that may lead to improved medical treatment of brain deseases.
+It is important to investigate the human brain to gain a better understanding of the brain's function and an improved understanding of pathophysiological processes that may lead to improved medical treatment of brain diseases.
 %
 %
 %
@@ -133,20 +108,19 @@ It travels through the brain often associated with nerve fiber bundles to its de
 %
 The axon is surrounded by a myelin sheath, a lipid layered structure deriving from nearby olegodendrides (see \cref{fig:human-brain}).
 The myeling electrically insulates the axon and improves the speed of propagation of the electrical action potential along the axon and also its signal strength.
-The diamater of the myelin ranges from about $\SI{0.5}{\micro\meter}$ to several $\si{\micro\meter}$ (see \cref{tag:axonDiameter}).
-There are many different types of axons.
+The diameter of the myelin ranges from about $\SI{0.5}{\micro\meter}$ to several $\si{\micro\meter}$ (see \cref{tag:axonDiameter}).
+There are many types of axons.
 Some contain a very thick myelin layer, while others have none.
-The high density of axons and myelin makes the brainappear white and is therefore called \ac{WM}, whereas the outer cell bodys appear darker and ist called \ac{GM}.
+The high density of axons and myelin makes the brain appear white and is therefore called \ac{WM}, whereas the outer cell bodies appear darker and is called \ac{GM}.
 This color difference is clearly visible in a Nissle stained histological sections (see \cref{fig:coronalStained}).
 \par
 %
 To enhance the contrast of the nerve fibers to the background, staining like Nissle is used to darken the myelin (see \cref{fig:brainMyelinStain}).
 This allows to follow small nerve fibers down to individual nerves depending on their myelination degree.
-Larger nerve fiber bundles are such dark, that mostly no orientation can be exracted.
+Larger nerve fiber bundles are such dark, that mostly no orientation can be extracted.
 \par
 % 
-\Cref{fig:brainMyelinStain} shows a nissle stained brain section.
-% Both single nerve fibers and nerve fiber bundles are visible.
+\Cref{fig:brainMyelinStain} shows a Nissle stained brain section.
 Between neurons, individual nerve fibers form complex reticular structures.
 Several nerve fiber bundles trace their paths through the thalamus and are visible as dark structures.
 % 
@@ -210,7 +184,6 @@ From studies with \ac{dMRI} and electron microscopy
 \pgfplotstabletypeset[
     thesisTableStyle,
     font=\footnotesize,
-    % col sep=comma,
     columns/area/.style={string type},
     columns/mean/.style={string type},
     columns/std/.style={string type},

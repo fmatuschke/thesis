@@ -7,7 +7,7 @@
 % 
 This chapter gives an overview of \ac{3D-PLI}.
 First, the necessary preparation of the brain, its cutting process and subsequent covering is described.
-The second part describes the \ac{3D-PLI} microscopic technique which allows to measure the orientation of the opical axis which corresponds to the orientation of the myelinated nerve fibers.
+The second part describes the \ac{3D-PLI} microscopic technique which allows measuring the orientation of the optical axis which corresponds to the orientation of the myelinated nerve fibers.
 The origin of the measured \ac{3D-PLI}-signal as well as the optical limits in microscopy is described as a basis for the simulation in the subsequent chapters. 
 % 
 % 
@@ -18,12 +18,12 @@ After the death of the organism the brain is removed after the death from the sk
 To prevent the brain from further degeneration the tissue is immersed in a solution of $\SI{4}{\percent}$ formaldehyde and $\SI{20}{\percent}$ glycerin for several days.
 In order to prepare the brain for sectioning, it is frozen at $\SI{-80}{\celsius}$.
 Then the tissue is fixated with a liquid glue on a plate.
-This allows the plate with the brain be placed within a microtom.
+This allows the plate with the brain be placed within a microtome.
 The microtome consist out of a chamber cooled with about $\SI{-70}{\celsius}$.
 A vibrating very sharp knife is placed in such a way, that the brain can be moved along it to section the brain into $\SI{60}{\micro\meter}$ sections (see \cref{fig:brain_sectioning}).
 The sections are manually placed after each cut onto a glass specimen.
-The tissue is finally applied with glycrin and siled with another thin optical glass (see \cref{fig:brain_section}).
-To preserve the sections for the microscopic measurement, they are placed in a freecer at approximatly $\SI{-70}{\celsius}$.
+The tissue is finally applied with glycerin and sealed with another thin optical glass (see \cref{fig:brain_section}).
+To preserve the sections for the microscopic measurement, they are placed in a freezer at approximately $\SI{-70}{\celsius}$.
 The actual \ac{3D-PLI} measurement takes place at room temperature.
 % 
 \begin{figure}[!t]
@@ -54,7 +54,7 @@ By rotating the polarizer, the change in intensity is measured with a \ac{CCD}-s
 The first microscopic setup called \ac{LAP} is capable of measuring an entire human brain slice in a single image with a pixel size of $\SI{60}{\micro\meter}$. \footnote{It is also possible to aquire images with a pixel size of $\approx \SI{40}{\micro\meter}$ and $\approx \SI{20}{\micro\meter}$ by changing the distance from the camera to the tissue.}
 In addition, the tissue sample can be tilted.
 This causes a change in the orientation of the nerve fibers, resulting in a change in the measured signal.
-This change is later used to analyze the 3D orientation of the nerve fibers inside the section (see \cref{sec::InclAnalysis}).
+This change is later used to analyse the 3D orientation of the nerve fibers inside the section (see \cref{sec::InclAnalysis}).
 The optical setup of the \ac{LAP} is slightly different in that the quarter-wave retarder is placed between the first polarizer and the tissue section, and all three optical elements are rotated simultaneously.
 This produces the same results, but dust particles on one of the optical elements can be identified more easily because they are also rotating.
 The other microscopes are located in a closed container that protects the optical elements from contamination.
@@ -152,14 +152,14 @@ The \textit{retardation} corresponds to the amplitude of the signal, \ie{} the s
 %
 \section{Tilting analysis} \label{sec::InclAnalysis}
 %
-To be able to analyze the optical axis inclination $\alpha$, one has to distinguish the relative strength of the birefringence from the term $\cos^2(\alpha)$.
+To be able to analyse the optical axis inclination $\alpha$, one has to distinguish the relative strength of the birefringence from the term $\cos^2(\alpha)$.
 For this purpose, a tiltable sample was developed that allows the light signal to be measured through the tissue at a different angle of incidence \cite{Axer2011, Wiese:887678} (see \cref{sec:expSetup}).
 This means that the tissue, and therefore the nerve fibers, change their orientation due to the tilt angles $\theta, \varphi$.
 In addition, the distance the light travels through the tissue increases by $1/\cos(\theta)$ (see \cref{fig:tilted_side_view}).
 \par
 %
 Depending on the \Pixelsize{}, this light passes through the same volume but with a different orientation.
-Therefore, a measurement of multiple light paths can be captured, and the resulting signals can be used to analyze the inclination $\alpha$ and relative birefringence tissue thickness \trel{}.
+Therefore, a measurement of multiple light paths can be captured, and the resulting signals can be used to analyse the inclination $\alpha$ and relative birefringence tissue thickness \trel{}.
 The angle of incidence of the light changes the path of the light by Snellius law \cref{eq:Snellius}.
 This results in a perspective shift that must be corrected by a registration process.
 However, this effect is neglected in the simulation, since it only adds a parallel offset.
@@ -193,12 +193,12 @@ Ernst Abbe was one of the first to describe that the resolution correlates with 
 d=\frac{ \lambda}{2 n \sin \theta} = \frac{\lambda}{2\mathrm{NA}} 
 \end{align}
 $d$ is the minimum resolvable distance, $n$ the refractive index, $\theta$ the angle of a light spot, which can be combined to the better known numerical aperture $\mathrm{NA}$.
-A more comman definition is Rayleigh limit given by
+A more common definition is Rayleigh limit given by
 \begin{align}
 d=1.22\frac{\lambda}{2\mathrm{NA}} 
 \end{align}
 , where $d$ is the distance between two light spots, where the first light spots maxima is in the seconds light spots first minima (see \cref{fig:rayleigh}).
-For the wavelength used in \ac{3D-PLI} with $\lambda = \SI{525}{\nano\meter}$ and a numerical aperture of $\mathrm{NA} \approx \SI{0.15}{}$ , which results in a limit of about $\SI{2.1}{\micro\meter}$ (see \cite{MenzelDissertation}).
+For the wavelength used in \ac{3D-PLI} with $\lambda = \SI{525}{\nano\meter}$ and a numerical aperture of $\mathrm{NA} \approx \SI{0.15}{}$, which results in a limit of about $\SI{2.1}{\micro\meter}$ (see \cite{MenzelDissertation}).
 %
 \begin{figure}[!t]
 \setlength{\tikzwidth}{0.5\textwidth}
@@ -214,7 +214,7 @@ To account for optical setup, three things must be applied to a simulated measur
 %
 \paragraph{Blurring}
 To account for the blurring or out of focus image, the light rays intensity must be blurred on the \ac{CCD}-array.
-This is done via a 2D gaussian convolution $g$ ith the image $f$:
+This is done via a 2D Gaussian convolution $g$ of the image $f$:
 \begin{align}
 \begin{split}
     (f * g)(x,y) =& \iint f(\tau,\upsilon) \cdot g(x-\tau, y-\upsilon)d\tau \, d\upsilon\\
@@ -242,29 +242,3 @@ To account for this, a noise model must be applied to each image pixel.
 \par
 %
 All three effects must be characterized for the system being simulated.
-%
-%
-% %
-% \section{Computational speedup techniques}\label{sec:theorySpeedup}
-% %
-% Among other specific techniques described in the next chapters \cref{chap:sof:modelling,cha:sof:simulation}, two important technique are used to speed up the calculations.
-% \par
-% %
-% The computationally intensive code is written in \cpp{}.
-% There, the \code{std::vector} has the advantage that the data in memory is linear.
-% The data must be prepared and sent from the \ac{RAM} to the cache of the \acp{CPU}.
-% This takes relative to the time for a singlue \ac{CPU} instruction a very long time.
-% The main advantage of the cache is that it is very fast, however its capacities are usually in the order of a few mega bytes and therefore quite limited.
-% It is built inside the \ac{CPU}.
-% Modern \acp{CPU} have a built-in method called \textit{cache prefetching}.
-% The \ac{CPU} cache prefetcher is a sophisticated directive that requests not only the element at address $i$ in memory, but also the elements next to it ($i+1$ or $i-1$, depending on the algorithm).
-% Since many algorithms traverse arrays, the next element to be computed is usually the next (or previous) element.
-% Therefore, the total time required to copy the data from the memory to the cache is reduced.
-% It can be shown that for linear operations on memory, the cache prefetcher reduces the time so much that it behaves as if the \ac{CPU} had an infinite cache.
-% \par
-% %
-% Another technique is to use modern compilers such as \name{Clang v11}\footnote{\url{https://clang.llvm.org/}} or \name{G++ v10}\footnote{\url{https://gcc.gnu.org/}}.
-% These have an optimization algorithms built in that optimizes the code to the architecture of the machine, and much more sophisticated methods.
-% For example, if the number of iterations is known at compile time, a for loop can be \name{unrolled} to speed up the computations since it no longer needs to check if the conditions are met to end of each loop cycle.
-% To review these optimizations, the time critical code was tested with tools like \name{Compiler Explorer}\footnote{\url{https://godbolt.org/}} and \name{C++ Insight}\footnote{\url{https://cppinsights.io/}}.
-% %
