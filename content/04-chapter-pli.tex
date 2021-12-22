@@ -236,7 +236,7 @@ To account for this, a noise model must be applied to each image pixel.
 \cite{Wiese:887678} showed that this can be modelled via a normal distribution:
 %
 \begin{align}
-    I = I + \gauss(\sigma, \mu=I)
+    I = \gauss(\sigma = \sqrt{I*gain}, \mu=I)
 \end{align}
 %
 \par

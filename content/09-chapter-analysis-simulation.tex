@@ -4,29 +4,15 @@
 \label{cha:simulation_analysis}
 % \minitoc
 %
-\todo{ylabel sideways or next to (0,1)?}
-Only the inclination angle $\modelInc$ of the fiber population for \ac{3D-PLI} is important for a single fiber popuation since the direction only adds a shift in the sinosoidal phase.
-Also only positive inclination angles need to be simulated since it would be a directional shift of $\SI{180}{\degree}$.
-This needs to be done for every inclination angle of the first fiber population.
-\begin{figure}[t]
-\centering
-\setlength{\tikzwidth}{0.40\textwidth}
-\subcaptionbox{\label{subfig:sphere:hista1} The 3D plots above can be represented as 2D polar plots. The thicker circle indicates the currect orientation of the first fiber population.}
-[.475\textwidth]{\inputtikz{gfx/model/sphere_hist_a}}\hfill
-\subcaptionbox{\label{subfig:sphere:histb} The 3D plots above can be represented as 2D polar plots.}
-[.475\textwidth]{\inputtikz{gfx/model/sphere_hist_b}}
-\caption{Design of polar plots.}
-\label{fig:polarplotdesign}
-\end{figure}
-% 
+% \todo{ylabel sideways or next to (0,1)?} 
 %
 \section{Introduction}
 %
-This chapter focuses on the simulation of \ac{3D-PLI}.
-The first part focuses on the determination of all required physical parameters of the tissue and the microscope as well as on the characterization of the simulation parameters.
-These parameters are used to simulate the previously created models.
-The simulations are evaluated using the routine algorithms implemented in \ac{fastPLI}.
-The focus of the evaluations of the results is on the accuracy of the tilting analysis for different orientations and crossing configurations.
+This chapter addresses the simulation of \ac{3D-PLI} with the generate model library.
+The first part focuses on the determination of all required physical parameters of the tissue and the microscope and on the characterization of the simulation parameters.
+Then the model library is simulated with all sampled orientations.
+The orientation of the simulations is calculated using the routine algorithms implemented in \ac{fastPLI}.
+The focus of the evaluation of the results is on the accuracy of the tilt analysis for different orientations and crossing configurations.
 %
 %
 %
@@ -34,8 +20,10 @@ The focus of the evaluations of the results is on the accuracy of the tilting an
 %
 \subsection{Optical resolution}
 %
-As described in \cref{sec:opticalResolution}, optical resolution depends on aberration and diffraction, which in turn depend on a variety of factors.
-Optical resolution and resampling are modeled as described in \cref{sec:ccdOptic}.
+Optical resolution is dependent on aberration and diffraction, which are in turn dependent on a multitude of parameters (see \cref{sec:opticalResolution}).
+They will be moddeld as described in \cref{sec:ccdOptic}.
+First, however, the necessary parameters for the models have to be evaluated.
+\par
 %
 \begin{figure}[!t]
 \centering
@@ -52,8 +40,8 @@ Optical resolution and resampling are modeled as described in \cref{sec:ccdOptic
 \inputtikz{gfx/chap8/usaf_line_plots_lr} &
 \inputtikz{gfx/chap8/usaf_line_plots_up} \\[-1em]
 %
-\subcaptiontab{0.475\textwidth}{\label{fig:usaf_lines_lr}Centered line plots left to right} &
-\subcaptiontab{0.475\textwidth}{\label{fig:usaf_lines_ud}Centered line plots top to bottom}
+\subcaptiontab{0.475\textwidth}{\label{fig:usaf_lines_lr}Centered line plots left to right. \todo{axis}} &
+\subcaptiontab{0.475\textwidth}{\label{fig:usaf_lines_ud}Centered line plots top to bottom. \todo{axis}}
 % 
 \end{tabular}
 \caption{\acs{LMP} data. Group 8-1 with $\SI{1.95}{\micro\meter}$ indicates a resulting resolution at about \dummy{} which corresponds to an optical convolution of $\opticsigma = \SI{0.75}{\pixel}$.}
@@ -62,24 +50,23 @@ Optical resolution and resampling are modeled as described in \cref{sec:ccdOptic
 %
 To measure the optical resolution of the microscope, previous measurements and analyses are repeated \cite{MenzelMaster}.
 For this purpose, the \textit{1951 United States Air Force (USAF) resolution test chart}\footnote{U.S. Air Force MIL-STD-150A standard of 1951} is used.
-It consists of several patterns that have three slots with defined spacing and widths (see \cref{fig:usaf}).
+It consists of several patterns that have three slots with specific spacing and width (see \cref{fig:usaf}).
 They are arranged in fields of three vertical and horizontal lines.
 The fields are arranged in a spiral that shrinks from group to group by a factor $\SI{0.5}{}$.
-To determine the line width, the fields are ordered numerically by a main group $i$ and a subgroup $j$.
-To determine the resolution of the microscope, it is necessary to determine the group from which the slits can still be resolved according to the Rayleigh criteria (see \cref{fig:rayleigh}).
-For this purpose, the intensity profiles along the perpendicular line of the three slits (vertical and horizontal) are analyzed.
+To determine the line width, the fields are numerically ordered according to a main group $i$ and a subgroup $j$.
+To determine the resolution of the microscope, it is necessary to determine the group from which the slits can still be resolved according to the Rayleigh criterion (see \cref{fig:rayleigh}).
+For this purpose, the intensity profiles perpendicular to the the three slits (vertical and horizontal) are analyzed.
 The variance of the measured intensity is measured by analyzing all parallel lines in the slits.
 %
 \paragraph{Results and Discussion}
-\Cref{fig:usaf_image} shows a section of a captured \ac{LMP} setup image.
+\Cref{fig:usaf_image} shows a section of the capured image with the \ac{LMP} microscope.
 The highlighted areas show the analyzed groups 7-6 to 8-2.
-The first area of group 7-6 \raisebox{.25em}{\tikzset{external/export next=false}\tikz \draw[RED,ultra thick,dashed](0,0)--(0.25,0);} has a line width of $\SI{2.19}{\micro\meter}$.
-The second group 8-1 \raisebox{.25em}{\tikzset{external/export next=false}\tikz \draw[GREEN,ultra thick,dashed](0,0)--(0.25,0);} has a line width of $\SI{1.95}{\micro\meter}$.
-The last group 8-2 \raisebox{.25em}{\tikzset{external/export next=false}\tikz \draw[BLUE,ultra thick,dashed](0,0)--(0.25,0);} has a linewidth of $\SI{1.74}{\micro\meter}$.
+The area of group 7-6 \raisebox{.25em}{\tikzset{external/export next=false}\tikz \draw[RED,ultra thick,dashed](0,0)--(0.25,0);} has a line width of $\SI{2.19}{\micro\meter}$, group 8-1 \raisebox{.25em}{\tikzset{external/export next=false}\tikz \draw[GREEN,ultra thick,dashed](0,0)--(0.25,0);} of $\SI{1.95}{\micro\meter}$.
+and group 8-2 \raisebox{.25em}{\tikzset{external/export next=false}\tikz \draw[BLUE,ultra thick,dashed](0,0)--(0.25,0);} of $\SI{1.74}{\micro\meter}$.
 The intensity line profiles for the vertical and horizontal cases are shown in \cref{fig:usaf_lines_lr,fig:usaf_lines_ud}.
 The Rayleigh criterion can be used to determine the resolution in the second group region and thus at $\SI{1.95}{\micro\meter}$.
 This reproduces the measurements in the \cite{MenzelMaster}.
-Therefore, the convolution to be applied (see \cref{sec:opticalResolution}) is set to $\opticsigma = \SI{0.75}{\pixel}$.
+Therefore, the convolution parameter is set to $\opticsigma = \SI{0.75}{\pixel}$ for the simulation (see \cref{sec:opticalResolution}).
 %
 %
 %
@@ -113,29 +100,29 @@ Therefore, the convolution to be applied (see \cref{sec:opticalResolution}) is s
 %
 % SUBCAPTIONS
 \subcaptiontab{0.475\textwidth}{\label{fig:parameterModelNoise} Linear regression results in a gain factor of $\opticgain_{\mathit{LMP}} = \SI{0.1175}{}(?)$.} &
-\subcaptiontab{0.475\textwidth}{\label{fig:noiseplot}Expected noise range for different species. \todo{check values}}
+\subcaptiontab{0.475\textwidth}{\label{fig:noiseplot}Expected noise range for human, vervet monkey and rodent. The noise correlates linearly with the light intensity.}
 \end{tabular}
 %
-\caption{Intensity noise measurements and results}
+\caption{Camera noise measurements.}
 \label{fig:parameterModelGain}
 \end{figure}
 %
-As described in \cref{sec:ccdOptic}, optical noise must be modeled by a noise model.
+As described in \cref{sec:ccdOptic}, optical noise is modeled with a Gaussian model.
 In \cite{Wiese:887678}, the gain factor $\opticgain$ of the microscopic setup was measured by multiple measurements of an image with a variety of intensity values.
 The gain factor describes the linearity between a measured signal and the corresponding noise.
 The same type of measurement and analysis is performed here with the \ac{LMP} setup.
-\par
-To obtain statistics for a large number of intensity values, the specimen stage is covered with a fully absorbing cover so that half of the image is dark.
-In addition, the focal length is changed so that the light is spread over the entire image sensor under the cover (see \cref{fig:pliFocusImage}).
+This requires several captured images with different pixel intensities.
+This is realized by covering the sample stage with a fully absorbing cover so that half of the image is dark.
+In addition, the focal length is changed so that the light is distributed over the entire image sensor under the cover (see \cref{fig:pliFocusImage}).
 By measuring $N=\SI{500}{}$ images, the variance for the different intensity values is determined.
 %
 \paragraph{Results and discussion}
 The results are shown in \cref{fig:parameterModelNoise} and show a gain value of $\opticgain_{\mathit{LMP}} = \SI{0.1175}{}(?)$, which matches the hardware specifications \todo{check and ref}.
-This gain factor can be used by the model
+This gain factor is used to model the integer noise with
 \begin{align}
 f(x) = \floor{\mathrm{normal}(\mu = x, \sigma=\sqrt{\opticgain x})+0.5}
 \end{align}
-for intensities $I > 0$, $I \gg \sqrt{\opticgain I}$ and integer values.
+for intensities $I > 0$, $I \gg \sqrt{\opticgain I}$.
 %
 %
 %
@@ -144,20 +131,18 @@ for intensities $I > 0$, $I \gg \sqrt{\opticgain I}$ and integer values.
 \begin{figure}[p]
 \centering
 \setlength{\tikzwidth}{0.75\textwidth}
+\tikzset{external/export=false} % takes long for the first time
 \begin{tabular}{c}
-%
-\tikzset{external/export next=false} % takes long for the first time
 \inputtikz{gfx/data/vervet_transmittance} \\[-2em]
-\subcaptiontab{0.75\textwidth}{\label{fig:brain_trans}Transmittance} \\[1.5em]
-\tikzset{external/export next=false}% takes long for the first time
+\subcaptiontab{\tikzwidth}{\label{fig:brain_trans}Transmittance} \\[1.5em]
 \inputtikz{gfx/data/vervet_retardation} \\[-2em]
-\subcaptiontab{0.75\textwidth}{\label{fig:brain_ret}Retardation}
+\subcaptiontab{\tikzwidth}{\label{fig:brain_ret}Retardation}
 %
 \end{tabular}
 \caption{%
-Transmittance and retardation map of a coronal section of a Vervet monkey $\SI{549}{}$.
-The absorption coefficient and birefingence strength can be estimated from flat fibers, which are present in the corpus calosu (CC).
-For this purpose, two \acsp{ROI} are annotated with $\SI{1125858}{\pixel}$ on the left and $\SI{1064629}{\pixel}$ on the right.}
+Transmittance and retardation map of a vervet monkey of the coronal section $\SI{549}{}$.
+The absorption coefficient and birefringence strength can be estimated from the flat fibers present in the corpus calosum (CC).
+The homogeneous regions annotated for this purpose contain $\SI{1125858}{\pixel}$ on the left and $\SI{1064629}{\pixel}$ on the right.}
 \label{fig:brain_ret_trans}
 \end{figure}
 %
@@ -186,14 +171,13 @@ For this purpose, two \acsp{ROI} are annotated with $\SI{1125858}{\pixel}$ on th
 %
 \end{tabular}
 \caption{%
-trans left: $1200 \pm 500$,
-trans right: $1200 \pm 500$,
-bg: $4530 \pm 240$,
-fuellgrad $0.75: \mu \approx 30 \pm 10$,
-fuellgrad $0.75: \mu \approx 30 \pm 10$,
-ret left: $0.83 \pm 0.07$,
-ret right: $0.80 \pm 0.07$
-\todo{what happens in the center?}}
+Transmittance left: $1200 \pm 500$,
+right: $1200 \pm 500$.
+Background transmittance: $4530 \pm 240$.
+% fuellgrad $0.75: \mu \approx 30 \pm 10$,
+% fuellgrad $0.75: \mu \approx 30 \pm 10$,
+Retardation left: $0.83 \pm 0.07$,
+right: $0.80 \pm 0.07$.}
 \label{fig:brain_ret_trans_zoom}
 % \end{figure}
 %
@@ -217,13 +201,15 @@ ret right: $0.80 \pm 0.07$
 \includegraphics[page=5]{gfx/rc1/tissue/birefringence_output_bf_rc1.pdf}\\[1em]
 \multicolumn{2}{c}{\includegraphics[page=7]{gfx/rc1/tissue/birefringence_output_bf_rc1.pdf}}
 \end{tabular}
-\caption{Simulations of tissue to investigate transmittance and birefringence strengths at different \Voxelsize s \voxelsize{}. The experimental values (see \cref{fig:brain_ret_trans_zoom}) are reached similar at a value of about $\si{0.008}{}$.}
+\caption{Resulting transmittance and birefringence strengths at different \Voxelsize s \voxelsize{} for flat fiber population simulations.
+The transmittance depends only on the voxelsize and its variance increases with increasing voxelsize.
+The experimentally measured retardation of about $\SI{80}{\percent}$ (see \cref{fig:brain_ret_trans_zoom}) is reached in the simulation with a birefringence strength of about $\si{0.008}{}$. Larger voxelsizes result in a higher variance.}
 \label{fig:parameterModelSim}
 \end{figure}
 %
 The absorption coefficient $\absorp{}$ and the birefringence $\dn{}$ have to be estimated from the tissue to use appropriate values for the simulation.
 As the literature shows, these values are in the range of $\dn{}$ \dummy{}.
-Since the models created here use stiff fiber segments the volume density cannot reach the high density usually present in \ac{WM}.
+Since the models created here use stiff fiber segments, the volume density cannot reach the high density normally present in \ac{WM}.
 To overcome this problem, the absorption and birefringence strengths must be increased to obtain comparable results.
 \par
 %
@@ -232,11 +218,11 @@ In the coronal section, the corpus callosum is suitable for this purpose.
 It is the main fiber connection between the two cerebral hemispheres (see \cref{fig:brain_ret_trans}).
 In a central section, the nerve fibers generally lie flat in the section.
 \Cref{fig:brain_ret_trans} shows transmission and retardation maps of the coronal section of the velvet monkey, and \cref{fig:brain_ret_trans_zoom} shows a magnified version.
-The retardation map shows a visible reduction in retardation in the center of the corpus callosum.
+The retardation map shows a visible reduction of retardation in the center of the corpus callosum.
 Therefore, this central region is neglected for homogeneity.
 A left and a right region remain, which may be homogeneous in both transmission and retardation (see \cref{fig:histTrans,fig:histRet}).
 The left region has $\SI{1125858}{}$ number of pixels, the right part $\SI{1064629}{}$.
-The same measurements are performed for human and rodent in the corpus callosum (see Appendix). 
+The same measurements are made for human and rodent in the corpus callosum (see Appendix \todo{label}). 
 %
 %
 %
@@ -247,7 +233,7 @@ Both effects can be modeled mathematically in this linear optical simulation as 
 A drawback of this simulation is that the scattering is not constant for all fiber configurations and orientations \cite{MenzelDissertation}.
 Therefore, the measured absorption coefficient is only valid for the same fiber configurations as in the region.
 The absorption only changes the transmittance and thus the relative noise, but not the delay or direction of the signal.
-Since the noise is quite low in this microscopic configuration, it is unlikely to affect the results.
+Since the noise in this microscopic configuration is quite low, it is unlikely to affect the results.
 \par
 %
 To measure the absorption, the transmittance of the coronal slice in the \ac{ROI} of the corpus callosum is measured against the background value.
@@ -258,7 +244,7 @@ These values are then increased according to the volume fraction of the models a
 A relative transmittance of about $\SIrange{20}{30}{\percent}$ is present within the \ac{ROI} of the corpus callosum.
 The simulation parameters must be set to achieve a similar transmittance value for the models.
 This means that for a $\SI{60}{\micro\meter}$ thick section, the absorption coefficient $\absorp{}$ is about $\SI{30}{\milli\meter\tothe{-1}}$.
-The absorption for the rodent is about $\SI{8}{\milli-meter-tothe{-1}}$ and that of the human is about $\SI{65}{\milli-meter-tothe{-1}}$.
+The absorption for rodent is about $\SI{8}{\milli-meter-tothe{-1}}$ and human is about $\SI{65}{\milli-meter-tothe{-1}}$.
 \par
 %
 \Cref{fig:simTransValues} shows the simulated transmittance values for different fiber radii.
@@ -370,11 +356,29 @@ This implementation is used to compute the discretized volumes, simulate the sig
 This pipeline is used to simulate and analyze the \ac{3D-PLI} signal for the model library with different orientations of two crossing fiber populations.
 \Cref{tab:simParameters} lists the parameters of the simulation in the variable notation of \ac{fastPLI}.
 With a pixel size of \SI{1.3}{\micro\meter}, $\SI{2500}{\pixel}$ are available per simulation for statistical analysis.
-The models are tilted in steps of $\Delta \modelInc = \SI{5}{\degree}$ for a single fiber population and by $\Delta \modelInc = \SI{30}{\degree}$ for crossing fiber populations. The latter are then also rotated around the first fiber population (see \cref{fig:twomodelpopdesign}).
+The models are tilted in steps of $\Delta \modelInc = \SI{5}{\degree}$ for a single fiber population and by $\Delta \modelInc = \SI{30}{\degree}$ for crossing fiber populations. The latter are then also rotated around the first fiber population (see \cref{fig:simModelSphereSample}).
 Depending on the crossing angle \modelOmega{}, the step size is adjusted so that the spatial distance between two resulting rotations is close to $\Delta \modelRot = \SI{15}{\degree}$.
-This ensures that the sphere is sampled reasonably equidistantly given the computation time (see \cref{subfig:sphere:histb}).
 %
-%
+% Only the inclination angle $\modelInc$ of the fiber population for \ac{3D-PLI} is important for a single fiber popuation since the direction only adds a shift in the sinosoidal phase.
+% Also only positive inclination angles need to be simulated since it would be a directional shift of $\SI{180}{\degree}$.
+% This needs to be done for every inclination angle of the first fiber population.
+\begin{figure}[t]
+\centering
+\setlength{\tikzwidth}{0.40\textwidth}
+\subcaptionbox{The spheres surface is sampled around the first fiber population axis $\popa$ of inclination $\modelInc$ with a crossing angle $\modelOmega$ and a rotation $\modelRot$.
+The number of samples is an integer close so that the distance between two inclinations are \dummy{} over the sphere.
+\todo{improve view angle}}
+[.475\textwidth]{\inputtikz{gfx/model/sphere_models_c}}
+\hfill
+\subcaptionbox{The results of a value over all orientations of the second fiber population $\popb$ is represented as polar plot.
+The orientation of the first fiber population $\popa$ is marked as a black circle.
+The \dummy{} let mirror the results at the x-axis.}
+[.475\textwidth]{\inputtikz{gfx/model/sphere_hist_b}}
+\caption{Two population of fiber models are \dummy{}. For a fixed first fiber population orientation the second is sampled via the crossing angle of the models an a rotation around the first fiber population.}
+\label{fig:simModelSphereSample}
+\end{figure}
+% 
+% 
 %
 \subsection{Single inclined fiber population}
 \label{sec:resSingleIncl}

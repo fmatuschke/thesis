@@ -314,7 +314,7 @@ The computationally intensive code is written in \cpp{}.
 There, the \code{std::vector} has the advantage that the data in memory is linear.
 The data must be prepared and sent from the \ac{RAM} to the cache of the \acp{CPU}.
 This takes relative to the time for a single \ac{CPU} instruction a very long time.
-The main advantage of the cache is that it is very fast, however its capacities are usually in the order of a few \si{\mega\bytes} and therefore quite limited.
+The main advantage of the cache is that it is very fast, however its capacities are usually in the order of a few $\si{\mega\byte}$ and therefore quite limited.
 It is built inside the \ac{CPU}.
 Modern \acp{CPU} have a built-in method called \textit{cache prefetching}.
 The \ac{CPU} cache prefetcher is a sophisticated directive that requests not only the element at address $i$ in memory, but also the elements next to it ($i+1$ or $i-1$, depending on the algorithm).

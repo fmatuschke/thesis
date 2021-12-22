@@ -30,7 +30,7 @@ x y label
 1608 0.008548 Roden
 };
 \path (axis cs: 115, 0.0319) -- (axis cs: 2.048e+03, 7.574e-03) node[pos=0,anchor=south west, sloped] {Human};
-\path (axis cs: 574, 0.01430) -- (axis cs: 2.048e+03, 7.574e-03) node[pos=0,anchor=south west, sloped] {Vervet};
+\path (axis cs: 574, 0.01430) -- (axis cs: 2.048e+03, 7.574e-03) node[pos=0,anchor=north east, sloped] {Vervet};
 \path (axis cs: 1608, 0.008548) -- (axis cs: 2.048e+03, 7.574e-03) node[pos=0,anchor=north east, sloped] {Roden};
 \end{loglogaxis}
 \end{tikzpicture}

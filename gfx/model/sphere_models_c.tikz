@@ -1,0 +1,54 @@
+\begin{tikzsize}{\tikzwidth}{\tikzheight}
+\begin{tikzpicture}[scale=\tikzscale]
+\tikzstyle{every node}=[font=\small]
+%
+\begin{scope}[%
+3d view={70}{42},
+cube/.style={white, line width=1pt, double=black, double distance=0.75mm, join=bevel},
+arr/.style={-{latex[color=GREEN]},
+    white, double=GREEN, line width=1pt, double distance=0.75mm,  shorten <= 2pt, shorten >=2pt
+  }
+]
+\pgfmathsetmacro{\r}{1}
+\pgfmathsetmacro{\varalpha}{60}
+%
+\shade[ball color = lightgray, opacity = 0.5] (0,0,0) circle (1cm);
+%
+\draw[->] (-1.25,0,0)-- (1.25,0,0) node[pos=1, anchor = west]{x};
+\draw[->] (0,-1.25,0)-- (0,1.25,0) node[pos=1, anchor = south]{y};
+\draw[->] (0,0,-1.25)-- (0,0,1.25) node[pos=1, anchor = west]{z};
+%
+\begin{scope}[rotate around y=-\varalpha]
+   %
+   \draw[very thick, GREEN, ->] (0,0,0) -- (\r,0,0) node [pos=1.0, anchor = south] () {$F_0$};
+   \node[circle,fill,GREEN,inner sep=1.25pt] at (\r,0,0) {};
+   %
+   \pgfmathsetmacro{\varomega}{30}
+   \begin{scope}[rotate around x=0]
+      \draw[very thick, BLUE, ->] (0,0,0) -- ({\r*cos(\varomega)},{\r*sin(\varomega)},0) node [pos=0.5, anchor = south] () {$F_1$};
+   \end{scope}
+   %
+   \pgfmathsetmacro{\varomega}{30}
+   \begin{scope}[canvas is zy plane at x={cos(\varomega}]
+      \draw[BLUE, thick, dashed] (0,0) circle({sin(\varomega)});
+      \foreach \i in {-180,-120,...,120}{\node[circle,fill,BLUE,inner sep=1.25pt] at ({sin(\varomega)*sin(\i)},{sin(\varomega)*cos(\i)}) {};}
+   \end{scope}
+   %
+   \pgfmathsetmacro{\varomega}{60}
+   \begin{scope}[canvas is zy plane at x={cos(\varomega}]
+      \draw[BLUE, thick, dashed] (0,0) circle({sin(\varomega)});
+      \foreach \i in {-180,-150,...,150}{\node[circle,fill,BLUE,inner sep=1.25pt] at ({sin(\varomega)*sin(\i)},{sin(\varomega)*cos(\i)}) {};}
+   \end{scope}
+   %
+   \pgfmathsetmacro{\varomega}{90}
+   \begin{scope}[canvas is zy plane at x={cos(\varomega}]
+      \draw[BLUE, thick, dashed] (0,0) circle({sin(\varomega)});
+      \foreach \i in {-180,-160,...,160}{\node[circle,fill,BLUE,inner sep=1.25pt] at ({sin(\varomega)*sin(\i)},{sin(\varomega)*cos(\i)}) {};}
+   \end{scope}
+\end{scope}
+%
+\end{scope}
+\pgfresetboundingbox
+\path[use as bounding box] (-1.25,-1.25) rectangle (1.25,1.25);
+\end{tikzpicture}
+\end{tikzsize}
