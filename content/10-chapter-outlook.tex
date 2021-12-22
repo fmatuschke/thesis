@@ -12,14 +12,14 @@
 % 
 \paragraph{Nerve fiber modelling software}
 % 
-The collision-free nerve fiber modelling algorithm is capable of generating densely packed fiber models which are suitable nerve fiber models for \ac{3D-PLI} simulations.
-However, the algorithm is limited in terms of computation time for larger volumes or, more precisely, the number of objects in the volume to be solved.
+The collision-free nerve fiber modelling algorithm can generate densely packed fiber models, which are suitable for \ac{3D-PLI} simulations.
+However, for larger volumes, the algorithm is limited in terms of computation time or, more precisely, the number of objects in the volume to be solved.
 \par
 % 
-But there are optimization options to improve performance.
-First, one can improve the sandbox design models so that the initial fiber configurations have less overlap.
-This would mean that for a given volume, the number of objects is reduced and therefore the runtime.
-However, it was found that in the first $\approx \SI{10}{\percent}$ of the runtime most collisions can be solved and the remaining time is needed for the remaining minimal overlaps \cref{sec:solverParameterResults}.
+However, there are optimization options available to improve performance.
+First, the models created by the sandbox can be improved so that the initial fiber configurations have less overlap. 
+This means that for a given volume, the number of objects and thus the runtime are reduced. 
+Additionally it was discovered that most collisions can be solved in the first $\approx \SI{10}{\percent}$ of the runtime, and the remaining time is required for the remaining minimal overlaps (see \cref{sec:solverParameterResults}).
 \par
 % 
 A second strategy is to design the algorithm in such a way that the number of calculation steps is reduced.
