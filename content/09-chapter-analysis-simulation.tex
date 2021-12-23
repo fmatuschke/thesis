@@ -18,12 +18,132 @@ The focus of the evaluation of the results is on the accuracy of the tilt analys
 %
 \section{Parameter characterisation}\label{sec:sim_choose_parameters}
 %
+\subsection{Tissue}\label{sec:tissueProp}
+%
+\begin{figure}[p]
+\centering
+\setlength{\tikzwidth}{0.75\textwidth}
+\tikzset{external/export=false} % takes long for the first time
+\begin{tabular}{c}
+\inputtikz{gfx/data/vervet_transmittance} \\[-2em]
+\subcaptiontab{\tikzwidth}{\label{fig:brain_trans}Transmittance} \\[1.5em]
+\inputtikz{gfx/data/vervet_retardation} \\[-2em]
+\subcaptiontab{\tikzwidth}{\label{fig:brain_ret}Retardation}
+%
+\end{tabular}
+\caption{%
+Transmittance and retardation map of a vervet monkey of the coronal section $\SI{549}{}$.
+The absorption coefficient and birefringence strength can be estimated from the flat fibers present in the corpus calosum (CC).
+The homogeneous regions annotated for this purpose contain $\SI{1125858}{\pixel}$ on the left and $\SI{1064629}{\pixel}$ on the right.}
+\label{fig:brain_ret_trans}
+\end{figure}
+%
+%
+%
+\begin{figure}[t]
+% 2_simulation/0_parameter/measure_vervet.ipy
+\centering
+\setlength{\tikzwidth}{0.425\textwidth}
+\setlength{\tabcolsep}{0em}
+\begin{tabular}{C{0.5\textwidth}C{0.5\textwidth}}
+%
+\tikzset{external/export next=false}% takes long for the first time
+\inputtikz{gfx/data/vervet_transmittance_zoom} &
+\inputtikz{gfx/data/vervet_transmittance_hist} \\[-5mm]
+%
+\subcaptiontab{0.475\textwidth}{Zoom transmittance} &
+\subcaptiontab{0.475\textwidth}{\label{fig:histTrans}Histogram transmittance} \\[10mm]
+%
+\tikzset{external/export next=false}
+\inputtikz{gfx/data/vervet_retardation_zoom} &
+\inputtikz{gfx/data/vervet_retardation_hist} \\[-5mm]
+%
+\subcaptiontab{0.475\textwidth}{Zoom retardation} &
+\subcaptiontab{0.475\textwidth}{\label{fig:histRet}Histogram retardation} \\
+%
+\end{tabular}
+\caption{%
+\dummy{}
+% Transmittance left: $1200 \pm 500$,
+% right: $1200 \pm 500$.
+% Background transmittance: $4530 \pm 240$.
+% fuellgrad $0.75: \mu \approx 30 \pm 10$,
+% fuellgrad $0.75: \mu \approx 30 \pm 10$,
+% Retardation left: $0.83 \pm 0.07$,
+% right: $0.80 \pm 0.07$.}
+}
+\label{fig:brain_ret_trans_zoom}
+% \end{figure}
+%
+% analog rodent:
+% trans: $2100 \pm 600$,
+% bg: $4000 \pm 50$,
+% fuellgrad $0.75: \mu \approx 14 \pm 7$,
+% ret: $0.40 \pm 0.11$,
+% and human:
+% trans: $170 \pm 80$,
+% bg: $2700 \pm 110$,
+% fuellgrad $0.75: \mu \approx 61 \pm 11$,
+% ret: $0.68 \pm 0.11$,
+%
+%
+% \vspace*{2em}
+% % \begin{figure}[!t]
+% % \centering
+% \begin{tabular}{cc}
+% \includegraphics[page=2]{gfx/rc1/tissue/birefringence_output_bf_rc1.pdf}&
+% \includegraphics[page=5]{gfx/rc1/tissue/birefringence_output_bf_rc1.pdf}\\[1em]
+% \multicolumn{2}{c}{\includegraphics[page=7]{gfx/rc1/tissue/birefringence_output_bf_rc1.pdf}}
+% \end{tabular}
+% \caption{Simulation results for transmittance (left) and birefringence (right) for different fiber radii $\fiberRadiusMean$ of a single flat fiber population.
+% The transmittance variance increases significantly with increasing fiber radius.
+% For larger fiber radii the mean value can change.
+% The retardation mean value decreses for increasing fiber radii while the variance increases.
+% Larger birefingence strength result in a larger retardation.
+% The experimentally measured retardation of about $\SI{80}{\percent}$ (see \cref{fig:brain_ret_trans_zoom}) is reached with a birefringence strength of about $\dn \approx \si{0.008}{}$.
+% }
+% \label{fig:parameterModelSim}
+\end{figure}
+%
+The absorption coefficient $\absorp{}$ and the birefringence $\dn{}$ have to be estimated from the tissue to use appropriate values for the simulation.
+To measure the values it is important that a homogeneous region is selected.
+In a coronal section, the corpus callosum (CC) is suitable for this purpose. 
+It is the main fiber connection between the two cerebral hemispheres (see \cref{fig:brain_ret_trans}).
+\par
+% 
+\Cref{fig:brain_ret_trans} shows transmission and retardation maps of the of the vervet monkey coronal section number $\SI{549}{}$.
+\Cref{fig:brain_ret_trans_zoom} shows a magnified version.
+Two \ac{ROI} are manuelly selected in homogenious and high value retardation regions of the corpus calosum.
+The left region contains $\SI{1125858}{\pixel}$ and the right \ac{ROI} $\SI{1064629}{\pixel}$.
+The same measurements are made for human and rodent in the corpus callosum (see Appendix \todo{label}).
+\par
+% 
+\paragraph{Results and discussion}
+To calculate the absorption coefficient for the models one has to encount for the volume fraction.
+For the $\fiberRadiusMean = \SI{0.5}{\micro\meter}$ models the volume fraction is about $\SI{75}{\percent}$.
+This results in a absorption coefficient of about $\mu = \SI{30}{\milli\meter\tothe{-1}}$.
+The median transmittance in the background is about $\SI{4500}{\arbitraryunit}$.\footnote{The value is not fixed for all measurments. It can easyly change by adjusting \eg{} the microscops exposer time.}
+To calculate the birefingence one has also to account for the g-ratio, \ie{} the myelin thickness.
+With a g-ratio of $\SI{75}{\percent}$ the birefringence results in about $\SI{0.008}{}$ for the radial model.
+%
+% 
+% 
 \subsection{Optical resolution}
 %
-Optical resolution is dependent on aberration and diffraction, which are in turn dependent on a multitude of parameters (see \cref{sec:opticalResolution}).
+Optical resolution depends amongs other effects on aberration and diffraction (see \cref{sec:opticalResolution}).
 They will be moddeld as described in \cref{sec:ccdOptic}.
-First, however, the necessary parameters for the models have to be evaluated.
+Therefore the models parameters have to beevaluated.
 \par
+%
+To measure the optical resolution of the microscope, previous measurements and analyses are repeated \cite{MenzelMaster}.
+For this purpose, the \textit{1951 United States Air Force (USAF) resolution test chart}\footnote{U.S. Air Force MIL-STD-150A standard of 1951} is used.
+It consists of several patterns that have three slots with specific spacing and width (see \cref{fig:usaf}).
+They are arranged in fields of three vertical and horizontal lines.
+The fields are arranged in a spiral that shrinks from group to group by a factor $\SI{0.5}{}$.
+To determine the line width, the fields are numerically ordered according to a main group $i$ and a subgroup $j$.
+To determine the resolution of the microscope, it is necessary to determine the group from which the slits can still be resolved according to the Rayleigh criterion (see \cref{fig:rayleigh}).
+For this purpose, the intensity profiles perpendicular to the the three slits (vertical and horizontal) are analyzed.
+The variance of the measured intensity is measured by analyzing all parallel lines in the slits.
 %
 \begin{figure}[!t]
 \centering
@@ -47,17 +167,9 @@ First, however, the necessary parameters for the models have to be evaluated.
 \caption{\acs{LMP} data. Group 8-1 with $\SI{1.95}{\micro\meter}$ indicates a resulting resolution at about \dummy{} which corresponds to an optical convolution of $\opticsigma = \SI{0.75}{\pixel}$.}
 \label{fig:USAF}
 \end{figure}
-%
-To measure the optical resolution of the microscope, previous measurements and analyses are repeated \cite{MenzelMaster}.
-For this purpose, the \textit{1951 United States Air Force (USAF) resolution test chart}\footnote{U.S. Air Force MIL-STD-150A standard of 1951} is used.
-It consists of several patterns that have three slots with specific spacing and width (see \cref{fig:usaf}).
-They are arranged in fields of three vertical and horizontal lines.
-The fields are arranged in a spiral that shrinks from group to group by a factor $\SI{0.5}{}$.
-To determine the line width, the fields are numerically ordered according to a main group $i$ and a subgroup $j$.
-To determine the resolution of the microscope, it is necessary to determine the group from which the slits can still be resolved according to the Rayleigh criterion (see \cref{fig:rayleigh}).
-For this purpose, the intensity profiles perpendicular to the the three slits (vertical and horizontal) are analyzed.
-The variance of the measured intensity is measured by analyzing all parallel lines in the slits.
-%
+% 
+% 
+% 
 \paragraph{Results and Discussion}
 \Cref{fig:usaf_image} shows a section of the capured image with the \ac{LMP} microscope.
 The highlighted areas show the analyzed groups 7-6 to 8-2.
@@ -122,183 +234,42 @@ This gain factor is used to model the integer noise with
 \begin{align}
 f(x) = \floor{\mathrm{normal}(\mu = x, \sigma=\sqrt{\opticgain x})+0.5}
 \end{align}
-for intensities $I > 0$, $I \gg \sqrt{\opticgain I}$.
-%
-%
-%
-\subsection{Tissue properties}\label{sec:tissueProp}
-%
-\begin{figure}[p]
-\centering
-\setlength{\tikzwidth}{0.75\textwidth}
-\tikzset{external/export=false} % takes long for the first time
-\begin{tabular}{c}
-\inputtikz{gfx/data/vervet_transmittance} \\[-2em]
-\subcaptiontab{\tikzwidth}{\label{fig:brain_trans}Transmittance} \\[1.5em]
-\inputtikz{gfx/data/vervet_retardation} \\[-2em]
-\subcaptiontab{\tikzwidth}{\label{fig:brain_ret}Retardation}
-%
-\end{tabular}
-\caption{%
-Transmittance and retardation map of a vervet monkey of the coronal section $\SI{549}{}$.
-The absorption coefficient and birefringence strength can be estimated from the flat fibers present in the corpus calosum (CC).
-The homogeneous regions annotated for this purpose contain $\SI{1125858}{\pixel}$ on the left and $\SI{1064629}{\pixel}$ on the right.}
-\label{fig:brain_ret_trans}
-\end{figure}
-%
-%
-%
-\begin{figure}[p]
-% 2_simulation/0_parameter/measure_vervet.ipy
-\centering
-\setlength{\tikzwidth}{0.425\textwidth}
-\setlength{\tabcolsep}{0em}
-\begin{tabular}{C{0.5\textwidth}C{0.5\textwidth}}
-%
-\tikzset{external/export next=false}% takes long for the first time
-\inputtikz{gfx/data/vervet_transmittance_zoom} &
-\inputtikz{gfx/data/vervet_transmittance_hist} \\[-5mm]
-%
-\subcaptiontab{0.475\textwidth}{Zoom transmittance} &
-\subcaptiontab{0.475\textwidth}{\label{fig:histTrans}Histogram transmittance} \\[10mm]
-%
-\tikzset{external/export next=false}
-\inputtikz{gfx/data/vervet_retardation_zoom} &
-\inputtikz{gfx/data/vervet_retardation_hist} \\[-5mm]
-%
-\subcaptiontab{0.475\textwidth}{Zoom retardation} &
-\subcaptiontab{0.475\textwidth}{\label{fig:histRet}Histogram retardation} \\
-%
-\end{tabular}
-\caption{%
-Transmittance left: $1200 \pm 500$,
-right: $1200 \pm 500$.
-Background transmittance: $4530 \pm 240$.
-% fuellgrad $0.75: \mu \approx 30 \pm 10$,
-% fuellgrad $0.75: \mu \approx 30 \pm 10$,
-Retardation left: $0.83 \pm 0.07$,
-right: $0.80 \pm 0.07$.}
-\label{fig:brain_ret_trans_zoom}
-% \end{figure}
-%
-% analog rodent:
-% trans: $2100 \pm 600$,
-% bg: $4000 \pm 50$,
-% fuellgrad $0.75: \mu \approx 14 \pm 7$,
-% ret: $0.40 \pm 0.11$,
-% and human:
-% trans: $170 \pm 80$,
-% bg: $2700 \pm 110$,
-% fuellgrad $0.75: \mu \approx 61 \pm 11$,
-% ret: $0.68 \pm 0.11$,
-%
-%
-\vspace*{2em}
-% \begin{figure}[!t]
-% \centering
-\begin{tabular}{cc}
-\includegraphics[page=2]{gfx/rc1/tissue/birefringence_output_bf_rc1.pdf}&
-\includegraphics[page=5]{gfx/rc1/tissue/birefringence_output_bf_rc1.pdf}\\[1em]
-\multicolumn{2}{c}{\includegraphics[page=7]{gfx/rc1/tissue/birefringence_output_bf_rc1.pdf}}
-\end{tabular}
-\caption{Resulting transmittance and birefringence strengths at different \Voxelsize s \voxelsize{} for flat fiber population simulations.
-The transmittance depends only on the voxelsize and its variance increases with increasing voxelsize.
-The experimentally measured retardation of about $\SI{80}{\percent}$ (see \cref{fig:brain_ret_trans_zoom}) is reached in the simulation with a birefringence strength of about $\si{0.008}{}$. Larger voxelsizes result in a higher variance.}
-\label{fig:parameterModelSim}
-\end{figure}
-%
-The absorption coefficient $\absorp{}$ and the birefringence $\dn{}$ have to be estimated from the tissue to use appropriate values for the simulation.
-As the literature shows, these values are in the range of $\dn{}$ \dummy{}.
-Since the models created here use stiff fiber segments, the volume density cannot reach the high density normally present in \ac{WM}.
-To overcome this problem, the absorption and birefringence strengths must be increased to obtain comparable results.
-\par
-%
-For a measurement of the properties, it is important that a homogeneous region is selected.
-In the coronal section, the corpus callosum is suitable for this purpose. 
-It is the main fiber connection between the two cerebral hemispheres (see \cref{fig:brain_ret_trans}).
-In a central section, the nerve fibers generally lie flat in the section.
-\Cref{fig:brain_ret_trans} shows transmission and retardation maps of the coronal section of the velvet monkey, and \cref{fig:brain_ret_trans_zoom} shows a magnified version.
-The retardation map shows a visible reduction of retardation in the center of the corpus callosum.
-Therefore, this central region is neglected for homogeneity.
-A left and a right region remain, which may be homogeneous in both transmission and retardation (see \cref{fig:histTrans,fig:histRet}).
-The left region has $\SI{1125858}{}$ number of pixels, the right part $\SI{1064629}{}$.
-The same measurements are made for human and rodent in the corpus callosum (see Appendix \todo{label}). 
-%
-%
-%
-\subsubsection{Absorption}
-%
-When the light penetrates the tissue, it is absorbed in the matter on the one hand and scattered on the other.
-Both effects can be modeled mathematically in this linear optical simulation as a decrease in intensity along the path.
-A drawback of this simulation is that the scattering is not constant for all fiber configurations and orientations \cite{MenzelDissertation}.
-Therefore, the measured absorption coefficient is only valid for the same fiber configurations as in the region.
-The absorption only changes the transmittance and thus the relative noise, but not the delay or direction of the signal.
-Since the noise in this microscopic configuration is quite low, it is unlikely to affect the results.
-\par
-%
-To measure the absorption, the transmittance of the coronal slice in the \ac{ROI} of the corpus callosum is measured against the background value.
-The absorption coefficient is then calculated by applying \dummy{}.
-These values are then increased according to the volume fraction of the models and then simulated to ensure that the same behavior can be modeled.
-%
-\paragraph{Results and Discussion}
-A relative transmittance of about $\SIrange{20}{30}{\percent}$ is present within the \ac{ROI} of the corpus callosum.
-The simulation parameters must be set to achieve a similar transmittance value for the models.
-This means that for a $\SI{60}{\micro\meter}$ thick section, the absorption coefficient $\absorp{}$ is about $\SI{30}{\milli\meter\tothe{-1}}$.
-The absorption for rodent is about $\SI{8}{\milli-meter-tothe{-1}}$ and human is about $\SI{65}{\milli-meter-tothe{-1}}$.
-\par
-%
-\Cref{fig:simTransValues} shows the simulated transmittance values for different fiber radii.
-For smaler radii the variance of the transmittance is very small \dummy{} and increases with the radii.
-This behavier is epected, since models with larger radii have more space where no tissue is present, and therefore the light can travel freely through the \say{section}.
-In comparison to the histogram \cref{fig:brain_ret_trans_zoom} the models with larger radii have more in common with the distribution.
-However from literature one can neglect, that this kind of fiber radii is present in corpus calosum \dummy{}.
-Nevertheless the tissue can have more complicated configurations and effects, which leads to a larger viarity of absorption, \eg{} cells, blood vessels and so on.
-Also at this point the here developed simulation is not ready to simulate scattered light, which is to be expected to increase the range of the absorption and therefore resulting a larger variance of transmittance.
-%
-%
-%
-\subsubsection{Birefringence}
-%
-The birefringence cannot simply be measured like the transmittance.
-Due to the radial optical axis of the myelin, the relativ obsorving birefringence is smaller than the one of the myelin.
-However the simulation up to a point has the same geometrical constrains.
-By simulating difference birefringence strength and comparing them to the retardation of the tissue one can find a proper value.
-The simulation will use a flat single fiber population and the same parameters as the later simulation model library (see \dummy{}).
-%
-\paragraph{Results and discussion}
-The results in \cref{fig:parameterModelSim} show that to reach a retardation value similar to the experimental setup of around $\SI{0.8}{}$ a birefringence value of $\SI{0.008}{}$ for the microscopic model should be chosen.
-Looking at the different model nerve fiber radii the variance of the retardation values increase strong, similar to the transmittance.
-This is to be expected since the simulated tissue section has a hight of $\SI{60}{\micro\meter}$.
-Therefore for a radii of $\SI{10}{\micro\meter}$ the number of tissue voxels has to vary depending on where the fibers are positioned in the volume.
-For larger radii this leads to the problem, that the retardation cannot be over $\SI{1}{}$ and therefore the signal amplitude reduces again.
+for intensities $I > 0$ and $I \gg \sqrt{\opticgain I}$.
 %
 %
 %
 \subsection{\Voxelsize{} \texorpdfstring{\voxelsize{}}{}}
 %
-\begin{figure}[!t]%p
+The parameter \Voxelsize{} $\voxelsize$ is the most important parameter for simulation accuracy, as it determines how accurately the models are discretized and how many light beams are modelled.
+However, the voxel size cannot be arbitrary small since the number of calculations and memory consumtion increases by $O(n_{\mathit{voxel}}^3)$.
+Therefore, it is recommended that the voxel size be as large as possible without introducing significant error due to discretization.
+\par
+%
+To investigate this effect, a simulation is performed the voxel sizes of the range $\voxelsize = \SIrange{0.01}{1.3}{\micro\meter}$.
+The smallest voxel size $\SI{0.01}{\micro\meter}$ is used as reference.
+Since this voxel size is so small, only a volume of $3 \cdot \SI{1.3}{\micro\meter} \cdot \SI{1.3}{\micro\meter} 3 \cdot \SI{1.3}{\micro\meter} \times \SI{60}{\micro\meter}$ is used without light beam tilts.
+Otherwise, when using the tilt capabilities, the volume would have to be increased so that the light beam still passes through tissue.
+The simulation uses the above determend parameters.
+The models to be simulated are $(||,\modelInc = \SI{0}{\degree})$, $(||,\modelInc = \SI{90}{\degree})$, $(\times, \modelInc = \SI{0}{\degree})$, and $(\times,\modelInc = \SI{90}{\degree})$ with a fraction of $\modelPsi = \SI{0.5}{}$, since these configurations represent the extrema for two fiber populations.
+The simulations are repeated $\SI{25}{}$ times at the positions
+\begin{align}
+    x&=\frac{i\,\%\,5}{5} \cdot \SI{60}{\micro\meter} - \SI{30}{\micro\meter} \\
+    y&=\frac{\floor{i/5}}{5} \cdot \SI{60}{\micro\meter} - \SI{30}{\micro\meter} 
+\end{align}
+and therefore aquidistant inside the $xy$-plane of the model.
+% 
+% 
+% 
+\paragraph{Results and discussion}
+%
+\begin{figure}[!t]
 % 2_simulation/0_parameter/fiber_radii.py
 \centering
 \includegraphics[width=\textwidth, page=1]{gfx/rc1/voxel_size/voxel_size_plots_data_r05_output_vs_135_0.01_6_25_vervet_r_rc1.pdf}
 \caption{The mean difference is constant for smaller voxel sizes and starts to grow significantly only from $\voxelsize=\SI{0.1}{\micro\meter}$.}
 \label{fig:voxelsizeNoise}
 \end{figure}
-%
-The parameter \Voxelsize{} $\voxelsize$ is the most important parameter for simulation accuracy, as it determines how accurately the models are discretized.
-Smaller values mean more details, more accurate optical axes and more light rays.
-However, this also increases the number of calculations and memory by $O(n_{\mathit{voxel}}^3)$.
-Therefore, it is recommended that the voxel size be as large as possible without introducing significant error due to discretization.
-\par
-%
-To investigate this effect, a simulation is performed with different types of voxel sizes from the $\voxelsize = \SIrange{0.01}{1.3}{\micro\meter}$.
-The smallest voxel size $\SI{0.01}{\micro\meter}$ is used as ground truth.
-Since this voxel size is so small, only a volume of $3 \cdot \SI{1.3}{\micro\meter} \cdot \SI{1.3}{\micro\meter} 3 \cdot \SI{1.3}{\micro\meter} \times \SI{60}{\micro\meter}$ is used without tilt.
-Otherwise, when using the tilt function, the volume would have to be increased so that the light beam still passes through the tissue.
-The other parameters are set as in \dummy{}.
-The models to be simulated are $(||,\modelInc = \SI{0}{\degree})$, $(||,\modelInc = \SI{90}{\degree})$, $(\times, \modelInc = \SI{0}{\degree})$, and $(\times,\modelInc = \SI{90}{\degree})$ with a fraction of $\modelPsi = \SI{0.5}{}$, since these configurations represent the extrema for two fiber populations.
-To improve the statistics, the simulation is repeated in volume on an aquidistant $xy$ grid of $\num{5}$ by $\num{5}$ points within the $\SI{65}{\micro\meter}$ by $\SI{65}{\micro\meter}$ model.
-%
-\paragraph{Results and discussion}
+% 
 The results in \cref{fig:voxelsizeNoise} show that the relative difference from the smallest voxel size increases statically significantly from a value of \SI{0.1}{\micro\meter}.
 The variance of the relative difference increases with increasing voxel size from this value.
 \par
@@ -331,7 +302,7 @@ However, this is only true for a pixel size of $\SI{1.3}{\micro\meter}$ and fibe
 %
 simpli.voxel\_size & $\SI{0.1}{\micro\meter}$\\
 simpli.pixel\_size & $\SI{1.3}{\micro\meter}$\\
-simpli.voi & $[[\SI{-35}{\micro\meter}, \SI{-35}{\micro\meter}, \SI{-30}{\micro\meter}], [\SI{30}{\micro\meter}, \SI{35}{\micro\meter}, \SI{35}{\micro\meter}]]$\\
+simpli.voi & $[[\SI{-35}{\micro\meter}, \SI{-35}{\micro\meter}, \SI{-30}{\micro\meter}], [\SI{35}{\micro\meter}, \SI{35}{\micro\meter}, \SI{30}{\micro\meter}]]$\\
 simpli.filter\_rotations & $\SIlist{0;20;40;60;80;100;120;140;160}{\degree}$\\
 simpli.interpolate & \texttt{"Slerp"}\\
 simpli.wavelength & $\SI{525}{\nano\meter}$\\
@@ -358,10 +329,7 @@ This pipeline is used to simulate and analyze the \ac{3D-PLI} signal for the mod
 With a pixel size of \SI{1.3}{\micro\meter}, $\SI{2500}{\pixel}$ are available per simulation for statistical analysis.
 The models are tilted in steps of $\Delta \modelInc = \SI{5}{\degree}$ for a single fiber population and by $\Delta \modelInc = \SI{30}{\degree}$ for crossing fiber populations. The latter are then also rotated around the first fiber population (see \cref{fig:simModelSphereSample}).
 Depending on the crossing angle \modelOmega{}, the step size is adjusted so that the spatial distance between two resulting rotations is close to $\Delta \modelRot = \SI{15}{\degree}$.
-%
-% Only the inclination angle $\modelInc$ of the fiber population for \ac{3D-PLI} is important for a single fiber popuation since the direction only adds a shift in the sinosoidal phase.
-% Also only positive inclination angles need to be simulated since it would be a directional shift of $\SI{180}{\degree}$.
-% This needs to be done for every inclination angle of the first fiber population.
+% 
 \begin{figure}[t]
 \centering
 \setlength{\tikzwidth}{0.40\textwidth}
@@ -377,6 +345,27 @@ The \dummy{} let mirror the results at the x-axis.}
 \caption{Two population of fiber models are \dummy{}. For a fixed first fiber population orientation the second is sampled via the crossing angle of the models an a rotation around the first fiber population.}
 \label{fig:simModelSphereSample}
 \end{figure}
+% 
+% \subsection{Transmittance and retardation}
+% % 
+% The evalueted absorption and birefringence are used to simulate the variance of the modelled tissue with unterschiedlichen fiber radii.
+% % 
+% \begin{figure}[!t]
+% % \centering
+% \begin{tabular}{cc}
+% \includegraphics[page=2]{gfx/rc1/tissue/birefringence_output_bf_rc1.pdf}&
+% \includegraphics[page=5]{gfx/rc1/tissue/birefringence_output_bf_rc1.pdf}\\[1em]
+% \multicolumn{2}{c}{\includegraphics[page=7]{gfx/rc1/tissue/birefringence_output_bf_rc1.pdf}}
+% \end{tabular}
+% \caption{Simulation results for transmittance (left) and birefringence (right) for different fiber radii $\fiberRadiusMean$ of a single flat fiber population.
+% The transmittance variance increases significantly with increasing fiber radius.
+% For larger fiber radii the mean value can change.
+% The retardation mean value decreses for increasing fiber radii while the variance increases.
+% Larger birefingence strength result in a larger retardation.
+% The experimentally measured retardation of about $\SI{80}{\percent}$ (see \cref{fig:brain_ret_trans_zoom}) is reached with a birefringence strength of about $\dn \approx \si{0.008}{}$.
+% }
+% \label{fig:parameterModelSim}
+% \end{figure}
 % 
 % 
 %
