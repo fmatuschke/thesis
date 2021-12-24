@@ -295,6 +295,10 @@ The models are rotated according to the previously specified discretization to s
 \Cref{tab:simParameters} lists the parameters of the simulation in the variable notation of \ac{fastPLI}.
 With a pixel size of \SI{1.3}{\micro\meter}, $\SI{2500}{\pixel}$ are available per simulation for statistical analysis.
 The models are tilted in steps of $\Delta \modelInc = \SI{5}{\degree}$ for a single fiber population and by $\Delta \modelInc = \SI{30}{\degree}$ for two fiber populations.
+\par
+% 
+The the following sections will only show a subset of the results. 
+All following results all data is available in \dummy{}.
 % 
 % 
 %
@@ -304,14 +308,14 @@ The models are tilted in steps of $\Delta \modelInc = \SI{5}{\degree}$ for a sin
 \begin{figure}[!t]
 \centering
 \includegraphics[page=1]{gfx/rc1/analysis/plots_single_pop_hist_output_cube_2pop_135_rc1_single.pdf}
-\caption{Single inclined fiber population. Left: 2D log histogram of orientation from tilting analysis of simulation. Right: 2D log histogram of orientation from model segments.}
+\caption{Single inclined fiber population. Left: 2D log histogram of orientation from tilting analysis of simulation. Right: 2D log histogram of orientation from model segments. \todo{log \# ?}}
 \label{fig:single_fiber_pop_hist}
 \end{figure}
 %
 \begin{figure}[!p]
 \centering
 \includegraphics[]{gfx/rc1/analysis/plots_single_pop_output_cube_2pop_135_rc1_single.pdf}
-\caption{Single tilted fiber population. Results of the tilting analysis.}
+\caption{Single tilted fiber population. Results of the tilting analysis. \todo{trel, domega, xachse}}
 \label{fig:single_fiber_pop_rofl}
 \end{figure}
 %
@@ -321,75 +325,78 @@ Since the direction is negligible for a single population, only the inclination 
 %
 \Cref{fig:single_fiber_pop_hist} shows the orientation distribution of a single population of fibers for different inclinations $\modelInc{}$.
 The distributions of the orientations of the model segments are shown on the left side, and those of the tilting analysis of the simulated images are shown on the right side.
-The distributions are logarithmic and weighted by the area of the 2D binning.
-The comparison between the two distributions shows the agreement of the tilting analysis with the model orientations for all inclinations.
+The simulation results follow the models with a slightly higher variance then the variance.
 \par
 %
+\Cref{fig:single_fiber_pop_rofl} show the modalities transmittance, direction and retardation of the flat measurement as well as the results of the tilting analysis inclination, \trel{} and the resulting opening angle $\openingAngle$.
+\par
+% 
 %Transmittance
-\Cref{fig:single_fiber_pop_rofl} show the different modalities after analyzing the raw, non-tilted measurements.
 The transmittance increases slightly with inclination angle for $\modelInc<\SI{75}{\degree}$.
-For $\modelInc \ge \SI{75}{\degree}$ the transmittance increases significantly, \ie{} the absorption decreases.
+For $\modelInc \ge \SI{75}{\degree}$ the transmittance increases significantly.
 The variance of transmittance is within a few percent for all inclinations and also increases slightly with inclination angle.
 \par
 %
 % Retardation
-The retardation plot shows the retardation of the non-tilted simulations and the theoretical curve that follows $(\cos(\modelInc) + 1) / 2 \cdot \mean(\mathrm{ret}(\SI{0}{\degree})$.
-Normalization with $\mean(\mathrm{ret}(\SI{0}{\degree})$ ensures comparison with the data.
+The retardation plot shows the retardation of the non-tilted simulations and the theoretical curve that follows $(\cos(\modelInc) + 1) / 2 \cdot \mean\left(\mathrm{ret}(\SI{0}{\degree})\right)$.
+Normalization with $\mean\left(\mathrm{ret}(\SI{0}{\degree})\right)$ ensures comparison with the data.
 The retardation follows the theoretical line.
 However, for the intermediate tilt angles, the measured retardation is slightly higher than the theoretical line.
-Otherwise, the variance along all fiber inclinations is equal to \modelInc{}.
+The variance along all fiber inclinations is equal to \modelInc{}.
 \par
 %
 % Direction
 The next graph shows the measured direction.
-For inclination angles smaller than $\SI{75}{\degree}$ the variance remains quite small.
+For inclination angles smaller than $\SI{75}{\degree}$ the variance remains relative small.
 For larger values, the variance increases.
 It should be remembered that the boxplot does not take into account that the values are periodic.
 Therefore, especially for $\modelInc=\SI{90}{\degree}$, the values from the $\SIrange{-90}{90}{\degree}$ are uniformly distributed.
 \par
 %
 % Inclination
-The inclination is drawn as a line, as well as the set angle of inclination.
-The angles are shifted by the $\modelInc$ so that the admissible distribution values are in the range $[\modelInc-\SI{90}{\degree}, \modelInc+\SI{90}{\degree})$.
+\TODO{differnt symbol between modelinc and inc?}
+The inclination show the results of the tilting analysis with a dashed line for the models inclination $\modelInc$.
+The results are centered around the median value in the range of $\big[\median (\modelInc)-\SI{90}{\degree}, \median(\modelInc)+\SI{90}{\degree}\big)$.
 The median follows the theoretical curve.
-For values above $\SI{75}{\degree}$ the variance increases again significantly, except for $\modelInc = \SI{90}{\degree}$ it is similar to the first values.
+For the inclinations $\SI{80}{\degree}$ and $\SI{85}{\degree}$ the variance increases significantly.
+For $\modelInc = \SI{90}{\degree}$ the varianze is similar to the flat results.
 \par
 %
 % trel
 The median relative birefringence thickness \trel{} is stable for values up to $\modelInc < \SI{60}{\degree}$, but the variance increases slightly.
 For larger values, the median decreases while the variance increases.
-Some outliers reach values $>\SI{1}{}$.
+Outliers exist reaching values $>\SI{1}{}$.
 For inclination angles $\modelInc \ge \SI{85}{\degree}$, the quartile value $\SI{75}{\percent}$ increases by $\SI{1}{}$ and the median for $\SI{90}{\degree}$ reaches about $\SI{2}{}$.
 \par
 %
 % domega
-The opening angle \openingAngle{} is stable with a median of \dummy{} up to an inclination angle of $\le \SI{70}{\degree}$.
-For higher inclination angles, both the median and the variance increase significantly, analogous to the inclination, except in the last case.
+The opening angle \openingAngle{} is consistent up to a tilt angle of $\le \SI{70}{\degree}$.
+At higher inclination angles, both the median and the variance increase significantly in analogy to the inclination, except in the last case.
 %
 %
 %
 \subsection{Crossing flat fiber populations}
 \label{sec:resCrossFlat}
 %
-\begin{figure}[!t]
+\begin{figure}[!p]
 \centering
 \includegraphics[page=3]{gfx/rc1/analysis/plots_flat_pop_hist_output_cube_2pop_135_rc1_flat.pdf}
 \caption{Crossing flat fiber population: $\modelPsi=\SI{30}{\percent}$. Left: 2D log histogram orientation from rofl analysis of simulation. Right: 2D log histogram of model segment orientation.}
 \label{fig:flat_03_fiber_pop_hist}
+% \end{figure}
+% %
+% \begin{figure}[!t]
+% \centering
+\includegraphics[page=5]{gfx/rc1/analysis/plots_flat_pop_hist_output_cube_2pop_135_rc1_flat.pdf}
+\caption{Crossing flat fiber population: $\modelPsi=\SI{50}{\percent}$. Left: 2D log histogram of the orientation from the tilting analysis of the simulation, right: 2D log histogram of the orientation of the model segments.}
+\label{fig:flat_05_fiber_pop_hist}
 \end{figure}
 %
 \begin{figure}[!p]
 \centering
 \includegraphics[page=3]{gfx/rc1/analysis/plots_flat_pop_output_cube_2pop_135_rc1_flat.pdf}
-\caption{Crossing flat fiber population: $\modelPsi=\SI{30}{\percent}$. Tilting analysis results. \todo{domega, trel}}
+\caption{Crossing flat fiber population: $\modelPsi=\SI{30}{\percent}$. Tilting analysis results. \todo{domega, trel, omega, dotted line more space, title in percent}}
 \label{fig:flat_03_fiber_pop_rofl}
-\end{figure}
-%
-\begin{figure}[!t]
-\centering
-\includegraphics[page=5]{gfx/rc1/analysis/plots_flat_pop_hist_output_cube_2pop_135_rc1_flat.pdf}
-\caption{Crossing flat fiber population: $\modelPsi=\SI{50}{\percent}$. Left: 2D log histogram of the orientation from the tilting analysis of the simulation, right: 2D log histogram of the orientation of the model segments.}
-\label{fig:flat_05_fiber_pop_hist}
 \end{figure}
 %
 \begin{figure}[!p]
@@ -443,11 +450,18 @@ The same is true for the case $\modelPsi = \SI{50}{\percent}$, but the \openingA
 \subsection{Inclined crossing fibers population}
 \label{sec:resInclCross}
 %
-\begin{figure}[!t]
+\begin{figure}[!p]
 \centering
 \includegraphics[page=3]{gfx/rc1/analysis/plots_inclined_pop_hist_output_cube_2pop_135_rc1_inclined.pdf}
 \caption{Population of inclined crossing fibers: $\modelPsi=\SI{30}{\percent}$. Left: 2D log histogram of orientation from tilting analysis of simulation, right: 2D log histogram of orientation of model segments.}
 \label{fig:inclined_03_fiber_pop_hist}
+% \end{figure}
+% %
+% \begin{figure}[!t]
+% \centering
+\includegraphics[page=5]{gfx/rc1/analysis/plots_inclined_pop_hist_output_cube_2pop_135_rc1_inclined.pdf}
+\caption{Population of inclined crossing fibers: $\modelPsi=\SI{50}{\percent}$. left: 2D log histogram of orientation from tilting analysis of simulation, right: 2D log histogram of orientation of model segments.}
+\label{fig:inclined_05_fiber_pop_hist}
 \end{figure}
 %
 \begin{figure}[!p]
@@ -455,13 +469,6 @@ The same is true for the case $\modelPsi = \SI{50}{\percent}$, but the \openingA
 \includegraphics[page=3]{gfx/rc1/analysis/plots_inclined_pop_output_cube_2pop_135_rc1_inclined.pdf}
 \caption{Population of inclined crossing fibers: $\modelPsi=\SI{30}{\percent}$. Results of tilting analysis.}
 \label{fig:inclined_03_fiber_pop_rofl}
-\end{figure}
-%
-\begin{figure}[!t]
-\centering
-\includegraphics[page=5]{gfx/rc1/analysis/plots_inclined_pop_hist_output_cube_2pop_135_rc1_inclined.pdf}
-\caption{Population of inclined crossing fibers: $\modelPsi=\SI{50}{\percent}$. left: 2D log histogram of orientation from tilting analysis of simulation, right: 2D log histogram of orientation of model segments.}
-\label{fig:inclined_05_fiber_pop_hist}
 \end{figure}
 %
 \begin{figure}[!p]
