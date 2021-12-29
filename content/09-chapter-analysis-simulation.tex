@@ -79,7 +79,7 @@ It is the main fiber connection between the two cerebral hemispheres.
 % \Cref{fig:brain_ret_trans_zoom} shows a magnified version.
 Two \ac{ROI} are manuelly selected in homogenious and high value retardation regions of the corpus calosum.
 The left region contains $\SI{1125858}{\pixel}$ and the right \ac{ROI} $\SI{1064629}{\pixel}$.
-The same analysis is available for a human and a rodent section (see Appendix \cref{fig:brain_roden_and_human}).
+The same analysis is available for a human and a rodent section (see appendix \cref{fig:brain_roden_and_human}).
 % 
 \paragraph{Evaluation}
 To calculate the absorption coefficient for the models one has to encount for the volume fraction.
@@ -308,7 +308,7 @@ All following results all data is available in \dummy{}.
 \begin{figure}[!t]
 \centering
 \includegraphics[page=1]{gfx/rc1/analysis/plots_single_pop_hist_output_cube_2pop_135_rc1_single.pdf}
-\caption{Single inclined fiber population. Left: 2D log histogram of orientation from tilting analysis of simulation. Right: 2D log histogram of orientation from model segments. \todo{log \# ?}}
+\caption{Single inclined fiber population orientation histograms. \todo{log \# ?}}
 \label{fig:single_fiber_pop_hist}
 \end{figure}
 %
@@ -324,8 +324,9 @@ Since the direction is negligible for a single population, only the inclination 
 \par
 %
 \Cref{fig:single_fiber_pop_hist} shows the orientation distribution of a single population of fibers for different inclinations $\modelInc{}$.
-The distributions of the orientations of the model segments are shown on the left side, and those of the tilting analysis of the simulated images are shown on the right side.
-The simulation results follow the models with a slightly higher variance then the variance.
+The distributions of the orientations of the model segments are shown on the left side, and those of the tilting analysis of the simulations are shown on the right side.
+The simulation results are in agreement with the models orientations.
+The variance of the tilting analysis is higher than the models orientations.
 \par
 %
 \Cref{fig:single_fiber_pop_rofl} show the modalities transmittance, direction and retardation of the flat measurement as well as the results of the tilting analysis inclination, \trel{} and the resulting opening angle $\openingAngle$.
@@ -354,7 +355,7 @@ Therefore, especially for $\modelInc=\SI{90}{\degree}$, the values from the $\SI
 \par
 %
 % Inclination
-\TODO{differnt symbol between modelinc and inc?}
+% \TODO{differnt symbol between modelinc and inc?}
 The inclination show the results of the tilting analysis with a dashed line for the models inclination $\modelInc$.
 The results are centered around the median value in the range of $\big[\median (\modelInc)-\SI{90}{\degree}, \median(\modelInc)+\SI{90}{\degree}\big)$.
 The median follows the theoretical curve.
@@ -408,7 +409,7 @@ At higher inclination angles, both the median and the variance increase signific
 %
 The next simulation focuses on two flat crossing fiber populations.
 Here, the results for the case $\modelPsi = \SI{30}{\percent}$ and $\modelPsi = \SI{50}{\percent}$ are examined.
-The other proportions of the fiber population are available in \todo{appendix}.
+The other proportions of the fiber population are available in \TODO{appendix}.
 \par
 %
 \ref{fig:flat_03_fiber_pop_hist} shows the distribution of orientation for the simulation and model fiber segments.
@@ -480,7 +481,6 @@ The same is true for the case $\modelPsi = \SI{50}{\percent}$, but the \openingA
 %
 Next, we are concerned with two crossing fiber bundles with a rotation angle of $\modelRot = \SI{90}{\degree}$, \ie{} the first fiber population along the $x$-axis and the second population in the $xz$-axis.
 As before, the two parameters $\modelPsi = \SI{30}{\percent}$ and $\modelPsi = \SI{50}{\percent}$ are discussed.
-The other fiber percentages are listed in the \todo{appendix}.
 \par
 %
 The histogram data for both cases show only visible orientation for the measurement.
@@ -528,7 +528,7 @@ The data from the previous chapter had the advantage that the results of the ang
 Two fiber populations are then additionally rotated according to the previously specified discretization to sample all orientations (see \cref{sec:modelParamet}).
 The rotation step is adjustes based on the crossing angle $\modelOmega$ so that the spatial distance between two generated orientations is close to $\Delta \modelRot = \SI{15}{\degree}$.
 
-Because of the orientation proterties $\phi,\alpha == \phi+\pi,\alpha+\pi/2$ and because of the \ac{3D-PLI} properties the results can be mirrored according to $\phi,\alpha == -\phi,\alpha$.\footnote{Except the direction value, which is not analysed in 3D.}
+Because of the orientation proterties $(\phi,\alpha) == (\phi+\pi,\alpha+\pi/2)$ and because of the \ac{3D-PLI} properties the results can be mirrored according to $\phi,\alpha == -\phi,\alpha$.\footnote{Except the direction value, which is not analysed in 3D.}
 Therefore only one quarter of the sphere has to be simulated. 
 All results will then be mirrored too the hole sphere (see \cref{fig:simModelSphereSample}).
 \par
@@ -536,14 +536,12 @@ All results will then be mirrored too the hole sphere (see \cref{fig:simModelSph
 \begin{figure}[t]
 \centering
 \setlength{\tikzwidth}{0.40\textwidth}
-\subcaptionbox{The spheres surface is sampled around the first fiber population axis $\popa$ of inclination $\modelInc$ with a crossing angle $\modelOmega$ and a rotation $\modelRot$.
-The number of samples is an integer close so that the distance between two inclinations are \dummy{} over the sphere.
-\todo{improve view angle}}
+\subcaptionbox{The spheres surface is sampled around the first fiber population axis $\popa$ of inclination $\modelInc$ with a crossing angle $\modelOmega$ and a rotation $\modelRot$.}
 [.475\textwidth]{\inputtikz{gfx/model/sphere_models_c}}
 \hfill
-\subcaptionbox{The results of a value over all orientations of the second fiber population $\popb$ is represented as polar plot.
-The orientation of the first fiber population $\popa$ is marked as a black circle.
-The \dummy{} let mirror the results at the x-axis.}
+\subcaptionbox{
+A resulting value for a fiber population of inclination $\modelInc$ and secondary fiber population with crossing angle $\modelOmega$ and rotation $\modelRot$ will be plotted at the corresponding position in the polar plot.
+}
 [.475\textwidth]{\inputtikz{gfx/model/sphere_hist_b}}
 \caption{Two population of fiber models are \dummy{}. For a fixed first fiber population orientation the second is sampled via the crossing angle of the models an a rotation around the first fiber population.}
 \label{fig:simModelSphereSample}
