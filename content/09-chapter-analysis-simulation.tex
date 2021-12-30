@@ -382,11 +382,16 @@ At higher inclination angles, both the median and the variance increase signific
 \begin{figure}[!p]
 \centering
 \includegraphics[page=3]{gfx/rc1/analysis/plots_flat_pop_hist_output_cube_2pop_135_rc1_flat.pdf}
-\caption{Crossing flat fiber population: $\modelPsi=\SI{30}{\percent}$. Left: 2D log histogram orientation from rofl analysis of simulation. Right: 2D log histogram of model segment orientation.}
+\caption{Crossing flat fiber population: $\modelPsi=\SI{30}{\percent}$.
+% Left: 2D log histogram orientation from rofl analysis of simulation. Right: 2D log histogram of model segment orientation.
+}
 \label{fig:flat_03_fiber_pop_hist}
 % 
+\vspace{2em}
 \includegraphics[page=5]{gfx/rc1/analysis/plots_flat_pop_hist_output_cube_2pop_135_rc1_flat.pdf}
-\caption{Crossing flat fiber population: $\modelPsi=\SI{50}{\percent}$. Left: 2D log histogram of the orientation from the tilting analysis of the simulation, right: 2D log histogram of the orientation of the model segments.}
+\caption{Crossing flat fiber population: $\modelPsi=\SI{50}{\percent}$.
+% Left: 2D log histogram of the orientation from the tilting analysis of the simulation, right: 2D log histogram of the orientation of the model segments.#
+}
 \label{fig:flat_05_fiber_pop_hist}
 \end{figure}
 %
@@ -428,7 +433,7 @@ In the case of $\modelPsi = \SI{30}{\percent}$ it starts at a transmittance of a
 In the case of $\modelPsi = \SI{50}{\percent}$ it reaches a slightly higher value of $\SI{1110}{\arbitraryunit}$.
 \par
 % Retardation
-The retardation appears to be strongly negatively linearly correlated with increasing crossing angle for both fiber population fractions \modelPsi{}.
+The retardation is negatively linearly correlated with increasing crossing angle for both fiber population fractions \modelPsi{}.
 For $\modelPsi=\SI{30}{\percent}$ the retardation starts at $\SI{0.8}{}$ and drops to about $\SI{0.3}{}$.
 In the case of $\modelPsi=\SI{50}{\percent}$ it also starts at $\SI{0.8}{}$ and drops to almost $\SI{0}{}$.
 For both fiber population fractions, the variance increases slightly with the crossing angle.
@@ -467,16 +472,24 @@ In the case of $\modelPsi = \SI{50}{\percent}$ and $\modelOmega = \SI{90}{\degre
 \begin{figure}[!p]
 \centering
 \includegraphics[page=3]{gfx/rc1/analysis/plots_inclined_pop_hist_output_cube_2pop_135_rc1_inclined.pdf}
-\caption{Population of inclined crossing fibers: $\modelPsi=\SI{30}{\percent}$. Left: 2D log histogram of orientation from tilting analysis of simulation, right: 2D log histogram of orientation of model segments.}
+\caption{Population of inclined crossing fibers: $\modelPsi=\SI{30}{\percent}$.
+%  Left: 2D log histogram of orientation from tilting analysis of simulation, right: 2D log histogram of orientation of model segments.
+}
 \label{fig:inclined_03_fiber_pop_hist}
-% \end{figure}
-% %
-% \begin{figure}[!t]
-% \centering
+% 
+\vspace{2em}
 \includegraphics[page=5]{gfx/rc1/analysis/plots_inclined_pop_hist_output_cube_2pop_135_rc1_inclined.pdf}
-\caption{Population of inclined crossing fibers: $\modelPsi=\SI{50}{\percent}$. left: 2D log histogram of orientation from tilting analysis of simulation, right: 2D log histogram of orientation of model segments.}
+\caption{Population of inclined crossing fibers: $\modelPsi=\SI{50}{\percent}$.
+%  left: 2D log histogram of orientation from tilting analysis of simulation, right: 2D log histogram of orientation of model segments.
+}
 \label{fig:inclined_05_fiber_pop_hist}
 \end{figure}
+%
+The orientation histogramms of the inclined models as well as their simulation results are shown in \cref{fig:inclined_03_fiber_pop_hist,fig:inclined_05_fiber_pop_hist}.
+In the case of a fiber population fraction $\modelPsi=\SI{30}{\percent}$ the inclination of the simulation follows the inclination of the models, however with lower values.
+For a crossing of $\modelOmega=\SI{90}{\percent}$ the resulting orientations are flat as the first fiber population.
+For $\modelPsi=\SI{50}{\percent}$ the same behavier is visiable, however the difference in the inclination is larger and for  $\modelOmega=\SI{30}{\percent}$ and $\modelOmega=\SI{60}{\percent}$ lie in between both fiber populations inclinations.
+\par
 %
 \begin{figure}[!p]
 \centering
@@ -492,44 +505,47 @@ In the case of $\modelPsi = \SI{50}{\percent}$ and $\modelOmega = \SI{90}{\degre
 \label{fig:inclined_05_fiber_pop_rofl}
 \end{figure}
 %
-Next, we are concerned with two crossing fiber bundles with a rotation angle of $\modelRot = \SI{90}{\degree}$, \ie{} the first fiber population along the $x$-axis and the second population in the $xz$-axis.
-As before, the two parameters $\modelPsi = \SI{30}{\percent}$ and $\modelPsi = \SI{50}{\percent}$ are discussed.
-\par
-%
-The histogram data for both cases show only visible orientation for the measurement.
-\dummy{}.
+\Cref{fig:inclined_03_fiber_pop_rofl, fig:inclined_05_fiber_pop_rofl} show the results of the \ac{3D-PLI} modalities as well as the tilt analysis and opening angle in detail.
 \par
 % Transmittance
-The transmittance is almost identical in both cases.
-It increases with increasing crossing angle, but the inclination decreases for larger $\modelOmega$.
-The median increases to a value of $\SI{110}{\percent}$ in both cases as opposed to the flat case.
-The variance remains similar for all values.
+The transmittance increases with increasing crossing angle \modelOmega{}.
+The two fiber population fractions \modelPsi{} have the same behavier.
+Transmittance increases initially and becomes flatter for larger crossing angles.
+In the case of $\modelPsi = \SI{30}{\percent}$ it starts at a transmittance of about $\SI{1000}{\arbitraryunit}$ and reaches for a crossing angle of $\SI{90}{\degree}$ a value of about $\SI{1100}{\arbitraryunit}$.
+In the case of $\modelPsi = \SI{50}{\percent}$ it reaches a slightly higher value of $\SI{1110}{\arbitraryunit}$.
 \par
 % Retardation
-In both cases, the retardation decreases almost linearly with increasing crossing angle $\modelOmega$.
-In the case of $\modelPsi = \SI{30}{\percent}$, the final value is about $\SI{0.18}{}$ in contrast to $\modelPsi = \SI{50}{\percent}$ with a final value of $\SI{0.3}{}$.
-The variance increases significantly for larger crossing angles.
+The retardation is negatively linearly correlated with increasing crossing angle for both fiber population fractions \modelPsi{}.
+For $\modelPsi=\SI{30}{\percent}$ the retardation starts at $\SI{0.8}{}$ and drops to about $\SI{0.18}{}$.
+In the case of $\modelPsi=\SI{50}{\percent}$ it also starts at $\SI{0.8}{}$ and drops to about $\SI{0.3}{}$.
+For both fiber population fractions, the variance increases with increasing crossing angle.
+In the case of $\modelPsi=\SI{50}{\percent}$ the variance increases significantly more.
 \par
 % Direction
-The directional value is again very similar in both cases.
-The median is always around $\SI{0}{\degree}$.
-The quartile grows from about $\SI{0.5}{\degree}$ to $\SI{2}{\degree}$ with increasing crossing angle.
+The direction for both fiber population fractions \modelPsi{} is centered around $\SI{0}{\degree}$.
+For both \modelPsi{} the variance of the direction increases with increasing crossing angle \modelOmega{}.
+There is no no significant effect visible between both fiber population fractions.
 \par
 % Inclination
-In the case of $\modelPsi = \SI{30}{\percent}$, the inclination is almost linear with increasing crossing angle from about $\modelOmega =\SI{60}{\degree}$.
-In the case of $\modelPsi = \SI{50}{\percent}$, the peak value is at about $\modelOmega = \SI{60}{\degree}$.
-The variance increases for both parameters as the crossing angle increases.
-The main difference between the two parameters is that in the case of $\modelPsi = \SI{30}{\percent}$, the maximum inclination achieved is significantly higher than in the case of $\modelPsi = \SI{50}{\percent}$.
-In both cases, however, the inclination only follows the circular mean value (dashed line) vor the lower crossing values.
+The inclination for both fiber population fraction starts first increasing and drops then to a value of $\SI{0}{\degree}$.
+In the case of $\modelPsi=\SI{30}{\percent}$ the maxium inclination is reached at  a crossing angle of about $\modelOmega=\SIrange{60}{70}{\degree}$.
+For $\modelPsi=\SI{50}{\percent}$ the maximum value is at a crossing angle of about $\modelOmega=\SIrange{50}{60}{\degree}$.
+The theoretical curve, which is the circmean of both fiber populations inclinations, is in both cases only followed up to a crossing angle of about $\SI{30}{\degree}$.
 \par
 % Trel
-The relative effective thickness \trel{} decreases in both cases.
-In the case of $\modelPsi = \SI{50}{\percent}$, the correlation is nearly linear and the variance increases slightly with increasing crossing angle.
-In the case of $\modelPsi = \SI{30}{\percent}$, a small hill is visible around $\modelOmega = \SI{50}{\degree}$ where the value and variance increase slightly.
+The relative thickness \trel{} decreases with increasing crossing angle \modelOmega{} almost linearly for both fiber population fractions.
+In both cases the \trel{} values start at about $\SI{0.6}{}$.
+For $\modelPsi = \SI{30}{\percent}$ the \trel{} value drops to $\SI{0.1}{}$ wheres for $\modelPsi = \SI{50}{\percent}$ the \trel{} value drops almost to $\SI{0.2}{}$.
+For the fiber population fraction $\modelPsi = \SI{30}{\percent}$ the variance increases in the middle value range $\modelOmega=\SIrange{40}{70}{\degree}$.
+In this range the \trel{} values are slightly increased against a linear trend.
+The second fiber population fraction case $\modelPsi = \SI{50}{\percent}$ shows a small increase in the variance with increasing crossing angle.
 \par
 % domega
-Both the opening angle and its variance appear to increase exponentially with increasing crossing angle in the case of $\modelPsi = \SI{30}{\percent}$.
-In the case of $\modelPsi = \SI{50}{\percent}$, both the median and variance also increase, but the increase in the largest crossing values stops at a median of about $\SI{6}{\degree}$.
+The opening angle \openingAngle{} for $\modelPsi=\SI{30}{\percent}$ increases with increasing crossing angle \modelOmega{}.
+The increase increases significantly for crossing angles towords $\modelOmega=\SI{90}{\degree}$ but stays under a median value of about $\openingAngle=\SI{10}{\degree}$.
+For $\modelPsi=\SI{50}{\percent}$ the opening angle increases lineary up to a crossing angle of $\modelOmega=\SI{80}{\degree}$ and remains the same for $\modelOmega=\SI{90}{\degree}$.
+For both fiber population fractions the variance increases with increasing crossing angle.
+In the case of $\modelPsi=\SI{50}{\percent}$ the variance is about half as big as for $\modelPsi=\SI{30}{\percent}$.
 %
 % 
 % 
@@ -980,16 +996,20 @@ All effects described above are reflected in the opening angle \openingAngle{}, 
 %
 %
 \subsection{Inclined crossing fiber population}
-\Cref{sec:resInclCross} shows the results for the inclined crossing fiber population, \ie{} $\modelRot=\SI{90}{\degree}$.
-With the exception of inclination, the results are very similar to the previous case of the flat crossing fiber population.
-This is to be expected since inclined fibers do not contribute to retardation.
-The inclination in the case of $\modelPsi=\SI{30}{\percent}$ initially increases as the main fiber population, \ie{} the second, contributes more to retardation until eventually the median falls back to $\SI{0}{\degree}$.
-In the case of $\modelPsi=\SI{50}{\degree}$, the tipping point is earlier and lower because the second nerve fiber bundle contributes less.
-The circular mean value is only followed for lower crossing angles.
-For larger values the measured inclinations deviate from the theoretical line since the inclined nerve fibers contribute less to the overall signal and cannot anymore deteced.
-For large fiber population fractions (\todo{see ...}) where the flat fiber population has a lower influence, the circular mean value applies also for larger crossing angles.
-Otherwise, the other parameters do not behave differently with respect to the reduced signal and its effects than in the case of the single fiber population.
+\Cref{sec:resInclCross} shows the results for the inclined crossing fiber population.
+The transmittance and retardation results are similar to the previous flat fiber crossing.
+The main difference is that the retardation does not decrease to $\SI{0}{}$ which is to be expected since only the retardance of the inclined fiber population is canceled due to the radially optical axis.
+This is also visible in the behavier of the inclination, which does not follows the theoretical circ mean of both fiber populations.
+\todo{try effective circ mean}
+\par
+% 
+The effective birefingend thickness \trel{} behavies as to be expected that the effects of the inclined fiber populations neglects itself.
+However especially in the case of $\modelPsi=\SI{50}{\percent}$ the \trel{} value is lower for $\modelOmega=\SI{90}{\degree}$ than half of $\modelOmega=\SI{0}{\degree}$ which one would first expected.
+Due to the lower volume fraction the \trel{} value has to be lower.
+\par
 %
+The opening angle \openingAngle{} combines the results of the direction and inclination values as to be expected for an inclined crossing fiber model.
+% 
 %
 %
 \subsection{Free crossing fiber population}
