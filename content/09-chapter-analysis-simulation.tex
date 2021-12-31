@@ -551,8 +551,6 @@ In the case of $\modelPsi=\SI{50}{\percent}$ the variance is about half as big a
 % 
 \subsection{Free crossing fiber populations}
 \label{sec:resFreeCross}
-% 
-\todo{reihenfolge von results}
 %
 This section presents a subset of the simulated nerve fiber models.
 The remaining results are available in \dummy{}.
@@ -624,6 +622,33 @@ In summary crossing angles have a significant reduced \ac{ACC} values.
 This effect is significant visible as a \say{band} of reduced \ac{ACC} values from low inclined and low first fiber poluation fraction towords high inclined and high first fiber population fractions.
 Fiber population fractions of $\modelPsi \geq \SI{90}{\percent}$ or $\modelPsi \leq \SI{10}{\percent}$ have almost no effect on the \ac{ACC} value.
 %
+%
+% 
+\paragraph{Transmittance}
+% 
+\begin{figure}[!p]
+\centering
+\includegraphics[]{gfx/rc1/analysis/simulation_analysis_hist_0.5_setup_PM_s_Vervet_m_r_trans_mean.pdf}
+\caption{Mean transmittance value. \todo{x,y labels}}
+\label{fig:sim_ana_trans}
+\end{figure}
+% 
+The average transmission value is visualized in \cref{fig:sim_ana_trans}.
+The first fiber population fraction $\modelPsi=\SI{10}{\percent}$ is almost identical for all inclination angles $\modelInc$.
+The transmittance is lowest for models with a crossing angle of $\modelOmega = \SI{0}{\degree}$ and for flat configurations.
+\par
+%
+For a fiber population fraction $\modelPsi=\SI{30}{\percent}$ the transmittance increases significantly.
+It is again lowest for a crossing angle of $\modelOmega=\SI{0}{\degree}$.
+The same behavier is true for $\modelPsi=\SIlist{50,70}{\percent}$.
+$\modelPsi=\SI{50}{\percent}$ reachest the highest transmittance for fiber models with crossings.
+\par
+% 
+The the mean transmittance for the last fiber population fraction $\modelPsi=\SI{30}{\percent}$ is again reduced similar to the first case.
+Again, only fiber configurations with no crossing remain the lowest transmittance for all inclinations $\modelInc$.
+%
+% 
+% 
 \paragraph{Retardation}
 % 
 \begin{figure}[!p]
@@ -648,48 +673,40 @@ For fiber population fractions $\modelPsi \geq \SI{50}{\percent}$ and first fibe
 For $\modelPsi=\SI{90}{\percent}$ no reduction in the retardation for different crossing angles $\modelOmega$ is visible.
 The retardation value is stable for each first fiber inclination parameter.
 The retardation, however, reduces significantly with increasing inclination $\modelInc$ until it is close to $\SI{0}{}$ for $\modelInc=\SI{90}{\degree}$.
-%
 % 
 % 
-\paragraph{Transmittance}
 % 
-\begin{figure}[!p]
-\centering
-\includegraphics[]{gfx/rc1/analysis/simulation_analysis_hist_0.5_setup_PM_s_Vervet_m_r_trans_mean.pdf}
-\caption{Mean transmittance value. \todo{x,y labels}}
-\label{fig:sim_ana_trans}
-\end{figure}
-% 
-The average transmission value is given in \cref{fig:sim_ana_trans}.
-The fraction of the first fiber population of $\modelPsi=\SI{10}{\percent}$ is almost identical for all inclination angles $\modelInc$.
-The main difference is that the transmittance is lowest for models with a crossing angle of $\modelOmega = \SI{0}{\degree}$.
-Otherwise, the transmittance remains relatively constant low.
-\par
-%
-This changes a little for the next fiber population fraction of $\modelPsi=\SI{30}{\percent}$.
-Again, the transmittance is lowest at no crossing angle, but the increase in value is more pronounced than in the previous case.
-\par
-%
-In the next case of $\modelPsi=\SI{50}{\percent}$ the effect is even stronger.
-Nevertheless, the transmittance is lowest at no crossing angle.
-\par
-%
-The last two cases $\modelPsi=\SI{70}{\percent}$ and $\modelPsi=\SI{90}{\percent}$ are identical to the cases $\modelPsi=\SI{30}{\percent}$ and $\modelPsi=\SI{10}{\percent}$.
+\paragraph{Effective birefringence thickness \trel{}}
 %
 \begin{figure}[!p]
-\centering
-\includegraphics[]{gfx/rc1/analysis/simulation_analysis_hist_0.5_setup_PM_s_Vervet_m_r_rtrel_mean.pdf}
-\caption{Mean \trel{} from tilting analysis. \todo{x,y labels}}
-\label{fig:sim_ana_trel}
+    \centering
+    \includegraphics[]{gfx/rc1/analysis/simulation_analysis_hist_0.5_setup_PM_s_Vervet_m_r_rtrel_mean.pdf}
+    \caption{Mean \trel{} from tilting analysis. \todo{x,y labels}}
+    \label{fig:sim_ana_trel}
 \end{figure}
-%
-\paragraph{\trel}
+% 
 The results of \trel{} are shown in \cref{fig:sim_ana_trel}.
-All values correlate almost perfectly with retardation.
-The only significant difference is that the \trel{} value is significantly higher than $\SI{1}{}$.
-It should be noted that the upper limit of the color bar was reduced to $\SI{1}{}$ to make the distribution more visible.
-In the cases of $\trel > \SI{1}{}$, the retardation values are the smallest.
-Here the interpolation of the spherical background values should not be taken too seriously.
+The first fiber population fraction $\modelPsi=\SI{10}{\percent}$ 
+is almost constant for all fiber configurations.
+The exceptions are secondary fibar population inclinations of $\SI{90}{\degree}$ for $\modelInc=\SIlist{60;90}{\degree}$.
+% 
+For $\modelPsi=\SI{30}{\percent}$ areas with reduces \trel{} become visible.
+These are located for $\modelInc=\SIlist{0;30}{\degree}$ at $\SI{90}{\degree}$ crossing to the first fiber population towords a direction of $\SI{180}{\degree}$.
+For $\modelInc=\SI{60}{\degree}$ the reduced \trel{} area remains slightly left to the z-axis.
+Here, towords the north and south are two sampled configurations visible with $\trel > 1$ (plot is capped).
+The same is visible for a $\modelInc=\SI{90}{\degree}$ for the none crossing configuration along the z-axis.
+\par
+% 
+$\modelPsi=\SI{70}{\percent}$ shows for the flat configuration $\modelInc=\SI{0}{\degree}$ only slightly reduced \trel{} values for configurations with high flat crossing angles.
+This behavier is reduced for $\modelInc=\SI{30}{\degree}$.
+For $\modelInc=\SI{60}{\degree}$ a significant reduction in \trel{} becomes visible for crossing angles in the range of $\modelOmega=\SI{90}{\degree}$ and towords a direction of $\SI{180}{\degree}$.
+The last case with $\modelInc=\SI{90}{\degree}$ show for all configurations significat reduced \trel{} values towords $\SI{0}{}$ with an exception for the very steep configuration where $\trel \geq \SI{1}{}$.
+% 
+The last row shows the results for the fiber population fraction $\modelPsi=\SI{90}{\percent}$.
+All models and there configurations remain a stable \trel{} value.
+The exception is for fiber configurations with $\modelInc=\SI{90}{\degree}$, where the \trel{} values along the z-axis are $\geq \SI{1}{}$
+%
+\paragraph{\rvalue}
 % 
 \begin{figure}[!p]
 \centering
@@ -697,8 +714,7 @@ Here the interpolation of the spherical background values should not be taken to
 \caption{Mean \rvalue{} from tilting analysis. \todo{x,y labels}}
 \label{fig:sim_ana_rvalue}
 \end{figure}
-%
-\paragraph{\rvalue}
+% 
 The last value is the \rvalue{} (see \cref{fig:sim_ana_rvalue}).
 It describes the mean absolute difference between the data and the fitted data from the tilting analysis.
 Its value is overall in the range of $\SIrange{1.2}{1.8}{\percent}$.
