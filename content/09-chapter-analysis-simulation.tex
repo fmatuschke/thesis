@@ -551,18 +551,15 @@ In the case of $\modelPsi=\SI{50}{\percent}$ the variance is about half as big a
 % 
 \subsection{Free crossing fiber populations}
 \label{sec:resFreeCross}
-%
-The following data shows the result of the tilting analysis without the orientation angles, because the mean value for a single angle cannot be calculated easily. \footnote{Orientations lie on a hemisphere with symmetries, and angles are interdependent}
-The data from the previous chapter had the advantage that the results of the angles are close enough to each other to make a conversion to the expected value.
-\par
 % 
-Two fiber populations are then additionally rotated according to the previously specified discretization to sample all orientations (see \cref{sec:modelParamet}).
-The rotation step is adjustes based on the crossing angle $\modelOmega$ so that the spatial distance between two generated orientations is close to $\Delta \modelRot = \SI{15}{\degree}$.
-
-Because of the orientation proterties $(\phi,\alpha) == (\phi+\pi,\alpha+\pi/2)$ and because of the \ac{3D-PLI} properties the results can be mirrored according to $\phi,\alpha == -\phi,\alpha$.\footnote{Except the direction value, which is not analysed in 3D.}
-Therefore only one quarter of the sphere has to be simulated. 
-All results will then be mirrored too the hole sphere (see \cref{fig:simModelSphereSample}).
-\par
+\todo{reihenfolge von results}
+%
+This section presents a subset of the simulated nerve fiber models.
+The remaining results are available in \dummy{}.
+To visualize the results from the \ac{3D-PLI} analysis pipeline a polar plot visualization is used (see \cref{fig:simModelSphereSample}).
+Each polar plot visualizes the results for a fixed first fiber population \popa{}.
+To interpolate between the sampled positions, a spherical k-nearest neighbors interpolator is used \cite{DBLP:journals/corr/abs-1910-00704}.
+The results of the direction and inclination are not shown since the interpolation does not work with the circmean function.
 % 
 \begin{figure}[t]
 \centering
@@ -571,10 +568,13 @@ All results will then be mirrored too the hole sphere (see \cref{fig:simModelSph
 [.475\textwidth]{\inputtikz{gfx/model/sphere_models_c}}
 \hfill
 \subcaptionbox{
-A resulting value for a fiber population of inclination $\modelInc$ and secondary fiber population with crossing angle $\modelOmega$ and rotation $\modelRot$ will be plotted at the corresponding position in the polar plot.
+    To visualize scalar results of a fixed first fiber population orientation \popa{} and a variable fiber population orientation \popb{} a polar plot is used.
+    The orientation \popa{} is marked with a black thick circle.
+    The variable second orientation marked with dashed circles.
+    For the visualization the scalar values will be interpolated according to a spherical k-nearest neighbors interpolator algorithm.
 }
 [.475\textwidth]{\inputtikz{gfx/model/sphere_hist_b}}
-\caption{Two population of fiber models are \dummy{}. For a fixed first fiber population orientation the second is sampled via the crossing angle of the models an a rotation around the first fiber population.}
+\caption{Visualization of results for a fixed first fiber population \popa{}.}
 \label{fig:simModelSphereSample}
 \end{figure}
 %
@@ -591,63 +591,75 @@ At the position of the second fiber population, the resulting mean value is inse
 \end{figure}
 %
 \paragraph{\acs{ACC}}
-\Cref{fig:sim_ana_acc} shows the \acreset{ACC} \ac{ACC} value, \ie{} how well the coefficients of the \ac{ODF} basis function are matched.
-\todo{acc of psi = 1}.
-The $\modelPsi=\SI{10}{\percent}$ show no significant reduction in the \ac{ACC} value for all $\modelInc$.
-The most secondarily inclined values for $\modelPsi=\SI{30}{\percent}$ have a significant decrease in the \ac{ACC} value.
-This is much less visible for the case $\modelInc = \SI{30}{\degree}$ and even less for the case $\modelInc = \SI{60}{\degree}$.
-The $\modelInc = \SI{90}{\degree}$ is less than for the case $\modelPsi=\SI{10}{\percent}$, but still constant for all secondary orientations.
+\Cref{fig:sim_ana_acc} shows the \acreset{ACC} \ac{ACC} value, \ie{} how well the coefficients of the \ac{ODF} basis function are matched \cite{Schilling2018}.
+\todo{acc of psi = 1 as ref}.
+\par
+% 
+The fiber population fraction $\modelPsi=\SI{10}{\percent}$ show no significant reduction in the \ac{ACC} value for the first fiber model inclination $\modelInc$.
+For $\modelPsi=\SI{30}{\percent}$ a reduction in the \ac{ACC} value is visible for the lower inclined first fiber population models.
+The reduction is located around steep secondary fiber populations.
+For $\modelInc = \SIlist{30;60}{\degree}$ the reduction is shifted to a direction along $\SI{180}{\degree}$.
+The effective area of the reduction reduces with increasing \modelInc{} until for an inclination of $\modelInc=\SI{90}{\degree}$ no area effect is anymore visible.
+The \ac{ACC} value for this last plot is however still reduced compared to $\modelPsi=\SI{10}{\percent}$.
+For $\modelInc < \SI{90}{\degree}$ a slightly increase in the \ac{ACC} value is visible for flat fiber crossing with a crossing angle of $\modelOmega=\SI{90}{\degree}$.
 \par
 %
-For the equally proportional fiber population $\modelInc = \SI{50}{\degree}$, the \ac{ACC} value reaches its lowest values at the shallowly inclined first population $\modelInc = \SIlist{0;30}{\degree}$.
-In the case of $\modelInc = \SI{0}{\degree}$, the \ac{ACC} value is lowest at a crossing angle of $\modelOmega = \SI{90}{\degree}$.
-This crossing angle for the slightly inclined has a higher \ac{ACC} value \todo{why?, -> show odf}.
-Otherwise, the distribution is similar with respect to 3D orientation symmetry.
-The most inclined angle $\modelInc=\SI{90}{\degree}$ shows an \ac{ACC} value of about $\SI{0.5}{}$ for all orientations with an increase to $\SI{1}{}$ for the $\modelOmega = \SI{0}{\degree}$ ,\ie{} a single fiber population along the z-axis.
+For the equally proportional fiber population $\modelPsi = \SI{50}{\degree}$, the \ac{ACC} value reaches values close to $\SI{0}{}$ for $\modelInc = \SIlist{0;30}{\degree}$ and a crossing angle of $\modelOmega=\SI{90}{\degree}$.
+Inclined secondary fiber populations reaches a higher \ac{ACC} value.
+The configuration $\modelInc = \SI{90}{\degree}$ reaches is maximum \ac{ACC} value at a crossing angle of $\modelOmega=\SI{0}{\degree}$ and lower stable values for all other configurations.
 \par
 %
-The data for $\modelPsi=\SI{70}{\percent}$ show the same behavior in terms of inclined rotation for the first two inclination angles $\modelInc = \SIlist{0;30}{\degree}$.
-For the case $\modelInc=\SI{60}{\degree}$, the \ac{ACC} value is high only for the first fiber population.
-In the case of $\modelInc=\SI{90}{\degree}$ this is also visible, but the smallest values are not as low as in the previous case.
+The first to fiber inclinations $\modelInc = \SIlist{0;30}{\degree}$ for $\modelPsi=\SI{70}{\percent}$ show a similar distribution of the \ac{ACC} value. 
+Small reductions are visible.
+For $\modelInc=\SI{60}{\degree}$, the \ac{ACC} value is highest for low crossing angles $\modelOmega$, \ie{} close to the first fiber population.
+The \ac{ACC} value decreases significantly for higher crossing angles.
+In the case of $\modelInc=\SI{90}{\degree}$ this is also visible, but the minimum for the \ac{ACC} value is higher compared to the previous case $\modelInc=\SI{60}{\degree}$.
 \par
 %
-The last case $\modelPsi=\SI{90}{\percent}$ shows a good agreement of the orientation coefficients of the model with the analyzed signal for the first three inclination angles $\modelInc=\SIlist{0;30;60}{\percent}$.
-The last inclination angle $\modelInc=\SI{90}{\degree}$ shows a decrease of the \ac{ACC} value for the highest crossing angles $\modelOmega$.
+The last case $\modelPsi=\SI{90}{\percent}$ shows high values for the \ac{ACC} parameter for the first three inclinations $\modelInc=\SIlist{0;30;60}{\percent}$.
+The last inclination angle $\modelInc=\SI{90}{\degree}$ shows a slightly decrease of the \ac{ACC} value for higher crossing angles $\modelOmega$.
+\par
 %
+In summary crossing angles have a significant reduced \ac{ACC} values.
+This effect is significant visible as a \say{band} of reduced \ac{ACC} values from low inclined and low first fiber poluation fraction towords high inclined and high first fiber population fractions.
+Fiber population fractions of $\modelPsi \geq \SI{90}{\percent}$ or $\modelPsi \leq \SI{10}{\percent}$ have almost no effect on the \ac{ACC} value.
+%
+\paragraph{Retardation}
+% 
 \begin{figure}[!p]
 \centering
 \includegraphics[]{gfx/rc1/analysis/simulation_analysis_hist_0.5_setup_PM_s_Vervet_m_r_ret_mean.pdf}
 \caption{Mean retardation values. \todo{x,y labels}}
 \label{fig:sim_ana_ret}
 \end{figure}
-%
-\paragraph{Retardation}
-The retardation results in \cref{fig:sim_ana_ret} show the least retardation for an inclination angle of $\alpha=\SI{90}{\degree}$ for the second fiber population in the case of the smallest first fiber population fraction $\modelPsi=\SI{10}{\percent}$ and an increase to the flat case of $\alpha=\SI{0}{\degree}$.
+% 
+The retardation results are shown in \cref{fig:sim_ana_ret}.
+
+For a fiber population fraction of $\modelPsi=\SI{10}{\percent}$ the smallest retardation values are visible for secondary fiber populations with an inclination of $\SI{90}{\degree}$.
+Configurations with a high crossing angle $\modelOmega$ are slightly reduced.
+Flat fiber configurations remain a high retartation value.
 \par
 %
-This is also visible for the second case of $\modelPsi=\SI{30}{\percent}$ and $\modelPsi=\SI{60}{\percent}$, however, for the first two $\modelInc = \SIlist{0;30}{\degree}$ the non-crossing fiber populations have significantly higher retardation.
-For higher $\modelInc$, the values decrease overall, and a reduction in crossing is no longer visible.
+The same bahavier is also visible for the fiber population fraction $\modelPsi=\SIlist{30;50;70}{\percent}$, however, the retardation values are significantly reduced, especially for high first fiber population inclinations.
+The reduction of the retardation of high crossing angles $\modelOmega$ is more significant as well, especially for $\modelPsi=\SI{50}{\percent}$.
+For fiber population fractions $\modelPsi \geq \SI{50}{\percent}$ and first fiber population inclinations $\modelInc \geq \SI{60}{\degree}$ the retardation is close to $\SI{0}{}$.
 \par
 %
-In the case of $\modelPsi=\SI{60}{\percent}$, the retardation is very similar to the previous case $\modelPsi=\SI{30}{\percent}$, but the value is much lower.
-\par
+For $\modelPsi=\SI{90}{\percent}$ no reduction in the retardation for different crossing angles $\modelOmega$ is visible.
+The retardation value is stable for each first fiber inclination parameter.
+The retardation, however, reduces significantly with increasing inclination $\modelInc$ until it is close to $\SI{0}{}$ for $\modelInc=\SI{90}{\degree}$.
 %
-In the case $\modelPsi=\SI{70}{\percent}$, an increase in retardation is again observed at the first two crossing angles $\modelInc=\SIlist{0;30}{\degree}$ in contrast to the previous values.
-A decrease in retardation at the highest crossing angles is still visible, but relatively small compared to the previous values.
-The last two crossing angles $\modelInc=\SIlist{60;90}{\degree}$ are significantly lower.
-\par
-%
-The last case of $\modelPsi=\SI{90}{\percent}$ shows a decrease in retardation with inclination angle $\modelInc$.
-The second fiber population orientation of has almost no effect on the results.
-%
+% 
+% 
+\paragraph{Transmittance}
+% 
 \begin{figure}[!p]
 \centering
 \includegraphics[]{gfx/rc1/analysis/simulation_analysis_hist_0.5_setup_PM_s_Vervet_m_r_trans_mean.pdf}
 \caption{Mean transmittance value. \todo{x,y labels}}
 \label{fig:sim_ana_trans}
 \end{figure}
-%
-\paragraph{Transmittance}
+% 
 The average transmission value is given in \cref{fig:sim_ana_trans}.
 The fraction of the first fiber population of $\modelPsi=\SI{10}{\percent}$ is almost identical for all inclination angles $\modelInc$.
 The main difference is that the transmittance is lowest for models with a crossing angle of $\modelOmega = \SI{0}{\degree}$.

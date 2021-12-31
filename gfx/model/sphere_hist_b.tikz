@@ -60,10 +60,7 @@
 (90.00, 90.00)
 (130.89, 69.30)
 }; %, contour filled={number=9}
-\addplot [only marks, mark=o, very thick] coordinates {%
-(0, 30.0)
-}; %, contour filled={number=9}
-% \coordinate (P) at (axis cs: 0,0);
+\addplot [only marks, mark=o, very thick] coordinates {(0, 30.0)};
 % 
 \coordinate (C12) at (axis cs: 0,120);
 \coordinate (C9) at (axis cs: 0,90);
@@ -84,9 +81,13 @@
         \p{AB}     = ($ (C3) - (C12) $),
         \n{radius1} = {veclen(\x{AB},\y{AB})},
         \n{radius2} = {\n{radius1}*1.055}
-        in (C3) [partial ellipse=0:360:\n{radius1} and \n{radius2}]; 
+        in (C3) [partial ellipse=0:360:\n{radius1} and \n{radius2}];
+\node[GREEN,anchor=south west] (C3) {$\popa$};
+% 
 \end{polaraxis}
-%
+% 
+% \draw[<-, thick, GREEN] (C3) -- ++ (1:30) node[pos=1,anchor=south east] {$\popa$};
+% 
 \coordinate (P) at (current bounding box.center);
 % \draw[green] ($(P)$) -- ($(P)+(4,-4)$);
 % \draw[green] ($(P)-(4,4)$) rectangle ($(P)+(4,4)$);
