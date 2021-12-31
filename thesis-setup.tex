@@ -167,7 +167,7 @@
 \sisetup{% TODO: detect math mode
         detect-mode=true,detect-family=false,
         detect-display-math=false,detect-shape=false,
-        list-units=brackets, range-units=brackets,
+        list-units=brackets,range-units=brackets,
         list-final-separator = {,},
         list-pair-separator={,},
         % list-pair-separator={\text{~and~}},
@@ -175,7 +175,7 @@
         math-micro=µ,
         binary-units = true
         } %\mathrm{\mu}} %math-micro=\muup,
-% \AtBeginDocument{\sisetup{math-rm=\mathrm, text-rm=\sffamily}}
+\AtBeginDocument{\sisetup{math-rm=\mathrm, text-rm=\sffamily}}
 %
 % \usepackage{caption}
 \usepackage[nameinlink]{cleveref}
