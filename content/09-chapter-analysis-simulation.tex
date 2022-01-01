@@ -715,227 +715,104 @@ The exception is for fiber configurations with $\modelInc=\SI{90}{\degree}$, whe
 \label{fig:sim_ana_rvalue}
 \end{figure}
 % 
-The last value is the \rvalue{} (see \cref{fig:sim_ana_rvalue}).
+The \rvalue{} of the fitting model of the tilt analysis is shown in \cref{fig:sim_ana_rvalue}.
 It describes the mean absolute difference between the data and the fitted data from the tilting analysis.
-Its value is overall in the range of $\SIrange{1.2}{1.8}{\percent}$.
-For $\modelInc = \SI{0}{\degree}$, the \rvalue{} increases in the middle of the polar diagram for higher \modelPsi{} values.
-The $\modelInc = \SI{30}{\degree}$ show towards the $\modelPsi = \SI{50}{\percent}$ a curved pattern with slightly higher \rvalue{}.
-For higher $\modelPsi$ the pattern changes and only the centered area is enlarged.
-For $\modelInc = \SI{60}{\degree}$, an increase in \rvalue{} towards the outer regions is visible.
-As \modelInc{} increases, the pattern also changes and becomes increasingly visible up to $\modelPsi=\SI{70}{\percent}$ in the upper and lower parts of the polar diagram.
-Finally, for the case $\modelInc = \SI{90}{\degree}$, the \rvalue s are low again.
 \par
 %
-A significant difference has the $\modelPsi = \SI{10}{\percent} / \modelInc = \SI{90}{\degree}$.
-Here, the values for the crossing angles to $\modelOmega = \SI{90}{\degree}$ reach a higher value of $\approx \SI{2.2}{\percent}$.
-The \rvalue{} for higher proportions of the first fiber population $\modelPsi$ at this inclination angle $\modelInc$ has a similar pattern, but becomes lower and lower for higher $\modelPsi$.
+For a fiber population fraction of $\modelPsi=\SI{10}{\percent}$ and a primary inclination angle $\modelInc\leq\SI{30}{\degree}$ the orientation of the second fiber population does not change the \rvalue{} of the tilting analysis.
+For $\modelInc=\SI{60}{\degree}$ the \rvalue{} starts increasing for secondary fiber orientations towords the xy-plane.
+The \rvalue{} increases significantly more for $\modelInc=\SI{90}{\degree}$ for flat secondary fiber population orientations.
+\par
+% 
+For fiber population fractions $\modelPsi=\SI{30}{\percent}$ and $\modelInc=\SI{0}{\degree}$ the \rvalue{} remains low for flat crossing fiber configurations.
+Towords fiber crossing along the z-axis the \rvalue{} is slightly increased.
+For $\modelInc=\SI{30}{\degree}$ the increase of the \rvalue{} along the z-axis is slightly lower.
+However, to steeper crossing angles towords about $\SIlist{125;235}{\degree}$ the \rvalue{} is still increased.
+The fiber configurations of $\modelInc=\SIlist{60;90}{\degree}$ are similar to the previous fiber population fraction, however, the \rvalue{} are not as high.
+\par
 %
+Fiber population fractions $\modelPsi=\SI{50}{\percent}$ and inclinations of $\modelInc=\SI{0}{\degree}$ have an increased \rvalue{} for inclined secondary fiber configurations along the y-axis.
+For $\modelInc=\SI{0}{\degree}$ the increased area along the y-axis is bends towords $\SI{180}{\degree}$.
+$\modelInc=\SI{60}{\degree}$ remain a low \rvalue{} along the x-axis and an area around the first fiber population orientation.
+The remaining secondary orientations are slightly increased.
+The steep first fiber population inclination of $\modelInc=\SI{90}{\degree}$ again has an increased \rvalue{} towords flat secondary orientations.
+The \rvalue{} compared to the lower first fiber population fractions is further reduced.
+\par
 %
+$\modelPsi=\SI{70}{\percent}$ and $\modelInc=\SI{0}{\degree}$ have only an increased \rvalue{} for secondary fiber configuration along the z-axis.
+The points along the x-axis are slightly more increased then along the y-axis.
+For $\modelInc=\SI{30}{\degree}$ the bended shape form the previous result almost disapears.
+Only the secondary fiber configurations along the z-axis remain increased.
+$\modelInc=\SI{60}{\degree}$ remain a low \rvalue{} along the x-axis.
+Only crossings for flat directions of $\SIlist{110;250}{\degree}$ are increased.
+The last inclination angle of $\modelInc=\SI{90}{\degree}$ is again similar to the previous fiber population fraction, but the \rvalue{} is again lower for the increased areas.
+\par
+% 
+The last fiber population fraction $\modelPsi=\SI{90}{\percent}$ have an increased \rvalue{} at the z-axis for inclination angles of $\modelInc=\SIlist{0;30}{\degree}$.
+$\modelInc=\SIlist{60;90}{\degree}$ remain for all configurations a low \rvalue{}.
+% 
 %
 %
 \subsection{Speedup}
 \label{sec:simSpeedup}
-% \tikzset{external/force remake=true}
-% \tikzset{external/export=false}
 %
-% MPI
-\begin{figure}[!t]
-\centering
-%
-\begin{lrbox}{\newtable}
-\pgfplotstabletypeset[%
-    thesisTableStyle,
-    column type=l,
-    fixed, zerofill, precision=2,
-    dec sep align,
-    font={\scriptsize},
-    columns/cpus/.style={precision=0},
-    % columns/value/.style={string type},
-]
-{cpus mean std
-1	1.00006472390261	0.008436755542444
-2	1.92269431841134	0.013489117814521
-3	2.96577613197067	0.026032692317656
-4	3.7772210840161	    0.0683451109519
-5	4.69310330928019	0.053307326948835
-6	5.59568645873564	0.08209457262756
-7	6.46527803633867	0.078755238845452
-8	6.77988547696095	0.070937664466063
-16	13.2706748124183	0.227421225827763
-24	17.2977004181403	0.356822695290338
-32	21.6900417343156	0.489742257920109
-40	25.4634907689925	0.543172079794108
-48	27.9281802113992	0.714407306509344
-}
-\end{lrbox}
-%
-\begin{tabular}{cc}
-\begin{minipage}{0.6\textwidth}
-\includegraphics[page=2]{gfx/rc1/speed/boxplot_generation_output_generation_mpi_v_0.1.csv.pdf}
-\end{minipage}
-&
-\begin{minipage}{0.25\textwidth}
-\usebox{\newtable}
-\end{minipage}
-\end{tabular}
-\caption{\ac{MPI} speedup discrete tissue generation mean time $\SI{1}{\core}$: 29.9 +- 0.2 \todo{sekunden?}}
-\label{fig:speedTissueMPI}
-\end{figure}
-%
-\begin{figure}[!t]
-\centering
-\begin{lrbox}{\newtable}
-\pgfplotstabletypeset[%
-    thesisTableStyle,
-    column type=l,
-    fixed, zerofill, precision=2,
-    dec sep align,
-    font={\scriptsize},
-    columns/cpus/.style={precision=0},
-    % columns/value/.style={string type},
-]
-{cpus mean std
-1	1.00028560723869	0.016748523109448
-2	1.89554114187235	0.061890791019146
-3	2.93217274657456	0.137044706938191
-4	3.80796194148021	0.151338179581496
-5	4.56797840123376	0.294743030055688
-6	5.46464911530043	0.244860209863609
-7	6.30306494349277	0.558808919534342
-8	7.22964159473554	0.370613450811933
-16	13.6057964309241	0.869296236931105
-24	19.9354473052936	0.76053214292035
-32	25.4688807363332	1.33524999091616
-40	30.3887245939769	2.98878482975798
-48	34.7093030892855	3.59570044944364
-}
-\end{lrbox}
-%
-\begin{tabular}{cc}
-\begin{minipage}{0.6\textwidth}
-\includegraphics[page=2]{gfx/rc1/speed/boxplot_simulation_output_simulation_mpi_v_0.1.csv.pdf}
-\end{minipage}
-&
-\begin{minipage}{0.25\textwidth}
-\usebox{\newtable}
-\end{minipage}
-\end{tabular}
-\caption{\ac{MPI} speedup simulation including all five tilt direction. Mean time $\SI{1}{\core}$, centered: 80 +- 2 \todo{sekunden?}}
-\label{fig:speedSimMPI}
-\end{figure}
-%
-%
-% OPENMP
-\begin{figure}[!t]
-\centering
-%
-\begin{lrbox}{\newtable}
-\pgfplotstabletypeset[%
-    thesisTableStyle,
-    column type=l,
-    fixed, zerofill, precision=2,
-    dec sep align,
-    font={\scriptsize},
-    columns/cpus/.style={precision=0},
-    % columns/value/.style={string type},
-]
-{cpus mean std
-1	1.00003318870801	0.006043762665602
-2	1.34745571509197	0.112126679306381
-3	1.85706837136119	0.166855662031889
-4	2.07043347980059	0.203474087892324
-5	2.41719826573049	0.208307641301249
-6	2.67381650473413	0.144163042046179
-7	2.81024536424621	0.413899849287807
-8	3.05678368352906	0.238570289478912
-16	3.98524630106596	0.175099042780921
-24	4.64005306796557	0.118496100940545
-32	4.90099710152266	0.112188961625372
-40	4.89783195844876	0.528173540658736
-48	5.22901104444621	0.053589607722899
-}
-\end{lrbox}
-%
-\begin{tabular}{cc}
-\begin{minipage}{0.6\textwidth}
-\includegraphics[page=2]{gfx/rc1/speed/boxplot_generation_output_generation_mp_v_0.1.csv.pdf}
-\end{minipage}
-&
-\begin{minipage}{0.25\textwidth}
-\usebox{\newtable}
-\end{minipage}
-\end{tabular}
-\caption{\ac{OpenMP} speedup discrete tissue generation. Mean time 1 cpu: 29.9 +- 0.2}
-\label{fig:speedTissueMP}
-\end{figure}
-%
-\begin{figure}[!t]
-\centering
-%
-\begin{lrbox}{\newtable}
-\pgfplotstabletypeset[%
-    thesisTableStyle,
-    column type=l,
-    fixed, zerofill, precision=2,
-    dec sep align,
-    font={\scriptsize},
-    columns/cpus/.style={precision=0},
-    % columns/value/.style={string type},
-]
-{cpus mean std
-1	1.00026069793854	0.015929466416549
-2	1.95547220178774	0.065680726218777
-3	2.97138856408045	0.080728713321266
-4	3.90097732250136	0.154778304333818
-5	4.89979040078024	0.193465065920687
-6	5.81536649890996	0.125590793795792
-7	6.71229347977858	0.143352506525363
-8	7.57827799547624	0.369746017663724
-16	14.6032840374081	0.31614387537932
-24	21.6206614940094	1.91501760949786
-32	28.8271369113821	1.12327525256459
-40	35.6305514268905	1.51516739583375
-48	42.1637558599282	1.30733435281682
-}
-\end{lrbox}
-%
-\begin{tabular}{cc}
-\begin{minipage}{0.6\textwidth}
-\includegraphics[page=2]{gfx/rc1/speed/boxplot_simulation_output_simulation_mp_v_0.1.csv.pdf}
-\end{minipage}
-&
-\begin{minipage}{0.25\textwidth}
-\usebox{\newtable}
-\end{minipage}
-\end{tabular}
-\caption{\ac{OpenMP} speedup simulation for 5 tilt direction. Mean time 1 cpu, centered: 74.9 +- 0.2}
-\label{fig:speedSimMP}
-\end{figure}
-%
-Simulations were performed using a single compute node (\texttt{2x Intel(R) Xeon(R) CPU E5-4657L v2}).
-\par
-%
-Four speedup measurements are shown in \cref{fig:speedTissueMPI,fig:speedSimMPI} for parallelization \ac{MPI} and \cref{fig:speedTissueMP,fig:speedSimMP} for parallelization \ac{OpenMP}.
+This section shows the results of the speedup measurements for the generation of the discretized tissue volume (see \cref{sec:dv_generator}) and the simulation of the light matter interaction (see \cref{sec:simulation}) for the implemented paralelizations with \ac{OpenMP} and \ac{MPI}.
+Simulations were performed using a single compute node with the \ac{CPU} architecture \texttt{2x Intel(R) Xeon(R) CPU E5-4657L v2}.
 To measure speedup, each algorithm was run $N=10$ times.
 To calculate the speedup value, the mean measured time for $n_\mathit{cpu}=1$ was then divided by the measured time for the $n_\mathit{cpu}$ individual values.
 The volume used is the $\modelPsi=\SI{0}{\percent} / \modelInc=\SI{0}{\degree}$ from the \cref{sec:simParameterEnv} parameterization.
 \par
+% 
+\begin{figure}[!t]
+\centering
+\subcaptionbox{\label{fig:speedTissueMP}
+\ac{OpenMP} speedup discrete tissue generation.
+}[.475\textwidth]{\includegraphics[page=2,width=.475\textwidth]{gfx/rc1/speed/boxplot_generation_output_generation_mp_v_0.1.csv.pdf}}
+\hfill
+\subcaptionbox{\label{fig:speedTissueMPI}
+\ac{MPI} speedup discrete tissue generation.
+}[.475\textwidth]{\includegraphics[page=2,width=.475\textwidth]{gfx/rc1/speed/boxplot_generation_output_generation_mpi_v_0.1.csv.pdf}}
+\caption{\todo{resize plots}}
+\end{figure}
 %
-The \cref{fig:speedTissueMPI} shows the parallelization of the discrete tissue generation (see \cref{sec:dv_generator}).
-The speedup for $\SI{8}{\cores}$ is about $\SI{6.8}{}$ and for $\SI{48}{\cores}$ about $\SI{30}{}$ for this architecture.
-For the simulation \cref{fig:speedSimMPI}, it is similar with a speedup for $\SI{8}{\cores}$ around $\SI{7.2}{}$ and for $\SI{48}{\cores}$ around $\SI{35}{}$.
-The graph shows the speedup values for the different tilt angles.
-The centered $(C)$ position has a significantly higher speedup than the tilt angles.
+\Cref{fig:speedTissueMP} visualizes the results of the speedup for \ac{OpenMP} parallelization of the discrete tissue generation algorithm.
+The speedup increases linearly from $\SI{1}{\core}$ up to $\SI{8}{\core}$ up to a speedup of about $\SI{3}{}$.
+For $\SIlist{16;24;32;40;48}{\cores}$ the speedup is further increased, however, is still in the range of $\SIrange{4}{5}{}$.
 \par
-%
-The \ac{OpenMP} speedup for tissue generation is significantly lower than in the \ac{MPI} case.
-The speedup reaches a value of $\SI{3}{}$ for $\SI{8}{\cores}$ and $\SI{5.23}{}$ for $\SI{48}{\cores}$.
-The speed increase is almost linear for all \acp{CPU} tested.
+% 
+\Cref{fig:speedTissueMPI} shows the speedup for the \ac{MPI} implementation.
+Here, the speedup up to $\SI{8}{\cores}$ is again linear and receives about $\SI{6.8}{}$.
+The speedup from $\SI{16}{\cores}$ to $\SI{48}{\cores}$ is also linear, but the slope is decerased.
+For $\SI{48}{\cores}$ a speedup of about $\SI{28}{}$ is reached.
+The variance compared to the \ac{OpenMP} implentation for all number of cores is significantly lower.
 \par
+% 
+\begin{figure}[!t]
+\centering
+\subcaptionbox{\label{fig:speedSimMP}
+\ac{OpenMP} speedup simulation for 5 tilt direction.
+}[.475\textwidth]{\includegraphics[page=2,width=.475\textwidth]{gfx/rc1/speed/boxplot_simulation_output_simulation_mp_v_0.1.csv.pdf}}
+\hfill
+\subcaptionbox{\label{fig:speedSimMPI}
+\ac{MPI} speedup simulation including all five tilt direction.
+}[.475\textwidth]{\includegraphics[page=2,width=.475\textwidth]{gfx/rc1/speed/boxplot_simulation_output_simulation_mpi_v_0.1.csv.pdf}}
+\caption{\todo{resize plots}}
+\end{figure}
 %
-For simulation speedup, the values are similar to the case of \ac{MPI}.
-Up to $\SI{8}{\cores}$, the speedup is almost identical and ideal.
-However, for a larger number of \acsp{CPU}, the speedup is higher at $\SI{42}{}$ for $\SI{48}{\cores}$.
+Next the results of the speedup measurements for the light matter interaction are presented.
+All tilt direction (flat, east, north, west and south) are simulated.
+\Cref{fig:speedSimMP} shows the speedup for the \ac{OpenMP} implementation.
+The results show up to $\SI{8}{\cores}$ an ideal speedup.
+For further increased \ac{CPU} count up to $\SI{48}{\cores}$ the speedup is slighly lower then the ideal line with a speedup of $\SI{42}{}$ for $\SI{48}{\cores}$.
+No significant cachange in the speedip for different tilt directions is visible.
+\par
+% 
+\Cref{fig:speedSimMPI} shows the speedup for the \ac{MPI} implementation.
+Again the speedup is ideal up to $\SI{8}{\cores}$.
+\ac{CPU} numbers in the range of $\SIrange{16}{48}{\cores}$ the speedup is again lower then the ideal line with a speedup of about $\SI{35}{}$ for $\SI{48}{\cores}$.
+Compared to the precious \ac{OpenMP} implementation the speedup is further reduced.
+A significant difference in the measurement is visible for different tilt directions.
+The flat measurement has the highest speedup.
 %
 % 
 %
