@@ -470,57 +470,6 @@ It should be noted that this is only the fraction of the fiber segment that stil
 The number of colliding fiber segments decreases steadily for the chosen parameters.
 This potentially saves an order of magnitude in runtime.
 Here, the influence on the simulation must also be investigated in advance.
-%
-%
-%
-\section{Multicore CPU Acceleration}
-%
-As described in \cref{sec:modelOpt}, \ac{OpenMP} is used to accelerate \code{for} loops in the algorithm.
-This means that it is currently not possible to use multiple compute nodes.
-\par
-% 
-To investigate the speedup, the runtime for the parameters from \cref{tab:parameterSetup} is measured for parallel and crossing fibers.
-The volume used is $\SI{60}{\micro\meter} \times \SI{60}{\micro\meter} \times \SI{60}{\micro\meter}$.
-Speedup is calculated for an average of 100 consecutive steps.
-To measure whether the speedup changes with time, the measurements are started after a certain number of steps $\Delta_{\mathit{steps}} = \SIlist{0;100;1000;10000}{\steps}$.
-The calculation is repeated for each case $n=\SI{24}{}$ times.
-For the measurements, the cores were bound to physical CPU cores.
-%
-% 
-% 
-\subsection{Results}
-% 
-\begin{figure}[!t]
-\centering
-\includegraphics[page=1]{gfx/rc1/speed/boxplot_output_r_0.5__.pkl_speedup.csv.pdf}
-\caption{\code{model.Sovler} speedup. Time measurements are performed after $\Delta_{\mathit{steps}}$ for the next $\SI{25}{\steps}$ for parallel \pfbs{} and crossing \cfbs{} fiber configurations.}
-\label{fig:solverSpeedup}
-\end{figure}
-% 
-\Cref{fig:solverSpeedup} shows the speedup for different starting positions $\Delta_{\mathit{steps}}$ for the parallel \pfbs{} and crossing \cfbs{} fiber bundles.
-Up to $\SI{4}{cores}$, the speedup increases linearly to a speedup of $\SI{3}{}$.
-From $\SI{4}{cores}$, the speedup increases more slowly until a significant increase to a speedup of about $\SI{5}{}$ is observed for $\SI{8}{cores}$.
-\par
-% 
-Overall, no significant change is visible for parallel or crossing fibers.
-Also, for different starting points $\Delta_{\mathit{steps}}$ no change in acceleration is visible.
-Higher core numbers up to $\SI{48}{cores}$ are displayed in \cref{app:solverSpeedupAll}.
-The speedup increases up to $\SI{8}{}$.
-% 
-% 
-% 
-\subsection{Discussion}
-% 
-Up to $\SI{4}{cores}$ the speedup is expected with $\SI{3}{}$.
-The slower increase and jump for $\SI{8}{cores}$ can be explained by the structure of the \name{octree}.
-Since for $\SI{8}{cores}$ the parallel alignment on a \name{octree} (can) be optimal, the speedup increases.
-More cores are not feasible.
-\par
-% 
-Nevertheless, the data suggest that using a multicore system shortens the runtime considerably.
-However, for small volumes or low-fiber objects, one should use only one or two cores and prefer to run multiple models in parallel.
-The results also show that an optimized algorithm is needed, especially when the volume or the number of objects increases.
-Here, the \ac{GPU} seems to be the hardware of choice with a more advanced algorithm \cite{Karras2012} (see \cref{sec:outlook}).
 % 
 %
 %
@@ -616,3 +565,54 @@ Real fabric will also have a different pattern, \eg{} interwoven fiber bundles i
 In linear \ac{3D-PLI} simulations, this has no effect because the order of fibers that light heats is commutative for the intensity signal.
 Or more generally, the order of the tissue matrices is commutative for the intensity signal.
 In other fields, such as \ac{dMRI}, additional models are probably required in this regard.
+% 
+%
+%
+\section{Multicore CPU Acceleration}
+%
+As described in \cref{sec:modelOpt}, \ac{OpenMP} is used to accelerate \code{for} loops in the algorithm.
+This means that it is currently not possible to use multiple compute nodes.
+\par
+% 
+To investigate the speedup, the runtime for the parameters from \cref{tab:parameterSetup} is measured for parallel and crossing fibers.
+The volume used is $\SI{60}{\micro\meter} \times \SI{60}{\micro\meter} \times \SI{60}{\micro\meter}$.
+Speedup is calculated for an average of 100 consecutive steps.
+To measure whether the speedup changes with time, the measurements are started after a certain number of steps $\Delta_{\mathit{steps}} = \SIlist{0;100;1000;10000}{\steps}$.
+The calculation is repeated for each case $n=\SI{24}{}$ times.
+For the measurements, the cores were bound to physical CPU cores.
+%
+% 
+% 
+\subsection{Results}
+% 
+\begin{figure}[!t]
+\centering
+\includegraphics[page=1]{gfx/rc1/speed/boxplot_output_r_0.5__.pkl_speedup.csv.pdf}
+\caption{\code{model.Sovler} speedup. Time measurements are performed after $\Delta_{\mathit{steps}}$ for the next $\SI{25}{\steps}$ for parallel \pfbs{} and crossing \cfbs{} fiber configurations.}
+\label{fig:solverSpeedup}
+\end{figure}
+% 
+\Cref{fig:solverSpeedup} shows the speedup for different starting positions $\Delta_{\mathit{steps}}$ for the parallel \pfbs{} and crossing \cfbs{} fiber bundles.
+Up to $\SI{4}{cores}$, the speedup increases linearly to a speedup of $\SI{3}{}$.
+From $\SI{4}{cores}$, the speedup increases more slowly until a significant increase to a speedup of about $\SI{5}{}$ is observed for $\SI{8}{cores}$.
+\par
+% 
+Overall, no significant change is visible for parallel or crossing fibers.
+Also, for different starting points $\Delta_{\mathit{steps}}$ no change in acceleration is visible.
+Higher core numbers up to $\SI{48}{cores}$ are displayed in \cref{app:solverSpeedupAll}.
+The speedup increases up to $\SI{8}{}$.
+% 
+% 
+% 
+\subsection{Discussion}
+% 
+Up to $\SI{4}{cores}$ the speedup is expected with $\SI{3}{}$.
+The slower increase and jump for $\SI{8}{cores}$ can be explained by the structure of the \name{octree}.
+Since for $\SI{8}{cores}$ the parallel alignment on a \name{octree} (can) be optimal, the speedup increases.
+More cores are not feasible.
+\par
+% 
+Nevertheless, the data suggest that using a multicore system shortens the runtime considerably.
+However, for small volumes or low-fiber objects, one should use only one or two cores and prefer to run multiple models in parallel.
+The results also show that an optimized algorithm is needed, especially when the volume or the number of objects increases.
+Here, the \ac{GPU} seems to be the hardware of choice with a more advanced algorithm \cite{Karras2012} (see \cref{sec:outlook}).
