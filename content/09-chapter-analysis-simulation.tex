@@ -2,15 +2,12 @@
 \setcounter{chapter}{8}
 \chapter{3D-PLI simulation}
 \label{cha:simulation_analysis}
-% \minitoc
-%
-% \todo{ylabel sideways or next to (0,1)?} 
 %
 \section{Introduction}
 %
-This chapter addresses the simulation of \ac{3D-PLI} with the generate model library.
-The first part focuses on the determination of all required physical parameters of the tissue and the microscope and on the characterization of the simulation parameters.
-Afterwards the simulation of the previopus generated nerve fiber models is generated and analysed.
+This chapter deals with the simulation of \ac{3D-PLI} with the generate model library.
+The first part focuses on the determination of all necessary physical parameters of the tissue and the microscope as well as on the characterization of the simulation parameters.
+Then, the simulation of the previously generated nerve fiber models is created and analyzed.
 The orientation of the simulations is calculated using the routine algorithms implemented in \ac{fastPLI}.
 The focus of the evaluation is on the accuracy of the tilt analysis for different orientations and crossing configurations.
 %
@@ -19,26 +16,6 @@ The focus of the evaluation is on the accuracy of the tilt analysis for differen
 \section{Parameter characterisation}\label{sec:sim_choose_parameters}
 %
 \subsection{Tissue}\label{sec:tissueProp}
-%
-% \begin{figure}[p]
-% \centering
-% \setlength{\tikzwidth}{0.75\textwidth}
-% \tikzset{external/export=false} % takes long for the first time
-% \begin{tabular}{c}
-% \inputtikz{gfx/data/vervet_transmittance} \\[-2em]
-% \subcaptiontab{\tikzwidth}{\label{fig:brain_trans}Transmittance} \\[1.5em]
-% \inputtikz{gfx/data/vervet_retardation} \\[-2em]
-% \subcaptiontab{\tikzwidth}{\label{fig:brain_ret}Retardation}
-% %
-% \end{tabular}
-% \caption{%
-% Transmittance and retardation map of a vervet monkey of the coronal section $\SI{549}{}$.
-% The absorption coefficient and birefringence strength can be estimated from the flat fibers present in the corpus calosum (CC).
-% The homogeneous regions annotated for this purpose contain $\SI{1125858}{\pixel}$ on the left and $\SI{1064629}{\pixel}$ on the right.}
-% \label{fig:brain_ret_trans}
-% \end{figure}
-%
-%
 %
 \begin{figure}[t]
 % 2_simulation/0_parameter/measure_vervet.ipy
@@ -62,34 +39,32 @@ The focus of the evaluation is on the accuracy of the tilt analysis for differen
 \subcaptiontab{0.475\textwidth}{\label{fig:histRet}Histogram retardation \todo{mean, median, 25, 75}} 
 \end{tabular}
 \caption{
-Transmittance and retardation map of a vervet monkey of the coronal section $\SI{549}{}$.
-The absorption coefficient and birefringence strength can be estimated from the flat fibers present in the corpus calosum (CC).
-The homogeneous regions annotated for this purpose contain $\SI{1125858}{\pixel}$ on the left and $\SI{1064629}{\pixel}$ on the right.
+Transmittance and retardation map of coronal section $\SI{549}{}$ of a vervet monkey.
+The absorption coefficient and birefringence is estimated from the measurments in the corpus calosum (CC).
+Two homogeneous regions are labeled for this purpose.
+The left are include $\SI{1125858}{\pixel}$ and the right area $\SI{1064629}{\pixel}$.
 }
 \label{fig:brain_ret_trans_zoom}
 \end{figure}
 %
-The absorption coefficient $\absorp{}$ and the birefringence $\dn{}$ must be estimated from the tissue in order to use them as suitable values for the simulation.
-To measure the values, it is important to analyze a homogeneous region filled with flat dense fibers.
+The absorption coefficient $\absorp{}$ and the birefringence $\dn{}$ have to be estimated from a measured section for the simulation.
+To measure the values, it is important to analyze a homogeneous region filled with flat, dense fibers.
 In a coronal section, the corpus callosum (CC) is suitable for this purpose. 
 It is the main fiber connection between the two cerebral hemispheres.
 \par
 % 
-\Cref{fig:brain_ret_trans_zoom} shows transmission and retardation maps of the of the vervet monkey coronal section number $\SI{549}{}$.
-% \Cref{fig:brain_ret_trans_zoom} shows a magnified version.
-Two \ac{ROI} are manuelly selected in homogenious and high value retardation regions of the corpus calosum.
+\Cref{fig:brain_ret_trans_zoom} shows transmittance and retardation maps of the coronal section $\SI{549}{}$ of a Vervet monkey.
+Two \ac{ROI} are manually selected in homogeneous and high retardence regions of the corpus calosum.
 The left region contains $\SI{1125858}{\pixel}$ and the right \ac{ROI} $\SI{1064629}{\pixel}$.
-The same analysis is available for a human and a rodent section (see appendix \cref{fig:brain_roden_and_human}).
+The entire section and the analysis for a human and a rodent section are available in the Appendix (see \cref{app:brain_rodent,app:brain_vervet,app:brain_human}).
 % 
 \paragraph{Evaluation}
-To calculate the absorption coefficient for the models one has to encount for the volume fraction.
-For the $\fiberRadiusMean = \SI{0.5}{\micro\meter}$ models the volume fraction is about $\SI{75}{\percent}$.
-This results in a absorption coefficient of about $\mu = \SI{30}{\milli\meter\tothe{-1}}$.
-The median transmittance in the background is about $\SI{4500}{\arbitraryunit}$.\footnote{The value is not fixed for all measurments. It can easyly change by adjusting \eg{} the microscops exposer time.}
-To calculate the birefingence one has also to account for the g-ratio, \ie{} the myelin thickness.
-With a g-ratio of $\SI{75}{\percent}$ the birefringence results in about $\SI{0.008}{}$ for the radial model.
-Both the result of the absorption coefficient and briefringence median estiments.
-Due to the transmittance and retardation values range and the intrinsic composition of the real tissue, the median results of the absorption and birefringence are a good estimates for the following type of simulations.
+To calculate the absorption coefficient for the models, one must consider the volume fraction.
+For the models $\fiberRadiusMean = \SI{0.5}{\micro\meter}$, the volume fraction is about $\SI{75}{\percent}$.
+The average transmittance in the foreground is about $\SI{1000}{\arbitraryunit}$ and in the background about $\SI{4500}{\arbitraryunit}$.\footnote{The relative transmittance can be changed by adjusting the exposure time of the microscope}.
+This results in an absorption coefficient of about $\mu = \SI{30}{\milli\meter\tothe{-1}}$.
+To calculate birefringence, one must also take into account the g-ratio, \ie{} the myelin thickness.
+A g-ratio of $\SI{75}{\percent}$ gives a birefringence of about $\SI{0.008}{}$ for the radial model when using a median value of the retardation of $\SI{0.8}{}$.
 %
 % 
 % 
@@ -97,7 +72,7 @@ Due to the transmittance and retardation values range and the intrinsic composit
 %
 The optical resolution depends, among other things, on aberration and diffraction (see \cref{sec:opticalResolution}).
 They are modeled as described in \cref{sec:ccdOptic}.
-Therefore, the model parameters for the microscopes to be simulated must be determined.
+Therefore, the model parameters must be determined for the microscopes to be simulated.
 \par
 %
 To measure the optical resolution of the microscope, previous measurements and analyses are repeated \cite{MenzelMaster}.
@@ -107,7 +82,7 @@ They are arranged in fields of three vertical and horizontal lines.
 The fields are arranged in a spiral that shrinks from group to group by a factor $\SI{0.5}{}$.
 To determine the line width, the fields are numerically ordered according to a main group $i$ and a subgroup $j$.
 To determine the resolution of the microscope, it is necessary to determine the group from which the slits can still be resolved according to the Rayleigh criterion (see \cref{fig:rayleigh}).
-For this purpose, the intensity profiles perpendicular to the the three vertical and horizontal slits are analyzed.
+For this purpose, the intensity profiles perpendicular to the three vertical and horizontal slits are analyzed.
 % 
 \paragraph{Evaluation}
 %
@@ -134,14 +109,13 @@ For this purpose, the intensity profiles perpendicular to the the three vertical
 \label{fig:USAF}
 \end{figure}
 % 
-\Cref{fig:usaf_image} shows a section of the capured image with the \ac{LMP} microscope.
+\Cref{fig:usaf_image} shows a section of the image taken with the \ac{LMP} microscope.
 The highlighted areas show the analyzed groups 7-6 to 8-2.
-The area of group 7-6 \raisebox{.25em}{\tikzset{external/export next=false}\tikz \draw[RED,ultra thick,dashed](0,0)--(0.25,0);} has a line width of $\SI{2.19}{\micro\meter}$, group 8-1 \raisebox{.25em}{\tikzset{external/export next=false}\tikz \draw[GREEN,ultra thick,dashed](0,0)--(0.25,0);} of $\SI{1.95}{\micro\meter}$.
-and group 8-2 \raisebox{.25em}{\tikzset{external/export next=false}\tikz \draw[BLUE,ultra thick,dashed](0,0)--(0.25,0);} of $\SI{1.74}{\micro\meter}$.
+The area of group 7-6 \raisebox{.25em}{\tikzset{external/export next=false}\tikz \draw[RED,ultra thick,dashed](0,0)--(0.25,0);} has a linewidth of $\SI{2.19}{\micro\meter}$, group 8-1 \raisebox{.25em}{\tikzset{external/export next=false}\tikz \draw[GREEN,ultra thick,dashed](0,0)--(0.25,0);} of $\SI{1.95}{\micro\meter}$ and group 8-2 \raisebox{.25em}{\tikzset{external/export next=false}\tikz \draw[BLUE,ultra thick,dashed](0,0)--(0.25,0);} of $\SI{1.74}{\micro\meter}$.
 The intensity line profiles for the vertical and horizontal cases are shown in \cref{fig:usaf_lines_lr,fig:usaf_lines_ud}.
 The Rayleigh criterion can be used to determine the resolution in the second group, which is thus in the range of $\SI{1.95}{\micro\meter}$.
 This reproduces the measurements in the \cite{MenzelMaster}.
-Therefore, the convolution parameter is set to $\opticsigma = \SI{0.75}{\pixel}$ for the simulation (see \cref{sec:opticalResolution}).
+Therefore, for the simulation the convolution parameter is set to $\opticsigma = \SI{0.75}{\pixel}$ (see \cref{sec:opticalResolution}).
 %
 %
 %
@@ -182,12 +156,11 @@ Therefore, the convolution parameter is set to $\opticsigma = \SI{0.75}{\pixel}$
 \label{fig:parameterModelGain}
 \end{figure}
 %
-As described in \cref{sec:ccdOptic}, optical noise is modeled with a Gaussian model.
-% The gain factor $\opticgain$ of the microscopic setup is measured by multiple measurements of an image with a variety of intensity values.
-The gain factor of an the \ac{CCD} camera describes the linearity between a measured electric signal and the output signal.
-This also can be used to calculate the noise becaue it correlates with $\sqrt{I \cdot \opticgain}$ \cite{Wiese:887678}.
-To measure the noise the gain factor is measured by captured multiple images with different pixel intensities.
-This is realized by covering the sample stage with a fully absorbing cover so that half of the image is dark.
+As described in \cref{sec:ccdOptic}, the optical noise is modeled with a Gaussian model.
+The gain factor of a \ac{CCD} camera describes the linearity between a measured electrical signal and the output signal.
+This can also be used to calculate the noise, since it correlates with $\sqrt{I \cdot \opticgain}$ \cite{Wiese:887678}.
+To measure the noise, the gain is measured by taking several images with different pixel intensities.
+For this purpose, the sample stage is covered with a fully absorbing cover so that half of the image is dark.
 In addition, the focal length is changed so that the light is distributed over the entire image sensor under the cover (see \cref{fig:pliFocusImage}).
 By measuring $N=\SI{500}{}$ images, the variance for the different intensity values is determined.
 %
@@ -203,18 +176,18 @@ for intensities $I > 0$ and $I \gg \sqrt{\opticgain I}$.
 %
 \subsection{\Voxelsize{} \texorpdfstring{\voxelsize{}}{}}
 %
-The parameter \Voxelsize{} $\voxelsize$ is the most important parameter for simulation accuracy, as it determines how accurately the models are discretized and how many light beams are modelled.
-However, the voxel size cannot be arbitrary small since the number of calculations and memory consumtion increases by $O(n_{\mathit{voxel}}^3)$.
-Therefore, it is recommended that the voxel size be as large as possible without introducing significant error due to discretization.
+The parameter \Voxelsize{} $\voxelsize$ is the most important parameter for simulation accuracy, as it determines how accurately the models are discretized and how many light rays are modeled.
+However, the voxel size cannot be arbitrarily small because the number of calculations and memory consumption increase by $O(n_{\mathit{voxel}}^3)$.
+Therefore, it is recommended that the voxel size be as large as possible without introducing significant errors due to discretization.
 \par
 %
-To investigate this effect, a simulation is performed with multiple voxel sizes in the range of $\voxelsize = \SIrange{0.01}{1.3}{\micro\meter}$.
-The smallest voxel size $\SI{0.01}{\micro\meter}$ is used as reference.
-Since this voxel size is so small, a volume of $3 \cdot \SI{1.3}{\micro\meter} \times 3 \cdot \SI{1.3}{\micro\meter} \times \SI{60}{\micro\meter}$ is used without light beam tilts.
-Otherwise, when using the tilt capabilities, the volume would have to be increased so that the light beam still passes through tissue.
-The simulation uses the above determend parameters.
+To investigate this effect, a simulation with several voxel sizes in the range of $\voxelsize = \SIrange{0.01}{1.3}{\micro\meter}$ is performed.
+The smallest voxel size $\SI{0.01}{\micro\meter}$ is used as a reference.
+Since this voxel size is so small, the simulated volume is $3 \cdot \SI{1.3}{\micro\meter} \times 3 \cdot \SI{1.3}{\micro\meter} \times \SI{60}{\micro\meter}$ without tilts.
+Otherwise, the number of voxels and thus the memory consumption is too high.
+During the simulation, the previously determined tissue and noise parameters are used.
 The models to be simulated are $(||,\modelInc = \SI{0}{\degree})$, $(||,\modelInc = \SI{90}{\degree})$, $(\times, \modelInc = \SI{0}{\degree})$, and $(\times,\modelInc = \SI{90}{\degree})$ with a fraction of $\modelPsi = \SI{0.5}{}$, since these configurations represent the extrema for two fiber populations.
-The simulations are repeated $\SI{25}{}$ times at the positions
+For statistic the simulations are repeated $\SI{25}{}$ times at the positions
 \begin{align}
 \begin{split}
     x&=\frac{i\,\%\,5}{5} \cdot \SI{60}{\micro\meter} - \SI{30}{\micro\meter} \\
@@ -234,15 +207,15 @@ The simulations are repeated $\SI{25}{}$ times at the positions
 \label{fig:voxelsizeNoise}
 \end{figure}
 % 
-The results in \cref{fig:voxelsizeNoise} show that the relative difference from the smallest voxel size increases statically significantly starting from a value of $\SI{0.1}{\micro\meter}$.
+The results in \cref{fig:voxelsizeNoise} show that the relative difference to the smallest voxel size increases statically significantly from a value of $\SI{0.1}{\micro\meter}$.
 The variance of the relative difference increases with increasing voxel size from this value.
-Smaller than $\SI{0.1}{\micro\meter}$ the difference to the reference simulation does not enhance anymore.
+Smaller than $\SI{0.1}{\micro\meter}$, the difference from the reference simulation does not increase.
 Therefore, the voxel size $\voxelsize = \SI{0.1}{\micro\meter}$ is a good compromise between runtime and accuracy.
 One has to keep in mind that this is only valid for a pixel size of $\SI{1.3}{\micro\meter}$ and fiber radii of $\SI{0.5}{\micro\meter}$.
 % 
 %
 %
-\newpage
+\newpage % TODO: check if necessary
 \section{Simulation}
 %
 \subsection{Parameters}
@@ -286,10 +259,10 @@ model delta rotation & $\SI{15}{\degree}$\\
 \label{tab:simParameters}
 \end{table}
 %
-As described in \cref{chap:Software}, \ac{fastPLI} includes a pipeline implementation of the simulation with automatic analysis.
-This implementation is used to compute simulate the signal for the flat and tilted measurements, and apply the optical noise and tilt analysis to the resulting signal using the \ac{ROFL} algorithm. 
-As input for the simulation is the previously generated model library (see \cref{sec:genNerveFiberLibrary}).
-The models are rotated according to the previously specified discretization to sample all orientations (see \cref{sec:modelParamet}).
+As described in \cref{chap:Software}, \ac{fastPLI} contains a pipeline implementation of the simulation with automatic analysis.
+This implementation is used to compute the simulation of the signal for the flat and tilted measurements and apply the optical noise and tilt analysis to the resulting signal using the \ac{ROFL} algorithm. 
+The input for the simulation is the previously created model library (see \cref{sec:genNerveFiberLibrary}).
+The models are rotated according to the previously specified discretization to include all specified orientations (see \cref{sec:modelParamet}).
 \par
 % 
 \Cref{tab:simParameters} lists the parameters of the simulation in the variable notation of \ac{fastPLI}.
@@ -298,7 +271,7 @@ The models are tilted in steps of $\Delta \modelInc = \SI{5}{\degree}$ for a sin
 \par
 % 
 The the following sections will only show a subset of the results. 
-All following results all data is available in \dummy{}.
+All following results all data is available in \todo{appendix}.
 % 
 % 
 % 
@@ -324,33 +297,33 @@ Since the direction is negligible for a single population, only the inclination 
 \par
 %
 \Cref{fig:single_fiber_pop_hist} shows the orientation distribution of a single population of fibers for different inclinations $\modelInc{}$.
-The distributions of the orientations of the model segments are shown on the left side, and those of the tilting analysis of the simulations are shown on the right side.
-The simulation results are in agreement with the models orientations.
-The variance of the tilting analysis is higher than the models orientations.
+The distributions of the orientations of the model segments are shown on the left side, and those of the tilt analysis of the simulations are shown on the right side.
+The simulation results agree with the orientations of the models.
+The variance of the tilt analysis is higher than that of the model orientations.
 \par
 %
-\Cref{fig:single_fiber_pop_rofl} show the modalities transmittance, direction and retardation of the flat measurement as well as the results of the tilting analysis inclination, \trel{} and the resulting opening angle $\openingAngle$.
+\Cref{fig:single_fiber_pop_rofl} show the modalities transmittance, direction and retardation of the flat measurement as well as the results of the tilt analysis inclination, \trel{} and the resulting opening angle $\openingAngle$.
 \par
 % 
 %Transmittance
 The transmittance increases slightly with inclination angle for $\modelInc<\SI{75}{\degree}$.
 For $\modelInc \ge \SI{75}{\degree}$ the transmittance increases significantly.
-The variance of transmittance is within a few percent for all inclinations and also increases slightly with inclination angle.
+The variance of the transmittance is within a few percent for all inclinations and also increases slightly with the inclination angle.
 \par
 %
 % Retardation
 The retardation plot shows the retardation of the non-tilted simulations and the theoretical curve that follows $(\cos(\modelInc) + 1) / 2 \cdot \mean\left(\mathrm{ret}(\SI{0}{\degree})\right)$.
 Normalization with $\mean\left(\mathrm{ret}(\SI{0}{\degree})\right)$ ensures comparison with the data.
 The retardation follows the theoretical line.
-However, for the intermediate tilt angles, the measured retardation is slightly higher than the theoretical line.
+However, at the intermediate inclination angles, the measured retardation is slightly higher than the theoretical line.
 The variance along all fiber inclinations is equal to \modelInc{}.
 \par
 %
 % Direction
 The next graph shows the measured direction.
-For inclination angles smaller than $\SI{75}{\degree}$ the variance remains relative small.
+For inclination angles smaller than $\SI{75}{\degree}$ the variance remains relatively small.
 For larger values, the variance increases.
-It should be remembered that the boxplot does not take into account that the values are periodic.
+It should be noted that the boxplot does not take into account that the values are periodic.
 Therefore, especially for $\modelInc=\SI{90}{\degree}$, the values from the $\SIrange{-90}{90}{\degree}$ are uniformly distributed.
 \par
 %
