@@ -730,102 +730,102 @@ The transmittance values show an increase for the last free inclination values.
 This is to be expected since the 3D model configurations are aligned in parallel along an axis with some randomness.
 When this axis is aligned along the z-axis, \ie{} $\modelInc=\SI{90}{\degree}$, the light rays, which also travel along the z-axis, statistically strike less tissue, so the transmittance must increase.
 Since the density of the tissue is quite high, the effect is only a few percent.
-In reality, however, one must take into account that additional effects like light scattering also have a significant influence on the transmittance \cite{Menzel2021}.
-The variance of the transmittance corresponds with the variance of the noise model.
+In reality, however, one must take into account that additional effects such as light scattering also have a significant effect on the transmittance \cite{Menzel2021}.
+The variance of the transmittance corresponds to the variance of the noise model.
 \par
 %
-The retardation behavies similar to the theoretical curve for a single retardation signal (see \cref{eq:pli_signal}).
-However, the analysed retardation is slightly higher.
+The retardation behaves similarly to the theoretical curve for a single retardation signal (see \cref{eq:pli_signal}).
+However, the analyzed retardation is slightly higher.
 The theoretical signal is calculated by normalizing $\cos(\modelInc)^2$ with the analyzed retardation for the flat case, \ie{} $\modelInc = \SI{0}{\degree}$.
-This can have an effect on the theoretical curve for the inclined values, however, it is expected to be minimal.
+This may have an effect on the theoretical curve for the inclined values, but it is expected to be minimal.
 \par
 %
-The direction values have a very small variance, which increases strongly at high inclination values.
-Since the direction value is coupled to the inclination angle this is to be expected.There is no direction for an $\SI{90}{\degree}$ inclined orientation.
-The noise mainly influences the signal and therefore the direction of the \say{sinosoidal} curve is random.
+The direction values have a very small variance, which increases strongly for high inclination values.
+Since the direction value is coupled to the inclination angle, this is to be expected: for an $\SI{90}{\degree}$ inclined orientation, there is no direction.
+The noise mainly affects the signal, and therefore the phase of the \say{sinus} is random.
 \par
 %
 The same behavior can be observed for the inclination curve.
 However, here the variance for the last angle is lower.
-It can be that this is an effect that for exactly $\modelInc=\SI{90}{\degree}$ the change of the tilt statistically ends up in 4 opposit phases in the sinosoidal signal.
-This could be more recognizable for the tilt analysis than a slighly less inclined orientatiated fiber configuration where only the amplitude changes.
-Interesting is that the variance is quite small and constant up to about $\SIrange{70}{75}{\degree}$.
-This means that the tilt analysis, with respect that the simulation used a linear model, is relative precise for a single straight fiber population in the a voxel used with the microscopic setup.
+It may be that this is an effect that for exactly $\modelInc=\SI{90}{\degree}$ the change of the tilted light beam statistically ends in 4 opposite phases in the sinusoidal signal.
+This might be more detectable for tilt analysis than a slightly less inclined fiber configuration where only the amplitude changes.
+It is interesting to note that the variance is quite small and constant up to a range of about $\SIrange{70}{75}{\degree}$.
+This means that, in view of the fact that the simulation uses a linear model, the tilt analysis is relatively accurate for a single straight fiber population in the voxel used with the microscopic setup.
 \par
 %
-The relative thickness \trel{} should theoretically be constant since the volume fraction remains the some for different inclination angles.
-Due to the reduction in the retardation a higher variance is to be expected with increasing inclination angle.
-However at an inclination angle of about $\modelInc=\SI{65}{\degree}$ the mean value begins to drop.
-Then for $\modelInc=\SIlist{85;90}{\degree}$ the variance increases significantly and for $\modelInc=\SI{90}{\degree}$ the mean value is $>\SI{1}{}$.
-This indicates that the tilt analysis is not able to find a local minima for \trel{} values $<1$.
-This can have multiple reasons.
-First there is no local minima with $\trel<1$.
-Second there is a local minima, but the optimizer ist not capable of finding it with the starting values.
-Last, there is a local minima, but found solution with a \trel{} value $>1$ is a better choice, \ie{} has a lower $R^2$ value.
-Which is true cannot be said from this data and remains a interesting investigation for the future.
-However upt to this point the \trel{} value can be used to indicate, that these values cannot be trusted, \ie{} the resulting orientation cannot be trusted.
+The relative thickness \trel{} should theoretically be constant, since the volume fraction remains the same for different inclination angles.
+Due to the reduction in retardation, a higher variance is expected with increasing inclination angle.
+However, at an inclination angle of about $\modelInc=\SI{65}{\degree}$, the mean value begins to decrease.
+For $\modelInc=\SIlist{85;90}{\degrees}$, the variance then increases significantly and for $\modelInc=\SI{90}{\degrees}$, the mean is $>\SI{1}{}$.
+This indicates that the tilt analysis is unable to find a local minima for \trel{} values $<1$.
+This may be due to several reasons.
+First, there is no local minima with $\trel<1$.
+Second, there is a local minima, but the optimizer is not able to find it with the initial values.
+Finally, there is a local minima, but the solution found with a \trel{} value $>1$ is a better choice, \ie{} has a lower $R^2$ value.
+Which of these is true cannot be said from this data and remains an interesting investigation for the future.
+However, up to this point, the \trel{} value can be used to indicate that these values cannot be trusted, \ie{} the resulting orientation is not trustworthy.
 \par
 %
 The opening angle shows the combined information from the direction results and the inclination results.
-This value can perhaps serve as an additional uncertainty for further computations as in a tractography.
+This value can possibly serve as additional uncertainty for further calculations like in a tractography.
 \par
 %
-In summary for the case of a single fiber population, the resulting tilt analysis shows good agreement with the individual orientations of the model, except for very steeply inclined configurations.
+In summary, for the case of a single fiber population, the resulting tilt analysis shows good agreement with the individual orientations of the model, except for very steeply inclined configurations.
 %
 % 
 % 
 \paragraph{Crossing flat fiber population}
 \Cref{sec:resCrossFlat} describes the results of the flat crossing configurations.
 The transmittance value changes significantly with increasing \modelOmega{}, which is to be expected since crossing models require more space.
-Therefore, fewer fibers, can absorb light and the transmittance value must increase.
-This effect is also responsable, that the transmittance for a fiber population fraction towords $\modelPsi=\SI{50}{\percent}$ is increased, because it is more complicated to find a collison free state.
+Therefore, fewer fibers can absorb light and the transmittance value must increase.
+This effect is also responsible for the transmittance increasing at a fiber population fraction of $\modelPsi=\SI{50}{\percent}$, since it is more complicated to find a collision-free state.
 \par
 %
-The retardation almost decrease linear with increasing crossing angle.
-Theoretically for a crossing of $\modelOmega=\SI{90}{\degree}$ and a fiber population fraction of $\modelPsi=\SI{30}{\percent}$ only the remaining $\SI{40}{\percent}$ fibers effect the retardation.
-The measured retardation of about $\SI{36}{}$ is, however, larger than the expected $0.8\cdot 0.4 = 0.32$.
-Why this is cannot be said at this point.
-A hint gives the retardation value for a fiber population fraction of $\modelPsi=\SI{50}{\percent}$, where the retardation does not drop exactly to $\SI{0}{}$.
-This is resonable since the noise of the signal tributes to a measured retardation.
-However this is only true for a expected retardation of $\SI{0}{}$.
-Sinosoidal signal with an amplitude $>0$ have a more gaussian randomness in the amplitude.
+The retardation decreases almost linearly with increasing crossing angle.
+Theoretically, with a crossing angle of $\modelOmega=\SI{90}{\degree}$ and a fiber population fraction of $\modelPsi=\SI{30}{\percent}$, only the remaining $\SI{40}{\percent}$ fibers affect retardation.
+However, the measured retardation of about $\SI{36}{}$ is larger than the expected $0.8\cdot 0.4 = 0.32$.
+Why this is so cannot be said at this point.
+A clue is given by the retardation value for a fiber population fraction of $\modelPsi=\SI{50}{\percent}$, where the retardation does not fall exactly on $\SI{0}{}$.
+This is understandable since the noise of the signal contributes to a measured retardation.
+However, this is only true for an expected retardation of $\SI{0}{}$.
+Sinusoidal signals with an amplitude $>0$ have a more Gaussian randomness in amplitude.
 \TODO{discuss with others}
 \par
 %
-The direction for the flat fiber crossings follow the expected theoretical curve of the circ mean value.
-For the case of $\modelPsi=\SI{50}{\percent}$ and $\modelOmega=\SI{90}{\degree}$ the direction values are distributed equally since no unique direction is present in the sinosoidal curve.
-This is for one the effect of the retardance canelatation and the signal noise.
+The direction for the flat fiber crossings follows the expected theoretical curve of the circular mean.
+For the case $\modelPsi=\SI{50}{\percent}$ and $\modelOmega=\SI{90}{\degree}$, the direction values are uniformly distributed since there is no unique direction in the sinusoid.
+This is the effect of delay canalatation and signal noise.
 \par
 %
 The variance of the inclination angle increases with increasing \modelOmega{}, which is to be expected as the amplitude, \ie{} the retardation decreases, making the model more uncertain.
-In the case of a uniformly distributed fiber crossing, the inclination can reach any value as in the case of the direction.
+In the case of a uniformly distributed fiber crossing, the inclination can reach any value as in the case of direction.
 \par
 %
-The same effect as for the retardation and inclination can also be seen in the decreasing value of \trel{}.
-Since for the tilt analysis only one fiber model is present in the model, the \trel{} value has to follow the retardation for flat crossing fiber models.
-In the case of $\modelPsi=\SI{90}{\degree}$ the tilt analysis reaches also values of $\trel>1$.
-As mentioned for the single fiber population, this is an effet of the tilt analysis solver algorithm.
-It can be used as an indication that the resulting values are not to be trusted and the current model fails to fit the data.
+The same effect as for retardation and inclination is also observed for the decreasing value of \trel{}.
+Since there is only one optical axis in the tilt analysis model, the \trel{} value must follow the retardation for flat crossing fiber models.
+In the case of $\modelPsi=\SI{90}{\degree}$, the tilt analysis also reaches values of $\trel>1$.
+As mentioned for the single fiber population, this is an effect of the solution algorithm of the tilt analysis.
+It can be used as an indication that the resulting values are not to be trusted and the current model does not fit the data.
 \par
 %
-All effects described above are reflected in the opening angle \openingAngle{}, which must increase with increasing \modelOmega{} \todo{domega of model ...}.
+All effects described above are reflected in the opening angle \openingAngle{}, which must increase with increasing \modelOmega{} \todo{domega of the model ...}.
 %
 %
 %
 \paragraph{Inclined crossing fiber population}
 \Cref{sec:resInclCross} shows the results for the inclined crossing fiber population.
-The transmittance and retardation results are similar to the previous flat fiber crossing.
-The main difference is that the retardation does not decrease to $\SI{0}{}$ which is to be expected since only the retardance of the inclined fiber population is canceled due to the radially optical axis.
-This is also visible in the behavier of the inclination, which does not follows the theoretical circ mean of both fiber populations.
+The results for transmittance and retardation are similar to the previous flat fiber crossing.
+The main difference is that the retardation does not decrease to $\SI{0}{}$, which is expected since only the retardation of the inclined fiber population due to the radial optical axis is cancelled.
+This is also evident in the behavior of the inclination, which does not follow the theoretical circular mean of the two fiber populations.
 \todo{try effective circ mean}
 \par
 % 
-The relative thickness \trel{} behavies as to be expected that the effects of the inclined fiber populations neglects itself.
-However especially in the case of $\modelPsi=\SI{50}{\percent}$ the \trel{} value is lower for $\modelOmega=\SI{90}{\degree}$ than half of $\modelOmega=\SI{0}{\degree}$ which one would first expected.
-Due to the lower volume fraction the \trel{} value has to be lower.
+The relative thickness \trel{} behaves as expected to neglect the effects of the inclined fiber populations.
+However, especially in the case of $\modelPsi=\SI{50}{\percent}$, the \trel{} value for $\modelOmega=\SI{90}{\degree}$ is lower than half of $\modelOmega=\SI{0}{\degree}$, which is what one would initially expect.
+Because of the lower volume fraction, the \trel{} value must be lower.
 \par
 %
-The opening angle \openingAngle{} combines the results of the direction and inclination values as to be expected for an inclined crossing fiber model.
+The opening angle \openingAngle{} combines the results of the direction and inclination values as expected for an inclined crossing fiber model.
 % 
 %
 %
