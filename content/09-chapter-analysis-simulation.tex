@@ -864,10 +864,10 @@ However, compared to the other results at this orientation, the other parameters
 \section{Speedup}
 \label{sec:simSpeedup}
 %
-This section shows the results of the speedup measurements for the generation of the discretized tissue volume (see \cref{sec:dv_generator}) and the simulation of the light matter interaction (see \cref{sec:simulation}) for the implemented paralelizations with \ac{OpenMP} and \ac{MPI}.
-Simulations were performed using a single compute node with the \ac{CPU} architecture \texttt{2x Intel(R) Xeon(R) CPU E5-4657L v2}.
-To measure speedup, each algorithm was run $N=10$ times.
-To calculate the speedup value, the mean measured time for $n_\mathit{cpu}=1$ was then divided by the measured time for the $n_\mathit{cpu}$ individual values.
+This section shows the results of speedup measurements for discretized tissue volume generation (see \cref{sec:dv_generator}) and light matter interaction simulation (see \cref{sec:simulation}) for the implemented paralellizations with \ac{OpenMP} and \ac{MPI}.
+Simulations were performed using a single compute node with \ac{CPU} architecture \texttt{2x Intel(R) Xeon(R) CPU E5-4657L v2}.
+To measure the speedup, each algorithm is executed $N=10$ times.
+To calculate the speedup value, the average measured time for $n_\mathit{cpu}=1$ was then divided by the measured time for each value $n_\mathit{cpu}$.
 The volume used is the $\modelPsi=\SI{0}{\percent} / \modelInc=\SI{0}{\degree}$ from the \cref{sec:simParameterEnv} parameterization.
 % 
 % 
@@ -886,16 +886,16 @@ The volume used is the $\modelPsi=\SI{0}{\percent} / \modelInc=\SI{0}{\degree}$ 
 \caption{Discrete tissue generation speedup. \todo{resize plots}}
 \end{figure}
 %
-\Cref{fig:speedTissueMP} visualizes the results of the speedup for \ac{OpenMP} parallelization of the discrete tissue generation algorithm.
-The speedup increases linearly from $\SI{1}{\core}$ up to $\SI{8}{\core}$ up to a speedup of about $\SI{3}{}$.
-For $\SIlist{16;24;32;40;48}{\cores}$ the speedup is further increased, however, is still in the range of $\SIrange{4}{5}{}$.
+\Cref{fig:speedTissueMP} shows the speedup results for the parallelization of \ac{OpenMP} of the discrete tissue generation algorithm.
+The speedup increases linearly from $\SI{1}{\core}$ to $\SI{8}{\cores}$ up to a speedup of about $\SI{3}{}$.
+For $\SIlist{16;24;32;40;48}{\cores}$ the speedup is increased further, but is still in the range of $\SIrange{4}{5}{}$.
 \par
 % 
 \Cref{fig:speedTissueMPI} shows the speedup for the \ac{MPI} implementation.
-Here, the speedup up to $\SI{8}{\cores}$ is again linear and receives about $\SI{6.8}{}$.
-The speedup from $\SI{16}{\cores}$ to $\SI{48}{\cores}$ is also linear, but the inclination is decerased.
-For $\SI{48}{\cores}$ a speedup of about $\SI{28}{}$ is reached.
-The variance compared to the \ac{OpenMP} implentation for all number of cores is significantly lower.
+Here, the speedup up to $\SI{8}{\cores}$ is again linear and gets about $\SI{6.8}{}$.
+The speedup from $\SI{16}{\cores}$ to $\SI{48}{\cores}$ is also linear, but the inclination decreases.
+For $\SI{48}{\cores}$, a speedup of about $\SI{28}{}$ is obtained.
+The variance is significantly lower compared to the \ac{OpenMP} implementation.
 \par
 % 
 \begin{figure}[!t]
@@ -910,18 +910,18 @@ The variance compared to the \ac{OpenMP} implentation for all number of cores is
 \caption{\ac{3D-PLI}\todo{resize plots}}
 \end{figure}
 %
-Next the results of the speedup measurements for the light matter interaction are presented.
-All tilt direction (flat, east, north, west and south) are simulated.
+The results of the speedup measurements for the light matter interaction are then presented.
+All tilt directions (flat, east, north, west, and south) are simulated.
 \Cref{fig:speedSimMP} shows the speedup for the \ac{OpenMP} implementation.
-The results show up to $\SI{8}{\cores}$ an ideal speedup.
-For further increased \ac{CPU} count up to $\SI{48}{\cores}$ the speedup is slighly lower then the ideal line with a speedup of $\SI{42}{}$ for $\SI{48}{\cores}$.
-No significant cachange in the speedip for different tilt directions is visible.
+The results show ideal speedup up to $\SI{8}{\cores}$.
+As the \ac{CPU} count is further increased up to $\SI{48}{\cores}$, the speedup is slightly lower than the ideal line with a speedup of $\SI{42}{}$ for $\SI{48}{\cores}$.
+No significant difference in acceleration for different tilt directions is apparent.
 \par
 % 
 \Cref{fig:speedSimMPI} shows the speedup for the \ac{MPI} implementation.
-Again the speedup is ideal up to $\SI{8}{\cores}$.
-\ac{CPU} numbers in the range of $\SIrange{16}{48}{\cores}$ the speedup is again lower then the ideal line with a speedup of about $\SI{35}{}$ for $\SI{48}{\cores}$.
-Compared to the precious \ac{OpenMP} implementation the speedup is further reduced.
+Again, the speedup is ideal up to $\SI{8}{\cores}$.
+For \ac{CPU} numbers in the range of $\SIrange{16}{48}{\cores}$, the speedup is again lower than the ideal line with a speedup of about $\SI{35}{}$ for $\SI{48}{\cores}$.
+Compared to the previous \ac{OpenMP} implementation, the speedup is further reduced.
 A significant difference in the measurement is visible for different tilt directions.
 The flat measurement has the highest speedup.
 %
@@ -929,33 +929,33 @@ The flat measurement has the highest speedup.
 %
 \subsection{Discussion}
 %
-The speedup for the discrete tissue generator in the case of \ac{OpenMP} is up to $\SI{4}{\cores}$ with a speedup of slightly over $\num{2}$ reasonable.
-Above $\SI{4}{\cores}$, especially $\geq \SI{16}{\cores}$ the usage is not recommended.
-This behavier is most likely due to the fact, that the instruction read from the same memory address.
-Since the writing process does, however, not share the same adress, and no race conditions exists, a higher speedup was expected.
+The speedup for the discrete tissue generator in the case of \ac{OpenMP} is appropriate up to $\SI{4}{\cores}$ with a speedup of slightly above $\num{2}$.
+Above $\SI{4}{\cores}$, especially $\geq \SI{16}{\cores}$ is not recommended to use.
+This behavior is most likely due to the fact that the cpus read from the same memory address.
+However, since the different writing instructions do not use the same memory address and there are no race conditions, a higher speedup was expected.
 \par
 % 
-The speedup for the \ac{MPI} implementation on the other hand is with up to $\SI{8}{\cores}$ near opitimal.
-Above the speedup is compared to the ideal case reduces, however still quite good.
-Since here the \acp{CPU} (cores) run independet, no communication is required.
-However the allocation of the memory on a single node system, as in this case, is a race condition and slows down the algorithm.
-On a multi node system this is not to be expected.
-An additional reduction in computation time is that all cores have to run over all fiber coordinates.
-A pre filtering could reduce the process.
-For example a global \ac{AABB} for each fiber can be calculated.
+The speedup for the \ac{MPI} implementation, on the other hand, is almost opitimal up to $\SI{8}{\cores}$.
+Above that, the speedup is reduced compared to the ideal case, but still quite good.
+Since here the \acp{CPU} (cores) run independently, no communication is required.
+However, on a single-node system, as in this case, the allocation of memory is a race condition and slows down the algorithm.
+This is not expected on a multi-node system.
+An additional reduction in computation time results from the fact that all cores must traverse all fiber coordinates.
+Pre-filtering could shorten this process.
+For example, a global \ac{AABB} can be computed for each fiber.
 \par
 % 
-The speedups for the \ac{3D-PLI} simulation for both implementations are quite similar and very high.
-The \ac{OpenMP} implementation is slightly better which can be expected since the parallelization is along a \code{std::vector} of the Stokes vectors.
-The \ac{MPI} implementation on the other side still has to communicate with each other in the case of transmittang the Stokes vectors.
-Also the discretized volumes already exists in the memory so compared to the volume discretizer the memory allocation does not slows down the runtime.
-For the \ac{MPI} implementation the communictation effect is also visible for flat and tilted simulation.
-In the case of a flat simulation, no communication and therefore nor barriers are required and therefore the speedup is higher.
-A difference in north-south and east-west tilting could be explained for different number of cores with the effect, that the volume needs to be split into subvolumes.
-This happend inside the algorithm, so that the surface areas is minimized.
-The splitting process generate subvolumes with a tendenz towords alongated quarders along the x-axis, if the volume has euqual size along x and y.
-This can explain why the north south tilting have a slightly higher speedup.
+The speedups for the \ac{3D-PLI} simulation are quite similar and very high for both implementations.
+The \ac{OpenMP} implementation is slightly better, which is to be expected since the parallelization is done along a \code{std::vector} of Stokes vectors.
+The \ac{MPI} implementation on the other hand still needs to communicate with each other in case of transferring the Stokes vectors.
+Also, the discretized volumes are already present in memory, so memory allocation does not slow down the runtime compared to the volume discretizer.
+For the \ac{MPI} implementation, the communication effect is also visible for flat and tilted simulations.
+In the case of a flat simulation, no communication and thus no barriers are required, so the speedup is higher.
+A difference in north-south and east-west tilt could be explained for different number of cores by the fact that the volume has to be divided into subvolumes.
+This is done within the algorithm so that the surface area is minimized.
+The splitting process produces subvolumes with a tendency to have longitudinal quartiles along the x-axis.
+This may explain why the north-south tilt has a slightly higher speedup.
 \par
 %
-In summary the speedup for the \ac{MPI} implementation is very good.
-The user should prefere this implementation instead of the \ac{OpenMP} library.
+In summary, the speedup for the implementation of \ac{MPI} is very good.
+The user should prefer this implementation over the \ac{OpenMP} library.

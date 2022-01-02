@@ -18,7 +18,7 @@ Finally, the decision was made to switch to the M\"{u}ller-Stokes calculation in
 \par
 %
 The \ac{3D-PLI} simulation is divided into two consecutive parts: the discrete volume generator and the light matter simulation.
-The discrete volume generator discretizes the virtual nerve fiber models onto a cartesian grid, which is then used to compute the light-matter interaction in the second step.
+The discrete volume generator discretizes the virtual nerve fiber models onto a cartesian grid, which is then used to compute the light matter interaction in the second step.
 A parallelization technique with \ac{MPI} allows the volume to be partitioned among different \acp{CPU} or compute nodes.
 Due to the tilting approach, the light vector in such a parallelized volume must be able to leave the current volume of a single \ac{CPU} and traverse to the next volume/process.
 The computationally intensive algorithms are written in \cpp{} with an additionally user-friendly designed wrapper function in \python{}.
@@ -38,7 +38,7 @@ The computationally intensive algorithms are written in \cpp{} with an additiona
 %
 The \ac{3D-PLI} simulation is to divide the necessary calculations into two consecutive parts. The first part is the calculation of a discretized tissue volume.
 It represents a discrete, voxel model of the tissue.
-This helps to drastically speed up the light-matter interaction of the next step (see \cref{sec:simulation}), at the cost of a large memory requirement.
+This helps to drastically speed up the light matter interaction of the next step (see \cref{sec:simulation}), at the cost of a large memory requirement.
 \par
 %
 The discretized tissue volume represents a cuboid divided into smaller cubes of equal size, called voxels, \ie{} 3D pixels (see \cref{fig:discVol}).
