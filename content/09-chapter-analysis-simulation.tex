@@ -5,7 +5,7 @@
 %
 \section{Introduction}
 %
-This chapter deals with the simulation of \ac{3D-PLI} with the generate model library.
+This chapter deals with the simulation of \ac{3D-PLI} with the generated model library.
 The first part focuses on the determination of all necessary physical parameters of the tissue and the microscope as well as on the characterization of the simulation parameters.
 Then, the simulation of the previously generated nerve fiber models is created and analyzed.
 The orientation of the simulations is calculated using the routine algorithms implemented in \ac{fastPLI}.
@@ -222,7 +222,7 @@ One has to keep in mind that this is only valid for a pixel size of $\SI{1.3}{\m
 \label{sec:simParameterEnv}
 % 
 \begin{table}[!b]
-\caption{Simulation parameters}
+\caption{Simulation parameters.}
 \centering
 % \sisetup{open-bracket={\{}, close-bracket={\}}, list-final-separator={,},list-pair-separator={,}}%
 \pgfplotstabletypeset[%
@@ -270,7 +270,7 @@ With a pixel size of \SI{1.3}{\micro\meter}, $\SI{2500}{\pixel}$ are available p
 The models are tilted in steps of $\Delta \modelInc = \SI{5}{\degree}$ for a single fiber population and by $\Delta \modelInc = \SI{30}{\degree}$ for two fiber populations.
 \par
 % 
-The the following sections will only show a subset of the results. 
+The following sections will only show a subset of the results. 
 All following results all data is available in \todo{appendix}.
 % 
 % 
@@ -496,7 +496,7 @@ No significant effect is seen between the two fiber population fractions.
 % Inclination
 The inclination for both fiber population fractions first increases and then decreases to a value of $\SI{0}{\degree}$.
 In the case of $\modelPsi=\SI{30}{\percent}$, the maximum inclination is reached at a crossing angle of about $\modelOmega=\SIrange{60}{70}{\degree}$.
-For $\modelPsi=\SI{50}{\percent}$, the maximum value is at an crossing angle of about $\modelOmega=\SIrange{50}{60}{\degree}$.
+For $\modelPsi=\SI{50}{\percent}$, the maximum value is at a crossing angle of about $\modelOmega=\SIrange{50}{60}{\degree}$.
 The theoretical curve representing the average of the two fiber population inclinations is followed in both cases only up to a crossing angle of about $\SI{30}{\degree}$.
 \par
 % Trel
@@ -588,7 +588,7 @@ Configurations with a high crossing angle $\modelOmega$ are slightly reduced.
 Flat fiber configurations retain a high retardation value.
 \par
 %
-The same bahavier is also visible for fiber population fraction $\modelPsi=\SIlist{30;50;70}{\percent}$, but the retardation values are significantly reduced, especially for high first fiber population inclinations.
+The same behavior is also visible for fiber population fraction $\modelPsi=\SIlist{30;50;70}{\percent}$, but the retardation values are significantly reduced, especially for high first fiber population inclinations.
 The reduction in retardation at high crossing angles $\modelOmega$ is also more pronounced, especially for $\modelPsi=\SI{50}{\percent}$.
 For fiber population fractions $\modelPsi \geq \SI{50}{\percent}$ and first fiber population inclinations $\modelInc \geq \SI{60}{\degree}$, the retardation is close to $\SI{0}{}$.
 \par
@@ -631,7 +631,7 @@ The last line shows the results for the fiber population fraction $\modelPsi=\SI
 All models and configurations remain at a stable \trel{} value.
 The exception is the fiber configurations with $\modelInc=\SI{90}{\degree}$, where the \trel{} values along the z-axis are $\geq \SI{1}{}$
 %
-\paragraph{\rvalue}
+\paragraph{\rvalue{}}
 % 
 \begin{figure}[!p]
 \centering
@@ -645,7 +645,7 @@ It describes the mean absolute difference between the data and the fitted data f
 \par
 %
 For a fiber population fraction of $\modelPsi=\SI{10}{\percent}$ and a primary inclination angle $\modelInc\leq\SI{30}{\degree}$ the orientation of the second fiber population does not change the \rvalue{} of the tilt analysis.
-For $\modelInc=\SI{60}{\degree}$ the \rvalue{} starts increasing for secondary fiber orientations towords the xy-plane.
+For $\modelInc=\SI{60}{\degree}$ the \rvalue{} starts increasing for secondary fiber orientations towards the xy-plane.
 The \rvalue{} increases significantly more for $\modelInc=\SI{90}{\degree}$ for flat secondary fiber population orientations.
 \par
 % 
@@ -756,12 +756,12 @@ This means that, in view of the fact that the simulation uses a linear model, th
 The relative thickness \trel{} should theoretically be constant, since the volume fraction remains the same for different inclination angles.
 Due to the reduction in retardation, a higher variance is expected with increasing inclination angle.
 However, at an inclination angle of about $\modelInc=\SI{65}{\degree}$, the mean value begins to decrease.
-For $\modelInc=\SIlist{85;90}{\degrees}$, the variance then increases significantly and for $\modelInc=\SI{90}{\degrees}$, the mean is $>\SI{1}{}$.
-This indicates that the tilt analysis is unable to find a local minima for \trel{} values $<1$.
+For $\modelInc=\SIlist{85;90}{\degree}$, the variance then increases significantly and for $\modelInc=\SI{90}{\degree}$, the mean is $>\SI{1}{}$.
+This indicates that the tilt analysis is unable to find a local minimum for \trel{} values $<1$.
 This may be due to several reasons.
-First, there is no local minima with $\trel<1$.
-Second, there is a local minima, but the optimizer is not able to find it with the initial values.
-Finally, there is a local minima, but the solution found with a \trel{} value $>1$ is a better choice, \ie{} has a lower $R^2$ value.
+First, there is no local minimum with $\trel<1$.
+Second, there is a local minimum, but the optimizer is not able to find it with the initial values.
+Finally, there is a local minimum, but the solution found with a \trel{} value $>1$ is a better choice, \ie{} has a lower $R^2$ value.
 Which of these is true cannot be said from this data and remains an interesting investigation for the future.
 However, up to this point, the \trel{} value can be used to indicate that these values cannot be trusted, \ie{} the resulting orientation is not trustworthy.
 \par
@@ -793,8 +793,8 @@ Sinusoidal signals with an amplitude $>0$ have a more Gaussian randomness in amp
 \par
 %
 The direction for the flat fiber crossings follows the expected theoretical curve of the circular mean.
-For the case $\modelPsi=\SI{50}{\percent}$ and $\modelOmega=\SI{90}{\degree}$, the direction values are uniformly distributed since there is no unique direction in the sinusoid.
-This is the effect of delay canalatation and signal noise.
+For the case $\modelPsi=\SI{50}{\percent}$ and $\modelOmega=\SI{90}{\degree}$, the direction values are uniformly distributed since there is no unique direction in the sinosoidal.
+This is the effect of retardation cancelation and signal noise.
 \par
 %
 The variance of the inclination angle increases with increasing \modelOmega{}, which is to be expected as the amplitude, \ie{} the retardation decreases, making the model more uncertain.
@@ -822,7 +822,7 @@ This is also evident in the behavior of the inclination, which does not follow t
 % 
 The relative thickness \trel{} behaves as expected to neglect the effects of the inclined fiber populations.
 However, especially in the case of $\modelPsi=\SI{50}{\percent}$, the \trel{} value for $\modelOmega=\SI{90}{\degree}$ is lower than half of $\modelOmega=\SI{0}{\degree}$, which is what one would initially expect.
-Because of the lower volume fraction, the \trel{} value must be lower.
+Because of the lower volume fraction, the \trel{} value must decrease.
 \par
 %
 The opening angle \openingAngle{} combines the results of the direction and inclination values as expected for an inclined crossing fiber model.
@@ -832,8 +832,8 @@ The opening angle \openingAngle{} combines the results of the direction and incl
 \paragraph{Free crossing fiber population}
 \TODO{This takes a little bit more work ...}
 \Cref{sec:resFreeCross} shows the results of the free crossing fiber population.
-The transmittance results show the same behavier as expected looking at the previous results of the single, crossing and inclined cofigurations.
-The transmittance rises for models with models with higher crossing angles and for models with higher fractions of inclined fiber populations.
+The transmittance results show the same behavior as expected looking at the previous results of the single, crossing and inclined configurations.
+The transmittance rises for models with higher crossing angles and for models with higher fractions of inclined fiber populations.
 \par
 %
 From \ref{fig:sim_ana_acc}, a range of low \modelPsi{} and low \modelInc{} to higher low \modelPsi{} and higher \modelInc{} is evident where the \ac{ACC} is significantly low, with larger areas near $\SI{0}{}$.
@@ -864,7 +864,7 @@ However, compared to the other results at this orientation, the other parameters
 \section{Speedup}
 \label{sec:simSpeedup}
 %
-This section shows the results of speedup measurements for discretized tissue volume generation (see \cref{sec:dv_generator}) and light matter interaction simulation (see \cref{sec:simulation}) for the implemented paralellizations with \ac{OpenMP} and \ac{MPI}.
+This section shows the results of speedup measurements for discretized tissue volume generation (see \cref{sec:dv_generator}) and light matter interaction simulation (see \cref{sec:simulation}) for the implemented parallelization with \ac{OpenMP} and \ac{MPI}.
 Simulations were performed using a single compute node with \ac{CPU} architecture \texttt{2x Intel(R) Xeon(R) CPU E5-4657L v2}.
 To measure the speedup, each algorithm is executed $N=10$ times.
 To calculate the speedup value, the average measured time for $n_\mathit{cpu}=1$ was then divided by the measured time for each value $n_\mathit{cpu}$.
@@ -935,7 +935,7 @@ This behavior is most likely due to the fact that the cpus read from the same me
 However, since the different writing instructions do not use the same memory address and there are no race conditions, a higher speedup was expected.
 \par
 % 
-The speedup for the \ac{MPI} implementation, on the other hand, is almost opitimal up to $\SI{8}{\cores}$.
+The speedup for the \ac{MPI} implementation, on the other hand, is almost optimal up to $\SI{8}{\cores}$.
 Above that, the speedup is reduced compared to the ideal case, but still quite good.
 Since here the \acp{CPU} (cores) run independently, no communication is required.
 However, on a single-node system, as in this case, the allocation of memory is a race condition and slows down the algorithm.
@@ -951,9 +951,9 @@ The \ac{MPI} implementation on the other hand still needs to communicate with ea
 Also, the discretized volumes are already present in memory, so memory allocation does not slow down the runtime compared to the volume discretizer.
 For the \ac{MPI} implementation, the communication effect is also visible for flat and tilted simulations.
 In the case of a flat simulation, no communication and thus no barriers are required, so the speedup is higher.
-A difference in north-south and east-west tilt could be explained for different number of cores by the fact that the volume has to be divided into subvolumes.
+A difference in north-south and east-west tilt could be explained for different number of cores by the fact that the volume has to be divided into sub-volumes.
 This is done within the algorithm so that the surface area is minimized.
-The splitting process produces subvolumes with a tendency to have longitudinal quartiles along the x-axis.
+The splitting process produces sub-volumes with a tendency to have longitudinal quartiles along the x-axis.
 This may explain why the north-south tilt has a slightly higher speedup.
 \par
 %
