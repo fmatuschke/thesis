@@ -250,11 +250,11 @@ gain & \SI{0.1175}{}\\
 simpli.noise\_model & \code{lambda x: np.floor(np.random.normal(x,}\\
  & \ \ \ \ \ \code{np.sqrt(gain * x))+0.5).astype(np.uint16)}\\
 fiber absorption & rodent: $\SI{14}{\milli\meter\tothe{-1}}$, Vervet: $\SI{30}{\milli\meter\tothe{-1}}$, human: $\SI{60}{\milli\meter\tothe{-1}}$\\
-fiber model & 'r'\\
+fiber birefringence model & 'r'\\
 fiber birefringence & 0.008\\
-fiber radii & axon: \SI{0.75}{}, myelin: \SI{1}{}\\
-model delta inclinations & single: $\SI{5}{\degree}$, crossings: $\SI{30}{\degree}$\\
-model delta rotation & $\SI{15}{\degree}$\\
+fiber radii scale factor & axon: \SI{0.75}{}, myelin: \SI{1}{}\\
+model inclination step $\Delta\modelInc$ & single: $\SI{5}{\degree}$, crossings: $\SI{30}{\degree}$\\
+model rotation step $\Delta\modelRot$ & $\SI{15}{\degree}$\\
 }
 \label{tab:simParameters}
 \end{table}
@@ -271,7 +271,7 @@ The models are tilted in steps of $\Delta \modelInc = \SI{5}{\degree}$ for a sin
 \par
 % 
 The following sections will only show a subset of the results. 
-All following results all data is available in \todo{appendix}.
+All following results all data is available in \cref{app:single_fiber_pop_hist}.
 % 
 % 
 % 
@@ -281,7 +281,7 @@ All following results all data is available in \todo{appendix}.
 \begin{figure}[!t]
 \centering
 \includegraphics[page=1]{gfx/rc1/analysis/plots_single_pop_hist_output_cube_2pop_135_rc1_single.pdf}
-\caption{Single inclined fiber population orientation histograms. \todo{log \# ?}}
+\caption{Single inclined fiber population orientation histograms.}
 \label{fig:single_fiber_pop_hist}
 \end{figure}
 %
