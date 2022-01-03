@@ -1,0 +1,25 @@
+\begin{tikzpicture}[trim axis left,trim axis right,baseline]
+\begin{axis}[%
+width=\tikzwidth, axis equal image,
+xmin=0,xmax=10500,ymin=5000,ymax=12500,
+point meta min=0,point meta max=1.0,
+hide axis,
+scale only axis,
+colormap/cividis,
+colorbar horizontal,
+colorbar/width=3mm,
+colorbar style={xticklabel style={font=\footnotesize}
+                % ,xticklabel pos=right,
+                % at={(0,1.2)},anchor=north west,
+                },
+]
+]
+\addplot [forget plot] graphics [xmin=0,xmax=10500,ymin=5000,ymax=12500,] {gfx/rc1/data/retardation_human_cc_0_1.png};
+\draw[magenta, very thick]
+   (axis cs:    0,  5875)--
+   (axis cs: 7500, 10000)--
+   (axis cs: 7500, 12500)--
+   (axis cs:    0,  7500)--
+   (axis cs:    0,  5875)--cycle;
+\end{axis}
+\end{tikzpicture}

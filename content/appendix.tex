@@ -175,53 +175,44 @@
 %
 % \fakesection{Tissue}
 % 
-\begin{figure}[p]
+\begin{figure}[!p]
 \centering
-\setlength{\tikzwidth}{0.75\textwidth}
-\tikzset{external/export=false} % takes long for the first time
-\begin{tabular}{c}
-\inputtikz{gfx/data/vervet_transmittance} \\[-2em]
-\subcaptiontab{\tikzwidth}{Transmittance} \\[1.5em]
-\inputtikz{gfx/data/vervet_retardation} \\[-2em]
-\subcaptiontab{\tikzwidth}{Retardation}
-%
+\tikzset{external/export=false} % dont ask me why
+\setlength{\tikzwidth}{0.425\textwidth}
+\setlength{\tabcolsep}{0em}
+\begin{tabular}{C{0.5\textwidth}C{0.5\textwidth}}
+\inputtikz{gfx/data/rodent_transmittance_zoom} &
+\tikzset{external/export next=true}
+\inputtikz{gfx/data/rodent_transmittance_hist} \\[-5mm]
+\subcaptiontab{0.475\textwidth}{Transmittance.} &
+\subcaptiontab{0.475\textwidth}{Transmittance histogram.} \\[10mm]
+\inputtikz{gfx/data/rodent_retardation_zoom} &
+\tikzset{external/export next=true}
+\inputtikz{gfx/data/rodent_retardation_hist} \\[-5mm]
+\subcaptiontab{0.475\textwidth}{Retardation.} &
+\subcaptiontab{0.475\textwidth}{Retardation histogram.} 
 \end{tabular}
-\caption{%
-\todo{change to rodent brain}}
+\caption{Rodent coronal brain section.}
 \label{app:brain_rodent}
-\end{figure}
-% 
-\begin{figure}[p]
-\centering
-\setlength{\tikzwidth}{0.75\textwidth}
-\tikzset{external/export=false} % takes long for the first time
-\begin{tabular}{c}
-\inputtikz{gfx/data/vervet_transmittance} \\[-2em]
-\subcaptiontab{\tikzwidth}{Transmittance} \\[1.5em]
-\inputtikz{gfx/data/vervet_retardation} \\[-2em]
-\subcaptiontab{\tikzwidth}{Retardation}
 %
+% \hspace{1em}
+% % 
+\begin{tabular}{C{0.5\textwidth}C{0.5\textwidth}}
+\inputtikz{gfx/data/human_transmittance_zoom} &
+\tikzset{external/export next=true}
+\inputtikz{gfx/data/human_transmittance_hist} \\[-5mm]
+\subcaptiontab{0.475\textwidth}{Transmittance.} &
+\subcaptiontab{0.475\textwidth}{Transmittance histogram.} \\[10mm]
+\inputtikz{gfx/data/human_retardation_zoom} &
+\tikzset{external/export next=true}
+\inputtikz{gfx/data/human_retardation_hist} \\[-5mm]
+\subcaptiontab{0.475\textwidth}{Retardation.} &
+\subcaptiontab{0.475\textwidth}{Retardation histogram.} 
 \end{tabular}
-\caption{Coronal section of vervet monkey brain. \todo{section number}}
-\label{app:brain_vervet}
-\end{figure}
-% 
-\begin{figure}[p]
-\centering
-\setlength{\tikzwidth}{0.75\textwidth}
-\tikzset{external/export=false} % takes long for the first time
-\begin{tabular}{c}
-\inputtikz{gfx/data/vervet_transmittance} \\[-2em]
-\subcaptiontab{\tikzwidth}{Transmittance} \\[1.5em]
-\inputtikz{gfx/data/vervet_retardation} \\[-2em]
-\subcaptiontab{\tikzwidth}{Retardation}
-%
-\end{tabular}
-\caption{%
-\todo{cahnge to human}}
+\caption{Right hemisphere human coronal brain section.}
 \label{app:brain_human}
 \end{figure}
-%
+% 
 %
 % \fakesection{Voxelsize}
 %

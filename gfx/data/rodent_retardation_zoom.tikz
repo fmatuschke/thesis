@@ -1,0 +1,36 @@
+\begin{tikzpicture}[trim axis left,trim axis right,baseline]
+\begin{axis}[%
+width=\tikzwidth, axis equal image,
+xmin=3300,xmax=5400,ymin=4000,ymax=5100,
+point meta min=0,point meta max=1.0,
+hide axis,
+scale only axis,
+colormap/cividis,
+colorbar horizontal,
+colorbar/width=3mm,
+colorbar style={xticklabel style={font=\footnotesize}
+                % ,xticklabel pos=right,
+                % at={(0,1.2)},anchor=north west,
+                },
+]
+]
+\addplot [forget plot] graphics [xmin=3300,xmax=5400,ymin=4000,ymax=5100,] {gfx/rc1/data/retardation_rodent_cc_0_1.png};
+\draw[magenta, very thick]
+   (axis cs: 3480, 4640) -- 
+   (axis cs: 3732, 4408) -- 
+   (axis cs: 3928, 4264) -- 
+   (axis cs: 4184, 4196) -- 
+   (axis cs: 4372, 4200) -- 
+   (axis cs: 4644, 4300) -- 
+   (axis cs: 5064, 4580) -- 
+   (axis cs: 4948, 4772) -- 
+   (axis cs: 4800, 4556) -- 
+   (axis cs: 4580, 4400) -- 
+   (axis cs: 4280, 4300) -- 
+   (axis cs: 4032, 4312) -- 
+   (axis cs: 3864, 4408) -- 
+   (axis cs: 3696, 4564) -- 
+   (axis cs: 3612, 4700) -- 
+   (axis cs: 3480, 4640) -- cycle;
+\end{axis}
+\end{tikzpicture}

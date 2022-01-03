@@ -1,0 +1,26 @@
+\begin{tikzpicture}[trim axis left,trim axis right,baseline]
+\begin{axis}[%
+width=\tikzwidth, axis equal image,
+xmin=0,xmax=10500,ymin=5000,ymax=12500,
+point meta min=0,point meta max=5200,
+hide axis,
+scale only axis,
+colormap/cividis,
+colorbar horizontal,
+colorbar/width=3mm,
+colorbar style={xticklabel style={font=\footnotesize},
+                xtick={0, 1300, 2600, 3900, 5200},
+               %  title=$\si{\arbitraryunit}$,
+                ylabel={\footnotesize $\si{\arbitraryunit}$},
+                y label style={at={(axis description cs:-0.05,.5)},rotate=0,anchor=center}}
+]
+\addplot [forget plot] graphics [xmin=0,xmax=10500,ymin=5000,ymax=12500,] {gfx/rc1/data/transmittance_human_cc_0_5194.png};
+% \draw[magenta, very thick, ->] (axis cs: 25500,27000) -- (axis cs: 23500,23500);
+\draw[magenta, very thick]
+   (axis cs:    0,  5875)--
+   (axis cs: 7500, 10000)--
+   (axis cs: 7500, 12500)--
+   (axis cs:    0,  7500)--
+   (axis cs:    0,  5875)--cycle;
+\end{axis}
+\end{tikzpicture}
