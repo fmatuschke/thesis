@@ -687,12 +687,21 @@ In addition, other functions that are thread-safe are parallelized with \ac{Open
 % 
 \begin{figure}[!t]
     \centering
+    \setlength{\tabcolsep}{0pt}
     \setlength{\tikzwidth}{0.242\textwidth}
-    \includegraphics[width=\tikzwidth]{gfx/fastpli/solver-10}\hfill
-    \includegraphics[width=\tikzwidth]{gfx/fastpli/solver-20}\hfill
-    \includegraphics[width=\tikzwidth]{gfx/fastpli/solver-50}\hfill
-    \includegraphics[width=\tikzwidth]{gfx/fastpli/solver-99}
-	\caption{Exemplary visualization in the collision solving process. The red color indicates that a collision is detected in the fiber segment. \todo{image steps, time progression}}
+    \begin{tabularx}{\textwidth}{cXcXcXc}
+    % $\SI{10}{\steps}$&&$\SI{20}{\steps}$&&$\SI{50}{\steps}$&&$\SI{100}{\steps}$\\
+    \includegraphics[width=\tikzwidth]{gfx/fastpli/solver-10}&&
+    \includegraphics[width=\tikzwidth]{gfx/fastpli/solver-20}&&
+    \includegraphics[width=\tikzwidth]{gfx/fastpli/solver-50}&&
+    \includegraphics[width=\tikzwidth]{gfx/fastpli/solver-99}\\
+    \multicolumn{7}{X}{
+    \vspace{-1ex}
+    \tikzset{external/export=false} \tikz \draw[->,black](0,0)--++(1,0) node[below, midway] {$\mathit{time}$};}
+    \vspace{-1ex}
+    \end{tabularx}
+    % {\raggedright \tikzset{external/export=false} \tikz \draw[->,black](0,0)--++(1,0);}
+	\caption{Exemplary visualization in the collision solving process. The red color indicates that a collision is detected in the fiber segment.}
 	\label{fig:vis_solver}
 \end{figure}
 %
