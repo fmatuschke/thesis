@@ -1,25 +1,21 @@
-% \tikzset{external/export next=false}
-% 
-\pgfplotsset{opt_axis/.style={
-	width=\tikzwidth,
-    height=\tikzwidth,
-    % axis background/.style={fill=black},
-    % axis line style={white},
-    axis on top,
-    ymajorticks=false,
-    scale only axis,
-    axis x line = center,
-    axis y line = center,
-    % axis y line = center,
-    table/col sep=comma,
-}}
+% \tikzset{external/export = false}
 % 
 \begin{tikzpicture}[]
 \begin{axis}[%
-opt_axis,
-every axis plot/.append style={ultra thin},
-legend style={at={(0.5,-0.15)},anchor=north},
-legend columns=3, 
+	width=\tikzwidth, height=\tikzwidth,
+    axis on top, scale only axis,
+    ymajorticks=false,
+    axis x line = center,
+    axis y line = center,
+    extra x ticks={0},
+    xlabel={pixel pos},
+    xlabel style={xshift=-2em},
+    ylabel={intensity/$\si{\arbitraryunit}$},
+    ylabel style={xshift=1ex},
+    table/col sep=comma,
+    every axis plot/.append style={ultra thin},
+    legend style={at={(0.5,-0.15)},anchor=north},
+    legend columns=3, 
 ]
 % 
 \addplot[BLUE, mark=*, error bars/.cd,y dir=both, y explicit] %cyan
