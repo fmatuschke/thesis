@@ -25,6 +25,7 @@ thesis:
 	$(MAKE) bibliography
 	$(MAKE) compile
 	$(MAKE) compile
+	cp thesis.pdf thesis_.pdf
 	xdg-open thesis.pdf 2>/dev/null
 
 .PHONY: split
