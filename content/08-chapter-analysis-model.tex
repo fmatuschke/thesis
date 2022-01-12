@@ -587,7 +587,7 @@ For the measurements, the cores were bound to physical CPU cores.
 % 
 \begin{figure}[!t]
 \centering
-\includegraphics[page=1]{gfx/rc1/speed/boxplot_output_r_0.5__.pkl_speedup.csv.pdf}
+\includegraphics{gfx/rc1/speed/boxplot_output_r_0.5__.pkl_speedup.csv.pdf}
 \caption{\code{model.Sovler} speedup. Time measurements are performed after $\Delta_{\mathit{steps}}$ for the next $\SI{25}{\steps}$ for parallel \pfbs{} and crossing \cfbs{} fiber configurations.}
 \label{fig:solverSpeedup}
 \end{figure}
@@ -599,7 +599,6 @@ From $\SI{4}{cores}$, the speedup increases more slowly until a significant incr
 % 
 Overall, no significant change is visible for parallel or crossing fibers.
 Also, for different starting points $\Delta_{\mathit{steps}}$ no change in acceleration is visible.
-Higher core numbers up to $\SI{48}{cores}$ are shown in \cref{app:solverSpeedupAll}.
 The speedup increases up to $\SI{8}{}$.
 % 
 % 

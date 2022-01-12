@@ -6,6 +6,7 @@
 thesis*
 build/
 old/
+corrections/
 tikz/*
 __latexindent_temp.*
 thesis-chapter*

@@ -107,15 +107,6 @@
     \caption{Direction and inclination distribution of simulation model library.}
     % \label{fig:my_label}
 \end{figure}
-% 
-% \fakesection{Speedup}
-%
-\begin{figure}[!h]
-\centering
-\includegraphics[page=2]{gfx/rc1/speed/boxplot_output_r_0.5__.pkl_speedup.csv.pdf}
-\caption[\code{model.Sovler} speedup]{\code{model.Sovler} speedup. The time measurements are taken after $\Delta_{\mathit{steps}}$ for the next $\SI{25}{\steps}$ for parallel $(||)$ and crossing $(\times)$ fiber configurations.}
-\label{app:solverSpeedupAll}
-\end{figure}
 %
 %
 %
@@ -268,7 +259,7 @@
     \includegraphics[page=7]{gfx/rc1/analysis/plots_flat_pop_hist_output_cube_2pop_135_rc1_flat.pdf} &
     \includegraphics[page=8]{gfx/rc1/analysis/plots_flat_pop_hist_output_cube_2pop_135_rc1_flat.pdf} \\
     \includegraphics[page=9]{gfx/rc1/analysis/plots_flat_pop_hist_output_cube_2pop_135_rc1_flat.pdf} &
-    \includegraphics[page=10]{gfx/rc1/analysis/plots_flat_pop_hist_output_cube_2pop_135_rc1_flat.pdf}
+    % \includegraphics[page=10]{gfx/rc1/analysis/plots_flat_pop_hist_output_cube_2pop_135_rc1_flat.pdf}
 \end{tabular}
 }
 %
@@ -278,61 +269,53 @@
 %
 %
 %
-%
-% \begin{figure}[!p]
-% \centering
-% \setlength{\tikzwidth}{0.45\textwidth}
-% \begin{tabular}{c|c}
-%     \includegraphics[width=\tikzwidth]{gfx/rc1/flat/cube_2pop_135_rc1_flat_plots_flat_pop_hist_omega_0.0_psi_0.5.pdf} &
-%     \includegraphics[width=\tikzwidth]{gfx/rc1/flat/cube_2pop_135_rc1_flat_plots_flat_pop_hist_omega_50.0_psi_0.5.pdf} \\
-%     \includegraphics[width=\tikzwidth]{gfx/rc1/flat/cube_2pop_135_rc1_flat_plots_flat_pop_hist_omega_10.0_psi_0.5.pdf} &
-%     \includegraphics[width=\tikzwidth]{gfx/rc1/flat/cube_2pop_135_rc1_flat_plots_flat_pop_hist_omega_60.0_psi_0.5.pdf} \\
-%     \includegraphics[width=\tikzwidth]{gfx/rc1/flat/cube_2pop_135_rc1_flat_plots_flat_pop_hist_omega_20.0_psi_0.5.pdf} &
-%     \includegraphics[width=\tikzwidth]{gfx/rc1/flat/cube_2pop_135_rc1_flat_plots_flat_pop_hist_omega_70.0_psi_0.5.pdf} \\
-%     \includegraphics[width=\tikzwidth]{gfx/rc1/flat/cube_2pop_135_rc1_flat_plots_flat_pop_hist_omega_30.0_psi_0.5.pdf} &
-%     \includegraphics[width=\tikzwidth]{gfx/rc1/flat/cube_2pop_135_rc1_flat_plots_flat_pop_hist_omega_80.0_psi_0.5.pdf} \\
-%     \includegraphics[width=\tikzwidth]{gfx/rc1/flat/cube_2pop_135_rc1_flat_plots_flat_pop_hist_omega_40.0_psi_0.5.pdf} &
-%     \includegraphics[width=\tikzwidth]{gfx/rc1/flat/cube_2pop_135_rc1_flat_plots_flat_pop_hist_omega_90.0_psi_0.5.pdf}
-% \end{tabular}
-%
-% \caption[sim]{psi=0.5; left: 2D log histogramm orientation from rofl analysis of simulation, right: 2D log histogramm of orientation of model segemnts. \todo{legende}}
-% \label{app:flat_05_fiber_pop_hist}
-% \end{figure}
-%
-%
-%
 \begin{figure}[!p]
 \centering
 \resizebox{\textwidth}{!}{
+\rotatebox{90}{
 \begin{tabular}{cc}
 \includegraphics[page=1]{gfx/rc1/analysis/plots_flat_pop_output_cube_2pop_135_rc1_flat.pdf} &
-\includegraphics[page=2]{gfx/rc1/analysis/plots_flat_pop_output_cube_2pop_135_rc1_flat.pdf}\\
+\includegraphics[page=2]{gfx/rc1/analysis/plots_flat_pop_output_cube_2pop_135_rc1_flat.pdf}
+\end{tabular}}}
+\end{figure}
+% 
+\begin{figure}[!p]
+\centering
+\resizebox{\textwidth}{!}{
+\rotatebox{90}{
+\begin{tabular}{cc}
 \includegraphics[page=3]{gfx/rc1/analysis/plots_flat_pop_output_cube_2pop_135_rc1_flat.pdf} &
 \includegraphics[page=4]{gfx/rc1/analysis/plots_flat_pop_output_cube_2pop_135_rc1_flat.pdf}
-\end{tabular}
-}
+\end{tabular}}}
+\end{figure}
+% 
+\begin{figure}[!p]
+\centering
+\resizebox{\textwidth}{!}{
+\rotatebox{90}{
+\begin{tabular}{cc}
+\includegraphics[page=5]{gfx/rc1/analysis/plots_flat_pop_output_cube_2pop_135_rc1_flat.pdf} &
+\includegraphics[page=6]{gfx/rc1/analysis/plots_flat_pop_output_cube_2pop_135_rc1_flat.pdf}
+\end{tabular}}}
+\end{figure}
+% 
+\begin{figure}[!p]
+\centering
+\resizebox{\textwidth}{!}{
+\rotatebox{90}{
+\begin{tabular}{cc}
+\includegraphics[page=7]{gfx/rc1/analysis/plots_flat_pop_output_cube_2pop_135_rc1_flat.pdf} &
+\includegraphics[page=8]{gfx/rc1/analysis/plots_flat_pop_output_cube_2pop_135_rc1_flat.pdf}
+\end{tabular}}}
 \end{figure}
 %
 \begin{figure}[!p]
 \centering
 \resizebox{\textwidth}{!}{
-\begin{tabular}{cc}
-\includegraphics[page=5]{gfx/rc1/analysis/plots_flat_pop_output_cube_2pop_135_rc1_flat.pdf} &
-\includegraphics[page=6]{gfx/rc1/analysis/plots_flat_pop_output_cube_2pop_135_rc1_flat.pdf}\\
-\includegraphics[page=7]{gfx/rc1/analysis/plots_flat_pop_output_cube_2pop_135_rc1_flat.pdf} &
-\includegraphics[page=8]{gfx/rc1/analysis/plots_flat_pop_output_cube_2pop_135_rc1_flat.pdf}
-\end{tabular}
-}
-\end{figure}
-%
-\begin{figure}[]
-\centering
-\resizebox{\textwidth}{!}{
+\rotatebox{90}{
 \begin{tabular}{cc}
 \includegraphics[page=9]{gfx/rc1/analysis/plots_flat_pop_output_cube_2pop_135_rc1_flat.pdf} &
-\includegraphics[page=10]{gfx/rc1/analysis/plots_flat_pop_output_cube_2pop_135_rc1_flat.pdf}
-\end{tabular}
-}
+\end{tabular}}}
 \end{figure}
 %
 %
@@ -355,70 +338,61 @@
     \includegraphics[page=7]{gfx/rc1/analysis/plots_inclined_pop_hist_output_cube_2pop_135_rc1_inclined.pdf} &
     \includegraphics[page=8]{gfx/rc1/analysis/plots_inclined_pop_hist_output_cube_2pop_135_rc1_inclined.pdf} \\
     \includegraphics[page=9]{gfx/rc1/analysis/plots_inclined_pop_hist_output_cube_2pop_135_rc1_inclined.pdf} &
-    \includegraphics[page=10]{gfx/rc1/analysis/plots_inclined_pop_hist_output_cube_2pop_135_rc1_inclined.pdf}
+    % \includegraphics[page=10]{gfx/rc1/analysis/plots_inclined_pop_hist_output_cube_2pop_135_rc1_inclined.pdf}
 \end{tabular}
 }
 %
 \caption[sim]{psi=0.3; left: 2D log histogramm orientation from rofl analysis of simulation, right: 2D log histogram of orientation of model segemnts. \todo{legende}}
 \label{app:incl_fiber_pop_hist}
 \end{figure}
-%
-%
-%
-%
-% \begin{figure}[!p]
-% \centering
-% \setlength{\tikzwidth}{0.45\textwidth}
-% \begin{tabular}{c|c}
-%     \includegraphics[width=\tikzwidth]{gfx/rc1/inclined/cube_2pop_135_rc1_inclined_plots_inclined_pop_hist_omega_0.0_psi_0.5.pdf} &
-%     \includegraphics[width=\tikzwidth]{gfx/rc1/inclined/cube_2pop_135_rc1_inclined_plots_inclined_pop_hist_omega_50.0_psi_0.5.pdf} \\
-%     \includegraphics[width=\tikzwidth]{gfx/rc1/inclined/cube_2pop_135_rc1_inclined_plots_inclined_pop_hist_omega_10.0_psi_0.5.pdf} &
-%     \includegraphics[width=\tikzwidth]{gfx/rc1/inclined/cube_2pop_135_rc1_inclined_plots_inclined_pop_hist_omega_60.0_psi_0.5.pdf} \\
-%     \includegraphics[width=\tikzwidth]{gfx/rc1/inclined/cube_2pop_135_rc1_inclined_plots_inclined_pop_hist_omega_20.0_psi_0.5.pdf} &
-%     \includegraphics[width=\tikzwidth]{gfx/rc1/inclined/cube_2pop_135_rc1_inclined_plots_inclined_pop_hist_omega_70.0_psi_0.5.pdf} \\
-%     \includegraphics[width=\tikzwidth]{gfx/rc1/inclined/cube_2pop_135_rc1_inclined_plots_inclined_pop_hist_omega_30.0_psi_0.5.pdf} &
-%     \includegraphics[width=\tikzwidth]{gfx/rc1/inclined/cube_2pop_135_rc1_inclined_plots_inclined_pop_hist_omega_80.0_psi_0.5.pdf} \\
-%     \includegraphics[width=\tikzwidth]{gfx/rc1/inclined/cube_2pop_135_rc1_inclined_plots_inclined_pop_hist_omega_40.0_psi_0.5.pdf} &
-%     \includegraphics[width=\tikzwidth]{gfx/rc1/inclined/cube_2pop_135_rc1_inclined_plots_inclined_pop_hist_omega_90.0_psi_0.5.pdf}
-% \end{tabular}
-% %
-% \caption[sim]{psi=0.5; left: 2D log histogramm orientation from rofl analysis of simulation, right: 2D log histogramm of orientation of model segemnts. \todo{legende}}
-% \label{app:incl_05_fiber_pop_hist}
-% \end{figure}
-% %
+% 
 %
 %
 \begin{figure}[!p]
 \centering
 \resizebox{\textwidth}{!}{
+\rotatebox{90}{
 \begin{tabular}{cc}
 \includegraphics[page=1]{gfx/rc1/analysis/plots_inclined_pop_output_cube_2pop_135_rc1_inclined.pdf} &
-\includegraphics[page=2]{gfx/rc1/analysis/plots_inclined_pop_output_cube_2pop_135_rc1_inclined.pdf}\\
+\includegraphics[page=2]{gfx/rc1/analysis/plots_inclined_pop_output_cube_2pop_135_rc1_inclined.pdf}
+\end{tabular}}}
+\end{figure}
+%
+\begin{figure}[!p]
+\centering
+\resizebox{\textwidth}{!}{
+\rotatebox{90}{
+\begin{tabular}{cc}
 \includegraphics[page=3]{gfx/rc1/analysis/plots_inclined_pop_output_cube_2pop_135_rc1_inclined.pdf} &
 \includegraphics[page=4]{gfx/rc1/analysis/plots_inclined_pop_output_cube_2pop_135_rc1_inclined.pdf}
-\end{tabular}
-}
+\end{tabular}}}
 \end{figure}
 %
 \begin{figure}[!p]
 \centering
 \resizebox{\textwidth}{!}{
+\rotatebox{90}{
 \begin{tabular}{cc}
 \includegraphics[page=5]{gfx/rc1/analysis/plots_inclined_pop_output_cube_2pop_135_rc1_inclined.pdf} &
-\includegraphics[page=6]{gfx/rc1/analysis/plots_inclined_pop_output_cube_2pop_135_rc1_inclined.pdf}\\
-\includegraphics[page=7]{gfx/rc1/analysis/plots_inclined_pop_output_cube_2pop_135_rc1_inclined.pdf} &
-\includegraphics[page=8]{gfx/rc1/analysis/plots_inclined_pop_output_cube_2pop_135_rc1_inclined.pdf}
-\end{tabular}
-}
+\includegraphics[page=6]{gfx/rc1/analysis/plots_inclined_pop_output_cube_2pop_135_rc1_inclined.pdf}
+\end{tabular}}}
 \end{figure}
 %
 \begin{figure}[!p]
 \centering
 \resizebox{\textwidth}{!}{
+\rotatebox{90}{
 \begin{tabular}{cc}
-\includegraphics[page=9]{gfx/rc1/analysis/plots_inclined_pop_output_cube_2pop_135_rc1_inclined.pdf} &
-\includegraphics[page=10]{gfx/rc1/analysis/plots_inclined_pop_output_cube_2pop_135_rc1_inclined.pdf}
-\end{tabular}
-}
+\includegraphics[page=7]{gfx/rc1/analysis/plots_inclined_pop_output_cube_2pop_135_rc1_inclined.pdf} &
+\includegraphics[page=8]{gfx/rc1/analysis/plots_inclined_pop_output_cube_2pop_135_rc1_inclined.pdf}
+\end{tabular}}}
 \end{figure}
 %
+\begin{figure}[!p]
+\centering
+\resizebox{\textwidth}{!}{
+\rotatebox{90}{
+\begin{tabular}{cc}
+\includegraphics[page=9]{gfx/rc1/analysis/plots_inclined_pop_output_cube_2pop_135_rc1_inclined.pdf} &
+\end{tabular}}}
+\end{figure}

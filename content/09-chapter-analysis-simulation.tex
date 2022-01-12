@@ -878,12 +878,12 @@ The volume used is the $\modelPsi=\SI{0}{\percent} / \modelInc=\SI{0}{\degree}$ 
 \centering
 \subcaptionbox{\label{fig:speedTissueMP}
 \ac{OpenMP} speedup discrete tissue generation.
-}[.475\textwidth]{\includegraphics[page=2,width=.475\textwidth]{gfx/rc1/speed/boxplot_generation_output_generation_mp_v_0.1.csv.pdf}}
+}[.475\textwidth]{\includegraphics{gfx/rc1/speed/boxplot_generation_output_generation_mp_v_0.1.csv.pdf}}
 \hfill
 \subcaptionbox{\label{fig:speedTissueMPI}
 \ac{MPI} speedup discrete tissue generation.
-}[.475\textwidth]{\includegraphics[page=2,width=.475\textwidth]{gfx/rc1/speed/boxplot_generation_output_generation_mpi_v_0.1.csv.pdf}}
-\caption{Discrete tissue generation speedup. \todo{resize plots}}
+}[.475\textwidth]{\includegraphics{gfx/rc1/speed/boxplot_generation_output_generation_mpi_v_0.1.csv.pdf}}
+\caption{Discrete tissue generation speedup.}
 \end{figure}
 %
 \Cref{fig:speedTissueMP} shows the speedup results for the parallelization of \ac{OpenMP} of the discrete tissue generation algorithm.
@@ -902,12 +902,12 @@ The variance is significantly lower compared to the \ac{OpenMP} implementation.
 \centering
 \subcaptionbox{\label{fig:speedSimMP}
 \ac{OpenMP} speedup simulation for 5 tilt direction.
-}[.475\textwidth]{\includegraphics[page=2,width=.475\textwidth]{gfx/rc1/speed/boxplot_simulation_output_simulation_mp_v_0.1.csv.pdf}}
-\hfill
+}[\textwidth]{\includegraphics{gfx/rc1/speed/boxplot_simulation_output_simulation_mp_v_0.1.csv.pdf}}
+\\
 \subcaptionbox{\label{fig:speedSimMPI}
 \ac{MPI} speedup simulation including all five tilt direction.
-}[.475\textwidth]{\includegraphics[page=2,width=.475\textwidth]{gfx/rc1/speed/boxplot_simulation_output_simulation_mpi_v_0.1.csv.pdf}}
-\caption{\ac{3D-PLI}\todo{resize plots}}
+}[\textwidth]{\includegraphics{gfx/rc1/speed/boxplot_simulation_output_simulation_mpi_v_0.1.csv.pdf}}
+\caption{\ac{3D-PLI}}
 \end{figure}
 %
 The results of the speedup measurements for the light matter interaction are then presented.
