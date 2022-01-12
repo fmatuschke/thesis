@@ -3,7 +3,7 @@
 %
 \pgfmathsetmacro{\s}{2.0}
 \path (1.25*\s,1.25*\s) -- (-1.25*\s,-1.25*\s);
-\foreach \r/\c [count=\i] in {1.0/set21,0.9/set22,0.8/set21,0.7/set22,0.6/set23} {%
+\foreach \r/\c [count=\i] in {1.0/dark21,0.9/dark22,0.8/dark21,0.7/dark22,0.6/dark23} {%
     \draw[fill, \c] (0,0) circle (\s*\r);
 }
 \foreach \r [count=\i] in {1.0,0.9,0.8,0.7,0.6} {%
