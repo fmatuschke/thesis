@@ -7,7 +7,7 @@ xlabel={\small intensity / \si{\arbitraryunit}},
 ylabel={\small rel $\sigma$},
 log ticks with fixed point,
 ytick={0.01, 0.02, 0.03, 0.04},
-yticklabels={\SI{1}{\percent}, \SI{2}{\percent}, \SI{3}{\percent}, \SI{4}{\percent}},
+yticklabels={$\SI{1}{\percent}$, $\SI{2}{\percent}$, $\SI{3}{\percent}$, $\SI{4}{\percent}$},
 xticklabel style={font=\footnotesize},
 yticklabel style={font=\footnotesize},
 ]

@@ -186,7 +186,7 @@ The smallest voxel size $\SI{0.01}{\micro\meter}$ is used as a reference.
 Since this voxel size is so small, the simulated volume is $3 \cdot \SI{1.3}{\micro\meter} \times 3 \cdot \SI{1.3}{\micro\meter} \times \SI{60}{\micro\meter}$ without tilts.
 Otherwise, the number of voxels and thus the memory consumption is too high.
 During the simulation, the previously determined tissue and noise parameters are used.
-The models to be simulated are $(||,\modelInc = \SI{0}{\degree})$, $(||,\modelInc = \SI{90}{\degree})$, $(\times, \modelInc = \SI{0}{\degree})$, and $(\times,\modelInc = \SI{90}{\degree})$ with a fraction of $\modelPsi = \SI{0.5}{}$, since these configurations represent the extrema for two fiber populations.
+The models to be simulated are $(||,\modelInc = \SI{0}{\degree})$, $(||,\modelInc = \SI{90}{\degree})$, $(\!\times\!, \modelInc = \SI{0}{\degree})$, and $(\!\times\!,\modelInc = \SI{90}{\degree})$ with a fraction of $\modelPsi = \SI{0.5}{}$, since these configurations represent the extrema for two fiber populations.
 For statistic the simulations are repeated $\SI{25}{}$ times at the positions
 \begin{align}
 \begin{split}
@@ -246,13 +246,13 @@ simpli.wavelength & $\SI{525}{\nano\meter}$\\
 simpli.optical\_sigma & $\SI{0.75}{\pixel}$\\
 tilt angle & $\SI{3.9}{\degree}$\\
 simpli.light\_intensity & $\SI{8000}{}$\\
-gain & \SI{0.1175}{}\\
+gain & $\SI{0.1175}{}$\\
 simpli.noise\_model & \code{lambda x: np.floor(np.random.normal(x,}\\
  & \ \ \ \ \ \code{np.sqrt(gain * x))+0.5).astype(np.uint16)}\\
 fiber absorption & rodent: $\SI{14}{\milli\meter\tothe{-1}}$, Vervet: $\SI{30}{\milli\meter\tothe{-1}}$, human: $\SI{60}{\milli\meter\tothe{-1}}$\\
 fiber birefringence model & 'r'\\
 fiber birefringence & 0.008\\
-fiber radii scale factor & axon: \SI{0.75}{}, myelin: \SI{1}{}\\
+fiber radii scale factor & axon: $\SI{0.75}{}$, myelin: $\SI{1}{}$\\
 model inclination step $\Delta\modelInc$ & single: $\SI{5}{\degree}$, crossings: $\SI{30}{\degree}$\\
 model rotation step $\Delta\modelRot$ & $\SI{15}{\degree}$\\
 }
@@ -266,7 +266,7 @@ The models are rotated according to the previously specified discretization to i
 \par
 % 
 \Cref{tab:simParameters} lists the parameters of the simulation in the variable notation of \ac{fastPLI}.
-With a pixel size of \SI{1.3}{\micro\meter}, $\SI{2500}{\pixel}$ are available per simulation for statistical analysis.
+With a pixel size of $\SI{1.3}{\micro\meter}$, $\SI{2500}{\pixel}$ are available per simulation for statistical analysis.
 The models are tilted in steps of $\Delta \modelInc = \SI{5}{\degree}$ for a single fiber population and by $\Delta \modelInc = \SI{30}{\degree}$ for two fiber populations.
 \par
 % 
@@ -678,12 +678,12 @@ $\modelInc=\SIlist{60;90}{\degree}$ remains a low \rvalue{} for all configuratio
 % 
 % 
 % 
-\paragraph{\acs{ACC}}
+\paragraph{\accvalue}
 %
 \begin{figure}[!p]
 \centering
 \includegraphics[]{gfx/rc1/analysis/simulation_analysis_hist_0.5_setup_PM_s_Vervet_m_r_acc.pdf}
-\caption{Mean \ac{ACC} value between model and tilt analysis orientations. \todo{x,y labels}}
+\caption{Mean \accvalue{} between model and tilt analysis orientations. \todo{x,y labels}}
 \label{fig:sim_ana_acc}
 \end{figure}
 % 
@@ -691,34 +691,34 @@ $\modelInc=\SIlist{60;90}{\degree}$ remains a low \rvalue{} for all configuratio
 \todo{acc of psi = 1 as ref}.
 \par
 % 
-The fiber population fraction $\modelPsi=\SI{10}{\percent}$ shows no significant decrease in the \ac{ACC} value for the first fiber model inclination $\modelInc$.
-For $\modelPsi=\SI{30}{\percent}$, a reduction of the \ac{ACC} value for the lower inclined models of the first fiber population is visible.
+The fiber population fraction $\modelPsi=\SI{10}{\percent}$ shows no significant decrease in the \accvalue{} for the first fiber model inclination $\modelInc$.
+For $\modelPsi=\SI{30}{\percent}$, a reduction of the \accvalue{} for the lower inclined models of the first fiber population is visible.
 The reduction is found in the region of the steep secondary fiber populations.
 For $\modelInc = \SIlist{30;60}{\degree}$, the reduction shifts in a direction along $\SI{180}{\degree}$.
 The effective area of the reduction decreases with increasing \modelInc{} until no area effect is visible for an inclination of $\modelInc=\SI{90}{\degree}$.
-However, the \ac{ACC} value for this last plot is still reduced compared to $\modelPsi=\SI{10}{\percent}$.
-For $\modelInc < \SI{90}{\degree}$, a slight increase in the \ac{ACC} value is visible for flat fiber crossings with a crossing angle of $\modelOmega=\SI{90}{\degree}$.
+However, the \accvalue{} for this last plot is still reduced compared to $\modelPsi=\SI{10}{\percent}$.
+For $\modelInc < \SI{90}{\degree}$, a slight increase in the \accvalue{} is visible for flat fiber crossings with a crossing angle of $\modelOmega=\SI{90}{\degree}$.
 \par
 %
-For the equally proportional fiber population $\modelPsi = \SI{50}{\degree}$, the \ac{ACC} value reaches values close to $\SI{0}{}$ for $\modelInc = \SIlist{0;30}{\degree}$ and a crossing angle of $\modelOmega=\SI{90}{\degree}$.
-Inclined secondary fiber populations achieve a higher \ac{ACC} value.
-The $\modelInc = \SI{90}{\degree}$ configuration reaches its maximum \ac{ACC} value at a crossing angle of $\modelOmega=\SI{0}{\degree}$ and lower stable values for all other configurations.
+For the equally proportional fiber population $\modelPsi = \SI{50}{\degree}$, the \accvalue{} reaches values close to $\SI{0}{}$ for $\modelInc = \SIlist{0;30}{\degree}$ and a crossing angle of $\modelOmega=\SI{90}{\degree}$.
+Inclined secondary fiber populations achieve a higher \accvalue{}.
+The $\modelInc = \SI{90}{\degree}$ configuration reaches its maximum \accvalue{} at a crossing angle of $\modelOmega=\SI{0}{\degree}$ and lower stable values for all other configurations.
 \par
 %
-The first to fiber inclinations $\modelInc = \SIlist{0;30}{\degree}$ for $\modelPsi=\SI{70}{\percent}$ show a similar distribution of the \ac{ACC} value. 
+The first to fiber inclinations $\modelInc = \SIlist{0;30}{\degree}$ for $\modelPsi=\SI{70}{\percent}$ show a similar distribution of the \accvalue{}. 
 Small reductions are visible.
-For $\modelInc=\SI{60}{\degree}$, the \ac{ACC} value is highest at low crossing angles $\modelOmega$, \ie{} near the first fiber population.
-The \ac{ACC} value decreases significantly at higher crossing angles.
-In the case of $\modelInc=\SI{90}{\degree}$ this is also visible, but the minimum for the \ac{ACC} value is higher than in the previous case $\modelInc=\SI{60}{\degree}$.
+For $\modelInc=\SI{60}{\degree}$, the \accvalue{} is highest at low crossing angles $\modelOmega$, \ie{} near the first fiber population.
+The \accvalue{} decreases significantly at higher crossing angles.
+In the case of $\modelInc=\SI{90}{\degree}$ this is also visible, but the minimum for the \accvalue{} is higher than in the previous case $\modelInc=\SI{60}{\degree}$.
 \par
 %
-The last case $\modelPsi=\SI{90}{\percent}$ shows high values for the \ac{ACC} parameter for the first three inclinations $\modelInc=\SIlist{0;30;60}{\percent}$.
-The last inclination $\modelInc=\SI{90}{\degree}$ shows a slight decrease of \ac{ACC} value for higher crossing angles $\modelOmega$.
+The last case $\modelPsi=\SI{90}{\percent}$ shows high values for the \accvalue{} parameter for the first three inclinations $\modelInc=\SIlist{0;30;60}{\percent}$.
+The last inclination $\modelInc=\SI{90}{\degree}$ shows a slight decrease of \accvalue{} for higher crossing angles $\modelOmega$.
 \par
 %
-In summary, crossing angles cause a significant reduction in \ac{ACC} values.
-This effect is clearly visible as a \say{band} of reduced \ac{ACC} values, from a low inclination angle and low fiber proportion fraction to a high inclination angle and high fiber proportion fraction.
-Fiber population fractions of $\modelPsi \geq \SI{90}{\percent}$ or $\modelPsi \leq \SI{10}{\percent}$ have almost no effect on the \ac{ACC} value.
+In summary, crossing angles cause a significant reduction in \accvalue{}s.
+This effect is clearly visible as a \say{band} of reduced \accvalue{}s, from a low inclination angle and low fiber proportion fraction to a high inclination angle and high fiber proportion fraction.
+Fiber population fractions of $\modelPsi \geq \SI{90}{\percent}$ or $\modelPsi \leq \SI{10}{\percent}$ have almost no effect on the \accvalue{}.
 %
 %
 % 
@@ -836,11 +836,11 @@ The transmittance results show the same behavior as expected looking at the prev
 The transmittance rises for models with higher crossing angles and for models with higher fractions of inclined fiber populations.
 \par
 %
-From \ref{fig:sim_ana_acc}, a range of low \modelPsi{} and low \modelInc{} to higher low \modelPsi{} and higher \modelInc{} is evident where the \ac{ACC} is significantly low, with larger areas near $\SI{0}{}$.
+From \ref{fig:sim_ana_acc}, a range of low \modelPsi{} and low \modelInc{} to higher low \modelPsi{} and higher \modelInc{} is evident where the \accvalue{} is significantly low, with larger areas near $\SI{0}{}$.
 These areas correspond to the known problematic areas in intersections and inclined regions.
-However, these results give a better idea of how strong the indication is with respect to the \ac{ACC} value.
-The \ac{ACC} value can potentially be used as a weight for \todo{not ...}.
-An important result is the correlation between the \ac{ACC} value and the \trel{} value.
+However, these results give a better idea of how strong the indication is with respect to the \accvalue{}.
+The \accvalue{} can potentially be used as a weight for \todo{not ...}.
+An important result is the correlation between the \accvalue{} and the \trel{} value.
 As the \trel{} value is analyzed, it can be used as an indicator of an underlying intersection or oblique region.
 This would then also be an indicator for further data processing \eg{} a tractography.
 Note that these results are only valid for dense fiber populations, \ie{} dense white matter.
@@ -852,7 +852,7 @@ There, too, the \trel{} value is reduced, but not as much as in the crossing fib
 This effect results from the simple fact that an inclined single fiber population increases its retardation value when tilted, while a flat crossing population does not due to signal cancellation.
 \par
 %
-The relatively low \rvalue{} is consistent with the noise of \SI{14.3}{\percent} (see \cref{fig:noiseplot}).
+The relatively low \rvalue{} is consistent with the noise of $\SI{14.3}{\percent}$ (see \cref{fig:noiseplot}).
 The elevated patterns of \rvalue{} represent the range of a $\modelOmega \approx \SI{90}{\degree}$, where lower retardation is thus expected.
 The most interesting pattern is for the case $\modelPsi = \SI{90}{\percent}$, where the \rvalue{} for the $\modelInc = \SI{0}{\degree}$ is maximum at a $\alpha_1$ \todo{check variable name} angle of $\SI{80}{\degree}$.
 This is quite unexpected, since here the dominant nerve fiber population is the first one, \ie{} $\SI{90}{\percent}$.

@@ -41,7 +41,7 @@ In the last part, the orientation distribution of the generated models is invest
 %
 \section{Designing fiber populations}
 %
-For the \ac{3D-PLI} simulation, a volume of size $\SI{65}{\micro\meter} \times \SI{65}{\micro\meter} \times \SI{60}{\micro\meter}$ is required (see \cref{cha:simulation_analysis}). \footnote{\SI{65}{\micro\meter} is divisible by \SI{1.3}{\micro\meter}, the pixel size of the microscope under study}.
+For the \ac{3D-PLI} simulation, a volume of size $\SI{65}{\micro\meter} \times \SI{65}{\micro\meter} \times \SI{60}{\micro\meter}$ is required (see \cref{cha:simulation_analysis}). \footnote{$\SI{65}{\micro\meter}$ is divisible by $\SI{1.3}{\micro\meter}$, the pixel size of the microscope under study}.
 In this work, up to two fiber populations are studied.
 A fiber population is a fiber bundle with a specific orientation, density, and radius distribution.
 These parameters of a fiber population have the advantage of being anatomically motivated and describe a nerve fiber volume based on statistical properties.
@@ -478,7 +478,7 @@ Here, the influence on the simulation must also be investigated in advance.
 %
 With the model parameters selected above (see \cref{sec:modelSetup}), the simulation models are generated.
 As described in \cref{sec:modelParamet}, only fibers with $\modelOmega = \SIrange{10}{90}{\degree}$ and $\modelPsi = \SIrange{0.1}{0.9}{}$ are generated with the addition of $\modelOmega=\SI{0}{\degree}, \modelPsi=\SI{1.0}{}$.
-The volume for the simulation is scaled up to a sphere with a diameter of \SI{135}{\micro\meter} so that a simulated volume can be generated from the sphere in any orientation.
+The volume for the simulation is scaled up to a sphere with a diameter of $\SI{135}{\micro\meter}$ so that a simulated volume can be generated from the sphere in any orientation.
 % 
 %
 %
@@ -504,7 +504,7 @@ The density reflects the population fraction $\modelPsi$ of the fiber population
 \begin{figure}[!t]
     \centering
     \includegraphics[]{gfx/rc1/domega/cube_2pop_domega_analysis_output_.pdf}
-    \caption{Direction $\modelDir$, inclination $\modelInc$ and opening angle $\openingAngle$ distribution of the model library.}
+    \caption{Direction $\dir$, inclination $\inc$ and opening angle $\openingAngle$ distribution of the model library.}
     \label{fig:modelAngleBoxPlot}
 \end{figure}
 %
@@ -523,7 +523,7 @@ The crossing angle $\modelOmega$ does not seem to have any influence.
 \par
 % 
 % second fiber population
-The direction $\modelDir$ follows with its mean value the initial crossing angle $\modelOmega$.
+The direction $\dir$ follows with its mean value the initial crossing angle $\modelOmega$.
 The fiber population fraction $\modelPsi$ does not seem to have a significant influence. 
 The inclination $\modelInc$ is stable around $\SI{0}{\degree}$ for all parameters.
 The parameters do not seem to have a significant effect on their distribution.

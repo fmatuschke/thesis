@@ -68,6 +68,7 @@
 % }
 % 
 % 
+\input{content/parameters}
 \input{content/acronyms}
 %
 %
@@ -174,7 +175,9 @@
 \cleardoublepage
 \label{sec:acronyms}
 \acsetup{pages/display=all}
-\printacronyms[]
+% \printacronyms[]
+\printacronyms[include=abbrev,name=Abbreviations]
+\printacronyms[include=nomencl,name=Nomenclature,display=all]
 % %
 % \cleardoublepage
 % \listoffigures
