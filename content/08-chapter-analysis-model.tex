@@ -55,16 +55,11 @@ The number of fiber populations is limited to two to reduce the degrees of freed
 \begin{figure}[t]
 \centering
 \setlength{\tikzwidth}{0.40\textwidth}
-% \subcaptionbox{\label{fig:modelrotcube}
-% A fiber population $F_0$ kan be rotated into any 3D orientation.}
-% [.475\textwidth]{\inputtikz{gfx/model/sphere_cube}}
-% \hfill
 \subcaptionbox{\label{fig:modelinit}
 Initial orientation for two fiber populations $\popa$ and $\popb$.
 The angle between the two populations is $\modelOmega$.
 The remaining degrees of freedom are accounted for by rotating the entire volume (see \cref{fig:modelrotcube}).}
 [\textwidth]{\inputtikz{gfx/model/sphere_models}}
-% \hfill
 \\
 %
 \subcaptionbox{\label{fig:modelrota}
@@ -111,8 +106,8 @@ Therefore, the following parameter samples are chosen:
 % 
 \begin{align}
     \begin{split}
-        \modelOmega &= \{\SI{10}{\degree}, ..., \SI{90}{\degree}\}\\
-        \modelPsi &= \{\SI{0.1}{}, \SI{0.2}{}, ..., \SI{0.9}{}\}
+        \modelOmega &= \{\SI{10}{\degree}, \SI{20}{\degree}, ..., \SI{90}{\degree}\}\\
+        \modelPsi &= \{\SI{10}{\percent}, \SI{20}{\percent}, ..., \SI{90}{\percent}\}
     \end{split}
 \end{align}
 % 
@@ -227,7 +222,7 @@ The parameter ranges selected to study the effects are listed in \cref{tab:param
 mean fiber radius & $\fiberRadiusMean$ & $\SIlist{0.5;1;2;5;10}{\micro\meter}$\\
 mean segment length factor & $\segLengthFactor$ & $\numlist{1;2;4;8}$\\
 min segment bending radius factor & $\segRadiusFactor$ & $\numlist{1;2;4;8}$\\
-fiber bundle crossing/proportion & $\modelPsi$/$\modelOmega$ & $\SI{1.0}{}/\SI{0}{\degree}$, $\SI{0.5}{}/\SI{90}{\degree}$\\
+fiber bundle fraction/crossing & $\modelPsi$/$\modelOmega$ & $\SI{1.0}{}/\SI{0}{\degree}$, $\SI{0.5}{}/\SI{90}{\degree}$\\
 }
 \caption{Parameter sets for the characterization of the software parameters $\segLengthFactor$ and $\segRadiusFactor$.}
 \label{tab:parameterSetupChar}
@@ -439,13 +434,13 @@ In summary, the following parameters are chosen:
     column type=lcc,
     columns/name/.style={string type},
     columns/variable/.style={string type},
-    columns/values/.style={string type},
+    columns/value/.style={string type},
     every head row/.style={before row=\toprule,after row=\midrule},
     every last row/.style={after row=\bottomrule},
     col sep=&,
     row sep=\\,
 ]
-{name & variable & values\\
+{name & variable & value\\
 mean fiber radius & $\fiberRadiusMean$ & $\SI{0.5}{\micro\meter}$\\
 mean segment length factor & $\segLengthFactor$ & $\num{2}$\\
 min segment bending radius factor & $\segRadiusFactor$ & $\num{2}$\\
@@ -503,7 +498,7 @@ The density reflects the population fraction $\modelPsi$ of the fiber population
 % 
 \begin{figure}[!t]
     \centering
-    \includegraphics[]{gfx/rc1/domega/cube_2pop_domega_analysis_output_.pdf}
+    \includegraphics[]{gfx/rc1/model/cube_2pop_domega_analysis_output_.pdf}
     \caption{Direction $\dir$, inclination $\inc$ and opening angle $\openingAngle$ distribution of the model library.}
     \label{fig:modelAngleBoxPlot}
 \end{figure}

@@ -20,19 +20,15 @@ arr/.style={-{latex[color=GREEN]},
 \draw[->] (0,0,-1.35)-- (0,0,1.25)node[pos=1, anchor = west]{z};
 %
 \begin{scope}[rotate around y=-\varalpha]
-    % \begin{scope}[canvas is yz plane at x=0.95]
-    % \draw[BLUE, thick, ->] (0.1,0) arc (0:290:0.1);
-    % \end{scope}
-    %
     \begin{scope}[canvas is xy plane at z={0}]
-    \draw[BLUE, dashed, thick] (1,0) arc (0:\varomega:1);
+        \draw[BLUE, dashed, thick] (1,0) arc (0:\varomega:1);
     \end{scope}
     \begin{scope}[rotate around x=\varomega,canvas is xy plane at z={0}]
-    \draw[BLUE, dashed, thick] (1,0) arc (0:\varomega:1);
+        \draw[BLUE, dashed, thick] (1,0) arc (0:\varomega:1);
     \end{scope}
     \begin{scope}[canvas is yz plane at x=1]
-    \draw[BLUE,thick] (0.2,0) arc (0:\varomega:0.2);
-    \path[] (0.3,0) arc (0:\varomega/2:0.3) node[BLUE,pos=1, anchor=center] () {$\modelRot$};
+        \draw[BLUE,thick] (0.2,0) arc (0:\varomega:0.2);
+        \path[] (0.2,0) arc (0:\varomega*1.25:0.1) node[BLUE, pos=1, anchor=south, rotate=70] {$\modelRot$};
     \end{scope}
     %
     \draw[very thick, GREEN, ->] (0,0,0) -- (\r,0,0) node [pos=1, anchor = north east] () {$F_0$};
@@ -46,21 +42,20 @@ arr/.style={-{latex[color=GREEN]},
     \end{scope}
     %
     \begin{scope}[canvas is zy plane at x={cos(\varomega}]
-    \draw[BLUE, thick, dashed] (0,0) circle({sin(\varomega)});
-    \foreach \i in {-90,-60,...,90}{\node[circle,fill,BLUE,inner sep=1.25pt] at ({sin(\varomega)*sin(\i)},{sin(\varomega)*cos(\i)}) {};}
+        \draw[BLUE, thick, dashed] (0,0) circle({sin(\varomega)});
+        \foreach \i in {-90,-60,...,90}{\node[circle,fill,BLUE,inner sep=1.25pt] at ({sin(\varomega)*sin(\i)},{sin(\varomega)*cos(\i)}) {};}
     \end{scope}
 \end{scope}
 %
 \begin{scope}[canvas is xz plane at y=0]
     \draw[GREEN] (0.5,0) arc (0:\varalpha:0.5);
-    \path[] (0.42,0) arc (0:\varalpha/2:0.42) node (A) {};
-    % \path[] (0.35,0) arc (0:\varalpha/2:0.35) node[GREEN, pos=1, anchor=center] () {$\modelInc$};
+    \path[] (0.42,0) arc (0:\varalpha:0.42) node (A) {};
 \end{scope}
-\draw[GREEN, thin] (0.42, -0.5) -- (A) node[GREEN, pos=0, anchor=north east] {$\modelInc$};
+\draw[GREEN, thin] (A) -- ++(0.3,-0.6) node[GREEN, pos=0.9, anchor=north east] {$\modelInc$};
 %
 \begin{scope}[canvas is zx plane at y={0}]
-\foreach \i in {0,10,...,90}{%
-\node[circle,fill,GREEN,inner sep=1.25pt] at ({sin(\i)},{cos(\i)}) {};}
+    \foreach \i in {0,10,...,90}{%
+        \node[circle,fill,GREEN,inner sep=1.25pt] at ({sin(\i)},{cos(\i)}) {};}
 \end{scope}
 %
 \end{scope}
