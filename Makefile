@@ -39,7 +39,6 @@ tikz:
 .PHONY: zip
 zip:
 	git archive --format=zip HEAD -o thesis.zip
-	zip -ur thesis.zip dev/
 
 .PHONY: textidote
 textidote:
