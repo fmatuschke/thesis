@@ -248,8 +248,10 @@ tilt angle & $\SI{3.9}{\degree}$\\
 simpli.light\_intensity & $\SI{8000}{}$\\
 gain & $\SI{0.1175}{}$\\
 simpli.noise\_model & \code{lambda x: np.floor(np.random.normal(x,}\\
- & \ \ \ \ \ \code{np.sqrt(gain * x))+0.5).astype(np.uint16)}\\
-fiber absorption & rodent: $\SI{14}{\milli\meter\tothe{-1}}$, Vervet: $\SI{30}{\milli\meter\tothe{-1}}$, human: $\SI{60}{\milli\meter\tothe{-1}}$\\
+ & \ \ \ \ \ \code{np.sqrt(gain * x))+0.5).astype(}\\
+ & \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \code{np.uint16)}\\
+fiber absorption & Vervet: $\SI{30}{\milli\meter\tothe{-1}}$\\
+%rodent: $\SI{14}{\milli\meter\tothe{-1}}$, human: $\SI{60}{\milli\meter\tothe{-1}}$\\
 fiber birefringence model & 'r'\\
 fiber birefringence & 0.008\\
 fiber radii scale factor & axon: $\SI{0.75}{}$, myelin: $\SI{1}{}$\\
@@ -272,6 +274,24 @@ The models are tilted in steps of $\Delta \modelInc = \SI{5}{\degree}$ for a sin
 % 
 The following sections will only show a subset of the results. 
 All following results all data is available in \cref{app:single_fiber_pop_hist}.
+\par
+% 
+For interpretations of the results, the \ac{3D-PLI} modalities of the simulations are calculated.
+The orientation angles are additionally compared with the corresponding fiber model angular statistics of the fiber segments.
+The distribution of orientation angles $\dir$ and $\inc$ are shown centered around their mean value.
+However, the values are periodic, which must be taken into account for \eg{} large variance values.
+Additionally, the \openingangle{} as well as the \accvalue{} and the \rvalue{} are shown.
+The \accvalue{} is the angular correlation coefficient and is calculated by:
+\begin{align}
+    acc = \frac{\sum_i{\mathit{sh}_{0,i} \cdot \mathit{sh}_{1,i}}}{\sqrt{\sum_i{\mathit{sh}_{0,i}^2}} \cdot \sqrt{\sum_i{\mathit{sh}_{1,i}^2}}}
+\end{align}
+where $\mathit{sh}_i$ is the $i-$th spherical coefficient of the orientations \ac{ODF} \cite{Schilling2018}.
+It is a measure of the similarity of both \acp{ODF}.
+The \rvalue{} is the mean difference value between the tilting analysis fit $F$ and the signal $I$:
+\begin{align}
+    R = \mean{|I_i-F_i|}
+\end{align}
+\par
 % 
 % 
 % 
@@ -302,8 +322,7 @@ The simulation results agree with the orientations of the models.
 The variance of the tilt analysis is higher than that of the model orientations.
 \par
 %
-\Cref{fig:single_fiber_pop_rofl} show the modalities transmittance, direction and retardation of the flat measurement as well as the results of the tilt analysis inclination, \trel{} and the resulting opening angle $\openingAngle$.
-\par
+\Cref{fig:single_fiber_pop_rofl} show the modalities transmittance, direction and retardation of the flat measurement as well as the results of the tilt analysis inclination, \trel{}, the resulting opening angle $\openingAngle$, the \accvalue{} and \rvalue{}.
 % 
 %Transmittance
 The transmittance increases slightly with inclination angle for $\modelInc<\SI{75}{\degree}$.
@@ -325,6 +344,8 @@ For inclination angles smaller than $\SI{75}{\degree}$ the variance remains rela
 For larger values, the variance increases.
 It should be noted that the boxplot does not take into account that the values are periodic.
 Therefore, especially for $\modelInc=\SI{90}{\degree}$, the values from the $\SIrange{-90}{90}{\degree}$ are uniformly distributed.
+In the background of the boxplots the statistical ranges of the model orientations of $\SIrange{25}{75}{\percent}$ are plotted.
+These show good agreement with the measured direction, with the exception of the case $\modelInc=\SI{90}{\degree}$, the variance of the measurements is significantly lower.
 \par
 %
 % Inclination
@@ -334,6 +355,8 @@ The results are centered around the median value in the range of $\big[\median (
 The median follows the theoretical curve.
 For inclinations $\SI{80}{\degree}$ and $\SI{85}{\degree}$, the variance increases significantly.
 For $\modelInc = \SI{90}{\degree}$ the variance is similar to the flat results.
+In the background again the quantiles $\SIrange{25}{75}{\percent}$ of the model segments are shown.
+The variance is constant and up to a value of $\SI{75}{\percent}$ higher than the measured values.
 \par
 %
 % trel
@@ -346,6 +369,18 @@ For inclination angles $\modelInc \ge \SI{85}{\degree}$, the quartile value $\SI
 % domega
 The opening angle \openingAngle{} is consistent up to a tilt angle of $\le \SI{70}{\degree}$.
 For higher inclination angles, both the median and the variance increase significantly, analogous to the inclination, except in the last case.
+The models opening angle range in the background show a significant higher value and higher variance.
+\par
+% 
+%ACC
+The total \accvalue{} starts to decrease significantly at an inclination angle of about $\SI{60}{\deg}$.
+It reaches a minimum at an inclination angle of $\SI{80}{\degree}$, from where it starts to increase to a higher value than at the lower inclination angles.
+\par
+% 
+% R
+The \rvalue{} show an almost constant behavior for all inclination angles $\modelInc{}$.
+Only in the case of $\modelInc=\SIrange[]{80}{90}{\degree}$ the value is slightly increased.
+Its variance remains stable for all values.
 %
 %
 %
@@ -381,18 +416,18 @@ An exception is the crossing case of $\modelOmega=\SI{90}{\degree}$, where the m
 \begin{figure}[!p]
 \centering
 \includegraphics[page=3]{gfx/rc1/analysis/plots_flat_pop_output_cube_2pop_135_rc1_flat.pdf}
-\caption{Crossing flat fiber population: $\modelPsi=\SI{30}{\percent}$. Tilting analysis results. \todo{domega, trel, omega, dotted line more space, title in percent}, \todo{theoretische kurve ret} \TODO{models angular values}}
+\caption{Crossing flat fiber population: $\modelPsi=\SI{30}{\percent}$. Results of the simulation analysis compared with the orientations of the models.}
 \label{fig:flat_03_fiber_pop_rofl}
 \end{figure}
 %
 \begin{figure}[!p]
 \centering
 \includegraphics[page=5]{gfx/rc1/analysis/plots_flat_pop_output_cube_2pop_135_rc1_flat.pdf}
-\caption{Crossing flat fiber population: $\modelPsi=\SI{50}{\percent}$. Tilting analysis results.}
+\caption{Crossing flat fiber population: $\modelPsi=\SI{50}{\percent}$. Results of the simulation analysis compared with the orientations of the models.}
 \label{fig:flat_05_fiber_pop_rofl}
 \end{figure}
 % 
-\Cref{fig:flat_03_fiber_pop_rofl,fig:flat_05_fiber_pop_rofl} show the results of \ac{3D-PLI} modalities and tilt analysis and opening angle in detail.
+\Cref{fig:flat_03_fiber_pop_rofl,fig:flat_05_fiber_pop_rofl} show the results of the \ac{3D-PLI} modalities, the tilt analysis, opening angle, \accvalue{} and \rvalue{} in detail.
 \par
 % Transmittance
 The transmittance increases with increasing crossing angle \modelOmega{}.
@@ -412,11 +447,18 @@ In the case of $\modelPsi=\SI{50}{\percent}$ and $\modelOmega=\SI{90}{\degree}$,
 The direction for both fiber population fractions \modelPsi{} follows the theoretical \name{circmean} function (dashed line).
 For both \modelPsi{}, the variance of the direction increases with increasing crossing angle \modelOmega{}.
 In the case of $\modelPsi=\SI{50}{\percent}$ and a crossing angle of $\modelRot = \SI{90}{\degree}$, the directions are distributed over the entire range of values.
+The variance of the underlying fiber models is overall significantly higher than the direction of the simulations.
+Lower directional values of the models are more frequent than higher values compared to the crossing angle.
+For $\modelPsi=\SI{30}{\percent}$ this behavior is maximal in the range of a crossing angle $\modelOmega = \SIrange{40}{80}{\degree}$.
+In the case of $\modelPsi=\SI{50}{\percent}$ the variance lies almost exactly in between the direction of both fiber population.
 \par
 % Inclination
 The inclination is about $\SI{0}{\degree}$ with its median for both fiber population fractions and all crossing angles.
 The variance increases with increasing crossing angle, up to about $\SI{3}{}$ times the lowest value in the case of $\modelPsi = \SI{30}{\percent}$.
 In the case of $\modelPsi = \SI{50}{\percent}$, the increase is much stronger, until for the $\modelRot=\SI{90}{\degree}$ the inclinations are distributed over the whole range of values.
+The variance of the model inclinations is in agreement with the simulation results for the lowest crossing angle.
+For higher values, the variance increases significantly and remains almost stable for the further crossing angles.
+For all crossing angles, the variance of the models is significantly higher than that of the simulation results.
 \par
 % Trel
 The relative thickness \trel{} decreases with increasing crossing angle \modelOmega{}.
@@ -432,6 +474,10 @@ The opening angle \openingAngle{} is similar for both fiber population fractions
 For higher values in the case of $\modelPsi = \SI{50}{\percent}$, the values increase significantly more.
 The variance increases with increasing crossing angle for both fiber population fractions.
 In the case of $\modelPsi = \SI{50}{\percent}$ and $\modelOmega = \SI{90}{\degree}$, the opening angles are distributed over the entire range of values.
+\par
+The \accvalue{} starts closes to to a value of $\SI{1}{}$ and decreases almost linealy up to a crossing angle of $\modelOmega = \SI{60}{\degree}$ for a fiber population fraction of $\modelPsi = \SI{30}{\percent}$.
+For higher crossing angles the \accvalue{} increases again.
+For the second fiber population fraction of $\modelPsi = \SI{50}{\percent}$ the \accvalue{} decreses significantly lower with a minima $<\SI{0}{}$ for a crossing angle of $\SI{80}{\degree}$ and only for the last crossing angle the value rises again.
 % 
 % 
 %
