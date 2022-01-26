@@ -447,20 +447,21 @@ In the case of $\modelPsi=\SI{50}{\percent}$ and $\modelOmega=\SI{90}{\degree}$,
 \par
 % Direction
 The direction for both fiber population fractions \modelPsi{} follows the theoretical \name{circmean} function (dashed line).
-For both \modelPsi{}, the variance of the direction increases with increasing crossing angle \modelOmega{}.
+For both \modelPsi{}, the variance of the direction results increases with increasing crossing angle \modelOmega{}.
 In the case of $\modelPsi=\SI{50}{\percent}$ and a crossing angle of $\modelRot = \SI{90}{\degree}$, the directions are uniformly distributed $\SIrange{-90}{90}{\degree}$.
-The \bvariance{} variance of the underlying fiber models is overall significantly higher than the direction of the simulations.
-Lower directional values of the models are more frequent than higher values compared to the crossing angle.
-For $\modelPsi=\SI{30}{\percent}$ this behavior is maximal in the range of a crossing angle $\modelOmega = \SIrange{40}{80}{\degree}$.
-In the case of $\modelPsi=\SI{50}{\percent}$ the variance lies almost exactly in between the direction of both fiber population.
+The \bvariance{} variance of the underlying fiber models is overall significantly higher than the direction of the simulations for both \modelPsi{} cases.
+In the case of $\modelPsi{}=\SI{30}{\percent}$ lower directional values of the models have an increased variance compared to values above the median.
+This behavior is maximal in the range of a crossing angle $\modelOmega = \SIrange{40}{80}{\degree}$.
+In the case of $\modelPsi=\SI{50}{\percent}$, the \bvariance{} variance occupies almost exactly the range between the two fiber populations with the exception of $\modelOmega=\SI{90}{\degree}$.
 \par
 % Inclination
 The inclination is about $\SI{0}{\degree}$ with its median for both fiber population fractions and all crossing angles.
 The variance increases with increasing crossing angle, up to about $\SI{3}{}$ times the lowest value in the case of $\modelPsi = \SI{30}{\percent}$.
 In the case of $\modelPsi = \SI{50}{\percent}$, the increase is much stronger, until for the $\modelRot=\SI{90}{\degree}$ the inclinations are distributed over the whole range of values.
-The variance of the model inclinations is in agreement with the simulation results for the lowest crossing angle.
-For higher values, the variance increases significantly and remains almost stable for the further crossing angles.
-For all crossing angles, the variance of the models is significantly higher than that of the simulation results.
+The \bvariance{} variance of the model inclinations is in agreement with the simulation results for the lowest crossing angle.
+For both cases $\modelPsi = \SIlist{30;50}{\percent}$ the distribution of the inclination angle is nearly the same.
+The \bvariance{} raises for increasing crossing angles and remains from a crossing angle of about $\modelOmega = \SI{20}{\degree}$ nearly constant.
+For all crossing angles $\modelOmega>\SI{0}{\degree}$, the \bvariance{} variance of the models is significantly higher than that of the simulation results.
 \par
 % Trel
 The relative thickness \trel{} decreases with increasing crossing angle \modelOmega{}.
@@ -474,8 +475,10 @@ Outliers are also visible, reaching \trel{} values $>\SI{1}{}$.
 % domega
 The opening angle \openingAngle{} is similar for both fiber population fractions up to a crossing angle of $\modelOmega=\SI{70}{\degree}$.
 For higher values in the case of $\modelPsi = \SI{50}{\percent}$, the values increase significantly more.
-The variance increases with increasing crossing angle for both fiber population fractions.
-In the case of $\modelPsi = \SI{50}{\percent}$ and $\modelOmega = \SI{90}{\degree}$, the opening angles are distributed over the entire range of values.
+The fiber models statistics behavies similar for both fiber population fractions.
+Its median and \bvariance{} variance increases with increasing crossing angle $\modelOmega$.
+The main difference is, that in the case of $\modelPsi = \SI{50}{\percent}$ and $\modelOmega = \SI{90}{\degree}$, the opening angles are distributed over the entire range of values, whereas in the case of $\modelPsi = \SI{30}{\percent}$ and $\modelOmega = \SI{90}{\degree}$ the values are not uniform distributed.
+Overall the fiber models opening angles are significantly higher then the opening angles of the analysed orientations.
 \par
 The \accvalue{} starts closes to to a value of $\SI{1}{}$ and decreases almost linealy up to a crossing angle of $\modelOmega = \SI{60}{\degree}$ for a fiber population fraction of $\modelPsi = \SI{30}{\percent}$.
 For higher crossing angles the \accvalue{} increases again.
