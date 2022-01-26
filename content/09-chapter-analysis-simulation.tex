@@ -278,9 +278,12 @@ All following results all data is available in \cref{app:single_fiber_pop_hist}.
 % 
 For interpretations of the results, the \ac{3D-PLI} modalities of the simulations are calculated.
 The orientation angles are additionally compared with the corresponding fiber model angular statistics of the fiber segments.
-The distribution of orientation angles $\dir$ and $\inc$ are shown centered around their mean value.
+The distribution of orientation angles \dir{} and \inc{} are shown centered around their mean value.
 However, the values are periodic, which must be taken into account for \eg{} large variance values.
 Additionally, the \openingAngle{} as well as the \accvalue{} and the \rvalue{} are shown.
+For the angular parameters the distribution of the underlying fiber models are plotted.
+The area corresponds to the $\SI{25}{\percent}$ to $\SI{75}{\percent}$ quantile and will be refered to as \bvariance{} variance.
+This value correspond to the inner area of the boxplot.
 The \accvalue{} is the angular correlation coefficient and is calculated by:
 \begin{align}
     acc = \frac{\sum_i{\mathit{sh}_{0,i} \cdot \mathit{sh}_{1,i}}}{\sqrt{\sum_i{\mathit{sh}_{0,i}^2}} \cdot \sqrt{\sum_i{\mathit{sh}_{1,i}^2}}}
@@ -305,13 +308,6 @@ The \rvalue{} is the mean difference value between the tilting analysis fit $F$ 
 \label{fig:single_fiber_pop_hist}
 \end{figure}
 %
-\begin{figure}[!p]
-\centering
-\includegraphics[]{gfx/rc1/analysis/plots_single_pop_output_cube_2pop_135_rc1_single.pdf}
-\caption{Single tilted fiber population. Results of the tilt analysis. \todo{trel, domega, xachse}, \todo{gleiche binbreite}}
-\label{fig:single_fiber_pop_rofl}
-\end{figure}
-%
 First, a single population of fibers is simulated and analyzed.
 Since the direction is negligible for a single population, only the inclination parameter \modelInc{} remains.
 \par
@@ -323,6 +319,13 @@ The variance of the tilt analysis is higher than that of the model orientations.
 \par
 %
 \Cref{fig:single_fiber_pop_rofl} show the modalities transmittance, direction and retardation of the flat measurement as well as the results of the tilt analysis inclination, \trel{}, the resulting opening angle $\openingAngle$, the \accvalue{} and \rvalue{}.
+% 
+\begin{figure}[!p]
+    \centering
+    \includegraphics[]{gfx/rc1/analysis/plots_single_pop_output_cube_2pop_135_rc1_single.pdf}
+    \caption{Single inclined fiber population. Results of the simulation analysis with comparison of the fiber models orientations.}
+    \label{fig:single_fiber_pop_rofl}
+\end{figure}
 % 
 %Transmittance
 The transmittance increases slightly with inclination angle for $\modelInc<\SI{75}{\degree}$.
@@ -337,26 +340,25 @@ The retardation follows the theoretical line.
 However, at the intermediate inclination angles, the measured retardation is slightly higher than the theoretical line.
 The variance along all fiber inclinations is equal to \modelInc{}.
 \par
-%
+% 
 % Direction
 The next graph shows the measured direction.
 For inclination angles smaller than $\SI{75}{\degree}$ the variance remains relatively small.
 For larger values, the variance increases.
 It should be noted that the boxplot does not take into account that the values are periodic.
 Therefore, especially for $\modelInc=\SI{90}{\degree}$, the values from the $\SIrange{-90}{90}{\degree}$ are uniformly distributed.
-In the background of the boxplots the statistical ranges of the model orientations of $\SIrange{25}{75}{\percent}$ are plotted.
-These show good agreement with the measured direction, with the exception of the case $\modelInc=\SI{90}{\degree}$, the variance of the measurements is significantly lower.
+In the background of the boxplots the statistic \bvariance{} variance of the fiber models is plotted.
+These show good agreement with the measured direction.
+Only for the case $\modelInc=\SI{90}{\degree}$ is the measured \bvariance{} variance higher than that of the fiber models.
 \par
 %
 % Inclination
-% \TODO{differnt symbol between modelinc and inc?}
 The inclination shows the results of the tilt analysis with a dashed line for the model inclination $\modelInc$.
 The results are centered around the median value in the range of $\big[\median (\modelInc)-\SI{90}{\degree}, \median(\modelInc)+\SI{90}{\degree}\big)$.
 The median follows the theoretical curve.
 For inclinations $\SI{80}{\degree}$ and $\SI{85}{\degree}$, the variance increases significantly.
 For $\modelInc = \SI{90}{\degree}$ the variance is similar to the flat results.
-In the background again the quantiles $\SIrange{25}{75}{\percent}$ of the model segments are shown.
-The variance is constant and up to a value of $\SI{75}{\percent}$ higher than the measured values.
+The \bvariance{} variance is constant and up to a value of $\modelInc=\SI{75}{\degree}$ higher than the measured values.
 \par
 %
 % trel
@@ -369,7 +371,7 @@ For inclination angles $\modelInc \ge \SI{85}{\degree}$, the quartile value $\SI
 % domega
 The opening angle \openingAngle{} is consistent up to a tilt angle of $\le \SI{70}{\degree}$.
 For higher inclination angles, both the median and the variance increase significantly, analogous to the inclination, except in the last case.
-The models opening angle range in the background show a significant higher value and higher variance.
+The fiber models opening angle show a significant higher median and higher \bvariance{} variance with the exception of the $\modelInc=\SI{85}{\degree}$.
 \par
 % 
 %ACC
@@ -416,14 +418,14 @@ An exception is the crossing case of $\modelOmega=\SI{90}{\degree}$, where the m
 \begin{figure}[!p]
 \centering
 \includegraphics[page=3]{gfx/rc1/analysis/plots_flat_pop_output_cube_2pop_135_rc1_flat.pdf}
-\caption{Crossing flat fiber population: $\modelPsi=\SI{30}{\percent}$. Results of the simulation analysis compared with the orientations of the models.}
+\caption{Crossing flat fiber population: $\modelPsi=\SI{30}{\percent}$. Results of the simulation analysis with comparison of the fiber models orientations.}
 \label{fig:flat_03_fiber_pop_rofl}
 \end{figure}
 %
 \begin{figure}[!p]
 \centering
 \includegraphics[page=5]{gfx/rc1/analysis/plots_flat_pop_output_cube_2pop_135_rc1_flat.pdf}
-\caption{Crossing flat fiber population: $\modelPsi=\SI{50}{\percent}$. Results of the simulation analysis compared with the orientations of the models.}
+\caption{Crossing flat fiber population: $\modelPsi=\SI{50}{\percent}$. Results of the simulation analysis with comparison of the fiber models orientations.}
 \label{fig:flat_05_fiber_pop_rofl}
 \end{figure}
 % 
@@ -446,8 +448,8 @@ In the case of $\modelPsi=\SI{50}{\percent}$ and $\modelOmega=\SI{90}{\degree}$,
 % Direction
 The direction for both fiber population fractions \modelPsi{} follows the theoretical \name{circmean} function (dashed line).
 For both \modelPsi{}, the variance of the direction increases with increasing crossing angle \modelOmega{}.
-In the case of $\modelPsi=\SI{50}{\percent}$ and a crossing angle of $\modelRot = \SI{90}{\degree}$, the directions are distributed over the entire range of values.
-The variance of the underlying fiber models is overall significantly higher than the direction of the simulations.
+In the case of $\modelPsi=\SI{50}{\percent}$ and a crossing angle of $\modelRot = \SI{90}{\degree}$, the directions are uniformly distributed $\SIrange{-90}{90}{\degree}$.
+The \bvariance{} variance of the underlying fiber models is overall significantly higher than the direction of the simulations.
 Lower directional values of the models are more frequent than higher values compared to the crossing angle.
 For $\modelPsi=\SI{30}{\percent}$ this behavior is maximal in the range of a crossing angle $\modelOmega = \SIrange{40}{80}{\degree}$.
 In the case of $\modelPsi=\SI{50}{\percent}$ the variance lies almost exactly in between the direction of both fiber population.
@@ -507,14 +509,14 @@ For $\modelPsi=\SI{50}{\percent}$ the same behavior is visible, but the differen
 \begin{figure}[!p]
 \centering
 \includegraphics[page=3]{gfx/rc1/analysis/plots_inclined_pop_output_cube_2pop_135_rc1_inclined.pdf}
-\caption{Population of inclined crossing fibers: $\modelPsi=\SI{30}{\percent}$. Results of tilt analysis.}
+\caption{Population of inclined crossing fibers: $\modelPsi=\SI{30}{\percent}$. Results of the simulation analysis with comparison of the fiber models orientations.}
 \label{fig:inclined_03_fiber_pop_rofl}
 \end{figure}
 %
 \begin{figure}[!p]
 \centering
 \includegraphics[page=5]{gfx/rc1/analysis/plots_inclined_pop_output_cube_2pop_135_rc1_inclined.pdf}
-\caption{Population of inclined crossing fibers: $\modelPsi=\SI{50}{\percent}$. Results of tilt analysis.}
+\caption{Population of inclined crossing fibers: $\modelPsi=\SI{50}{\percent}$. Results of the simulation analysis with comparison of the fiber models orientations.}
 \label{fig:inclined_05_fiber_pop_rofl}
 \end{figure}
 %
