@@ -669,7 +669,7 @@ However, the retardation decreases significantly with increasing inclination $\m
 \begin{figure}[!p]
     \centering
     \includegraphics[]{gfx/rc1/analysis/simulation_analysis_hist_0.5_setup_PM_s_Vervet_m_r_rtrel_mean.pdf}
-    \caption{Mean \trel{} from tilt analysis.}
+    \caption{Mean \trel{} from tilt analysis. \todo{add $>=1$}}
     \label{fig:sim_ana_trel}
 \end{figure}
 % 
@@ -682,7 +682,7 @@ The exceptions are secondary fiber population inclinations of $\SI{90}{\degree}$
 Areas of reduced \trel{} become visible for $\modelPsi=\SI{30}{\percent}$.
 These are located for $\modelInc=\SIlist{0;30}{\degree}$ at $\SI{90}{\degree}$ and crossings with the first fiber population toward $\SI{180}{\degree}$.
 For $\modelInc=\SI{60}{\deg}$, the reduced \trel{} surface remains slightly to the left of the z-axis.
-Here, two sampled configurations with $\trel > 1$ are visible in the north and south (colorbar in plot is clipped \todo{indicate in plot}).
+Here, two sampled configurations with $\trel > 1$ are visible in the north and south.
 The same is visible for a $\modelInc=\SI{90}{\degree}$ for the non-intersecting configuration along the z-axis.
 \par
 % 
@@ -808,6 +808,7 @@ This may have an effect on the theoretical curve for the inclined values, but it
 The direction values have a very small variance, which increases strongly for high inclination values.
 Since the direction value is coupled to the inclination angle, this is to be expected: for an $\SI{90}{\degree}$ inclined orientation, there is no direction.
 The noise mainly affects the signal, and therefore the phase of the \say{sinus} is random.
+The variance of the resulting analysis of the simulation signal is expected to be smaller than the actual distribution of the individual nerve fiber segments because the signal results from the overall interaction from the light with all segments in its path.
 \par
 %
 The same behavior can be observed for the inclination curve.
@@ -833,8 +834,17 @@ However, up to this point, the \trel{} value can be used to indicate that these 
 %
 The opening angle shows the combined information from the direction results and the inclination results.
 This value can possibly serve as additional uncertainty for further calculations like in a tractography.
+The median value is expected to be lower than the actual fiber models opening angle for the same reason as for a lower \bvariance{} variance in the direction and inclination angle.
 \par
 %
+The \accvalue{} is for fiber inclinations $\modelInc \leq \SI{75}{\degree}$ very high.
+For an inclination angle of about $\modelInc = \SI{80}{\degree}$ is a minimum visible because for higher inclination angles the tilting analysis accuracy increases.
+Therefore the \ac{ODF} similary has to also increase again.
+\par
+% 
+The \rvalue{} reflects the noise on the signal for all inclination angles and stays constant.
+\par
+% 
 In summary, for the case of a single fiber population, the resulting tilt analysis shows good agreement with the individual orientations of the model, except for very steeply inclined configurations.
 %
 % 
@@ -849,17 +859,16 @@ This effect is also responsible for the transmittance increasing at a fiber popu
 The retardation decreases almost linearly with increasing crossing angle.
 Theoretically, with a crossing angle of $\modelOmega=\SI{90}{\degree}$ and a fiber population fraction of $\modelPsi=\SI{30}{\percent}$, only the remaining $\SI{40}{\percent}$ fibers affect retardation.
 However, the measured retardation of about $\SI{36}{}$ is larger than the expected $0.8\cdot 0.4 = 0.32$.
-Why this is so cannot be said at this point.
-A clue is given by the retardation value for a fiber population fraction of $\modelPsi=\SI{50}{\percent}$, where the retardation does not fall exactly on $\SI{0}{}$.
-This is understandable since the noise of the signal contributes to a measured retardation.
-However, this is only true for an expected retardation of $\SI{0}{}$.
-Sinusoidal signals with an amplitude $>0$ have a more Gaussian randomness in amplitude.
-\TODO{discuss with others}
+An explenation of this is the noise on the data.
+It effects the distribution of the retardation for low amplitudes towords higher values.
+This is because the retardation and the individual light intensities cannot be lower than $\SI{0}{}$.
 \par
 %
 The direction for the flat fiber crossings follows the expected theoretical curve of the circular mean.
 For the case $\modelPsi=\SI{50}{\percent}$ and $\modelOmega=\SI{90}{\degree}$, the direction values are uniformly distributed since there is no unique direction in the sinosoidal.
 This is the effect of retardation cancelation and signal noise.
+These results reproduce the previous results \todo{cite} and show that with this distribution of fiber radii at this resulution individual fiber population for a intervowen dense fiberbundle cannot be distinguished.
+\todo{discuss higher faber radii in whats next}
 \par
 %
 The variance of the inclination angle increases with increasing \modelOmega{}, which is to be expected as the amplitude, \ie{} the retardation decreases, making the model more uncertain.
@@ -875,6 +884,8 @@ It can be used as an indication that the resulting values are not to be trusted 
 %
 All effects described above are reflected in the opening angle \openingAngle{}, which must increase with increasing \modelOmega{} \todo{domega of the model ...}.
 %
+\todo{acc and R}
+% 
 %
 %
 \paragraph{Inclined crossing fiber population}
