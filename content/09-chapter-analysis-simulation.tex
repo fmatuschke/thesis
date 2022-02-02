@@ -686,8 +686,13 @@ However, the retardation decreases significantly with increasing inclination $\m
 %
 \begin{figure}[!p]
     \centering
-    \includegraphics[]{gfx/rc1/analysis/simulation_analysis_hist_0.5_setup_PM_s_Vervet_m_r_rtrel_mean.pdf}
-    \caption{Mean \trel{} from tilt analysis. \todo{add $>=1$}}
+    \tikzset{external/export next=false}
+    \begin{tikzpicture}[]  
+        \node[inner sep=0pt] (fig) at (0,0)
+        {\includegraphics[]{gfx/rc1/analysis/simulation_analysis_hist_0.5_setup_PM_s_Vervet_m_r_rtrel_mean.pdf}};
+        \node[inner sep=0pt,fill=white,shift={(-1.8825,0.20)}] at (fig.south east) {\scriptsize$\geq1$}; % fill=red,text=red,inner sep=0pt
+    \end{tikzpicture}
+    \caption{Mean \trel{} from tilt analysis.}
     \label{fig:sim_ana_trel}
 \end{figure}
 % 
