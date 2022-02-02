@@ -1,0 +1,123 @@
+{
+   "[latex]": {
+      "editor.formatOnSave": false,
+      "files.insertFinalNewline": false
+   },
+   "[tex]": {
+      "editor.formatOnSave": false,
+      "files.insertFinalNewline": false
+   },
+   "files.associations": {
+      "*.tikz": "tex"
+   },
+   "files.exclude": {
+      "**/*.aux": true,
+      // "thesis.*[!"pdf"]": true,
+      "thesis*.a*": true,
+      "thesis*.b*": true,
+      "thesis*.figlist": true,
+      // "thesis*.log": true,
+      "thesis*.m*": true,
+      "thesis*.out": true,
+      "thesis*.pt*": true,
+      "thesis*.run.xml": true,
+      "thesis*.synctex*": true,
+      "thesis*.tdo": true,
+      "thesis*.toc": true,
+      "thesis-chapter*": true,
+      "tikz/*.acr": true,
+      "tikz/*.dep": true,
+      "tikz/*.dpth": true,
+      "tikz/*.maf": true,
+      "tikz/*.md5": true,
+      "tikz/*.mtc": true,
+      "tikz/*.mtc0": true,
+      "tikz/*.xml": true
+   },
+   "latex-workshop.latex.autoBuild.cleanAndRetry.enabled": false,
+   "latex-workshop.latex.autoBuild.run": "never",
+   "latex-workshop.latex.autoClean.run": "never",
+   "latex-workshop.latex.recipes": [
+      {
+         "name": "lualatex",
+         "tools": [
+            "lualatex"
+         ]
+      },
+      {
+         "name": "biber",
+         "tools": [
+            "biber"
+         ]
+      },
+      {
+         "name": "lualatex ➞ biber ➞ 2x lualatex",
+         "tools": [
+            "lualatex",
+            "biber",
+            "lualatex",
+            "lualatex"
+         ]
+      }
+   ],
+   "latex-workshop.latex.tools": [
+      {
+         "args": [
+            "-interaction=nonstopmode",
+            "-halt-on-error",
+            "-shell-escape",
+            "-synctex=1",
+            "thesis.tex"
+         ],
+         "command": "lualatex",
+         "env": {},
+         "name": "lualatex"
+      },
+      {
+         "args": [
+            "thesis"
+         ],
+         "command": "biber",
+         "env": {},
+         "name": "biber"
+      }
+   ],
+   "todo-tree.general.tags": [
+      "?",
+      "[ ]",
+      "FIXME",
+      "TODO",
+      "todo",
+      "dummy",
+   ],
+   "todo-tree.regex.regex": "(\\\\|%|//|#|<!--|;|/\\*|^|^\\s*(-|\\d+.))\\s*($TAGS)",
+   "todo-tree.highlights.customHighlight": {
+      "?": {
+         "foreground": "ForestGreen",
+         "icon": "unverified",
+         "rulerColour": "ForestGreen"
+      },
+      "FIXME": {
+         "background": "Crimson",
+         "foreground": "peekViewResult.background",
+         "iconColour": "Crimson",
+      },
+      "TODO": {
+         "foreground": "Orange",
+         "rulerColour": "Orange"
+      },
+      "todo": {
+         "foreground": "Orange",
+         "rulerColour": "Orange"
+      },
+      "dummy": {
+         "foreground": "Orange",
+         "rulerColour": "Orange"
+      }
+   },
+   "todo-tree.highlights.defaultHighlight": {
+      "fontWeight": "peekViewResult",
+      "gutterIcon": true,
+      "type": "tag"
+   },
+}

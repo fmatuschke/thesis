@@ -2,7 +2,6 @@
 !thesis-setup.tex
 !tikz/dummy.tex
 
-.vscode/
 thesis*
 build/
 old/
@@ -11,8 +10,12 @@ tikz/*
 __latexindent_temp.*
 thesis-chapter*
 
-# Created by https://www.gitignore.io/api/latex
-# Edit at https://www.gitignore.io/?templates=latex
+### Code ###
+**/.vscode/*
+!.vscode/settings.json
+# !.vscode/tasks.json
+# !.vscode/launch.json
+# !.vscode/extensions.json
 
 ### LaTeX ###
 ## Core latex/pdflatex auxiliary files:
@@ -283,5 +286,3 @@ TSWLatexianTemp*
 ### LaTeX Patch ###
 # glossaries
 *.glstex
-
-# End of https://www.gitignore.io/api/latex
