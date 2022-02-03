@@ -392,7 +392,7 @@ It reaches a minimum at an inclination angle of $\SI{80}{\degree}$, from where i
 \label{sec:resCrossFlat}
 %
 This simulation focuses on two flat crossing fiber populations.
-Here, the results for the case $\modelPsi = \SI{30}{\percent}$ and $\modelPsi = \SI{50}{\percent}$ are examined.
+\Cref{fig:flat_03_fiber_pop_hist,fig:flat_05_fiber_pop_hist} shows the distribution of orientations for the model fiber segments and the resulting simulation orientations for $\modelPsi = \SI{30}{\percent}$ and $\modelPsi = \SI{50}{\percent}$.
 The additional fiber population fractions are available in \cref{app:flat_fiber_pop_a,app:flat_fiber_pop_b,app:flat_fiber_pop_c,app:flat_fiber_pop_d,app:flat_fiber_pop_e}.
 \par
 % 
@@ -408,15 +408,15 @@ The additional fiber population fractions are available in \cref{app:flat_fiber_
 \label{fig:flat_05_fiber_pop_hist}
 \end{figure}
 %
-\Cref{fig:flat_03_fiber_pop_hist,fig:flat_05_fiber_pop_hist} shows the distribution of orientations for the model fiber segments and the resulting simulation orientations.
+The results for $\modelPsi = \SI{30}{\percent}$ show that the measured orientation follows the dominant fiber population.
+Minor differences are seen in the area of $\SI{45}{\degree}$.
+In the case of $\modelPsi = \SI{50}{\percent}$, the measured orientation lies between the two fiber populations.
+An exception is the crossing case of $\modelOmega=\SI{90}{\degree}$, where the measured orientations are random distributed around steep orientations.
 \par
 % 
-The results for $\modelPsi = \SI{30}{\percent}$ show that the measured orientation follows the dominant fiber population.
-Minor differences are seen in the range of $\SI{45}{\degree}$.
-In the case of $\modelPsi = \SI{50}{\percent}$, the measured orientation lies between the two fiber populations.
-An exception is the crossing case of $\modelOmega=\SI{90}{\degree}$, where the measured orientations are quite random around steep orientations.
+\Cref{fig:flat_03_fiber_pop_rofl,fig:flat_05_fiber_pop_rofl} show the results of the \ac{3D-PLI} modalities, the tilt analysis, opening angle $\openingAngle$ and \accvalue{} in detail.
 \par
-%
+% 
 \begin{figure}[!p]
 \centering
 \includegraphics[page=3]{gfx/rc1/analysis/plots_flat_pop_output_cube_2pop_135_rc1_flat.pdf}
@@ -431,29 +431,26 @@ An exception is the crossing case of $\modelOmega=\SI{90}{\degree}$, where the m
 \label{fig:flat_05_fiber_pop_rofl}
 \end{figure}
 % 
-\Cref{fig:flat_03_fiber_pop_rofl,fig:flat_05_fiber_pop_rofl} show the results of the \ac{3D-PLI} modalities, the tilt analysis, opening angle, \accvalue{} and \rvalue{} in detail.
-\par
 % Transmittance
 The transmittance increases with increasing crossing angle \modelOmega{}.
-The two fiber population fractions \modelPsi{} show the same behavior.
+The all fiber population fractions \modelPsi{} show the same behavior.
 The transmittance increases initially and becomes flatter at larger crossing angles.
 In the case of $\modelPsi = \SI{30}{\percent}$, it starts at a transmittance of about $\SI{1000}{\arbitraryunit}$ and reaches a value of about $\SI{1090}{\arbitraryunit}$ for a crossing angle of $\SI{90}{\degree}$.
 In the case of $\modelPsi = \SI{50}{\percent}$, it reaches a slightly higher value of $\SI{1110}{\arbitraryunit}$.
 \par
 % Retardation
-Retardation is negatively linearly correlated with increasing crossing angle for both fiber population fractions \modelPsi{}.
-For $\modelPsi=\SI{30}{\percent}$, the retardation starts at $\SI{0.8}{}$ and drops to about $\SI{0.3}{}$.
-In the case of $\modelPsi=\SI{50}{\percent}$, it also starts at $\SI{0.8}{}$ and drops to almost $\SI{0}{}$.
-For both fiber population fractions, the variance increases slightly with the crossing angle.
-In the case of $\modelPsi=\SI{50}{\percent}$ and $\modelOmega=\SI{90}{\degree}$, the variance is again smaller.
+The retardation is negatively linearly correlated with increasing crossing angle.
+The retardation starts at $\SI{0.8}{}$ and drops in the case of For $\modelPsi=\SI{30}{\percent}$ to about $\SI{0.3}{}$.
+In the case of $\modelPsi=\SI{50}{\percent}$ it drops to almost $\SI{0}{}$.
+The variance of the retardation is slightly increased around $\modelOmega=\SI{45}{\degree}$.
 \par
 % Direction
-The direction for both fiber population fractions \modelPsi{} follows the theoretical \name{circmean} function (dashed line).
-For both \modelPsi{}, the variance of the direction results increases with increasing crossing angle \modelOmega{}.
+The direction for all simulated fiber population fractions \modelPsi{} follows the theoretical \name{circmean} function.
+In the case for $\modelPsi<\SI{50}{\percent}$ the median is slighly higher than the theoretical line and in the case for $\modelPsi>\SI{50}{\percent}$ slightly lower.
+The variance of the direction increases slightly with increasing crossing angle and strongly.
 In the case of $\modelPsi=\SI{50}{\percent}$ and a crossing angle of $\modelRot = \SI{90}{\degree}$, the directions are uniformly distributed $\SIrange{-90}{90}{\degree}$.
-The distribution of the simulations direction remain relativly low and are significantly different the individual nerve fiber populations with $\modelPsi = \SIrange{30}{70}{\percent}$.
 The distribution of the individual nerve fiber populations show the seperation of the orientation with increasing crossing angle \modelOmega{}.
-The \bvariance{} for both populations remain stable.
+The \bvariance{} for both populations remain constant. \todo{last variance value of one fiber pop is increased ...}
 The larger fiber population fraction has a lower variance than its counterpart.
 \par
 % Inclination
