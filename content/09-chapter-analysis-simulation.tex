@@ -217,7 +217,7 @@ One has to keep in mind that this is only valid for a pixel size of $\SI{1.3}{\m
 %
 \section{Simulation}
 %
-\subsection{Environment/Setup/...} %TODO
+\subsection{Setup} %TODO
 \label{sec:simParameterEnv}
 % 
 %
@@ -293,18 +293,12 @@ The \accvalue{} is the angular correlation coefficient which measures the simila
 where $\mathit{sh}_i$ is the $i-$th spherical coefficient of the orientations \ac{ODF} \cite{Schilling2018}.
 \par
 %
-For interpretations of the results, the \ac{3D-PLI} modalities of the simulations are calculated.
-The orientation angles are additionally compared with the corresponding fiber model angular statistics of the fiber segments.
-The distribution of orientation angles \dir{} and \inc{} are shown centered around their mean value.
-However, the values are periodic, which must be taken into account for \eg{} large variance values.
-For the angular parameters the distribution of the underlying fiber models are plotted for the individual fiber populations \popa{} and \popb{}.
-The area corresponds to the $\SI{25}{\percent}$ to $\SI{75}{\percent}$ quantile and will be refered to as \bvariance{} variance.
-\par
-% 
 To visualize the distribution of the data boxplots are used.
-For the distribution of the angular statistic these however have to be handled with care, since the values are periodic.
-To overcome this problem the values are centered around the circular mean value in the range of $\big[\circmean (\xi)-\SI{90}{\degree}, \circmean(\xi)+\SI{90}{\degree}\big)$. where $\xi$ is the parameter.
+For the distribution of the angular parameters these, however, have to be handled with care, since the values are periodic.
+To overcome this problem the values are centered around the circular mean value in the range of $\big[\circmean (\xi)-\SI{90}{\degree}, \circmean(\xi)+\SI{90}{\degree}\big)$, where $\xi$ is the angular parameter.
 This contributes to the interpretability of the angular results with variances $\ll \SI{90}{\degree}$.
+Additionally for the angular parameters the distribution of the underlying fiber models are plotted for the individual fiber populations \popa{} and \popb{}.
+The area corresponds to the $\SI{25}{\percent}$ to $\SI{75}{\percent}$ quantile and will be refered to as \bvariance{} variance.
 % 
 % 
 % 
@@ -355,7 +349,7 @@ For inclination angles $\modelInc<\SI{75}{\degree}$ the variance is about a few 
 For larger values, the variance increases significant.
 \footnote{It should be noted that the boxplot does not take into account that the values are periodic.
 Therefore, especially for $\modelInc=\SI{90}{\degree}$, the values from the $\SIrange{-90}{90}{\degree}$ are uniformly distributed.}
-In the background of the boxplots the statistic \bvariance{} variance of the fiber models is plotted.
+In the background the statistic \bvariance{} variance of the fiber models is plotted.
 The measured direction are in agreement with the models variance.
 For the case $\modelInc=\SI{90}{\degree}$ the simulations \bvariance{} variance is higher than that of the fiber models.
 \par
@@ -372,30 +366,36 @@ The \bvariance{} variance is constant and up to a value of $\modelInc=\SI{75}{\d
 The median relative birefringence thickness \trel{} is stable for values up to $\modelInc < \SI{60}{\degree}$, but the variance increases slightly.
 For larger values, the median decreases while the variance increases.
 There are outliers that reach values $>\SI{1}{}$.
-For inclination angles $\modelInc \ge \SI{85}{\degree}$, the quartile value $\SI{75}{\percent}$ increases by $\SI{1}{}$ and the median for $\SI{90}{\degree}$ reaches about $\SI{2}{}$.
+For inclination angles $\modelInc \ge \SI{85}{\degree}$, the variance increases significant and for $\modelInc = \SI{90}{\degree}$ the median reaches about $\SI{2}{}$.
 \par
 % 
 % R
-The \rvalue{} show an almost constant behavior for all inclination angles $\modelInc{}$.
-Only in the case of $\modelInc=\SIrange[]{80}{90}{\degree}$ the value is slightly increased.
-Its variance remains stable for all values.
+The \rvalue{} shows constant behavior for inclination angles $\modelInc < \SI{80}{\degree}$.
+In the case of $\modelInc=\SIrange[]{80}{90}{\degree}$ the values are slightly increased.
+Its variance remains stable for all inclinations.
 \par
 %
 % domega
-The opening angle \openingAngle{} is consistent up to a tilt angle of $\le \SI{70}{\degree}$.
-For higher inclination angles, both the median and the variance increase significantly, analogous to the inclination, except in the last case.
-The fiber models opening angle show a significant higher median and higher \bvariance{} variance with the exception of the $\modelInc=\SI{85}{\degree}$.
+The opening angle \openingAngle{} is constant up to a inclination angle of $\modelInc \le \SI{70}{\degree}$.
+For higher inclination angles, both the median and the variance increase significantly.
+The last case $\modelInc = \SI{90}{\degree}$ is however very low.
+In comparison the fiber models opening angle show a significant higher median and higher \bvariance{} variance with the exception of the $\modelInc=\SI{85}{\degree}$.
 \par
 % 
 %ACC
-The total \accvalue{} starts to decrease significantly at an inclination angle of about $\SI{60}{\deg}$.
-It reaches a minimum at an inclination angle of $\SI{80}{\degree}$, from where it starts to increase to a higher value than at the lower inclination angles.
+The \accvalue{} remains close to $1$ and starts to decrease significantly at an inclination angle of about $\SI{60}{\deg}$.
+It reaches a minimum at an inclination angle of $\SI{80}{\degree}$, from where its increases again and reaches a value very close to $1$, higher than before.
 %
 %
 %
 \subsection{Crossing flat fiber populations}
 \label{sec:resCrossFlat}
 %
+This simulation focuses on two flat crossing fiber populations.
+Here, the results for the case $\modelPsi = \SI{30}{\percent}$ and $\modelPsi = \SI{50}{\percent}$ are examined.
+The additional fiber population fractions are available in \cref{app:flat_fiber_pop_a,app:flat_fiber_pop_b,app:flat_fiber_pop_c,app:flat_fiber_pop_d,app:flat_fiber_pop_e}.
+\par
+% 
 \begin{figure}[!p]
 \centering
 \includegraphics[page=3]{gfx/rc1/analysis/plots_flat_pop_hist_output_cube_2pop_135_rc1_flat.pdf}
@@ -407,11 +407,6 @@ It reaches a minimum at an inclination angle of $\SI{80}{\degree}$, from where i
 \caption{Crossing flat fiber population: $\modelPsi=\SI{50}{\percent}$.}
 \label{fig:flat_05_fiber_pop_hist}
 \end{figure}
-%
-The next simulation focuses on two flat crossing fiber populations.
-Here, the results for the case $\modelPsi = \SI{30}{\percent}$ and $\modelPsi = \SI{50}{\percent}$ are examined.
-The other proportions of the fiber population are available in \cref{app:flat_fiber_pop_a,app:flat_fiber_pop_b,app:flat_fiber_pop_c,app:flat_fiber_pop_d,app:flat_fiber_pop_e}.
-\par
 %
 \Cref{fig:flat_03_fiber_pop_hist,fig:flat_05_fiber_pop_hist} shows the distribution of orientations for the model fiber segments and the resulting simulation orientations.
 \par
