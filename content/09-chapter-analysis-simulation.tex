@@ -471,7 +471,7 @@ For $\modelPsi = \SI{50}{\percent}$ and $\modelOmega = \SI{90}{\degree}$, the va
 Outliers are also visible, reaching \trel{} values $>\SI{1}{}$.
 \par
 % rvalue
-\todo{rvalue}
+The \rvalue{} is nearly constant for all crossing angles \modelOmega{} and fiber population fractions \modelPsi{}. The variance show no significant change.
 \par
 % domega
 The opening angle \openingAngle{} is similar for both fiber population fractions up to a crossing angle of $\modelOmega=\SI{70}{\degree}$.
@@ -548,22 +548,20 @@ In the case of $\modelPsi=\SI{50}{\percent}$, the variance increases significant
 % Direction
 The direction for both fiber population fractions \modelPsi{} is centered around $\SI{0}{\degree}$.
 For both \modelPsi{}, the variance of the direction increases with increasing crossing angle \modelOmega{}.
-No significant influence is seen for the fiber population fraction.
-Both \modelPsi{} have significant lower variance than the nerve fiber models segements.
+No significant influence is visible for the fiber population fraction with the exception of $\modelPsi = \SI{10}{\percent}$ where for a crossing angle $\modelOmega >= \SI{80}{\degree}$ the variance increases significantly.
+The direction variance of the simulation is significant lower than the nerve fiber models segements variance.
 The \bvariance{} variance of the first (flat) fiber population \popa{} is always smaller than the \bvariance{} variance of the second fiber population \popb{}.
-The \bvariance{} variance for \popa{} is flattening after after a crossing angle of about $\modelOmega = \SI{50}{\degree}$, whereas the \bvariance{} variance of the second fiber bundle begins to raise significantly from there.
+The \bvariance{} variance for \popa{} increases up to a crossing angle of about $\modelOmega = \SI{50}{\degree}$ and remains constant for higher crossing angles, whereas the \bvariance{} variance of the second fiber bundle increases further.
 \par
 % Inclination
 The inclination for both fiber population fractions first increases and then decreases to a value of $\SI{0}{\degree}$.
 In the case of $\modelPsi=\SI{30}{\percent}$, the maximum inclination is reached at a crossing angle of about $\modelOmega=\SIrange{60}{70}{\degree}$.
 For $\modelPsi=\SI{50}{\percent}$, the maximum value is at a crossing angle of about $\modelOmega=\SIrange{50}{60}{\degree}$.
-The theoretical curve representing the average of the two fiber population inclinations is followed in both cases only up to a crossing angle of about $\SI{30}{\degree}$.
-The \bvariance{} is significant higher compared to the simulation results.
-In the case of $\modelPsi=\SI{30}{\percent}$ the median is higher than the theoretical curve and the measurments.
-For a fiber fraction of $\modelPsi=\SI{50}{\percent}$ the median is under the theoretical curve and up to a crossing angle of $\modelOmega \leq \SI{60}{\degree}$ in agreement with the measurments.
-For a crossing angle of $\SI{90}{\degree}$ the median decreases to $\SI{0}{\degree}$.
-The individual nerve fiber populations follor the targeted inclination with a stable \bvariance{} variance.
-The measurments of the simulation are in between both populations and depending on the fiber population fraction \modelPsi{} significantly different from both individual inclinations with a tendence to the flat first fiber population.
+Depending on the fiber population fraction \modelPsi{} the circmean between both fiber population is followed by the simulation results for lower crossing angles.
+Higher crossing angles $\approx \geq \SI{50}{\degree}$ are significantly lower then the circ mean value.
+The \bvariance{} of the individual nerve fiber populations remain constant for crossing angles $\geq \SI{10}{\degree}$. 
+For lower fiber population fractions \modelPsi{} and higher crossing angles \modelOmega{} the variance of the simulation results is higher than the \bvariance{} of the models.
+Otherwise the simulations inclination variance is significantly lower.
 \par
 % Trel
 The relative thickness \trel{} decreases almost linearly with increasing crossing angle \modelOmega{} for both fiber population fractions.
@@ -597,15 +595,6 @@ After the minimum the value seems to increase with a similar slope.
 \subsection{Free crossing fiber populations}
 \label{sec:resFreeCross}
 % 
-\todo{same order of parameters as befor}
-%
-In this section, a subset of the simulated nerve fiber models is presented.
-To limit the amount of data the inclination angles \dummy{} and fiber population fractions \dummy{} are simulated.
-A polar plot visualization is used to visualize the results from the \ac{3D-PLI} analysis pipeline (see \cref{fig:simModelSphereSample}).
-Each polar plot visualizes the results for a fixed first fiber population \popa{}.
-A spherical k-nearest neighbor interpolator is used to interpolate between the positions \cite{DBLP:journals/corr/abs-1910-00704}.
-The results for direction and inclination are not shown because the statistic of a orientation on a half sphere manifold and the needed interpolation are not straight forward.
-% 
 \begin{figure}[t]
 \centering
 \setlength{\tikzwidth}{0.40\textwidth}
@@ -622,6 +611,12 @@ The results for direction and inclination are not shown because the statistic of
 \caption{Visualization of results for a fixed first fiber population \popa{}.}
 \label{fig:simModelSphereSample}
 \end{figure}
+%
+In this section, two nerve fiber populations \popa{} and \popb{} are simulated with sampled orientations on a sphere (see \cref{fig:twomodelpopdesign,tab:simParameters})
+A polar plot visualization is used to visualize the results from the \ac{3D-PLI} analysis pipeline (see \cref{fig:simModelSphereSample}).
+Each polar plot visualizes the results for a fixed first fiber population \popa{}.
+A spherical k-nearest neighbor interpolator is used to interpolate between the positions \cite{DBLP:journals/corr/abs-1910-00704}.
+The results for direction and inclination are not shown because the statistic of a orientation on a half sphere manifold and the needed interpolation are not straight forward.
 %
 The spherical plots in \cref{fig:sim_ana_trans,fig:sim_ana_ret,fig:sim_ana_trel,fig:sim_ana_acc} are designed so that the thick black circle shows the orientation of the first fiber population and the thin dashed circles show the orientation of the second fiber population.
 At the position of the second fiber population, the resulting mean value is inserted.
@@ -773,7 +768,7 @@ $\modelInc=\SIlist{60;90}{\degree}$ remains a low \rvalue{} for all configuratio
 \end{figure}
 % 
 \Cref{fig:sim_ana_acc} shows the \acreset{ACC} \ac{ACC} value, \ie{} how well the coefficients of the \ac{ODF} basis function are matched \cite{Schilling2018}.
-\todo{acc of psi = 1 as ref}.
+% \todo{acc of psi = 1 as ref}.
 \par
 % 
 The fiber population fraction $\modelPsi=\SI{10}{\percent}$ shows no significant decrease in the \accvalue{} for the first fiber model inclination $\modelInc$.
@@ -887,8 +882,9 @@ This is because the retardation and the individual light intensities cannot be l
 The direction for the flat fiber crossings follows the expected theoretical curve of the circular mean.
 For the case $\modelPsi=\SI{50}{\percent}$ and $\modelOmega=\SI{90}{\degree}$, the direction values are uniformly distributed since there is no unique direction in the sinosoidal.
 This is the effect of retardation cancelation and signal noise.
-These results reproduce the previous results \todo{cite} and show that with this distribution of fiber radii at this resulution individual fiber population for a intervowen dense fiberbundle cannot be distinguished.
-\todo{discuss higher faber radii in whats next}
+% These results reproduce the previous results \todo{cite} and show 
+For the here investigated distribution of fiber radii at microscopes resolution and pixel size individual fiber population for a intervowen dense fiberbundle cannot be distinguished.
+% \todo{discuss higher faber radii in whats next}
 \par
 %
 The variance of the inclination angle increases with increasing \modelOmega{}, which is to be expected as the amplitude, \ie{} the retardation decreases, making the model more uncertain.
