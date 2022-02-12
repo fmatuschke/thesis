@@ -217,21 +217,21 @@ One has to keep in mind that this is only valid for a pixel size of $\SI{1.3}{\m
 %
 \section{Simulation}
 %
-\subsection{Setup} %TODO
+\subsection{Setup}
 \label{sec:simParameterEnv}
 % 
 %
 As described in \cref{chap:Software}, \ac{fastPLI} contains a pipeline implementation of the simulation with automatic analysis.
 This implementation is used to compute the simulation of the signal for the flat and tilted measurements and apply the optical noise and tilt analysis to the resulting signal using the \ac{ROFL} algorithm. 
 The input for the simulation is the previously created model library (see \cref{sec:genNerveFiberLibrary}).
-The models are rotated according to the previously specified discretization to include all specified orientations (see \cref{sec:modelParamet}).
+The models are rotated according to the previously specified discretization (see \cref{sec:modelParamet}).
 \par
 % 
 Three types of simulations are performed. First, a single inclined fiber population.
-Because there is only one fiber population orientation, only the inclination of the model is \dummy{}.
-In the second step simulations with two special fiber population orientations are performed: a) flat crossing and b) inclined crossing.
-The first fiber population in these models will be fixed along the x-axis.
-The last simulation will contain simulation without any constrains with respect that the first fiber population does not need any direction offset (see \dummy{}).
+Since there is only a single fiber population, only the inclination of the model is changed.
+In the second step, simulations are performed with two fiber population orientations: a) flat crossing and b) inclined crossing.
+The first fiber population is fixed along the x-axis in these models, while the crossing angle of the second fiber population is increased.
+The last simulation contains two fiber populations where the inclination of the first fiber population is increased and the second fiber population is rotated around it as the crossing angle increases (see \dummy{}).
 \par
 % 
 \begin{table}[!b]
@@ -275,7 +275,7 @@ model rotation step $\Delta\modelRot$ & $\SI{15}{\degree}$\\
 \end{table}
 % 
 \Cref{tab:simParameters} lists the parameters of the simulation in the notation of \ac{fastPLI}.
-With a pixel size of $\SI{1.3}{\micro\meter}$, $\SI{2500}{\pixel}$ are available per simulation for statistical analysis.
+With a pixel size of $\SI{1.3}{\micro\meter}$ and a volume of $\SI{65}{\micro\meter} \times \SI{65}{\micro\meter} \times \SI{60}{\micro\meter}$, $\SI{2500}{\pixel}$ are available per simulation for statistical analysis.
 \par
 % 
 To analyse the simulation results the standard \ac{3D-PLI} analysis pipline, containing the foure analysis (see \dummy{}) and the tilt analysis (see \dummy{}), are performed.
@@ -284,9 +284,10 @@ The tilt analysis \dummy{} the orientation of each pixel, \ie{} direction and in
 \begin{align}
     R = \mean{|I_i-F_i|}
 \end{align}
-where $I$ is the signal intensity and $F$ the models best fit.
+where $I$ is the signal intensity and $F$ the models found best solution.
 Finally from the orientations the opening angle \openingAngle{} and angular correlation coefficient \accvalue{} between the models orientation and simulation resulting orientation are calculated.
-The \accvalue{} is the angular correlation coefficient which measures the similarity between two \acp{ODF}. The \acp{ODF} are calculated by \dummy{}. The \accvalue{} can then be calculated by:
+The \accvalue{} is the angular correlation coefficient which measures the similarity between two \acp{ODF}. The \acp{ODF} are calculated by \dummy{}.
+The \accvalue{} is then be calculated by:
 \begin{align}
     acc = \frac{\sum_i{\mathit{sh}_{0,i} \cdot \mathit{sh}_{1,i}}}{\sqrt{\sum_i{\mathit{sh}_{0,i}^2}} \cdot \sqrt{\sum_i{\mathit{sh}_{1,i}^2}}}
 \end{align}
@@ -305,7 +306,7 @@ The area corresponds to the $\SI{25}{\percent}$ to $\SI{75}{\percent}$ quantile 
 \subsection{Single inclined fiber population}
 \label{sec:resSingleIncl}
 %
-\Cref{fig:single_fiber_pop_hist} shows the orientation distribution of a single population of fibers for different inclinations $\modelInc{}$.
+\Cref{fig:single_fiber_pop_hist} shows the orientation distribution of a single population of fibers with increasing inclination angle $\modelInc{}$.
 % 
 \begin{figure}[!t]
     \centering
@@ -314,9 +315,8 @@ The area corresponds to the $\SI{25}{\percent}$ to $\SI{75}{\percent}$ quantile 
     \label{fig:single_fiber_pop_hist}
 \end{figure}
 % 
-The distributions of the orientations of the model segments are shown on the left side, and those of the tilt analysis on the right side.
-The simulation results are in agreement with the orientations of the models.
-The variance of the tilt analysis is slightly lower than that of the models orientations.
+The distributions of the orientations of the model segments are shown on the left, those of the tilt analysis on the right.
+The results of the tilt analysis show the same mean orientation as the models with a slightly lower variance in comparison.
 \par
 % 
 \Cref{fig:single_fiber_pop_rofl} shows the results of the simulation on the single inclined fiber models.
@@ -330,14 +330,14 @@ The variance of the tilt analysis is slightly lower than that of the models orie
 \end{figure}
 % 
 %Transmittance
-The transmittance is almost constant with increasing inclination angle up a value of $\modelInc<\SI{75}{\degree}$.
-For $\modelInc \ge \SI{75}{\degree}$ the transmittance increases significantly.
-The variance of the transmittance  remains for the lower inclination angles constant and increases slightly for steep models.
+The transmittance is constant with increasing inclination angle up to a value of $\modelInc<\SI{75}{\degree}$.
+For $\modelInc \ge \SI{75}{\degree}$ the transmittance increases.
+The variance of the transmittance increases slightly with increasing inclination angle \modelInc{}.
 \par
 %
 % Retardation
 The retardation plot shows the fourie analysis results as well as a theoretical curve that follows $(\cos(\modelInc) + 1) / 2 \cdot \mean\left(\mathrm{ret}(\SI{0}{\degree})\right)$.
-The curve is normalized with $\mean\left(\mathrm{ret}(\SI{0}{\degree})\right)$ which ensures comparison with the data.
+The curve is normalized by $\mean\left(\mathrm{ret}(\SI{0}{\degree})\right)$ for comparison purposes.
 The retardation of the simulation signal follows the theoretical line.
 However, at the intermediate inclination angles, the measured retardation is slightly higher than the theoretical line.
 The variance remains constant for all fiber inclination angles \modelInc{} with the exception for very steep fibers, where the distribution is shifted towords values $>0$.
@@ -346,31 +346,30 @@ The variance remains constant for all fiber inclination angles \modelInc{} with 
 % Direction
 The next graph shows the measured direction from the tilt analysis.
 For inclination angles $\modelInc<\SI{75}{\degree}$ the variance is about a few degree and remains constant.
-For larger values, the variance increases significant.
+For larger values, the variance increases.
 \footnote{It should be noted that the boxplot does not take into account that the values are periodic.
 Therefore, especially for $\modelInc=\SI{90}{\degree}$, the values from the $\SIrange{-90}{90}{\degree}$ are uniformly distributed.}
 In the background the statistic \bvariance{} variance of the fiber models is plotted.
 The measured direction are in agreement with the models variance.
-For the case $\modelInc=\SI{90}{\degree}$ the simulations \bvariance{} variance is higher than that of the fiber models.
 \par
 %
 % Inclination
 The inclination shows the results of the tilt analysis.
 The median follows the theoretical curve.
-For inclinations $\SI{80}{\degree}$ and $\SI{85}{\degree}$, the variance increases significantly.
+For inclinations $\SI{80}{\degree}$ and $\SI{85}{\degree}$, the variance increases.
 For $\modelInc = \SI{90}{\degree}$ the variance is similar to the flat results.
-The \bvariance{} variance is constant and up to a value of $\modelInc=\SI{75}{\degree}$ higher than the measured values.
+The models \bvariance{} variance is constant and with an exception of $\modelInc=\SI{75}{\degree}$ higher than the tilt analysis results.
 \par
 %
 % trel
-The median relative birefringence thickness \trel{} is stable for values up to $\modelInc < \SI{60}{\degree}$, but the variance increases slightly.
-For larger values, the median decreases while the variance increases.
-There are outliers that reach values $>\SI{1}{}$.
-For inclination angles $\modelInc \ge \SI{85}{\degree}$, the variance increases significant and for $\modelInc = \SI{90}{\degree}$ the median reaches about $\SI{2}{}$.
+The mean value of the relative birefringence thickness \trel{} is stable for values up to $\modelInc < \SI{60}{\degree}$.
+The variance increases slightly with increasing inglincation angle \modelInc{}.
+From there on the \trel{} value decrasisn up to a inclination angle of $\modelInc=\SI{85}{\degree}$ and increases significant for $\modelInc = \SI{90}{\degree}$.
+The variance for $\SIlist{85,90}{\degree}$ is significantly increased and contain values as outliers $\gg 1$.
 \par
 % 
 % R
-The \rvalue{} shows constant behavior for inclination angles $\modelInc < \SI{80}{\degree}$.
+The \rvalue{} remains constant for inclination angles $\modelInc < \SI{80}{\degree}$.
 In the case of $\modelInc=\SIrange[]{80}{90}{\degree}$ the values are slightly increased.
 Its variance remains stable for all inclinations.
 \par
@@ -378,13 +377,14 @@ Its variance remains stable for all inclinations.
 % domega
 The opening angle \openingAngle{} is constant up to a inclination angle of $\modelInc \le \SI{70}{\degree}$.
 For higher inclination angles, both the median and the variance increase significantly.
-The last case $\modelInc = \SI{90}{\degree}$ is however very low.
-In comparison the fiber models opening angle show a significant higher median and higher \bvariance{} variance with the exception of the $\modelInc=\SI{85}{\degree}$.
+In the case of $\modelInc = \SI{90}{\degree}$ the median as well as the variance is very low.
+In comparison the fiber models opening angle \openingAngle{} show a significant higher median and higher \bvariance{} variance with the exception of the $\modelInc=\SI{85}{\degree}$.
 \par
 % 
 %ACC
-The \accvalue{} remains close to $1$ and starts to decrease significantly at an inclination angle of about $\SI{60}{\deg}$.
-It reaches a minimum at an inclination angle of $\SI{80}{\degree}$, from where its increases again and reaches a value very close to $1$, higher than before.
+The \accvalue{} remains close to $1$ and starts to decrease significantly at an inclination angle of about $\SI{60}{\degree}$.
+It reaches a minimum at an inclination angle of $\SI{80}{\degree}$, from where its increases again.
+At a inclination angle of $\SI{90}{\degree}$ the maximum \accvalue{} is reached.
 %
 %
 %
