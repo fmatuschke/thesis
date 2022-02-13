@@ -482,6 +482,10 @@ After the minimum is reached starts to increases significantly and with the exce
 %
 \subsection{Inclined crossing fibers population}
 \label{sec:resInclCross}
+% 
+This last special model configuration show the results for the first fober population \popa{} along the x-axis and the second fiber population inclined along the $x-z$ axis.
+The seconds fiber population inclination angle will be identical with the crossing angle \modelOmega{} between both fiber populations.
+\par
 %
 \begin{figure}[!p]
 \centering
@@ -497,10 +501,10 @@ After the minimum is reached starts to increases significantly and with the exce
 \label{fig:inclined_05_fiber_pop_hist}
 \end{figure}
 %
-The orientation histograms of the inclined models and their simulation results are shown in \cref{fig:inclined_03_fiber_pop_hist,fig:inclined_05_fiber_pop_hist} and \cref{app:incl_fiber_pop_hist}.
-In the case of fiber population fraction $\modelPsi=\SI{30}{\percent}$, the inclination of the simulation follows the inclination of the models, but with lower values.
-For a crossing of $\modelOmega=\SI{90}{\percent}$, the resulting orientations are flat like the first fiber population.
-For $\modelPsi=\SI{50}{\percent}$ the same behavior is visible, but the difference in inclination is larger and for $\modelOmega=\SI{30}{\percent}$ and $\modelOmega=\SI{60}{\percent}$ the inclinations are between both fiber populations.
+The orientation histograms of the inclined models and their simulation results are shown in \cref{fig:inclined_03_fiber_pop_hist,fig:inclined_05_fiber_pop_hist} and the remaining results are available in \cref{app:incl_fiber_pop_hist}.
+The orientation of the tilt analysis of the simulation follows the inclination of the models, with the exception for a crossing angle $\modelOmega = \SI{90}{\degree}$.
+The orientation is shifted towords the more dominant fiber population.
+The fiber models orientation show a higher variance as the tilt analysis results.
 \par
 %
 \begin{figure}[!p]
@@ -517,67 +521,54 @@ For $\modelPsi=\SI{50}{\percent}$ the same behavior is visible, but the differen
 \label{fig:inclined_05_fiber_pop_rofl}
 \end{figure}
 %
-\Cref{fig:inclined_03_fiber_pop_rofl,fig:inclined_05_fiber_pop_rofl} show the results of \ac{3D-PLI} modalities and tilt analysis and opening angle in detail.
-The additional fiber population fraction are listed in \cref{app:incl_fiber_pop_a,app:incl_fiber_pop_b,app:incl_fiber_pop_c,app:incl_fiber_pop_d,app:incl_fiber_pop_e}.
+\Cref{fig:inclined_03_fiber_pop_rofl,fig:inclined_05_fiber_pop_rofl} show the results of \ac{3D-PLI} modalities, the tilt analysis, the opening angle and the \accvalue{} in detail for a fiber population of $\SIlist{30,50}{\percent}$.
+The remaining fiber population fraction are listed in \cref{app:incl_fiber_pop_a,app:incl_fiber_pop_b,app:incl_fiber_pop_c,app:incl_fiber_pop_d,app:incl_fiber_pop_e}.
 \par
 % Transmittance
 The transmittance increases with increasing crossing angle \modelOmega{}.
-The two fiber population fractions \modelPsi{} show the same behavior.
-The transmittance increases initially and becomes flatter at larger crossing angles.
-In the case of $\modelPsi = \SI{30}{\percent}$, it starts at a transmittance of about $\SI{1000}{\arbitraryunit}$ and reaches a value of about $\SI{1100}{\arbitraryunit}$ for a crossing angle of $\SI{90}{\degree}$.
-In the case of $\modelPsi = \SI{50}{\percent}$, it reaches a slightly higher value of $\SI{1110}{\arbitraryunit}$.
+Fiber population fraction close to $\SI{50}{\percent}$ tend to have a higher transmittance value.
+The increase of the transmittance slows down for higher crossing angles \modelOmega{}.
 \par
 % Retardation
-Retardation is negatively linearly correlated with increasing crossing angle for both fiber population fractions \modelPsi{}.
-For $\modelPsi=\SI{30}{\percent}$, the retardation starts at $\SI{0.8}{}$ and drops to about $\SI{0.18}{}$.
-In the case of $\modelPsi=\SI{50}{\percent}$, it also starts at $\SI{0.8}{}$ and drops to about $\SI{0.3}{}$.
-For both fiber population fractions, the variance increases as the crossing angle increases.
-In the case of $\modelPsi=\SI{50}{\percent}$, the variance increases significantly more.
+The retardation is negatively linearly correlated with increasing crossing angle \modelOmega{}.
+The slope of the negative correlation is higher with increasing fiber population fraction \modelPsi{}.
+The variance increases as the crossing angle increases and increasing fiber population fraction.
 \par
 % Direction
-The direction for both fiber population fractions \modelPsi{} is centered around $\SI{0}{\degree}$.
-For both \modelPsi{}, the variance of the direction increases with increasing crossing angle \modelOmega{}.
-No significant influence is visible for the fiber population fraction with the exception of $\modelPsi = \SI{10}{\percent}$ where for a crossing angle $\modelOmega >= \SI{80}{\degree}$ the variance increases significantly.
-The direction variance of the simulation is significant lower than the nerve fiber models segements variance.
-The \bvariance{} variance of the first (flat) fiber population \popa{} is always smaller than the \bvariance{} variance of the second fiber population \popb{}.
+The direction value is centered around $\SI{0}{\degree}$.
+The variance of the direction increases with increasing crossing angle \modelOmega{}.
+The fiber popilation fraction has no significant effect except for a value of $\modelPsi = \SI{10}{\percent}$ and a crossing angle of $\modelOmega=\SI{90}{\percent}$.
+The models \bvariance{} variance of the first (flat) fiber population \popa{} is always smaller than the \bvariance{} variance of the second fiber population \popb{}.
 The \bvariance{} variance for \popa{} increases up to a crossing angle of about $\modelOmega = \SI{50}{\degree}$ and remains constant for higher crossing angles, whereas the \bvariance{} variance of the second fiber bundle increases further.
 \par
 % Inclination
-The inclination for both fiber population fractions first increases and then decreases to a value of $\SI{0}{\degree}$.
-In the case of $\modelPsi=\SI{30}{\percent}$, the maximum inclination is reached at a crossing angle of about $\modelOmega=\SIrange{60}{70}{\degree}$.
-For $\modelPsi=\SI{50}{\percent}$, the maximum value is at a crossing angle of about $\modelOmega=\SIrange{50}{60}{\degree}$.
-Depending on the fiber population fraction \modelPsi{} the circmean between both fiber population is followed by the simulation results for lower crossing angles.
-Higher crossing angles $\approx \geq \SI{50}{\degree}$ are significantly lower then the circ mean value.
+The inclination results have the shape of a convex curve, starting and ending at a value of $\inc\SI{0}{\degree}$.
+Depending on the fiber population fraction \modelPsi{} the maximum of the curve is shifted towords a crossing angle of $\SI{90}{\degree}$ for a low \modelPsi{} and towortds $\SI{45}{\degree}$ for a high \modelPsi{}.
 The \bvariance{} of the individual nerve fiber populations remain constant for crossing angles $\geq \SI{10}{\degree}$. 
 For lower fiber population fractions \modelPsi{} and higher crossing angles \modelOmega{} the variance of the simulation results is higher than the \bvariance{} of the models.
 Otherwise the simulations inclination variance is significantly lower.
 \par
 % Trel
-The relative thickness \trel{} decreases almost linearly with increasing crossing angle \modelOmega{} for both fiber population fractions.
-In both cases, the \trel{} values start at about $\SI{0.6}{}$.
-For $\modelPsi = \SI{30}{\percent}$, the \trel{} value drops to $\SI{0.1}{}$, while for $\modelPsi = \SI{50}{\percent}$, the \trel{} value drops almost to $\SI{0.2}{}$.
-For the fiber population fraction $\modelPsi = \SI{30}{\percent}$, the variance increases in the middle range of values $\modelOmega=\SIrange{40}{70}{\degree}$.
-In this range, the \trel{} values are slightly increased, contrary to a linear trend.
-The second fiber population fraction case $\modelPsi = \SI{50}{\percent}$ shows a small increase in variance with increasing crossing angle.
+The relative thickness \trel{} decreases linearly with increasing crossing angle \modelOmega{}.
+The \trel{} value start at about $\SI{0.6}{}$ and drops depending on the fiber population fraction \modelPsi{} to $\SI{0.45}{}$ for $\modelPsi=\SI{90}{\percent}$ to almost $\SI{0}{}$ for $\modelPsi=\SI{10}{\percent}$.
+In variance of the \trel{} value is increased at about $\modelOmega=\SI{45}{\degree}$ for lower fiber population fractions and towords $\modelOmega=\SI{90}{\degree}$ for high fiber population fractions.
 \par
 % r-value
-The \rvalue{} show no significant effect on the fiber population fraction. 
-With increasing crossing angle \modelOmega{} the \rvalue{} and its variance increases slightly.
+The \rvalue{} show no significant effect for low fiber population fraction. 
+Higher fiber poulation fractions have an increased \rvalue{}.
+With increasing crossing angle \modelOmega{} the \rvalue{} and its variance increases slightly for lower fiber population fractions and more strongly for higher fiber population fractions..
 \par
 % domega
-The opening angle \openingAngle{} for $\modelPsi=\SI{30}{\percent}$ increases with increasing crossing angle \modelOmega{}.
-The increase increases significantly for crossing angles up to $\modelOmega=\SI{90}{\degree}$, but remains below a median value of about $\openingAngle=\SI{10}{\degree}$.
-For $\modelPsi=\SI{50}{\percent}$, the opening angle increases linearly up to a crossing angle of $\modelOmega=\SI{80}{\degree}$ and remains the same for $\modelOmega=\SI{90}{\degree}$.
-For both fiber population fractions, the variance increases with increasing crossing angle.
-In the case of $\modelPsi=\SI{50}{\percent}$, the variance is about half that for $\modelPsi=\SI{30}{\percent}$.
+The measured opening angle \openingAngle{} mean value as its variance increases slightly with increasing crossing angle.
+For lower fiber population fractions and a crosing angle $\modelOmega\geq \SI{80}{\degree}$ the increas is significant more.
 The fiber model opening angles are with the median as well as the \bvariance{} variance significantly higher then the simulation results for both fiber population fractions.
 The median and \bvariance{} variance of the opening angle of the dominant fiber population is higher as its counterpart.
 \par
 % acc-value
-The \accvalue{} show a rapid decrease with increasing crossing angle.
-The minimum for the presented two fiber population fractions is in the area of $\modelOmega = \SIrange{60}{70}{\degree}$.
-For other fiber population fraction the position of the minimum as well as minimal value depends strongly on the fiber population fraction.
-After the minimum the value seems to increase with a similar slope.
+The \accvalue{} show a decrease with increasing crossing angle to a minimum value and from there the \accvalue{} raises agein..
+The position of the minimum depends strongly on the fiber population fraction.
+For lower \modelPsi{} the minimum is close to higher crossing angles and for higher \modelPsi{} the minimum moves to a crossing angle of about $\modelOmega\approx\SI{45}{\degree}$.
+The value of the \accvalue is closer to zero for median fiber population fractions an closer to one for \modelPsi{} at $\SI{10}{\percent}$ and $\SI{90}{\percent}$.
 %
 % 
 % 
