@@ -282,7 +282,7 @@ To analyse the simulation results the standard \ac{3D-PLI} analysis pipline, con
 From the fourie analysis the modalities transmittance and retardation are shown.
 The tilt analysis \dummy{} the orientation of each pixel, \ie{} direction and inclination, the effective birefringend thickness \trel{} and the \rvalue{} of the fitting model:
 \begin{align}
-    R = \mean{|I_i-F_i|}
+    R = \mean{|I_i-F_i|} \label{eq:rvalue}
 \end{align}
 where $I$ is the signal intensity and $F$ the models found best solution.
 Finally from the orientations the opening angle \openingAngle{} and angular correlation coefficient \accvalue{} between the models orientation and simulation resulting orientation are calculated.
@@ -727,7 +727,7 @@ The exception is the fiber configurations with $\modelInc=\SI{90}{\degree}$, whe
 \paragraph{R-value}
 % 
 The \rvalue{} of the tilt analysis fitting model is shown in \cref{fig:sim_ana_rvalue}.
-It describes the mean absolute difference between the data and the fitted data from the tilt analysis.
+It describes the mean absolute difference between the data and the fitted data from the tilt analysis (see \cref{eq:rvalue}).
 \par
 % 
 \begin{figure}[!p]
@@ -738,15 +738,14 @@ It describes the mean absolute difference between the data and the fitted data f
 \end{figure}
 %
 For a fiber population fraction of $\modelPsi=\SI{10}{\percent}$ and a primary inclination angle $\modelInc\leq\SI{30}{\degree}$ the orientation of the second fiber population does not change the \rvalue{} of the tilt analysis.
-For $\modelInc=\SI{60}{\degree}$ the \rvalue{} starts increasing for secondary fiber orientations towards the xy-plane.
-The \rvalue{} increases significantly more for $\modelInc=\SI{90}{\degree}$ for flat secondary fiber population orientations.
+For $\modelInc=\SI{60}{\degree}$ the \rvalue{} starts increasing for secondary fiber orientations towards the xy-plane, \ie{} secondary flat fiber orientations.
+The \rvalue{} increases even more significant in the case of $\modelInc=\SI{90}{\degree}$ in this area. 
 \par
 % 
 For fiber population fractions $\modelPsi=\SI{30}{\percent}$ and $\modelInc=\SI{0}{\degree}$, the \rvalue{} remains low for flat crossing fiber configurations.
-Along the z-axis in the direction of fiber crossing, the \rvalue{} is slightly increased.
-For $\modelInc=\SI{30}{\degree}$, the increase in \rvalue{} along the z-axis is slightly lower.
-However, toward steeper crossing angles up to about $\SIlist{125;235}{\degree}$, the \rvalue{} is still increased.
-The fiber configurations of $\modelInc=\SIlist{60;90}{\degree}$ are similar to the previous fiber population fraction, but the \rvalue{} are not as high.
+Along the z-axis the \rvalue{} is slightly increased.
+For $\modelInc=\SI{30}{\degree}$ an slightly increased bend shape becomes visible close to the y-axis slightly towords the negative x-axis, \ie{} $\modelOmega \approx \SI{90}{\degree}$.
+Inclination angles of $\SIlist{60;90}{\degree}$ show the same behavier as for the $\modelPsi=\SI{10}{\percent}$ case, however the \rvalue does not increases as much.
 \par
 %
 Fiber population fractions $\modelPsi=\SI{50}{\percent}$ and inclinations of $\modelInc=\SI{0}{\degree}$, have an increased \rvalue{} for inclined secondary fiber configurations along the y-axis.
