@@ -576,16 +576,21 @@ The value of the \accvalue is closer to zero for median fiber population fractio
 \subsection{Free crossing fiber populations}
 \label{sec:resFreeCross}
 %
-In this section, two nerve fiber populations \popa{} and \popb{} are simulated with sampled orientations on a sphere (see \cref{fig:twomodelpopdesign,tab:simParameters})
-A polar plot visualization is used to visualize the results from the \ac{3D-PLI} analysis pipeline (see \cref{fig:simModelSphereSample}).
+In this section, two nerve fiber populations \popa{} and \popb{} are simulated with sampled orientations on a sphere (see \cref{fig:twomodelpopdesign_a,tab:simParameters})
+A polar plot visualization is used to visualize the results from the \ac{3D-PLI} analysis pipeline (see \cref{fig:simModelSphereSample_b}).
+The spherical plots in %\cref{fig:sim_ana_trans,fig:sim_ana_ret,fig:sim_ana_dir,sim_ana_incl,sim_ana_trel,sim_ana_rvalue,fig:sim_ana_acc}
+are designed so that the thick black circle shows the orientation of the first fiber population \popa{} and the thin dashed circles show the orientation of the second fiber population \popb{}.
+At the position of the second fiber population, the resulting average value is visualized.
+A spherical k-nearest neighbor interpolator is used to visualize values between the sampled orientations for none angular data \cite{DBLP:journals/corr/abs-1910-00704}.
+\par
 % 
 \begin{figure}[t]
 \centering
 \setlength{\tikzwidth}{0.40\textwidth}
-\subcaptionbox{The spheres surface is sampled around the first fiber population axis $\popa$ of inclination $\modelInc$ with a crossing angle $\modelOmega$ and a rotation $\modelRot$.}
+\subcaptionbox{\label{fig:simModelSphereSample_a}The spheres surface is sampled around the first fiber population axis $\popa$ of inclination $\modelInc$ with a crossing angle $\modelOmega$ and a rotation $\modelRot$.}
 [.475\textwidth]{\inputtikz{gfx/model/sphere_models_c}}
 \hfill
-\subcaptionbox{
+\subcaptionbox{\label{fig:simModelSphereSample_b}
     A polar diagram is used to illustrate the scalar results of a fixed orientation of the first fiber population \popa{} and a variable orientation of the fiber population \popb{}.
     The orientation \popa{} is marked with a black thick circle.
     The second orientation is indicated by dashed circles.
@@ -595,13 +600,6 @@ A polar plot visualization is used to visualize the results from the \ac{3D-PLI}
 \caption{Visualization of results for a fixed first fiber population \popa{}.}
 \label{fig:simModelSphereSample}
 \end{figure}
-% 
-Each polar plot visualizes the results for a fixed first fiber population \popa{}.
-A spherical k-nearest neighbor interpolator is used to interpolate between the positions \cite{DBLP:journals/corr/abs-1910-00704}.
-\par
-%
-The spherical plots in \cref{fig:sim_ana_trans,fig:sim_ana_ret,fig:sim_ana_trel,fig:sim_ana_acc} are designed so that the thick black circle shows the orientation of the first fiber population and the thin dashed circles show the orientation of the second fiber population.
-At the position of the second fiber population, the resulting average value is visualized.
 %
 %
 %
@@ -619,23 +617,22 @@ The transmittance is lowest for models with a crossing angle of $\modelOmega = \
 \label{fig:sim_ana_trans}
 \end{figure}
 %
-For a fiber population fraction of $\modelPsi=\SI{30}{\percent}$, the transmittance increases significantly.
-It is again lowest for a crossing angle of $\modelOmega=\SI{0}{\degree}$.
+For a fiber population fraction of $\modelPsi=\SI{30}{\percent}$, the transmittance increases.
 The same behavior holds for $\modelPsi=\SIlist{50,70}{\percent}$.
 $\modelPsi=\SI{50}{\percent}$ achieves the highest transmittance for fiber models with crossings.
 \par
 % 
-The average transmittance for the last fiber population fraction $\modelPsi=\SI{30}{\percent}$ is again reduced similar to the first case.
-Again, only fiber configurations with no crossing remain the lowest transmittance for all inclinations $\modelInc$.
+The average transmittance for the last fiber population fraction $\modelPsi=\SI{90}{\percent}$ is reduced similar to $\modelPsi=\SI{10}{\percent}$.
+Fiber configurations with no crossing remain the lowest transmittance for all inclinations $\modelInc$.
 %
 % 
 % 
 \paragraph{Retardation}
 % 
 Retardation results are shown in \cref{fig:sim_ana_ret}.
-For a fiber population fraction of $\modelPsi=\SI{10}{\percent}$, the smallest retardation values are visible for secondary fiber populations with an inclination of $\SI{90}{\degree}$.
+For a fiber population fraction of $\modelPsi=\SI{10}{\percent}$, the lowest retardation values are present for secondary fiber populations with an inclination of $\SI{90}{\degree}$.
 Configurations with a high crossing angle $\modelOmega$ are slightly reduced.
-Flat fiber configurations retain a high retardation value.
+Flat fiber configurations retain a relative high retardation value.
 \par
 % 
 \begin{figure}[!p]
@@ -645,22 +642,22 @@ Flat fiber configurations retain a high retardation value.
 \label{fig:sim_ana_ret}
 \end{figure}
 %
-The same behavior is also visible for fiber population fraction $\modelPsi=\SIlist{30;50;70}{\percent}$, but the retardation values are significantly reduced, especially for high first fiber population inclinations.
+The same behavior is also visible for fiber population fraction $\modelPsi=\SIlist{30;50;70}{\percent}$, but the retardation values are significantly reduced, especially for high first fiber population inclinations \modelInc{}.
 The reduction in retardation at high crossing angles $\modelOmega$ is also more pronounced, especially for $\modelPsi=\SI{50}{\percent}$.
-For fiber population fractions $\modelPsi \geq \SI{50}{\percent}$ and first fiber population inclinations $\modelInc \geq \SI{60}{\degree}$, the retardation is close to $\SI{0}{}$.
+For fiber population fractions $\modelPsi \geq \SI{50}{\percent}$ and first fiber population inclinations $\modelInc \geq \SI{60}{\degree}$, the retardation is overall very low.
 \par
 %
-For $\modelPsi=\SI{90}{\percent}$, no reduction of retardation is visible for different crossing angles $\modelOmega$.
-The retardation value is stable for each first fiber inclination parameter.
-However, the retardation decreases significantly with increasing inclination $\modelInc$ until it is close to $\SI{0}{}$ for $\modelInc=\SI{90}{\degree}$.
+For $\modelPsi=\SI{90}{\percent}$, no reduction of retardation is visible for any secondary fiber orientation.
+The retardation decreases significantly with increasing inclination $\modelInc$ until it is close to $\SI{0}{}$ for $\modelInc=\SI{90}{\degree}$.
 % 
 % 
 % 
 \paragraph{Direction $\dir$ and inclination $\inc$}
 %
-The circmean direction results are shown in \cref{fig:sim_ana_dir} and the circmean of the inclination in \cref{fig:sim_ana_incl}.
-The interpolation method is not used for the angular values since on a half sphere manifold the needed interpolation are not straight forward.
-The above used k-nearest neighbor interpolator would lead to false results.
+The results of the circular mean of direction are shown in \cref{fig:sim_ana_dir} and the circular mean of the inclination in \cref{fig:sim_ana_incl}.
+An interpolation method is not used for the angular values because the required interpolation on a hemispherical manifold is not easily accomplished.
+The k-nearest neighbor interpolator used above would lead to incorrect results.
+\par
 % 
 \begin{figure}[!p]
     \centering
@@ -677,17 +674,19 @@ The above used k-nearest neighbor interpolator would lead to false results.
 \end{figure}
 % 
 Both angles show a value pattern following the dominant fiber population.
-For steep fibers with a $\modelInc = \SI{90}{\degree}$ the second fiber population orientation is the result regarding on the fiber population fraction \modelPsi{}.
-For fiber population fractions close to $\SI{50}{\percent}$ the resulting orientations behave acording the average of the two individual orientations with respect to the fiber population fraction.
+For steep fibers with a $\modelInc = \SI{90}{\degree}$, the orientation results follow the second fiber population orientation, regardless of the fiber population fraction \modelPsi{}.
+For fiber population fractions close to $\SI{50}{\percent}$, the resulting orientations behave according to an averaging of the two individual orientations with respect to the fiber population fraction.
+From the direction it can be seen that for models with $\modelPsi = \SI{90}{\degree}$ and $\modelInc \leq \SI{60}{\degree}$ as well as $\modelPsi = \SI{70}{\degree}$ and $\modelInc \leq \SI{30}{\degree}$ the second fiber population has no or only a very small influence on the measured direction.
+The same is true for inclinations for a $\modelInc = \SI{0}{\degree}$ and $\modelPsi \geq \SI{50}{\percent}$.
 % 
 % 
 % 
 \paragraph{Effective birefringence thickness \trel{}}
 % 
 The results of \trel{} are shown in \cref{fig:sim_ana_trel}.
-The first fiber population fraction $\modelPsi=\SI{10}{\percent}$ 
+The \trel{} value for the first fiber population fraction $\modelPsi=\SI{10}{\percent}$ 
 is nearly constant for all fiber configurations.
-The exceptions are secondary fiber population inclinations of $\SI{90}{\degree}$ for $\modelInc=\SIlist{60;90}{\degree}$.
+The exceptions are $\modelInc=\SIlist{60;90}{\degree}$ with secondary fiber population inclinations of $\inc_1 = \SI{90}{\degree}$.
 \par
 %
 \begin{figure}[!p]
@@ -807,7 +806,11 @@ In summary, crossing angles cause a significant reduction in \accvalue{}s.
 This effect is clearly visible as a \say{band} of reduced \accvalue{}s, from a low inclination angle and low fiber proportion fraction to a high inclination angle and high fiber proportion fraction.
 Fiber population fractions of $\modelPsi \geq \SI{90}{\percent}$ or $\modelPsi \leq \SI{10}{\percent}$ have almost no effect on the \accvalue{}.
 %
+% 
+% 
+\todo{domega}
 %
+% 
 % 
 \section{Discussion}
 %
