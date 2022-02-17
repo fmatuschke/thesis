@@ -770,6 +770,35 @@ $\modelInc=\SIlist{60;90}{\degree}$ remains a low \rvalue{} for all configuratio
 % 
 % 
 % 
+\paragraph{Opening angle \openingAngle{}}
+% 
+The opening angle \openingAngle{} is shown in \cref{fig:sim_ana_domega}.
+\par
+% 
+\begin{figure}[!p]
+\centering
+\includegraphics[]{gfx/rc1/analysis/simulation_analysis_hist_0.5_setup_PM_s_Vervet_m_r_domega_mean.pdf}
+\caption{Mean opening angle \openingAngle{} from tilt analysis.}
+\label{fig:sim_ana_domega}
+\end{figure}
+% 
+Overall the opening angle \openingAngle{} remain relativly low values for most fiber population fractions \modelPsi{} and inclination angles \modelInc{}.
+For lower fiber population fractions than $\modelPsi < \SI{50}{\percent}$ the opening angles are reduced when the secondary fiber population is orientatiod along the z-axis.
+\par
+% 
+A fiber population fraction of $\modelPsi = \SI{50}{\percent}$ with an inclination of $\modelInc=\SI{0}{\degree}$ has significant indreased opening angle for flat crossings.
+For a primary inclination of $\modelInc=\SI{30}{\degree}$ an increased opening angle is visible for a crossing angle of $\modelOmega=\SI{90}{\degree}$.
+$\modelInc=\SI{60}{\degree}$ show an area of increased opening angles close to the z-axis towords the negative x-axis.
+$\modelInc=\SI{90}{\degree}$ shows no increased values.
+% 
+For a fiber population fraction of $\modelPsi=\SI{70}{\percent}$ the inclination angle of $\modelInc=\SI{60}{\degree}$ shows an increase in the opening angle along flat crossings along the y-axis.
+$\modelInc=\SI{90}{\degree}$ shows an overall slightly increased value of the opening angle $\openingAngle$.
+\par
+% 
+For the last shown fiber population fraction $\modelPsi=\SI{90}{\degree}$ the opening angle values are very small with the exception for the inclination angle of $\modelInc=\SI{90}{\degree}$ where for secondary fiber orientations towords the x-y-plane the opening angle significantly increases.
+% 
+% 
+% 
 \paragraph{acc-value}
 % 
 \Cref{fig:sim_ana_acc} shows the \acreset{ACC} \ac{ACC} value, \ie{} how well the coefficients of the \ac{ODF} basis function are matched \cite{Schilling2018}.
@@ -810,10 +839,6 @@ The last inclination $\modelInc=\SI{90}{\degree}$ shows a slight decrease of \ac
 In summary, crossing angles cause a significant reduction in \accvalue{}s.
 This effect is clearly visible as a \say{band} of reduced \accvalue{}s, from a low inclination angle and low fiber proportion fraction to a high inclination angle and high fiber proportion fraction.
 Fiber population fractions of $\modelPsi \geq \SI{90}{\percent}$ or $\modelPsi \leq \SI{10}{\percent}$ have almost no effect on the \accvalue{}.
-%
-% 
-% 
-\todo{domega}
 %
 % 
 % 
