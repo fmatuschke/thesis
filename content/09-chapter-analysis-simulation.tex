@@ -487,6 +487,12 @@ This last special model configuration show the results for the first fober popul
 The seconds fiber population inclination angle $\inc_{\popb}$ will be identical with the crossing angle \modelOmega{} between both fiber populations.
 \par
 %
+The orientation histograms of the inclined models and their simulation results are shown in \cref{fig:inclined_03_fiber_pop_hist,fig:inclined_05_fiber_pop_hist} and the remaining results are available in \cref{app:incl_fiber_pop_hist}.
+The orientation of the tilt analysis of the simulation follows the inclination of the models, with the exception for an inclination angle $\inc_{\popb} = \SI{90}{\degree}$.
+The orientation is shifted towords the more dominant fiber population.
+The fiber models orientation show a higher variance as the tilt analysis results.
+\par
+%
 \begin{figure}[!p]
 \centering
 \includegraphics[page=3]{gfx/rc1/analysis/plots_inclined_pop_hist_output_cube_2pop_135_rc1_inclined.pdf}
@@ -501,29 +507,24 @@ The seconds fiber population inclination angle $\inc_{\popb}$ will be identical 
 \label{fig:inclined_05_fiber_pop_hist}
 \end{figure}
 %
-The orientation histograms of the inclined models and their simulation results are shown in \cref{fig:inclined_03_fiber_pop_hist,fig:inclined_05_fiber_pop_hist} and the remaining results are available in \cref{app:incl_fiber_pop_hist}.
-The orientation of the tilt analysis of the simulation follows the inclination of the models, with the exception for an inclination angle $\inc_{\popb} = \SI{90}{\degree}$.
-The orientation is shifted towords the more dominant fiber population.
-The fiber models orientation show a higher variance as the tilt analysis results.
-\par
-%
-\begin{figure}[!p]
-\centering
-\includegraphics[page=3]{gfx/rc1/analysis/plots_inclined_pop_output_cube_2pop_135_rc1_inclined.pdf}
-\caption{Population of inclined crossing fibers: $\modelPsi=\SI{30}{\percent}$. Results of the simulation analysis with comparison of the fiber models orientations.}
-\label{fig:inclined_03_fiber_pop_rofl}
-\end{figure}
-%
-\begin{figure}[!p]
-\centering
-\includegraphics[page=5]{gfx/rc1/analysis/plots_inclined_pop_output_cube_2pop_135_rc1_inclined.pdf}
-\caption{Population of inclined crossing fibers: $\modelPsi=\SI{50}{\percent}$. Results of the simulation analysis with comparison of the fiber models orientations.}
-\label{fig:inclined_05_fiber_pop_rofl}
-\end{figure}
-%
-\Cref{fig:inclined_03_fiber_pop_rofl,fig:inclined_05_fiber_pop_rofl} show the results of \ac{3D-PLI} modalities, the tilt analysis, the opening angle and the \accvalue{} in detail for a fiber population of $\SIlist{30,50}{\percent}$.
+\Cref{fig:inclined_03_fiber_pop_rofl,fig:inclined_05_fiber_pop_rofl} show the results of \ac{3D-PLI} modalities, the tilt analysis, the opening angle and the \accvalue{} in detail for a fiber population of $\SIlist{30,50}{\percent}$.% 
 The remaining fiber population fraction are listed in \cref{app:incl_fiber_pop_a,app:incl_fiber_pop_b,app:incl_fiber_pop_c,app:incl_fiber_pop_d,app:incl_fiber_pop_e}.
 \par
+%
+\begin{figure}[!p]
+    \centering
+    \includegraphics[page=3]{gfx/rc1/analysis/plots_inclined_pop_output_cube_2pop_135_rc1_inclined.pdf}
+    \caption{Population of inclined crossing fibers: $\modelPsi=\SI{30}{\percent}$. Results of the simulation analysis with comparison of the fiber models orientations.}
+    \label{fig:inclined_03_fiber_pop_rofl}
+    \end{figure}
+    %
+    \begin{figure}[!p]
+    \centering
+    \includegraphics[page=5]{gfx/rc1/analysis/plots_inclined_pop_output_cube_2pop_135_rc1_inclined.pdf}
+    \caption{Population of inclined crossing fibers: $\modelPsi=\SI{50}{\percent}$. Results of the simulation analysis with comparison of the fiber models orientations.}
+    \label{fig:inclined_05_fiber_pop_rofl}
+\end{figure}
+% 
 % Transmittance
 The transmittance increases with increasing inclination angle $\inc_{\popb}$.
 Fiber population fraction close to $\SI{50}{\percent}$ tend to have a higher transmittance value.
@@ -574,6 +575,9 @@ The value of the \accvalue is closer to zero for median fiber population fractio
 % 
 \subsection{Free crossing fiber populations}
 \label{sec:resFreeCross}
+%
+In this section, two nerve fiber populations \popa{} and \popb{} are simulated with sampled orientations on a sphere (see \cref{fig:twomodelpopdesign,tab:simParameters})
+A polar plot visualization is used to visualize the results from the \ac{3D-PLI} analysis pipeline (see \cref{fig:simModelSphereSample}).
 % 
 \begin{figure}[t]
 \centering
@@ -591,19 +595,22 @@ The value of the \accvalue is closer to zero for median fiber population fractio
 \caption{Visualization of results for a fixed first fiber population \popa{}.}
 \label{fig:simModelSphereSample}
 \end{figure}
-%
-In this section, two nerve fiber populations \popa{} and \popb{} are simulated with sampled orientations on a sphere (see \cref{fig:twomodelpopdesign,tab:simParameters})
-A polar plot visualization is used to visualize the results from the \ac{3D-PLI} analysis pipeline (see \cref{fig:simModelSphereSample}).
+% 
 Each polar plot visualizes the results for a fixed first fiber population \popa{}.
 A spherical k-nearest neighbor interpolator is used to interpolate between the positions \cite{DBLP:journals/corr/abs-1910-00704}.
-The results for direction and inclination are not shown because the statistic of a orientation on a half sphere manifold and the needed interpolation are not straight forward.
+\par
 %
 The spherical plots in \cref{fig:sim_ana_trans,fig:sim_ana_ret,fig:sim_ana_trel,fig:sim_ana_acc} are designed so that the thick black circle shows the orientation of the first fiber population and the thin dashed circles show the orientation of the second fiber population.
-At the position of the second fiber population, the resulting mean value is inserted.
+At the position of the second fiber population, the resulting average value is visualized.
 %
 %
 %
 \paragraph{Transmittance}
+% 
+The average transmission value is visualized in \cref{fig:sim_ana_trans}.
+The first fiber population fraction $\modelPsi=\SI{10}{\percent}$ is almost identical for all inclination angles $\modelInc$.
+The transmittance is lowest for models with a crossing angle of $\modelOmega = \SI{0}{\degree}$ and for flat configurations.
+\par
 % 
 \begin{figure}[!p]
 \centering
@@ -611,11 +618,6 @@ At the position of the second fiber population, the resulting mean value is inse
 \caption{Mean transmittance value.}
 \label{fig:sim_ana_trans}
 \end{figure}
-% 
-The average transmission value is visualized in \cref{fig:sim_ana_trans}.
-The first fiber population fraction $\modelPsi=\SI{10}{\percent}$ is almost identical for all inclination angles $\modelInc$.
-The transmittance is lowest for models with a crossing angle of $\modelOmega = \SI{0}{\degree}$ and for flat configurations.
-\par
 %
 For a fiber population fraction of $\modelPsi=\SI{30}{\percent}$, the transmittance increases significantly.
 It is again lowest for a crossing angle of $\modelOmega=\SI{0}{\degree}$.
@@ -630,18 +632,18 @@ Again, only fiber configurations with no crossing remain the lowest transmittanc
 % 
 \paragraph{Retardation}
 % 
+Retardation results are shown in \cref{fig:sim_ana_ret}.
+For a fiber population fraction of $\modelPsi=\SI{10}{\percent}$, the smallest retardation values are visible for secondary fiber populations with an inclination of $\SI{90}{\degree}$.
+Configurations with a high crossing angle $\modelOmega$ are slightly reduced.
+Flat fiber configurations retain a high retardation value.
+\par
+% 
 \begin{figure}[!p]
 \centering
 \includegraphics[]{gfx/rc1/analysis/simulation_analysis_hist_0.5_setup_PM_s_Vervet_m_r_ret_mean.pdf}
 \caption{Mean retardation values.}
 \label{fig:sim_ana_ret}
 \end{figure}
-% 
-Retardation results are shown in \cref{fig:sim_ana_ret}.
-For a fiber population fraction of $\modelPsi=\SI{10}{\percent}$, the smallest retardation values are visible for secondary fiber populations with an inclination of $\SI{90}{\degree}$.
-Configurations with a high crossing angle $\modelOmega$ are slightly reduced.
-Flat fiber configurations retain a high retardation value.
-\par
 %
 The same behavior is also visible for fiber population fraction $\modelPsi=\SIlist{30;50;70}{\percent}$, but the retardation values are significantly reduced, especially for high first fiber population inclinations.
 The reduction in retardation at high crossing angles $\modelOmega$ is also more pronounced, especially for $\modelPsi=\SI{50}{\percent}$.
@@ -654,7 +656,39 @@ However, the retardation decreases significantly with increasing inclination $\m
 % 
 % 
 % 
+\paragraph{Direction $\dir$ and inclination $\inc$}
+%
+The circmean direction results are shown in \cref{fig:sim_ana_dir} and the circmean of the inclination in \cref{fig:sim_ana_incl}.
+The interpolation method is not used for the angular values since on a half sphere manifold the needed interpolation are not straight forward.
+The above used k-nearest neighbor interpolator would lead to false results.
+% 
+\begin{figure}[!p]
+    \centering
+    \includegraphics[]{gfx/rc1/analysis/simulation_analysis_hist_0.5_setup_PM_s_Vervet_m_r_rdir_mean.pdf}
+    \caption{Circmean direction $\dir$ from tilt analysis.}
+    \label{fig:sim_ana_dir}
+\end{figure}
+% 
+\begin{figure}[!p]
+    \centering
+    \includegraphics[]{gfx/rc1/analysis/simulation_analysis_hist_0.5_setup_PM_s_Vervet_m_r_rincl_mean.pdf}
+    \caption{Circmean inclination $\inc$ from tilt analysis. Because the direction is defined in the range of $[\SI{0}{\degree},\SI{180}{\degree})$ and the inclination $[\SI{-90}{\degree},\SI{90}{\degree})$ the sign of the inclination value flips for the lower quadrants in the polar plots.}
+    \label{fig:sim_ana_incl}
+\end{figure}
+% 
+Both angles show a value pattern following the dominant fiber population.
+For steep fibers with a $\modelInc = \SI{90}{\degree}$ the second fiber population orientation is the result regarding on the fiber population fraction \modelPsi{}.
+For fiber population fractions close to $\SI{50}{\percent}$ the resulting orientations behave acording the average of the two individual orientations with respect to the fiber population fraction.
+% 
+% 
+% 
 \paragraph{Effective birefringence thickness \trel{}}
+% 
+The results of \trel{} are shown in \cref{fig:sim_ana_trel}.
+The first fiber population fraction $\modelPsi=\SI{10}{\percent}$ 
+is nearly constant for all fiber configurations.
+The exceptions are secondary fiber population inclinations of $\SI{90}{\degree}$ for $\modelInc=\SIlist{60;90}{\degree}$.
+\par
 %
 \begin{figure}[!p]
     \centering
@@ -667,12 +701,6 @@ However, the retardation decreases significantly with increasing inclination $\m
     \caption{Mean \trel{} from tilt analysis.}
     \label{fig:sim_ana_trel}
 \end{figure}
-% 
-The results of \trel{} are shown in \cref{fig:sim_ana_trel}.
-The first fiber population fraction $\modelPsi=\SI{10}{\percent}$ 
-is nearly constant for all fiber configurations.
-The exceptions are secondary fiber population inclinations of $\SI{90}{\degree}$ for $\modelInc=\SIlist{60;90}{\degree}$.
-\par
 % 
 Areas of reduced \trel{} become visible for $\modelPsi=\SI{30}{\percent}$.
 These are located for $\modelInc=\SIlist{0;30}{\degree}$ at $\SI{90}{\degree}$ and crossings with the first fiber population toward $\SI{180}{\degree}$.
@@ -693,16 +721,16 @@ The exception is the fiber configurations with $\modelInc=\SI{90}{\degree}$, whe
 %
 \paragraph{R-value}
 % 
+The \rvalue{} of the tilt analysis fitting model is shown in \cref{fig:sim_ana_rvalue}.
+It describes the mean absolute difference between the data and the fitted data from the tilt analysis.
+\par
+% 
 \begin{figure}[!p]
 \centering
 \includegraphics[]{gfx/rc1/analysis/simulation_analysis_hist_0.5_setup_PM_s_Vervet_m_r_R_mean.pdf}
 \caption{Mean \rvalue{} from tilt analysis.}
 \label{fig:sim_ana_rvalue}
 \end{figure}
-% 
-The \rvalue{} of the tilt analysis fitting model is shown in \cref{fig:sim_ana_rvalue}.
-It describes the mean absolute difference between the data and the fitted data from the tilt analysis.
-\par
 %
 For a fiber population fraction of $\modelPsi=\SI{10}{\percent}$ and a primary inclination angle $\modelInc\leq\SI{30}{\degree}$ the orientation of the second fiber population does not change the \rvalue{} of the tilt analysis.
 For $\modelInc=\SI{60}{\degree}$ the \rvalue{} starts increasing for secondary fiber orientations towards the xy-plane.
@@ -739,6 +767,9 @@ $\modelInc=\SIlist{60;90}{\degree}$ remains a low \rvalue{} for all configuratio
 % 
 % 
 \paragraph{acc-value}
+% 
+\Cref{fig:sim_ana_acc} shows the \acreset{ACC} \ac{ACC} value, \ie{} how well the coefficients of the \ac{ODF} basis function are matched \cite{Schilling2018}.
+\par
 %
 \begin{figure}[!p]
 \centering
@@ -746,10 +777,6 @@ $\modelInc=\SIlist{60;90}{\degree}$ remains a low \rvalue{} for all configuratio
 \caption{Mean \accvalue{} between model and tilt analysis orientations.}
 \label{fig:sim_ana_acc}
 \end{figure}
-% 
-\Cref{fig:sim_ana_acc} shows the \acreset{ACC} \ac{ACC} value, \ie{} how well the coefficients of the \ac{ODF} basis function are matched \cite{Schilling2018}.
-% \todo{acc of psi = 1 as ref}.
-\par
 % 
 The fiber population fraction $\modelPsi=\SI{10}{\percent}$ shows no significant decrease in the \accvalue{} for the first fiber model inclination $\modelInc$.
 For $\modelPsi=\SI{30}{\percent}$, a reduction of the \accvalue{} for the lower inclined models of the first fiber population is visible.
