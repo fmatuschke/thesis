@@ -944,65 +944,58 @@ In the case of $\modelPsi=\SI{90}{\degree}$, the tilt analysis also reaches valu
 As mentioned for the single fiber population, this is an effect of the solution algorithm of the tilt analysis.
 It can be used as an indication that the resulting values are not to be trusted and the current model does not fit the data.
 \par
+% 
+The \rvalue{} is constant overall for all crossing angles.
+This agrees with theory as long as the tilt analysis is able to find the minimum of the cost function, the $\r-value^2$, because then the remaining difference comes only from the noise.
+\par
 %
-All effects described above are reflected in the opening angle \openingAngle{}, which must increase with increasing \modelOmega{} \todo{domega of the model ...}.
+The measured opening angle, \openingAngle{}, does not agree with the underlying distributions of the orientation of the fiber segments.
+However, this is to be expected since in a single voxel, \ie{} has a volume of $\SI{1.3}{\micro\meter} \times \SI{1.3}{\micro\meter} \times \SI{60}{\micro\meter}$, there are many fiber segments with which the light, \ie{} all light rays, incident on the same ccd pixel can interact.
+This means that an average signal is measured and analyzed.
+Average value for an aperture angle means, of course, a decrease of its value.
+The fact that the measured aperture angles increase with increasing crossing angle is also to be expected.
+The main effect of an increasing crossing angle is that the amplitude of the sinusoidal signal, i.e. the retardation, decreases.
+Therefore, the estimation from the tilt analysis is more difficult and the result error increases.
+% 
+\par
+The \accvalue{} value has a local minima that depends on the crossing angle \modelOmega{}.
+The minima is higher for \modelPsi{} near $0$ or $1$.
+The curve is explained by the fact that with the currently used tilt analysis only the main fiber orientation, more precisely the circular mean, can be determined from the measured signal.
+Therefore, the \accvalue{} must shrink.
+However, beyond a certain point, the delay is reduced to such an extent that the uncertainty increases to such an extent that the measured orientations become more and more random.
+Therefore, the \ac{ODF} of the measured signal becomes more and more spherical, which after a certain point, \ie{} the minima, is closer to the \ac{ODF} of the model than a \ac{ODF} that predicts only one main orientation, \ie{} a cigar shape.
+This also explains why the position of the minimum is closer to $\SI{90}{\degree}$ for fiber population proportions closer to $\SI{50}{\percent}$, because the intersection of the \ac{ODF} of fiber segments is more pronounced.
+% 
+\paragraph{inclined crossing}
+Each of the eight parameters presented for the inclined crossing fiber population can be explained by exactly the same arguments as for the previous flat fiber crossing, except for the inclination parameter.
+Here, the inclination follows the circle mean only for smaller crossing angles and reaches a maximum value as a function of the fiber population fraction \modelPsi{} until it drops to $\SI{0}{\degree}$ for $\modelOmega = \SI{90}{\degree}$.
+This behavior can be explained by the fact that as the inclination increases, the light rays are no longer affected by the birefringence of the optical axis of the fibers.
+Therefore, the only remaining effect comes from the flat fiber population.
+% 
+\paragraph{Free crossing fiber population}
+The free crossing fiber population results can be interepreted as an summary of the previous results.
+\par
+% 
+The transmittance shows the expected behavier, that the lowest values are reached for non crossing fiber population.
+Here, the fiber density is the highest and therefore as well the aborption of the light intensity.
+For orientations with increasing crossing angles, transmittance increases as the fibers require more space to be collision free.
+This effect is further increased for fiber population fractions closer to $\SI{50}{\percent}$.
+\par
+% 
+The retardation value that the highes values are reached for flat non crossing fiber populations.
+Here no extinction effect of the \ac{3D-PLI} signal is present.
+The retardation value shows a map of which orientations from two fiber population fractions the tilting analysis will lead to a result with high certanty.
+This, however, does not mean, that the resulting orienation is the orientation of the underlying fibers, as can seen in the results of the direction and inclination.
+As in the previous results of the single flat crossing and oblique crossing fiber population(s), the analyzed angle corresponds to the circular value for flat fibers and the inclination is strongly influenced by the inclination angle.
+\par
+% 
+From the results of \trel{}, the statement that \trel{} values greater than $>1$ indicate an untrustworthy result is still true.
+However, the number of fiber configurations where this is the case is relatively small.
+In combination with retardation, though, both low \trel{} values and low retardation values indicate considerably more untrustworthy results.
+This results in the distrubtion of the \accvalue{}.
+The reduced \accvalue{} are the fiber configurations, one has to focus on improving the tilt analsis in the future.
+The \accvalue{} can potentially be a good tool to use as a cost function in machine learning techniques, for example.
 %
-% 
-\TODO{acc and R}
-% 
-\TODO{inclined crossing}
-\TODO{free fibers}
-\TODO{overall discussion}
-% 
-% %
-% %
-% \paragraph{Inclined crossing fiber population}
-% \Cref{sec:resInclCross} shows the results for the inclined crossing fiber population.
-% The results for transmittance and retardation are similar to the previous flat fiber crossing.
-% The main difference is that the retardation does not decrease to $\SI{0}{}$, which is expected since only the retardation of the inclined fiber population due to the radial optical axis is cancelled.
-% This is also evident in the behavior of the inclination, which does not follow the theoretical circular mean of the two fiber populations.
-% \todo{try effective circ mean}
-% \par
-% % 
-% The relative thickness \trel{} behaves as expected to neglect the effects of the inclined fiber populations.
-% However, especially in the case of $\modelPsi=\SI{50}{\percent}$, the \trel{} value for $\modelOmega=\SI{90}{\degree}$ is lower than half of $\modelOmega=\SI{0}{\degree}$, which is what one would initially expect.
-% Because of the lower volume fraction, the \trel{} value must decrease.
-% \par
-% %
-% The opening angle \openingAngle{} combines the results of the direction and inclination values as expected for an inclined crossing fiber model.
-% % 
-% %
-% %
-% \paragraph{Free crossing fiber population}
-% \TODO{This takes a little bit more work ...}
-% \Cref{sec:resFreeCross} shows the results of the free crossing fiber population.
-% The transmittance results show the same behavior as expected looking at the previous results of the single, crossing and inclined configurations.
-% The transmittance rises for models with higher crossing angles and for models with higher fractions of inclined fiber populations.
-% \par
-% %
-% From \ref{fig:sim_ana_acc}, a range of low \modelPsi{} and low \modelInc{} to higher low \modelPsi{} and higher \modelInc{} is evident where the \accvalue{} is significantly low, with larger areas near $\SI{0}{}$.
-% These areas correspond to the known problematic areas in intersections and inclined regions.
-% However, these results give a better idea of how strong the indication is with respect to the \accvalue{}.
-% The \accvalue{} can potentially be used as a weight for \todo{not ...}.
-% An important result is the correlation between the \accvalue{} and the \trel{} value.
-% As the \trel{} value is analyzed, it can be used as an indicator of an underlying intersection or oblique region.
-% This would then also be an indicator for further data processing \eg{} a tractography.
-% Note that these results are only valid for dense fiber populations, \ie{} dense white matter.
-% \todo{acc for crossing models compared to not crossing models; uniform dist models and singe orientation models}
-% \par
-% %
-% Retardation is also an indicator, but not as reliable, since its value is very low even for a single inclined fiber population, which can still be correctly determined with a high variance using tilt analysis (see \cref{fig:single_fiber_pop_rofl}).
-% There, too, the \trel{} value is reduced, but not as much as in the crossing fiber populations.
-% This effect results from the simple fact that an inclined single fiber population increases its retardation value when tilted, while a flat crossing population does not due to signal cancellation.
-% \par
-% %
-% The relatively low \rvalue{} is consistent with the noise of $\SI{14.3}{\percent}$ (see \cref{fig:noiseplot}).
-% The elevated patterns of \rvalue{} represent the range of a $\modelOmega \approx \SI{90}{\degree}$, where lower retardation is thus expected.
-% The most interesting pattern is for the case $\modelPsi = \SI{90}{\percent}$, where the \rvalue{} for the $\modelInc = \SI{0}{\degree}$ is maximum at a $\alpha_1$ \todo{check variable name} angle of $\SI{80}{\degree}$.
-% This is quite unexpected, since here the dominant nerve fiber population is the first one, \ie{} $\SI{90}{\percent}$.
-% Nevertheless, the small fraction of $\SI{10}{\percent}$ for a high inclination case seems to be sufficient to perturb the fitting algorithm based only on a single fiber population.
-% However, compared to the other results at this orientation, the other parameters do not appear to be perturbed in their mean values.
-% % 
 %
 %
 \section{Speedup}
