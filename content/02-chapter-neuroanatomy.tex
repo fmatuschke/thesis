@@ -46,16 +46,31 @@ Beneath the brain surface there are other structures such as the basal gangila o
 \centering
 \setlength{\tikzwidth}{0.475\textwidth}
 \subcaptionbox{%
-        \label{fig:brainLobes}%
-        Sagital view of the human brain with lobes colored in: {\color[RGB]{117,112,179}frontal}, {\color[RGB]{230,171,2}parietal}, {\color[RGB]{27,158,119}temporal} and {\color[RGB]{231,41,138}occipital} lobe.
-        The {\color[RGB]{102,166,30}cerebellum} is at the bottom, with the {\color[RGB]{217,95,2}brainstem} next to it.
-        Modivied version of \url{https://en.wikipedia.org/wiki/Frontal_lobe}%
-    }[\tikzwidth]{\includegraphics[height=0.3\textwidth]{gfx/neuroanatomy/brain_lobes.pdf}}
+    \label{fig:brainLobes}%
+    Sagital view of the human brain with lobes colored in: {\color[RGB]{117,112,179}frontal}, {\color[RGB]{230,171,2}parietal}, {\color[RGB]{27,158,119}temporal} and {\color[RGB]{231,41,138}occipital} lobe.
+    The {\color[RGB]{102,166,30}cerebellum} is at the bottom, with the {\color[RGB]{217,95,2}brainstem} next to it.
+    [Gehirn B06 aus der Brain Collection]
+    }[\tikzwidth]{
+    \tikzset{external/export next=false}
+    \begin{tikzpicture}[every node/.style={font=\footnotesize,},]
+        \node[inner sep=0pt, anchor = south west] (fig) at (0,0) {\includegraphics[height=0.3\textwidth]{gfx/neuroanatomy/brain_lobes.pdf}}; %height=4.2cm
+        \begin{scope}[overlay]
+            \draw[->] (rel cs:name=fig,x=0.1,y=1.05) -- (rel cs:name=fig,x=0.2,y=0.7) node[anchor=south, pos=0] {Lobus frontales};
+            \draw[->] (rel cs:name=fig,x=0.4,y=1.15) -- (rel cs:name=fig,x=0.4,y=0.875) node[anchor=south, pos=0] {Sulcus centralis};
+            \draw[->] (rel cs:name=fig,x=0.72,y=1.05) -- (rel cs:name=fig,x=0.6,y=0.8) node[anchor=south, pos=0] {Lobus parietalis};
+            \draw[->] (rel cs:name=fig,x=1.1,y=0.85) -- (rel cs:name=fig,x=0.9,y=0.6) node[anchor=south, pos=0] {Lobus occipitalis};
+            \draw[->] (rel cs:name=fig,x=0.3,y=0.1) -- (rel cs:name=fig,x=0.5,y=0.2) node[anchor=north, pos=0] {Lobus temporalis};
+            \draw[->] (rel cs:name=fig,x=0.1,y=0.2) -- (rel cs:name=fig,x=0.275,y=0.3) node[anchor=north, pos=0] {Sulcus lateralis};
+            \draw[->] (rel cs:name=fig,x=1.1,y=0.15) -- (rel cs:name=fig,x=0.85,y=0.2) node[anchor=north, pos=0] {Cerebellum};
+        \end{scope}
+        % \path[] ($(fig.south west)-(0,0)$) rectangle ($(fig.north east)+(1,0.75)$);
+    \end{tikzpicture}
+    }
 \hfill
 \tikzset{external/export next=false}
 \subcaptionbox{%
-        \label{fig:coronalStained}%
-        \todo{BB 4201} Coronal section stained for cell bodies. The \ac{GM} is dark while the \ac{WM} is bright. The left and right hemisphere is connected via the corpus calosum.}%
+    \label{fig:coronalStained}%
+    \todo{BB 4201} Coronal section stained for cell bodies. The \ac{GM} is dark while the \ac{WM} is bright. The left and right hemisphere is connected via the corpus calosum.}%
     [\tikzwidth]{\includegraphics[height=0.3\textwidth]{gfx/brain/BB_4201.png}}
 \caption{Illustration of the human brain and a cell body stained coronal section.}
 \label{fig:humanBrain}
