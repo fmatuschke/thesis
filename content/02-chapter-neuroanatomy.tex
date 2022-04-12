@@ -49,19 +49,19 @@ Beneath the brain surface there are other structures such as the basal gangila o
     \label{fig:brainLobes}%
     Sagital view of the human brain with lobes colored in: {\color[RGB]{117,112,179}frontal}, {\color[RGB]{230,171,2}parietal}, {\color[RGB]{27,158,119}temporal} and {\color[RGB]{231,41,138}occipital} lobe.
     The {\color[RGB]{102,166,30}cerebellum} is at the bottom, with the {\color[RGB]{217,95,2}brainstem} next to it.
-    [Gehirn B06 aus der Brain Collection]
+    \todo{Gehirn B06 aus der Brain Collection}.
     }[\tikzwidth]{
     \tikzset{external/export next=false}
     \begin{tikzpicture}[every node/.style={font=\footnotesize,},]
         \node[inner sep=0pt, anchor = south west] (fig) at (0,0) {\includegraphics[height=0.3\textwidth]{gfx/neuroanatomy/brain_lobes.pdf}}; %height=4.2cm
         \begin{scope}[overlay]
-            \draw[->] (rel cs:name=fig,x=0.1,y=1.05) -- (rel cs:name=fig,x=0.2,y=0.7) node[anchor=south, pos=0] {Lobus frontales};
+            \draw[->] (rel cs:name=fig,x=0.1,y=1.05) -- (rel cs:name=fig,x=0.19,y=0.925) node[anchor=south, pos=0] {\color[RGB]{117,112,179}Lobus frontales};
             \draw[->] (rel cs:name=fig,x=0.4,y=1.15) -- (rel cs:name=fig,x=0.4,y=0.875) node[anchor=south, pos=0] {Sulcus centralis};
-            \draw[->] (rel cs:name=fig,x=0.72,y=1.05) -- (rel cs:name=fig,x=0.6,y=0.8) node[anchor=south, pos=0] {Lobus parietalis};
-            \draw[->] (rel cs:name=fig,x=1.1,y=0.85) -- (rel cs:name=fig,x=0.9,y=0.6) node[anchor=south, pos=0] {Lobus occipitalis};
-            \draw[->] (rel cs:name=fig,x=0.3,y=0.1) -- (rel cs:name=fig,x=0.5,y=0.2) node[anchor=north, pos=0] {Lobus temporalis};
-            \draw[->] (rel cs:name=fig,x=0.1,y=0.2) -- (rel cs:name=fig,x=0.275,y=0.3) node[anchor=north, pos=0] {Sulcus lateralis};
-            \draw[->] (rel cs:name=fig,x=1.1,y=0.15) -- (rel cs:name=fig,x=0.85,y=0.2) node[anchor=north, pos=0] {Cerebellum};
+            \draw[->] (rel cs:name=fig,x=0.72,y=1.05) -- (rel cs:name=fig,x=0.65,y=0.975) node[anchor=south, pos=0] {\color[RGB]{230,171,2}Lobus parietalis};
+            \draw[->] (rel cs:name=fig,x=1.1,y=0.85) -- (rel cs:name=fig,x=0.95,y=0.75) node[anchor=south, pos=0] {\color[RGB]{231,41,138}Lobus occipitalis};
+            \draw[->] (rel cs:name=fig,x=0.35,y=0.1) -- (rel cs:name=fig,x=0.4,y=0.125) node[anchor=north, pos=0] {\color[RGB]{27,158,119}Lobus temporalis};
+            \draw[->] (rel cs:name=fig,x=0.125,y=0.2) -- (rel cs:name=fig,x=0.275,y=0.315) node[anchor=north, pos=0] {Sulcus lateralis};
+            \draw[->] (rel cs:name=fig,x=1.1,y=0.15) -- (rel cs:name=fig,x=0.95,y=0.2) node[anchor=north, pos=0] {\color[RGB]{102,166,30}Cerebellum};
         \end{scope}
         % \path[] ($(fig.south west)-(0,0)$) rectangle ($(fig.north east)+(1,0.75)$);
     \end{tikzpicture}
@@ -70,8 +70,19 @@ Beneath the brain surface there are other structures such as the basal gangila o
 \tikzset{external/export next=false}
 \subcaptionbox{%
     \label{fig:coronalStained}%
-    \todo{BB 4201} Coronal section stained for cell bodies. The \ac{GM} is dark while the \ac{WM} is bright. The left and right hemisphere is connected via the corpus calosum.}%
-    [\tikzwidth]{\includegraphics[height=0.3\textwidth]{gfx/brain/BB_4201.png}}
+    \todo{BB 4201} Coronal section stained for cell bodies. The \ac{GM} is dark while the \ac{WM} is bright. The left and right hemisphere is connected via the corpus callosum.}%
+    [\tikzwidth]{
+    \tikzset{external/export next=false}
+    \begin{tikzpicture}[every node/.style={font=\footnotesize,},]
+        \node[inner sep=0pt, anchor = south west] (fig) at (0,0) {\includegraphics[height=0.3\textwidth]{gfx/brain/BB_4201.png}}; %height=4.2cm
+        \begin{scope}[overlay]
+            \draw[RED,->] (rel cs:name=fig,x=0.55,y=0.65) -- (rel cs:name=fig,x=0.5,y=0.55) node[anchor=south, pos=0] {\shadowoffset{0.25pt}
+            \shadowcolor{black!10!white}
+            \shadowtext{\color{RED}Corpus callosum}};
+        \end{scope}
+        % \path[] ($(fig.south west)-(0,0)$) rectangle ($(fig.north east)+(1,0.75)$);
+    \end{tikzpicture}    
+    }
 \caption{Illustration of the human brain and a cell body stained coronal section.}
 \label{fig:humanBrain}
 \end{figure}
@@ -206,7 +217,7 @@ From studies with \ac{dMRI} and electron microscopy
     area mean std
     {sup. longitudinal fascide} $\SI{0.8}{\micro\meter}$ $\SI{0.2}{\micro\meter}$
     {Unicate/inferior occipital fasc.} $\SI{0.51}{\micro\meter}$ $\SI{0.05}{\micro\meter}$
-    {corpus calosum} $\SI{0.69}{\micro\meter}$ $\SI{0.04}{\micro\meter}$
+    {corpus callosum} $\SI{0.69}{\micro\meter}$ $\SI{0.04}{\micro\meter}$
 }
 \caption{Nerve fiber diameter distribution of the human brain. Mean values over three human brains \cite{Liewald2014}.}
 \label{tab:axonDiameter}
