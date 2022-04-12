@@ -76,9 +76,13 @@ Beneath the brain surface there are other structures such as the basal gangila o
     \begin{tikzpicture}[every node/.style={font=\footnotesize,},]
         \node[inner sep=0pt, anchor = south west] (fig) at (0,0) {\includegraphics[height=0.3\textwidth]{gfx/brain/BB_4201.png}}; %height=4.2cm
         \begin{scope}[overlay]
-            \draw[RED,->] (rel cs:name=fig,x=0.55,y=0.65) -- (rel cs:name=fig,x=0.5,y=0.55) node[anchor=south, pos=0] {\shadowoffset{0.25pt}
-            \shadowcolor{black!10!white}
-            \shadowtext{\color{RED}Corpus callosum}};
+            \draw [RED,thick, decorate, decoration = {brace}]
+                (rel cs:name=fig,x=0.40,y=0.625) -- 
+                (rel cs:name=fig,x=0.6,y=0.625) 
+                node[anchor=south, pos=0.35] {%
+                    \shadowoffset{0.25pt}
+                    \shadowcolor{black!10!white}
+                    \shadowtext{\color{RED}Corpus callosum}};
         \end{scope}
         % \path[] ($(fig.south west)-(0,0)$) rectangle ($(fig.north east)+(1,0.75)$);
     \end{tikzpicture}    
@@ -126,15 +130,15 @@ It is important to investigate the human brain to gain a better understanding of
 \end{figure}
 %
 Nerve cells are connected by nerve fibers.
-A typical nerve cell (see \cref{fig:nerveCell}) comprises a cell body, called a soma, that processes incoming information.
+A typical nerve cell (see \cref{fig:CortexAndNerveCell}) comprises a cell body, called a soma, that processes incoming information.
 The information arrives via dendrites, which are star-shaped branches.
 The axon is the cell's only information output.
 It travels through the brain often associated with nerve fiber bundles to its destination, where it connects with the axon terminal to other neurons.
 \par
 %
-The axon is surrounded by a myelin sheath, a lipid layered structure deriving from nearby olegodendrides (see \cref{fig:human-brain}).
+The axon is surrounded by a myelin sheath, a lipid layered structure deriving from nearby olegodendrides (see \cref{fig:CortexAndNerveCell}).
 The myeling electrically insulates the axon and improves the speed of propagation of the electrical action potential along the axon and also its signal strength.
-The diameter of the myelin ranges from about $\SI{0.5}{\micro\meter}$ to several $\si{\micro\meter}$ (see \cref{tag:axonDiameter}).
+The diameter of the myelin ranges from about $\SI{0.5}{\micro\meter}$ to several $\si{\micro\meter}$ (see \cref{tab:axonDiameter}).
 There are many types of axons.
 Some contain a very thick myelin layer, while others have none.
 The high density of axons and myelin makes the brain appear white and is therefore called \ac{WM}, whereas the outer cell bodies appear darker and is called \ac{GM}.
