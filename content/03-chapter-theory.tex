@@ -3,20 +3,17 @@
 \chapter{Modeling of light}
 \label{sec:theory}
 %
-% \cleanchapterquote{The first principle is that you must not fool yourself and you are the easiest person to fool.}{Richard P. Feynman}{}%\newline
-%
 \section{Introduction}
-The following chapter lists the physical theories needed to describe the mathematics behind \ac{3D-PLI}.
-These include the basic properties of light with the description of their polarization state, the optical properties of the tissue, \ie{} the nerve fibers, the mathematical description of the experimental setup of \ac{3D-PLI} and the analysis of its signal.
-The first part of this chapter was written with the aid of \cite{demtroeder2, Fliebach2012}.
+The following chapter lists the physical theory needed to describe the mathematics behind \ac{3D-PLI}.
+These include the basic properties of light, such as its polarization state, the optical properties of nerve fibers tissue, the mathematical description of the \ac{3D-PLI} experimental setup and its signal analysis.
+The chapter drew inspiration from the work presented in \cite{demtroeder2, Fliebach2012}.
 %
 %
 %
 \section{Electromagnetic wave}
 %
 Light is an electromagnetic wave.
-The theory of electromagnetism was first fully described by James Clerk Maxwell.
-He formulated Maxwell's equations \cref{eq::maxwell_general}, generalized from the previous work of Johann Carl Friedrich Gau{\ss}, Michael Faraday and Andr\'{e}-Marie Amp\`{e}re and others:
+The theory of electromagnetism was first fully described by James Clerk Maxwell, who formulated Maxwell's equations (see \cref{eq::maxwell_general}), generalized from the previous work of Johann Carl Friedrich Gau{\ss}, Michael Faraday and Andr\'{e}-Marie Amp\`{e}re and others:
 %
 \begin{align}
 \begin{split} \label[pluralequation]{eq::maxwell_general}
@@ -27,16 +24,14 @@ He formulated Maxwell's equations \cref{eq::maxwell_general}, generalized from t
 \end{split}
 \end{align}
 %
-with $\nabla \coloneqq \left({\frac{\partial}{\partial x}}, {\frac{\partial}{\partial y}}, {\frac{\partial}{\partial z}} \right)$ as vector differential operator, $\vec{E}$ as electric field, $\rho$ as electric charge density, $\varepsilon_0$ as permittivity of free space, $\vec{B}$ as magnetic field, $\mu_0$ as permeability of free space and $\vec{j}$ as electric current density.
+with the nabla operator $\nabla \coloneqq \left({\frac{\partial}{\partial x}}, {\frac{\partial}{\partial y}}, {\frac{\partial}{\partial z}} \right)$ denotes the three-dimensional gradient operator, $\vec{E}$ as electric field, $\rho$ as electric charge density, $\varepsilon_0$ as permittivity of free space, $\vec{B}$ as magnetic field, $\mu_0$ as permeability of free space and $\vec{j}$ as electric current density.
 %
 The first equation states that no electric field can be generated without an electric charge (conservation of charge).
-The second equation states that there are no magnetic monopoles.
-The basic unit of a magnetic field is a dipole.
+The second equation states that there are no magnetic monopoles and the basic unit of a magnetic field is a dipole.
 The third and fourth equations show the relationship between the electric and magnetic fields in space and time.
 A change in the electric field results in a magnetic field and vice versa.
-Equation four additionally shows the generation of a magnetic field from an electric current $\vec{j}$.
-Maxwell's equation satisfies the continuity equation $\divergence j + \frac{\partial \rho}{\partial t} = 0$.
-This means that neither an electric field nor a magnetic field can be generated without either an electric current or a change in electric potential.
+Equation four also shows a magnetic field's generation from an electric current $\vec{j}$.
+Maxwell's equation satisfies the continuity equation $\divergence j + \frac{\partial \rho}{\partial t} = 0$, which means that neither an electric field nor a magnetic field can be generated without neither an electric current nor a change in electric potential.
 %
 % \par
 %
@@ -53,7 +48,7 @@ In a vacuum, \cref{eq::maxwell_general} simplifies with $\rho = 0$ and $\vec{j} 
   \end{split}
 \end{align}
 %
-With
+with
 \begin{align}
 \begin{split}
     \nabla \times \nabla \times \vec{E} = -\nabla \times \frac{\partial \vec{B}} {\partial t} &= -\frac{\partial} {\partial t} \left( \nabla \times  \vec{B} \right)\\
@@ -61,7 +56,7 @@ With
 \end{split}
 \end{align}
 %
-the identity $\nabla \times \left( \nabla \times \vec{A} \right) = \nabla(\nabla \cdot \vec{A}) - \nabla^{2}\vec{A}$, $\mu_0\varepsilon_0 = \frac{1}{c^2}$ and $c$ as the speed of light\footnote{can be derived from Maxwell's equation and Lorentz force in a vacuum}, this further simplifies to:
+the identity $\nabla \times \left( \nabla \times \vec{A} \right) = \nabla(\nabla \cdot \vec{A}) - \nabla^{2}\vec{A}$, $\mu_0\varepsilon_0 = \frac{1}{c^2}$ and $c$ as the speed of light\footnote{can be derived from Maxwell's equation and Lorentz force in a vacuum}, further simplifies to:
 %
 \begin{align}
 \begin{split} \label[pluralequation]{eq::maxwell_wave_equations}
@@ -70,12 +65,14 @@ the identity $\nabla \times \left( \nabla \times \vec{A} \right) = \nabla(\nabla
 \end{split}
 \end{align}
 %
-This shows that $c^2 \frac{\partial B} {\partial z} = \frac{\partial E}{\partial t} \Rightarrow \vec{E} \cdot \vec{B} = 0$ and thus the electric and magnetic field components are perpendicular to each other.
-In addition, this also means that space and time are connected and that light propagates in vacuum with the speed of light $c$.
+whis shows that $c^2 \frac{\partial B} {\partial z} = \frac{\partial E}{\partial t} \Rightarrow \vec{E} \cdot \vec{B} = 0$ and thus the electric and magnetic field components are perpendicular to each other.
+Furthermore, this implies that space and time are linked, and that light propagates in vacuum with the speed of light $c$.
+% 
+% 
 %
 \subsection{Solving Maxwells equations in vacuum}\label{sec::SolvMaxEqVac}
 %
-\Cref{eq::maxwell_wave_equations} have the form of a wave equation and therefore, as it is well-known, can be solved by
+\Cref{eq::maxwell_wave_equations} have the form of a wave equation and therefore, it can be solved by
 %
 \begin{align}
 \begin{split} \label[pluralequation]{eq::dgl_solution}
@@ -110,11 +107,11 @@ with $\vec{k}$ as wave vector pointing in the direction of the propagation of th
 \centering
 \setlength{\tikzwidth}{\textwidth}
 \inputtikz{gfx/pli/polarization_state}
-\caption{Illustration of the polarization state of light. Unpolarized light passes through a linear polarizer, which polarizes the light in one direction. It then passes through a quarter-wave retarder that converts linearly polarized light (of a specific wavelength) into circularly polarized light, where $E_x$ and $E_y$ are $\pi/2$ in phase.}
+\caption{Illustration of the polarization state of light. Unpolarized light passes through a linear polarizer, polarizing the light in one direction. It then passes through a quarter-wave retarder that converts linearly polarized light (of a specific wavelength) into circularly polarized light, where $E_x$ and $E_y$ are $\pi/2$ in phase.}
 \label{fig:polarization_state}
 \end{figure}
 %
-Since the light wave propagates in one direction and the electric field and magnetic field are perpendicular to $\vec{k}$ as well as to each other, the orientation of the plane of oscillation is a fundamental property of light called polarization.
+Since the light wave propagates in one direction and the electric field and magnetic field are perpendicular to $\vec{k}$ and to each other, the orientation of the plane of oscillation is a fundamental property of light called polarization.
 Without additional information, the polarization orientation is conventionally in the direction of the electric field component.
 A superposition of x- and y-wave with z-axis equal to the propagation direction gives the general form:
 \begin{align}
@@ -130,23 +127,23 @@ e^{ -i (kz - \omega t)}
 \label{fig:polarization_state_vectors}
 \end{figure}
 %
-\Cref{fig:polarization_state_vectors} shows another representation of the polarization state of a light wave.
+\Cref{fig:polarization_state_vectors} shows an additional representation of the polarization state of a light wave.
 It shows the component perpendicular to the propagation direction.
 Thus, the time evolution of the electric field can be represented in the $xy$-plane.
-In addition, the states can be described by the Jones or Stokes calculation, which is described later in \cref{sec:jones,sec:mueller_stokes}.
+In addition, the states can be described by the Jones or Stokes calculation, which is described in \cref{sec:jones,sec:mueller_stokes}.
 %
 %
 %
 \subsection{Light in a medium}
 %
-The general Maxwell's equations \cref{eq::maxwell_general} can be solved analog to \cref{sec::SolvMaxEqVac}. This yields to some special behavior, \eg{} the magnetic and electric field component get out of phase.
-Here only the two decisive properties absorption and diffraction are described.
+The general Maxwell's equations \cref{eq::maxwell_general} can be solved similar to \cref{sec::SolvMaxEqVac}, which yields a special behavior, \eg{} the magnetic and electric field component get out of phase.
+In this work, only the two decisive properties absorption and diffraction are described.
 % 
 % 
 %
 \subsection{Absorption}\label{sec:theoAbsorption}
 %
-Absorption is the property of reducing the intensity or energy of an electromagnetic wave passing though a medium.
+Absorption is the property of reducing the intensity or energy of an electromagnetic wave passing through a medium.
 It is described by Beersche law of absorption
 % 
 \begin{align} 
@@ -160,6 +157,12 @@ If the complex number is inserted into the wave equation, the intensity is reduc
 % 
 \subsection{Refraction}\label{sec:theoRefraction}
 %
+Refraction is the change of direction of light as it passes from one medium to another.
+Refration can be explained by using the full Maxwell equations  for non-conductive material, \ie{} $\vec{j} = \vec{0}$ \TODO{$, \rho = 0$}, that the differential equating consist out of a primary wave with from atomic medium induced secondary waves, which leads to a reduction of the velocity of the resulting wave.
+Mathematically, this can be described by a complex number $n = c' / c$.
+Using this relationship at a boundary surface between two media, one can show that the incident light beam splits into a reflecting and transmitting light wave.
+The reflecting light wave has the same angle as the incident light beam relative to the surface normal.
+%
 \begin{figure}[!t]
 \centering
 \setlength{\tikzwidth}{\textwidth}
@@ -167,13 +170,8 @@ If the complex number is inserted into the wave equation, the intensity is reduc
 \caption{Illustration of refraction by Snellius law.}
 \label{fig:optic_refraction}
 \end{figure}
-%
-Refraction is the change of direction of light as it passes from one medium to another.
-This can be shown by using the full Maxwell equations  for non-conductive material, \ie{} $\vec{j} = \vec{0}$ \TODO{$, \rho = 0$}, that the differential equating consist out of a primary wave with from atomic medium induced secondary waves, which leads to a reduction of the velocity of the resulting wave.
-Mathematically, this can be described by a complex number $n = c' / c$.
-Using this relationship at a boundary surface between two media, one can show that the incident light beam splits into a reflecting and transmitting light wave.
-The reflecting light wave has the same angle as the incident light beam relative to the surface normal.
-The transmitting light beam however, due to the reduction of the velocity, changes its direction described by the Snellius law (see \cref{fig:optic_refraction})
+% 
+However, the transmitting light beam, due to the reduction of the velocity, changes its direction described by the Snellius law (see \cref{fig:optic_refraction})
 \begin{align}
     n_\alpha \sin \alpha = n_\beta \sin \beta \label{eq:Snellius}
 \end{align}
@@ -192,16 +190,16 @@ The refractive index $n$ can also be described inside a complex refraction index
 \centering
 \setlength{\tikzwidth}{\textwidth}
 \inputtikz{gfx/pli/retardation}
-\caption{Illustration of retardation. The linear $\SI{45}{\degree}$ polarized light wave is decomposed into the $x$ and $y$ component in the birefringence medium. The y component travels faster than the x component. Therefore, a phase shift $\phi$ between both components occur. This leads in the case of a $\lambda/4$ retarder to a circular polarized light wave.}
+\caption{Illustration of retardation. The linear $\SI{45}{\degree}$ polarized light wave is decomposed into the $x$ and $y$ components in the birefringence medium. The $y$ component travels faster than the $x$ component. Therefore, a phase shift $\phi$ between both components occur. This leads in the case of a $\lambda/4$ retarder to a circular polarized light wave.}
 \label{fig:optic_retardation}
 \end{figure}
 %
 A translucent material can have a different refractive index depending on the relative orientation and polarization of the light beam.
 This property is called birefringence.
-The refractive index can be described by the ordinary refractive index $n_o$ and the extraordinary $n_e$, which are perpendicular to each other.
+The refractive index can be described by the ordinary refractive index $n_o$ and the extraordinary $n_e$, which are perpendicular to each other (see \cref{fig:optic_retardation}).
 Therefore, the light ray can be split into the same perpendicular parts and each can be described by itself.
 These two light rays can have a different direction due to refraction.
-If the separation is relative small, the two light beams (or multiple light beams) can be modeled as they would recombine when leaving the material.
+If the separation is relatively small, the two light beams (or multiple light beams) can be modeled as they would recombine when leaving the material.
 The phase change is called birefringence and the physical property is described by:
 %
 \begin{align}
@@ -304,10 +302,9 @@ S_3 &= I p \sin 2\chi
 \label{fig:stokesPoincare}
 \end{figure}
 %
-$I$ is the intensity, $p$ the polarization state, $\Psi$ and $\delta$ the relative phases between the $E_x$ and $E_y$ component.
-This can also be described by the two angles $\Psi$ and $\chi$ and visualized on the Poincar\'{e} sphere (see \cref{fig:stokesPoincare}).
+where $I$ is the intensity, $p$ the polarization state, $\Psi$ and $\delta$ the relative phases between the $E_x$ and $E_y$ components, which can also be described by the two angles $\Psi$ and $\chi$ and visualized on the Poincar\'{e} sphere (see \cref{fig:stokesPoincare}).
 With this description the phase can no longer be described as in the Jones calculus.
-However, the relative phase information is stored and can be used to describe also polarization states of polarization filters which cannot be described by the Jones calculus.
+However, the relative phase information is stored and can be used to describe also polarization states of polarization filters which the Jones calculus cannot describe.
 Analogous to the Jones calculus one can formulate the matrices for the optical components:
 %
 \paragraph{Linear Polarizer}
