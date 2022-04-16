@@ -6,37 +6,35 @@
 \section{Introduction}
 % 
 This chapter gives an overview of \ac{3D-PLI}.
-First, the necessary preparation of the brain, its cutting process and subsequent covering is described.
-The second part describes the \ac{3D-PLI} microscopic technique which allows measuring the orientation of the optical axis which corresponds to the orientation of the myelinated nerve fibers.
-The origin of the measured \ac{3D-PLI}-signal as well as the optical limits in microscopy is described as a basis for the simulation in the subsequent chapters. 
+First, the necessary preparation of the brain tissue is described, including its cutting process and the subsequent covering.
+The second part describes the \ac{3D-PLI} microscopic technique, which allows measuring the orientation of the optical axis that corresponds to the orientation of the myelinated nerve fibers.
+The foundation of the measured \ac{3D-PLI} signal and the optical limits in microscopy are described as a basis for the simulation in the following chapters. 
 % 
 % 
 % 
 \section{Brain tissue preparation and sectioning}
 % 
-After the death of the organism the brain is removed after the death from the skull within $\SI{24}{\hour}$.
-To prevent the brain from further degeneration the tissue is immersed in a solution of $\SI{4}{\percent}$ formaldehyde and $\SI{20}{\percent}$ glycerin for several days.
-In order to prepare the brain for sectioning, it is frozen at $\SI{-80}{\celsius}$.
-Then the tissue is fixated with a liquid glue on a plate.
-This allows the plate with the brain be placed within a microtome.
-The microtome consist out of a chamber cooled with about $\SI{-70}{\celsius}$.
-A vibrating very sharp knife is placed in such a way, that the brain can be moved along it to section the brain into $\SI{60}{\micro\meter}$ sections (see \cref{fig:brain_sectioning}).
-The sections are manually placed after each cut onto a glass specimen.
-The tissue is finally applied with glycerin and sealed with another thin optical glass (see \cref{fig:brain_section}).
+After the organism deatch, the brain is removed from the skull within $\SI{24}{\hour}$.
+In order to prevent the further degeneration of the brain tissue, it is immersed in a solution of $\SI{4}{\percent}$ formaldehyde and $\SI{20}{\percent}$ glycerin for several days.
+Then it is frozen at $\SI{-80}{\celsius}$ as preparation for sectioning.
+Then the tissue is fixated with liquid glue on a plate, which allows to place it within a microtome.
+The microtome consists out of a chamber cooled at about $\SI{-70}{\celsius}$.
+A vibrating knife is used to section the brain into $\SI{60}{\micro\meter}$ sections (see \cref{fig:brain_sectioning}).
+After each cut, the sections are manually placed onto a glass specimen, surrounded by glycerin and covered with a thin optical glass (see \cref{fig:brain_section}).
 To preserve the sections for the microscopic measurement, they are placed in a freezer at approximately $\SI{-70}{\celsius}$.
-The actual \ac{3D-PLI} measurement takes place at room temperature.
+The \ac{3D-PLI} measurement takes place at room temperature. \cite{Axer2011}
 % 
 \begin{figure}[!t]
 	\centering
     \setlength{\tikzwidth}{0.475\textwidth}
     \subcaptionbox{%
         \label{fig:brain_sectioning}
-        Illustration of the sectioning process. The brain is fixed with a glue to stabilize it for the cutting process. A microtome is used to cut the tissue, which uses a vibrating, very sharp diamond blade over which the tissue block is moved.
+        Illustration of the sectioning process. The brain is fixed with glue to stabilize it for the cutting process. A microtome is used to cut the tissue by using a vibrating diamond blade over which the tissue block is moved.
     }[\tikzwidth]{\inputtikz{gfx/neuroanatomy/brain_sectioning}}
     \hfill
     \subcaptionbox{%
         \label{fig:brain_section}
-        A section is placed on a glass specimen. To protect it from environmental influences, it is covered with a second, thinner glass plate, which is sealed with nail polish.
+        A section is placed on a glass specimen, to protect it from environmental influences. It is covered with a second, thinner glass plate, which is sealed with nail polish.
     }[\tikzwidth]{\inputtikz{gfx/neuroanatomy/brain_section}}
 	\caption{Brain sectioning and sealing illustation.}
 \end{figure}
@@ -45,26 +43,20 @@ The actual \ac{3D-PLI} measurement takes place at room temperature.
 % 
 \section{Experimental setup}\label{sec:expSetup}
 %
-In the institute of the \ac{INM-1} are three microscopic setups based on the same physical principle \cite{Axer2011} (see \cref{fig:pli_setup}).
-Polarized light with a wavelength of about $\SI{525}{\nano\meter}$ is irradiated through a tissue section \footnote{The exact wavelength depends on the microscop.}.
-A circular polarizer, a $\SI{45}{\degree}$ oriented quarter-wave retarder and polarizer, is placed behind the tissue.
+In \ac{INM-1}, there are three microscopic setups based on identic physical principle \cite{Axer2011} (see \cref{fig:pli_setup}).
+Polarized light with a wavelength of about $\SI{525}{\nano\meter}$ is irradiated through the tissue section \footnote{The exact wavelength depends on the microscope.}.
+A circular polarizer, a $\SI{45}{\degree}$ oriented quarter-wave retarder and polarizer are placed behind the tissue.
 By rotating the polarizer, the change in intensity is measured with a \ac{CCD}-sensor.
 \par
-%
-The first microscopic setup called \ac{LAP} is capable of measuring an entire human brain slice in a single image with a pixel size of $\SI{60}{\micro\meter}$. \footnote{It is also possible to aquire images with a pixel size of $\approx \SI{40}{\micro\meter}$ and $\approx \SI{20}{\micro\meter}$ by changing the distance from the camera to the tissue.}
-In addition, the tissue sample can be tilted.
-This causes a change in the orientation of the nerve fibers, resulting in a change in the measured signal.
-This change is later used to analyse the 3D orientation of the nerve fibers inside the section (see \cref{sec::InclAnalysis}).
-The optical setup of the \ac{LAP} is slightly different in that the quarter-wave retarder is placed between the first polarizer and the tissue section, and all three optical elements are rotated simultaneously.
-This produces the same results, but dust particles on one of the optical elements can be identified more easily because they are also rotating.
-The other microscopes are located in a closed container that protects the optical elements from contamination.
+% 
+The first experimental setup is called \ac{LMP}.
+It is used to measure an entire brain section at a resolution of $\SI{60}{\micro\meter}$. \footnote{It is also possible to aquire images with a pixel size of $\approx \SI{40}{\micro\meter}$ and $\approx \SI{20}{\micro\meter}$ by changing the focal length.}
 \par
 % 
-A higher resolution is achieved in the \ac{LMP} microscope, which allows measurement of a $\num{2048}\times\num{2048}$ tile with a pixel size of $\SI{1.3}{\micro\meter}$.
-By measuring the tissue with multiple overlapping images, the overlap can be used to combine them into an overall image.
+The \ac{LMP} microscope, which is simulated in this thesis,  allows measurement of $\num{2048}\times\num{2048}$ tile with a pixel size of $\SI{1.3}{\micro\meter}$.
+By measuring the tissue with multiple overlapping images, the overlapping tiles can be combined into an overall image with a stitching algorithm. 
 This setup is not able to change the light path.
-The 3D information can be estimated by analyzing the distribution of retardation and transmittance.
-However, the sign of the inclination cannot be detected.
+The 3D information can be estimated by analyzing the distribution of retardation and transmittance, however, the inclination sign cannot be detected.
 \par
 % 
 \begin{figure}[!t]
@@ -72,7 +64,7 @@ However, the sign of the inclination cannot be detected.
     \setlength{\tikzwidth}{\textwidth}
 	\centering
     \inputtikz{gfx/pli/pli_setup_pm}
-	\caption{Illustration of PLI setup.}
+	\caption{Illustration of \acs{3D-PLI} setup.}
 	\label{fig:pli_setup}
 \end{figure}
 % 
