@@ -132,7 +132,7 @@ These are used to calculate the final \ac{3D-PLI} modalities:
 \end{align}
 %
 The \textit{transmittance} describes the tissue light transmittance, \ie{}, how much light passes through the tissue.
-The \textit{direction} describes the phase of the signal, corresponding to the direction of the macroscopic optical axis and therefore the direction of the nerve fibers.
+The \textit{direction} describes the signal phase, corresponding to the direction of the macroscopic optical axis and therefore the direction of the nerve fibers.
 The \textit{retardation} corresponds to the amplitude of the signal, \ie{}, the strength of the retardation.
 %
 \begin{figure}[t]
@@ -143,30 +143,29 @@ The \textit{retardation} corresponds to the amplitude of the signal, \ie{}, the 
 %
 \section{Tilting analysis} \label{sec::InclAnalysis}
 %
-To be able to analyse the optical axis inclination $\alpha$, one has to distinguish the relative strength of the birefringence from the term $\cos^2(\alpha)$.
-For this purpose, a tiltable sample was developed that allows the light signal to be measured through the tissue at a different angle of incidence \cite{Axer2011, Wiese:887678} (see \cref{sec:expSetup}).
-This means that the tissue, and therefore the nerve fibers, change their orientation due to the tilt angles $\theta, \varphi$.
+To analyze the optical axis inclination $\alpha$, one has to distinguish the relative strength of the birefringence from the term $\cos^2(\alpha)$.
+For this purpose, the tissue is tilted allowing the light signal to be measured through the tissue at a different angle of incidence \cite{Axer2011, Wiese:887678} (see \cref{sec:expSetup}).
+Therefore, the tissue and its underlying nerve fibers change their orientation due to the tilt angles $\theta$ and $\varphi$.
 In addition, the distance the light travels through the tissue increases by $1/\cos(\theta)$ (see \cref{fig:tilted_side_view}).
 \par
 %
-Depending on the \Pixelsize{}, this light passes through the same volume but with a different orientation.
-Therefore, a measurement of multiple light paths can be captured, and the resulting signals can be used to analyse the inclination $\alpha$ and relative birefringence tissue thickness \trel{}.
+Depending on the \Pixelsize{}, light passes through the same volume but with a different orientation.
+Therefore, multiple light paths can be measured, and the resulting signals can be used to analyze the inclination $\alpha$ and relative birefringence tissue thickness \trel{}.
 The angle of incidence of the light changes the path of the light by Snellius law \cref{eq:Snellius}.
-This results in a perspective shift that must be corrected by a registration process.
-However, this effect is neglected in the simulation, since it only adds a parallel offset.
+Which results in a perspective shift that a registration process must correct.
+However, this effect can be neglected in the simulation, since it only adds a parallel offset.
 \par
 %
-To analyse the tilting signal, an algorithm was developed under the name \ac{ROFL} \cite{Wiese:887678,Schmitz2018}.
+An algorithm was developed under the name \ac{ROFL} to analyze the tilting signal \cite{Wiese:887678,Schmitz2018}.
 The idea is to fit the measured signals of all light paths simultaneously.
-However, since the change in the signal is proportional to $\cos(\alpha)$, this means that for steep fibers not only are the changes $\frac{\partial}{\partial \alpha} \cos(\alpha)$ small, but also the amplitude of the signal is very small.
-This leads to the problem of increasing uncertainty with increasing inclination angle.
+Since the change in the signal is proportional to $\cos(\alpha)$, for steep fibers, both the changes of $\frac{\partial}{\partial \alpha} \cos(\alpha)$ and the amplitude of the signal are very small, which leads to the problem of increasing uncertainty while the inclination angle increases.
 \par
 %
-Another difficulty is that for a smaller \Pixelsize{} the light path can no longer be neglected.
-For the \ac{LMP3D}-system, this means that for an expected tilt angle of about $\SI{3.9}{\degree}$ and a tissue thickness of $\SI{60}{\micro\meter}$, the light path is measured about $\SI{4}{\pixel}$ away from the non-tilting case when the center of rotation is in the middle of the tissue.
-Additionally these means, that the light from the different tilt views has effected by other parts inside the tissue.
-For homogeneous tissue regions, such as parts in the dense \ac{WM}, this can be neglected.
-However, for single fiber paths such as visible in the \ac{GM} or complicated paths like in crossing the effect on th inclination analysis is an open question.
+Another difficulty is that for a smaller \Pixelsize{}, the light path can no longer be neglected.
+For the \ac{LMP3D}-system (with a tilt angle of $\SI{3.9}{\degree}$ and a tissue thickness of $\SI{60}{\micro\meter}$), the tilted light path is measured about $\SI{4}{\pixel}$ away from the non-tilting measurement.
+This means that other parts of the tissue affect the light from the different tilt views.
+This effect can be neglected for homogeneous tissue regions, such as parts in the dense \ac{WM}.
+However, for single fiber paths, such as visible in the \ac{GM} or complicated paths like in crossing the effect on th inclination analysis is an open question.
 %
 %
 %
@@ -184,12 +183,12 @@ Ernst Abbe was one of the first to describe that the resolution correlates with 
 d=\frac{ \lambda}{2 n \sin \theta} = \frac{\lambda}{2\mathrm{NA}} 
 \end{align}
 $d$ is the minimum resolvable distance, $n$ the refractive index, $\theta$ the angle of a light spot, which can be combined to the better known numerical aperture $\mathrm{NA}$.
-A more common definition is Rayleigh limit given by
+A more common definition is the Rayleigh limit given by
 \begin{align}
-d=1.22\frac{\lambda}{2\mathrm{NA}} 
+d=1.22\frac{\lambda}{2\mathrm{NA}} \, ,
 \end{align}
-, where $d$ is the distance between two light spots, where the first light spots maxima is in the seconds light spots first minima (see \cref{fig:rayleigh}).
-For the wavelength used in \ac{3D-PLI} with $\lambda = \SI{525}{\nano\meter}$ and a numerical aperture of $\mathrm{NA} \approx \SI{0.15}{}$, which results in a limit of about $\SI{2.1}{\micro\meter}$ (see \cite{MenzelDissertation}).
+where $d$ is the distance between two light spots, where the first light spots maxima is in the second light first minima (see \cref{fig:rayleigh}).
+The wavelength used in \ac{3D-PLI} is $\lambda = \SI{525}{\nano\meter}$ and a numerical aperture of $\mathrm{NA} \approx \SI{0.15}{}$, which results in a limit of about $\SI{2.1}{\micro\meter}$ \cite{MenzelDissertation}.
 %
 \begin{figure}[!t]
 \setlength{\tikzwidth}{0.5\textwidth}
