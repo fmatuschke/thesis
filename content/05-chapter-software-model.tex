@@ -19,51 +19,42 @@ Therefore, one needs ideally a representation, which allows building any kind of
 %
 Many representations of fiber structures are already available, which are commonly used in graphical visualizations.
 A rope or fiber, \ie{}, a tube object, is defined by a trajectory with a radius.
-From this, a surrounding mesh is generated with n-polygonal vertices.
-In visualization, the mesh is used to apply textures onto the surface.
+A surrounding mesh is generated with n-polygonal vertices.
+For visualization, the mesh is used to apply textures onto the surface.
 Such meshes are \eg{} used in Monte Carlo simulations of \ac{dMRI} \cite{Ginsburger2019,ginsburgerDis2019}.
 Using meshes helps to calculate whether a water molecule travels through the surface of a nerve fiber, \ie{}, the surface of the mesh.
-However, this representation is very computationally intensive because the number of triangular faces that must be present in the mesh is quite high.
-Here a different approach was chosen due to an additional requirement.
+However, this representation is very computationally intensive since the number of triangular faces that must be present in the mesh are quite high.
 \par
 %
 When creating complex nerve fiber structures, it is important that the nerve fibers do not overlap.
 To achieve non overlapping fibers, either the user must define such a structure in advance, or a computer algorithm must build such structures automatically.
-Considering the immense number of configuration possibilities that nerve fibers can have even in a small volume, the task is almost impossible for a user to solve except for trivial configurations.
-The same is true for a computer algorithm.
-One could write an algorithm that defines a single fiber in a volume and then places the next one, making sure that none overlaps and so on.
-This works well up to a point.
-Even if an algorithm always finds a solution to find a path through a partially filled volume, at some point the volume will appear to be full, but still have plenty of free space between fibers.
-Of course, one can minimize this behavior by trying to place nearly parallel fibers, but again, looking at real tissue data, \eg{} \cref{fig:brainMyelinStain,fig:elecMic}, this does not reflect reality.
-In a fiber bundle, the fibers are so densely packed that they touch and deform each other.
+Considering the immense number of configuration possibilities that nerve fibers can have even in a small volume, the task is almost impossible f
 \par
 %
-The solution found in this work is to allow the placement of nerve fibers in any way and without any restriction.
-The overlap will be removed in a secondary step.
-Check all fibers for collisions with each other.
-If a collision occurs, try to remove it by moving the colliding parts slightly away from each other.
-Repeat this step until all collisions are removed.
+The solution found in this work is to initially allow the placement of nerve fibers in any trajectory and without restrictions.
+The overlap of the fibers will be removed in a secondary step, by checking all fibers for collisions with each other.
+If a collision occurs, the algorithm try to remove it by moving the colliding parts slightly away from each other.
+This step is repeated until the volume has no collisions.
 \par
 %
-This idea with all its necessary prerequisites is described in detail in the following chapter.
-First, the representation of a nerve fiber is defined in a way that it takes into account to be as performant as possible for the collision process.
-Then, additional \textit{building} functions are designed to help the user quickly define a volume with nerve fibers.
+The nerve fibres simulation and all its necessary prerequisites is described in detail in the this chapter.
+First, the representation of a nerve fiber is defined considering the performance for collision optimization.
+Then, additional \textit{building} functions are designed to help the user define a volume with nerve fibers quickly.
 Finally, the algorithm for resolving the collisions with the parallelization components is explained in detail.
-In addition, another approach based on this idea and developed in this work with colleagues from \ac{dMRI} is described as well.
-In the additional algorithm one focuses also on the placement of neurons such as astrocytes or olegodendrocytes in a volume with fibers.
+In this chapter, another tissue modeling method developed in collaboration with Neurospin \ac{CEA} is presented, in which neurons such as astrocytes or oligodendrocytes are placed in a volume containing fibers that are relevant for simulations in \ac{dMRI}.
 \par
 %
-All described algorithms here are part of the toolbox \ac{fastPLI} \cite{Matuschke2019, Matuschke2021}, which is described in detail in \cref{chap:Software}.
-The original idea of a collision solving algorithm is published in \cite{Matuschke2019}.
+The algorithms are part of the toolbox \ac{fastPLI} \cite{Matuschke2019, Matuschke2021}, which is described in detail in \cref{chap:Software}.
+The original idea of a collision solving algorithm was initially published in \cite{Matuschke2019}.
 %
 %
 %
 \section{Nerve fiber representation}
 \label{sec:nerve_fiber_representation}
 %
-Nerve fibers themselves are tube-like structures surrounded by an electrically insulating lipid layer of myelin (see \cref{sec:fiberArchitecture}).
-Both the diameter of the axon and the thickness of the myelin can vary greatly from fiber to fiber (see \cref{sec:axonMicroscopy,tab:gratio}).
-This means that the representation of nerve fiber models should be able to represent such variations as well.
+Nerve fibers are tube-like structures surrounded by an electrically insulating lipid layer of myelin (see \cref{sec:fiberArchitecture}).
+Both the diameter of the axon and the thickness of the myelin can vary from fiber to fiber (see \cref{sec:axonMicroscopy,tab:gratio}), which
+means that the representation of nerve fiber models should account for such variations.
 \par
 %
 As described in \cref{sec:fiberArchitecture} \ac{WM} consist of nerve fibers packed tightly together in nerve fiber bundles (see \cref{fig:elecMic}).
