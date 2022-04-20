@@ -41,7 +41,7 @@ It represents a discrete, voxel model of the tissue.
 This helps to drastically speed up the light matter interaction of the next step (see \cref{sec:simulation}), at the cost of a large memory requirement.
 \par
 %
-The discretized tissue volume represents a cuboid divided into smaller cubes of equal size, called voxels, \ie{},3D pixels (see \cref{fig:discVol}).
+The discretized tissue volume represents a cuboid divided into smaller cubes of equal size, called voxels, \ie{}, 3D pixels (see \cref{fig:discVol}).
 Each voxel contains the physical properties absorption, birefringence and optical axis orientation of the tissue at its current position.
 The total volume is bounded by a \ac{AABB} or \ac{VOI} defined by a minimum and maximum value $\voi = [(x_{\mathit{min}}, y_{\mathit{min}}, z_{\mathit{min}}), (x_{\mathit{max}}, y_{\mathit{max}}, z_{\mathit{max}})]$.
 Additionally, the parameter \Voxelsize{} \voxelsize{} is set to a floating point number and defines the edge length of the equilateral voxels.
@@ -197,7 +197,7 @@ The first uses \ac{OpenMP} to parallelize the filling of the \ac{AABB} volume of
 The second uses \ac{MPI} to allow distribution across multiple \ac{CPU} cores without sharing memory (detailed description in \cref{sec:mpiSim}).
 \par
 %
-Parallelizing the filling process of the voxels of the discretized volume leads to a race condition when multiple threads want to write or read to the same memory address, \ie{},the same coordinate in the volume.
+Parallelizing the filling process of the voxels of the discretized volume leads to a race condition when multiple threads want to write or read to the same memory address, \ie{}, the same coordinate in the volume.
 A solution with a lock would be very slow and since many of the voxels do not need to be overwritten, most of the locks would be unnecessary.
 To share the work, thread $n$ processes only the memory for the first index $i$ (or volume dimension $x$) if:
 %
@@ -323,7 +323,7 @@ This means that the physical properties stored in the arrays have to be interpol
 \end{figure}
 %
 Currently, three interpolation methods are implemented: \name{nearest neighbor}, \name{linear interpolation} and \name{spherical interpolation}.
-The voxels considered for interpolation are the nearest eight neighboring voxels, \ie{},array indices $(\floor{x\pm0.5},\floor{y\pm0.5},\floor{y\pm0.5})$.
+The voxels considered for interpolation are the nearest eight neighboring voxels, \ie{}, array indices $(\floor{x\pm0.5},\floor{y\pm0.5},\floor{y\pm0.5})$.
 The \name{nearest neighbor} and \name{linear interpolation} are still present from the development phase.
 However, they should not be used because they are error-prone.
 Since the data are orientations, the default value for the interpolation method \name{spherical interpolation} should be used.

@@ -63,7 +63,7 @@ To calculate the absorption coefficient for the models, one must consider the vo
 For the models $\fiberRadiusMean = \SI{0.5}{\micro\meter}$, the volume fraction is about $\SI{75}{\percent}$.
 The average transmittance in the foreground is about $\SI{1000}{\arbitraryunit}$ and in the background about $\SI{4500}{\arbitraryunit}$.\footnote{The relative transmittance can be changed by adjusting the exposure time of the microscope}
 This results in an absorption coefficient of about $\mu = \SI{30}{\milli\meter\tothe{-1}}$.
-To calculate birefringence, one must also take into account the g-ratio, \ie{},the myelin thickness.
+To calculate birefringence, one must also take into account the g-ratio, \ie{}, the myelin thickness.
 A g-ratio of $\SI{75}{\percent}$ gives a birefringence of about $\SI{0.008}{}$ for the radial model when using a median value of the retardation of $\SI{0.8}{}$.
 %
 % 
@@ -280,7 +280,7 @@ With a pixel size of $\SI{1.3}{\micro\meter}$ and a volume of $\SI{65}{\micro\me
 % 
 To analyze the simulation results the standard \ac{3D-PLI} analysis pipline, containing the foure analysis (see \dummy{}) and the tilt analysis (see \dummy{}), are performed.
 From the fourie analysis the modalities transmittance and retardation are shown.
-The tilt analysis \dummy{} the orientation of each pixel, \ie{},direction and inclination, the effective birefringend thickness \trel{} and the \rvalue{} of the fitting model:
+The tilt analysis \dummy{} the orientation of each pixel, \ie{}, direction and inclination, the effective birefringend thickness \trel{} and the \rvalue{} of the fitting model:
 \begin{align}
     R = \mean{|I_i-F_i|} \label{eq:rvalue}
 \end{align}
@@ -391,7 +391,7 @@ At an inclination angle of $\SI{90}{\degree}$ the maximum \accvalue{} is reached
 \subsection{Crossing flat fiber populations}
 \label{sec:resCrossFlat}
 %
-This simulation focuses on two flat crossing fiber populations, \ie{},in the $x-y$-plane.
+This simulation focuses on two flat crossing fiber populations, \ie{}, in the $x-y$-plane.
 \Cref{fig:flat_03_fiber_pop_hist,fig:flat_05_fiber_pop_hist} shows the distribution of orientations for the model fiber segments and the resulting tilt analysis orientations for $\modelPsi = \SI{30}{\percent}$ and $\modelPsi = \SI{50}{\percent}$.
 The additional fiber population fractions are available in \cref{app:flat_fiber_pop_a,app:flat_fiber_pop_b,app:flat_fiber_pop_c,app:flat_fiber_pop_d,app:flat_fiber_pop_e}.
 \par
@@ -738,13 +738,13 @@ It describes the mean absolute difference between the data and the fitted data f
 \end{figure}
 %
 For a fiber population fraction of $\modelPsi=\SI{10}{\percent}$ and a primary inclination angle $\modelInc\leq\SI{30}{\degree}$ the orientation of the second fiber population does not change the \rvalue{} of the tilt analysis.
-For $\modelInc=\SI{60}{\degree}$ the \rvalue{} starts increasing for secondary fiber orientations towards the xy-plane, \ie{},secondary flat fiber orientations.
+For $\modelInc=\SI{60}{\degree}$ the \rvalue{} starts increasing for secondary fiber orientations towards the xy-plane, \ie{}, secondary flat fiber orientations.
 The \rvalue{} increases even more significant in the case of $\modelInc=\SI{90}{\degree}$ in this area. 
 \par
 % 
 For fiber population fractions $\modelPsi=\SI{30}{\percent}$ and $\modelInc=\SI{0}{\degree}$, the \rvalue{} remains low for flat crossing fiber configurations.
 Along the z-axis the \rvalue{} is slightly increased.
-For $\modelInc=\SI{30}{\degree}$ an slightly increased bend shape becomes visible close to the y-axis slightly towords the negative x-axis, \ie{},$\modelOmega \approx \SI{90}{\degree}$.
+For $\modelInc=\SI{30}{\degree}$ an slightly increased bend shape becomes visible close to the y-axis slightly towords the negative x-axis, \ie{}, $\modelOmega \approx \SI{90}{\degree}$.
 Inclination angles of $\SIlist{60;90}{\degree}$ show the same behavier as for the $\modelPsi=\SI{10}{\percent}$ case, however the \rvalue does not increases as much.
 \par
 %
@@ -801,7 +801,7 @@ For the last shown fiber population fraction $\modelPsi=\SI{90}{\degree}$ the op
 % 
 \paragraph{acc-value}
 % 
-\Cref{fig:sim_ana_acc} shows the \acreset{ACC} \ac{ACC} value, \ie{},how well the coefficients of the \ac{ODF} basis function are matched \cite{Schilling2018}.
+\Cref{fig:sim_ana_acc} shows the \acreset{ACC} \ac{ACC} value, \ie{}, how well the coefficients of the \ac{ODF} basis function are matched \cite{Schilling2018}.
 \par
 %
 \begin{figure}[!p]
@@ -827,7 +827,7 @@ The $\modelInc = \SI{90}{\degree}$ configuration reaches its maximum \accvalue{}
 %
 The first to fiber inclinations $\modelInc = \SIlist{0;30}{\degree}$ for $\modelPsi=\SI{70}{\percent}$ show a similar distribution of the \accvalue{}. 
 Small reductions are visible.
-For $\modelInc=\SI{60}{\degree}$, the \accvalue{} is highest at low crossing angles $\modelOmega$, \ie{},near the first fiber population.
+For $\modelInc=\SI{60}{\degree}$, the \accvalue{} is highest at low crossing angles $\modelOmega$, \ie{}, near the first fiber population.
 The \accvalue{} decreases significantly at higher crossing angles.
 In the case of $\modelInc=\SI{90}{\degree}$ this is also visible, but the minimum for the \accvalue{} is higher than in the previous case $\modelInc=\SI{60}{\degree}$.
 \par
@@ -848,7 +848,7 @@ Fiber population fractions of $\modelPsi \geq \SI{90}{\percent}$ or $\modelPsi \
 \Cref{sec:resSingleIncl} shows the results for the case of a single fiber population with inclined configurations.
 The transmittance values show an increase for the last free inclination values.
 This is to be expected since the 3D model configurations are aligned in parallel along an axis with some randomness.
-When this axis is aligned along the z-axis, \ie{},$\modelInc=\SI{90}{\degree}$, the light rays, which also travel along the z-axis, statistically strike less tissue, so the transmittance must increase.
+When this axis is aligned along the z-axis, \ie{}, $\modelInc=\SI{90}{\degree}$, the light rays, which also travel along the z-axis, statistically strike less tissue, so the transmittance must increase.
 Since the density of the tissue is quite high, the effect is only a few percent.
 In reality, however, one must take into account that additional effects such as light scattering also have a significant effect on the transmittance \cite{Menzel2021}.
 The variance of the transmittance corresponds to the variance of the noise model.
@@ -856,7 +856,7 @@ The variance of the transmittance corresponds to the variance of the noise model
 %
 The retardation behaves similarly to the theoretical curve for a single retardation signal (see \cref{eq:pli_signal}).
 However, the analyzed retardation is slightly higher.
-The theoretical signal is calculated by normalizing $\cos(\modelInc)^2$ with the analyzed retardation for the flat case, \ie{},$\modelInc = \SI{0}{\degree}$.
+The theoretical signal is calculated by normalizing $\cos(\modelInc)^2$ with the analyzed retardation for the flat case, \ie{}, $\modelInc = \SI{0}{\degree}$.
 This could explain the reduced values of the theretical line compared to the simulation results for the mid range inclinations.
 \par
 %
@@ -882,9 +882,9 @@ This indicates that the tilt analysis is unable to find a local minimum for \tre
 This may be one of the following three reasons.
 First, there is no local minimum with $\trel<1$.
 Second, there is a local minimum, but the optimizer is not able to find it with the initial values.
-Finally, there is a local minimum, but the solution found with a \trel{} value $>1$ is a better choice, \ie{},has a lower $R^2$ value.
+Finally, there is a local minimum, but the solution found with a \trel{} value $>1$ is a better choice, \ie{}, has a lower $R^2$ value.
 Which of these is true cannot be said from this data and remains an interesting investigation for the future.
-However, up to this point, the \trel{} value can be used to indicate that these values cannot be trusted, \ie{},the resulting orientation is not trustworthy.
+However, up to this point, the \trel{} value can be used to indicate that these values cannot be trusted, \ie{}, the resulting orientation is not trustworthy.
 \par
 % 
 The \rvalue{} reflects the noise on the signal for all inclination angles and stays constant.
@@ -900,7 +900,7 @@ For an inclination angle of about $\modelInc = \SI{80}{\degree}$, a minimum is v
 Therefore the \ac{ODF} similary has to also increase again.
 \par
 % 
-The information about orientation, \ie{},direction and inclination, is also visible in the histogram (\todo{ref}).
+The information about orientation, \ie{}, direction and inclination, is also visible in the histogram (\todo{ref}).
 However, the statistical limits are not quite as easy to see, \eg median or quantiles.
 Nevertheless, it is a good and fast way to give visual feedback to the user, especially because the information about direction and inclination is not decoupled.
 \par
@@ -950,7 +950,7 @@ This agrees with theory as long as the tilt analysis is able to find the minimum
 \par
 %
 The measured opening angle, \openingAngle{}, does not agree with the underlying distributions of the orientation of the fiber segments.
-However, this is to be expected since in a single voxel, \ie{},has a volume of $\SI{1.3}{\micro\meter} \times \SI{1.3}{\micro\meter} \times \SI{60}{\micro\meter}$, there are many fiber segments with which the light, \ie{},all light rays, incident on the same ccd pixel can interact.
+However, this is to be expected since in a single voxel, \ie{}, has a volume of $\SI{1.3}{\micro\meter} \times \SI{1.3}{\micro\meter} \times \SI{60}{\micro\meter}$, there are many fiber segments with which the light, \ie{}, all light rays, incident on the same ccd pixel can interact.
 This means that an average signal is measured and analyzed.
 Average value for an aperture angle means, of course, a decrease of its value.
 The fact that the measured aperture angles increase with increasing crossing angle is also to be expected.
@@ -963,7 +963,7 @@ The minima is higher for \modelPsi{} near $0$ or $1$.
 The curve is explained by the fact that with the currently used tilt analysis only the main fiber orientation, more precisely the circular mean, can be determined from the measured signal.
 Therefore, the \accvalue{} must shrink.
 However, beyond a certain point, the delay is reduced to such an extent that the uncertainty increases to such an extent that the measured orientations become more and more random.
-Therefore, the \ac{ODF} of the measured signal becomes more and more spherical, which after a certain point, \ie{},the minima, is closer to the \ac{ODF} of the model than a \ac{ODF} that predicts only one main orientation, \ie{},a cigar shape.
+Therefore, the \ac{ODF} of the measured signal becomes more and more spherical, which after a certain point, \ie{}, the minima, is closer to the \ac{ODF} of the model than a \ac{ODF} that predicts only one main orientation, \ie{}, a cigar shape.
 This also explains why the position of the minimum is closer to $\SI{90}{\degree}$ for fiber population proportions closer to $\SI{50}{\percent}$, because the intersection of the \ac{ODF} of fiber segments is more pronounced.
 % 
 \paragraph{inclined crossing}
