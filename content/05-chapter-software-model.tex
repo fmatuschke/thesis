@@ -19,11 +19,11 @@ Therefore, one needs ideally a representation, which allows building any kind of
 %
 Many representations are already available.
 A common one is used in graphical visualizations.
-A rope or fiber, \ie{} a tube object, is defined by a trajectory with a radius.
+A rope or fiber, \ie{},a tube object, is defined by a trajectory with a radius.
 From this, a surrounding mesh is generated with n-polygonal vertices.
 In visualization, the mesh is used to apply textures onto the surface.
 Such meshes are \eg{} used in Monte Carlo simulations of \ac{dMRI} \cite{Ginsburger2019,ginsburgerDis2019}.
-Using meshes helps to calculate whether a water molecule travels through the surface of a nerve fiber, \ie{} the surface of the mesh.
+Using meshes helps to calculate whether a water molecule travels through the surface of a nerve fiber, \ie{},the surface of the mesh.
 However, this representation is very computationally intensive because the number of triangular faces that must be present in the mesh is quite high.
 Here a different approach was chosen due to an additional requirement.
 \par
@@ -75,7 +75,7 @@ Such structures are a key element to increase the understanding \ac{3D-PLI}.
 Therefore, it is particularly important that the models are able to create such structures without overlapping individual fibers.
 \par
 %
-To represent individual nerve fibers a parametric function describing a path in 3D space, \ie{} a trajectory, is used.
+To represent individual nerve fibers a parametric function describing a path in 3D space, \ie{},a trajectory, is used.
 In addition, a fourth element describes the radius of the fiber at the same point:
 % 
 \begin{align}
@@ -194,9 +194,9 @@ Essentially, for each resulting $\mathit{fiber}_j$, this means:
 \end{align}
 % 
 However, the question is which rotation matrix $\mat{R}$ has to be applied.
-Since a trajectory is only a 2D object, \ie{} a line, no unique normal vector can be defined.
+Since a trajectory is only a 2D object, \ie{},a line, no unique normal vector can be defined.
 In mathematics, the torsion of a curve can be defined with a principal normal vector and a binormal vector.
-However, this has the problem that a line such as a helical function has a torsion, \ie{} the line rotates along its path.
+However, this has the problem that a line such as a helical function has a torsion, \ie{},the line rotates along its path.
 This would mean that  individual fibers rotate around the path of the fiber bundle if the seed point plane were placed according to the principal and binormal vectors.
 This is possible in principle, but practically non-existent in real tissue.
 \par
@@ -499,13 +499,13 @@ def octree(volume, objects):
 %
 The idea of tree generation is the following:
 At the beginning, all objects must be sorted into the eight \name{leafs} of the current node (if the number of objects is not too small).
-This means that for each object it must be checked whether there is a collision with one or more of the eight \name{leafs}, \ie{} the cubic sub-volumes.
+This means that for each object it must be checked whether there is a collision with one or more of the eight \name{leafs}, \ie{},the cubic sub-volumes.
 However, since this already implies a high checking effort, the checking function should be as fast as possible.
 For this purpose, analogous to the object collision check (see \cref{fig:collision2D}), only the \ac{AABB} of the object is checked for collision with the leaf volume, which is also a \ac{AABB}.
 This means that there may be cases where an object is placed in a sub-volume to which it does not belong.
 However, in this case, the increasing speed of the checking process is an advantage.
 Once all objects are sorted into their respective sub-volumes, recursion can begin.
-Since a branch can be considered a node, the same algorithm can be executed until a desired boundary or property is reached, \ie{} recursive execution.
+Since a branch can be considered a node, the same algorithm can be executed until a desired boundary or property is reached, \ie{},recursive execution.
 This means that the current (sub-)volume is split into eight sub-volumes again, if necessary, and the objects of the current (sub-)volume are sorted into the new sub-volumes.
 The recursion also means that the next function call must contain a list of the current objects.
 This means that the objects must either be copied, which is time-consuming, or referenced by \eg{} and index, which is also time-consuming because the data is accessed randomly in memory.
@@ -645,7 +645,7 @@ If any point $\vec{p}_{i}$ in a fiber fails these boundary conditions, the three
 All movements are stored additive in a velocity array before the total movement is executed.
 The maximum velocity is limited by $v_{\max} = 0.1 \times \min(\mathit{\fiberRadius})$.\footnote{This value has proven to be appropriate during the testing phase of this algorithm. Speedup may still be possible by changing this value without significantly changing the results.}
 This is a constraint that is necessary due to the following two required properties:
-First, an object should not be allowed passing through another object, \ie{} the velocity should always be $<min(\fiberRadius)$.
+First, an object should not be allowed passing through another object, \ie{},the velocity should always be $<min(\fiberRadius)$.
 Second, it smooths the motion and thus the maximum achievable density of the resulting models.
 \par
 % 
@@ -730,7 +730,7 @@ Not only the outer hull of the myelin, but also the inner axon needs to be seen 
 Additionally, cells, \eg{} astrocytes, have to be visualized.
 For this purpose, the former algorithm was rewritten.
 For the transparent effects the algorithm needs to know the order in which the objects or triangular surfaces needs to be rendered.
-This means, that the triangular surfaces have to be sorted in z-direction, \ie{} the view direction.
+This means, that the triangular surfaces have to be sorted in z-direction, \ie{},the view direction.
 To order the triangular surfaces, they first have to be calculated.
 The fiber segments are no longer represented as a cylinder, but as \ac{CC} which consist out of a hexagonal grid (see \cref{fig:vis_mesh}).
 \par

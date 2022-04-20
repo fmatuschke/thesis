@@ -118,7 +118,7 @@ This results in a total number of $\SI{82}{}$ models are required.
 % 
 \subsection{Fiber placement}
 %
-To design the individual fiber configurations for each fiber population, the methods described in \cref{sec:sandbox} are used, \ie{} generating fiber bundles with seed points.
+To design the individual fiber configurations for each fiber population, the methods described in \cref{sec:sandbox} are used, \ie{},generating fiber bundles with seed points.
 Seed points on a 2D plane are generated with a uniform distribution:
 \begin{align}
 p_i = (\mathrm{Uniform}(-\frac{1}{2}\mathit{L}, \, \frac{1}{2}\mathit{L}), \mathrm{Uniform}(-\frac{1}{2}\mathit{L}, \, \frac{1}{2}\mathit{L}))
@@ -187,7 +187,7 @@ r_i &= r_i \cdot \mathrm{LogNormal}(\mu=0,\sigma=0.05)
 %
 The shape control mechanisms used in the algorithm of the collision solver \code{fastpli.model.solver} (see \cref{chap:sof:modelling}) must be characterized.
 These are the mean segment length \segLength{} and the minimum allowed radius of curvature \segRadius{}.
-It must be ensured that a set of parameters is identified that ensures that the configurations entered by the user remain the same \ie{} the orientation distributions remain intact with respect to the fact that the fiber segments must move.
+It must be ensured that a set of parameters is identified that ensures that the configurations entered by the user remain the same \ie{},the orientation distributions remain intact with respect to the fact that the fiber segments must move.
 In addition, the achievable fiber density for this parameter set should remain high.
 Finally, it must also be ensured that a parameter set can be chosen that has an acceptable runtime.
 The runtime should be minimized if possible, since it is a limited resource.
@@ -300,7 +300,7 @@ The step time slowly decreases to about half the time required for the first ste
 The variance increases as the step size increases and can reach about half an order of magnitude in the case of \segLengthFactor{}.
 \par
 %
-The total runtime, \ie{} the last data point in the graph, increases with \segLengthFactor{}.
+The total runtime, \ie{},the last data point in the graph, increases with \segLengthFactor{}.
 The other parameters seem to have almost no effect.
 It ranges from $\SI{1000}{\second}$ to $\SI{10000}{\second}$.
 \par
