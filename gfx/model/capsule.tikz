@@ -43,7 +43,7 @@
 \draw[thick, dashed] (4,0) arc (0:180:2 and 1);
 \draw[thick] (4,0) arc (0:-180:2 and 1.75);
 %
-\draw[<->] (2,0) -- (2,\h) node[midway, above] {$h$};
+\draw[<->] (2,0) -- (2,\h) node[midway, above] {$\vec{d}$};
 \draw[->] (2,\h) -- (3.5,\h) node[midway, left] {$r_0$};
 \draw[->] (2,0) -- (4,0) node[midway, right] {$r_1$};
 %

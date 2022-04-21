@@ -57,24 +57,24 @@ Both the diameter of the axon and the thickness of the myelin can vary from fibe
 means that the representation of nerve fiber models should account for such variations.
 \par
 %
-As described in \cref{sec:fiberArchitecture} \ac{WM} consist of nerve fibers packed tightly together in nerve fiber bundles (see \cref{fig:elecMic}).
+As described in \cref{sec:fiberArchitecture}, \ac{WM} consists of nerve fibers packed tightly together in nerve fiber bundles (see \cref{fig:elecMic}).
 These bundles can join with other bundles and traverse the brain to connect one region to another.
-The bundles are able to cross each other, either by crossing the individual nerve fibers or bypassing the fiber bundles, which can form interwoven structures.
+The bundles can cross each other, either by crossing the individual nerve fibers or bypassing the fiber bundles, forming interwoven structures.
 \footnote{The terminology \say{crossing} is relative to the resolution and voxel size.}
-Such structures are a key element to increase the understanding \ac{3D-PLI}.
-Therefore, it is particularly important that the models are able to create such structures without overlapping individual fibers.
+Such structures are essential to increase the understanding of \ac{3D-PLI}.
+Therefore, the simulation models must create such configurations without overlapping individual fibers.
 \par
 %
-To represent individual nerve fibers a parametric function describing a path in 3D space, \ie{}, a trajectory, is used.
-In addition, a fourth element describes the radius of the fiber at the same point:
+To represent individual nerve fibers a function $\vec{f}(t)$ describing a path in 3D space, \ie{}, a parametrized curve $(x(t), y(t), z(t))$, is used.
+In addition, a fourth element describes the radius $(r(t))$ of the fiber at the same point:
 % 
 \begin{align}
-f(t) \rightarrow (x(t),y(t), z(t), r(t))
+\vec{f}(t) \rightarrow (x(t), y(t), z(t), r(t)) \; | \; t \in \mathbb{R}
 \end{align}
 % 
 However, a continuous representation does not allow simple subsequent changes, such as resolving collisions.
 For this purpose, individual elements are more manageable, allowing movement or deformation.
-Therefore, the function or fiber is divided into smaller discrete segments.
+The fiber is then described by a list of 4D points $(x,y,z,r)$, which can be interpreted as a chain of cylindrical fiber segments (see \cref{fig:fiberReb}):
 %
 \begin{figure}[!t]
     \setlength{\tikzwidth}{0.85\textwidth}
@@ -84,29 +84,27 @@ Therefore, the function or fiber is divided into smaller discrete segments.
 	\caption[]{Representation of a nerve fiber from a list of spheres.}
 	\label{fig:fiberReb}
 \end{figure}
-%
-Therefore, the fiber can be described by a list of 4D points $(x,y,z,r)$, which can be interpreted as a chain of cylindrical fiber segments (see \cref{fig:fiberReb}):
+% 
 \begin{align}
 \begin{gathered}
 \mathit{fiber} = \left\{ \vec{p}_i=(x_i,y_i,z_i), r_i \mid x,y,z \in \mathbb{R}, \, r \in \mathbb{R^+}, \, i \in \{0,1,...,N_{\mathit{points}}-1\}\right\} \\
-\mathit{fiber\_segment}_i = (\vec{p}_i, \vec{p}_{i+1}, r_i, r_{i+1}), \, i \in \{0,1,...,N_{\mathit{points}}-2\}
+\mathit{fiber\tum{}segment}_i = (\vec{p}_i, \vec{p}_{i+1}, r_i, r_{i+1}), \, i \in \{0,1,...,N_{\mathit{points}}-2\} \, .
 \end{gathered}
 \end{align}
-%
-\begin{figure}[!t]
-    \centering
-    \setlength{\tikzwidth}{0.5\textwidth}
-    \inputtikz{gfx/model/capsule}
-	\caption{Schematic of a fiber segment represented by a  \acreset{CC} \ac{CC}.}
-	\label{fig:conical}
-\end{figure}
 %
 Since the fiber radius can change from one point to an adjacent point, the segment can be conical.
 Therefore, the fiber segments describe a \ac{CC} (see \cref{fig:conical}).
 \par
 %
-This representation has the advantage over a mesh representation of a surface that much fewer data is needed for the representation.
-This will increase the computational speed, which will be crucial for a collision solving algorithm.
+\begin{figure}[!t]
+    \centering
+    \setlength{\tikzwidth}{0.5\textwidth}
+    \inputtikz{gfx/model/capsule}
+	\caption{Schematic of a fiber segment represented by a \acreset{CC} \ac{CC} by a distance $\vec{d}$ and two radii $r_0$ and $r_1$.}
+	\label{fig:conical}
+\end{figure}
+%
+This representation has the advantage that much less data is needed than a surface's mesh representation, which increases the computational speed for the collision solving algorithm.
 %
 % 
 % 
@@ -124,6 +122,18 @@ The first module handles the seeding process, while the second part builds up a 
 % 
 \subsection{Seeding fiber bundles}\label{sec:seeds}
 %
+Seed points are stored as a list of 2D points:
+\begin{align}
+    \mathit{seeds} = \left\{ \vec{p}_i=(x_i,y_i) \mid x,y \in \mathbb{R} , \, i \in \{0,1,...,N_{\mathit{seed\_points}}-1\}\right\}
+\end{align}
+%
+To form particularly dense fiber bundles, a method for generating an equilateral triangular grid is implemented (see \ref{fig:triGrid}).
+Mathematically, this yields the most densely packed pattern for circles with equal radius in a 2D area.
+However, this very regular symmetric grid can lead to unrealistic results (\eg{} diffraction pattern in light wave simulation \cite{MenzelDissertation}).
+It should therefore only be used as an initial configuration.
+Since the initial configurations are often unknown, it is probably best to choose a random distribution (see \cref{fig:rndGrid}).
+For a circular boundary, this can be generated for example with:
+%
 \begin{figure}[!t]
     \setlength{\tikzheight}{0.25\textwidth}
     \centering
@@ -135,21 +145,8 @@ The first module handles the seeding process, while the second part builds up a 
     \hfill
     \subcaptionbox{\label{fig:crossBundle}populated fiber bundles}
     [0.3\textwidth]{\inputtikz{gfx/model/crossing_bundle}}
-	\caption{Populating fiber bundles with 2D seed points.}
-% 	\label{fig:}
+    \caption{Populating fiber bundles with 2D seed points.}
 \end{figure}
-%
-Seed points are stored as a list of 2D points:
-\begin{align}
-\mathit{seeds} = \left\{ \vec{p}_i=(x_i,y_i) \mid x,y \in \mathbb{R} , \, i \in \{0,1,...,N_{\mathit{seed\_points}}-1\}\right\}
-\end{align}
-%
-To form particularly dense fiber bundles, a method for generating an equilateral triangular grid is implemented (see \ref{fig:triGrid}).
-Mathematically, this yields the most densely packed pattern for circles with equal radius in a 2D area.
-However, this very regular symmetric grid can lead to unrealistic results (\eg{} diffraction pattern in light wave simulation \cite{MenzelDissertation}).
-It should therefore only be used as an initial configuration.
-Since the initial configurations are often unknown, it is probably best to choose a random distribution (see \cref{fig:rndGrid}).
-For a circular boundary, this can be generated for example with:
 % 
 \begin{equation}
 \begin{split}
@@ -176,7 +173,7 @@ y = r \sin(\varphi)
 	\label{fig:torsion}
 \end{figure}
 %
-To populate a fiber bundle, the plane containing the seed points is placed at each fiber bundle point $\vec{fb}_i$ along the trajectory.
+To populate a fiber bundle (see \cref{fig:crossBundle}), the plane containing the seed points is placed at each fiber bundle point $\vec{fb}_i$ along the trajectory.
 Essentially, for each resulting $\mathit{fiber}_j$, this means:
 % 
 \begin{align}
