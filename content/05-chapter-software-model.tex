@@ -87,8 +87,8 @@ The fiber is then described by a list of 4D points $(x,y,z,r)$, which can be int
 % 
 \begin{align}
 \begin{gathered}
-\mathit{fiber} = \left\{ \vec{p}_i=(x_i,y_i,z_i), r_i \mid x,y,z \in \mathbb{R}, \, r \in \mathbb{R^+}, \, i \in \{0,1,...,N_{\mathit{points}}-1\}\right\} \\
-\mathit{fiber\tum{}segment}_i = (\vec{p}_i, \vec{p}_{i+1}, r_i, r_{i+1}), \, i \in \{0,1,...,N_{\mathit{points}}-2\} \, .
+\mathit{fiber} \coloneqq \left\{ \vec{p}_i=(x_i,y_i,z_i), r_i \mid x,y,z \in \mathbb{R}, \, r \in \mathbb{R^+}, \, i \in \{0,1,...,N_{\mathit{points}}-1\}\right\} \\
+\mathit{fiber\tum{}segment}_i \coloneqq (\vec{p}_i, \vec{p}_{i+1}, r_i, r_{i+1}), \, i \in \{0,1,...,N_{\mathit{points}}-2\} \, .
 \end{gathered}
 \end{align}
 %
@@ -110,12 +110,12 @@ This representation has the advantage that much less data is needed than a surfa
 % 
 \section{Sandbox}\label{sec:sandbox}
 %
-To build dense \ac{WM} models one needs to fill a volume with individual nerve fibers.
-To allow the user to build such volumes the \pymodule{fastpli.model.sandbox} was developed.
-The user is able to define a nerve fiber bundle geometry and fill it with a pattern of fibers and to generate nerve fiber bundles from cylindrical or cubical shapes.
+To build dense \ac{WM} models, one needs to fill a volume with individual nerve fibers.
+To allow the user to build such volumes, the module \pymodule{fastpli.model.sandbox} was developed.
+The user can define a nerve fiber bundle geometry and fill it with a fiber pattern, creating nerve fiber bundles from cylindrical or cubic shapes.
 \par
 %
-The \pymodule{fastpli.model.sandbox} module is divided into two successive submodules.
+The module \pymodule{fastpli.model.sandbox} is divided into two submodules.
 The first module handles the seeding process, while the second part builds up a nerve fiber bundle or volume filled with individual fibers from seed points.
 %
 % 
@@ -124,15 +124,15 @@ The first module handles the seeding process, while the second part builds up a 
 %
 Seed points are stored as a list of 2D points:
 \begin{align}
-    \mathit{seeds} = \left\{ \vec{p}_i=(x_i,y_i) \mid x,y \in \mathbb{R} , \, i \in \{0,1,...,N_{\mathit{seed\_points}}-1\}\right\}
+    \mathit{seeds} \coloneqq \left\{ \vec{p}_i=(x_i,y_i) \mid x,y \in \mathbb{R} , \, i \in \{0,1,...,N_{\mathit{seed\tum{}points}}-1\}\right\} \, .
 \end{align}
 %
 To form particularly dense fiber bundles, a method for generating an equilateral triangular grid is implemented (see \ref{fig:triGrid}).
 Mathematically, this yields the most densely packed pattern for circles with equal radius in a 2D area.
-However, this very regular symmetric grid can lead to unrealistic results (\eg{} diffraction pattern in light wave simulation \cite{MenzelDissertation}).
-It should therefore only be used as an initial configuration.
+However, a regular symmetric grid can lead to unrealistic results (\eg{} diffraction pattern in light wave simulation \cite{MenzelDissertation}).
+It should, therefore, only be used as an initial configuration.
 Since the initial configurations are often unknown, it is probably best to choose a random distribution (see \cref{fig:rndGrid}).
-For a circular boundary, this can be generated for example with:
+For a circular boundary with radius $R$, this can be sampled from a $\mathrm{uniform}$ distribution:
 %
 \begin{figure}[!t]
     \setlength{\tikzheight}{0.25\textwidth}
@@ -169,7 +169,7 @@ y = r \sin(\varphi)
     \setlength{\tikzwidth}{0.75\textwidth}
     % \tikzset{external/export=false}
     \inputtikz{gfx/model/min_torsion}
-	\caption{Left: Plane of seed points. Right: Plane are rotated and placed along the path. At the end, the plane has the same normal vector as the starting plane, but due to the principle of minimum rotation, the plane is rotated along the normal vector.}
+	\caption{Left: Plane of seed points. Right: The plane are rotated and placed along the path. At the end, the plane has the same normal vector as the starting plane, but due to the principle of minimum rotation, the plane is rotated along the normal vector.}
 	\label{fig:torsion}
 \end{figure}
 %
@@ -177,20 +177,17 @@ To populate a fiber bundle (see \cref{fig:crossBundle}), the plane containing th
 Essentially, for each resulting $\mathit{fiber}_j$, this means:
 % 
 \begin{align}
-    \mathit{fiber}_j = \left\{ \mat{R} \cdot (x_j, y_j, 0) + \vec{fb}_i \, | \, i \in \{0,1,...,N_{\mathit{seed\_points}}-1\}\right\}
+    \mathit{fiber}_j = \left\{ \mat{R} \cdot (x_j, y_j, 0) + \vec{fb}_i \, | \, i \in \{0,1,...,N_{\mathit{seed\tum{}points}}-1\}\right\}
 \end{align}
 % 
-However, the question is which rotation matrix $\mat{R}$ has to be applied.
+However, \code{seed\tu{}points} the question is which rotation matrix $\mat{R}$ must be applied.
 Since a trajectory is only a 2D object, \ie{}, a line, no unique normal vector can be defined.
-In mathematics, the torsion of a curve can be defined with a principal normal vector and a binormal vector.
-However, this has the problem that a line such as a helical function has a torsion, \ie{}, the line rotates along its path.
-This would mean that  individual fibers rotate around the path of the fiber bundle if the seed point plane were placed according to the principal and binormal vectors.
-This is possible in principle, but practically non-existent in real tissue.
+Theoretically, any torsion can be applied to any 2D curve in space.
+However, since these do not occur in principle in the tissue.
 \par
 % 
-A more reasonable solution is to perform a rotation such that the rotation along the fiber bundle trajectory is minimal.
-This can be achieved by computing the rotation matrix that rotates the current tangent vector $\vec{t}(i)$ to that of the next point $\vec{t}(i+1)$.
-The rotation matrix $\mat{R}(\vec{a}, \vec{b})$ for $\vec{a} \nparallel \vec{b}$ is
+A more reasonable solution is to perform a rotation such that the rotation along the fiber bundle trajectory is minimal, which can be achieved by computing the rotation matrix that rotates the current tangent vector $\vec{t}(i)$ to that of the next point $\vec{t}(i+1)$.
+The rotation matrix $\mat{R}(\vec{a}, \vec{b})$ for bewteen two non parallel vectors $\vec{a} \nparallel \vec{b}$ is
 \begin{align}
 \begin{split}
     \vec{a} =& \; \vec{a} / |\vec{a}|\\
@@ -208,16 +205,15 @@ The rotation matrix $\mat{R}(\vec{a}, \vec{b})$ for $\vec{a} \nparallel \vec{b}$
 In the case of $\vec{a} \parallel \vec{b}$ no rotation is necessary.
 \par
 % 
-This allows the following method to generate a filled nerve fiber bundle.
-First, the seed point plane is placed at the first fiber bundle point $\vec{fb}_0$ and rotate it by $\mat{R}(\hat{\vec{e}}_z, \vec{t}_0)$.
-Then, for each step, the plane is rotated at its original origin according to $\mat{R}(\vec{t}_i, \vec{t}_{i+1})$ and placed on $\vec{fb}_{i+1}$.
-To smooth the transition, the tangential vector at step $i$ is the average of the neighboring points:
+The presented formulation allows to generate a filled nerve fiber bundle.
+First, the seed point plane is placed at the first fiber bundle point $\vec{fb}_0$ and rotated by $\mat{R}(\hat{\vec{e}}_z, \vec{t}_0)$.
+Then, for each step, the plane is rotated at its original origin by $\mat{R}(\vec{t}_i, \vec{t}_{i+1})$ and placed on $\vec{fb}_{i+1}$.
+To smooth the transition, the tangential vector $\vec{t}$ at step $i$ is the average of the neighboring points:
 \begin{align}
     \vec{t} = \frac{1}{2} \frac{\vec{fb}_{i-1} + \vec{fb}_{i+1}}{|\vec{fb}_{i-1} + \vec{fb}_{i+1}|}
 \end{align}
 %
 Finally, all points belonging to a fiber are stored in a fiber bundle object as $(n \times 4)$-array.
-% An example is shown in \cref{fig:bendingFiberBundle}.
 %
 %
 %
