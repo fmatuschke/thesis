@@ -2,29 +2,29 @@
 \begin{tikzpicture}[scale=\tikzscale,]
 %
 \pgfmathsetmacro{\phi}{240}
-\pgfmathsetmacro{\alpha}{20}
-\pgfmathsetmacro{\beta}{270}
+\pgfmathsetmacro{\anglealpha}{20}
+\pgfmathsetmacro{\anglebeta}{270}
 \pgfmathsetmacro{\h}{10}
 \pgfmathsetmacro{\rin}{5}
 \pgfmathsetmacro{\rout}{10}
 %
 \begin{axis}[view={210}{30}, hide axis]
-\addplot3 [domain=\alpha:\beta,samples=42,samples y=0, smooth, name path=b1,] ({sin(x)*\rin},{cos(x)*\rin},{0});
-\addplot3 [domain=\alpha:\beta,samples=42,samples y=0, smooth, name path=b2,] ({sin(x)*\rin},{cos(x)*\rin},{\h});
+\addplot3 [domain=\anglealpha:\anglebeta,samples=42,samples y=0, smooth, name path=b1,] ({sin(x)*\rin},{cos(x)*\rin},{0});
+\addplot3 [domain=\anglealpha:\anglebeta,samples=42,samples y=0, smooth, name path=b2,] ({sin(x)*\rin},{cos(x)*\rin},{\h});
 \fill[GREEN, intersection segments={of=b1 and b2,sequence={A* -- B*[reverse]}}, ] -- cycle;
 %
-\addplot3 [domain=\alpha:\beta,samples=42,samples y=0, smooth] ({sin(x)*\rout},{cos(x)*\rout},{0});
-\addplot3 [domain=\alpha:\beta,samples=42,samples y=0, smooth] ({sin(x)*\rout},{cos(x)*\rout},{\h});
+\addplot3 [domain=\anglealpha:\anglebeta,samples=42,samples y=0, smooth] ({sin(x)*\rout},{cos(x)*\rout},{0});
+\addplot3 [domain=\anglealpha:\anglebeta,samples=42,samples y=0, smooth] ({sin(x)*\rout},{cos(x)*\rout},{\h});
 %
-\addplot3 [no marks, black] coordinates {({sin(\alpha)*\rin},{cos(\alpha)*\rin},{0}) ({sin(\alpha)*\rin},{cos(\alpha)*\rin},{\h})};
-\addplot3 [no marks, black] coordinates {({sin(\beta)*\rin},{cos(\beta)*\rin},{0}) ({sin(\beta)*\rin},{cos(\beta)*\rin},{\h})};
-\addplot3 [no marks, black] coordinates {({sin(\alpha)*\rout},{cos(\alpha)*\rout},{0}) ({sin(\alpha)*\rout},{cos(\alpha)*\rout},{\h})};
-\addplot3 [no marks, black] coordinates {({sin(\beta)*\rout},{cos(\beta)*\rout},{0}) ({sin(\beta)*\rout},{cos(\beta)*\rout},{\h})};
+\addplot3 [no marks, black] coordinates {({sin(\anglealpha)*\rin},{cos(\anglealpha)*\rin},{0}) ({sin(\anglealpha)*\rin},{cos(\anglealpha)*\rin},{\h})};
+\addplot3 [no marks, black] coordinates {({sin(\anglebeta)*\rin},{cos(\anglebeta)*\rin},{0}) ({sin(\anglebeta)*\rin},{cos(\anglebeta)*\rin},{\h})};
+\addplot3 [no marks, black] coordinates {({sin(\anglealpha)*\rout},{cos(\anglealpha)*\rout},{0}) ({sin(\anglealpha)*\rout},{cos(\anglealpha)*\rout},{\h})};
+\addplot3 [no marks, black] coordinates {({sin(\anglebeta)*\rout},{cos(\anglebeta)*\rout},{0}) ({sin(\anglebeta)*\rout},{cos(\anglebeta)*\rout},{\h})};
 %
-\addplot3 [no marks, black] coordinates {({sin(\alpha)*\rout},{cos(\alpha)*\rout},{0}) ({sin(\alpha)*\rin},{cos(\alpha)*\rin},{0})};
-\addplot3 [no marks, black] coordinates {({sin(\beta)*\rout},{cos(\beta)*\rout},{0}) ({sin(\beta)*\rin},{cos(\beta)*\rin},{0})};
-\addplot3 [no marks, black] coordinates {({sin(\alpha)*\rout},{cos(\alpha)*\rout},{\h}) ({sin(\alpha)*\rin},{cos(\alpha)*\rin},{\h})};
-\addplot3 [no marks, black] coordinates {({sin(\beta)*\rout},{cos(\beta)*\rout},{\h}) ({sin(\beta)*\rin},{cos(\beta)*\rin},{\h})};
+\addplot3 [no marks, black] coordinates {({sin(\anglealpha)*\rout},{cos(\anglealpha)*\rout},{0}) ({sin(\anglealpha)*\rin},{cos(\anglealpha)*\rin},{0})};
+\addplot3 [no marks, black] coordinates {({sin(\anglebeta)*\rout},{cos(\anglebeta)*\rout},{0}) ({sin(\anglebeta)*\rin},{cos(\anglebeta)*\rin},{0})};
+\addplot3 [no marks, black] coordinates {({sin(\anglealpha)*\rout},{cos(\anglealpha)*\rout},{\h}) ({sin(\anglealpha)*\rin},{cos(\anglealpha)*\rin},{\h})};
+\addplot3 [no marks, black] coordinates {({sin(\anglebeta)*\rout},{cos(\anglebeta)*\rout},{\h}) ({sin(\anglebeta)*\rin},{cos(\anglebeta)*\rin},{\h})};
 %
 \addplot3 [no marks, black] coordinates {({sin(\phi)*\rin},{cos(\phi)*\rin},{0}) ({sin(\phi)*\rin},{cos(\phi)*\rin},{\h})};
 \addplot3 [no marks, black] coordinates {({sin(\phi-180)*\rin},{cos(\phi-180)*\rin},{0}) ({sin(\phi-180)*\rin},{cos(\phi-180)*\rin},{\h})};
@@ -33,16 +33,32 @@
 %
 \pgfmathsetseed{42}
 \foreach \ii in {1,2,...,142}{%
-\pgfmathparse{rnd*(\beta-\alpha)+\alpha}\let\a=\pgfmathresult
+\pgfmathparse{rnd*(\anglebeta-\anglealpha)+\anglealpha}\let\a=\pgfmathresult
 \pgfmathparse{rnd*\h}\let\hh=\pgfmathresult
 \addplot3 [no marks, BLUE] coordinates {({sin(\a)*\rin},{cos(\a)*\rin},{\hh}) ({sin(\a)*\rout},{cos(\a)*\rout},{\hh})};
 }
 %
-\draw[RED, ->] (axis cs:{sin(\alpha)*\rin},{cos(\alpha)*\rin},{0}) -- (axis cs:{sin(\alpha)*\rin+sin(\alpha+90)*2},{cos(\alpha)*\rin+cos(\alpha+90)*2},{0}) node[left] {$x$};
-\draw[RED, ->] (axis cs:{sin(\alpha)*\rin},{cos(\alpha)*\rin},{0}) -- (axis cs:{sin(\alpha)*\rin},{cos(\alpha)*\rin},{2}) node[right, midway] {$y$};
-\draw[RED, ->] (axis cs:{sin(\alpha)*\rin},{cos(\alpha)*\rin},{0}) -- (axis cs:{sin(\alpha)*\rin-sin(\alpha)*2},{cos(\alpha)*\rin-cos(\alpha)*2},{0}) node[below] {$z$};
+\draw[RED, ->] (axis cs:{sin(\anglealpha)*\rin},{cos(\anglealpha)*\rin},{0}) -- (axis cs:{sin(\anglealpha)*\rin+sin(\anglealpha+90)*2},{cos(\anglealpha)*\rin+cos(\anglealpha+90)*2},{0}) node[left] {$x$};
+\draw[RED, ->] (axis cs:{sin(\anglealpha)*\rin},{cos(\anglealpha)*\rin},{0}) -- (axis cs:{sin(\anglealpha)*\rin},{cos(\anglealpha)*\rin},{2}) node[right, midway] {$y$};
+\draw[RED, ->] (axis cs:{sin(\anglealpha)*\rin},{cos(\anglealpha)*\rin},{0}) -- (axis cs:{sin(\anglealpha)*\rin-sin(\anglealpha)*2},{cos(\anglealpha)*\rin-cos(\anglealpha)*2},{0}) node[below] {$z$};
+% 
+% orign
+\draw[RED, ->] (axis cs:{0},{0},{0}) -- (axis cs:{2*cos(150+90)},{2*sin(150+90)},{0}) node[right] {$y_o$};
+\draw[RED, ->] (axis cs:{0},{0},{0}) -- (axis cs:{2*cos(150)},{2*sin(150)},{0}) node[below] {$x_o$};
+\draw[RED, ->] (axis cs:{0},{0},{0}) -- (axis cs:{0},{0},{2}) node[left, midway] {$z_o$};
+% 
+% lines
+\draw[BLUE, dashed, thin] (axis cs:{0},{0},{0}) -- (axis cs:{cos(150)*0.75*\rout},{sin(150)*0.75*\rout},{0});
+\draw[BLUE, dashed, thin] (axis cs:{0},{0},{0}) -- (axis cs:{sin(\anglebeta)*\rin},{cos(\anglebeta)*\rin},{0});
+\draw[BLUE, dashed] (axis cs:{0},{0},{0}) -- (axis cs:{sin(\anglealpha)*\rout},{cos(\anglealpha)*\rout},{0});
+%  
+% angles
+\addplot3[domain=\anglebeta+30:\anglebeta,samples=11,samples y=0,smooth,thin,BLUE,<->] ({sin(x)*0.75*\rout},{cos(x)*0.75*\rout},{0});
+\node[anchor=north] at (axis cs:{sin(\anglebeta+15)*0.75*\rout},{cos(\anglebeta+15)*0.75*\rout},{0}) {\footnotesize $\alpha$};
+\addplot3[domain=\anglealpha:\anglealpha-80,samples=21,samples y=0,smooth,thin,BLUE,<->] ({sin(x)*0.75*\rout},{cos(x)*0.75*\rout},{0});
+\node[anchor=north] at (axis cs:{sin(\anglealpha-40)*0.75*\rout},{cos(\anglealpha-40)*0.75*\rout},{0}) {\footnotesize $2\pi-\beta$};
 %
 \end{axis}
-\path[] (2,0.5) -- (2,2.5);
+\path[] (2,0.25) -- (2,2.5);
 \end{tikzpicture}
 \end{tikzsize}

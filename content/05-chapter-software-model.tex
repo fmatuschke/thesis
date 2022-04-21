@@ -227,7 +227,7 @@ Finally, all points belonging to a fiber are stored in a fiber bundle object as 
     \label{fig:cubeBuild}%
 \end{figure}
 %
-\ac{3D-PLI} simulations calculate all light vector inside a cubical volume (see \cref{cha:sof:simulation}).
+\ac{3D-PLI} simulations calculate all light vectors inside a cubical volume (see \cref{cha:sof:simulation}).
 Therefore, a method exists to fill a cube with a fiber population of orientation $\vec{v}$ (see \cref{fig:cubeBuild}).
 The individual fibers are initialized with a seed point plane.
 This plane is placed virtually in front of and behind the cubic volume with a user-defined orientation.
@@ -242,19 +242,20 @@ When a line hits the volume, the entry and exit points are calculated and stored
 \begin{figure}[!t]
     \centering
     \setlength{\tikzwidth}{0.3\textwidth}
+    \captionsetup[subfigure]{skip=-10pt}
     \subcaptionbox{\label{fig:cylCircular}%
         Circular population.
-    }[\tikzwidth]{
+    }[\tikzwidth]{%
     \inputtikz{gfx/model/cylinder_circular}}\hfill
     %
     \subcaptionbox{\label{fig:cylRadial}%
         Radial population.
-    }[\tikzwidth]{
+    }[\tikzwidth]{%
     \inputtikz{gfx/model/cylinder_radial}}\hfill
     %
     \subcaptionbox{\label{fig:cylParallel}%
         Parallel population.
-    }[\tikzwidth]{
+    }[\tikzwidth]{%
     \inputtikz{gfx/model/cylinder_parallel}}
 	\caption{Populating of cylindrical objects. The green area shows the area corresponding to the seed point plane. The coordinate system indicates the coordinate origin coresponding to the seed points origin. The resulting coordinate system is at the botom center as shown in \cref{fig:cylParallel}.}
 \end{figure}

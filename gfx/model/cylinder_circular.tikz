@@ -45,6 +45,6 @@
 \draw[RED,dashed] (axis cs:{0},{0},{0}) -- (axis cs:{sin(\beta)*\rout},{cos(\beta)*\rout},{0});
 %
 \end{axis}
-\path[] (2,0.5) -- (2,2.5);
+\path[] (2,0.25) -- (2,2.5);
 \end{tikzpicture}
 \end{tikzsize}
