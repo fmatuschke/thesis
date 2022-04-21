@@ -239,6 +239,34 @@ When a line hits the volume, the entry and exit points are calculated and stored
 %
 \subsection{Cylindrical models}
 %
+The last method allows populating a cylindrical volume with fibers.
+Since a cylinder has three symmetries, radial, angular and height, those three symmetries have been implemented to provide a way to populate the volume.
+\par
+%
+The cylinder has an outer radius $r_{\mathit{out}}$ and an inner radius $r_{\mathit{in}}$.
+The height $h$ is aligned along the z-axis and starts at $(0,0,0)$.
+In addition, the cylinder can be cut radially between the directional angles $\alpha$ and $\beta$ to fill only a portion of it.
+The angles correspond to the cylindrical coordinate system.
+\par
+%
+The following applies to all cylindrical methods used: If the seed point plane leaves the cross-section plane to be filled, the seed points lying outside are ignored.
+%
+\paragraph{a) circular}
+Mimics a radial path of the cylinder (see \cref{fig:cylCircular}).
+The seed points are placed along the surface of the cross-section of the first $\alpha$ direction angle.
+The origin of the seed point plane is placed on the origin of the cylinder.
+From there, the fiber is circular bend until the second direction angle $\beta$.
+The step size of the circular path can be customized.
+%
+\paragraph{b) radial}
+The seed point plane is placed at the inner wall with the origin at the bottom corner of the first angle $\alpha$ (see \cref{fig:cylRadial}).
+The fibers are then generated radially until they meet the outer wall of the cylinder.
+Thus, the density of the fibers decreases along their path.
+%
+\paragraph{c) parallel}
+The fibers are aligned along the cylinder (see \cref{fig:cylParallel}).
+The seed points are placed on the lower plane, with identical coordinate origins and orientations (see \cref{fig:cylParallel}).
+%
 \begin{figure}[!t]
     \centering
     \setlength{\tikzwidth}{0.3\textwidth}
@@ -257,36 +285,12 @@ When a line hits the volume, the entry and exit points are calculated and stored
         Parallel population.
     }[\tikzwidth]{%
     \inputtikz{gfx/model/cylinder_parallel}}
-	\caption{Populating of cylindrical objects. The green area shows the area corresponding to the seed point plane. The coordinate system indicates the coordinate origin coresponding to the seed points origin. The resulting coordinate system is at the botom center as shown in \cref{fig:cylParallel}.}
+	\caption{Populating of cylindrical objects.
+    The green area shows the area corresponding to the seed point plane.
+    The coordinate system indicates the coordinate origin coresponding to the seed points origin.
+    The origin of the coordinate system $O$ of the resulting fibers is at the botom center as shown in \cref{fig:cylRadial}.
+    Two angles $\alpha$ and $beta$ can be used to limit the angular range of the cylinder.}
 \end{figure}
-%
-The last method allows populating a cylindrical volume with fibers.
-Since a cylinder has three symmetries, a radial, an angular and the height, those three symmetries have been implemented to provide a way to populate the volume.
-\par
-%
-The cylinder has an outer radius $r_{\mathit{out}}$ and an inner radius $r_{\mathit{in}}$.
-The height $h$ is aligned along the z-axis and starts at $(0,0,0)$.
-In addition, the cylinder can be cut radially between the directional angles $\alpha$ and $\beta$ to fill only a portion of it.
-The angles correspond to the cylindrical coordinate system.
-\par
-%
-The following applies to all methods used: If the seed point plane leaves the cross-section plane to be filled, the seed points lying outside are ignored.
-%
-\paragraph{a) circular}
-Mimics a radial path of the cylinder (see \cref{fig:cylCircular}).
-The seed points are placed along the surface of the cross-section of the first $\alpha$ direction angle.
-The origin of the seed point plane is placed on the origin of the cylinder.
-From there, the fiber is circular bend until the second direction angle $\beta$.
-The step size of the circular path can be customized.
-%
-\paragraph{b) radial}
-The seed point plane is placed at the inner wall with the origin at the bottom corner of the first angle $\alpha$ (see \cref{fig:cylRadial}).
-The fibers are then generated radially until they meet the outer wall of the cylinder.
-Thus, the density of the fibers decreases along their path.
-%
-\paragraph{c) parallel}
-The fibers are aligned along height of the cylinder (see \cref{fig:cylParallel}).
-The seed points are placed on the lower plane, with identical coordinate origins and orientations (see \cref{fig:cylParallel}).
 %
 \par
 Only seed points that are in contact with the cylinder are considered in all methods.
@@ -296,12 +300,12 @@ Only seed points that are in contact with the cylinder are considered in all met
 \label{sec:Solver}
 %
 The following algorithm allows the user to define any fiber path, which allows a wide range of freedom in the initialization process.
-Since the fibers are 3D volume objects, there will probably overlap with other fibers.
-These collisions have to be found and solved by moving the affected fiber segment in such a way that a collision-free volume is created by minimal displacement.
+Since the user initialization will probably produce colliding fibers, the collisions have to be found and solved by moving the affected fiber segment so that a collision-free volume is created by minimal displacement.
 This allows the user to specify complex interwoven structures such as nerve fiber crossings in any configuration.
 The algorithm allows the user to specify boundary conditions like the mean fiber segment length or minimal bending radius.
 \par
 % 
+\todo{to visualization?}
 An essential feature is the visualization of the displacement process.
 This allows the user to see the movement and intervene as early as possible if necessary.
 This is very important because the solution process can take a lot of time, depending on the volume and the number of objects.
