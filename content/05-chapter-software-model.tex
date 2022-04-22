@@ -448,15 +448,14 @@ Therefore, an octree based strategy was selected to reduce the number of computa
 % 
 \subsection{Octree}\label{sec:octree}
 %
-A \name{tree} is a data structure consisting of a collection of \name{nodes} that are connected to each other.
-A \name{node} is connected to a single parent \name{node}, and to multiple \name{children} via \name{branches}.
+A \name{tree} is a data structure consisting of a collection of interconnected  \name{nodes}.
+A \name{node} is connected to a single parent \name{node}, and multiple \name{children} via \name{branches}.
 The first parent node is called \name{root}.
-The final \name{nodes} at the end of a \name{branch} are called \name{leafs}, which contain the data.
+The final \name{nodes} at the end of a \name{branch} are called \name{leaves} containing the data.
 Traversing a uniformly distributed \name{tree} has the advantage that the cost of traversal is $\mathcal{O}(\log(n))$.
 \par
 %
-An \name{octree} is a special kind of \name{tree} where each node contains eight children.
-This allows a cubic volume to be divided into eight sub-volumes, which in this case are of equal size.
+An \name{octree} is a special \name{tree} where each node contains eight children allowing a cubic volume to be divided into eight sub-volumes.
 An example is shown in \cref{fig:octreeCube}.
 % 
 \begin{figure}[!t]
@@ -474,9 +473,9 @@ An example is shown in \cref{fig:octreeCube}.
 	\label{fig:octree}
 \end{figure}
 % 
-This means that the length of the volumes shrinks exponentially with $(1/2)^\mathit{level}$.
-An \name{octree} can be implemented in several ways.
-Here, a recursion function was chosen (see \cref{alg:pseudocode_octree}), which is a function which that calls itself.
+The length of the subvolumes shrinks exponentially by $(1/2)^\mathit{level}$.
+In this algorithm a recursion function  generates the tree structure (see \cref{alg:pseudocode_octree}).
+\par
 %
 \begin{lstfloat}[!tb]
 \lstset{style=python}
@@ -484,61 +483,49 @@ Here, a recursion function was chosen (see \cref{alg:pseudocode_octree}), which 
 def octree(volume, objects):
     if num(objects) > threshold:
         sub_volumes, sub_objects = split(volume, objects)
-        leafs = [octree(v,o) for v,o in zip(sub_volumes, sub_objets)]
+        leaves = [octree(v,o) for v,o in zip(sub_volumes, sub_objets)]
     else:
-        leafs = [objects]
-    return leafs
+        leaves = [objects]
+    return leaves
 \end{lstlisting}
-\caption{Generation of an octree.}
+\caption{Recursive generation of an octree.}
 \label{alg:pseudocode_octree}
 \end{lstfloat}
 %
-The idea of tree generation is the following:
-At the beginning, all objects must be sorted into the eight \name{leafs} of the current node (if the number of objects is not too small).
-This means that for each object it must be checked whether there is a collision with one or more of the eight \name{leafs}, \ie{}, the cubic sub-volumes.
-However, since this already implies a high checking effort, the checking function should be as fast as possible.
-For this purpose, analogous to the object collision check (see \cref{fig:collision2D}), only the \ac{AABB} of the object is checked for collision with the leaf volume, which is also a \ac{AABB}.
-This means that there may be cases where an object is placed in a sub-volume to which it does not belong.
-However, in this case, the increasing speed of the checking process is an advantage.
+First, all objects must be sorted into the eight branches of the initial node (if the number of objects is not too small). This means that each object must be checked whether there is a collision with one or more of the eight subvolumes.
+To reduce the computational costs, as before, the \acp{AABB} of the objects are used for the collision check (see \cref{fig:collision2D}).
 Once all objects are sorted into their respective sub-volumes, recursion can begin.
-Since a branch can be considered a node, the same algorithm can be executed until a desired boundary or property is reached, \ie{}, recursive execution.
-This means that the current (sub-)volume is split into eight sub-volumes again, if necessary, and the objects of the current (sub-)volume are sorted into the new sub-volumes.
-The recursion also means that the next function call must contain a list of the current objects.
-This means that the objects must either be copied, which is time-consuming, or referenced by \eg{} and index, which is also time-consuming because the data is accessed randomly in memory.
-The first option was chosen because it proved to be the fastest in a speed test during implementation.
-The next question is what is the desired goal to end the branching process and mark the node as a leaf and therefore the collision checking algorithm can be applied between all objects in each leaf.
 \par
-%
-The goal is to reduce the computation time.
-Unfortunately, with a structure like an octree, there is no straightforward way to give a definitive answer.
-It depends on the scope and the contained objects themselves.
-For example, if all the objects overlapped, all the objects would be sorted into all the leaves and thus eight times as much would be tested.
-This is of course an extreme case, but depending on the user's input, can occur.
-The user should therefore separate the fibers as much and as sensibly as possible during initialization.
+% 
+Since a branch can be considered a node, the same algorithm can be executed until a desired boundary or property is reached, \eg{} maximum number of branches.
+To speed up the computational time the objects in memory for the subvolumes so that the algorithm can compute the data in line.
+The conditions under which the recursion is to be stopped cannot be defined unambiguously.
+This depends on the algorithm implemented and the number and position of the objects.
 The usual approach is to impose the following two constraints:
 %
 \paragraph{Maximum number of levels}
 In the case of nerve fibers, it can be assumed that the size of the objects is approximately in the same order of magnitude.
-This means that the largest object in a volume can be used as the lower bound for the smallest volume in the octree.
-In the case of object sizes that differ in higher orders of magnitude, this will consequently increase the computational cost to the point where each object must be retested with each object.\footnote{There are other, more suitable algorithms for this case. However, since this case is not expected, they are not implemented}.
+Therefore, the largest object in a volume can be used as the lower bound for the smallest volume in the octree.
+A difference in a higher order of magnitude consequently increases the computational cost to the point where each object must be retested with each object.\footnote{There are other, more suitable algorithms for this case. However, since this case is not expected, they are not implemented}.
 %
 \paragraph{Minimal number of objects}
-Once a \name{leaf} could be created, all objects contained in it must be checked for collisions.
+Once a \name{leaf} is created, all objects contained in it must be checked for collisions.
 As mentioned above, this is a task of $O(n^2)$.
-However, there is also an upper bound of a number of objects for which it is faster to calculate whether they collide than to further partition the volume.
-This number must be checked at runtime, since it depends on many factors.
-In the development phase of this algorithm, a value of $\approx \SI{20}{}$ for the involved computer architectures could be determined.
+However, there is also an upper bound of a number of objects for which it is faster to calculate whether they collide than to partition the volume further.
+This number must be checked at runtime, since it depends on many factors, \eg{} \ac{CPU} cache size.
+In the development phase of this algorithm, a value of $\approx \SI{20}{}$ for the involved computer architectures was determined.
 \par
 %
-At this point the collision checking algorithm is performant on each leaf (see \cref{sec:collisionDetection}) and all colliding objects are being identified.
-The next step is to change their positions so that their collision is reduced or completely separated.
+The collision checking algorithm is executed on each leaf (see \cref{sec:collisionDetection}) and all colliding objects are identified.
+% 
+% 
 %
 \subsection{Separation Phase}
 % 
-To resolve a collision between two \ac{CC} objects, each point $\vec{p}_i$ and $\vec{p}_{i+1}$ of the two objects is moved.
-To effective move the objects apart with a small effort, the fiber objects are translated and rotated away from the other colliding object.
+To resolve a collision between two objects, each point $\vec{p}_i$ and $\vec{p}_{i+1}$ of the two objects is moved.
+To effectively move the objects apart with a small effort, the fiber objects are translated and rotated away from the other colliding object.
 The translation is parallel to the shortest distance vector of the collision.
-For the rotation the direction of motion is weighted by the distance of each point from the intersection with the smallest distance line (see \cref{fig:shortDist,alg:push_apart}).
+For the rotation, the direction of motion is weighted by the distance of each point from the intersection with the smallest distance line (see \cref{fig:shortDist,alg:push_apart}).
 \par
 % 
 \begin{lstfloat}[!h]
@@ -548,12 +535,11 @@ For the rotation the direction of motion is weighted by the distance of each poi
 \end{lstfloat}
 %
 The velocity is stored in an array for each fiber corresponding to the fibers points.
-All velocities for a single point will be summed up.
+All velocities for a single point is summed up.
 \par
 % 
 A special case is the movement of the first and last point of a fiber.
-These may only move perpendicular to the first/last segment line.
-This prevents the fibers from growing to infinity.
+These may only move perpendicular to the first/last segment line, which prevents the fibers from growing to infinity.
 % 
 % 
 %
@@ -581,7 +567,7 @@ The average segment length is the distance between the two points of a fiber seg
 	\label{fig:modelLength}
 \end{figure}
 % 
-When the segment length becomes too small/large, the points within a fiber corresponding to the object are merged/separated and one less point/one new point is removed/added (see \cref{fig:mergeSplit}).
+When the segment length becomes too small/large, the points within a fiber corresponding to the object are merged/separated, and one less point/one new point is removed/added (see \cref{fig:mergeSplit}).
 % 
 \begin{figure}[!t]
     \centering
@@ -606,7 +592,7 @@ Thus, the mean value of the object is:
 \frac{d_{\min} + d_{\max}}{2} = \overline{d}
 \end{align}
 %
-If a new point is created due to exceeding the maximum limit, the new point $\vec{p}_{new}$ with a radius $r_{new}$ and velocity $\vec{v}_{new}$ are calculated by a linear interpolation:
+If a new point is created when exceeding the maximum limit, the new point $\vec{p}_{new}$ with a radius $r_{new}$ and velocity $\vec{v}_{new}$ are calculated by linear interpolation:
 \begin{align}
 \vec{p}_{new} = \frac{\vec{p}_{i} + \vec{p}_{i+1}}{2},\enspace
 r_{new} = \frac{r_{i} + r_{i+1}}{2},\enspace
@@ -617,9 +603,9 @@ r_{new} = \frac{r_{i} + r_{i+1}}{2},\enspace
 % 
 \subsection{Bending radius}
 %
-The bending radius is defined as the circle radius corresponding to the circle defined by three adjacent points $\vec{p}_{i-1}, \vec{p}_{i}, \vec{p}_{i+1}$ (see \cref{fig:modelCircle}).
+The bending radius matches the radius of the circle defined by three adjacent points $\vec{p}_{i-1}, \vec{p}_{i}, \vec{p}_{i+1}$ (see \cref{fig:modelCircle}).
 To limit the bending radius of the fiber a minimal allowed radius $r_{\min}$ is defined.
-Additionally three adjacent points are not allowed to have an enclosing angle $\eta \geq \SI{60}{\degree}$.
+Additionally, three adjacent points are not allowed to have an enclosing angle $\eta \geq \SI{60}{\degree}$.
 If any point $\vec{p}_{i}$ in a fiber fails these boundary conditions, the three points are shifted $\vec{p}_{i-1}, \vec{p}_{i}$ and $\vec{p}_{i+1}$ are moved parallel to reduce curvature (see \cref{fig:modelCircle}).
 % 
 \begin{figure}[!t]
