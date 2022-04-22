@@ -102,6 +102,8 @@ with $\vec{k}$ as wave vector pointing in the direction of the propagation of th
 %
 \subsection{Polarization}\label{sec:polarization}
 %
+Since the light wave propagates in one direction and the electric field and magnetic field are perpendicular to $\vec{k}$ and to each other, the orientation of the plane of oscillation is a fundamental property of light called polarization (see \cref{fig:polarization_state}).
+%
 \begin{figure}[!t]
 \centering
 \setlength{\tikzwidth}{\textwidth}
@@ -109,14 +111,19 @@ with $\vec{k}$ as wave vector pointing in the direction of the propagation of th
 \caption{Illustration of the polarization state of light. Unpolarized light passes through a linear polarizer, polarizing the light in one direction. It then passes through a quarter-wave retarder that converts linearly polarized light (of a specific wavelength) into circularly polarized light, where $E_x$ and $E_y$ are $\pi/2$ in phase.}
 \label{fig:polarization_state}
 \end{figure}
-%
-Since the light wave propagates in one direction and the electric field and magnetic field are perpendicular to $\vec{k}$ and to each other, the orientation of the plane of oscillation is a fundamental property of light called polarization.
+% 
 Without additional information, the polarization orientation is conventionally in the direction of the electric field component.
 A superposition of x- and y-wave with z-axis equal to the propagation direction gives the general form:
+% 
 \begin{align}
-\vec{E}(z,t) &= \begin{pmatrix} E_{0x} \cdot e^{ -i \phi_x } \\ E_{0y} \cdot e^{ -i \phi_y } \\ 0 \end{pmatrix}
+    \vec{E}(z,t) &= \begin{pmatrix} E_{0x} \cdot e^{ -i \phi_x } \\ E_{0y} \cdot e^{ -i \phi_y } \\ 0 \end{pmatrix}
 e^{ -i (kz - \omega t)}
 \end{align}
+%
+\Cref{fig:polarization_state_vectors} shows an additional representation of the polarization state of a light wave.
+It shows the component perpendicular to the propagation direction.
+Thus, the time evolution of the electric field can be represented in the $xy$-plane.
+In addition, the states can be described by the Jones or Stokes calculation, which is described in \cref{sec:jones,sec:mueller_stokes}.
 %
 \begin{figure}[!t]
 \centering
@@ -125,11 +132,6 @@ e^{ -i (kz - \omega t)}
 \caption{Polarization states in Jones and Stokes convention.}
 \label{fig:polarization_state_vectors}
 \end{figure}
-%
-\Cref{fig:polarization_state_vectors} shows an additional representation of the polarization state of a light wave.
-It shows the component perpendicular to the propagation direction.
-Thus, the time evolution of the electric field can be represented in the $xy$-plane.
-In addition, the states can be described by the Jones or Stokes calculation, which is described in \cref{sec:jones,sec:mueller_stokes}.
 %
 %
 %
@@ -161,6 +163,8 @@ Refration can be explained by using the full Maxwell equations for non-conductiv
 Mathematically, this can be described by a complex number $n = c' / c$.
 Using this relationship at a boundary surface between two media, one can show that the incident light beam splits into a reflecting and transmitting light wave.
 The reflecting light wave has the same angle as the incident light beam relative to the surface normal.
+% 
+However, the transmitting light beam, due to the reduction of the velocity, changes its direction described by the Snellius law (see \cref{fig:optic_refraction}):
 %
 \begin{figure}[!t]
 \centering
@@ -170,7 +174,6 @@ The reflecting light wave has the same angle as the incident light beam relative
 \label{fig:optic_refraction}
 \end{figure}
 % 
-However, the transmitting light beam, due to the reduction of the velocity, changes its direction described by the Snellius law (see \cref{fig:optic_refraction})
 \begin{align}
     n_\alpha \sin \alpha = n_\beta \sin \beta \label{eq:Snellius}
 \end{align}
@@ -185,6 +188,10 @@ The refractive index $n$ can also be described inside a complex refraction index
 %
 \subsection{Birefingence}
 %
+A translucent material can have a different refractive index depending on the relative orientation and polarization of the light beam.
+This property is called birefringence.
+The refractive index can be described by the ordinary refractive index $n_o$ and the extraordinary $n_e$, which are perpendicular to each other (see \cref{fig:optic_retardation}).
+%
 \begin{figure}[!t]
 \centering
 \setlength{\tikzwidth}{\textwidth}
@@ -192,10 +199,7 @@ The refractive index $n$ can also be described inside a complex refraction index
 \caption{Illustration of retardation. The linear $\SI{45}{\degree}$ polarized light wave is decomposed into the $x$ and $y$ components in the birefringence medium. The $y$ component travels faster than the $x$ component. Therefore, a phase shift $\phi$ between both components occur. This leads in the case of a $\lambda/4$ retarder to a circular polarized light wave.}
 \label{fig:optic_retardation}
 \end{figure}
-%
-A translucent material can have a different refractive index depending on the relative orientation and polarization of the light beam.
-This property is called birefringence.
-The refractive index can be described by the ordinary refractive index $n_o$ and the extraordinary $n_e$, which are perpendicular to each other (see \cref{fig:optic_retardation}).
+% 
 Therefore, the light ray can be split into the same perpendicular parts and each can be described by itself.
 These two light rays can have a different direction due to refraction.
 If the separation is relatively small, the two light beams (or multiple light beams) can be modeled as they would recombine when leaving the material.
@@ -293,6 +297,8 @@ S_3 &= I p \sin 2\chi
 \end{split}
 \end{align}
 %
+where $I$ is the intensity, $p$ the polarization state, $\Psi$ and $\delta$ the relative phases between the $E_x$ and $E_y$ components, which can also be described by the two angles $\Psi$ and $\chi$ and visualized on the Poincar\'{e} sphere (see \cref{fig:stokesPoincare}).
+%
 \begin{figure}[!t]
 % \setlength{\tikzwidth}{\textwidth}
 \centering
@@ -300,8 +306,7 @@ S_3 &= I p \sin 2\chi
 \caption{Poincar\'{e} sphere illustrating Stokes component.}
 \label{fig:stokesPoincare}
 \end{figure}
-%
-where $I$ is the intensity, $p$ the polarization state, $\Psi$ and $\delta$ the relative phases between the $E_x$ and $E_y$ components, which can also be described by the two angles $\Psi$ and $\chi$ and visualized on the Poincar\'{e} sphere (see \cref{fig:stokesPoincare}).
+% 
 With this description, the phase can no longer be described as in the Jones calculus.
 However, the relative phase information is stored and can be used to describe also polarization states of polarization filters, which the Jones calculus cannot describe.
 Analogous to the Jones calculus, one can formulate the matrices for the optical components:

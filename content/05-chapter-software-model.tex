@@ -164,15 +164,6 @@ y = r \sin(\varphi)
 %
 \subsection{Populating fiber bundles}\label{sec:fillBundle}
 %
-\begin{figure}[!t]
-    \centering
-    \setlength{\tikzwidth}{0.75\textwidth}
-    % \tikzset{external/export=false}
-    \inputtikz{gfx/model/min_torsion}
-	\caption{Left: Plane of seed points. Right: The plane are rotated and placed along the path. At the end, the plane has the same normal vector as the starting plane, but due to the principle of minimum rotation, the plane is rotated along the normal vector.}
-	\label{fig:torsion}
-\end{figure}
-%
 To populate a fiber bundle (see \cref{fig:crossBundle}), the plane containing the seed points is placed at each fiber bundle point $\vec{fb}_i$ along the trajectory.
 Essentially, for each resulting $\mathit{fiber}_j$, this means:
 % 
@@ -186,7 +177,17 @@ Theoretically, any torsion can be applied to any 2D curve in space.
 However, since these do not occur in principle in the tissue.
 \par
 % 
-A more reasonable solution is to perform a rotation such that the rotation along the fiber bundle trajectory is minimal, which can be achieved by computing the rotation matrix that rotates the current tangent vector $\vec{t}(i)$ to that of the next point $\vec{t}(i+1)$.
+A more reasonable solution is to perform a rotation such that the rotation along the fiber bundle trajectory is minimal, which can be achieved by computing the rotation matrix that rotates the current tangent vector $\vec{t}(i)$ to that of the next point $\vec{t}(i+1)$ (see \cref{fig:torsion}).
+%
+\begin{figure}[!t]
+    \centering
+    \setlength{\tikzwidth}{0.75\textwidth}
+    % \tikzset{external/export=false}
+    \inputtikz{gfx/model/min_torsion}
+    \caption{Left: Plane of seed points. Right: The plane are rotated and placed along the path. At the end, the plane has the same normal vector as the starting plane, but due to the principle of minimum rotation, the plane is rotated along the normal vector.}
+    \label{fig:torsion}
+\end{figure}
+% 
 The rotation matrix $\mat{R}(\vec{a}, \vec{b})$ for bewteen two non parallel vectors $\vec{a} \nparallel \vec{b}$ is
 \begin{align}
 \begin{split}
@@ -219,6 +220,9 @@ Finally, all points belonging to a fiber are stored in a fiber bundle object as 
 %
 \subsection{Cube models} \label{sec:cubeModelBuilding}
 %
+\ac{3D-PLI} simulations calculate all light vectors inside a cubical volume (see \cref{cha:sof:simulation}).
+Therefore, a method exists to fill a cube with a fiber population of orientation $\vec{v}$ (see \cref{fig:cubeBuild}).
+%
 \begin{figure}[!t]
     \centering
     \setlength{\tikzwidth}{0.5\textwidth}
@@ -226,9 +230,7 @@ Finally, all points belonging to a fiber are stored in a fiber bundle object as 
 	\caption{Populating a cuboid with straight fibers initialized by seed points along the direction $\vec{v}$.}
     \label{fig:cubeBuild}%
 \end{figure}
-%
-\ac{3D-PLI} simulations calculate all light vectors inside a cubical volume (see \cref{cha:sof:simulation}).
-Therefore, a method exists to fill a cube with a fiber population of orientation $\vec{v}$ (see \cref{fig:cubeBuild}).
+% 
 The individual fibers are initialized with a seed point plane.
 This plane is placed virtually in front of and behind the cubic volume with a user-defined orientation.
 The coordinate origins of the cube and the two seed point planes are on a line.
@@ -367,38 +369,39 @@ Therefore, a simple while loop can be used to iterate the collision solving algo
 As described in \cref{sec:nerve_fiber_representation}, nerve fibers are represented as a chain of spheres, with two adjacent spheres representing a fiber segment that forms a \ac{CC} (see \cref{fig:conical_capsule}).
 A collision between two \ac{CC} involves a few calculations (see \cref{alg:pseudocodeCollisionDetection}).
 To reduce the runtime \acp{AABB} are first checked for collision.
+This check is fast to calculate (see \cref{alg:collisionAABB}).
+\begin{lstfloat}[!tb]
+    \lstset{style=python}
+    \begin{lstlisting}[]
+        def aabb_collide(aabb_0, aabb_1):
+        for i in dim(aabb):
+        if aabb_0[i].min > aabb_1[i].max:
+        return false
+        if aabb_0[i].max < aabb_1[i].min:
+        return false
+        return true
+    \end{lstlisting}
+    \caption{Calculation if a collision between \acp{AABB} exists.}
+    \label{alg:collisionAABB}
+\end{lstfloat}
+% 
+% 
+If a collision occurs between the two \acp{AABB}, the actual collision calculation is performed.
+However, this is a non-trivial task and very computationally intensive.
+Therefore, it was decided to change the object representation for the collision detection from a \ac{CC} to a capsule (see \cref{fig:conical_capsule}), with a radius equal to the maximum of the two original spheres $r_{\mathit{capsule}} = \mathrm{max}(r_0, r_1)$.
 %
 \begin{figure}[!t]
     \centering
     \setlength{\tikzwidth}{0.6\textwidth}
     \inputtikz{gfx/model/conical_capsule_bb}
     \tikzset{external/export=false}
-	\caption[]{Fiber segment representations with the \acp{AABB}: \raisebox{.25em}{\tikz \draw[black](0,0)--(0.275,0);} \ac{CC}, \raisebox{.25em}{\tikz \draw[blue, dash pattern=on 2.5pt off 2.5pt](0,0)--(0.275,0);} capsule, \raisebox{.25em}{\tikz \draw[red, dash pattern={on 2.5pt off 0.9pt on 0.42pt off 0.9pt}](0,0)--(0.275,0);} bounding box.}
-	\label{fig:conical_capsule}
+    \caption[]{Fiber segment representations with the \acp{AABB}: \raisebox{.25em}{\tikz \draw[black](0,0)--(0.275,0);} \ac{CC}, \raisebox{.25em}{\tikz \draw[blue, dash pattern=on 2.5pt off 2.5pt](0,0)--(0.275,0);} capsule, \raisebox{.25em}{\tikz \draw[red, dash pattern={on 2.5pt off 0.9pt on 0.42pt off 0.9pt}](0,0)--(0.275,0);} bounding box.}
+    \label{fig:conical_capsule}
 \end{figure}
-%
-This check is fast to calculate (see \cref{alg:collisionAABB}).
-If a collision occurs between the two \acp{AABB}, the actual collision calculation is performed.
-However, this is a non-trivial task and very computationally intensive.
-Therefore, it was decided to change the object representation for the collision detection from a \ac{CC} to a capsule (see \cref{fig:conical_capsule}), with a radius equal to the maximum of the two original spheres $r_{\mathit{capsule}} = \mathrm{max}(r_0, r_1)$.
+% 
 This enables the computational effort to be reduced, although some volume is lost.
 This is of minor consequence, since the change in radius is expected to be relatively small.
 \par
-% 
-\begin{lstfloat}[!tb]
-    \lstset{style=python}
-    \begin{lstlisting}[]
-    def aabb_collide(aabb_0, aabb_1):
-    for i in dim(aabb):
-        if aabb_0[i].min > aabb_1[i].max:
-            return false
-        if aabb_0[i].max < aabb_1[i].min:
-            return false
-    return true
-    \end{lstlisting}
-    \caption{Calculation if a collision between \acp{AABB} exists.}
-    \label{alg:collisionAABB}
-\end{lstfloat}
 % 
 The algorithm for detecting collisions between two capsules is described in \cref{alg:pseudocodeCollisionDetection}.
 % 
