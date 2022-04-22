@@ -186,7 +186,14 @@
 \usepackage{blindtext}
 %\usepackage{ifplatform}
 \usepackage{mwe}
+% 
 \usepackage{acro}
+\DeclareAcroEnding{possessive}{'s}{'s}
+\NewAcroCommand\acg{m}{\acropossessive\UseAcroTemplate{first}{#1}}
+\NewAcroCommand\acsg{m}{\acropossessive\UseAcroTemplate{short}{#1}}
+\NewAcroCommand\aclg{m}{\acropossessive\UseAcroTemplate{long}{#1}}
+\NewAcroCommand\acfg{m}{\acrofull\acropossessive\UseAcroTemplate{first}{#1}}
+% 
 \usepackage{dirtytalk}
 \usepackage{tabularx}
 % \usepackage{stackengine}    % for double sided floats

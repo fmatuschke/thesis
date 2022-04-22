@@ -509,7 +509,7 @@ Therefore, the largest object in a volume can be used as the lower bound for the
 A difference in a higher order of magnitude consequently increases the computational cost to the point where each object must be retested with each object.\footnote{There are other, more suitable algorithms for this case. However, since this case is not expected, they are not implemented}.
 %
 \paragraph{Minimal number of objects}
-Once a \name{leaf} is created, all objects contained in it must be checked for collisions.
+Once a leaf is created, all objects contained in it must be checked for collisions.
 As mentioned above, this is a task of $O(n^2)$.
 However, there is also an upper bound of a number of objects for which it is faster to calculate whether they collide than to partition the volume further.
 This number must be checked at runtime, since it depends on many factors, \eg{} \ac{CPU} cache size.
@@ -623,12 +623,12 @@ If any point $\vec{p}_{i}$ in a fiber fails these boundary conditions, the three
 % 
 All movements are stored additive in a velocity array before the total movement is executed.
 The maximum velocity is limited by $v_{\max} = 0.1 \times \min(\mathit{\fiberRadius})$.\footnote{This value has proven to be appropriate during the testing phase of this algorithm. Speedup may still be possible by changing this value without significantly changing the results.}
-This is a constraint that is necessary due to the following two required properties:
+This is a necessary constraint due to two required properties:
 First, an object should not be allowed passing through another object, \ie{}, the velocity should always be $<min(\fiberRadius)$.
 Second, it smooths the motion and thus the maximum achievable density of the resulting models.
 \par
 % 
-After limiting the velocity the movement of all points is executed.
+After limiting the velocity, the movement of all points is executed.
 A resistance value is applied to reduce the velocity by the appropriate factor after each step.
 This can help to reach a collision free volume faster, but the density will be reduced.
 Its default value is set to $\SI{0}{}$ so that the velocity is reset to $\vec{0}$ after each step.
@@ -637,27 +637,22 @@ Its default value is set to $\SI{0}{}$ so that the velocity is reset to $\vec{0}
 % 
 \subsection{Optimization and parallelisation}\label{sec:modelOpt}
 % 
-To optimize the collision solving algorithm the octree is used (see \cref{sec:octree}).
-As will be shown later, millions of objects must be checked for collisions.
-The difference between an $O(n\log(n))$ and $O(n^2)$ cannot be underestimated here.
+The computational architecture to optimize the octree (see \cref{sec:octree}) for solving the fiber collision is presented in this section.
+The optimization requires millions of objects to be checked for collisions.
+By using memory alignment and multiprocessing, the computation const was reduced from $O(n^2)$ to $O(n\log(n))$.
 % 
 %
 \paragraph{Memory alignment}
-As will be described in \cref{sec:theorySpeedup}, memory alignment is an important optimization in this software package.
-To this end, all functions use \code{std::vector} as much as possible.
-During the development process of the \name{octree}, it was found that creating a memory-aligned copy of the subset of the objects is faster than referring to the objects by reference in the different branches.
-Each optimization was tested for improvements for different types of volumes and number of objects.
-The focus is on larger volumes and a larger number of objects, since smaller volumes or a smaller number of objects require significantly less computing time.
+All algorithms use in-memory aligned data types, \eg{} \code{std::vector}, as appropriate, allowing the use of the \acsg{CPU} prefetcher.
+During the development process of the octree, it was found that creating a memory-aligned copy of the subset of the objects improves the performance compared to referring to the objects by reference in the different branches.
+Each optimization was tested for improvements for different volumes and number of objects.
+The focus is on larger volumes, and a more significant number of objects, since smaller volumes or a smaller number of objects require significantly less computing time.
 %
 %
 \paragraph{OpenMP}
-To be able to use multiple \acp{CPU}, the \ac{OpenMP} library is used.
+To use multiple \acp{CPU}, the \ac{OpenMP} library is used.
 A structure like an octree suggests the parallelization of $\SI{8}{\cores}$.
-During the development phase of this algorithm it was found that up to the second level of the octree (see \cref{sec:octree}) further parallelization in the next branches is beneficial.
-From the third level on, the speedup is significantly lower, since data management between cores is an overhead.
-In summary this means a parallelization up to $\SI{64}{\cores}$ for the traversing of the octree.
-\par
-% 
+Each leaf can be traversed in parallel.
 In addition, other functions that are thread-safe are parallelized with \ac{OpenMP}, \eg{} moving the points.
 %
 %
