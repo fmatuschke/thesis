@@ -6,7 +6,201 @@
 \begin{itemize}
    \item \textbackslash tum{}: size in smaller math mode % \tum{}
 \end{itemize}
-% \blindtext
+%
+% 
+% 
+One of the biggest unsolved questions in science today is how the brain, especially the human brain, functions.
+An important role is played by the connectivity of neurons among each other.
+They may be connected via nerve fibers (\ie{}, axons, myelinated or not myelinated) over a relatively short distance to neighboring neurons or to more distant regions of the brain.
+Understanding the brain's connectome, the interconnection of brain cells, will allow us to explore and harness the origins of cognitive abilities such as object recognition and memory.
+Since the brain is such a large and complex structure relative to the size of its individual building blocks, neuroscientists are joining forces in collaborative projects such as the Human Brain Project to solve this problem together.\\
+\cite{Markram2006, Shen2012, Amunts2013, Amunts2016}
+\par
+% 
+Techniques in machine learning, especially deep learning, profit from a better understanding of the brain.
+Different types of neural networks are able to solve difficult problems that are almost impossible to solve with a classical algorithm.
+A better understanding of the neural network as a subset of the connectome can therefore help to design artificial neural networks to efficiently solve tasks like image recognition, and vice versa. \\
+\cite{murphy2013machine, Goodfellow-et-al-2016}
+\par
+% 
+The only technique currently able to measure the human connectome the in vivo (\ie{}, the living brain) is by using \ac{dMRI}.
+\ac{dMRI} provides a rather low resolution of about one millimeter relative to the structural configuration of nerve fiber bundles of several micrometers in vivo.
+This imaging resolution at the \si{\milli\meter}-scale can lead to misleading results due to the models and resolution limits involved, n particular in regions of fiber crossing or fiber \say{kissing} \cite{MaierHein2017}. \todo{Markus nach dem Stil der Zitate fragen}
+Therefore, a higher resolution of fiber pathways and the comprising individual fibers is required.
+Post morten the resolution of \ac{dMRI} reaches up to the order of $\SI{100}{\micro\meter}$.
+Microscopic imaging techniques on the other side can reach up to the order of \si{\micro\meter} to hundreds of \si{\nano\meter}.
+The challenge at such low scales is not only to acquire a portion of the brain (not to mention an entire human brain), but also to be able to process this massive amount of data.
+Such datasets will help to learn from and improve the models applied to the lower resolution datasets, which will help with \eg{} diagnostics. \\
+\cite{MaierHein2017, Schilling2021, Yendiki2021, Costantini2021}
+\par
+% 
+\ac{3D-PLI} is a microscopic imaging technique that allows the measurement of the orientation of nerve fibers inside a brain section.
+The myelin sheaths surrounding many axons of nerve fibers generate an optical property called birefringence.
+Birefringence is the presence of a refractive index that depends on the polarization and propagation direction of light.
+By analyzing this behavior, the underlying optical axis and thus the orientation of the nerve fiber can be determined.
+The brain slices are $\SI{60}{\micro\meter}$ thick and the image resolution is in the order of a few micrometers, \ie{}, at axonal scales.
+However, due to the fact that brain sections are needed, the tissue becomes quite fragile which leads to movements of the tissue and can also lead to fractions.
+These movements has to be later reversed in a process called image registration, allowing to build up an entire 3D dataset from the individual sections.
+Another challenge comes in steep nerve fiber regions and nerve fiber crossings.
+Because the signal from an image pixel originates from a volume that contains multiple nerve fiber orientations, the resulting interpretation can be challenging.
+Steep fibers are \eg{} orientated along the propagation direction of the light.
+Therefore, the is no change for the polarization state of the light.
+Crossing nerve fibers on the other hand are a mixture of multiple light waves.
+Since however only the sum of all light waves reaching the same sensor pixel is measured, the individual information is lost. \\ 
+\cite{Axer2011a, Axer2011, Axer2016}
+\par
+% 
+To improve the understanding of the underlying architecture including the nerve fiber orientations and its effect on the measured polarization signal, simulations plays therefore an important role.
+Due to the involved spatial sizes and shear number of possible nerve fiber orientations and involved cells, no phantom currently exists allowing to investigate all necessary possibilities.
+Complementary imaging techniques, such as two-photon microscopy, allow the tissue to be examined at higher resolution and lower deformations, but this has the disadvantage of longer measurement time.
+\par
+% 
+For this reason, simulations are used.
+Simulations make studies of physical effects possible which cannot be easily addressed by experimental setups.
+Clear benefits of simulations are the repeatability of experiments and the possibility to generate relevant statistics (\ie{}, large data sets) to meet \eg{} the requirements of machine learning.
+Therefore, the simulation and generation of such datasets should be done as fast as possible to obtain a large training dataset. \\
+\cite{Ginsburger2018, ginsburgerDis2019, Callaghan2019, Menzel2020}
+\par
+%
+This dissertation provides a novel open-source software package \ac{fastPLI} whose main purpose is to provide a method for modeling dense, non-colliding 3D nerve fiber models.
+These models are then used to simulate them in a virtual \ac{3D-PLI} experiment by calculating the effect of birefringence on polarized light using the M\"{u}ller-Stokes calulus. \\
+\cite{Matuschke2019, Matuschke2021, Reuter2019}
+\par
+% 
+An important issue is the use of supercomputing architectures with efficiently developed algorithms to enable simulations of larger models and volumes.
+The usefulness will be investigated and limitations will be demonstrated.
+% 
+% 
+% 
+In this work, two algorithms were presented within the software package \ac{fastPLI}.
+The first algorithm is capable of designing non-colliding nerve fiber models in a 3D volume.
+These models can then be used in the second algorithm, which simulates the interaction of polarized light with the modeled nerve fibers in a virtual \ac{3D-PLI} microscopic setup.
+% 
+% 
+% 
+% \paragraph{Nerve fiber modelling software}
+% 
+The algorithm for developing non-colliding nerve fiber models takes as input a list of 4D points for each nerve fiber, where the first three values are the $x,y,z$ coordinate in space and the fourth value is the radius of the nerve fiber at that point.
+Therefore, a nerve fiber is represented as a cylindrical conical segments that can change its radius along the path.
+For each fiber segment containing two adjacent points, a test is performed to determine if there is a collision with another fiber segment.
+If this is the case, both fiber segments are moved slightly away from each other.
+This is done for all fiber segments in the volume as long as a collision is detected.
+Both the length of a fiber segment and the bending radius of a nerve fiber are controlled by the user-defined software parameters.
+These parameters change the discretization and stiffness of the fiber models.
+\par
+% 
+To speed up model generation, an octree is used in the algorithm to divide the volume into sub-volumes.
+This octree can be executed in parallel on multiple \acp{CPU}.
+A visualization is provided to display the volume, allowing the user to interact with the algorithm after each computation step.
+\par
+% 
+An additional project called \ac{MEDUSA} was developed in collaboration with Neurospin at \ac{CEA}, which allows designing non-colliding nerve fiber models with cells such as astrocytes or olegodendrocytes that connect to myelin-enveloped axons.
+% 
+% 
+% 
+% \paragraph{Simulation software}
+% 
+The simulation software for \ac{3D-PLI} takes a configuration of nerve fibers as input and simulates the light matter interaction within a \ac{3D-PLI} setup.
+The simulation is divided into two consistent parts.
+The first part generates a discretized 3D volume.
+This volume is used by the second part, which calculates the resulting light intensity using the M\"{u}ller-Stokes calculation and the simulation of several light vectors through the volume.
+The final light intensity is stored in a 2D array, which can be modeled as an \ac{CCD} array with a specified resolution and noise model.
+The simulation is capable of simulating multiple tilted light beam, allowing multiple views of the same sub-volume that the light is traversing.
+In addition, the analysis algorithms are implemented into the software package, allowing the nerve fiber orientation to be calculated using the tilt analysis \ac{ROFL}.
+\par
+% 
+The simulation is capable of using multiple cores as well as a system with multiple nodes communicating via \ac{MPI}.
+This allows the simulation of a large volume of nerve fibers, which takes up a large amount of memory due to the discretized volume required.
+% 
+% 
+% 
+% \paragraph{Software package \acs{fastPLI}}
+% 
+All algorithms are written as modules in \python{} within the software package \ac{fastPLI}.
+The software package is published as an open source software package so that users can share, ask, and further develop the software to ensure high interchangeability. 
+The software has been tested by several users and published in \ac{JOSS}.
+% 
+% 
+% 
+% \paragraph{Nerve fiber modelling results}
+% 
+The nerve fiber modeling algorithm controls the necessary movement of the fibers to solve the collisions via the length of the fiber segments and the bending radius of the fibers.
+Both parameters were characterized in terms of the resulting orientations and computational speed.
+To reduce the dimensionality of the possible configurations, a set of parameters was designed to describe the model.
+This set consists of a relative angle between the two fiber populations, an inclination angle of the first fiber population, a rotation angle of the second fiber population around the first one and a population fraction parameter.
+The set allows nerve fiber models with up to two nerve fiber populations with arbitrary crossing angles to be examined in 3D without describing each fiber separately.
+\par
+% 
+Based on these parameters, the properties of the modeling parameters were first characterized.
+A set of values suitable to generate non-colliding nerve fiber models without introducing significant distortion to the initial configuration was identified.
+In addition, these parameter values are suitable to reduce the runtime to a reasonable extent without losing configuration characteristics or distorting the resulting models.
+To reduce the runtime even further, it was found that about an order of magnitude of computation time can be reduced by not solving the models completely.
+However, the impact of a non-collision-free model remains to be investigated in an additional study.
+\par
+% 
+With the model software parameters found, a library of up to two nerve fiber models described by the four model parameters was created for the \ac{3D-PLI} simulation.
+The orientation distribution was analyzed to be used as a comparison for the orientation analysis of the simulation.
+% 
+% 
+% 
+% \paragraph{\acs{3D-PLI} simulation results}
+% 
+Analogous to the nerve fiber modeling software, the parameters of the simulation software were first characterized and measured.
+The optical resolution of the microscope used was reproduced with previous results, as was the optical noise of the system.
+Tissue properties were derived from tissue samples measured in \ac{3D-PLI} so that the simulation could reproduce the results with its limitations.
+The most important characteristic of the simulation, the accuracy and runtime, was characterized by study multiple \Voxelsize{}.
+It was possible to identify a lower bound that must be used for a given nerve fiber radius.
+\par
+% 
+Using the identified software parameters and the prepared nerve fiber models, simulations were performed and analyzed with the tilt analysis.
+The models were divided into four groups: a single, a flat crossing, an oblique crossing, and a free crossing nerve fiber population.
+This allowed to focus on a specific behavior.
+\par
+% 
+In the case of a single nerve fiber population, only the inclination of the models was a variable.
+With the simulation results, it was shown that in the case of a single fiber population, the orientation can be correctly identified, with an increased uncertainty for very steep fibers.
+Statistically the mean can be measured correctly when measuring a homogenous volume with multiple image pixel.
+For very steep nerve fibers, the relative effective tissue thickness becomes unstable in the tilt analysis.
+This behavior can be used as an indication of how uncertain the results are.
+\par
+% 
+The flat crossing nerve fiber population results in a single value for the tilt analysis that appears to follow the circular mean value of the individual orientations.
+With this behavior, the predominant nerve fiber population is mostly visible, with a slight systematic error due to the orientation to the second nerve fiber direction.
+With the nerve fiber radius distribution and image resolution chosen here, the underlying orientation of the individual nerve fiber population could not be resolved.
+\par
+% 
+The population of inclined crossing nerve fibers has similar characteristics to the population of flat crossing nerve fibers.
+The inclination also appears to follow the circular mean value of each population, but due to the fact that inclined nerve fibers result in less change in the polarization of the light, the resulting orientation is biased toward the less inclined fiber population.
+At this resolution, the current tilt analysis cannot identify the individual nerve fiber populations.
+\par
+% 
+The last models examined were unrestricted nerve fiber populations, so any configuration describable by the four model parameters was possible.
+As a comparison an \ac{ODF} metric was used to determine the orientations of the models for which the tilt analysis of the \ac{3D-PLI} signal was error-prone and which were highly reliable.
+In addition, the individual parameters were discussed and the underlying behavior leading to the erroneous orientations was determined.
+\par
+% 
+An analysis of the simulation speed has shown that the simulation software can be parallelized very well with the capabilities of \ac{MPI} and can use a multi-node system that allows large volumes to be simulated without loss of computation time.
+However, the tissue generation process is slightly less efficient.
+Nevertheless, since multiple \ac{3D-PLI} simulations with tilted light beams are run on the same discretized tissue, this is not a critical issue.
+\par
+% 
+Many possible further optimizations of the algorithm could be identified.
+The general advice is to increase the computational power by using parallel computing architectures like a \ac{GPU}.
+Existing algorithms suitable for this type of computation for both the nerve fiber modeling and \ac{3D-PLI} simulations could be identified and should be implemented in the future.
+\par
+% 
+Overall this thesis presents a software package able to generate complex non colliding tubic nerve fiber models which can be simulated inside a virtual \ac{3D-PLI} microscope setup.
+This allows to investigate \dummy{}.
+% 
+The algorithms are highly parallelized and able to run on current super computing facilities.
+Additionally, the software package was designed with ease of use in mind.
+% 
+For the future, possible improvements were presented that further reduce the runtime.
+% 
+During the development phase of this software package, several publications with a release of the final software code in the \ac{JOSS} were created.
+% 
+Simulation showed the behavior of the \ac{3D-PLI} signal for multiple fiber populations for the first time.
+% 
 %
 \vspace*{20mm}
 %
