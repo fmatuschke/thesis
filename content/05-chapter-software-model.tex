@@ -305,6 +305,10 @@ This allows the user to specify complex interwoven structures such as nerve fibe
 The algorithm allows the user to specify boundary conditions like the mean fiber segment length or minimal bending radius.
 \par
 % 
+A stand-alone algorithm is published in \cite{Matuschke2019}.
+The solving algorithm is publicly available as a module of \ac{fastPLI} \cite{Matuschke2021}, \pymodule{fastpli.model.solver.Solver}.
+In the following chapters each \dummy{} is described in detail.
+% 
 \todo{to visualization?}
 An essential feature is the visualization of the displacement process.
 This allows the user to see the movement and intervene as early as possible if necessary.
@@ -314,47 +318,54 @@ This is very important because the solution process can take a lot of time, depe
 % 
 \subsection{Solver main function}
 %
+The main function is composed of the following sequential parts (see \cref{alg:pseudocode_solver}):
+% 
+\begin{itemize}
+    \item ordering the objects in an octree
+    \item checking each branch of the octree for colliding objects
+    \item separating the colliding objects
+    \item checking the shape of the fibers, \ie{}, their length and bending radius
+\end{itemize}
+% 
 \begin{lstfloat}[!tb]
-\lstset{style=python}
-\begin{lstlisting}[]
-def step():
-    # Reset Parameter
-    SetSpeed(objects, 0)
-   
-    # Building Octree
-    octree = Octree(objects)
-   
-    # Collision Detection
-    for leaf in octree:
-        colliding_objs = CheckLeaf(leaf.fiber_list)
-        colliding_list.insert(colliding_objs)
-
-    # Seperation Process
-    MoveObject(colliding_list)
-
-    # Shape Control
-    SegmentLength(colliding_list, target_length)
-    BendingRadius(colliding_list, target_curvature)
-
-    return colliding_list.is_empty()
-\end{lstlisting}
-\caption{Main structure in a single step of the collision checking and shape controlling algorithm.}
-\label{alg:pseudocode_solver}
+    \lstset{style=python}
+    \begin{lstlisting}[]
+    def step():
+        # Reset Parameter
+        SetSpeed(objects, 0)
+       
+        # Building Octree
+        octree = Octree(objects)
+       
+        # Collision Detection
+        for leaf in octree:
+            colliding_objs = CheckLeaf(leaf.fiber_list)
+            colliding_list.insert(colliding_objs)
+    
+        # Seperation Process
+        MoveObject(colliding_list)
+    
+        # Shape Control
+        SegmentLength(colliding_list, target_length)
+        BendingRadius(colliding_list, target_curvature)
+    
+        return colliding_list.is_empty()
+    \end{lstlisting}
+    \caption{Main structure in a single step of the collision checking and shape controlling algorithm.}
+    \label{alg:pseudocode_solver}
 \end{lstfloat}
-%
-The main function of the solver algorithm is a computational \code{step} of the solution procedure.
-The algorithm is with reason not a loop by itself.
-This allows the user to interact with the data or parameters at each step, if necessary.
-This \code{step} function (see \cref{alg:pseudocode_solver}) can be divided into the following sequential parts:
-Ordering the objects in an octree, checking each branch of the octree for colliding objects, separating the colliding objects, and checking the shape of the fibers.
-The return value of the function is a boolean if no colliding objects were found.
-A stand-alone algorithm is published in \cite{Matuschke2019}.
-At this point it is integrated into the \ac{fastPLI} package under \pymodule{fastpli.model.solver.Solver}.
+% 
+After a \code{step} the user is allowed to interacte if necesarry.
+The function returns a boolean value indicating if no more colliding objects were found.
+Therefore, a simple while loop can be used to iterate the collision solving algorithm a non colliding configuration is found.
 %
 %
 %
 \subsection{Collision Detection}
 \label{sec:collisionDetection}
+% 
+As described in \cref{sec:nerve_fiber_representation}, nerve fibers are represented as a chain of spheres, with two adjacent spheres representing a fiber segment that forms a \ac{CC} (see \cref{fig:conical_capsule}).
+However, a collision between two \ac{CC} involves quite a few calculations. To reduce the runtime only the \acp{AABB} is in a first step checked for collision.
 %
 \begin{figure}[!t]
     \centering
@@ -364,24 +375,6 @@ At this point it is integrated into the \ac{fastPLI} package under \pymodule{fas
 	\caption[]{Fiber segment representations with the \acp{AABB}: \raisebox{.25em}{\tikz \draw[black](0,0)--(0.275,0);} \ac{CC}, \raisebox{.25em}{\tikz \draw[blue, dash pattern=on 2.5pt off 2.5pt](0,0)--(0.275,0);} capsule, \raisebox{.25em}{\tikz \draw[red, dash pattern={on 2.5pt off 0.9pt on 0.42pt off 0.9pt}](0,0)--(0.275,0);} bounding box.}
 	\label{fig:conical_capsule}
 \end{figure}
-% 
-As described in \cref{sec:nerve_fiber_representation}, nerve fibers are represented as a chain of spheres, with two adjacent spheres representing a fiber segment that forms a \ac{CC} (see \cref{fig:conical_capsule}).
-However, a collision between two \ac{CC} involves quite a few calculations. To reduce the runtime only the \acp{AABB} is in a first step checked for collision.
-%
-\begin{lstfloat}[!tb]
-\lstset{style=python}
-\begin{lstlisting}[]
-def aabb_collide(aabb_0, aabb_1):
-  for i in dim(aabb):
-      if aabb_0[i].min > aabb_1[i].max:
-         return false
-      if aabb_0[i].max < aabb_1[i].min:
-         return false
-  return true
-\end{lstlisting}
-\caption{Calculation if a collision between \acp{AABB} exists.}
-\label{alg:collisionAABB}
-\end{lstfloat}
 %
 This check is quite simple and involves only a few steps (see \cref{alg:collisionAABB}).
 If a collision occurs between the two \acp{AABB}, the next more precise collision check is performed.
@@ -391,35 +384,42 @@ This means that the radii of the \ac{CC} for both spheres grow to the maximum of
 This has the obvious disadvantage that space is lost. However, for small changes in radii, this is a great advantage in terms of computational cost.
 \par
 % 
-\begin{lstfloat}[!t]
-\resizebox{\textwidth}{!}{
-% \begin{sideways}
-\begin{tabular}{|cc|cc|}
-\hline
-\hspace{1em} &
-\begin{minipage}{0.4625\textwidth}
-\lstinputlisting[style=python,basicstyle=\scriptsize\ttfamily,firstline=1,lastline=32]{code/collision_detection.py}
-\end{minipage} & \hspace{1em} &
-\begin{minipage}{0.4625\textwidth}
-\lstinputlisting[style=python,basicstyle=\scriptsize\ttfamily,firstline=33,lastline=64,firstnumber=35]{code/collision_detection.py}
-\end{minipage} \\
-\hline
-\end{tabular}
-% \end{sideways}
-}
-\caption{Collision detection between two capsule objects. A collision occurs if the distance is less than $\mathit{cone_a.r}+\mathit{cone_b.r} > d$.}
-\label{alg:pseudocodeCollisionDetection}
+\begin{lstfloat}[!tb]
+    \lstset{style=python}
+    \begin{lstlisting}[]
+    def aabb_collide(aabb_0, aabb_1):
+    for i in dim(aabb):
+        if aabb_0[i].min > aabb_1[i].max:
+            return false
+        if aabb_0[i].max < aabb_1[i].min:
+            return false
+    return true
+    \end{lstlisting}
+    \caption{Calculation if a collision between \acp{AABB} exists.}
+    \label{alg:collisionAABB}
 \end{lstfloat}
 % 
 The algorithm for detecting collisions between two capsules is described in \cref{alg:pseudocodeCollisionDetection}.\footnote{\href{https://www.john.geek.nz/2009/03/code-shortest-distance-between-any-two-line-segments/}{https://www.john.geek.nz/2009/03/code-shortest-distance-between-any-two-line-segments/}}
-%
-\begin{figure}[!t]
-    \centering
-    \def\tikzheight{0.5\textwidth}
-    \inputtikz{gfx/model/shortest_dist}
-	\caption{Shortest distance between two capsule objects. The line must be either perpendicular to the line segments or at least in one of the points of each object.}
-	\label{fig:shortDist}
-\end{figure}
+% 
+\begin{lstfloat}[!t]
+    \resizebox{\textwidth}{!}{
+    % \begin{sideways}
+    \begin{tabular}{|cc|cc|}
+    \hline
+    \hspace{1em} &
+    \begin{minipage}{0.4625\textwidth}
+    \lstinputlisting[style=python,basicstyle=\scriptsize\ttfamily,firstline=1,lastline=32]{code/collision_detection.py}
+    \end{minipage} & \hspace{1em} &
+    \begin{minipage}{0.4625\textwidth}
+    \lstinputlisting[style=python,basicstyle=\scriptsize\ttfamily,firstline=33,lastline=64,firstnumber=35]{code/collision_detection.py}
+    \end{minipage} \\
+    \hline
+    \end{tabular}
+    % \end{sideways}
+    }
+    \caption{Collision detection between two capsule objects. A collision occurs if the distance is less than $\mathit{cone_a.r}+\mathit{cone_b.r} > d$.}
+    \label{alg:pseudocodeCollisionDetection}
+\end{lstfloat}
 %
 It works on the principle that it calculates the shortest distance between two line segments.
 Three cases can occur.
@@ -429,6 +429,14 @@ The other has an anchor point either at the beginning or at the end of the secon
 Third, the shortest distance is a connection between one of the points of the line segments.
 For cones, a collision occurs when the distance is less than the sum of the two radii.
 \par
+% 
+\begin{figure}[!t]
+    \centering
+    \def\tikzheight{0.5\textwidth}
+    \inputtikz{gfx/model/shortest_dist}
+	\caption{Shortest distance between two capsule objects. The line must be either perpendicular to the line segments or at least in one of the points of each object.}
+	\label{fig:shortDist}
+\end{figure}
 % 
 It can be assumed that the calculation of the collision check will be the most complex function at this point.
 Therefore, the next step is to reduce the amount of computation as much as possible.
@@ -441,6 +449,17 @@ Therefore, another strategy must be chosen to reduce the number of computations.
 % 
 \subsection{Octree}\label{sec:octree}
 %
+A \name{tree} is a data structure consisting of a collection of \name{nodes} that are connected to each other.
+A \name{node} is connected to a single parent \name{node}, and to multiple \name{children} via \name{branches}.
+The first parent node is called \name{root}.
+The final \name{nodes} at the end of a \name{branch} are called \name{leafs}, which contain the data.
+Traversing a uniformly distributed \name{tree} has the advantage that the cost of traversal is $\mathcal{O}(\log(n))$.
+\par
+%
+An \name{octree} is a special kind of \name{tree} where each node contains eight children.
+This allows a cubic volume to be divided into eight sub-volumes, which in this case are of equal size.
+An example is shown in \cref{fig:octreeCube}.
+% 
 \begin{figure}[!t]
     \centering
     \subcaptionbox{\label{fig:octreeCube}Exemplary octree subdivision of a cube.}
@@ -455,17 +474,7 @@ Therefore, another strategy must be chosen to reduce the number of computations.
 	\caption{Exemplary tree subdivision.}
 	\label{fig:octree}
 \end{figure}
-%
-A \name{tree} is a data structure consisting of a collection of \name{nodes} that are connected to each other.
-A \name{node} is connected to a single parent \name{node}, and to multiple \name{children} via \name{branches}.
-The first parent node is called \name{root}.
-The final \name{nodes} at the end of a \name{branch} are called \name{leafs}, which contain the data.
-Traversing a uniformly distributed \name{tree} has the advantage that the cost of traversal is $\mathcal{O}(\log(n))$.
-\par
-%
-An \name{octree} is a special kind of \name{tree} where each node contains eight children.
-This allows a cubic volume to be divided into eight sub-volumes, which in this case are of equal size.
-An example is shown in \cref{fig:octreeCube}.
+% 
 This means that the length of the volumes shrinks exponentially with $(1/2)^\mathit{level}$.
 An \name{octree} can be implemented in several ways.
 Here, a recursion function was chosen (see \cref{alg:pseudocode_octree}), which is a function which that calls itself.
@@ -531,21 +540,16 @@ To resolve a collision between two \ac{CC} objects, each point $\vec{p}_i$ and $
 To effective move the objects apart with a small effort, the fiber objects are translated and rotated away from the other colliding object.
 The translation is parallel to the shortest distance vector of the collision.
 For the rotation the direction of motion is weighted by the distance of each point from the intersection with the smallest distance line (see \cref{fig:shortDist,alg:push_apart}).
+\par
 % 
 \begin{lstfloat}[!h]
-\lstinputlisting[style=python]{code/push_apart.py}
-\caption{Velocity calculation of colliding objects.}
-\label{alg:push_apart}
+    \lstinputlisting[style=python]{code/push_apart.py}
+    \caption{Velocity calculation of colliding objects.}
+    \label{alg:push_apart}
 \end{lstfloat}
-% 
-% \begin{align}
-% v_i = \dummy{}
-% \end{align}
-\par
 %
 The velocity is stored in an array for each fiber corresponding to the fibers points.
 All velocities for a single point will be summed up.
-
 \par
 % 
 A special case is the movement of the first and last point of a fiber.
@@ -565,6 +569,8 @@ Each parameter can be set to $\SI{0}{}$ to disable the boundary condition.
 % 
 \subsection{Mean segment length}
 %
+The average segment length is the distance between the two points of a fiber segment (see \cref{fig:modelLength}).
+%
 \begin{figure}[!t]
     \centering
     \setlength{\tikzwidth}{0.75\textwidth}
@@ -575,7 +581,9 @@ Each parameter can be set to $\SI{0}{}$ to disable the boundary condition.
 	\caption{Different fiber segment lengths as factor of the mean fiber radius $\fiberRadiusMean$.}
 	\label{fig:modelLength}
 \end{figure}
-%
+% 
+When the segment length becomes too small/large, the points within a fiber corresponding to the object are merged/separated and one less point/one new point is removed/added (see \cref{fig:mergeSplit}).
+% 
 \begin{figure}[!t]
     \centering
     % \tikzset{external/force remake}
@@ -592,9 +600,7 @@ Each parameter can be set to $\SI{0}{}$ to disable the boundary condition.
 	\caption{Length control for the $f$ and $f'$ fibers. Illustrated is the merging and splitting of points, if necessary. The first and last point are never removed.}
 	\label{fig:mergeSplit}
 \end{figure}
-%
-The average segment length is the distance between the two points of a fiber segment (see \cref{fig:modelLength}).
-When the segment length becomes too small/large, the points within a fiber corresponding to the object are merged/separated and one less point/one new point is removed/added (see \cref{fig:mergeSplit}).
+% 
 The segment is allowed to have a length inside $[\frac{2}{3} \overline{d},\frac{4}{3} \overline{d}]$. 
 Thus, the mean value of the object is:
 \begin{align}
@@ -612,6 +618,11 @@ r_{new} = \frac{r_{i} + r_{i+1}}{2},\enspace
 % 
 \subsection{Bending radius}
 %
+The bending radius is defined as the circle radius corresponding to the circle defined by three adjacent points $\vec{p}_{i-1}, \vec{p}_{i}, \vec{p}_{i+1}$ (see \cref{fig:modelCircle}).
+To limit the bending radius of the fiber a minimal allowed radius $r_{\min}$ is defined.
+Additionally three adjacent points are not allowed to have an enclosing angle $\eta \geq \SI{60}{\degree}$.
+If any point $\vec{p}_{i}$ in a fiber fails these boundary conditions, the three points are shifted $\vec{p}_{i-1}, \vec{p}_{i}$ and $\vec{p}_{i+1}$ are moved parallel to reduce curvature (see \cref{fig:modelCircle}).
+% 
 \begin{figure}[!t]
     \centering
     \setlength{\tikzheight}{.75\textwidth}
@@ -620,11 +631,6 @@ r_{new} = \frac{r_{i} + r_{i+1}}{2},\enspace
 	\caption{A fiber along its path can be characterized by circles from three adjacent points. A minimal radius for these circles is applied as boundry condition. Additionally the inner angle has to be $\eta \geq \SI{60}{\degree}$. If a condition is not fullfiled, a force (\textcolor{GREEN}{arrows}) is applied to smoothen the curviture at these points.}
 	\label{fig:modelCircle}
 \end{figure}
-%
-The bending radius is defined as the circle radius corresponding to the circle defined by three adjacent points $\vec{p}_{i-1}, \vec{p}_{i}, \vec{p}_{i+1}$ (see \cref{fig:modelCircle}).
-To limit the bending radius of the fiber a minimal allowed radius $r_{\min}$ is defined.
-Additionally three adjacent points are not allowed to have an enclosing angle $\eta \geq \SI{60}{\degree}$.
-If any point $\vec{p}_{i}$ in a fiber fails these boundary conditions, the three points are shifted $\vec{p}_{i-1}, \vec{p}_{i}$ and $\vec{p}_{i+1}$ are moved parallel to reduce curvature (see \cref{fig:modelCircle}).
 %
 % 
 % 
@@ -672,6 +678,8 @@ In addition, other functions that are thread-safe are parallelized with \ac{Open
 %
 %
 \section{Visualization}\label{sec:visualization}
+%
+A visualization tool is available to visualize the nerve fiber configuration (see \cref{fig:vis_solver}).
 % 
 \begin{figure}[!t]
     \centering
@@ -692,8 +700,7 @@ In addition, other functions that are thread-safe are parallelized with \ac{Open
 	\caption{Exemplary visualization in the collision solving process. The red color indicates that a collision is detected in the fiber segment.}
 	\label{fig:vis_solver}
 \end{figure}
-%
-A visualization tool is available to visualize the nerve fiber configuration (see \cref{fig:vis_solver}).
+% 
 This allows the user to get direct feedback, \eg{} after each step, to adjust the initial fiber configuration or boundary conditions.
 It is written in \cpp{} and \ac{OpenGL} \textit{v2} \cite{isocpp, khronos}.
 This implementation uses \code{gluCylinder} to represent a nerve fiber segment.
@@ -702,16 +709,10 @@ This is not the fastest approach, but it is still fast enough compared to the co
 % 
 A further advanced interactive tool is also available as open source, the FAConstructor, which was developed by Jan Reuter as part of his bachelor thesis \cite{Reuter2019}.
 It provides additional interactive methods for creating nerve fiber models and was written in \textit{OpenGL\,v3}.
-% \par
+% 
+% 
+% 
 \subsection{Transparent objects and cells}
-%
-\begin{figure}[!t]
-    \centering
-    \setlength{\tikzwidth}{0.75\textwidth}
-    \inputtikz{gfx/model/vis_a}
-	\caption{Generate a mesh for visualization. A mesh perpendicular to the fiber trajectory is calculated from n points. Triangles defined by these points are used as surfaces for the visualization of the object. Normal vectors can be used to smooth the visualization, and flash effects contribute to a more natural representation.}
-	\label{fig:vis_mesh}
-\end{figure}
 %
 In \cref{sec:medusa} the need of transparent objects is necessary.
 Not only the outer hull of the myelin, but also the inner axon needs to be seen in the visualization.
@@ -722,6 +723,14 @@ This means, that the triangular surfaces have to be sorted in z-direction, \ie{}
 To order the triangular surfaces, they first have to be calculated.
 The fiber segments are no longer represented as a cylinder, but as \ac{CC} which consist out of a hexagonal grid (see \cref{fig:vis_mesh}).
 \par
+%
+\begin{figure}[!t]
+    \centering
+    \setlength{\tikzwidth}{0.75\textwidth}
+    \inputtikz{gfx/model/vis_a}
+	\caption{Generate a mesh for visualization. A mesh perpendicular to the fiber trajectory is calculated from n points. Triangles defined by these points are used as surfaces for the visualization of the object. Normal vectors can be used to smooth the visualization, and flash effects contribute to a more natural representation.}
+	\label{fig:vis_mesh}
+\end{figure}
 % 
 This is a huge amount of computational resources.
 It is not yet included in the \ac{fastPLI} package.
@@ -761,6 +770,11 @@ Therefore, the algorithm was implemented on the \ac{GPU} with an axis aligned bo
 %
 \subsection{Algorithm}
 %
+Since all objects are represented as a collection of spheres (see \cref{fig:medusaCell})
+\begin{align}
+    \mathcal{S} = \{ (x_i,y_i,z_i,r_i) : i \in \{0, 1, ..., n_\text{objects}-1\}  \}
+\end{align}
+%
 \begin{figure}[!t]
     \centering
     \setlength{\tikzwidth}{0.75\textwidth}
@@ -773,11 +787,6 @@ Therefore, the algorithm was implemented on the \ac{GPU} with an axis aligned bo
     \caption{\ac{MEDUSA} sphere approximation.}
     \label{fig:medusaCell}
 \end{figure}
-%
-Since all objects are represented as a collection of spheres (see \cref{fig:medusaCell})
-\begin{align}
-    \mathcal{S} = \{ (x_i,y_i,z_i,r_i) : i \in \{0, 1, ..., n_\text{objects}-1\}  \}
-\end{align}
 %
 , a collision occurs when
 %
@@ -803,13 +812,14 @@ This results in a list of spheres $\mathcal{C}_i$ to be tested:
 \end{split}
 \end{align}
 %
+The algorithm (see \cref{alg:medusa_collision}) described above is currently used for volumes of about $\SI{200}{\micro\meter}$ for different number of fiber populations and other properties (see \cref{fig:medusa_8a}).
+%
 \begin{lstfloat}[!t]
 	\lstinputlisting[style=cpp]{code/medusa.cu}
 	\caption{Pseudocode of \acs{MEDUSA}s collision checking.}
 	\label{alg:medusa_collision}
 \end{lstfloat}
-%
-The algorithm (see \cref{alg:medusa_collision}) described above is currently used for volumes of about $\SI{200}{\micro\meter}$ for different number of fiber populations and other properties (see \cref{fig:medusa_8a}).
+% 
 For this volume size, the algorithm is fast enough for current use.
 However, there are more advanced algorithms that can be used here.
 One promising technique is the use of a \name{Bounding Box Hierarchy} \cite{Karras2012}.
