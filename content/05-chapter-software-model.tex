@@ -365,7 +365,8 @@ Therefore, a simple while loop can be used to iterate the collision solving algo
 \label{sec:collisionDetection}
 % 
 As described in \cref{sec:nerve_fiber_representation}, nerve fibers are represented as a chain of spheres, with two adjacent spheres representing a fiber segment that forms a \ac{CC} (see \cref{fig:conical_capsule}).
-However, a collision between two \ac{CC} involves quite a few calculations. To reduce the runtime only the \acp{AABB} is in a first step checked for collision.
+A collision between two \ac{CC} involves a few calculations (see \cref{alg:pseudocodeCollisionDetection}).
+To reduce the runtime \acp{AABB} are first checked for collision.
 %
 \begin{figure}[!t]
     \centering
@@ -376,12 +377,12 @@ However, a collision between two \ac{CC} involves quite a few calculations. To r
 	\label{fig:conical_capsule}
 \end{figure}
 %
-This check is quite simple and involves only a few steps (see \cref{alg:collisionAABB}).
-If a collision occurs between the two \acp{AABB}, the next more precise collision check is performed.
+This check is fast to calculate (see \cref{alg:collisionAABB}).
+If a collision occurs between the two \acp{AABB}, the actual collision calculation is performed.
 However, this is a non-trivial task and very computationally intensive.
-Therefore, it was decided to change the object representation for the collision detection part from a \ac{CC} to a capsule (see \cref{fig:conical_capsule}).
-This means that the radii of the \ac{CC} for both spheres grow to the maximum of the two spheres $r_{\mathit{capsule}} = \mathrm{max}(r_0, r_1)$.
-This has the obvious disadvantage that space is lost. However, for small changes in radii, this is a great advantage in terms of computational cost.
+Therefore, it was decided to change the object representation for the collision detection from a \ac{CC} to a capsule (see \cref{fig:conical_capsule}), with a radius equal to the maximum of the two original spheres $r_{\mathit{capsule}} = \mathrm{max}(r_0, r_1)$.
+This enables the computational effort to be reduced, although some volume is lost.
+This is of minor consequence, since the change in radius is expected to be relatively small.
 \par
 % 
 \begin{lstfloat}[!tb]
@@ -399,7 +400,7 @@ This has the obvious disadvantage that space is lost. However, for small changes
     \label{alg:collisionAABB}
 \end{lstfloat}
 % 
-The algorithm for detecting collisions between two capsules is described in \cref{alg:pseudocodeCollisionDetection}.\footnote{\href{https://www.john.geek.nz/2009/03/code-shortest-distance-between-any-two-line-segments/}{https://www.john.geek.nz/2009/03/code-shortest-distance-between-any-two-line-segments/}}
+The algorithm for detecting collisions between two capsules is described in \cref{alg:pseudocodeCollisionDetection}.
 % 
 \begin{lstfloat}[!t]
     \resizebox{\textwidth}{!}{
@@ -417,7 +418,7 @@ The algorithm for detecting collisions between two capsules is described in \cre
     \end{tabular}
     % \end{sideways}
     }
-    \caption{Collision detection between two capsule objects. A collision occurs if the distance is less than $\mathit{cone_a.r}+\mathit{cone_b.r} > d$.}
+    \caption{Collision detection between two capsule objects. A collision occurs if the distance is less than \code{cone\_a.r + cone\_b.r > d}. Original: \href{https://www.john.geek.nz/2009/03/code-shortest-distance-between-any-two-line-segments/}{https://www.john.geek.nz/2009/03/code-shortest-distance-between-any-two-line-segments/}}
     \label{alg:pseudocodeCollisionDetection}
 \end{lstfloat}
 %
@@ -438,12 +439,10 @@ For cones, a collision occurs when the distance is less than the sum of the two 
 	\label{fig:shortDist}
 \end{figure}
 % 
-It can be assumed that the calculation of the collision check will be the most complex function at this point.
-Therefore, the next step is to reduce the amount of computation as much as possible.
-An initial naive collision check would compare each object to all other objects.
-The next object must then be checked against $n-1$ and so on.
-This leads to a computational cost of $\mathcal{O}(n^{2})$, which is not acceptable for large n.
-Therefore, another strategy must be chosen to reduce the number of computations.
+The calculation of the collision check is the most complex function.
+Therefore, the amount of collision checks needs to be reduced as much as possible.
+An collision check compares each object to all other objects, which leads to a computational cost of $\mathcal{O}(n^{2})$, which is not acceptable for large n.
+Therefore, an octree based strategy was selected to reduce the number of computations.
 %
 % 
 % 
