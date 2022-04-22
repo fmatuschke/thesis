@@ -418,7 +418,7 @@ The algorithm for detecting collisions between two capsules is described in \cre
     \end{tabular}
     % \end{sideways}
     }
-    \caption{Collision detection between two capsule objects. A collision occurs if the distance is less than \code{cone\_a.r + cone\_b.r > d}. Original: \href{https://www.john.geek.nz/2009/03/code-shortest-distance-between-any-two-line-segments/}{https://www.john.geek.nz/2009/03/code-shortest-distance-between-any-two-line-segments/}}
+    \caption{Collision detection between two capsule objects. A collision occurs if the distance is less than \code{cone\_a.r + cone\_b.r > d}. Original: \href{https://www.john.geek.nz/2009/03/code-shortest-distance-between-any-two-line-segments/}{https://www.john.geek.nz/2009/03/code-shortest-distance-between-any-two-line-segments/}.}
     \label{alg:pseudocodeCollisionDetection}
 \end{lstfloat}
 %
@@ -684,7 +684,7 @@ A visualization tool is available to visualize the nerve fiber configuration (se
 This allows the user to get direct feedback, \eg{} after each step, to adjust the initial fiber configuration or boundary conditions.
 It is written in \cpp{} and \ac{OpenGL} \textit{v2} \cite{isocpp, khronos}.
 This implementation uses \code{gluCylinder} to represent a nerve fiber segment.
-This is not the fastest approach, but it is still fast enough compared to the computation time of a single step in the collision algorithm.
+Although not optimal, the visualization is sufficient compared to a single step of the collision solving algorithm.
 \par
 % 
 A further advanced interactive tool is also available as open source, the FAConstructor, which was developed by Jan Reuter as part of his bachelor thesis \cite{Reuter2019}.
@@ -721,29 +721,29 @@ The resulting visualization is shown in \cref{fig:medusa_8b}.
 \section{Medusa - sphered nerve and cell modelling}
 \label{sec:medusa}
 %
-The algorithm described above for generating dense \ac{WM} fiber models can also be applied in \ac{dMRI}.
-% 
-In \ac{dMRI} the movement and interaction of water molecules with the fiber models is simulated.
-When the water molecules collide with the surface of a fiber segment, the molecules behavior, like diffusion though the surface, must be taken into account.
+The proposed algorithm for generating dense \ac{WM} fiber models can also be applied in \ac{dMRI}.
+In \ac{dMRI}, the motion and interaction of water molecules with the fiber models is simulated.
+When the water molecules collide with the surface of a fiber segment, the molecular behavior, like diffusion through the surface, must be considered.
 This applies not only to nerve fibers but also to other cell types.
-Since the \ac{WM} consists not only of axons, but also of other cells such as glial cells, astrocytes and olegodendrites, these are also changing the signal of the \ac{dMRI}.
+Since the WM consists of axons and other cells such as glial cells, astrocytes, and oligodendrocytes, these also change the \ac{dMRI} signal.
 \par
 % 
 Therefore, an additional algorithm was developed in collaboration with Kevin Ginsburger and Cyril Poupon (Neurospin, \ac{CEA}).
-This algorithm called \ac{MEDUSA} \cite{Ginsburger2019} works similarly to the algorithm described above, but models the 3D objects as spheres rather than pipe segments.
-This has the advantage that the objects are simpler, which leads faster collision checking calculations.
-Additionally, the spheres are also used to represent other type of cells.
-The overall volume of a cell is represented the sum of all spheres corresponding to the cell (see \cref{fig:medusaCell}).
-In this way any shape is possible.
-To generate realistic shaped cells this algorithm is specialized to produce olegodendrites and Astrocytes.
+This algorithm called \ac{MEDUSA} \cite{Ginsburger2019} works similarly to the algorithm described in \cref{sec:Solver}, but models the 3D objects as spheres rather than pipe segments.
+Such formulation has the advantage that the objects are simpler,
+which leads to faster collision checking calculations.
+Additionally, the spheres are also used to represent other types of cells.
+The overall cell volume is represented by the sum of all spheres corresponding to the cell (see \cref{fig:medusaCell}).
+In this way, any shape is possible.
+\ac{MEDUSA} additionally produces oligodendrocytes and astrocytes to generate more realistic \ac{WM} brain tissue.
 \par
 % 
-Another focus of the algorithm is to be able to generate a volume from statistical parameters such as density and angular dispersion \cite[Ginsburger2019, ginsburgerDis2019].
+Another goal of the \ac{MEDUSA} algorithm is to be able to generate a volume from statistical parameters such as density and angular dispersion \cite{Ginsburger2019, ginsburgerDis2019}.
 Analogous to the \cref{sec:Solver} algorithm, the collisions of the objects are checked and slowly pushed apart until no more collisions can be detected.
 The usage of the statistical parameters allows generating a general purpose library of volumes filled with nerve fibers and cells (see \cref{fig:medusa_8a}).
 \par
 % 
-The disadvantage of the spheres is that for the representation of tubular objects many more spheres and thus objects for collision control are needed.
+The disadvantage of the spheres is that many more spheres and thus objects for collision control are needed for the representation of tubular objects.
 Therefore, the algorithm was implemented on the \ac{GPU} with an axis aligned bounding box search algorithm \cite{Karras2012}.
 % 
 % 
@@ -792,11 +792,11 @@ This results in a list of spheres $\mathcal{C}_i$ to be tested:
 \end{split}
 \end{align}
 %
-The algorithm (see \cref{alg:medusa_collision}) described above is currently used for volumes of about $\SI{200}{\micro\meter}$ for different number of fiber populations and other properties (see \cref{fig:medusa_8a}).
+The algorithm (see \cref{alg:medusa_collision}) described above is currently used for volumes of about $\SI{200}{\micro\meter}$ for different fiber populations and other properties (see \cref{fig:medusa_8a}).
 %
 \begin{lstfloat}[!t]
 	\lstinputlisting[style=cpp]{code/medusa.cu}
-	\caption{Pseudocode of \acs{MEDUSA}s collision checking.}
+	\caption{\acsg{MEDUSA} collision checking.}
 	\label{alg:medusa_collision}
 \end{lstfloat}
 % 
