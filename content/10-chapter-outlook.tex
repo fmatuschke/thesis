@@ -60,7 +60,7 @@ The first was a seminar project to implement a parallel discrete tissue volume c
 It was shown that the speedup of the discrete volume computation was very high, but the large memory requirements of the discretized volume negated this speedup overall, as \acp{GPU} are relatively limited here.
 In addition, the need to transfer the data back to \ac{RAM} was too much of an overhead.
 Therefore, the second project was to implement a ray tracing algorithm that computes a light matter collision and matrix computation without pre-computing the discretized volume \cite{Kobusch:887783, GPUfastpli}.
-A light particle only computes the M\"{u}ller-Stokes calculus only if it collides fifth a fiber object.
+A light particle only computes the M{\"u}ller-Stokes calculus only if it collides fifth a fiber object.
 This means, that a collision algorithm needs to be used.
 As a first implementation a collision detection algorithm on the \ac{GPU}, an uniaxially aligned collision search algorithm \cite{Karras2012} was implemented.
 The results showed that the acceleration possibilities on the \ac{GPU} are enormous.
