@@ -171,7 +171,7 @@ Therefore it is also responsible for the sampling of the resulting intensities.
 All arrays are implemented as contiguous c-arrays, accessible externally as \name{NumPy-arrays} without copying the data.
 Since these arrays grow with $\mathcal{O}(\frac{1}{\voxelsize}^3)$, the ownership of the data is movable in both the \cpp{} libraries and \python{} code.
 The memory order of the arrays is in the $x\text{-}y\text{-}z$ direction, so the largest memory shift is in $x$ and the smallest in $z$.
-This was chosen so that later in the light matter simulation part, where the light moves mainly in the $z$-direction, the memory is aligned with the traversed information and thus the \acp{CPU} cache prefetcher can be used effectively.
+Thus, when the light moves along the $z$-direction, the information can be read out linearly from the memory, and the acp{CPU} cache prefetcher can be used effectively. 
 \par
 %
 Two methods are used to parallelize the algorithm on the \ac{CPU}.
@@ -180,7 +180,7 @@ The second uses \ac{MPI} to allow distribution across multiple \ac{CPU} cores wi
 \par
 %
 Parallelizing the filling process of the voxels of the discretized volume leads to a race condition when multiple threads want to write or read to the same memory address, \ie{}, the same coordinate in the volume.
-A solution with a lock would be very slow and since many of the voxels do not need to be overwritten, most of the locks would be unnecessary.
+A solution with a lock would be suboptimal and since many of the voxels do not need to be overwritten, most of the locks would be unnecessary.
 To share the work, thread $n$ processes only the memory for the first index $i$ (or volume dimension $x$) if:
 %
 \begin{align}
@@ -193,14 +193,13 @@ To share the work, thread $n$ processes only the memory for the first index $i$ 
 \centering
 \setlength{\tikzwidth}{0.5\textwidth}
 \inputtikz{gfx/simpli/disc_volume_thread}
-\caption{Discretization volume parallelization with \ac{OpenMP}. Each thread processes every $n$-th $yz$-section. This ensures both thread safety and a more balanced workload, even under inhomogeneous conditions.}
+\caption{Discretization volume parallelization with \ac{OpenMP}. Each thread processes every $n$-th $yz$-section. This ensures both thread safety and a more balanced workload.}
 \label{fig:discVolThread}
 \end{figure}
 % 
-This means that each thread loops over every $N_{\mathit{num\_threads}}$ slice of the volume (see \cref{fig:discVolThread}).
-This is done instead of dividing the volume to n sub volumes to distribute the work in case that the volume is not filled homogeneously with fibers.
+Instead of dividing the volume into $n$ subvolumes, each thread loops over every $N_{\mathit{num\_threads}}$ slice of the volume (see \cref{fig:discVolThread}) to distribute the work if the volume is not filled homogeneously with fibers. 
 This procedure leads to a thread-safe writable operation.
-One disadvantage of this algorithm is, that all threads have to check if the \ac{AABB} of all fiber segments is inside the current \ac{VOI}.
+One disadvantage of this algorithm is that all threads have to check if the \ac{AABB} of all fiber segments is inside the current \ac{VOI}.
 % 
 % 
 %
@@ -237,7 +236,7 @@ Both methods can be mathematically represented by the same procedure.
 \par
 %
 An additional effect changing the light path is the refraction at the tissue-air boundary, which is described by Snell's law for isotropic media (see \cref{eq:Snellius}).
-Since this only adds a parallel shift, simulation is only necessary when the effects of the resampling process and image registration is to be investigated.
+Since this only adds a parallel shift, simulation is only necessary when the effects of the resampling process and image registration is investigated.
 \par
 %
 \begin{figure}[!t]
@@ -253,14 +252,14 @@ Since this only adds a parallel shift, simulation is only necessary when the eff
 \end{figure}
 %
 The initial position of the light beam is calculated by traversing the light path backwards (see \cref{fig:tilted_side_view}).
-This has the advantage, that each index inside the \ac{CCD} always receives exactly one light beam.
+This has the advantage that each index inside the \ac{CCD} always receives exactly one light beam.
 
 From the \ac{CCD} array, the light path can be shifted back to the top plane of the tissue $\mathfrak{S}_{top}$.
 Subsequently, the light beam $\vec{l}_1$ is traced back through the tissue to the bottom plane $\mathfrak{S}_{bottom}$.
 The point on the lower tissue plane corresponds to the initial position of the light beam.
 This light path change results in a shift $\delta$ along the same direction of the tilting.
 In the light matter simulation only light rays are considered, which will go at least partially through the volume.
-All remaining \ac{CCD} elements are left with a \textit{NaN} value.
+All remaining \ac{CCD} elements are left with a \code{NaN} value.
 \par
 %
 The tilting of the tissue leads to a distortion of the image (see \cref{fig:tilting_camera_view}).
@@ -276,19 +275,19 @@ This distortion can be described by an affine transformation (see \cref{fig::aff
 \begin{align}
 f(\vec{x}) = \mat{A} \cdot \vec{x} + \vec{t}
 \end{align}
-where $\vec{x}$ is the coordinate input, $\mat{A}$ and $\vec{t}$ are the transformation values, and $f(\vec{x}$ is the transformed coordinate.
+where $\vec{x}$ is the coordinate input, $\mat{A}$ and $\vec{t}$ are the transformation values, and $f(\vec{x})$ is the transformed coordinate.
 \par
 %
 The light matter simulation with the light paths sampling as described above takes this distorted view into account and removes it.
-The simulation is also capable of sampling the light rays in such a way, that the distortion occurs.
-In that case the resulting images have to be registered onto each other \eg{} by an affine transformation which is also available.
+The simulation can also sample the light rays so that distortion occurs.
+Thus, the resulting images have to be registered onto each other by an affine transformation which is also available in the algorithm.
 % 
 % 
 % 
 \subsection{Tissue voxel interpolation}
 %
-If the \Stepsize{} of the light ray is not equal to the \Voxelsize{} or if the light path is tilted, the light rays position after a step does no longer matches the center of the voxel.
-This means that the physical properties stored in the arrays have to be interpolated.
+If the \Stepsize{} of the light ray is not equal to the \Voxelsize{} or if the light path is tilted, the light ray position after a step no longer matches the center of the voxel.
+In order to correctly recreate the physical properties, interpolation is required (see \cref{fig:vectorfield_disc}).
 %
 \begin{figure}[!t]
 \centering
@@ -305,10 +304,10 @@ This means that the physical properties stored in the arrays have to be interpol
 \end{figure}
 %
 Currently, three interpolation methods are implemented: \name{nearest neighbor}, \name{linear interpolation} and \name{spherical interpolation}.
-The voxels considered for interpolation are the nearest eight neighboring voxels, \ie{}, array indices $(\floor{x\pm0.5},\floor{y\pm0.5},\floor{y\pm0.5})$.
+The voxels considered for interpolation are the adjacent eight neighboring voxels, \ie{}, array indices $(\floor{x\pm0.5},\floor{y\pm0.5},\floor{y\pm0.5})$.
 The \name{nearest neighbor} and \name{linear interpolation} are still present from the development phase.
-However, they should not be used because they are error-prone.
-Since the data are orientations, the default value for the interpolation method \name{spherical interpolation} should be used.
+However, they should not be used because they are prone to errors, given that the data represent orientations in the space.
+Thus, the use of \name{spherical interpolation} considers the relationship existing in the data components, and it is highly recommended.
 %
 %
 %
@@ -317,7 +316,7 @@ Since the data are orientations, the default value for the interpolation method 
 After the initial light positions are calculated each light beam is traversed within the tissue.
 To calculate the light-tissue interaction, the change of the Stokes vector is calculated after each light beam step.
 The step size is a user defined value with a default value of the \Voxelsize{} $\voxelsize$.
-Once the light hits the boundary of the volume, the light beam is multiplied by the matrix of the remaining optical elements of the microscope and the intensity is stored in the \ac{CCD}-array.
+To simulate the light beam hitting the volume's boundary, the light beam is multiplied by the matrix of the remaining optical elements of the microscope and the intensity is stored in the \ac{CCD}-array.
 The pseudocode is shown in \cref{alg:simulationLoop}.
 %
 \begin{lstfloat}[!tb]
@@ -340,49 +339,48 @@ for light in light_beams:
 \label{alg:simulationLoop}
 \end{lstfloat}
 %
-To resample the array to the final size of the \ac{CCD} sensor and apply the noise model, there are \python{} functions outside the parralized simulation software available.
+To resample the array to the final size of the \ac{CCD} sensor and apply the noise model, there are \python{} functions outside the simulation software available.
 % 
 % 
 %
-\subsection{Code optimizations}
-%
-Several optimizations exists in this pipeline.
-First, the order of the tissues stored in memory is along the z-axis (as described in \cref{sec:dvOpti}) so that the light ray \textit{traverses} along the aligned memory.
-Second, the for-loop for the light beams (see \cref{alg:simulationLoop}) is paralellized with \ac{OpenMP}.
-These threads are completely separated and there are no race conditions.
-In addition, all vector and matrix calculations are optimized for their small sizes by the compiler with the help of tools like \name{Compiler Explorer}\footnote{\url{https://godbolt.org/}} and \name{C++ Insight}\footnote{\url{https://cppinsights.io/}}.
-%
-%
-\section{Optical system and signal analysis}
+\subsection{Optical system and signal analysis}
 \label{sec:ccdOptic}
 %
 The image sensor, as described in \cref{sec:expSetup}, is a \ac{CCD}-sensor.
 The resampling and noise modeling, are implemented according to \cref{sec:opticalResolution}.
 These calculations are performed on the \python{} side of the algorithm (\code{fastpli.simulation.Simpli}) and can be executed with the \code{multiprocessing} library of \python{} to use multiple \ac{CPU} cores.
-Therefore when using \ac{MPI} (see \cref{sec:mpiSim}) the intensity image has to be reduced to a single process.
-Since this image is only two-dimensional, there is no need to speed up the process with \ac{MPI} further.
+Therefore when using \ac{MPI} (see \cref{sec:mpiSim}) the intensity image must be reduced to a single process.
+Since the resulting image is only 2D, there is no need to further speed up the process with \ac{MPI}.
 \par
 %
 To analyze the signal, the same algorithms are implemented as in the \ac{3D-PLI} routine pipeline (see \cref{sec::intSignal,sec::InclAnalysis}).
-This includes the modalities analysis transmittance, direction and retardation as well as the tilt analysis performed by \ac{ROFL}.
-The tilt analysis takes quite a lot of time.
-Therefore, it can also be executed with the \code{multiprocessing} library of \python{}.
-%
-%
-%
-\section{MPI parallelization}\label{sec:mpiSim}
-%
-Both algorithms, the discrete volume generator and the light matter simulation, can additionally use a parallelization technique.
-For large volumes that are larger than the local memory size, the computation must be split among multiple physical \acp{CPU}s and \name{computation nodes}.
-For this purpose, \acreset{MPI} \ac{MPI} is used.
-A method is implemented to automatically partition the volume along the $x$-axis and the $y$-axis into blocks with minimal surface area along both axis (see \cref{fig:com_halo}).
-\par
+These include the modalities analysis transmittance, direction and retardation and the tilt analysis performed by \ac{ROFL}.
+The tilt analysis is a fork of the existing routine analysis developed in python.
+To parallelize the execution, the native \code{multiprocessing} library of \python{} can be used.
 % 
-Each \ac{CPU} can perform the discrete volume generation without the knowledge of each other.
-The exception is the light matter simulation for tilted light beams.
-Here, when a light ray leaves the local volume, it must be transmitted to the adjacent volume.
-\ac{MPI} provides several methods to send information to another \name{rank}.
-Since the sub-volumes are split along a cartesion grid, the cartesion implementations of \ac{MPI} are used (\eg{} \code{MPI\tu Cart\tu create}).
+% 
+%
+\section{Speedup strategies}
+%
+\subsection{Code design}
+% 
+The following key optimizations are used in the pipeline:
+\begin{itemize}
+    \item The order of the tissues stored in memory is along the z-axis (as described in \cref{sec:dvOpti}) so that the light ray \textit{traverses} along the aligned memory.
+    \item The for-loop for the light beams (see \cref{alg:simulationLoop}) is paralellized with \ac{OpenMP}.
+    These threads are completely separated and there are no race conditions.
+    \item Vector and matrix calculations are optimized for their small sizes by the compiler with the help of tools like \name{Compiler Explorer}\footnote{\url{https://godbolt.org/}} and \name{C++ Insight}\footnote{\url{https://cppinsights.io/}}.
+\end{itemize}
+%
+%
+% 
+\subsection{MPI parallelization}\label{sec:mpiSim}
+%
+The algorithms for discrete volume generation and light matter simulation can additionally use a parallelization technique.
+The computation must be split among multiple physical \acp{CPU} and nodes for large volumes larger than the local memory size.
+For this purpose, \acreset{MPI} \ac{MPI} is used.
+A method is implemented to automatically partition the volume along the $x$-axis and the $y$-axis into blocks with the minimal surface area along both axis (see \cref{fig:com_halo}).
+\par
 %
 \begin{figure}[!t]
     \centering
@@ -391,18 +389,20 @@ Since the sub-volumes are split along a cartesion grid, the cartesion implementa
     \caption{ This example uses six \ac{MPI} ranks to split the entire volume into six sub-volumes. To calculate the value at a given point a eight-neighborhood is necessary. Therefore a \name{halo} area (coloured voxels) with the same information shared by neighboring \ac{MPI} process is necesarry.}
     \label{fig:com_halo}
 \end{figure}
-%
-A problem is the calculation at the edge of the volume, because the light beam needs the information of the surrounding eight voxels for the interpolation.
-If this voxel information were to be transmitted to the neighboring \name{rank} as well, this would mean a large amount of communication, which is much slower compared to the local \ac{CPU} or \ac{RAM} instructions.
-The solution is a so-called \name{halo}.
-This is a commonly used concept where the boundaries (in this case a volume) are increased by a certain size (in this case $\SI{1}{\voxel}$) so that the same information about the shared regions is available everywhere (see \cref{fig:com_halo}).
-\par
-%
-With this concept, only the light beam needs to be communicated to the neighbors when leaving the local volume (see \cref{fig:com_halo}).
-This is also the reason why the surface area is minimized, so the number of communications is also minimized.
+% 
+Each \ac{CPU} can perform the discrete volume generation without the knowledge of each other.
+The exception is the light matter simulation for tilted light beams.
+Here, when a light ray leaves the local volume, it must be transmitted to the adjacent volume.
+\ac{MPI} provides several methods to send information to another \name{rank}.
+Since the sub-volumes are split along a cartesian grid, the cartesian implementations of \ac{MPI} are used (\eg{} \code{MPI\tu Cart\tu create}).
+A problem is the calculation at the edge of the volume, since the light beam needs the information of the surrounding eight voxels for the interpolation.
+If this voxel information were to be transmitted to the neighboring \name{rank}, this would mean a large amount of communication, which is much slower compared to the local \ac{CPU} or \ac{RAM} instructions.
+To solve this communication problem, the algorithm uses a \name{halo}.
+This is a commonly used concept where the boundaries (in this case the volume) are increased by a certain size so that the same information about the shared regions is available everywhere (see \cref{fig:com_halo}).
+Such approach reduces the number of necessary communications between different ranks (see \cref{fig:com_halo}).
 \par
 % 
-To further speed up the communication process, all outgoing light beams are first stored locally in a communication buffer, and only after all local light beams have been processed is the buffer passed on to the neighbors.
+To further speed up the communication process, all outgoing light beams are first stored locally in a communication buffer, and only after all local light beams have been processed the buffer is passed to the neighbors.
 This ensures minimal communication overhead.
 The main loop of the light beam algorithm is then restarted on all \ac{MPI} \name{ranks} for the communicated light beams.
 This is repeated until no more communication is required.
