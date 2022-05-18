@@ -151,11 +151,11 @@ Therefore, for the simulation the convolution parameter is set to $\opticsigma =
 \\[-1em]
 %
 % SUBCAPTIONS
-\subcaptiontab{0.475\textwidth}{\label{fig:parameterModelNoise} Linear regression results in a gain factor of $\opticgain_{\mathit{LMP}} = \SI{0.1175}{}(?)$.} &
+\subcaptiontab{0.475\textwidth}{\label{fig:parameterModelNoise} Histrogram of intensity vs variance with linear regression. The gain factor results in $\opticgain_{\mathit{LMP}} = \SI{0.1175(7)}{}$.} &
 \subcaptiontab{0.475\textwidth}{\label{fig:noiseplot}Expected noise range for human, vervet monkey and rodent. The noise correlates linearly with the light intensity.}
 \end{tabular}
 %
-\caption{Camera noise measurements.}
+\caption{\ac{LMP} camera noise measurements.}
 \label{fig:parameterModelGain}
 \end{figure}
 %
@@ -189,7 +189,7 @@ The smallest voxel size $\SI{0.01}{\micro\meter}$ is used as a reference.
 Since this voxel size is so small, the simulated volume is $3 \cdot \SI{1.3}{\micro\meter} \times 3 \cdot \SI{1.3}{\micro\meter} \times \SI{60}{\micro\meter}$ without tilts.
 Otherwise, the number of voxels and thus the memory consumption is too high.
 During the simulation, the previously determined tissue and noise parameters are used.
-The models to be simulated are parallel models without inclination $\pfbs, \modelInc = \SI{0}{\degree}$, inclined parallel fiber models $\pfbs, \modelInc = \SI{90}{\degree}$, flat crossing fiber models $\cfbs, \modelInc = \SI{0}{\degree}$, and crossing inclined fiber modls $\cfbs, \modelInc = \SI{90}{\degree}$ with a fraction of $\modelPsi = \SI{0.5}{}$, since these configurations represent the extrema for two fiber populations.
+The models to be simulated are parallel models without inclination $\left( \pfbs, \modelInc = \SI{0}{\degree} \right)$, inclined parallel fiber models $\left( \pfbs, \modelInc = \SI{90}{\degree} \right)$, flat crossing fiber models $\left( \cfbs, \modelInc = \SI{0}{\degree} \right)$, and crossing inclined fiber models $\left( \cfbs, \modelInc = \SI{90}{\degree} \right)$ with a fraction of $\left( \modelPsi = \SI{0.5}{} \right)$, since these configurations represent the extrema for two fiber populations.
 For statistic the simulations are repeated $\SI{25}{}$ times at the $x$ and $y$ positions:
 \begin{align}
 % \begin{split}
@@ -308,9 +308,6 @@ The circular mean value is calculated via:
 This contributes to the interpretability of the angular results with variances $\ll \SI{90}{\degree}$.
 Additionally for the angular parameters the distribution of the underlying fiber models are plotted for the individual fiber populations \popa{} and \popb{}.
 The area corresponds to the $\SI{25}{\percent}$ to $\SI{75}{\percent}$ quantile and will be refered to as \bvariance{} variance.
-\par
-% 
-In summary, \dummy{}.
 % 
 % 
 % 
@@ -396,9 +393,6 @@ In comparison the fiber models opening angle \openingAngle{} show a significant 
 The \accvalue{} remains close to $1$ and starts to decrease significantly at an inclination angle of about $\SI{60}{\degree}$.
 It reaches a minimum at an inclination angle of $\SI{80}{\degree}$, from where its increases again.
 At an inclination angle of $\SI{90}{\degree}$ the maximum \accvalue{} is reached.
-\par
-% 
-In summary, \dummy{}.
 %
 %
 %
@@ -491,9 +485,6 @@ The dominant fiber population has a lower median and \bvariance{} variance than 
 The \accvalue{} starts closes to to a value of $\SI{1}{}$ and decreases up to a crossing angle of about $\modelOmega \approx \SI{60}{\degree}$ depending on the fiber population fraction \modelPsi{}.
 After the minimum is reached starts to increases significantly and with the exception for a fiber population fraction of $\modelPsi=\SI{50}{\percent}$ reaching a value closer to $\SI{1}{}$ again.
 \todo{discuss -> look at direction, it gets closer to dominant fiber pop again.}
-\par
-% 
-In summary, \dummy{}.
 % 
 % 
 %
@@ -587,9 +578,6 @@ The \accvalue{} show a decrease with increasing inclination angle to a minimum v
 The position of the minimum depends strongly on the fiber population fraction.
 For lower \modelPsi{} the minimum is close to higher inclination angles and for higher \modelPsi{} the minimum moves to an inclination angle of about $\inc_{\popb} \approx \SI{45}{\degree}$.
 The value of the \accvalue is closer to zero for median fiber population fractions an closer to one for \modelPsi{} at $\SI{10}{\percent}$ and $\SI{90}{\percent}$.
-\par
-% 
-In summary, \dummy{}.
 %
 % 
 % 
@@ -644,9 +632,6 @@ $\modelPsi=\SI{50}{\percent}$ achieves the highest transmittance for fiber model
 % 
 The average transmittance for the last fiber population fraction $\modelPsi=\SI{90}{\percent}$ is reduced similar to $\modelPsi=\SI{10}{\percent}$.
 Fiber configurations with no crossing remain the lowest transmittance for all inclinations $\modelInc$.
-\par
-% 
-In summary, \dummy{}.
 %
 % 
 % 
@@ -672,9 +657,6 @@ For fiber population fractions $\modelPsi \geq \SI{50}{\percent}$ and first fibe
 %
 For $\modelPsi=\SI{90}{\percent}$, no reduction of retardation is visible for any secondary fiber orientation.
 The retardation decreases significantly with increasing inclination $\modelInc$ until it is close to $\SI{0}{}$ for $\modelInc=\SI{90}{\degree}$.
-\par
-% 
-In summary, \dummy{}.
 % 
 % 
 % 
@@ -704,9 +686,6 @@ For steep fibers with a $\modelInc = \SI{90}{\degree}$, the orientation results 
 For fiber population fractions close to $\SI{50}{\percent}$, the resulting orientations behave according to an averaging of the two individual orientations with respect to the fiber population fraction.
 From the direction it can be seen that for models with $\modelPsi = \SI{90}{\degree}$ and $\modelInc \leq \SI{60}{\degree}$ as well as $\modelPsi = \SI{70}{\degree}$ and $\modelInc \leq \SI{30}{\degree}$ the second fiber population has no or only a very small influence on the measured direction.
 The same is true for inclinations for a $\modelInc = \SI{0}{\degree}$ and $\modelPsi \geq \SI{50}{\percent}$.
-\par
-% 
-In summary, \dummy{}.
 % 
 % 
 % 
@@ -750,10 +729,7 @@ Again, the \trel{} value along the z-axis, and its four closes neighbors are $\g
 The last line shows the results for the fiber population fraction $\modelPsi=\SI{90}{\percent}$.
 All models and configurations remain at a stable \trel{} value.
 The exception is the fiber configurations with $\modelInc=\SI{90}{\degree}$, where the \trel{} values along the z-axis with inclinations $\inc_1 \geq \SI{45}{\degree}$ are $\geq \SI{1}{}$
-\par
-% 
-In summary, \dummy{}.
-% 
+%
 % 
 %
 \paragraph{R-value}
@@ -799,9 +775,6 @@ The final inclination angle of $\modelInc=\SI{90}{\degree}$ is again similar to 
 % 
 The final fiber population fraction $\modelPsi=\SI{90}{\percent}$ has an increased \rvalue{} on the z-axis for inclination angles of $\modelInc=\SIlist{0;30}{\degree}$.
 $\modelInc=\SIlist{60;90}{\degree}$ remains a low \rvalue{} for all configurations.
-\par
-% 
-In summary, \dummy{}.
 % 
 % 
 % 
@@ -831,9 +804,6 @@ $\modelInc=\SI{90}{\degree}$ shows an overall slightly increased value of the op
 \par
 % 
 For the last shown fiber population fraction $\modelPsi=\SI{90}{\degree}$ the opening angle values are very small with the exception for the inclination angle of $\modelInc=\SI{90}{\degree}$ where for secondary fiber orientations towords the x-y-plane the opening angle significantly increases.
-\par
-% 
-In summary, \dummy{}.
 % 
 % 
 % 
@@ -872,21 +842,12 @@ In the case of $\modelInc=\SI{90}{\degree}$ this is also visible, but the minimu
 %
 The last case $\modelPsi=\SI{90}{\percent}$ shows high values for the \accvalue{} parameter for the first three inclinations $\modelInc=\SIlist{0;30;60}{\percent}$.
 The last inclination $\modelInc=\SI{90}{\degree}$ shows a slight decrease of \accvalue{} for higher crossing angles $\modelOmega$.
-\par
-%
-In summary, crossing angles cause a significant reduction in \accvalue{}s.
-This effect is clearly visible as a \say{band} of reduced \accvalue{}s, from a low inclination angle and low fiber proportion fraction to a high inclination angle and high fiber proportion fraction.
-Fiber population fractions of $\modelPsi \geq \SI{90}{\percent}$ or $\modelPsi \leq \SI{10}{\percent}$ have almost no effect on the \accvalue{}.
 %
 % 
 % 
 \section{Discussion}
 %
-\paragraph{Single fiber population}
-% 
-\todo{inclined? single? also check images}
-\par
-% 
+\paragraph{Single fiber population} 
 \Cref{sec:resSingleIncl} shows the results for the case of a single fiber population with inclined configurations.
 The transmittance values show an increase for the last free inclination values.
 This is to be expected since the 3D model configurations are aligned in parallel along an axis with some randomness.
@@ -1106,9 +1067,6 @@ For \ac{CPU} numbers in the range of $\SIrange{16}{48}{\cores}$, the speedup is 
 Compared to the previous \ac{OpenMP} implementation, the speedup is further reduced.
 A significant difference in the measurement is visible for different tilt directions.
 The flat measurement has the highest speedup.
-\par
-% 
-In summary, \dummy{}.
 %
 %
 %

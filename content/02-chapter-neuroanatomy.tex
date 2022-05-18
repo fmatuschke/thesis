@@ -49,7 +49,7 @@ Beneath the brain surface there are other structures such as the basal gangila o
     \label{fig:brainLobes}%
     Sagital view of the human brain with lobes colored in: {\color[RGB]{117,112,179}frontal}, {\color[RGB]{230,171,2}parietal}, {\color[RGB]{27,158,119}temporal} and {\color[RGB]{231,41,138}occipital} lobe.
     The {\color[RGB]{102,166,30}cerebellum} is at the bottom, with the {\color[RGB]{217,95,2}brainstem} next to it.
-    \todo{Gehirn B06 aus der Brain Collection}.
+    \footnotemark
     }[\tikzwidth]{
     \tikzset{external/export next=false}
     \begin{tikzpicture}[every node/.style={font=\footnotesize,},]
@@ -70,7 +70,8 @@ Beneath the brain surface there are other structures such as the basal gangila o
 \tikzset{external/export next=false}
 \subcaptionbox{%
     \label{fig:coronalStained}%
-    \todo{BB 4201} Coronal section stained for cell bodies. The \ac{GM} is dark while the \ac{WM} is bright. The left and right hemisphere is connected via the corpus callosum.}%
+    Coronal section stained for cell bodies. The \ac{GM} is dark while the \ac{WM} is bright. The left and right hemisphere is connected via the corpus callosum.
+    \footnotemark}%
     [\tikzwidth]{
     \tikzset{external/export next=false}
     \begin{tikzpicture}[every node/.style={font=\footnotesize,},]
@@ -90,6 +91,9 @@ Beneath the brain surface there are other structures such as the basal gangila o
 \caption{Illustration of the human brain and a cell body stained coronal section.}
 \label{fig:humanBrain}
 \end{figure}
+% TODO: vermutlich nicht vom BB!
+\addtocounter{footnote}{-1}\footnotetext{Illustration of side view from B06 from the brain collection of the \acs{INM-1}.}
+\addtocounter{footnote}{+1}\footnotetext{Coronal stained section 4201 from the J{\"u}lich BigBrain Project \cite{Amunts2013}.}
 %
 The cerebellum and cerebrum contain a \ac{GM} structure at the brain surface.
 This structure is filled with neurons.

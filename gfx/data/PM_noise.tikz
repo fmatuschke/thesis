@@ -16,8 +16,8 @@
         yticklabels={1, 1e6, 1e12},
         yticklabel style={font=\footnotesize},
     },
-    xlabel={\small intensity},
-    ylabel={\small variance},
+    xlabel={\small intensity / $\si{\arbitraryunit}$},
+    ylabel={\small variance / $\si{\arbitraryunit}$},
     xticklabel style={font=\footnotesize},
     yticklabel style={font=\footnotesize},
 ]
