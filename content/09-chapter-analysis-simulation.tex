@@ -189,18 +189,19 @@ The smallest voxel size $\SI{0.01}{\micro\meter}$ is used as a reference.
 Since this voxel size is so small, the simulated volume is $3 \cdot \SI{1.3}{\micro\meter} \times 3 \cdot \SI{1.3}{\micro\meter} \times \SI{60}{\micro\meter}$ without tilts.
 Otherwise, the number of voxels and thus the memory consumption is too high.
 During the simulation, the previously determined tissue and noise parameters are used.
-The models to be simulated are parallel models without inclination $\left( \pfbs, \modelInc = \SI{0}{\degree} \right)$, inclined parallel fiber models $\left( \pfbs, \modelInc = \SI{90}{\degree} \right)$, flat crossing fiber models $\left( \cfbs, \modelInc = \SI{0}{\degree} \right)$, and crossing inclined fiber models $\left( \cfbs, \modelInc = \SI{90}{\degree} \right)$ with a fraction of $\left( \modelPsi = \SI{0.5}{} \right)$, since these configurations represent the extrema for two fiber populations.
-For statistic the simulations are repeated $\SI{25}{}$ times at the $x$ and $y$ positions:
+The models to be simulated are parallel models without inclination $\left( \pfbs, \modelInc = \SI{0}{\degree} \right)$, inclined parallel fiber models $\left( \pfbs, \modelInc = \SI{90}{\degree} \right)$, flat crossing fiber models $\left( \cfbs, \modelInc = \SI{0}{\degree} \right)$, and crossing inclined fiber models $\left( \cfbs, \modelInc = \SI{90}{\degree} \right)$ with a fraction of $\modelPsi = \SI{0.5}{}$, since these configurations represent the extrema for two fiber populations.
+For statistic the simulations are repeated $\SI{25}{}$ times with the volumes center at
 \begin{align}
 % \begin{split}
     x=\frac{i\,\%\,5}{5} \cdot \SI{60}{\micro\meter} - \SI{30}{\micro\meter} \hspace{5ex}
     y=\frac{\floor{i/5}}{5} \cdot \SI{60}{\micro\meter} - \SI{30}{\micro\meter} 
 % \end{split}
 \end{align}
+with $i$ from $0$ to $24$.
 % 
 % 
 % 
-\paragraph{Evaluation}
+\paragraph{Results}
 %
 \begin{figure}[!t]
 % 2_simulation/0_parameter/fiber_radii.py
