@@ -47,21 +47,28 @@ Beneath the brain surface there are other structures such as the basal gangila o
 \setlength{\tikzwidth}{0.475\textwidth}
 \subcaptionbox{%
     \label{fig:brainLobes}%
-    Sagital view of the human brain with lobes colored in: {\color[RGB]{117,112,179}frontal}, {\color[RGB]{230,171,2}parietal}, {\color[RGB]{27,158,119}temporal} and {\color[RGB]{231,41,138}occipital} lobe.
-    The {\color[RGB]{102,166,30}cerebellum} is at the bottom, with the {\color[RGB]{217,95,2}brainstem} next to it.
+    Sagittal view of the human brain with its lobes: {\color[RGB]{117,112,179}frontal}, {\color[RGB]{230,171,2}parietal}, {\color[RGB]{27,158,119}temporal} and {\color[RGB]{231,41,138}occipital} lobe.
+    The {\color[RGB]{102,166,30}cerebellum} and the {\color[RGB]{217,95,2}brainstem} are located at the bottom of the brain.
     \footnotemark
     }[\tikzwidth]{
     \tikzset{external/export next=false}
     \begin{tikzpicture}[every node/.style={font=\footnotesize,},]
         \node[inner sep=0pt, anchor = south west] (fig) at (0,0) {\includegraphics[height=0.3\textwidth]{gfx/neuroanatomy/brain_lobes.pdf}}; %height=4.2cm
         \begin{scope}[overlay]
-            \draw[->] (rel cs:name=fig,x=0.1,y=1.05) -- (rel cs:name=fig,x=0.19,y=0.925) node[anchor=south, pos=0] {\color[RGB]{117,112,179}Lobus frontales};
-            \draw[->] (rel cs:name=fig,x=0.4,y=1.15) -- (rel cs:name=fig,x=0.4,y=0.875) node[anchor=south, pos=0] {Sulcus centralis};
-            \draw[->] (rel cs:name=fig,x=0.72,y=1.05) -- (rel cs:name=fig,x=0.65,y=0.975) node[anchor=south, pos=0] {\color[RGB]{230,171,2}Lobus parietalis};
-            \draw[->] (rel cs:name=fig,x=1.1,y=0.85) -- (rel cs:name=fig,x=0.95,y=0.75) node[anchor=south, pos=0] {\color[RGB]{231,41,138}Lobus occipitalis};
-            \draw[->] (rel cs:name=fig,x=0.35,y=0.1) -- (rel cs:name=fig,x=0.4,y=0.125) node[anchor=north, pos=0] {\color[RGB]{27,158,119}Lobus temporalis};
-            \draw[->] (rel cs:name=fig,x=0.125,y=0.2) -- (rel cs:name=fig,x=0.275,y=0.315) node[anchor=north, pos=0] {Sulcus lateralis};
-            \draw[->] (rel cs:name=fig,x=1.1,y=0.15) -- (rel cs:name=fig,x=0.95,y=0.2) node[anchor=north, pos=0] {\color[RGB]{102,166,30}Cerebellum};
+            \draw[<-] (rel cs:name=fig,x=0.19,y=0.925) -- ++(140:0.66)
+                node[anchor=south, pos=1] {\color[RGB]{117,112,179}Lobus frontalis};
+            \draw[<-] (rel cs:name=fig,x=0.725,y=0.925) -- ++(42:0.5)
+                node[anchor=south, pos=1] {\color[RGB]{230,171,2}Lobus parietalis};
+            \draw[<-] (rel cs:name=fig,x=0.95,y=0.75) -- ++(30:0.66)
+                node[anchor=south, pos=1] {\color[RGB]{231,41,138}Lobus occipitalis};
+            \draw[<-] (rel cs:name=fig,x=0.4,y=0.125) -- ++(210:0.25) 
+                node[anchor=north, pos=1] {\color[RGB]{27,158,119}Lobus temporalis};
+            \draw[<-] (rel cs:name=fig,x=0.95,y=0.2) -- ++(-20:0.66)
+                node[anchor=north, pos=1] {\color[RGB]{102,166,30}Cerebellum};
+            \draw[<-] (rel cs:name=fig,x=0.281,y=0.315) -- ++(205:1.0)
+                node[anchor=north, pos=1] {Sulcus lateralis};
+            \draw[<-] (rel cs:name=fig,x=0.4,y=0.87) -- ++(90:1)
+                node[anchor=south, pos=1] {Sulcus centralis};
         \end{scope}
         % \path[] ($(fig.south west)-(0,0)$) rectangle ($(fig.north east)+(1,0.75)$);
     \end{tikzpicture}
@@ -75,25 +82,27 @@ Beneath the brain surface there are other structures such as the basal gangila o
     [\tikzwidth]{
     \tikzset{external/export next=false}
     \begin{tikzpicture}[every node/.style={font=\footnotesize,},]
-        \node[inner sep=0pt, anchor = south west] (fig) at (0,0) {\includegraphics[height=0.3\textwidth]{gfx/brain/BB_4201.png}}; %height=4.2cm
+        \node[inner sep=0pt, anchor = south west] (fig) at (0,0) {\includegraphics[height=0.3\textwidth]{gfx/brain/BB20_4050.png}}; %height=4.2cm
         \begin{scope}[overlay]
-            \draw [RED,very thick, decorate, decoration = {brace}]
-                (rel cs:name=fig,x=0.39,y=0.625) -- 
-                (rel cs:name=fig,x=0.59,y=0.625) 
-                node[anchor=south, pos=0.35] {%
-                    \shadowoffset{0.25pt}
-                    \shadowcolor{black!10!white}
-                    \shadowtext{\color{RED}Corpus callosum}};
+            \draw[white, semithick, <-] (rel cs:name=fig,x=0.46,y=0.55) -- ++(-70:0.75);
+            \draw[RED, <-] (rel cs:name=fig,x=0.46,y=0.55) -- ++(-70:0.5) node[anchor=north, pos=1] {%
+                \shadowoffset{0.25pt}
+                \shadowcolor{black!10!white}
+                \shadowtext{\color{RED}Corpus callosum}};
+            \node at (rel cs:name=fig,x=0.25,y=0.65) {%
+                \shadowoffset{0.25pt}
+                \shadowcolor{black!10!white}
+                \shadowtext{\color{RED}WM}};
+            \draw[white, <-] (rel cs:name=fig,x=0.725,y=0.85) -- ++(30:0.5);
+            \draw[RED, <-] (rel cs:name=fig,x=0.725,y=0.85) -- ++(30:0.5) node[anchor=west, pos=1] {\color{RED}GM};
         \end{scope}
-        % \path[] ($(fig.south west)-(0,0)$) rectangle ($(fig.north east)+(1,0.75)$);
     \end{tikzpicture}    
     }
 \caption{Illustration of the human brain and a cell body stained coronal section.}
 \label{fig:humanBrain}
 \end{figure}
-% TODO: vermutlich nicht vom BB!
 \addtocounter{footnote}{-1}\footnotetext{Illustration of side view from B06 from the brain collection of the \acs{INM-1}.}
-\addtocounter{footnote}{+1}\footnotetext{Coronal stained section 4201 from the J{\"u}lich BigBrain Project \cite{Amunts2013}.}
+\addtocounter{footnote}{+1}\footnotetext{Coronal stained section 4050 from the BigBrain Project \cite{Amunts2013}.}
 %
 The cerebellum and cerebrum contain a \ac{GM} structure at the brain surface.
 This structure is filled with neurons.
@@ -168,7 +177,7 @@ Axon diameter and myelin thickness vary from nerve fiber to nerve fiber.
     \setlength{\tikzwidth}{0.475\textwidth}
     \subcaptionbox{%
         \label{fig:brainMyelinStain}
-        Myelin staining of the human thalamus, sagital section. \textcolor{Orange}{Nerve fiber bundle} structures are visiable as as cut structures visible as elliptical dark shape. In between \textcolor{ProcessBlue}{net-like structures} are fromed from individual nerve fibers. \url{http://brainmaps.org/HBP3/h.sapiens/sag/h5thal-myelin/17a}}
+        Myelin staining of the human thalamus, sagittal section. \textcolor{Orange}{Nerve fiber bundle} structures are visiable as as cut structures visible as elliptical dark shape. In between \textcolor{ProcessBlue}{net-like structures} are fromed from individual nerve fibers. \url{http://brainmaps.org/HBP3/h.sapiens/sag/h5thal-myelin/17a}}
     [\tikzwidth]{
         \begin{tikzpicture}[]  
             \node[inner sep=0pt, anchor = south west] (fig) at (0,0)
