@@ -1,6 +1,6 @@
 \cleardoublepage
 \setcounter{chapter}{5}
-\chapter{\acs{3D-PLI} simulation}
+\chapter{\acs{3D-PLI} Simulation}
 \label{cha:sof:simulation}
 %
 Simulations of \ac{3D-PLI} have been used to study multiple effects of the microscopic technique involved with brain sections \cite{Dohmen2015,Menzel2015,Menzel2016,Menzel2020,Menzel2021,MenzelMaster,MenzelDissertation}.
@@ -23,7 +23,7 @@ The computationally intensive algorithms are written in \cpp{} with an additiona
 %
 % 
 % 
-\section{Discrete volume generator}
+\section{Discrete Volume Generator}
 \label{sec:dv_generator}
 %
 \begin{figure}[!t]
@@ -203,7 +203,7 @@ One disadvantage of this algorithm is that all threads have to check if the \ac{
 % 
 % 
 %
-\section{Light matter simulation}
+\section{Light Matter Simulation}
 \label{sec:simulation}
 %
 The light matter simulation algorithm performs the M{\"u}ller-Stokes calculation (see \cref{sec:MuellerStokes}) on the previously calculated discrete volume (see \cref{sec:dv_generator}) for the light rays along their paths.
@@ -360,7 +360,7 @@ To parallelize the execution, the native \code{multiprocessing} library of \pyth
 % 
 % 
 %
-\section{Speedup strategies}\label{sec:sim:opt}
+\section{Speedup Strategies}\label{sec:sim:opt}
 %
 \subsection{Code design}
 % 

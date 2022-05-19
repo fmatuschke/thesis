@@ -1,13 +1,13 @@
 \newpage\null\thispagestyle{empty}\newpage
 \clearpage{\thispagestyle{empty}\cleardoublepage}
-\part{Software implementation}
+\part{Software Implementation}
 % \acbarrier
 \parttoc
 % 
 % 
 % 
 \setcounter{chapter}{4}
-\chapter{Dense nerve fiber modelling}
+\chapter{Dense Nerve Fiber Modelling}
 \label{chap:sof:modelling}
 % 
 In \cref{chap:neuro} the structure of nerve fibers and the macroscopic structure of \ac{WM} were described.
@@ -49,7 +49,7 @@ The original idea of a collision solving algorithm was initially published in \c
 %
 %
 %
-\section{Nerve fiber representation}
+\section{Nerve Fiber Representation}
 \label{sec:nerve_fiber_representation}
 %
 Nerve fibers are tube-like structures surrounded by an electrically insulating lipid layer of myelin (see \cref{sec:fiberArchitecture}).
@@ -298,7 +298,7 @@ The seed points are placed on the lower plane, with identical coordinate origins
 Only seed points that are in contact with the cylinder are considered in all methods.
 %
 %
-\section{Solving fiber collisions}
+\section{Solving Fiber Collisions}
 \label{sec:Solver}
 %
 The following algorithm allows the user to define any fiber path, which allows a wide range of freedom in the initialization process.
@@ -363,7 +363,7 @@ Therefore, a simple while loop can be used to iterate the collision solving algo
 %
 %
 %
-\subsection{Collision Detection}
+\subsection{Collision detection}
 \label{sec:collisionDetection}
 % 
 As described in \cref{sec:nerve_fiber_representation}, nerve fibers are represented as a chain of spheres, with two adjacent spheres representing a fiber segment that forms a \ac{CC} (see \cref{fig:conical_capsule}).
@@ -523,7 +523,7 @@ The collision checking algorithm is executed on each leaf (see \cref{sec:collisi
 % 
 % 
 %
-\subsection{Separation Phase}
+\subsection{Separation phase}
 % 
 To resolve a collision between two objects, each point $\vec{p}_i$ and $\vec{p}_{i+1}$ of the two objects is moved.
 To effectively move the objects apart with a small effort, the fiber objects are translated and rotated away from the other colliding object.
@@ -546,7 +546,7 @@ These may only move perpendicular to the first/last segment line, which prevents
 % 
 % 
 %
-\section{Shape control}\label{chap5:ShapeControl}
+\section{Shape Control}\label{chap5:ShapeControl}
 % 
 The movement of single points can lead to a distorted fiber model, \eg{} two points move very far apart.
 Therefore, boundary conditions are specified.
@@ -721,7 +721,7 @@ The resulting visualization is shown in \cref{fig:medusa_8b}.
 % 
 % 
 % 
-\section{Medusa - sphered nerve and cell modelling}
+\section{Medusa - Sphered Nerve and Cell Modelling}
 \label{sec:medusa}
 %
 The proposed algorithm for generating dense \ac{WM} fiber models can also be applied in \ac{dMRI}.

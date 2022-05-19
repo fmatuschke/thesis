@@ -1,15 +1,12 @@
 #!/bin/bash
 set -e
 
-# pages=()
 while read -r line ; do
-   num1=$(echo "$line" | grep -o -P '(?<=numberline {).\d*')
-   num2=$(echo "$line" | grep -o -P '(?<=}{)\d.*(?=}{ch|}{ap)')
-   pages+=("$num2")
+   num=$(echo "$line" | grep -o -P '(?<=}{)\d.*(?=}{ch|}{ap)')
+   pages+=("$num")
 done < <(fgrep chapter\}\{\\nu thesis.toc)
 
 # echo "${pages[@]}"
-# echo $((${!pages[@]}))
 
 first=("${pages[@]:0:11}")
 last=("${pages[@]:1:12}")
@@ -19,8 +16,8 @@ last=("${pages[@]:1:12}")
 # echo ${!first[@]}
 # echo ${!last[@]}
 
-delta=12
-dpages=(5 1 1 7 1 1 7 1 5 1 15)
+delta=16
+dpages=(3 1 1 5 1 1 7 1 5 1 19)
 
 for i in "${!dpages[@]}"; do
    ii=$(printf "%02d" $(($i+1)))
