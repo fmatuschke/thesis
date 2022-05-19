@@ -236,11 +236,11 @@ First, a single fiber population.
 Since there is only a single fiber population, only the inclination of the model is changed.
 In the second step, simulations are performed with two fiber population orientations: a) flat crossing and b) inclined crossing.
 The first fiber population is fixed along the x-axis in these models, while the crossing angle of the second fiber population is increased.
-The last simulation contains two fiber populations where the inclination of the first fiber population is increased and the second fiber population is rotated around it as the crossing angle increases (see \dummy{}).
+The last simulation contains two fiber populations where the inclination of the first fiber population is increased and the second fiber population is rotated around it as the crossing angle increases (see \cref{fig:twomodelpopdesign}).
 \par
 % 
 \begin{table}[!b]
-\caption{Simulation parameters. \todo{check units}}
+\caption{Simulation parameters.}
 \centering
 % \sisetup{open-bracket={\{}, close-bracket={\}}, list-final-separator={,},list-pair-separator={,}}%
 \pgfplotstabletypeset[%
@@ -283,15 +283,15 @@ model rotation step $\Delta\modelRot$ & $\SI{15}{\degree}$\\
 With a pixel size of $\SI{1.3}{\micro\meter}$ and a volume of $\SI{65}{\micro\meter} \times \SI{65}{\micro\meter} \times \SI{60}{\micro\meter}$, $\SI{2500}{\pixel}$ are available per simulation for statistical analysis.
 \par
 % 
-To analyze the simulation results the standard \ac{3D-PLI} analysis pipline, containing the foure analysis (see \dummy{}) and the tilt analysis (see \dummy{}), are performed.
+To analyze the simulation results the \ac{3D-PLI} analysis pipline, containing the foure analysis (see \cref{eq:pli_signal}) and the tilt analysis (see \cref{sec::InclAnalysis}), are performed.
 From the fourie analysis the modalities transmittance and retardation are shown.
-The tilt analysis \dummy{} the orientation of each pixel, \ie{}, direction and inclination, the effective birefringend thickness \trel{} and the \rvalue{} of the fitting model:
+The tilt analysis estimates the orientation of each pixel, \ie{}, direction and inclination, the effective birefringend thickness \trel{} and the \rvalue{} of the fitting model:
 \begin{align}
     R = \mean{|I_i-F_i|} \label{eq:rvalue}
 \end{align}
 where $I$ is the signal intensity and $F$ the models found best solution.
 Finally from the orientations the opening angle \openingAngle{} and angular correlation coefficient \accvalue{} between the models orientation and simulation resulting orientation are calculated.
-The \accvalue{} is the angular correlation coefficient which measures the similarity between two \acp{ODF}. The \acp{ODF} are calculated by \dummy{}.
+The \accvalue{} is the angular correlation coefficient which measures the similarity between two \acp{ODF}. The \acp{ODF} are calculated by an analytical function from the individuel orientations \cite{Alimi2020}.
 The \accvalue{} is then be calculated by:
 \begin{align}
     acc = \frac{\sum_i{\mathit{sh}_{0,i} \cdot \mathit{sh}_{1,i}}}{\sqrt{\sum_i{\mathit{sh}_{0,i}^2}} \cdot \sqrt{\sum_i{\mathit{sh}_{1,i}^2}}}
@@ -320,7 +320,7 @@ The area corresponds to the $\SI{25}{\percent}$ to $\SI{75}{\percent}$ quantile 
 \begin{figure}[!t]
     \centering
     \includegraphics[page=1]{gfx/rc1/analysis/plots_single_pop_hist_output_cube_2pop_135_rc1_single.pdf}
-    \caption{Single fiber population orientation histograms. \todo{alpha, bzw theta etwas größer?}}
+    \caption{Single fiber population orientation histograms.}
     \label{fig:single_fiber_pop_hist}
 \end{figure}
 % 
@@ -474,7 +474,7 @@ For $\modelPsi = \SI{50}{\percent}$ and $\modelOmega = \SI{90}{\degree}$, the va
 \par
 % rvalue
 The \rvalue{} is nearly constant for all crossing angles \modelOmega{} and fiber population fractions \modelPsi{}. The variance show no significant change.
-\todo{-> discuss very hard to find "right" solution, maybe with prior.}
+% \todo{-> discuss very hard to find "right" solution, maybe with prior.}
 \par
 % domega
 The opening angle \openingAngle{} is similar for all fiber population fractions up to a crossing angle of $\modelOmega=\SI{50}{\degree}$.
@@ -485,7 +485,7 @@ The dominant fiber population has a lower median and \bvariance{} variance than 
 % acc
 The \accvalue{} starts closes to to a value of $\SI{1}{}$ and decreases up to a crossing angle of about $\modelOmega \approx \SI{60}{\degree}$ depending on the fiber population fraction \modelPsi{}.
 After the minimum is reached starts to increases significantly and with the exception for a fiber population fraction of $\modelPsi=\SI{50}{\percent}$ reaching a value closer to $\SI{1}{}$ again.
-\todo{discuss -> look at direction, it gets closer to dominant fiber pop again.}
+% \todo{discuss -> look at direction, it gets closer to dominant fiber pop again.}
 % 
 % 
 %
@@ -904,7 +904,7 @@ For an inclination angle of about $\modelInc = \SI{80}{\degree}$, a minimum is v
 Therefore the \ac{ODF} similary has to also increase again.
 \par
 % 
-The information about orientation, \ie{}, direction and inclination, is also visible in the histogram (\todo{ref}).
+The information about orientation, \ie{}, direction and inclination, is visible in the histogram (see \cref*{fig:single_fiber_pop_hist}).
 However, the statistical limits are not quite as easy to see, \eg median or quantiles.
 Nevertheless, it is a good and fast way to give visual feedback to the user, especially because the information about direction and inclination is not decoupled.
 \par
@@ -931,7 +931,6 @@ This is because the retardation and the individual light intensities cannot be l
 The direction for the flat fiber crossings follows the expected theoretical curve of the circular mean.
 For the case $\modelPsi=\SI{50}{\percent}$ and $\modelOmega=\SI{90}{\degree}$, the direction values are uniformly distributed since there is no unique direction in the sinosoidal.
 This is the effect of retardation cancelation and signal noise.
-% These results reproduce the previous results \todo{cite} and show 
 For the here investigated distribution of fiber radii at microscopes resolution and pixel size individual fiber population for a intervowen dense fiberbundle cannot be distinguished.
 However, the tilt analysis used here uses only a single fiber orientation, or more generally, a single optical axis.
 Future, more comprehensive models may be able to reveal the difference.
@@ -970,14 +969,15 @@ However, beyond a certain point, the delay is reduced to such an extent that the
 Therefore, the \ac{ODF} of the measured signal becomes more and more spherical, which after a certain point, \ie{}, the minima, is closer to the \ac{ODF} of the model than a \ac{ODF} that predicts only one main orientation, \ie{}, a cigar shape.
 This also explains why the position of the minimum is closer to $\SI{90}{\degree}$ for fiber population proportions closer to $\SI{50}{\percent}$, because the intersection of the \ac{ODF} of fiber segments is more pronounced.
 % 
-\paragraph{inclined crossing}
-Each of the eight parameters presented for the inclined crossing fiber population can be explained by exactly the same arguments as for the previous flat fiber crossing, except for the inclination parameter.
+% 
+% 
+\paragraph{Inclined crossing}
+The eight investigated parameters can be explained by exactly the same arguments as for the previous flat fiber crossing, except for the inclination parameter.
 Here, the inclination follows the circle mean only for smaller crossing angles and reaches a maximum value as a function of the fiber population fraction \modelPsi{} until it decreases to $\SI{0}{\degree}$ for $\modelOmega = \SI{90}{\degree}$.
 This behavior can be explained by the fact that as the inclination increases, the light rays are no longer affected by the birefringence of the optical axis of the fibers.
 Therefore, the only remaining effect comes from the flat fiber population.
-\par
 % 
-In summary, \dummy{}.
+% 
 % 
 \paragraph{Free crossing fiber population}
 The free crossing fiber population results can be interepreted as an summary of the previous results.
@@ -1104,9 +1104,9 @@ This may explain why the north-south tilt has a slightly higher speedup.
 In summary, the speedup for the implementation of \ac{MPI} is very good.
 The user should prefer this implementation over the \ac{OpenMP} library.
 % 
-\section{todos}
-\begin{itemize}
-    \item check "in summary" for all parts
-    \item check titles of images
-    \item check if all images are referenced
-\end{itemize} 
+% \section{todos}
+% \begin{itemize}
+%     \item check "in summary" for all parts
+%     \item check titles of images
+%     \item check if all images are referenced
+% \end{itemize} 
