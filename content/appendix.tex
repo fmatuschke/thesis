@@ -27,7 +27,7 @@
 % 
 % \fakesection{Model parameter}
 %
-\begin{figure}[!h]
+\begin{figure}[!ht]
     \centering
     \includegraphics[width=1\textwidth]{gfx/rc1/mpara/pre_stats_box_plot_volume_all_output_parameter_statistic_rc1.pdf}
     \caption{Caption}
@@ -49,14 +49,14 @@
 % \fakesection{Time evolution}
 %
 \setlength{\tikzwidth}{\textwidth}
-\begin{sidewaysfigure}[!h]
+\begin{sidewaysfigure}[!ht]
 \centering
 \includegraphics[height=\tikzwidth,page=1]{gfx/rc1/mpara/pre_stats_time_evolve_all_output_parameter_statistic_rc1.pdf}
 \includegraphics[height=\tikzwidth,page=2]{gfx/rc1/mpara/pre_stats_time_evolve_all_output_parameter_statistic_rc1.pdf}
 \label{app:pste1}
 \end{sidewaysfigure}
 %
-\begin{sidewaysfigure}[!h]
+\begin{sidewaysfigure}[!ht]
 \centering
 % \resizebox{\tikzwidth}{!}{
 \includegraphics[height=\tikzwidth,page=3]{gfx/rc1/mpara/pre_stats_time_evolve_all_output_parameter_statistic_rc1.pdf}
@@ -65,7 +65,7 @@
 \label{app:pste2}
 \end{sidewaysfigure}
 %
-\begin{sidewaysfigure}[!h]
+\begin{sidewaysfigure}[!ht]
 \centering
 % \resizebox{\textwidth}{!}{
 \includegraphics[height=\tikzwidth,page=5]{gfx/rc1/mpara/pre_stats_time_evolve_all_output_parameter_statistic_rc1.pdf}
@@ -73,7 +73,7 @@
 \label{app:pste3}
 \end{sidewaysfigure}
 %
-\begin{sidewaysfigure}[!h]
+\begin{sidewaysfigure}[!ht]
 \centering
 % \resizebox{\textwidth}{!}{
 \includegraphics[height=\tikzwidth,page=7]{gfx/rc1/mpara/pre_stats_time_evolve_all_output_parameter_statistic_rc1.pdf}
@@ -81,7 +81,7 @@
 \label{app:pste4}
 \end{sidewaysfigure}
 %
-\begin{sidewaysfigure}[!h]
+\begin{sidewaysfigure}[!ht]
 \centering
 % \resizebox{\textwidth}{!}{
 \includegraphics[height=\tikzwidth,page=9]{gfx/rc1/mpara/pre_stats_time_evolve_all_output_parameter_statistic_rc1.pdf}
@@ -93,7 +93,7 @@
 % 
 % \fakesection{Histogramms}
 %
-\begin{figure}[!h]
+\begin{figure}[!ht]
     \centering
     \includegraphics[width=\textwidth, page=2]{gfx/rc1/cube_2pop_orientation_hist2d_output_cube_2pop_135_rc1.pdf}
     \caption{Caption}
@@ -111,7 +111,7 @@
 %
 %
 % \fakesection{Simulation Library}
-\begin{table}[!h]
+\begin{table}[!ht]
 \centering
 \caption[Opening angle distribution]{Orientation statistic of simulation model library.}
 \resizebox{\textwidth}{!}{
@@ -151,7 +151,7 @@
 %
 %
 %
-\begin{figure}[!h]
+\begin{figure}[!ht]
 \centering
 \resizebox{\textwidth}{!}{
 \includegraphics[page=2]{gfx/rc1/images/cube_2pop_images_output_cube_2pop_135_rc1.pdf}}
@@ -166,7 +166,7 @@
 %
 % \fakesection{Tissue}
 % 
-\begin{figure}[!p]
+\begin{figure}[!ht]
 \centering
 \tikzset{external/export=false} % dont ask me why
 \setlength{\tikzwidth}{0.425\textwidth}
@@ -185,9 +185,15 @@
 \end{tabular}
 \caption{Rodent coronal brain section.}
 \label{app:brain_rodent}
+\end{figure}
 %
 % \hspace{1em}
 % % 
+\begin{figure}[!ht]
+\centering
+\tikzset{external/export=false} % dont ask me why
+\setlength{\tikzwidth}{0.425\textwidth}
+\setlength{\tabcolsep}{0em}
 \begin{tabular}{C{0.5\textwidth}C{0.5\textwidth}}
 \inputtikz{gfx/data/human_transmittance_zoom} &
 \tikzset{external/export next=true}

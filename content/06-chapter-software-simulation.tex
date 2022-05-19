@@ -203,14 +203,14 @@ One disadvantage of this algorithm is that all threads have to check if the \ac{
 % 
 % 
 %
-\section{Light matter Simulation}
+\section{Light matter simulation}
 \label{sec:simulation}
 %
-The light matter simulation algorithm performs the Mueller-Stokes calculation (see \cref{sec:Mueller-Stokes}) on the previously calculated discrete volume (see \cref{sec:dv_generator}) for the light rays along their paths.
+The light matter simulation algorithm performs the M{\"u}ller-Stokes calculation (see \cref{sec:MuellerStokes}) on the previously calculated discrete volume (see \cref{sec:dv_generator}) for the light rays along their paths.
 Since no scattering or refraction effects are considered in this simulation, each light path follows a straight line.
 Initially, the light vector is multiplied by the first polarizer of the optical system (see \cref{sec:expSetup}).
 The path inside the tissue is discretized into steps.
-The interaction between the light ray and the tissue is calculated after each step according to $ \vec{S}' = \prod_i \left(\mat{R}_i \mat{M}_i \mat{R}_i\right) \cdot \vec{S}$ (see \cref{sec:mueller_stokes, sec:simLightTissue}).
+The interaction between the light ray and the tissue is calculated after each step according to $ \vec{S}' = \prod_i \left(\mat{R}_i \mat{M}_i \mat{R}_i\right) \cdot \vec{S}$ (see \cref{sec:MuellerStokes}).
 % 
 %
 %

@@ -52,39 +52,40 @@ The number of fiber populations is limited to two to reduce the degrees of freed
 % 
 \subsection{Orientation and proportion}\label{sec:modelParamet}
 %
-\begin{figure}[!t]
-\centering
-\setlength{\tikzwidth}{0.40\textwidth}
-\subcaptionbox{\label{fig:modelinit}
-Initial orientation for two fiber populations $\popa$ and $\popb$.
-The angle between the two populations is $\modelOmega$.
-The remaining degrees of freedom are accounted for by rotating the entire volume (see \cref{fig:modelrotcube}).}
-[\textwidth]{\inputtikz{gfx/model/sphere_models}}
-\\
-%
-\subcaptionbox{\label{fig:modelrota}
-The first fiber population is stationary.
-The second fiber population is described by the opening angle $\modelOmega$ and a rotation $\modelRot$ around the first fiber population.}
-[.475\textwidth]{\inputtikz{gfx/model/sphere_models_a}}\hfill
-\subcaptionbox{\label{fig:modelrotb}
-The inclination of the first fiber population is modified by $\modelInc$.}
-[.475\textwidth]{\inputtikz{gfx/model/sphere_models_b}}
-% \\
-% %
-% \setlength{\tikzwidth}{0.40\textwidth}
-% \subcaptionbox{\label{subfig:sphere:hista1} The 3D plots above can be represented as 2D polar plots. The thicker circle indicates the currect orientation of the first fiber population.}
-% [.475\textwidth]{\inputtikz{gfx/model/sphere_hist_a}}\hfill
-% \subcaptionbox{\label{subfig:sphere:histb} The 3D plots above can be represented as 2D polar plots.}
-% [.475\textwidth]{\inputtikz{gfx/model/sphere_hist_b}}
-\caption{Parameterization of two mutually relatively oriented fiber populations for the creation of a library.}
-\label{fig:twomodelpopdesign}
-\end{figure}
-%
 For the study of a single fiber population, only one model is needed, since the model can be rotated to any 3D orientation. 
 For two fiber populations, the crossing angle $\modelOmega$ between the two fiber population orientations is relevant (see \cref{fig:modelinit}).
-By introducing a rotation $\modelRot$ along the first fiber population, the orientation of the second fiber population can be changed (see \cref{modelrota}).
-If the first fiber population is tilted by an angle $\modelInc$, an arbitrary fiber configuration with two fiber populations can be described (see \cref{modelrotb}).
+By introducing a rotation $\modelRot$ along the first fiber population, the orientation of the second fiber population can be changed (see \cref{fig:modelrota}).
+If the first fiber population is tilted by an angle $\modelInc$, an arbitrary fiber configuration with two fiber populations can be described (see \cref{fig:modelrotb}).
 \par
+% 
+%
+\begin{figure}[!t]
+    \centering
+    \setlength{\tikzwidth}{0.40\textwidth}
+    \subcaptionbox{\label{fig:modelinit}
+    Initial orientation for two fiber populations $\popa$ and $\popb$.
+    The angle between the two populations is $\modelOmega$.
+    The remaining degrees of freedom are accounted for by rotating the entire volume.}
+    [\textwidth]{\inputtikz{gfx/model/sphere_models}}
+    \\
+    %
+    \subcaptionbox{\label{fig:modelrota}
+    The first fiber population is stationary.
+    The second fiber population is described by the opening angle $\modelOmega$ and a rotation $\modelRot$ around the first fiber population.}
+    [.475\textwidth]{\inputtikz{gfx/model/sphere_models_a}}\hfill
+    \subcaptionbox{\label{fig:modelrotb}
+    The inclination of the first fiber population is modified by $\modelInc$.}
+    [.475\textwidth]{\inputtikz{gfx/model/sphere_models_b}}
+    % \\
+    % %
+    % \setlength{\tikzwidth}{0.40\textwidth}
+    % \subcaptionbox{\label{subfig:sphere:hista1} The 3D plots above can be represented as 2D polar plots. The thicker circle indicates the currect orientation of the first fiber population.}
+    % [.475\textwidth]{\inputtikz{gfx/model/sphere_hist_a}}\hfill
+    % \subcaptionbox{\label{subfig:sphere:histb} The 3D plots above can be represented as 2D polar plots.}
+    % [.475\textwidth]{\inputtikz{gfx/model/sphere_hist_b}}
+    \caption{Parameterization of two mutually relatively oriented fiber populations for the creation of a library.}
+    \label{fig:twomodelpopdesign}
+    \end{figure}
 % 
 A further parameter is the first population proportion:
 \begin{align}
@@ -99,7 +100,7 @@ Ideally, the surface of a sphere is equidistantly sampled.
 However, this is impossible.
 There are fairly good approximations, but one would still have to create a model for each sampled point.
 For simplicity, the intersection angle $\modelOmega$ is sampled instead.
-By rotating the model with $\modelRot$ along the first fiber population axis for all sampled crossing angles $\modelOmega$, one can sample the entire sphere (see \cref{subfig:Test1}).
+By rotating the model with $\modelRot$ along the first fiber population axis for all sampled crossing angles $\modelOmega$, one can sample the entire sphere.
 \par
 % 
 Therefore, the following parameter samples are chosen:
@@ -277,7 +278,7 @@ The total runtime increases significantly with a decrease in \segLengthFactor{}.
 All models of all parameter sets were able to solve the collisions in the maximum number of steps.
 \par
 %
-The number of colliding fiber segments in the second plot of \cref{timeDevelopmentNone} shows a strongly increasing decrease for all parameters with increasing runtime.
+The number of colliding fiber segments in the second plot of \cref{fig:timeDevelopmentNone} shows a strongly increasing decrease for all parameters with increasing runtime.
 The total number increases with decreasing \segLengthFactor{}.
 The \segRadiusFactor{} also has no significant effect here.
 \par
@@ -505,7 +506,6 @@ The density reflects the population fraction $\modelPsi$ of the fiber population
 \end{figure}
 %
 \Cref{fig:modelAngleBoxPlot} shows the distributions of direction $\varphi$, inclination $\modelInc$, and opening angle $\openingAngle$, which is the relative angle to the mean fiber population orientation.
-\dummy{}.
 Since the inclination depends on the direction, the opening angle is also analyzed.
 The individual measurements of the opening angle distributions are available in \cref{app:modelDistribution}.
 \par
