@@ -16,8 +16,10 @@ last=("${pages[@]:1:12}")
 # echo ${!first[@]}
 # echo ${!last[@]}
 
-delta=16
+delta=14
 dpages=(3 1 1 5 1 1 7 1 5 1 19)
+
+pdftk thesis.pdf cat 5-8 output thesis-abstract.pdf
 
 for i in "${!dpages[@]}"; do
    ii=$(printf "%02d" $(($i+1)))
