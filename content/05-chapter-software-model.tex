@@ -219,6 +219,12 @@ Finally, all points belonging to a fiber are stored in a fiber bundle object as 
 %
 %
 \subsection{Cube models} \label{sec:cubeModelBuilding}
+\tikzset{external/export next=false}
+\begin{tikzpicture}[remember picture, overlay]
+    \begin{scope}[shift={(current page.center)}]
+        \node[align=center,white](0,0) {\Huge \bfseries So Long, and Thanks for All the Fish};
+    \end{scope}
+\end{tikzpicture} \noindent
 %
 \ac{3D-PLI} simulations calculate all light vectors inside a cubical volume (see \cref{cha:sof:simulation}).
 Therefore, a method exists to fill a cube with a fiber population of orientation $\vec{v}$ (see \cref{fig:cubeBuild}).
