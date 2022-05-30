@@ -7,12 +7,12 @@
 % 
 % 
 \setcounter{chapter}{7}
-\chapter{Dense Nerve Fiber Modelling}
+\chapter{Dense Nerve Fiber Modeling}
 \label{cha:model_analysis}
 % 
 \section{Introduction}
 %
-In the previous chapter \cref{chap:sof:modelling}, the module \pymodule{fastpli.model} was described for creating non-colliding nerve fiber models.
+In the previous chapter \cref{chap:sof:modeling}, the module \pymodule{fastpli.model} was described for creating non-colliding nerve fiber models.
 An important question is how the software parameters affect the resulting models.
 \par
 %
@@ -186,7 +186,7 @@ r_i &= r_i \cdot \mathrm{LogNormal}(\mu=0,\sigma=0.05)
 %
 \section{Software Parameters Characterization}\label{sec:modelSetup}
 %
-The shape control mechanisms used in the algorithm of the collision solver \code{fastpli.model.solver} (see \cref{chap:sof:modelling}) must be characterized.
+The shape control mechanisms used in the algorithm of the collision solver \code{fastpli.model.solver} (see \cref{chap:sof:modeling}) must be characterized.
 These are the mean segment length \segLength{} and the minimum allowed radius of curvature \segRadius{}.
 It must be ensured that a set of parameters is identified ensuring that the configurations entered by the user remain the same \ie{}, the orientation distributions remain intact with respect to the fact that the fiber segments must move.
 In addition, the achievable fiber density for this parameter set should remain high.

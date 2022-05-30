@@ -12,9 +12,9 @@
         \end{tcolorbox}
     };
     %
-    \node[text width=5cm, below= 2.5em of fastpli.north, xshift=0.75em] (modelling) {%
+    \node[text width=5cm, below= 2.5em of fastpli.north, xshift=0.75em] (modeling) {%
         \begin{tcolorbox}[%
-            title={modelling \vphantom{Mg}},
+            title={modeling \vphantom{Mg}},
             fonttitle=\bfseries,
             colbacktitle=Gray,
             width=4.2cm,
@@ -28,7 +28,7 @@
         \end{tcolorbox}
     };
     %
-    \node[text width=5cm, right= -2em of modelling] (simulation) {%
+    \node[text width=5cm, right= -2em of modeling] (simulation) {%
         \begin{tcolorbox}[%
             title={simulation \vphantom{Mg}},
             fonttitle=\bfseries,
@@ -43,7 +43,7 @@
         \end{tcolorbox}
     };
     %
-    \node[text width=5cm, below= -1em of modelling] (analysis) {%
+    \node[text width=5cm, below= -1em of modeling] (analysis) {%
         \begin{tcolorbox}[%
             title={analysis \vphantom{Mg}},
             fonttitle=\bfseries,
