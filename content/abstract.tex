@@ -1,82 +1,63 @@
 \pdfbookmark[0]{Abstract}{Abstract}
 \addchap*{Abstract}
 %
-% 
-In the fiber architecture group of the institute for structural and functional organisation of the brain (INM-1), 3D polarized light imaging (3D-PLI) microscopy is used to measure the orientation of nerve fibers in unstained brain sections.
-In order to understand the exact behavior of the microscopy, simulation techniques are used, among other things.
-These allow, for example, the precise influence of objects such as nerve fibers or other cells within a virtual tissue on the light beam to be studied.
+In the fiber architecture group of the institute for structural and functional organization of the brain (INM-1), 3D Polarized Light Imaging (3D-PLI) microscopy is used to measure the orientation of nerve fibers in unstained brain sections.
+To understand the exact behavior of the microscope technique, simulations are used.
+These allow, for example, the influence of nerve fibers within a virtual tissue to be studied.
 However, such simulations are very costly for two reasons.
-First, the tissue models must be very close to reality.
-Among other things, this means that nerve fiber bundles must be able to be generated virtually, for example, crossing and forming intertwined structures just like real tissue.
-Second, algorithms are needed that can generate these complex models in a reasonable amount of time and simulate the behavior of light through them.
-So far, mainly simple models are used, which can either be described analytically or have a high degree of symmetries.
+First, nerve fiber bundles must be virtually generated, for example, crossing nerve fibers.
+Second, the algorithms for tissue volume generation and simulation must be executable in a reasonable amount of time.
+So far, models have been used that can either be described analytically or have a high degree of symmetry.
+This allows a fast generation of the models and simulation of the microscope, but has the disadvantage that the models are very simple. 
 
-Therefore, the goal of this work was to develop software that allows relatively simple methods to create virtual nerve fiber tissue and simulate the behavior of light in a virtual 3D-PLI microscope.
+Therefore, the goal of this thesis was to develop software that allows, using relatively simple methods, to generate virtual nerve fiber tissue and simulate the behavior of light in a virtual 3D-PLI microscope.
 
 To develop more realistic models, the focus was on white matter, which contains very dense collections of nerve fibers.
-The most important criterion was that the virtual nerve fibers should not overlap in volume, at most they should touch.
-Since it is practically impossible for a user to create such a model in advance, the strategy chosen was that the user first fills a volume with nerve fibers without having to worry about overlaps.
-In a next step, the interactive algorithm presented here is applied, which detects collisions between objects and solves them by slowly moving the affected areas apart.
-In this way, the virtual mesh is cleared of all collisions over time or with increasing iteration, resulting in a collision-free virtual volume at the end.
+The most important criterion was that the virtual nerve fibers should not overlap in volume.
+An algorithm was developed that accepts any input of nerve fiber pathways.
+All nerve fibers are then checked for collisions.
+If a collision occurs, the nerve fibers are slightly pushed apart and the algorithm is repeated until no more collisions are detected.
+In this way, all collisions are eliminated over time, resulting in a collision-free virtual volume.
 
-To generate statistically describable models, a mathematical description of two neural fiber populations was used.
-The first population is described by slope only.
-The second population has an opening angle to the first and can be rotated around the first.
-This makes it possible to keep the number of models needed relatively small and still generate all possible orientations that can be assumed by two nerve fiber populations.
+For the simulation, it was crucial to characterize the 3D-PLI microscope in order to model the boundary conditions such as resolution or image noise.
+The generated nerve fiber models were then simulated and the influence of the geometries of two nerve fiber populations to the results of the 3D-PLI measurements was analyzed.
 
-The next step is to simulate this tissue in the simulation software presented here.
-It was crucial to characterize the microscope to be simulated in order to use the necessary parameters, such as resolution or image noise, for the simulation.
+It was found that, in particular, the orientation of the nerve fiber population, which has a higher proportion in the volume, can be determined.
+With the current resolution of the microscopes used, it is not possible to determine both orientations.
+The measured orientation appears to follow the circular mean with respect to the proportional volume fraction of the nerve fiber populations, taking into account the decrease in the measured signal due to the increasing inclination angle.
 
-The generated nerve fiber models are then simulated in the thesis and the behavior of the geometries of two nerve fiber populations on the results of the 3D PLI measurements are analyzed.
-
-In this work, it was shown that especially the orientation of the nerve fiber population, which has a higher proportion in the volume, can be measured.
-With the current resolution of the microscopes used, it is not possible to determine both orientations for densely intertwined nodes.
-The measured orientation seems to follow the circular mean with respect to the proportional volume fraction of the nerve fiber populations, taking into account the reduction of the measured signal due to increasing tilt.
-
-Another important result of this work is that the complete modeling algorithms and simulation software have been published as a full open-source tool.
-Furthermore, all algorithms have been designed and optimized for use with multiple CPU cores, allowing a large number of volumes and simulations to be performed.
-
-Finally, other important steps that discuss further optimizations are discussed.
-Specifically, the use of the GPU architecture is discussed, which can decisively reduce runtimes.
+The modeling algorithm and simulation software were released as an open-source tool.
+All algorithms have been designed and optimized for use with multiple CPU cores, allowing a large number of volumes and simulations to be performed.
 % 
 % 
 % 
 \pdfbookmark[0]{Zusammenfassung}{Zusammenfassung}
 \addchap*{Zusammenfassung}
 % 
-In der Arbeitsgruppe Faserverbundarchitektur des Instituts für Strukturelle und funktionelle Organisation des Gehirns (INM-1) wird mithilfe der 3D polarizations licht Mikroskopie (3D-PLI) die Orientierung von Nervenfasern an ungefärbten Hirnschnitten vermessen.
-Um das genaue Verhalten der Mikroskopie zu verstehen, werden unter anderem Simulationstechniken eingesetzt.
-Diese erlauben es beispielsweise, den genauen Einfluss von Objekten wie Nervenfasern oder anderen Zellen innerhalb eines virtuellen Gewebes auf den Lichtstrahl zu untersuchen.
-Allerdings sind solche Simulationen aus zwei Gründen sehr aufwendig.
-Erstens müssen die Gewebemodelle sehr nah an der Realität sein.
-Das bedeutet unter anderem, dass zum Beispiel Nervenfaserbündel virtuell erzeugt werden können müssen, die sich wie reales Gewebe kreuzen und verschlungene Strukturen bilden.
-Zweitens werden Algorithmen benötigt, die diese komplexen Modelle in angemessener Zeit erzeugen und das Verhalten von Licht durch sie simulieren können.
-Bislang werden vor allem einfache Modelle verwendet, die sich entweder analytisch beschreiben lassen oder einen hohen Grad an Symmetrien aufweisen.
+In der Faserbahnarchitektur Gruppe des Instituts für strukturelle und funktionelle Organisation des Gehirns (INM-1) wird die 3D Bildgebung mit polarisiertem Licht (3D-PLI) zur Messung der Orientierung von Nervenfasern in ungefärbten Hirnschnitten eingesetzt.
+Um das genaue Verhalten der Mikroskoptechnik zu verstehen, werden Simulationen verwendet.
+Damit lässt sich beispielsweise der Einfluss von Nervenfasern innerhalb eines virtuellen Gewebes untersuchen.
+Solche Simulationen sind jedoch aus zwei Gründen sehr aufwendig.
+Erstens müssen Nervenfaserbündel virtuell erzeugt werden, zum Beispiel sich kreuzende Nervenfasern.
+Zweitens müssen die Algorithmen zur Erzeugung des Gewebevolumens und zur Simulation in angemessener Zeit ausführbar sein.
+Bislang wurden Modelle verwendet, die entweder analytisch beschrieben werden können oder einen hohen Grand an Symmetrie aufweisen.
+Dies ermöglicht eine schnelle Generierung der Modelle und Simulation des Mikroskops, hat aber den Nachteil, dass die Modelle sehr einfach sind. 
 
-Ziel dieser Arbeit war es daher, eine Software zu entwickeln, die es ermöglicht, mit relativ einfachen Methoden virtuelles Nervenfasergewebe zu erstellen und das Verhalten von Licht in einem virtuellen 3D-PLI-Mikroskop zu simulieren.
+Ziel dieser Arbeit war es daher, eine Software zu entwickeln, die es mit relativ einfachen Methoden ermöglicht, virtuelles Nervenfasergewebe zu erzeugen und das Verhalten von Licht in einem virtuellen 3D-PLI-Mikroskop zu simulieren.
 
-Um realistischere Modelle zu entwickeln, lag der Schwerpunkt auf der weißen Substanz, die sehr dichte Ansammlungen von Nervenfasern enthält.
-Wichtigstes Kriterium war, dass sich die virtuellen Nervenfasern im Volumen nicht überschneiden, maximal berühren dürfen.
-Da es für einen Benutzer praktisch unmöglich ist, ein solches Modell im Voraus zu erstellen, wurde die Strategie gewählt, dass der Benutzer zunächst ein Volumen mit Nervenfasern füllt, ohne sich um Überlappungen kümmern zu müssen.
-In einem nächsten Schritt wird der hier vorgestellte interaktive Algorithmus angewandt, der Kollisionen zwischen den Objekten erkennt und diese durch langsames Auseinanderschieben der betroffenen Bereiche löst.
-Auf diese Weise wird das virtuelle Gewebe mit der Zeit bzw. mit zunehmender Iteration von allen Kollisionen befreit, sodass am Ende ein kollisionsfreies virtuelles Volumen vorliegt.
+Um realistischere Modelle zu entwickeln, lag der Fokus auf der weißen Substanz, die sehr dichte Ansammlungen von Nervenfasern enthält.
+Das wichtigste Kriterium war, dass sich die virtuellen Nervenfasern im Volumen nicht überschneiden sollten.
+Es wurde ein Algorithmus entwickelt, der einen beliebigen Input von Nervenfaserverläufen akzeptiert.
+Alle Nervenfasern werden dann auf Kollisionen überprüft.
+Tritt eine Kollision auf, werden die Nervenfasern leicht auseinander geschoben und der Algorithmus wird so lange wiederholt, bis keine Kollisionen mehr festgestellt werden.
+Auf diese Weise werden im Laufe der Zeit alle Kollisionen beseitigt, sodass ein kollisionsfreies virtuelles Volumen entsteht.
 
-Um statistisch beschreibbare Modelle zu erzeugen, wurde eine mathematische Beschreibung von zwei Nervenfaserpopulationen verwendet.
-Die erste Population wird nur durch die Neigung beschrieben.
-Die zweite Population hat einen Öffnungswinkel zur ersten und kann um die erste gedreht werden.
-Dadurch ist es möglich, die Anzahl an benötigten Modellen relativ kleinzuhalten und dennoch alle möglichen Orientierungen zu erzeugen, die von zwei Nervenfaserpopulationen angenommen werden können.
+Für die Simulation war es entscheidend, das 3D-PLI-Mikroskop zu charakterisieren, um Verhalten wie Auflösung oder Bildrauschen zu modellieren.
+Die generierten Nervenfasermodelle wurden dann simuliert und der Einfluss der Geometrien von zwei Nervenfaserpopulationen auf die Ergebnisse der 3D-PLI-Messungen analysiert.
 
-Der nächste Schritt besteht darin, dieses Gewebe in der hier vorgestellten Simulationssoftware zu simulieren.
-Dabei war es entscheidend, das zu simulierende Mikroskop zu charakterisieren, um die notwendigen Parameter, wie Auflösung oder Bildrauschen, für die Simulation verwenden zu können.
+Es zeigte sich, dass insbesondere die Orientierung der Nervenfaserpopulation, die einen höheren Anteil im Volumen hat, bestimmt werden kann.
+Mit der derzeitigen Auflösung der verwendeten Mikroskope ist es nicht möglich, beide Orientierungen zu bestimmen.
+Die gemessene Orientierung scheint dem kreisförmigen Mittelwert in Abhängigkeit auf den proportionalen Volumenanteil der Nervenfaserpopulationen zu folgen, wobei die Abnahme des gemessenen Signals aufgrund des zunehmenden Neigungswinkels berücksichtigt wird.
 
-Die generierten Nervenfasermodelle werden dann in der Arbeit simuliert und das Verhalten der Geometrien von zwei Nervenfaserpopulationen auf die Ergebnisse der 3D-PLI Messungen analysiert.
-
-In dieser Arbeit konnte gezeigt werden, dass insbesondere die Orientierung der Nervenfaserpopulation, die einen höheren Anteil im Volumen hat, gemessen werden kann.
-Mit der derzeitigen Auflösung der verwendeten Mikroskope ist es nicht möglich, beide Orientierungen für dicht verschlungene Knotenpunkte zu bestimmen.
-Die gemessene Orientierung scheint dem zirkulären Mittelwert in Bezug auf den proportionalen Volumenanteil der Nervenfaserpopulationen zu folgen, wobei die Verringerung des gemessenen Signals durch zunehmende Neigung berücksichtigt werden muss.
-
-Ein weiteres wichtiges Ergebnis dieser Arbeit ist, dass die kompletten Modellierungsalgorithmen und die Simulationssoftware als vollständiges Open-Source-Tool veröffentlicht wurden.
-Darüber hinaus wurden alle Algorithmen für den Einsatz mit mehreren CPU-Kernen konzipiert und optimiert, sodass eine große Anzahl von Volumen und Simulationen durchgeführt werden kann.
-
-Abschließend werden weitere wichtige Schritte erörtert, die weitere Optimierungen diskutieren.
-Speziell wird auf die Nutzung der GPU-Architektur eingegangen, die die Laufzeiten entscheidend reduzieren kann.
+Die Modellierung und die Simulationssoftware wurden als Open-Source-Tool veröffentlicht.
+Alle Algorithmen wurden für die Verwendung mit mehreren CPU-Kernen konzipiert und optimiert, sodass eine große Anzahl von Volumen und Simulationen durchgeführt werden kann.
