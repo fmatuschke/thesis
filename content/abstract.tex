@@ -22,7 +22,7 @@ Finally, in this thesis, nerve fiber models consisting of two nerve fiber popula
 The results show, that the orientation of the nerve fiber population, which has a higher proportion in the volume, can be determined.
 With the current resolution of the microscopes used, it is not possible to determine both fiber poplation orientations individuel.
 The measured orientation seems to follow the circular mean as a function on the proportional volume fraction of the nerve fiber populations, taking into account the decrease of the measured signal due to the increasing tilt angle.
-In summary, the development of the algorithm for modeling nerve fibers together with the simulation in a toolbox has proven to be a suitable tool to be able to investigate questions through simulations.
+In summary, the development of the algorithm for modeling nerve fibers together with the simulation in a toolbox has proven to be a suitable tool to be able to investigate questions quickly through simulations.
 % 
 % 
 % 
@@ -33,22 +33,24 @@ In summary, the development of the algorithm for modeling nerve fibers together 
 }
 % 
 In der Faserbahnarchitektur Gruppe des Instituts für Neurowissenschaften und Medizin für strukturelle und funktionelle Organisation des Gehirns (INM-1) wird die 3D Bildgebung mit polarisiertem Licht (3D-PLI) zur Messung der Orientierung von Nervenfasern in ungefärbten Hirnschnitten eingesetzt.
-Die Messung der Orientierung ist allerdings in Regionen wo sich Faser kreuzen oder stark zur Schnittrichtung inkliniert sind schwierig zu interpretieren.
-Um das Verhalten des Messsignals in Abhängigkeit von solchen Strukturen ohne weitere äußere Einflüsse, wie z.B. einer nicht idealen Optik, verstehen zu können, werden Simulationen verwendet, bei denen jeder Parameter bekannt ist.
-Um Simulationen durchführen zu können, sind somit zwei dinke von entscheidender Bedeutung.
-Erstens, es werden virtuelle Gewebemodelle benötigt und zweitens, ein virtuelles 3D-PLI Mikroskop muss existieren, welches den Einfluss des Gewebes auf das Licht simulieren kann. 
-
-Um realistischere Modelle von dichtem Nervenfasergewebe entwerfen zu können, muss jedoch darauf geachtet werden, dass sich die einzelnen Nervenfasern nicht überschneiden.
-Dies ist gerade bei verwobenen Strukturen, wie sie in Nervenfaserkreuzungen auftreten können, schwierig im Vorfeld zu Design.
+Die Interpretation der Messung kann in bestimmten Regionen schwierig sein, zum Beispiel dort, wo sich Fasern kreuzen oder senkrecht zur Schnittebene ausgerichtet sind.
+Um das Verhalten des gemessenen Signals solcher Strukturen ohne weitere äußere Einflüsse, wie z. B. eine nicht ideale Optik, zu verstehen, werden Simulationen verwendet, bei denen jeder Parameter bekannt ist.
+Zur Durchführung von Simulationen werden virtuelle Gewebemodelle und ein virtuelles 3D-PLI-Mikroskop benötigt, mit dem der Einfluss des Gewebes auf das Licht simuliert werden kann.
+\\
+% 
+Um realistische Modelle von dichtem Nervenfasergewebe zu entwerfen, muss sichergestellt werden, dass sich die einzelnen Nervenfasern nicht überlappen.
+Dies ist insbesondere bei verflochtenen Strukturen, wie sie bei Nervenfaserkreuzungen vorkommen, schwer zu entwerfen.
 Daher wurde in dieser Arbeit ein auf die Modellierung von Nervenfasern spezialisierter Algorithmus entwickelt.
-Der Algorithmus überprüft ein gegebenes Volumen auf Überschneidungen einzelner Nervenfasern und schiebt sie dann an den betroffenen Stellen langsam auseinander.
-Somit entsteht über die Zeit ein kollisionsfreies Gewebemodell, ohne zu viel Platz verschwenden zu müssen.
-Als weiterer Fokus dieser Arbeit wurde der bestehende Simulationsalgorithmus des 3D-PLI Mikrosops überarbeitet.
-Der Algorithmus ist nun in der Lage parallele auf mehreren CPU Kernen als auch Rechenclustern auszunutzen.
-Somit sind eine Vielzahl an Simulationen möglich, die für eine grössere Statistik bei den Analysen erlauben.
-Diese beiden Algorithmen wurden in dem Softwarepacket \textit{fiber architecture simulation toolbox of 3D-PLI} (fastPLI) veröffentlicht. 
-
-Zuletzt wurde in dieser Arbeit Nervenfasermodelle bestehend aus zwei Nervenfaerpopulationen, zwei dicht gefüllte kreuzende Nervenfaserbündle, erstellt und im Anschluss simuliert.
-Es zeigte sich, dass insbesondere die Orientierung der Nervenfaserpopulation, die einen höheren Anteil im Volumen hat, bestimmt werden kann.
-Mit der derzeitigen Auflösung der verwendeten Mikroskope ist es nicht möglich, beide Orientierungen zu bestimmen.
-Die gemessene Orientierung scheint dem kreisförmigen Mittelwert in Abhängigkeit auf den proportionalen Volumenanteil der Nervenfaserpopulationen zu folgen, wobei die Abnahme des gemessenen Signals aufgrund des zunehmenden Neigungswinkels berücksichtigt wird.
+Der Algorithmus prüft ein gegebenes Volumen auf Überschneidungen einzelner Nervenfasern und schiebt diese dann an den betroffenen Stellen langsam auseinander.
+So entsteht mit der Zeit ein kollisionsfreies Gewebemodell.
+Der bereits existierende Simulationsalgorithmus des 3D-PLI-Mikroskops wurde im Rahmen dieser Arbeit komplett neu entwickelt.
+Der Algorithmus ist nun in der Lage, parallel auf mehreren CPU-Kernen sowie mit Rechenclustern zu arbeiten.
+Dadurch kann eine große Anzahl von Simulationen durchgeführt werden, was eine größere Statistik in den Analysen ermöglicht.
+Die hier erarbeiteten Algorithmen wurden in dem Softwarepaket \textit{fiber architecture simulation toolbox of 3D-PLI} (fastPLI) veröffentlicht.
+\\
+% 
+Zuletzt wurden in dieser Arbeit Nervenfasermodelle, die aus zwei Nervenfaserpopulationen, also zwei dicht gepackten, sich kreuzenden Nervenfaserbündeln, bestehen, erstellt und anschließend simuliert.
+Die Ergebnisse zeigen, dass die Orientierung derjenigen Nervenfaserpopulation, die einen höheren Anteil am Volumen hat, bestimmt werden kann.
+Mit der derzeitigen Auflösung der verwendeten Mikroskope ist es nicht möglich, beide Orientierungen der Faserpopulationen individuell zu bestimmen.
+Die gemessene Orientierung scheint dem zirkulären Mittelwert als Funktion des proportionalen Volumenanteils der Nervenfaserpopulationen zu folgen, wobei die Abnahme des gemessenen Signals aufgrund des zunehmenden Neigungswinkels berücksichtigt wird.
+Zusammenfassend hat sich die Entwicklung des Algorithmus zur Modellierung von Nervenfasern zusammen mit der Simulation in einer Toolbox als ein geeignetes Werkzeug erwiesen, um Fragestellungen durch Simulationen schnell untersuchen zu können.
