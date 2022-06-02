@@ -2,30 +2,35 @@
 \addchap*{Abstract}
 %
 In the Fiber Architecture group of the Institute of Neuroscience and Medicine, Structural and Functional Organization of the Brain (INM-1), 3D Polarized Light Imaging (3D-PLI) microscopy is used to measure the orientation of nerve fibers in unstained brain sections.
-However, the measurement of orientation is difficult to interpret in regions where fibers cross or are strongly inclined with respect to the section plane.
-To understand the behavior of the measured signal as a function of such structures without further external influences, such as non-ideal optics, simulations are used where each parameter is known.
-Thus, in order to perform simulations, two things are essential.
-First, virtual tissue models are needed and second, a virtual 3D-PLI microscope must exist that can simulate the influence of the tissue on the light.
-
-In order to design realistic models of dense nerve fiber tissue, care must be taken to ensure that individual nerve fibers do not overlap.
-This is especially difficult to design in advance for interwoven structures, such as those that can occur in nerve fiber crossings.
-Therefore, in this work a nerve fiber modeling specialized algorithm was designed.
+Interpretation of the measurement can be challenging for certain regions, for example where fibers cross or are oriented perpendicular to the sectioning plane.
+To understand the behavior of the measured signal of such structures without further external influences, such as non-ideal optics, simulations are used where each parameter is known.
+In order to perform simulations, virtual tissue models are needed and a virtual 3D-PLI microscope, being capable of simulating the influence of the tissue on the light.
+\\
+% 
+In order to design realistic models of dense nerve fiber tissue, it must be ensured that individual nerve fibers do not overlap.
+This is especially difficult to design in advance for interwoven structures, as is occurs in nerve fiber crossings.
+Therefore, a nerve fiber modeling specialized algorithm was designed in this thesis.
 The algorithm will check a given volume for overlaps of single nerve fibers, and then slowly push them apart at the affected locations.
-Thus, a collision-free tissue model is created over time without having to waste too much space.
-As another focus of this work, the existing simulation algorithm of the 3D-PLI microscope was redesigned.
+Thus, a collision-free tissue model is created over time.
+The pre-existing simulation algorithm of the 3D PLI microscope was completely redesigned as part of this work.
 The algorithm is now able to exploit parallel on multiple CPU cores as well as computational clusters.
-Thus, a large number of simulations are possible, allowing for greater statistics in the analyses.
-These two algorithms were published in the software package \textit{fiber architecture simulation toolbox of 3D-PLI} (fastPLI). 
-
-Finally, in this thesis, nerve fiber models consisting of two nerve fiber populations, two densely packed crossing nerve fiber bundles, were created and subsequently simulated.
-It turned out that especially the orientation of the nerve fiber population, which has a higher proportion in the volume, can be determined.
-With the current resolution of the microscopes used, it is not possible to determine both orientations.
+Thus, a large number of simulations can be performed, allowing for greater statistics in the analyses.
+These two algorithms were published in the software package \textit{fiber architecture simulation toolbox of 3D-PLI} (fastPLI).
+\\
+% 
+Finally, in this thesis, nerve fiber models consisting of two nerve fiber populations, \ie{} two densely packed crossing nerve fiber bundles, were created and subsequently simulated.
+The results show, that the orientation of the nerve fiber population, which has a higher proportion in the volume, can be determined.
+With the current resolution of the microscopes used, it is not possible to determine both fiber poplation orientations individuel.
 The measured orientation seems to follow the circular mean as a function on the proportional volume fraction of the nerve fiber populations, taking into account the decrease of the measured signal due to the increasing tilt angle.
+In summary, the development of the algorithm for modeling nerve fibers together with the simulation in a toolbox has proven to be a suitable tool to be able to investigate questions through simulations.
 % 
 % 
 % 
+{
+\let\cleardoublepage\clearpage
 \pdfbookmark[0]{Zusammenfassung}{Zusammenfassung}
 \addchap*{Zusammenfassung}
+}
 % 
 In der Faserbahnarchitektur Gruppe des Instituts für Neurowissenschaften und Medizin für strukturelle und funktionelle Organisation des Gehirns (INM-1) wird die 3D Bildgebung mit polarisiertem Licht (3D-PLI) zur Messung der Orientierung von Nervenfasern in ungefärbten Hirnschnitten eingesetzt.
 Die Messung der Orientierung ist allerdings in Regionen wo sich Faser kreuzen oder stark zur Schnittrichtung inkliniert sind schwierig zu interpretieren.
