@@ -14,11 +14,11 @@ In \cref{chap:neuro} the structure of nerve fibers and the macroscopic structure
 The question is how to represent such a structure in a computer algorithm?
 For simple fiber configurations, \eg{} parallel, linear nerve fibers, this is relatively straightforward.
 However, it has been shown that irregular, non-symmetric nerve fiber configurations are necessary to obtain a realistic result for microscopy simulations based on the wave nature of the light \cite{MenzelDissertation}.
-Therefore, one needs ideally a representation, which allows building any kind of pattern.
+Therefore, one needs ideally a representation, which allows building any kind of geometry.
 \par
 %
 Many representations of fiber structures are already available, which are commonly used in graphical visualizations.
-A rope or fiber, \ie{}, a tube object, is defined by a trajectory with a radius.
+For example, a rope is represented by a tube object, that is defined by a path with a radius.
 A surrounding mesh is generated with n-polygonal vertices.
 For visualization, the mesh is used to apply textures onto the surface.
 Such meshes are \eg{} used in Monte Carlo simulations of \ac{dMRI} \cite{Ginsburger2019,ginsburgerDis2019}.
@@ -33,11 +33,11 @@ Considering the immense number of configuration possibilities that nerve fibers 
 %
 The solution found in this work is to initially allow the placement of nerve fibers in any trajectory and without restrictions.
 The overlap of the fibers will be removed in a secondary step, by checking all fibers for collisions with each other.
-If a collision occurs, the algorithm try to remove it by moving the colliding parts slightly away from each other.
+If a collision occurs, the algorithm tries to remove it by moving the colliding parts slightly away from each other.
 This step is repeated until the volume has no collisions.
 \par
 %
-The nerve fibres simulation and all its necessary prerequisites is described in detail in the this chapter.
+The nerve fibres simulation and all its necessary prerequisites is described in detail in this chapter.
 First, the representation of a nerve fiber is defined considering the performance for collision optimization.
 Then, additional \textit{building} functions are designed to help the user define a volume with nerve fibers quickly.
 Finally, the algorithm for resolving the collisions with the parallelization components is explained in detail.
@@ -65,7 +65,7 @@ Such structures are essential to increase the understanding of \ac{3D-PLI}.
 Therefore, the simulation models must create such configurations without overlapping individual fibers.
 \par
 %
-To represent individual nerve fibers a function $\vec{f}(t)$ describing a path in 3D space, \ie{}, a parametrized curve $(x(t), y(t), z(t))$, is used.
+To represent individual nerve fibers, a function $\vec{f}(t)$ describing a path in 3D space, \ie{}, a parametrized curve $(x(t), y(t), z(t))$, is used.
 In addition, a fourth element describes the radius $(r(t))$ of the fiber at the same point:
 % 
 \begin{align}
@@ -100,7 +100,7 @@ Therefore, the fiber segments describe a \ac{CC} (see \cref{fig:conical}).
     \centering
     \setlength{\tikzwidth}{0.5\textwidth}
     \inputtikz{gfx/model/capsule}
-	\caption{Schematic of a fiber segment represented by a \acreset{CC} \ac{CC} by a distance $\vec{d}$ and two radii $r_0$ and $r_1$.}
+	\caption{Schematic of a fiber segment represented by a distance $\vec{d}$ and two radii $r_0$ and $r_1$ which descibes a \acreset{CC} \ac{CC}.}
 	\label{fig:conical}
 \end{figure}
 %
@@ -263,7 +263,7 @@ The following applies to all cylindrical methods used: If the seed point plane l
 Mimics a radial path of the cylinder (see \cref{fig:cylCircular}).
 The seed points are placed along the surface of the cross-section of the first $\alpha$ direction angle.
 The origin of the seed point plane is placed on the origin of the cylinder.
-From there, the fiber is circular bend until the second direction angle $\beta$.
+From there, the fiber is circularly bent until the second direction angle $\beta$.
 The step size of the circular path can be customized.
 %
 \paragraph{b) radial}
@@ -297,7 +297,7 @@ The seed points are placed on the lower plane, with identical coordinate origins
     The green area shows the area corresponding to the seed point plane.
     The coordinate system indicates the coordinate origin coresponding to the seed points origin.
     The origin of the coordinate system $O$ of the resulting fibers is at the botom center as shown in \cref{fig:cylRadial}.
-    Two angles $\alpha$ and $beta$ can be used to limit the angular range of the cylinder.}
+    Two angles $\alpha$ and $\beta$ can be used to limit the angular range of the cylinder.}
 \end{figure}
 %
 \par
@@ -507,7 +507,7 @@ Once all objects are sorted into their respective sub-volumes, recursion can beg
 \par
 % 
 Since a branch can be considered a node, the same algorithm can be executed until a desired boundary or property is reached, \eg{} maximum number of branches.
-To speed up the computational time the objects in memory for the subvolumes so that the algorithm can compute the data in line.
+To speed up the algorithm, the objects for each subvolume are stored in memory linearly.
 The conditions under which the recursion is to be stopped cannot be defined unambiguously.
 This depends on the algorithm implemented and the number and position of the objects.
 The usual approach is to impose the following two constraints:
@@ -615,7 +615,7 @@ r_{new} = \frac{r_{i} + r_{i+1}}{2},\enspace
 The bending radius matches the radius of the circle defined by three adjacent points $\vec{p}_{i-1}, \vec{p}_{i}, \vec{p}_{i+1}$ (see \cref{fig:modelCircle}).
 To limit the bending radius of the fiber a minimal allowed radius $r_{\min}$ is defined.
 Additionally, three adjacent points are not allowed to have an enclosing angle $\eta \geq \SI{60}{\degree}$.
-If any point $\vec{p}_{i}$ in a fiber fails these boundary conditions, the three points are shifted $\vec{p}_{i-1}, \vec{p}_{i}$ and $\vec{p}_{i+1}$ are moved parallel to reduce curvature (see \cref{fig:modelCircle}).
+If any point $\vec{p}_{i}$ in a fiber fails these boundary conditions, the three points will be shifted $\vec{p}_{i-1}, \vec{p}_{i}$ and $\vec{p}_{i+1}$ will be moved parallel to reduce curvature (see \cref{fig:modelCircle}).
 % 
 \begin{figure}[!t]
     \centering
@@ -648,7 +648,7 @@ Its default value is set to $\SI{0}{}$ so that the velocity is reset to $\vec{0}
 % 
 The computational architecture to optimize the octree (see \cref{sec:octree}) for solving the fiber collision is presented in this section.
 The optimization requires millions of objects to be checked for collisions.
-By using memory alignment and multiprocessing, the computation const was reduced from $O(n^2)$ to $O(n\log(n))$.
+By using memory alignment and multiprocessing, the computation cost was reduced from $O(n^2)$ to $O(n\log(n))$.
 % 
 %
 \paragraph{Memory alignment}
@@ -696,7 +696,7 @@ This implementation uses \code{gluCylinder} to represent a nerve fiber segment.
 Although not optimal, the visualization is sufficient compared to a single step of the collision solving algorithm.
 \par
 % 
-A further advanced interactive tool is also available as open source, the FAConstructor, which was developed by Jan Reuter as part of his bachelor thesis \cite{Reuter2019}.
+A further advanced interactive tool is also available as open source, the \ac{FAConstructor}, which was developed by Jan Reuter as part of his bachelor thesis \cite{Reuter2019}.
 It provides additional interactive methods for creating nerve fiber models and was written in \textit{OpenGL\,v3}.
 % 
 % 
@@ -777,7 +777,7 @@ Since all objects are represented as a collection of spheres (see \cref{fig:medu
     \label{fig:medusaCell}
 \end{figure}
 %
-, a collision occurs when
+a collision occurs when
 %
 \begin{align}
 d<r_i+r_j \enspace \text{with} \enspace d = \abs{\vec{p}_i - \vec{p}_j}
@@ -793,7 +793,7 @@ Spheres inside cell bodies are not checked for collisions because their volume i
 %
 The calculation of the collisions is performed using the GPU architecture.
 For this first implementation, the algorithm \name{AxisAligedSortedSearch} \cite{Karras2012} is used.
-It sorts the spheres along an axis, \obda{} x-axis, and for each sphere $i$ searches for the first and last possible collision on that axis.
+It sorts the spheres along an axis and for each sphere $i$ searches for the first and last possible collision on that axis.
 This results in a list of spheres $\mathcal{C}_i$ to be tested:
 \begin{align}
 \begin{split}
