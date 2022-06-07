@@ -24,19 +24,19 @@ The theory of electromagnetism was first fully described by James Clerk Maxwell,
 \end{split}
 \end{align}
 %
-with the nabla operator $\nabla \coloneqq \left({\frac{\partial}{\partial x}}, {\frac{\partial}{\partial y}}, {\frac{\partial}{\partial z}} \right)$ denotes the three-dimensional gradient operator, $\vec{E}$ as electric field, $\rho$ as electric charge density, $\varepsilon_0$ as permittivity of free space, $\vec{B}$ as magnetic field, $\mu_0$ as permeability of free space and $\vec{j}$ as electric current density.
+where the nabla operator $\nabla \coloneqq \left({\frac{\partial}{\partial x}}, {\frac{\partial}{\partial y}}, {\frac{\partial}{\partial z}} \right)$ denotes the three-dimensional gradient operator, $\vec{E}$ is the electric field, $\rho$ the electric charge density, $\varepsilon_0$ the permittivity of free space, $\vec{B}$ the magnetic field, $\mu_0$ the permeability of free space and $\vec{j}$ the electric current density.
 The first equation states that no electric field can be generated without an electric charge (conservation of charge).
 The second equation states that there are no magnetic monopoles and the basic unit of a magnetic field is a dipole.
 The third and fourth equations show the relationship between the electric and magnetic fields in space and time.
 A change in the electric field results in a magnetic field and vice versa.
 Equation four also shows a magnetic field's generation from an electric current $\vec{j}$.
-Maxwell's equation satisfies the continuity equation $\divergence j + \frac{\partial \rho}{\partial t} = 0$, which means that neither an electric field nor a magnetic field can be generated without an electric current or a change in electric potential occurring.
+Maxwell's equations satisfy the continuity equation $\divergence j + \frac{\partial \rho}{\partial t} = 0$, which means that neither an electric field nor a magnetic field can be generated without an electric current or a change in electric potential occurring.
 %
 % \par
 %
 \subsection{Light in vacuum}
 %
-In a vacuum, \cref{eq::maxwell_general} simplifies with $\rho = 0$ and $\vec{j} = \vec{0}$ to:
+In vacuum, \cref{eq::maxwell_general} simplify with $\rho = 0$ and $\vec{j} = \vec{0}$ to:
 %
 \begin{align}
 \begin{split} \label[pluralequation]{eq::maxwell_vacuum}
@@ -55,7 +55,7 @@ with
 \end{split}
 \end{align}
 %
-the identity $\nabla \times \left( \nabla \times \vec{A} \right) = \nabla(\nabla \cdot \vec{A}) - \nabla^{2}\vec{A}$, $\mu_0\varepsilon_0 = \frac{1}{c^2}$ and $c$ as the speed of light\footnote{can be derived from Maxwell's equation and Lorentz force in a vacuum}, further simplifies to:
+the identity $\nabla \times \left( \nabla \times \vec{A} \right) = \nabla(\nabla \cdot \vec{A}) - \nabla^{2}\vec{A}$, $\mu_0\varepsilon_0 = \frac{1}{c^2}$ and $c$ as the speed of light\footnote{can be derived from Maxwell's equations and Lorentz force in a vacuum}, further simplifies to:
 %
 \begin{align}
 \begin{split} \label[pluralequation]{eq::maxwell_wave_equations}
@@ -135,7 +135,7 @@ In addition, the states can be described by the Jones or Stokes calculation, whi
 %
 %
 %
-\subsection{Light in a medium}
+\paragraph*{Light in a medium}
 %
 The general Maxwell's equations \cref{eq::maxwell_general} can be solved similar to \cref{sec::SolvMaxEqVac}, which yields a special behavior, \eg{} the magnetic and electric field component get out of phase.
 In this work, only the two decisive properties absorption and diffraction are described.
@@ -145,13 +145,13 @@ In this work, only the two decisive properties absorption and diffraction are de
 \subsection{Absorption}\label{sec:theoAbsorption}
 %
 Absorption is the property of reducing the intensity or energy of an electromagnetic wave passing through a medium.
-It is described by Beersche law of absorption
+It is described by the Beer–Lambert law of absorption
 % 
 \begin{align} 
     I = I_0 \exp(-\mu x) \label{eq:absorption}
 \end{align}
 %
-with $\mu = \frac{4\pi \kappa}{\lambda}$ where $\lambda$ is the wavelength and $\kappa$ is the imaginary part of the complex refractive index of the medium (see \cref{sec:theoRefraction}).
+with $\mu = \frac{4\pi \kappa}{\lambda}$ as absorption coefficientm, with $\lambda$ is the wavelength and $\kappa$ is the imaginary part of the complex refractive index of the medium (see \cref{sec:theoRefraction}).
 If the complex number is inserted into the wave equation, the intensity is reduced exponentially along the path (see \cref{eq:absorption}).
 %
 % 
@@ -159,9 +159,9 @@ If the complex number is inserted into the wave equation, the intensity is reduc
 \subsection{Refraction}\label{sec:theoRefraction}
 %
 Refraction is the change of direction of light as it passes from one medium to another.
-Refraction can be explained by using the full Maxwell equations for non-conductive material, 
+Refraction can be explained by using the full Maxwell's equations for non-conductive materials, 
 %, \ie{}, $\vec{j} = \vec{0}$ \TODO{$, \rho = 0$}, 
-\ie{} the differential equation consist out of a primary wave with from atomic medium induced secondary waves, which leads to a reduction of the velocity of the resulting wave.
+\ie{} the differential equation consists of a primary wave with secondary waves induced by the atomic medium, resulting in a decrease in the velocity of the resulting wave.
 Mathematically, this can be described by a complex number $n = c' / c$.
 Using this relationship at a boundary surface between two media, one can show that the incident light beam splits into a reflecting and transmitting light wave.
 The reflecting light wave has the same angle as the incident light beam relative to the surface normal.
@@ -172,7 +172,7 @@ However, the transmitting light beam, due to the reduction of the velocity, chan
 \centering
 \setlength{\tikzwidth}{\textwidth}
 \inputtikz{gfx/pli/refraction}
-\caption{Illustration of refraction by Snellius law.}
+\caption{Illustration of refraction by Snell's law.}
 \label{fig:optic_refraction}
 \end{figure}
 % 
@@ -180,7 +180,7 @@ However, the transmitting light beam, due to the reduction of the velocity, chan
     n_\alpha \sin \alpha = n_\beta \sin \beta \label{eq:Snellius}
 \end{align}
 % 
-The refractive index $n$ can also be described inside a complex refraction index, where the imaginary part describes the absorption of the light along the material (see \cref{sec:theoAbsorption}):
+The refractive index $n$ can also be described as complex refractive index, where the imaginary part describes the absorption of the light along the material (see \cref{sec:theoAbsorption}):
 % 
 \begin{align}
 \underline{n} = n + i\kappa
@@ -192,13 +192,17 @@ The refractive index $n$ can also be described inside a complex refraction index
 %
 A translucent material can have a different refractive index depending on the relative orientation and polarization of the light beam.
 This property is called birefringence.
-The refractive index can be described by the ordinary refractive index $n_o$ and the extraordinary $n_e$, which are perpendicular to each other (see \cref{fig:optic_retardation}).
+The refractive index can be described by the ordinary refractive index $n_o$ and the extraordinary refractive index $n_e$, which are perpendicular to each other (see \cref{fig:optic_retardation}).
 %
 \begin{figure}[!t]
 \centering
 \setlength{\tikzwidth}{\textwidth}
 \inputtikz{gfx/pli/retardation}
-\caption{Illustration of retardation. The linear $\SI{45}{\degree}$ polarized light wave is decomposed into the $x$ and $y$ components in the birefringence medium. The $y$ component travels faster than the $x$ component. Therefore, a phase shift $\phi$ between both components occur. This leads in the case of a $\lambda/4$ retarder to a circular polarized light wave.}
+\caption{Illustration of retardation.
+    The linear $\SI{45}{\degree}$ polarized light wave is decomposed into the $x$ and $y$ components in the birefringent medium.
+    The $y$ component travels faster than the $x$ component.
+    Therefore, a phase shift $\phi$ between both components occur.
+    This leads in the case of a $\lambda/4$ retarder to a circular polarized light wave.}
 \label{fig:optic_retardation}
 \end{figure}
 % 
@@ -216,7 +220,7 @@ The phase change is called birefringence and the physical property is described 
 \subsection{Jones calculus}
 \label{sec:jones}
 % 
-The Jones calculus, introduced by Robert Clark Jones in 1941, describes the polarization state of a light beam by a complex vector $J$ (see \cref{fig:polarization_state_vectors}):
+The Jones calculus, introduced by Robert Clark Jones in 1941 \cite{Jones1941}, describes the polarization state of a light beam by a complex vector $J$ (see \cref{fig:polarization_state_vectors}):
 %
 \begin{align}
     \vec{J} = \begin{pmatrix} E_x \exp(i \varphi_x) \\ E_y \exp(i \varphi_y) \end{pmatrix}
@@ -273,7 +277,7 @@ A rotation of an optical element $\mat{E}$ can be achieved by a 2D rotation matr
 %
 \subsection{M{\"u}ller-Stokes calculus}\label{sec:MuellerStokes}
 %
-In analogy to \cref{sec:jones}, the M{\"u}ller-Stokes formalism, described by George Gabriel Stokes in 1852, also describes the polarization state of a light beam.
+In analogy to \cref{sec:jones}, the M{\"u}ller-Stokes formalism, described by George Gabriel Stokes in 1852 \cite{stokes1852composition} and Hans M{\"u}ller in 1943 \cite{mueller1943memorandum}, also describes the polarization state of a light beam.
 However, it does not use the absolute electric components, but the relative polarization between both components (see \cref{fig:polarization_state_vectors}):
 %
 \paragraph{Stokes vector}
@@ -310,7 +314,7 @@ where $I$ is the intensity, $p$ the polarization state, $\Psi$ and $\delta$ the 
 \end{figure}
 % 
 With this description, the phase can no longer be described as in the Jones calculus.
-However, the relative phase information is stored and can be used to describe also polarization states of polarization filters, which the Jones calculus cannot describe.
+However, the relative phase information is stored and can be used to describe unpolarized light or partial polarized light as well as the polarization states of polarization filters, which the Jones calculus cannot describe.
 Analogous to the Jones calculus, one can formulate the matrices for the optical components:
 %
 \paragraph{Linear polarizer}
@@ -354,7 +358,7 @@ Analogous to the Jones calculus, one can formulate the matrices for the optical 
 with $\delta$ as retardation and $\Lambda_{1/4}$ as quarter-wave retarder.
 %
 \paragraph{Rotation matrix}
-Analog to \cref{eq::JonesRotation} rotations of an optical element $\mat{E}$ are applied by
+Analogous to \cref{eq::JonesRotation} rotations of an optical element $\mat{E}$ are applied by
 \begin{align}
 \centering
 \begin{gathered}
