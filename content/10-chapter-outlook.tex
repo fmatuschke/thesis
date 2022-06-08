@@ -62,7 +62,7 @@ In addition, the need to transfer the data back to \ac{RAM} was too much of an o
 Therefore, the second project was to implement a ray tracing algorithm that computes a light matter collision and matrix computation without pre-computing the discretized volume \cite{Kobusch:887783, GPUfastpli}.
 A light particle only computes the M{\"u}ller-Stokes calculus only if it collides fifth a fiber object.
 This means, that a collision algorithm needs to be used.
-As a first implementation a collision detection algorithm on the \ac{GPU}, an uniaxially aligned collision search algorithm \cite{Karras2012} was implemented.
+As a first implementation a collision detection algorithm on the \ac{GPU}, a uniaxially aligned collision search algorithm \cite{Karras2012} was implemented.
 The results showed that the acceleration possibilities on the \ac{GPU} are enormous.
 However, due to the rather simple collision checking algorithm, the runtime was slightly longer, but still in the same order of magnitude as the \ac{CPU} version.
 As with fiber generation, implementing the z-order algorithm mentioned above \cite{Karras2012} would be a vast improvement and solve the runtime issue.
@@ -100,4 +100,4 @@ In \ac{dMRI}, nerve fiber models and their simulations, as well as the use of de
 This can potentially be applied to \ac{3D-PLI} similarly.
 \par
 % 
-By publishing the code as open access software other researcher could already use the fiber modeling software to generate non colliding fiber models and use them as skeletal muscle fiber models \cite{Ji2021}.
+By publishing the code as open access software other researchers could already use the fiber modeling software to generate non colliding fiber models and use them as skeletal muscle fiber models \cite{Ji2021}.
