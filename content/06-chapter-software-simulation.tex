@@ -122,7 +122,7 @@ Then, they fill some voxels of the tissue volume simultaneously.
 This is an issue because the processed second fiber segment overwrites the values of the first.
 This is solved by using an additional array that stores the smallest distance calculated when filling the voxels space.
 The values are only overwritten when a new distance is calculated that is smaller than the one already stored.
-This solves also the problem that in a radial optic axis model, the optic axis is star-shaped at the end points of each fiber segment inside the fiber.
+This also solves the problem that in a radial optic axis model, the optic axis is star-shaped at the end points of each fiber segment inside the fiber.
 The first and last point of a fiber, however, are not affected by this.
 \par
 %
@@ -387,7 +387,7 @@ A method is implemented to automatically partition the volume along the $x$-axis
     \centering
     \setlength{\tikzwidth}{0.85\textwidth}
     \inputtikz{gfx/simpli/com_halo}
-    \caption{ This example uses six \ac{MPI} ranks to split the entire volume into six sub-volumes. To calculate the value at a given point a eight-neighborhood is necessary. Therefore a \name{halo} area (coloured voxels) with the same information shared by neighboring \ac{MPI} process is necesarry.}
+    \caption{ This example uses six \ac{MPI} ranks to split the entire volume into six sub-volumes. To calculate the value at a given point a eight-neighborhood is necessary. Therefore a \name{halo} area (coloured voxels) with the same information shared by neighboring \ac{MPI} process is necessary.}
     \label{fig:com_halo}
 \end{figure}
 % 

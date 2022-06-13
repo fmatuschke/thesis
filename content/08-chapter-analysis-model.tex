@@ -308,7 +308,7 @@ The runtime ranges from $\SI{1000}{\second}$ to $\SI{10000}{\second}$.
 \par
 %
 % CROSSING
-The crossing fiber population \cfbs{} in \cref{fig:timeDevelopmentCross} shows for all parameter sets an equally linear behavior for the number of steps as in the case of the single fiber population.
+The crossing fiber population \cfbs{} in \cref{fig:timeDevelopmentCross} shows an equaly linear behavier for all parameter sets for the number of steps as in the case of the single fiber population.
 The total runtime is significantly increased compared to the models with a single fiber population.
 Further the runtime increases with a decrease in \segLengthFactor{} and decreases with a decrease in \segRadiusFactor{}.
 In the case of $\segLengthFactor = \SI{1}{}$ and $\segLengthFactor = \SI{2}{}$, the maximum number of steps is reached.
@@ -328,7 +328,7 @@ In the case of $\segLengthFactor = \SI{1}{}$ and $\segRadiusFactor = \SI{8}{}$, 
 %
 The number of objects shows the same behavior as in the case of the single fiber population.
 There is a slight decrease in the number and a significant increase with a decreasing value of the fiber segment length factor \segLengthFactor{}.
-The splitting of the curves for the \segRadiusFactor{} is also visible, but not as pronounced as in the case of the number of colliding objects.
+The splitting of the curves for the \segRadiusFactor{} is also visible, but not as prominent as in the case of the number of colliding objects.
 In the case of $\segLengthFactor = \SI{1}{}$ and $\segRadiusFactor = \SI{8}{}$, an increase in the number of objects is observed in the last phase of the collision solver algorithm.
 \par
 % 
@@ -377,7 +377,7 @@ For $\segLengthFactor=\SI{8}{}$ the change with $\segRadiusFactor$ disappears an
 % radius
 For a mean fiber radius $\fiberRadiusMean = \SIlist{1;2}{\micro\meter}$ the behavior is very similar (see \cref{app:appModelVolumeBoxPlot}).
 The variance increases and the median decreases significantly for $\fiberRadiusMean \geq \SI{5}{\micro\meter}$.
-The effect of the parameter is not changed otherwise
+The effect of the parameter is not changed otherwise.
 For mean fiber radii $\fiberRadiusMean \geq \SI{5}{\micro\meter}$, the volume fraction does not decrease significantly.
 % 
 % 
@@ -387,7 +387,7 @@ For mean fiber radii $\fiberRadiusMean \geq \SI{5}{\micro\meter}$, the volume fr
 For parallel fibers, the collision solving process is always faster than for crossing bundles.
 This is visible in the plot of the overlap fraction \cref{fig:timeDevelopmentNone,fig:timeDevelopmentCross}.
 The overlap is significantly higher for the crossing fibers than for the single fibers.
-Not only does this mean that the fiber segments that need to be moved out of the way are longer, but also that the fiber segments that are inserted into the octree contain more multiple cases and the number of objects per octree leaf is higher.
+Not only does this mean that the fiber segments that need to be moved out of the way are longer, but also that in hiher octree levels the segments cannot be seperated anymore and therefore exists in multiple leafs.
 As a result, the runtime for solving the volume increases significantly.
 \par
 %
@@ -519,7 +519,7 @@ The crossing angle $\modelOmega$ does not seem to have any influence.
 \par
 % 
 % second fiber population
-The direction $\dir$ follows with its mean value the initial crossing angle $\modelOmega$.
+The mean direction $\dir$ follows the initial crossing angle $\modelOmega$.
 The fiber population fraction $\modelPsi$ does not seem to have a significant influence. 
 The inclination $\modelInc$ is stable around $\SI{0}{\degree}$ for all parameters.
 The parameters do not seem to have a significant effect on their distribution.
@@ -594,7 +594,7 @@ From $\SI{4}{cores}$, the speedup increases more slowly until a significant incr
 \par
 % 
 Overall, no significant change is visible for parallel or crossing fibers.
-Also, for different starting points $\Delta_{\mathit{steps}}$ no change in acceleration is visible.
+Also, for different starting points $\Delta_{\mathit{steps}}$, no change in acceleration is visible.
 The speedup increases up to $\SI{8}{}$.
 % 
 % 
@@ -607,7 +607,7 @@ Since for $\SI{8}{cores}$ the parallel alignment on a \name{octree} (can) be opt
 More cores are not feasible.
 \par
 % 
-Nevertheless, the data suggest that using a multicore system shortens the runtime considerably.
+Nevertheless, the data suggests that using a multicore system shortens the runtime considerably.
 However, for small volumes or low-fiber objects, one should use only one or two cores and prefer to run multiple models in parallel.
 The results also show that an optimized algorithm is needed, especially when the volume or the number of objects increases.
 Here, the \ac{GPU} seems to be the hardware of choice with a more advanced algorithm \cite{Karras2012} (see \cref{sec:outlook}).

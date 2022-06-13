@@ -93,7 +93,7 @@ In order to ensure the continuous integration and continuous deployment of the \
 The action runs the two latest Ubuntu Long Term Support versions (currently 18.04 LTS and 20.04 LTS) and the most commonly used Python3 versions (currently 3.6 and 3.8) to provide a wide range of standard supported versions.
 \par
 % 
-In addition, the \name{Github actions} run all test scripts, check tutorial files, check code format and linting for consistency, and publish the latest documentation after a sucessfull tested release.
+In addition, the \name{Github actions} run all test scripts, check tutorial files, check code format and linting for consistency, and publish the latest documentation after a sucessfully tested release.
 \par
 %
 \name{Github} allows tracking issues.
@@ -289,7 +289,7 @@ For linear operations on memory, the cache prefetcher reduces the time so much t
 \par
 %
 Another technique is to use modern compilers such as \name{Clang v11}\footnote{\url{https://clang.llvm.org/}} or \name{G++ v10}\footnote{\url{https://gcc.gnu.org/}}.
-These built-in algorithms optimize the code to the machine's architecture and much more sophisticated methods.
+They use built-in algorithms to optimize the code for the machine's architecture and much more sophisticated methods.
 For example, if the number of iterations is known at compile time, a for loop can be \name{unrolled} to speed up the computations since it no longer needs to check if the conditions  are met at the end of each loop cycle.
 To review these optimizations, the time critical code was tested with tools like \name{Compiler Explorer}\footnote{\url{https://godbolt.org/}} and \name{C++ Insight}\footnote{\url{https://cppinsights.io/}}.
 %
@@ -299,9 +299,8 @@ To review these optimizations, the time critical code was tested with tools like
 %
 All methods contain documentation strings (docstrings)
 which modern editors automatically display during programming.
-These docstrings are also used for an automatic release of the \ac{API} documentation.
+These docstrings are also used for an automatic release of the \ac{API} documentation and wiki pages(see \cref{fig:fastpli_wiki}).
 \footnote{\url{https://3d-pli.github.io/fastpli/}}
-In addition,  docstrings are used to release the \ac{API} documentation automatically and can be displayed as a wiki page (see \cref{fig:fastpli_wiki}) that describes the main features of the toolboox. 
 % 
 \begin{figure}[!t]
    \centering

@@ -14,7 +14,7 @@ In \cref{chap:neuro} the structure of nerve fibers and the macroscopic structure
 The question is how to represent such a structure in a computer algorithm?
 For simple fiber configurations, \eg{} parallel, linear nerve fibers, this is relatively straightforward.
 However, it has been shown that irregular, non-symmetric nerve fiber configurations are necessary to obtain a realistic result for microscopy simulations based on the wave nature of the light \cite{MenzelDissertation}.
-Therefore, one needs ideally a representation, which allows building any kind of geometry.
+Therefore, one ideally needs a representation, which allows building any kind of geometry.
 \par
 %
 Many representations of fiber structures are already available, which are commonly used in graphical visualizations.
@@ -23,7 +23,7 @@ A surrounding mesh is generated with n-polygonal vertices.
 For visualization, the mesh is used to apply textures onto the surface.
 Such meshes are \eg{} used in Monte Carlo simulations of \ac{dMRI} \cite{Ginsburger2019,ginsburgerDis2019}.
 Using meshes helps to calculate whether a water molecule travels through the surface of a nerve fiber, \ie{}, the surface of the mesh.
-However, this representation is very computationally intensive since the number of triangular faces that must be present in the mesh are quite high.
+However, this representation is computationally very intensive since the number of triangular faces that must be present in the mesh is quite high.
 \par
 %
 When creating complex nerve fiber structures, it is important that the nerve fibers do not overlap.
@@ -37,7 +37,7 @@ If a collision occurs, the algorithm tries to remove it by moving the colliding 
 This step is repeated until the volume has no collisions.
 \par
 %
-The nerve fibres simulation and all its necessary prerequisites is described in detail in this chapter.
+The nerve fibers simulation and all its necessary prerequisites is described in detail in this chapter.
 First, the representation of a nerve fiber is defined considering the performance for collision optimization.
 Then, additional \textit{building} functions are designed to help the user define a volume with nerve fibers quickly.
 Finally, the algorithm for resolving the collisions with the parallelization components is explained in detail.
@@ -171,10 +171,9 @@ Essentially, for each resulting $\mathit{fiber}_j$, this means:
     \mathit{fiber}_j = \left\{ \mat{R} \cdot (x_j, y_j, 0) + \vec{fb}_i \, | \, i \in \{0,1,...,N_{\mathit{seed\tum{}points}}-1\}\right\}
 \end{align}
 % 
-However, \code{seed\tu{}points} the question is which rotation matrix $\mat{R}$ must be applied.
 Since a trajectory is only a 2D object, \ie{}, a line, no unique normal vector can be defined.
 Theoretically, any torsion can be applied to any 2D curve in space.
-However, since these do not occur in principle in the tissue.
+However, these do not occur in principle in the tissue.
 \par
 % 
 A more reasonable solution is to perform a rotation such that the rotation along the fiber bundle trajectory is minimal, which can be achieved by computing the rotation matrix that rotates the current tangent vector $\vec{t}(i)$ to that of the next point $\vec{t}(i+1)$ (see \cref{fig:torsion}).
@@ -184,7 +183,7 @@ A more reasonable solution is to perform a rotation such that the rotation along
     \setlength{\tikzwidth}{0.75\textwidth}
     % \tikzset{external/export=false}
     \inputtikz{gfx/model/min_torsion}
-    \caption{Left: Plane of seed points. Right: The plane are rotated and placed along the path. At the end, the plane has the same normal vector as the starting plane, but due to the principle of minimum rotation, the plane is rotated along the normal vector.}
+    \caption{Left: Plane of seed points. Right: The plane is rotated and placed along the path. At the end, the plane has the same normal vector as the starting plane, but due to the principle of minimum rotation, the plane is rotated along the normal vector.}
     \label{fig:torsion}
 \end{figure}
 % 
@@ -208,7 +207,7 @@ In the case of $\vec{a} \parallel \vec{b}$ no rotation is necessary.
 % 
 The presented formulation allows to generate a filled nerve fiber bundle.
 First, the seed point plane is placed at the first fiber bundle point $\vec{fb}_0$ and rotated by $\mat{R}(\hat{\vec{e}}_z, \vec{t}_0)$.
-Then, for each step, the plane is rotated at its original origin by $\mat{R}(\vec{t}_i, \vec{t}_{i+1})$ and placed on $\vec{fb}_{i+1}$.
+Then, for each step, the plane is rotated at its origin by $\mat{R}(\vec{t}_i, \vec{t}_{i+1})$ and placed on $\vec{fb}_{i+1}$.
 To smooth the transition, the tangential vector $\vec{t}$ at step $i$ is the average of the neighboring points:
 \begin{align}
     \vec{t} = \frac{1}{2} \frac{\vec{fb}_{i-1} + \vec{fb}_{i+1}}{|\vec{fb}_{i-1} + \vec{fb}_{i+1}|}
@@ -263,12 +262,12 @@ The following applies to all cylindrical methods used: If the seed point plane l
 Mimics a radial path of the cylinder (see \cref{fig:cylCircular}).
 The seed points are placed along the surface of the cross-section of the first $\alpha$ direction angle.
 The origin of the seed point plane is placed on the origin of the cylinder.
-From there, the fiber is circularly bent until the second direction angle $\beta$.
+From there, the fiber is bent circular until the second direction angle $\beta$.
 The step size of the circular path can be customized.
 %
 \paragraph{b) radial}
 The seed point plane is placed at the inner wall with the origin at the bottom corner of the first angle $\alpha$ (see \cref{fig:cylRadial}).
-The fibers are then generated radially until they meet the outer wall of the cylinder.
+The fibers then are generated radially until they meet the outer wall of the cylinder.
 Thus, the density of the fibers decreases along their path.
 %
 \paragraph{c) parallel}
@@ -308,7 +307,7 @@ Only seed points that are in contact with the cylinder are considered in all met
 \label{sec:Solver}
 %
 The following algorithm allows the user to define any fiber path, which allows a wide range of freedom in the initialization process.
-Since the user initialization will probably produce colliding fibers, the collisions have to be found and solved by moving the affected fiber segment so that a collision-free volume is created by minimal displacement.
+Since the user initialization will probably produce colliding fibers, the collisions have to be found and solved by moving the affected fiber segments so that a collision-free volume is created by minimal displacement.
 This allows the user to specify complex interwoven structures such as nerve fiber crossings in any configuration.
 The algorithm allows the user to specify boundary conditions like the mean fiber segment length or minimal bending radius.
 \par
@@ -363,9 +362,9 @@ The main function is composed of the following sequential parts (see \cref{alg:p
     \label{alg:pseudocode_solver}
 \end{lstfloat}
 % 
-After a \code{step} the user is allowed to interacte if necesarry.
+After a \code{step} the user is allowed to interact if necessary.
 The function returns a boolean value indicating if no more colliding objects were found.
-Therefore, a simple while loop can be used to iterate the collision solving algorithm a non colliding configuration is found.
+Therefore, a simple while loop can be used to iterate the collision algorithm until a non colliding configuration is found.
 %
 %
 %
@@ -393,7 +392,7 @@ This check is fast to calculate (see \cref{alg:collisionAABB}).
 % 
 % 
 If a collision occurs between the two \acp{AABB}, the actual collision calculation is performed.
-However, this is a non-trivial task and very computationally intensive.
+However, this is a non-trivial task and computationally very intensive.
 Therefore, it was decided to change the object representation for the collision detection from a \ac{CC} to a capsule (see \cref{fig:conical_capsule}), with a radius equal to the maximum of the two original spheres $r_{\mathit{capsule}} = \mathrm{max}(r_0, r_1)$.
 %
 \begin{figure}[!t]
@@ -450,7 +449,7 @@ For cones, a collision occurs when the distance is less than the sum of the two 
 % 
 The calculation of the collision check is the most complex function.
 Therefore, the amount of collision checks needs to be reduced as much as possible.
-An collision check compares each object to all other objects, which leads to a computational cost of $\mathcal{O}(n^{2})$, which is not acceptable for large n.
+A collision check compares each object to all other objects, which leads to a computational cost of $\mathcal{O}(n^{2})$, which is not acceptable for large n.
 Therefore, an octree based strategy was selected to reduce the number of computations.
 %
 % 
@@ -615,7 +614,7 @@ r_{new} = \frac{r_{i} + r_{i+1}}{2},\enspace
 The bending radius matches the radius of the circle defined by three adjacent points $\vec{p}_{i-1}, \vec{p}_{i}, \vec{p}_{i+1}$ (see \cref{fig:modelCircle}).
 To limit the bending radius of the fiber a minimal allowed radius $r_{\min}$ is defined.
 Additionally, three adjacent points are not allowed to have an enclosing angle $\eta \geq \SI{60}{\degree}$.
-If any point $\vec{p}_{i}$ in a fiber fails these boundary conditions, the three points will be shifted $\vec{p}_{i-1}, \vec{p}_{i}$ and $\vec{p}_{i+1}$ will be moved parallel to reduce curvature (see \cref{fig:modelCircle}).
+If any point $\vec{p}_{i}$ in a fiber fails these boundary conditions, the three points $\vec{p}_{i-1}, \vec{p}_{i}$ and $\vec{p}_{i+1}$ will be moved parallel to reduce curvature (see \cref{fig:modelCircle}).
 % 
 \begin{figure}[!t]
     \centering
