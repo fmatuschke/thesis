@@ -7,9 +7,11 @@ axis lines=center,
 scale only axis,
 area style,
 xlabel={\small transmittance / $\si{\arbitraryunit}$},
-ylabel={\small \#},
+ylabel={\small rel. count},
+y label style={at={(axis description cs:-0.075,.5)},
+               rotate=90,
+               anchor=center},
 xticklabel style={font=\footnotesize},
-% yticklabel style={font=\footnotesize},
 yticklabels=\empty,
 scaled y ticks=false,
 legend columns=2,
@@ -17,6 +19,6 @@ legend style={at={(0.5,1)},anchor=north,nodes={scale=0.75, transform shape}},
 ]
 \addplot+[ybar interval,mark=no, Dark2-A, opacity=0.5] table[x index=0, y index=1] {\currfiledir/vervet_transmittance_left.dat};
 \addplot+[ybar interval,mark=no, Dark2-B, opacity=0.5] table[x index=0, y index=1] {\currfiledir/vervet_transmittance_right.dat};
-\legend{left,right};
+\legend{A,B};
 \end{axis}
 \end{tikzpicture}

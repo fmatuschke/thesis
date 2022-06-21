@@ -12,7 +12,8 @@ colorbar style={xticklabel style={font=\footnotesize},
                 xtick={0, 1450, 2900, 4350, 5800},
                %  title=$\si{\arbitraryunit}$,
                 ylabel={\footnotesize $\si{\arbitraryunit}$},
-                y label style={at={(axis description cs:-0.05,.5)},rotate=0,anchor=center}}
+                y label style={at={(axis description cs:-0.05,.5)},               rotate=0,
+                anchor=center}}
 ]
 \addplot [forget plot] graphics [xmin=20000,xmax=27000,ymin=21000,ymax=24500] {gfx/rc1/data/transmittance_vervet_cc_0_5846.png};
 % \draw[magenta, very thick, ->] (axis cs: 25500,27000) -- (axis cs: 23500,23500);
@@ -23,6 +24,7 @@ colorbar style={xticklabel style={font=\footnotesize},
 (axis cs: 24453, 22913) --
 (axis cs: 24469, 21909) --
 (axis cs: 25830, 22097) -- cycle;
+\node[magenta, very thick, anchor=center] at (axis cs: 25052.5, 22486) {B};
 \draw[magenta, very thick]
 (axis cs: 22076,22290) --
 (axis cs: 22442,23136) --
@@ -30,5 +32,6 @@ colorbar style={xticklabel style={font=\footnotesize},
 (axis cs: 21494,23640) --
 (axis cs: 20939,22788) --
 (axis cs: 22076,22290) -- cycle;
+\node[magenta, very thick, anchor=center] at (axis cs: 21737.75, 22963.5) {A};
 \end{axis}
 \end{tikzpicture}

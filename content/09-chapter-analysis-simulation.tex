@@ -5,7 +5,7 @@
 %
 \section{Introduction}
 %
-This chapter deals with the simulation of \ac{3D-PLI} with the generated model library.
+This chapter covers with the simulation of \ac{3D-PLI} using the generated nerve fiber library.
 The first part focuses on the determination of all necessary physical parameters of the tissue and the microscope as well as on the characterization of the simulation parameters.
 Then, the simulation of the previously generated nerve fiber models is created and analyzed.
 The orientation of the simulations is calculated using the routine algorithms implemented in \ac{fastPLI}.
@@ -17,7 +17,7 @@ The focus of the evaluation is on the accuracy of the tilt analysis for differen
 %
 \subsection{Tissue}\label{sec:tissueProp}
 %
-The absorption coefficient $\absorp{}$ and the birefringence $\dn{}$ have to be estimated from a measured section for the simulation.
+The absorption coefficient $\absorp{}$ and the birefringence coefficient $\dn{}$ have to be estimated from a measured section for the simulation.
 To measure the values, it is important to analyze a homogeneous region filled with flat, dense fibers.
 In a coronal section, the corpus callosum is suitable for this purpose. 
 It is the main fiber connection between the two cerebral hemispheres (see \cref{fig:coronalStained}).
@@ -25,7 +25,7 @@ It is the main fiber connection between the two cerebral hemispheres (see \cref{
 % 
 \Cref{fig:brain_ret_trans_zoom} shows transmittance and retardation maps of the coronal section of a vervet monkey \footnote{Section id: 549, Brain id: PE-2012-00102-V}.
 Two \acp{ROI} are manually selected at high retardance regions of the corpus callosum (\ie{} mostyl in-plane parallel fibers).
-The left \ac{ROI} contains $\SI{1125858}{\pixel}$ and the right \ac{ROI} sums up to $\SI{1064629}{\pixel}$.
+\ac{ROI} (A) contains $\SI{1064629}{\pixel}$ and \ac{ROI} (B) sums up to $\SI{1125858}{\pixel}$.
 The entire section and the analysis for a human and a rodent section are described in the appendix (see \cref{app:brain_rodent,app:brain_human}).
 % 
 \begin{figure}[!t]
@@ -39,31 +39,31 @@ The entire section and the analysis for a human and a rodent section are describ
     \inputtikz{gfx/data/vervet_transmittance_zoom} &
     \inputtikz{gfx/data/vervet_transmittance_hist} \\[-5mm]
     %
-    \subcaptiontab{0.475\textwidth}{Transmittance.} &
-    \subcaptiontab{0.475\textwidth}{\label{fig:histTrans}Histogram transmittance.} \\[10mm]
+    \subcaptiontab{0.475\textwidth}{Transmittance map.} &
+    \subcaptiontab{0.475\textwidth}{\label{fig:histTrans}Transmittance histogram.} \\[10mm]
     %
     \tikzset{external/export next=false}
     \inputtikz{gfx/data/vervet_retardation_zoom} &
     \inputtikz{gfx/data/vervet_retardation_hist} \\[-5mm]
     %
-    \subcaptiontab{0.475\textwidth}{Retardation.} &
-    \subcaptiontab{0.475\textwidth}{\label{fig:histRet}Histogram retardation.} 
+    \subcaptiontab{0.475\textwidth}{Retardation map.} &
+    \subcaptiontab{0.475\textwidth}{\label{fig:histRet}Retardation histogram.} 
     \end{tabular}
     \caption{
     Transmittance and retardation map of coronal section of a vervet monkey.
     The absorption coefficient and birefringence is estimated from the measurments in the corpus callosum.
     Two homogeneous regions are labeled for this purpose.
-    The left area includes $\SI{1125858}{\pixel}$ and the right area $\SI{1064629}{\pixel}$.
+    (A) includes $\SI{1064629}{\pixel}$, $(B)$ $\SI{1125858}{\pixel}$.
     }
     \label{fig:brain_ret_trans_zoom}
 \end{figure}
 % 
 \paragraph{Evaluation}
-To calculate the absorption coefficient for the models, one must consider the volume fraction of the tissue, \ie{}, density of the cells.
+To calculate the absorption coefficient from the brain section, the volume fraction of the tissue, \ie{}, density of the cells, must be considered.
 For the models $\fiberRadiusMean = \SI{0.5}{\micro\meter}$, the volume fraction is about $\SI{75}{\percent}$.
 The average transmittance in the foreground is about $\SI{1000}{\arbitraryunit}$ and in the backgroundit is about $\SI{4500}{\arbitraryunit}$.\footnote{The relative transmittance can be changed by adjusting the exposure time of the microscope}
 This leads to an absorption coefficient of $\mu = \SI{30}{\milli\meter\tothe{-1}}$.
-To approximate the birefringence, one must also take into account the g-ratio, \ie{}, the myelin density.
+To approximate the birefringence, the g-ratio, \ie{}, the myelin density, must also be taken into consideration.
 The g-ratio of $\SI{75}{\percent}$ results in a birefringence of about $\SI{0.008}{}$ for the radial model when using a median value of the retardation of $\SI{0.8}{}$.
 %
 % 
@@ -88,14 +88,6 @@ For this purpose, the intensity profiles perpendicular to the three vertical and
 % 
 \paragraph{Evaluation}
 % 
-\Cref{fig:usaf_image} shows a section of the image taken with the \ac{LMP} microscope.
-The highlighted areas show the analyzed groups 7-6 to 8-2.
-The area of group 7-6 \raisebox{.25em}{\tikzset{external/export next=false}\tikz \draw[RED,ultra thick,dashed](0,0)--(0.25,0);} has a linewidth of $\SI{2.19}{\micro\meter}$, group 8-1 \raisebox{.25em}{\tikzset{external/export next=false}\tikz \draw[GREEN,ultra thick,dashed](0,0)--(0.25,0);} of $\SI{1.95}{\micro\meter}$ and group 8-2 \raisebox{.25em}{\tikzset{external/export next=false}\tikz \draw[BLUE,ultra thick,dashed](0,0)--(0.25,0);} of $\SI{1.74}{\micro\meter}$.
-The intensity line profiles for the vertical and horizontal cases are shown in \cref{fig:usaf_lines_lr,fig:usaf_lines_ud}.
-The Rayleigh criterion can be used to determine the resolution in the second group, which is thus in the range of $\SI{1.95}{\micro\meter}$.
-This reproduces the measurements in \cite{MenzelMaster}.
-Therefore, for the simulation the convolution parameter is set to $\opticsigma = \SI{0.75}{\pixel}$ (see \cref{sec:opticalResolution}).
-% 
 \begin{figure}[!t]
     \centering
     \setlength{\tikzwidth}{0.35\textwidth} % bigger than 0.475 images???
@@ -119,11 +111,25 @@ Therefore, for the simulation the convolution parameter is set to $\opticsigma =
     \label{fig:USAF}
 \end{figure}
 \footnotetext{\url{https://en.wikipedia.org/wiki/1951_USAF_resolution_test_chart}}
+% 
+\Cref{fig:usaf_image} shows a section of the USAF resolution test chart taken with the \ac{LMP} microscope.
+The highlighted areas show the analyzed groups 7-6 to 8-2.
+The area of group 7-6 \raisebox{.25em}{\tikzset{external/export next=false}\tikz \draw[RED,ultra thick,dashed](0,0)--(0.25,0);} has a linewidth of $\SI{2.19}{\micro\meter}$, group 8-1 \raisebox{.25em}{\tikzset{external/export next=false}\tikz \draw[GREEN,ultra thick,dashed](0,0)--(0.25,0);} of $\SI{1.95}{\micro\meter}$ and group 8-2 \raisebox{.25em}{\tikzset{external/export next=false}\tikz \draw[BLUE,ultra thick,dashed](0,0)--(0.25,0);} of $\SI{1.74}{\micro\meter}$.
+The intensity line profiles for the vertical and horizontal cases are shown in \cref{fig:usaf_lines_lr,fig:usaf_lines_ud}.
+The Rayleigh criterion can be used to determine the resolution in the second group, which is thus in the range of $\SI{1.95}{\micro\meter}$.
+This reproduces the measurements in \cite{MenzelMaster}.
+Therefore, for the simulation the convolution parameter is set to $\opticsigma = \SI{0.75}{\pixel}$ (see \cref{sec:opticalResolution}).
 %
 %
 %
 \subsection{Sensor gain and signal noise}\label{sec:sensorGain}
 %
+As described in \cref{sec:ccdOptic}, the optical noise is modeled with a Gaussian model.
+The gain factor of a \ac{CCD} camera describes the linearity between a measured electrical signal and the output signal.
+This can also be used to calculate the image noise, since it correlates with $\sqrt{I \cdot \opticgain}$ \cite{Wiese:887678}.
+To measure the noise, different intensity values are measured.
+For this purpose, the sample stage is covered with a fully absorbing cover so that half of the image is dark (see \cref{fig:pliFocus}).
+% 
 \begin{figure}[!t]
 \centering
 %
@@ -158,12 +164,7 @@ Therefore, for the simulation the convolution parameter is set to $\opticsigma =
 \caption{\ac{LMP} camera noise measurements.}
 \label{fig:parameterModelGain}
 \end{figure}
-%
-As described in \cref{sec:ccdOptic}, the optical noise is modeled with a Gaussian model.
-The gain factor of a \ac{CCD} camera describes the linearity between a measured electrical signal and the output signal.
-This can also be used to calculate the image noise, since it correlates with $\sqrt{I \cdot \opticgain}$ \cite{Wiese:887678}.
-To measure the noise, different intensity values are measured.
-For this purpose, the sample stage is covered with a fully absorbing cover so that half of the image is dark.
+% 
 In addition, the focal length is changed so that the light is distributed over the entire image sensor under the cover (see \cref{fig:pliFocusImage}).
 By measuring $N=\SI{500}{}$ images, the variance for the different intensity values is determined.
 %
@@ -181,16 +182,15 @@ for intensities $I > 0$ and $I \gg \sqrt{\opticgain I}$.
 %
 The parameter \Voxelsize{} $\voxelsize$ is the most important parameter for simulation accuracy, as it determines by how many voxels the models are discretized and how many light rays are modeled.
 However, the voxel size cannot be arbitrarily small because the number of calculations and memory consumption increase by $O(n_{\mathit{voxel}}^3)$.
-Therefore, it is recommended to set voxel size as large as possible without introducing significant errors due to discretization.
+Therefore, it is recommended to set the voxel size as large as possible without introducing significant errors due to discretization.
 \par
 %
-To investigate this effect, a simulation with several voxel sizes in the range of $\voxelsize = \SIrange{0.01}{1.3}{\micro\meter}$ is performed.
+To investigate the influence of the voxel size, a simulation with several voxel sizes in the range of $\voxelsize = \SIrange{0.01}{1.3}{\micro\meter}$ is performed.
 The smallest voxel size $\SI{0.01}{\micro\meter}$ is used as a reference.
-Since this voxel size is so small, the simulated volume is $3 \cdot \SI{1.3}{\micro\meter} \times 3 \cdot \SI{1.3}{\micro\meter} \times \SI{60}{\micro\meter}$ without tilts.
-Otherwise, the number of voxels and thus the memory consumption is too high.
+Since this voxel size is relatively small, the simulated volume is $3 \cdot \SI{1.3}{\micro\meter} \times 3 \cdot \SI{1.3}{\micro\meter} \times \SI{60}{\micro\meter}$ without tilts to limit the memory consumption.
 During the simulation, the previously determined tissue and noise parameters are used.
 The models to be simulated are parallel models without inclination $\left( \pfbs, \modelInc = \SI{0}{\degree} \right)$, inclined parallel fiber models $\left( \pfbs, \modelInc = \SI{90}{\degree} \right)$, flat crossing fiber models $\left( \cfbs, \modelInc = \SI{0}{\degree} \right)$, and crossing inclined fiber models $\left( \cfbs, \modelInc = \SI{90}{\degree} \right)$ with a fraction of $\modelPsi = \SI{0.5}{}$, since these configurations represent the extrema for two fiber populations.
-For statistic the simulations are repeated $\SI{25}{}$ times with the volumes center at
+For statistics the simulations are repeated $\SI{25}{}$ times with the volumes center at
 \begin{align}
 % \begin{split}
     x=\frac{i\,\%\,5}{5} \cdot \SI{60}{\micro\meter} - \SI{30}{\micro\meter} \hspace{5ex}
@@ -202,20 +202,21 @@ with $i$ from $0$ to $24$.
 % 
 % 
 \paragraph{Evaluation}
+% 
+The results in \cref{fig:voxelsizeNoise} show that the relative difference to the smallest voxel size increases statically significantly from a value of $\SI{0.1}{\micro\meter}$.
 %
 \begin{figure}[!t]
 % 2_simulation/0_parameter/fiber_radii.py
 \centering
 \includegraphics[width=\textwidth, page=1]{gfx/rc1/voxel_size/voxel_size_plots_data_r05_output_vs_135_0.01_6_25_vervet_r_rc1.pdf}
-\caption{The mean difference is constant for smaller voxel sizes and starts to grow significantly only from $\voxelsize=\SI{0.1}{\micro\meter}$.}
+\caption{Comparison of the simulation results with different voxel sizes and different fiber configurations.}
 \label{fig:voxelsizeNoise}
 \end{figure}
 % 
-The results in \cref{fig:voxelsizeNoise} show that the relative difference to the smallest voxel size increases statically significantly from a value of $\SI{0.1}{\micro\meter}$.
 The variance of the relative difference increases with increasing voxel size from this value.
-Smaller than $\SI{0.1}{\micro\meter}$, the difference from the reference simulation does not increase.
+For a voxel size smaller than $\SI{0.1}{\micro\meter}$, the difference from the reference simulation does not increase.
 Therefore, the voxel size $\voxelsize = \SI{0.1}{\micro\meter}$ is a good compromise between runtime and accuracy.
-One has to keep in mind that this is only valid for a pixel size of $\SI{1.3}{\micro\meter}$ and fiber radii of $\SI{0.5}{\micro\meter}$.
+However, such assumption is only valid for a pixel size of $\SI{1.3}{\micro\meter}$ and fiber radii of $\SI{0.5}{\micro\meter}$.
 % 
 %
 %
@@ -289,9 +290,9 @@ The tilt analysis estimates the orientation of each pixel, \ie{}, direction and 
 \begin{align}
     R = \mean{|I_i-F_i|} \label{eq:rvalue}
 \end{align}
-where $I$ is the signal intensity and $F$ the models found best solution.
-Finally from the orientations, the opening angle \openingAngle{} and angular correlation coefficient \accvalue{} between the models orientation and simulation resulting orientation are calculated.
-The \accvalue{} is the angular correlation coefficient which measures the similarity between two \acp{ODF}. The \acp{ODF} are calculated by an analytical function from the individuel orientations \cite{Alimi2020}.
+where $I$ is the signal intensity and $F$ the best solution found by the model.
+Finally, the opening angle \openingAngle{} and angular correlation coefficient \accvalue{} between the nerve fiber models orientation and simulation resulting orientation are calculated from the orientations.
+The \accvalue{} is the angular correlation coefficient which measures the similarity between two \acp{ODF}. The \acp{ODF} are calculated by an analytical function from the individual orientations \cite{Alimi2020}.
 The \accvalue{} is then be calculated by:
 \begin{align}
     acc = \frac{\sum_i{\mathit{sh}_{0,i} \cdot \mathit{sh}_{1,i}}}{\sqrt{\sum_i{\mathit{sh}_{0,i}^2}} \cdot \sqrt{\sum_i{\mathit{sh}_{1,i}^2}}}
@@ -308,7 +309,7 @@ The circular mean value is calculated via:
 \end{align}
 This contributes to the interpretability of the angular results with variances $\ll \SI{90}{\degree}$.
 Additionally for the angular parameters the distribution of the underlying fiber models are plotted for the individual fiber populations \popa{} and \popb{}.
-The area corresponds to the $\SI{25}{\percent}$ to $\SI{75}{\percent}$ quantile and will be refered to as \bvariance{} variance.
+The area corresponds to the $\SI{25}{\percent}$ to $\SI{75}{\percent}$ quantile and will be referred to as \bvariance{} variance.
 % 
 % 
 % 
@@ -587,7 +588,7 @@ The value of the \accvalue{} is closer to zero for median fiber population fract
 %
 In this section, two nerve fiber populations \popa{} and \popb{} are simulated with sampled orientations on a sphere (see \cref{fig:simModelSphereSample_a,tab:simParameters}).
 A polar plot visualization is used to visualize the results from the \ac{3D-PLI} analysis pipeline (see \cref{fig:simModelSphereSample_b}).
-The spherical plots in \cref{fig:sim_ana_trans,fig:sim_ana_ret,fig:sim_ana_dir,sim_ana_incl,sim_ana_trel,sim_ana_rvalue,fig:sim_ana_acc}
+The spherical plots in \cref{fig:sim_ana_trans,fig:sim_ana_ret,fig:sim_ana_dir,fig:sim_ana_incl,fig:sim_ana_trel,fig:sim_ana_rvalue,fig:sim_ana_acc}
 are designed so that the thick black circle shows the orientation of the first fiber population \popa{} and the thin dashed circles show the orientation of the second fiber population \popb{}.
 At the position of the second fiber population, the resulting average value is visualized.
 A spherical k-nearest neighbor interpolator is used to visualize values between the sampled orientations for non angular data \cite{DBLP:journals/corr/abs-1910-00704}.
@@ -601,7 +602,7 @@ A spherical k-nearest neighbor interpolator is used to visualize values between 
 \hfill
 \subcaptionbox{\label{fig:simModelSphereSample_b}
     A polar diagram is used to illustrate the scalar results of a fixed orientation of the first fiber population \popa{} and a variable orientation of the fiber population \popb{}.
-    The orientation \popa{} is marked with a black thick circle.
+    The orientation \popa{} is marked with a thick black circle.
     The second orientation is indicated by dashed circles.
     For visualization, the scalar values are interpolated according to a spherical k-nearest neighbor interpolator algorithm.
 }
@@ -954,7 +955,7 @@ This agrees with theory as long as the tilt analysis is able to find the minimum
 \par
 %
 The measured opening angle \openingAngle{}, does not agree with the underlying distributions of the orientation of the fiber segments.
-However, this is to be expected since in a single voxel, \ie{}, has a volume of $\SI{1.3}{\micro\meter} \times \SI{1.3}{\micro\meter} \times \SI{60}{\micro\meter}$, there are many fiber segments with which the light, \ie{}, all light rays, incident on the same ccd pixel can interact.
+However, this is to be expected since in a single voxel, \ie{}, has a volume of $\SI{1.3}{\micro\meter} \times \SI{1.3}{\micro\meter} \times \SI{60}{\micro\meter}$, there are many fiber segments with which the light, \ie{}, all light rays, incident on the same \ac{CCD} pixel can interact.
 This means that an average signal is measured and analyzed.
 Average value for an aperture angle means, of course, a decrease of its value.
 The fact that the measured aperture angles increase with increasing crossing angle is also to be expected.
@@ -967,13 +968,13 @@ The minimum is higher for \modelPsi{} near $0$ or $1$.
 The curve is explained by the fact that with the currently used tilt analysis only the main fiber orientation, more precisely the circular mean, can be determined from the measured signal.
 Therefore, the \accvalue{} must shrink.
 However, beyond a certain point, the delay is reduced to such an extent that the uncertainty increases to such an extent that the measured orientations become more and more random.
-Therefore, the \ac{ODF} of the measured signal becomes more and more spherical, which after a certain point, \ie{}, the minima, is closer to the \ac{ODF} of the model than a \ac{ODF} that predicts only one main orientation, \ie{}, a cigar shape.
+Therefore, the \ac{ODF} of the measured signal becomes more and more spherical, which after a certain point, \ie{}, the minima, is closer to the \ac{ODF} of the model than an \ac{ODF} that predicts only one main orientation, \ie{}, a cigar shape.
 This also explains why the position of the minimum is closer to $\SI{90}{\degree}$ for fiber population proportions closer to $\SI{50}{\percent}$, because the intersection of the \ac{ODF} of fiber segments is more pronounced.
 % 
 % 
 % 
 \paragraph{Inclined crossing}
-The eight investigated parameters can be explained by exactly the same arguments as for the previous flat fiber crossing, except for the inclination parameter.
+The eight investigated parameters can be explained by the same arguments as for the previous flat fiber crossing, except for the inclination parameter.
 Here, the inclination follows the circle mean only for smaller crossing angles and reaches a maximum value as a function of the fiber population fraction \modelPsi{} until it decreases to $\SI{0}{\degree}$ for $\modelOmega = \SI{90}{\degree}$.
 This behavior can be explained by the fact that as the inclination increases, the light rays are no longer affected by the birefringence of the optic axis of the fibers.
 Therefore, the only remaining effect comes from the flat fiber population.
@@ -1076,7 +1077,7 @@ The flat measurement has the highest speedup.
 %
 The speedup for the discrete tissue generator in the case of \ac{OpenMP} is appropriate up to $\SI{4}{\cores}$ with a speedup of slightly above $\num{2}$.
 Above $\SI{4}{\cores}$, especially $\geq \SI{16}{\cores}$ is not recommended to use.
-This behavior is most likely due to the fact that the cpus read from the same memory address.
+This behavior is most likely due to the fact that the \acp{CPU} read from the same memory address.
 However, since the different writing instructions do not use the same memory address and there are no race conditions, a higher speedup was expected.
 \par
 % 
@@ -1102,5 +1103,4 @@ The splitting process produces sub-volumes with a tendency to have longitudinal 
 This may explain why the North-South tilt has a slightly higher speedup.
 \par
 %
-In summary, the speedup for the implementation of \ac{MPI} is very good.
-The user should prefer this implementation over the \ac{OpenMP} library.
+In summary, the \ac{MPI} implementation should be used to speed up the simulation.
