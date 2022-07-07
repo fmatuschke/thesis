@@ -81,7 +81,7 @@ The fiber is then described by a list of 4D points $(x,y,z,r)$, which can be int
     \centering
     % \tikzset{external/export next=false}
     \inputtikz{gfx/model/fiber_model}
-	\caption{Representation of a nerve fiber from a list of spheres.}
+	\caption[]{Representation of a nerve fiber from a list of spheres.}
 	\label{fig:fiberReb}
 \end{figure}
 % 
@@ -100,7 +100,7 @@ Therefore, the fiber segments describe a \ac{CC} (see \cref{fig:conical}).
     \centering
     \setlength{\tikzwidth}{0.5\textwidth}
     \inputtikz{gfx/model/capsule}
-	\caption{Schematic of a fiber segment represented by a distance $\vec{d}$ and two radii $r_0$ and $r_1$ which describes a \acreset{CC} \ac{CC}.}
+	\caption[]{Schematic of a fiber segment represented by a distance $\vec{d}$ and two radii $r_0$ and $r_1$ which describes a \acreset{CC} \ac{CC}.}
 	\label{fig:conical}
 \end{figure}
 %
@@ -145,7 +145,7 @@ For a circular boundary with radius $R$, this can be sampled from a $\mathrm{uni
     \hfill
     \subcaptionbox{\label{fig:crossBundle}populated fiber bundles}
     [0.3\textwidth]{\inputtikz{gfx/model/crossing_bundle}}
-    \caption{Populating fiber bundles with 2D seed points.}
+    \caption[]{Populating fiber bundles with 2D seed points.}
 \end{figure}
 % 
 \begin{equation}
@@ -183,7 +183,7 @@ A more reasonable solution is to perform a rotation such that the rotation along
     \setlength{\tikzwidth}{0.75\textwidth}
     % \tikzset{external/export=false}
     \inputtikz{gfx/model/min_torsion}
-    \caption{Left: Plane of seed points. Right: The plane is rotated and placed along the path. At the end, the plane has the same normal vector as the starting plane, but due to the principle of minimum rotation, the plane is rotated along the normal vector.}
+    \caption[]{Left: Plane of seed points. Right: The plane is rotated and placed along the path. At the end, the plane has the same normal vector as the starting plane, but due to the principle of minimum rotation, the plane is rotated along the normal vector.}
     \label{fig:torsion}
 \end{figure}
 % 
@@ -234,7 +234,7 @@ Therefore, a method exists to fill a cube with a fiber population of orientation
     \centering
     \setlength{\tikzwidth}{0.5\textwidth}
     \inputtikz{gfx/model/cube_build}
-	\caption{Populating a cuboid with straight fibers initialized by seed points along the direction $\vec{v}$.}
+	\caption[]{Populating a cuboid with straight fibers initialized by seed points along the direction $\vec{v}$.}
     \label{fig:cubeBuild}%
 \end{figure}
 % 
@@ -294,7 +294,7 @@ The seed points are placed on the lower plane, with identical coordinate origins
         Parallel population.
     }[\tikzwidth]{%
     \inputtikz{gfx/model/cylinder_parallel}}
-	\caption{Populating of cylindrical objects.
+	\caption[]{Populating of cylindrical objects.
     The green area shows the area corresponding to the seed point plane.
     The coordinate system indicates the coordinate origin corresponding to the seed points origin.
     The origin of the coordinate system $O$ of the resulting fibers is at the bottom center as shown in \cref{fig:cylRadial}.
@@ -360,7 +360,7 @@ The main function is composed of the following sequential parts (see \cref{alg:p
     
         return colliding_list.is_empty()
     \end{lstlisting}
-    \caption{Main structure in a single step of the collision checking and shape controlling algorithm.}
+    \caption[]{Main structure in a single step of the collision checking and shape controlling algorithm.}
     \label{alg:pseudocode_solver}
 \end{lstfloat}
 % 
@@ -388,7 +388,7 @@ This check is fast to calculate (see \cref{alg:collisionAABB}).
         return false
         return true
     \end{lstlisting}
-    \caption{Calculation if a collision between \acp{AABB} exists.}
+    \caption[]{Calculation if a collision between \acp{AABB} exists.}
     \label{alg:collisionAABB}
 \end{lstfloat}
 % 
@@ -402,7 +402,7 @@ Therefore, it was decided to change the object representation for the collision 
     \setlength{\tikzwidth}{0.6\textwidth}
     \inputtikz{gfx/model/conical_capsule_bb}
     \tikzset{external/export=false}
-    \caption{Fiber segment representations with the \acp{AABB}: \raisebox{.25em}{\tikz \draw[black](0,0)--(0.275,0);} \ac{CC}, \raisebox{.25em}{\tikz \draw[blue, dash pattern=on 2.5pt off 2.5pt](0,0)--(0.275,0);} capsule, \raisebox{.25em}{\tikz \draw[red, dash pattern={on 2.5pt off 0.9pt on 0.42pt off 0.9pt}](0,0)--(0.275,0);} bounding box.}
+    \caption[]{Fiber segment representations with the \acp{AABB}: \raisebox{.25em}{\tikz \draw[black](0,0)--(0.275,0);} \ac{CC}, \raisebox{.25em}{\tikz \draw[blue, dash pattern=on 2.5pt off 2.5pt](0,0)--(0.275,0);} capsule, \raisebox{.25em}{\tikz \draw[red, dash pattern={on 2.5pt off 0.9pt on 0.42pt off 0.9pt}](0,0)--(0.275,0);} bounding box.}
     \label{fig:conical_capsule}
 \end{figure}
 % 
@@ -428,7 +428,7 @@ The algorithm for detecting collisions between two capsules is described in \cre
     \end{tabular}
     % \end{sideways}
     }
-    \caption{Collision detection between two capsule objects. A collision occurs if the distance is less than \code{cone\_a.r + cone\_b.r > d}. Original: \href{https://www.john.geek.nz/2009/03/code-shortest-distance-between-any-two-line-segments/}{https://www.john.geek.nz/2009/03/code-shortest-distance-between-any-two-line-segments/}.}
+    \caption[]{Collision detection between two capsule objects. A collision occurs if the distance is less than \code{cone\_a.r + cone\_b.r > d}. Original: \href{https://www.john.geek.nz/2009/03/code-shortest-distance-between-any-two-line-segments/}{https://www.john.geek.nz/2009/03/code-shortest-distance-between-any-two-line-segments/}.}
     \label{alg:pseudocodeCollisionDetection}
 \end{lstfloat}
 %
@@ -445,7 +445,7 @@ For cones, a collision occurs when the distance is less than the sum of the two 
     \centering
     \def\tikzheight{0.5\textwidth}
     \inputtikz{gfx/model/shortest_dist}
-	\caption{Shortest distance between two capsule objects. The line must be either perpendicular to the line segments or at least in one of the points of each object.}
+	\caption[]{Shortest distance between two capsule objects. The line must be either perpendicular to the line segments or at least in one of the points of each object.}
 	\label{fig:shortDist}
 \end{figure}
 % 
@@ -479,7 +479,7 @@ An example is shown in \cref{fig:octreeCube}.
     [.65\textwidth]{
     \def\tikzheight{0.6\textwidth}
     \inputtikz{gfx/model/collision_tree}}
-	\caption{Exemplary tree subdivision.}
+	\caption[]{Exemplary tree subdivision.}
 	\label{fig:octree}
 \end{figure}
 % 
@@ -498,7 +498,7 @@ def octree(volume, objects):
         leaves = [objects]
     return leaves
 \end{lstlisting}
-\caption{Recursive generation of an octree.}
+\caption[]{Recursive generation of an octree.}
 \label{alg:pseudocode_octree}
 \end{lstfloat}
 %
@@ -540,7 +540,7 @@ For the rotation, the direction of motion is weighted by the distance of each po
 % 
 \begin{lstfloat}[!ht]
     \lstinputlisting[style=python]{code/push_apart.py}
-    \caption{Velocity calculation of colliding objects.}
+    \caption[]{Velocity calculation of colliding objects.}
     \label{alg:push_apart}
 \end{lstfloat}
 %
@@ -570,7 +570,7 @@ The average segment length is the distance between the two points of a fiber seg
     \centering
     \setlength{\tikzwidth}{0.75\textwidth}
     \inputtikz{gfx/model/model_length}
-	\caption{Different fiber segment lengths as factor of the mean fiber radius $\fiberRadiusMean$.}
+	\caption[]{Different fiber segment lengths as factor of the mean fiber radius $\fiberRadiusMean$.}
 	\label{fig:modelLength}
 \end{figure}
 % 
@@ -589,7 +589,7 @@ When the segment length becomes too small/large, the points within a fiber corre
     \subcaptiontab{0.475\textwidth}{merge} &
     \subcaptiontab{0.475\textwidth}{split}
     \end{tabular}
-	\caption{Length control for the $f$ and $f'$ fibers. Illustrated is the merging and splitting of points, if necessary. The first and last point are never removed.}
+	\caption[]{Length control for the $f$ and $f'$ fibers. Illustrated is the merging and splitting of points, if necessary. The first and last point are never removed.}
 	\label{fig:mergeSplit}
 \end{figure}
 % 
@@ -620,7 +620,7 @@ If any point $\vec{p}_{i}$ in a fiber fails these boundary conditions, the three
     \setlength{\tikzheight}{.75\textwidth}
     % \tikzset{external/export next=false}
     \inputtikz{gfx/model/model_circle}
-	\caption{A fiber along its path can be characterized by circles from three adjacent points.
+	\caption[]{A fiber along its path can be characterized by circles from three adjacent points.
     A minimal radius for these circles is applied as boundary condition.
     Additionally the inner angle has to be $\eta \geq \SI{60}{\degree}$.
     If a condition is not fulfilled, a force (\textcolor{GREEN}{arrows}) is applied to smoothen the curvature at these points.}
@@ -687,7 +687,7 @@ A visualization tool is available to visualize the nerve fiber configuration (se
     \vspace{-1ex}
     \end{tabularx}
     % {\raggedright \tikzset{external/export=false} \tikz \draw[->,black](0,0)--++(1,0);}
-	\caption{Exemplary visualization in the collision solving process. The red color indicates that a collision is detected in the fiber segment.}
+	\caption[]{Exemplary visualization in the collision solving process. The red color indicates that a collision is detected in the fiber segment.}
 	\label{fig:vis_solver}
 \end{figure}
 % 
@@ -718,7 +718,7 @@ The fiber segments are no longer represented as a cylinder, but as \ac{CC} which
     \centering
     \setlength{\tikzwidth}{0.75\textwidth}
     \inputtikz{gfx/model/vis_a}
-	\caption{Generate a mesh for visualization. A mesh perpendicular to the fiber trajectory is calculated from n points. Triangles defined by these points are used as surfaces for the visualization of the object. Normal vectors can be used to smooth the visualization, and flash effects contribute to a more natural representation.}
+	\caption[]{Generate a mesh for visualization. A mesh perpendicular to the fiber trajectory is calculated from n points. Triangles defined by these points are used as surfaces for the visualization of the object. Normal vectors can be used to smooth the visualization, and flash effects contribute to a more natural representation.}
 	\label{fig:vis_mesh}
 \end{figure}
 % 
@@ -774,7 +774,7 @@ Since all objects are represented as a collection of spheres (see \cref{fig:medu
     % 
     \subcaptionbox{Cell aproximation by overlapping spheres.}
     [0.75\textwidth]{\inputtikz{gfx/model/medusa/medusa_cells}}
-    \caption{\ac{MEDUSA} sphere approximation.}
+    \caption[]{\ac{MEDUSA} sphere approximation.}
     \label{fig:medusaCell}
 \end{figure}
 %
@@ -806,7 +806,7 @@ The algorithm (see \cref{alg:medusa_collision}) described above is currently use
 %
 \begin{lstfloat}[!t]
 	\lstinputlisting[style=cpp]{code/medusa.cu}
-	\caption{\acsg{MEDUSA} collision checking.}
+	\caption[]{\acsg{MEDUSA} collision checking.}
 	\label{alg:medusa_collision}
 \end{lstfloat}
 % 
@@ -825,6 +825,6 @@ One promising technique is the use of a \name{Bounding Box Hierarchy} \cite{Karr
     [0.75\textwidth]{\label{fig:medusa_8b}
     \resizebox{0.75\textwidth}{!}{
     \includegraphics{gfx/model/medusa/11_.jpg}}}
-	\caption{Original images from \cite{Ginsburger2019}.}
+	\caption[]{Original images from \cite{Ginsburger2019}.}
 	\label{fig:medusa_8}
 \end{figure}

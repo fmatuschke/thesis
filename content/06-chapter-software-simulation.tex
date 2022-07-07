@@ -30,7 +30,7 @@ The computationally intensive algorithms are written in \cpp{} with an additiona
 \centering
 \setlength{\tikzwidth}{0.5\textwidth}
 \inputtikz{gfx/simpli/disc_volume}
-\caption{Discretized tissue volume with a voxel size \voxelsize. The volume is defined by a \ac{AABB}, which itself is defined by two points $\vec{v}_\mathit{min}$ and $\vec{v}_\mathit{max}$.}
+\caption[]{Discretized tissue volume with a voxel size \voxelsize. The volume is defined by a \ac{AABB}, which itself is defined by two points $\vec{v}_\mathit{min}$ and $\vec{v}_\mathit{max}$.}
 \label{fig:discVol}
 \end{figure}
 %
@@ -77,7 +77,7 @@ fbs_properties = [[(r, dn, mu, 'p'), (second layer), ...],
                   [(first layer of second bundle), ...],
                   [...]]
 \end{lstlisting}
-\caption{Definition of the properties of fiber bundles.}
+\caption[]{Definition of the properties of fiber bundles.}
 \label{alg:fiberbundleprops}
 \end{lstfloat}
 % 
@@ -94,7 +94,7 @@ fbs_properties = [[(r, dn, mu, 'p'), (second layer), ...],
 [\tikzwidth]{\inputtikz{gfx/simpli/fiber_layer}\vspace{-5mm}}\hfill
 \subcaptionbox{\label{fig:vectormodel}Cross section of a discretized nerve fiber with resulting optic axis vectors}
 [\tikzwidth]{\inputtikz{gfx/simpli/vector_model}\vspace{-5mm}}
-\caption{Discretization of nerve fibers with layered structure.}
+\caption[]{Discretization of nerve fibers with layered structure.}
 \label{fig:fiber_discretization}
 \end{figure}
 %
@@ -142,7 +142,7 @@ for fiber_segment in fiber_bundle:
                 tissue[i,j,k] = get_layer_id(min_dist)
                 current_distance[i,j,k] = min_dist
 \end{lstlisting}
-\caption{Pseudocode for filling the discretized volume.}
+\caption[]{Pseudocode for filling the discretized volume.}
 \label{alg:fillVolume}
 \end{lstfloat}
 %
@@ -155,7 +155,7 @@ for fiber_segment in fiber_bundle:
 % \tikzset{external/export=false}
 \setlength{\tikzwidth}{.24\textwidth}
 \input{gfx/simpli/vector_error}
-\caption{Discretization error. Cross-section through a single fiber with a myelin layer in the discretized tissue volume. The colored pattern shows the resulting voxels corresponding to the fiber. The smaller the \Voxelsize, the smaller the discretization error.}
+\caption[]{Discretization error. Cross-section through a single fiber with a myelin layer in the discretized tissue volume. The colored pattern shows the resulting voxels corresponding to the fiber. The smaller the \Voxelsize, the smaller the discretization error.}
 \label{fig:vectorfield_disc_error}
 \end{figure}
 %
@@ -193,7 +193,7 @@ To share the work, thread $n$ processes only the memory for the first index $i$ 
 \centering
 \setlength{\tikzwidth}{0.5\textwidth}
 \inputtikz{gfx/simpli/disc_volume_thread}
-\caption{Discretization volume parallelization with \ac{OpenMP}. Each thread processes every $n$-th $yz$-section. This ensures both thread safety and a more balanced workload.}
+\caption[]{Discretization volume parallelization with \ac{OpenMP}. Each thread processes every $n$-th $yz$-section. This ensures both thread safety and a more balanced workload.}
 \label{fig:discVolThread}
 \end{figure}
 % 
@@ -227,7 +227,7 @@ For this purpose, the \ac{LAP} uses a tilting stage to which the tissue sections
 \subcaptionbox{perspective view}
 [.475\textwidth]{\inputtikz{gfx/simpli/tilting_3d_b}}
 \tikzset{external/export=false}
-\caption{3D tilting: around $xy$-axis, \raisebox{.25em}{\tikz \draw[red,thick](0,0)--(0.25,0);} top, \raisebox{.25em}{\tikz \draw[green,thick](0,0)--(0.25,0);} middle, \raisebox{.25em}{\tikz \draw[blue,thick](0,0)--(0.25,0);} bottom, \raisebox{.25em}{\tikz \draw[dash pattern=on 1.25pt off 1.25pt,thick](0,0)--(0.25,0);} original, \raisebox{.25em}{\tikz \draw[gray](0,0)--(0.25,0);} axis of rotation.}
+\caption[]{3D tilting: around $xy$-axis, \raisebox{.25em}{\tikz \draw[red,thick](0,0)--(0.25,0);} top, \raisebox{.25em}{\tikz \draw[green,thick](0,0)--(0.25,0);} middle, \raisebox{.25em}{\tikz \draw[blue,thick](0,0)--(0.25,0);} bottom, \raisebox{.25em}{\tikz \draw[dash pattern=on 1.25pt off 1.25pt,thick](0,0)--(0.25,0);} original, \raisebox{.25em}{\tikz \draw[gray](0,0)--(0.25,0);} axis of rotation.}
 \label{fig:tilting_camera_view}
 \end{figure}
 % 
@@ -248,7 +248,7 @@ Since this only adds a parallel shift, simulation is only necessary when the eff
 \inputtikz{gfx/simpli/tilting_a}}\hfill
 \subcaptionbox{tilted}[.475\textwidth]{
 \inputtikz{gfx/simpli/tilting_b}}
-\caption{Light ray path for a normal (a) and a tilted (b) case. In the tilted case, the light beam $\vec{l}_1$ is tilted within the tissue and thus experiences an optical shift $\Delta$.}
+\caption[]{Light ray path for a normal (a) and a tilted (b) case. In the tilted case, the light beam $\vec{l}_1$ is tilted within the tissue and thus experiences an optical shift $\Delta$.}
 \label{fig:tilted_side_view}
 \end{figure}
 %
@@ -269,7 +269,7 @@ This distortion can be described by an affine transformation (see \cref{fig::aff
 \begin{figure}[!t]
 \centering
 \input{gfx/pli/affine_transformation}
-\caption{Examples of affine transformations.}
+\caption[]{Examples of affine transformations.}
 \label{fig::affine_transformation}
 \end{figure}
 %
@@ -300,7 +300,7 @@ In order to correctly recreate the physical properties, interpolation is require
 \subcaptionbox{\label{fig:sphInterp}Spherical interpolation}
 [\tikzwidth]{
 \inputtikz{gfx/simpli/vector_interpolation}}
-\caption{Interpolation techniques: Trilinear interpolation can be represented as an axial step interpolation. The difference between linear and spherical interpolation is that linear interpolation has a constant distance $s$ between each point, while spherical interpolation has a constant angle $\varphi$ between two steps.}
+\caption[]{Interpolation techniques: Trilinear interpolation can be represented as an axial step interpolation. The difference between linear and spherical interpolation is that linear interpolation has a constant distance $s$ between each point, while spherical interpolation has a constant angle $\varphi$ between two steps.}
 \label{fig:vectorfield_disc}
 \end{figure}
 %
@@ -336,7 +336,7 @@ for light in light_beams:
     light = optical_elements_end * light
     ccd_array[light.ccd_pos] = light.intensity
 \end{lstlisting}
-\caption{Loop over the light vectors for the light-tissue interaction. Their intensity value is stored inside the \ac{CCD} array.}
+\caption[]{Loop over the light vectors for the light-tissue interaction. Their intensity value is stored inside the \ac{CCD} array.}
 \label{alg:simulationLoop}
 \end{lstfloat}
 %
@@ -387,7 +387,7 @@ A method is implemented to automatically partition the volume along the $x$-axis
     \centering
     \setlength{\tikzwidth}{0.85\textwidth}
     \inputtikz{gfx/simpli/com_halo}
-    \caption{ This example uses six \ac{MPI} ranks to split the entire volume into six sub-volumes. To calculate the value at a given point a eight-neighborhood is necessary. Therefore a \name{halo} area (coloured voxels) with the same information shared by neighboring \ac{MPI} process is necessary.}
+    \caption[]{ This example uses six \ac{MPI} ranks to split the entire volume into six sub-volumes. To calculate the value at a given point a eight-neighborhood is necessary. Therefore a \name{halo} area (coloured voxels) with the same information shared by neighboring \ac{MPI} process is necessary.}
     \label{fig:com_halo}
 \end{figure}
 % 

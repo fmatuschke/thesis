@@ -26,7 +26,7 @@ Meanwhile, to boost the performance of the optimization steps and heavy computat
 \begin{figure}[!ht]
 \centering
 \inputtikz{gfx/fastpli/fastpli_pipeline}
-\caption{\acs{fastPLI} package structure.}
+\caption[]{\acs{fastPLI} package structure.}
 \label{fig:fastpli}
 \end{figure}
 %
@@ -82,7 +82,7 @@ cd fastpli
 make fastpli
 pip3 install .
 \end{lstlisting}
-\caption{Installation instructions.}
+\caption[]{Installation instructions.}
 \end{lstfloat}
 %
 %
@@ -147,7 +147,7 @@ This data format is provided to allow a straightforward  format for manipulating
 3.4 -4.02 -44.76 3.11
 6.22 -1.04 -42.45 3.26
 \end{lstlisting}
-\caption{Exemplary \name{.dat} file format.}\label{alg:dat-file}
+\caption[]{Exemplary \name{.dat} file format.}\label{alg:dat-file}
 \end{lstfloat}
 %
 The second format uses \ac{HDF5} \cite{hdf5}, a binary data format.
@@ -190,7 +190,7 @@ GROUP "/" { # fiber_bundles path
   }
 }
 \end{lstlisting}
-\caption{Example structure of the fiber format in \ac{HDF5}. This output is generated with the official \code{h5dump} tool.}
+\caption[]{Example structure of the fiber format in \ac{HDF5}. This output is generated with the official \code{h5dump} tool.}
 \label{alg:hdf5}
 \end{lstfloat}
 %
@@ -257,7 +257,7 @@ The simulation is performed with the same procedure used with the real measureme
 \begin{minipage}{\the\textwidth}
 \lstinputlisting[style=python]{code/pipeline.py.tex}
 \end{minipage}}
-\caption{Simulation pipeline \code{simpli.run\_pipeline}.}
+\caption[]{Simulation pipeline \code{simpli.run\_pipeline}.}
 \label{alg:Pipeline}
 \end{lstfloat}
 %
@@ -310,7 +310,7 @@ These docstrings are also used for an automatic release of the \ac{API} document
    \includegraphics[valign=T,trim=0 0 0 1580, clip]{gfx/fastpli/fastpli_wiki.png} \\
    \end{tabular}
    }}
-  \caption{Documentation wiki page of the \name{Github} repository \url{https://github.com/3d-pli/fastpli/wiki}.}
+  \caption[]{Documentation wiki page of the \name{Github} repository \url{https://github.com/3d-pli/fastpli/wiki}.}
   \label{fig:fastpli_wiki}
 \end{figure}
 % 

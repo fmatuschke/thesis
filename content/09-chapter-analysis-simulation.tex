@@ -49,7 +49,7 @@ The entire section and the analysis for a human and a rodent section are describ
     \subcaptiontab{0.475\textwidth}{Retardation map.} &
     \subcaptiontab{0.475\textwidth}{\label{fig:histRet}Retardation histogram.} 
     \end{tabular}
-    \caption{
+    \caption[]{
     Transmittance and retardation map of coronal section of a vervet monkey.
     The absorption coefficient and birefringence is estimated from the measurements in the corpus callosum.
     Two homogeneous regions are labeled for this purpose.
@@ -107,7 +107,7 @@ For this purpose, the intensity profiles perpendicular to the three vertical and
     \subcaptiontab{0.475\textwidth}{\label{fig:usaf_lines_ud}Centered line plots vertical slits.}
     % 
     \end{tabular}
-    \caption{Group 8-1 of the USAF chart with a line width of $\SI{1.95}{\micro\meter}$ corresponds to the Raileigh criterium. Therefore an optical convolution of $\opticsigma = \SI{0.75}{\pixel}$ will be applied in the simulation.}
+    \caption[]{Group 8-1 of the USAF chart with a line width of $\SI{1.95}{\micro\meter}$ corresponds to the Raileigh criterium. Therefore an optical convolution of $\opticsigma = \SI{0.75}{\pixel}$ will be applied in the simulation.}
     \label{fig:USAF}
 \end{figure}
 \footnotetext{\url{https://en.wikipedia.org/wiki/1951_USAF_resolution_test_chart}}
@@ -161,7 +161,7 @@ For this purpose, the sample stage is covered with a fully absorbing cover so th
 \subcaptiontab{0.475\textwidth}{\label{fig:noiseplot}Expected noise range for human, vervet monkey and rodent. The noise correlates linearly with the light intensity.}
 \end{tabular}
 %
-\caption{\ac{LMP} camera noise measurements.}
+\caption[]{\ac{LMP} camera noise measurements.}
 \label{fig:parameterModelGain}
 \end{figure}
 % 
@@ -209,7 +209,7 @@ The results in \cref{fig:voxelsizeNoise} show that the relative difference to th
 % 2_simulation/0_parameter/fiber_radii.py
 \centering
 \includegraphics[width=\textwidth, page=1]{gfx/rc1/voxel_size/voxel_size_plots_data_r05_output_vs_135_0.01_6_25_vervet_r_rc1.pdf}
-\caption{Comparison of the simulation results with different voxel sizes and different fiber configurations.}
+\caption[]{Comparison of the simulation results with different voxel sizes and different fiber configurations.}
 \label{fig:voxelsizeNoise}
 \end{figure}
 % 
@@ -241,7 +241,7 @@ The last simulation contains two fiber populations where the inclination of the 
 \par
 % 
 \begin{table}[!b]
-\caption{Simulation parameters.}
+\caption[]{Simulation parameters.}
 \centering
 % \sisetup{open-bracket={\{}, close-bracket={\}}, list-final-separator={,},list-pair-separator={,}}%
 \pgfplotstabletypeset[%
@@ -321,7 +321,7 @@ The area corresponds to the $\SI{25}{\percent}$ to $\SI{75}{\percent}$ quantile 
 \begin{figure}[!t]
     \centering
     \includegraphics[page=1]{gfx/rc1/analysis/plots_single_pop_hist_output_cube_2pop_135_rc1_single.pdf}
-    \caption{Single fiber population orientation histograms.}
+    \caption[]{Single fiber population orientation histograms.}
     \label{fig:single_fiber_pop_hist}
 \end{figure}
 % 
@@ -335,7 +335,7 @@ The results of the tilt analysis show the same mean orientation as the models wi
 \begin{figure}[!p]
     \centering
     \includegraphics[]{gfx/rc1/analysis/plots_single_pop_output_cube_2pop_135_rc1_single.pdf}
-    \caption{Single fiber population. Results of the simulation analysis with comparison of the fiber models orientations.}
+    \caption[]{Single fiber population. Results of the simulation analysis with comparison of the fiber models orientations.}
     \label{fig:single_fiber_pop_rofl}
 \end{figure}
 % 
@@ -409,12 +409,12 @@ The additional fiber population fractions are available in \cref{app:flat_fiber_
 \begin{figure}[!p]
 \centering
 \includegraphics[page=3]{gfx/rc1/analysis/plots_flat_pop_hist_output_cube_2pop_135_rc1_flat.pdf}
-\caption{Flat crossing fiber population: $\modelPsi=\SI{30}{\percent}$.}
+\caption[]{Flat crossing fiber population: $\modelPsi=\SI{30}{\percent}$.}
 \label{fig:flat_03_fiber_pop_hist}
 % 
 \vspace{2em}
 \includegraphics[page=5]{gfx/rc1/analysis/plots_flat_pop_hist_output_cube_2pop_135_rc1_flat.pdf}
-\caption{Flat crossing fiber population: $\modelPsi=\SI{50}{\percent}$.}
+\caption[]{Flat crossing fiber population: $\modelPsi=\SI{50}{\percent}$.}
 \label{fig:flat_05_fiber_pop_hist}
 \end{figure}
 %
@@ -429,14 +429,14 @@ In the case of $\modelPsi = \SI{50}{\percent}$, the measured orientation lies be
 \begin{figure}[!p]
 \centering
 \includegraphics[page=3]{gfx/rc1/analysis/plots_flat_pop_output_cube_2pop_135_rc1_flat.pdf}
-\caption{Flat crossing fiber population: $\modelPsi=\SI{30}{\percent}$. Results of the simulation analysis with comparison of the fiber models orientations.}
+\caption[]{Flat crossing fiber population: $\modelPsi=\SI{30}{\percent}$. Results of the simulation analysis with comparison of the fiber models orientations.}
 \label{fig:flat_03_fiber_pop_rofl}
 \end{figure}
 %
 \begin{figure}[!p]
 \centering
 \includegraphics[page=5]{gfx/rc1/analysis/plots_flat_pop_output_cube_2pop_135_rc1_flat.pdf}
-\caption{Flat crossing fiber population: $\modelPsi=\SI{50}{\percent}$. Results of the simulation analysis with comparison of the fiber models orientations.}
+\caption[]{Flat crossing fiber population: $\modelPsi=\SI{50}{\percent}$. Results of the simulation analysis with comparison of the fiber models orientations.}
 \label{fig:flat_05_fiber_pop_rofl}
 \end{figure}
 % 
@@ -506,13 +506,13 @@ The fiber models orientations show a higher variance as the tilt analysis result
 \begin{figure}[!p]
 \centering
 \includegraphics[page=3]{gfx/rc1/analysis/plots_inclined_pop_hist_output_cube_2pop_135_rc1_inclined.pdf}
-\caption{Population of inclined crossing fibers: $\modelPsi=\SI{30}{\percent}$.
+\caption[]{Population of inclined crossing fibers: $\modelPsi=\SI{30}{\percent}$.
 }
 \label{fig:inclined_03_fiber_pop_hist}
 % 
 \vspace{2em}
 \includegraphics[page=5]{gfx/rc1/analysis/plots_inclined_pop_hist_output_cube_2pop_135_rc1_inclined.pdf}
-\caption{Population of inclined crossing fibers: $\modelPsi=\SI{50}{\percent}$.
+\caption[]{Population of inclined crossing fibers: $\modelPsi=\SI{50}{\percent}$.
 }
 \label{fig:inclined_05_fiber_pop_hist}
 \end{figure}
@@ -524,14 +524,14 @@ The remaining fiber population fraction are listed in \cref{app:incl_fiber_pop_a
 \begin{figure}[!p]
     \centering
     \includegraphics[page=3]{gfx/rc1/analysis/plots_inclined_pop_output_cube_2pop_135_rc1_inclined.pdf}
-    \caption{Population of inclined crossing fibers: $\modelPsi=\SI{30}{\percent}$. Results of the simulation analysis with comparison of the fiber models orientations.}
+    \caption[]{Population of inclined crossing fibers: $\modelPsi=\SI{30}{\percent}$. Results of the simulation analysis with comparison of the fiber models orientations.}
     \label{fig:inclined_03_fiber_pop_rofl}
     \end{figure}
     %
     \begin{figure}[!p]
     \centering
     \includegraphics[page=5]{gfx/rc1/analysis/plots_inclined_pop_output_cube_2pop_135_rc1_inclined.pdf}
-    \caption{Population of inclined crossing fibers: $\modelPsi=\SI{50}{\percent}$. Results of the simulation analysis with comparison of the fiber models orientations.}
+    \caption[]{Population of inclined crossing fibers: $\modelPsi=\SI{50}{\percent}$. Results of the simulation analysis with comparison of the fiber models orientations.}
     \label{fig:inclined_05_fiber_pop_rofl}
 \end{figure}
 % 
@@ -607,7 +607,7 @@ A spherical k-nearest neighbor interpolator is used to visualize values between 
     For visualization, the scalar values are interpolated according to a spherical k-nearest neighbor interpolator algorithm.
 }
 [.475\textwidth]{\inputtikz{gfx/model/sphere_hist_b}}
-\caption{Visualization of results for a fixed first fiber population \popa{}.}
+\caption[]{Visualization of results for a fixed first fiber population \popa{}.}
 \label{fig:simModelSphereSample}
 \end{figure}
 %
@@ -623,7 +623,7 @@ The transmittance is lowest for models with a crossing angle of $\modelOmega = \
 \begin{figure}[!p]
 \centering
 \includegraphics[]{gfx/rc1/analysis/simulation_analysis_hist_0.5_setup_PM_s_Vervet_m_r_trans_mean.pdf}
-\caption{Mean transmittance value.}
+\caption[]{Mean transmittance value.}
 \label{fig:sim_ana_trans}
 \end{figure}
 %
@@ -648,7 +648,7 @@ Flat fiber configurations retain a relative high retardation value.
 \begin{figure}[!p]
 \centering
 \includegraphics[]{gfx/rc1/analysis/simulation_analysis_hist_0.5_setup_PM_s_Vervet_m_r_ret_mean.pdf}
-\caption{Mean retardation values.}
+\caption[]{Mean retardation values.}
 \label{fig:sim_ana_ret}
 \end{figure}
 %
@@ -672,14 +672,14 @@ The k-nearest neighbor interpolator used above would lead to incorrect results.
 \begin{figure}[!p]
     \centering
     \includegraphics[]{gfx/rc1/analysis/simulation_analysis_hist_0.5_setup_PM_s_Vervet_m_r_rdir_mean.pdf}
-    \caption{Circmean direction $\dir$ from tilt analysis.}
+    \caption[]{Circmean direction $\dir$ from tilt analysis.}
     \label{fig:sim_ana_dir}
 \end{figure}
 % 
 \begin{figure}[!p]
     \centering
     \includegraphics[]{gfx/rc1/analysis/simulation_analysis_hist_0.5_setup_PM_s_Vervet_m_r_rincl_mean.pdf}
-    \caption{Circmean inclination $\inc$ from tilt analysis. Because the direction is defined in the range of $[\SI{0}{\degree},\SI{180}{\degree})$ and the inclination $[\SI{-90}{\degree},\SI{90}{\degree})$ sign of the inclination value flips for the lower quadrants in the polar plots.}
+    \caption[]{Circmean inclination $\inc$ from tilt analysis. Because the direction is defined in the range of $[\SI{0}{\degree},\SI{180}{\degree})$ and the inclination $[\SI{-90}{\degree},\SI{90}{\degree})$ sign of the inclination value flips for the lower quadrants in the polar plots.}
     \label{fig:sim_ana_incl}
 \end{figure}
 % 
@@ -707,7 +707,7 @@ The exceptions are $\modelInc=\SIlist{60;90}{\degree}$ with secondary fiber popu
         {\includegraphics[]{gfx/rc1/analysis/simulation_analysis_hist_0.5_setup_PM_s_Vervet_m_r_rtrel_mean.pdf}};
         \node[inner sep=0pt,fill=white,shift={(-1.8825,0.20)}] at (fig.south east) {\scriptsize$\geq1$}; % fill=red,text=red,inner sep=0pt
     \end{tikzpicture}
-    \caption{Mean \trel{} from tilt analysis.}
+    \caption[]{Mean \trel{} from tilt analysis.}
     \label{fig:sim_ana_trel}
 \end{figure}
 % 
@@ -744,7 +744,7 @@ It describes the mean absolute difference between the data and the fitted data f
 \begin{figure}[!p]
 \centering
 \includegraphics[]{gfx/rc1/analysis/simulation_analysis_hist_0.5_setup_PM_s_Vervet_m_r_R_mean.pdf}
-\caption{Mean \rvalue{} from tilt analysis.}
+\caption[]{Mean \rvalue{} from tilt analysis.}
 \label{fig:sim_ana_rvalue}
 \end{figure}
 %
@@ -789,7 +789,7 @@ The opening angle \openingAngle{} is shown in \cref{fig:sim_ana_domega}.
 \begin{figure}[!p]
 \centering
 \includegraphics[]{gfx/rc1/analysis/simulation_analysis_hist_0.5_setup_PM_s_Vervet_m_r_domega_mean.pdf}
-\caption{Mean opening angle \openingAngle{} from tilt analysis.}
+\caption[]{Mean opening angle \openingAngle{} from tilt analysis.}
 \label{fig:sim_ana_domega}
 \end{figure}
 % 
@@ -818,7 +818,7 @@ For the last shown fiber population fraction $\modelPsi=\SI{90}{\degree}$, the o
 \begin{figure}[!p]
 \centering
 \includegraphics[]{gfx/rc1/analysis/simulation_analysis_hist_0.5_setup_PM_s_Vervet_m_r_acc.pdf}
-\caption{Mean \accvalue{} between model and tilt analysis orientations.}
+\caption[]{Mean \accvalue{} between model and tilt analysis orientations.}
 \label{fig:sim_ana_acc}
 \end{figure}
 % 
@@ -1029,7 +1029,7 @@ The volume used is the $\modelPsi=\SI{0}{\percent} / \modelInc=\SI{0}{\degree}$ 
 \subcaptionbox{\label{fig:speedTissueMPI}
 \ac{MPI} speedup discrete tissue generation.
 }[.475\textwidth]{\includegraphics{gfx/rc1/speed/boxplot_generation_output_generation_mpi_v_0.1.csv.pdf}}
-\caption{Discrete tissue generation speedup.}
+\caption[]{Discrete tissue generation speedup.}
 \end{figure}
 %
 \Cref{fig:speedTissueMP} shows the speedup results for the parallelization of \ac{OpenMP} of the discrete tissue generation algorithm.
@@ -1053,7 +1053,7 @@ The variance is significantly lower compared to the \ac{OpenMP} implementation.
 \subcaptionbox{\label{fig:speedSimMPI}
 \ac{MPI} speedup simulation including all five tilt direction.
 }[\textwidth]{\includegraphics{gfx/rc1/speed/boxplot_simulation_output_simulation_mpi_v_0.1.csv.pdf}}
-\caption{\ac{3D-PLI}}
+\caption[]{\ac{3D-PLI}}
 \end{figure}
 %
 The results of the speedup measurements for the light matter interaction are then presented.

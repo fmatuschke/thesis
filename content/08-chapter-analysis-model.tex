@@ -76,7 +76,7 @@ If the first fiber population is tilted by an angle $\modelInc$, an arbitrary fi
     \subcaptionbox{\label{fig:modelrotb}
     The inclination of the first fiber population is modified by $\modelInc$.}
     [.475\textwidth]{\inputtikz{gfx/model/sphere_models_b}}
-    \caption{Parameterization of two mutually relatively oriented fiber populations for the creation of a library.}
+    \caption[]{Parameterization of two mutually relatively oriented fiber populations for the creation of a library.}
     \label{fig:twomodelpopdesign}
     \end{figure}
 % 
@@ -149,7 +149,7 @@ Thus, also with respect to the fiber radius distribution introduced next, there 
         \addplot[GREEN,thick,domain=0.6:1.4, samples=2*42, smooth]{1/(\sigmaValue*x*sqrt(2*pi))*exp(-(ln(x)-\muValue)^2/(2*\sigmaValue^2))}; \addlegendentry{$\mu=0.0,\sigma=0.1$}
     \end{axis}
 \end{tikzpicture}
-\caption{Probability density function of a multiplicative \name{log normal} distribution.
+\caption[]{Probability density function of a multiplicative \name{log normal} distribution.
 $\sigma=0.1$ is used for the initial variation of each fiber radius.
 $\sigma=0.05$ for the variation along the fiber for each fiber point.}
 \label{fig:logNormal}
@@ -219,7 +219,7 @@ mean segment length factor & $\segLengthFactor$ & $\numlist{1;2;4;8}$\\
 min segment bending radius factor & $\segRadiusFactor$ & $\numlist{1;2;4;8}$\\
 fiber bundle fraction/crossing & $\modelPsi$/$\modelOmega$ & $\SI{1.0}{}/\SI{0}{\degree}$, $\SI{0.5}{}/\SI{90}{\degree}$\\
 }
-\caption{Parameter sets for the characterization of the software parameters $\segLengthFactor$ and $\segRadiusFactor$.}
+\caption[]{Parameter sets for the characterization of the software parameters $\segLengthFactor$ and $\segRadiusFactor$.}
 \label{tab:parameterSetupChar}
 \end{table}
 %
@@ -244,7 +244,7 @@ Intel(R) Xeon(R) CPU E5-4657L v2 @ $\SI{2.4}{\giga\hertz}$, L1d cache: $\SI{1.5}
 \centering
 Single fiber population \pfbs{}\\[0em]
 \includegraphics[page=1]{gfx/rc1/mpara/pre_stats_time_evolve_r05_output_parameter_statistic_rc1.pdf}
-\caption{Time evolution of the model building process of parallel fiber populations. Error bars indicate $\SI{25}{\percent}$ and $\SI{75}{\percent}$ quantiles.}
+\caption[]{Time evolution of the model building process of parallel fiber populations. Error bars indicate $\SI{25}{\percent}$ and $\SI{75}{\percent}$ quantiles.}
 \label{fig:timeDevelopmentNone}
 \end{figure}
 %
@@ -252,7 +252,7 @@ Single fiber population \pfbs{}\\[0em]
 \centering
 Crossing fiber population \cfbs{}\\[0ex]
 \includegraphics[page=2]{gfx/rc1/mpara/pre_stats_time_evolve_r05_output_parameter_statistic_rc1.pdf}
-\caption{Time evolution of the model building process of crossing fiber populations. Error bars indicate $\SI{25}{\percent}$ and $\SI{75}{\percent}$ quantiles.}
+\caption[]{Time evolution of the model building process of crossing fiber populations. Error bars indicate $\SI{25}{\percent}$ and $\SI{75}{\percent}$ quantiles.}
 \label{fig:timeDevelopmentCross}
 \end{figure}
 %
@@ -347,7 +347,7 @@ The strongest difference is a very significant decrease in runtime with an incre
 \begin{figure}[!t]
 \centering
 \includegraphics{gfx/rc1/mpara/pre_stats_box_plot_volume_05_output_parameter_statistic_rc1.pdf}
-\caption{Volume fractions $V_f/V_0$ for parallel \pfbs{} and crossing \cfbs{} fiber populations of different relative fiber segment lengths $\segLengthFactor$ and relative fiber bending radii $\segRadiusFactor$.}
+\caption[]{Volume fractions $V_f/V_0$ for parallel \pfbs{} and crossing \cfbs{} fiber populations of different relative fiber segment lengths $\segLengthFactor$ and relative fiber bending radii $\segRadiusFactor$.}
 \label{fig:psbp1}
 \end{figure}
 \Cref{fig:psbp1} shows the resulting volume fraction $V_f/V_0$ for the parameter series.
@@ -423,7 +423,7 @@ In summary, the following parameters are chosen:
 \begin{table}[H]
 \sisetup{parse-numbers=false,open-bracket={\{}, close-bracket={\}}, list-final-separator={,},list-pair-separator={,}}%
 \centering
-\caption{Selection of parameters for the creation of the \ac{3D-PLI} simulation model.}
+\caption[]{Selection of parameters for the creation of the \ac{3D-PLI} simulation model.}
 \pgfplotstabletypeset[%
     thesisTableStyle,
     column type=lcc,
@@ -479,7 +479,7 @@ The volume for the simulation is scaled up to a sphere with a diameter of $\SI{1
 % \resizebox{1.0\textwidth}{!}{
 \includegraphics[width=\textwidth, page=1]{gfx/rc1/model/cube_2pop_orientation_hist2d_output_cube_2pop_135_rc1.pdf}
 % }
-\caption{Density distribution of fiber segment orientation in the simulation models.
+\caption[]{Density distribution of fiber segment orientation in the simulation models.
 The value of the segments is weighted according to the area on a spherical surface and normalized so that the integral over one hemisphere is $\SI{1}{}$.
 The dashed white line indicates the orientation of the two fiber populations.}
 \label{fig:modelOrientation}
@@ -494,7 +494,7 @@ The density reflects the population fraction $\modelPsi$ of the fiber population
 \begin{figure}[!t]
     \centering
     \includegraphics[]{gfx/rc1/model/cube_2pop_domega_analysis_output_.pdf}
-    \caption{Direction $\dir$, inclination $\inc$ and opening angle $\openingAngle$ distribution of the model library.}
+    \caption[]{Direction $\dir$, inclination $\inc$ and opening angle $\openingAngle$ distribution of the model library.}
     \label{fig:modelAngleBoxPlot}
 \end{figure}
 %
@@ -524,7 +524,7 @@ For large crossing angles, the mean value of the opening angle increases with in
 \begin{figure}[!t]
 \centering
 \includegraphics[page=1]{gfx/rc1/images/cube_2pop_images_output_cube_2pop_135_rc1.pdf}
-\caption{3D visualization of the simulation model library \ac{3D-PLI}.
+\caption[]{3D visualization of the simulation model library \ac{3D-PLI}.
 The inner $\SI{10}{\micro\meter} \times \SI{10}{\micro\meter} \times \SI{10}{\micro\meter}$ of the volumes are shown.}
 \label{fig:modelImages}
 \end{figure}
@@ -577,7 +577,7 @@ For the measurements, the cores were bound to physical CPU cores.
 \begin{figure}[!t]
 \centering
 \includegraphics{gfx/rc1/speed/boxplot_output_r_0.5__.pkl_speedup.csv.pdf}
-\caption{\code{model.Sovler} speedup. Time measurements are performed after $\Delta_{\mathit{steps}}$ for the next $\SI{25}{\steps}$ for parallel \pfbs{} and crossing \cfbs{} fiber configurations.}
+\caption[]{\code{model.Sovler} speedup. Time measurements are performed after $\Delta_{\mathit{steps}}$ for the next $\SI{25}{\steps}$ for parallel \pfbs{} and crossing \cfbs{} fiber configurations.}
 \label{fig:solverSpeedup}
 \end{figure}
 % 
