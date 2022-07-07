@@ -20,7 +20,7 @@ Both the length of a fiber segment and the bending radius of a nerve fiber are c
 These parameters change the discretization and stiffness of the fiber models.
 \par
 %
-To speed up model generation, an octree is used in the algorithm to divide the volume into sub-volumes.
+To speed up model generation, an octree is used in the algorithm to divide the volume into subvolumes.
 This octree can be executed in parallel on multiple \acp{CPU}.
 A visualization is provided to display the volume, allowing the user to interact with the algorithm after each computation step.
 \par
@@ -36,7 +36,7 @@ The simulation is divided into two consistent parts.
 The first part generates a discretized 3D volume.
 This volume is used by the second part, which calculates the resulting light intensity using the M{\"u}ller-calculus calculation and the simulation of several light vectors through the volume.
 The final light intensity is stored in a 2D array, which can be modeled as a \ac{CCD} array with a specified resolution and noise model.
-The simulation is capable of simulating multiple tilted light beams, allowing multiple views of the same sub-volume that the light is traversing.
+The simulation is capable of simulating multiple tilted light beams, allowing multiple views of the same subvolume that the light is traversing.
 In addition, the analysis algorithms are implemented into the software package, allowing the nerve fiber orientation to be calculated using the tilt analysis \ac{ROFL}.
 \par
 %
@@ -120,7 +120,7 @@ The general advice is to increase the computational power by using parallel comp
 Existing algorithms suitable for this type of computation for both the nerve fiber modeling and \ac{3D-PLI} simulations could be identified and should be implemented in the future.
 \par
 %
-Overall this thesis presents a software package able to generate complex non colliding tubic nerve fiber models which can be simulated inside a virtual \ac{3D-PLI} microscope setup.
+Overall this thesis presents a software package able to generate complex non colliding nerve fiber models which can be simulated inside a virtual \ac{3D-PLI} microscope setup.
 %
 The algorithms are highly parallelized and able to run on current supercomputing facilities.
 Additionally, the software package was designed with ease of use in mind.

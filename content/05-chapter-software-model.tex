@@ -104,7 +104,7 @@ Therefore, the fiber segments describe a \ac{CC} (see \cref{fig:conical}).
 	\label{fig:conical}
 \end{figure}
 %
-This representation has the advantage that much less data is needed than a surface's mesh representation, which increases the computational speed for the collision solving algorithm.
+This representation has the advantage that much fewer data is needed than a surface's mesh representation, which increases the computational speed for the collision solving algorithm.
 %
 %
 %
@@ -187,7 +187,7 @@ A more reasonable solution is to perform a rotation such that the rotation along
     \label{fig:torsion}
 \end{figure}
 %
-The rotation matrix $\mat{R}(\vec{a}, \vec{b})$ for between two non parallel vectors $\vec{a} \nparallel \vec{b}$ is
+The rotation matrix $\mat{R}(\vec{a}, \vec{b})$ for between two nonparallel vectors $\vec{a} \nparallel \vec{b}$ is
 \begin{align}
 \begin{split}
     \vec{a} =& \; \vec{a} / |\vec{a}|\\
@@ -205,7 +205,7 @@ The rotation matrix $\mat{R}(\vec{a}, \vec{b})$ for between two non parallel vec
 In the case of $\vec{a} \parallel \vec{b}$ no rotation is necessary.
 \par
 %
-The presented formulation allows to generate a filled nerve fiber bundle.
+The presented formulation allows generating a filled nerve fiber bundle.
 First, the seed point plane is placed at the first fiber bundle point $\vec{fb}_0$ and rotated by $\mat{R}(\hat{\vec{e}}_z, \vec{t}_0)$.
 Then, for each step, the plane is rotated at its origin by $\mat{R}(\vec{t}_i, \vec{t}_{i+1})$ and placed on $\vec{fb}_{i+1}$.
 To smooth the transition, the tangential vector $\vec{t}$ at step $i$ is the average of the neighboring points:
@@ -462,7 +462,7 @@ The final \name{nodes} at the end of a \name{branch} are called \name{leaves} co
 Traversing a uniformly distributed \name{tree} has the advantage that the cost of traversal is $\mathcal{O}(\log(n))$.
 \par
 %
-An \name{octree} is a special \name{tree} where each node contains eight children allowing a cubic volume to be divided into eight sub-volumes.
+An \name{octree} is a special \name{tree} where each node contains eight children allowing a cubic volume to be divided into eight subvolumes.
 An example is shown in \cref{fig:octreeCube}.
 %
 \begin{figure}[!t]
@@ -501,7 +501,7 @@ def octree(volume, objects):
 %
 First, all objects must be sorted into the eight branches of the initial node (if the number of objects is not too small). This means that each object must be checked whether there is a collision with one or more of the eight subvolumes.
 To reduce the computational costs, as before, the \acp{AABB} of the objects are used for the collision check (see \cref{fig:collision2D}).
-Once all objects are sorted into their respective sub-volumes, recursion can begin.
+Once all objects are sorted into their respective subvolumes, recursion can begin.
 \par
 %
 Since a branch can be considered a node, the same algorithm can be executed until a desired boundary or property is reached, \eg{} maximum number of branches.

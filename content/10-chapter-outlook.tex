@@ -17,7 +17,7 @@ However, for larger volumes, the algorithm is limited in terms of computation ti
 However, there are optimization options available to improve performance.
 First, the models created by the sandbox can be improved so that the initial fiber configurations have less overlap.
 This means that for a given volume, the number of objects and thus the runtime are reduced.
-Additionally it was discovered that most collisions can be solved in the first $\approx \SI{10}{\percent}$ of the runtime, and the remaining time is required for the remaining minimal overlaps (see \cref{sec:solverParameterResults}).
+Additionally, it was discovered that most collisions can be solved in the first $\approx \SI{10}{\percent}$ of the runtime, and the remaining time is required for the remaining minimal overlaps (see \cref{sec:solverParameterResults}).
 \par
 %
 A second strategy is to design the algorithm in such a way that the number of calculation steps is reduced.
@@ -28,7 +28,7 @@ This strategy would probably lead to less densely packed models, since without a
 Another possibility is to speed up the runtime per step.
 This can be done, for example, by choosing a simpler calculation.
 In the \ac{MEDUSA} algorithm this is already been realized by using spheres instead of fiber segments.
-The collision of spheres is only be calculated by the euclidian distance with respect to the sum of the spheres radii.
+The collision of spheres is only be calculated by the euclidean distance with respect to the sum of the spheres radii.
 However, the use of spheres is associated with a disadvantage.
 The number of objects increases dramatically as many spheres are needed to approximate the surface of a single conical fiber segment.
 \par
@@ -37,9 +37,9 @@ A current limitation of the algorithm is the parallelization on a multicore syst
 For shared memory parallelization, atomic operations must be introduced, which takes a lot of time.
 For an algorithm without shared memory, the required data must be exchanged between the individual CPUs, which takes also quite some time.
 Therefore, one needs to redesign the algorithm to limit the necessary locks or data exchange.
-Common solutions are to divide the volume into sub-volumes (as in the case of \ac{3D-PLI} simulation), where each volume can be computed separately.
-The boundaries of such sub-volumes contain then the objects from neighboring volumes (halo).
-Therefore only the information of the halo needs to be exchanged.
+Common solutions are to divide the volume into subvolumes (as in the case of \ac{3D-PLI} simulation), where each volume can be computed separately.
+The boundaries of such subvolumes contain then the objects from neighboring volumes (halo).
+Therefore, only the information of the halo needs to be exchanged.
 \par
 %
 At this point, the most promising optimization is to use the architecture of the \ac{GPU} as \eg{} in the \ac{MEDUSA} algorithm.
@@ -60,7 +60,7 @@ In addition, the need to transfer the data back to \ac{RAM} was too much of an o
 Therefore, the second project was to implement a ray tracing algorithm that computes a light matter collision and matrix computation without pre-computing the discretized volume \cite{Kobusch:887783, GPUfastpli}.
 A light particle only computes the M{\"u}ller-Stokes calculus only if it collides with a fiber object.
 This means, that a collision algorithm needs to be used.
-As a first implementation a collision detection algorithm on the \ac{GPU}, a uniaxially aligned collision search algorithm \cite{Karras2012} was implemented.
+As a first implementation a collision detection algorithm on the \ac{GPU}, an uniaxial aligned collision search algorithm \cite{Karras2012} was implemented.
 The results showed that the acceleration possibilities on the \ac{GPU} are enormous.
 However, due to the rather simple collision checking algorithm, the runtime was slightly longer, but still in the same order of magnitude as the \ac{CPU} version.
 As with fiber generation, implementing the z-order algorithm mentioned above \cite{Karras2012} would be a vast improvement and solve the runtime issue.

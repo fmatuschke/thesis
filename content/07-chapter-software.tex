@@ -149,7 +149,7 @@ This data format is provided to allow a straightforward  format for manipulating
 \end{lstfloat}
 %
 The second format uses \ac{HDF5} \cite{hdf5}, a binary data format.
-\ac{HDF5} stores the data the data as \name{datasets} in \name{groups}, analogous to a file in an operating system stored in folders.
+\ac{HDF5} stores the data as \name{datasets} in \name{groups}, analogous to a file in an operating system stored in folders.
 The \ac{HDF5}-\name{groups} are used to store the \code{fiber} in \code{fiber\_bundle} and \code{fiber\_bundles}.
 The $(x,y,z,r)$ information of each fiber is stored as a 2d-array (see \cref{alg:hdf5}).
 %
@@ -246,8 +246,8 @@ Since analysis is always performed on the resulting simulations, they are also a
 Methods for saving the variables as \code{dict} or \ac{HDF5} files are available as well.
 \par
 %
-The simulation is performed with the same procedure used with the real measurements, using four tiltings and analyzing the simulated data.
-\code{Pipeline} methods exists (see \cref{alg:Pipeline}), which provide a high level of abstraction to simplify the execution for the users.
+The simulation is performed with the same procedure used with the real measurements, using four tilt directions and analyzing the simulated data.
+\code{Pipeline} methods exist (see \cref{alg:Pipeline}), which provide a high level of abstraction to simplify the execution for the users.
 %
 \begin{lstfloat}[!tb]
 \centering

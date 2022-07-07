@@ -64,7 +64,7 @@ Each layer requires a number of physical properties in addition to its radius:
 \begin{itemize}[nosep]
     \item birefringence value: $\dn$
     \item absorption coefficient: $\mu$
-    \item optical axsis model: $p=\mathit{parallel}$, $r=\mathit{radial}$, $b=\mathit{background}$
+    \item optical axis model: $p=\mathit{parallel}$, $r=\mathit{radial}$, $b=\mathit{background}$
 \end{itemize}
 %
 The properties are specified as a list of tuples within the algorithm (see \cref{alg:fiberbundleprops}).
@@ -117,8 +117,7 @@ The orientation can be parallel to the fiber segment in the case of the macrosco
 A layer can also be marked as \say{background}, allowing the user to specify an area without any birefringence.
 \par
 %
-Two consecutive fiber segments can occupy the same space because they have a common point.
-Then, they fill some voxels of the tissue volume simultaneously.
+Two consecutive fiber segments occupy the same space because they have a common point.
 This is an issue because the processed second fiber segment overwrites the values of the first.
 This is solved by using an additional array that stores the smallest distance calculated when filling the voxels space.
 The values are only overwritten when a new distance is calculated that is smaller than the one already stored.
@@ -162,7 +161,7 @@ for fiber_segment in fiber_bundle:
 The parameter \Voxelsize{} is an essential property of the light matter simulation.
 It determines how accurate the volume is represented (see \cref{fig:vectorfield_disc_error}).
 Additionally, in the light matter simulation one light ray is cast from each voxel of the bottom plane (see \cref{sec:pathOfLight}).
-Therefore it is also responsible for the sampling of the resulting intensities.
+Therefore, it is also responsible for the sampling of the resulting intensities.
 %
 %
 %
@@ -348,7 +347,7 @@ To resample the array to the final size of the \ac{CCD} sensor and apply the noi
 The image sensor, as described in \cref{sec:expSetup}, is a \ac{CCD}-sensor.
 The resampling and noise modeling, are implemented according to \cref{sec:opticalResolution}.
 These calculations are performed on the \python{} side of the algorithm (\code{fastpli.simulation.Simpli}) and can be executed with the \code{multiprocessing} library of \python{} to use multiple \ac{CPU} cores.
-Therefore when using \ac{MPI} (see \cref{sec:mpiSim}), the intensity image must be reduced to a single process.
+Therefore, when using \ac{MPI} (see \cref{sec:mpiSim}), the intensity image must be reduced to a single process.
 Since the resulting image is only 2D, there is no need to further speed up the process with \ac{MPI}.
 \par
 %
@@ -366,7 +365,7 @@ To parallelize the execution, the native \code{multiprocessing} library of \pyth
 The following key optimizations are used in the pipeline:
 \begin{itemize}
     \item The order of the tissues stored in memory is along the z-axis (as described in \cref{sec:dvOpti}) so that the light ray \textit{traverses} along the aligned memory.
-    \item The for-loop for the light beams (see \cref{alg:simulationLoop}) is paralellized with \ac{OpenMP}.
+    \item The for-loop for the light beams (see \cref{alg:simulationLoop}) is parallelized with \ac{OpenMP}.
     These threads are completely separated and there are no race conditions.
     \item Vector and matrix calculations are optimized for their small sizes by the compiler with the help of tools like \name{Compiler Explorer}\footnote{\url{https://godbolt.org/}} and \name{C++ Insight}\footnote{\url{https://cppinsights.io/}}.
 \end{itemize}
@@ -385,7 +384,7 @@ A method is implemented to automatically partition the volume along the $x$-axis
     \centering
     \setlength{\tikzwidth}{0.85\textwidth}
     \inputtikz{gfx/simpli/com_halo}
-    \caption[]{ This example uses six \ac{MPI} ranks to split the entire volume into six sub-volumes. To calculate the value at a given point a eight-neighborhood is necessary. Therefore a \name{halo} area (coloured voxels) with the same information shared by neighboring \ac{MPI} process is necessary.}
+    \caption[]{ This example uses six \ac{MPI} ranks to split the entire volume into six subvolumes. To calculate the value at a given point a eight-neighborhood is necessary. Therefore a \name{halo} area (coloured voxels) with the same information shared by neighboring \ac{MPI} process is necessary.}
     \label{fig:com_halo}
 \end{figure}
 %
@@ -393,7 +392,7 @@ Each \ac{CPU} can perform the discrete volume generation without the knowledge o
 The exception is the light matter simulation for tilted light beams.
 Here, when a light ray leaves the local volume, it must be transmitted to the adjacent volume.
 \ac{MPI} provides several methods to send information to another \name{rank}.
-Since the sub-volumes are split along a Cartesian grid, the Cartesian implementations of \ac{MPI} are used (\eg{} \code{MPI\tu Cart\tu create}).
+Since the subvolumes are split along a Cartesian grid, the Cartesian implementations of \ac{MPI} are used (\eg{} \code{MPI\tu Cart\tu create}).
 A problem is the calculation at the edge of the volume, since the light beam needs the information of the surrounding eight voxels for the interpolation.
 If this voxel information were to be transmitted to the neighboring \name{rank}, this would mean a large amount of communication, which is much slower compared to the local \ac{CPU} or \ac{RAM} instructions.
 To solve this communication problem, the algorithm uses a \name{halo}.
