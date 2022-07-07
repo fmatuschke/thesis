@@ -19,24 +19,24 @@
 	\tgherosfont
 	\centering
 %
-    \phantom{}\\[10mm]
+	\phantom{}\\[10mm]
 %
-    \begin{minipage}[t]{.45\textwidth}
+	\begin{minipage}[t]{.45\textwidth}
 		\includegraphics[width=6cm]{gfx/logo-hhu.pdf} \\[7mm]
 		\thesisUniversity\\
-        \thesisUniversityDepartment
+		\thesisUniversityDepartment
 	\end{minipage}
 	\hspace*{25pt}
 	\begin{minipage}[t]{.45\textwidth}
-	    \includegraphics[width=6cm]{gfx/logo-fzj.pdf} \\[7mm]
+		\includegraphics[width=6cm]{gfx/logo-fzj.pdf} \\[7mm]
 		\thesisInstitute\\
-        % \thesisInstituteDepartment
-        \thesisInstituteInstitute
-        % \thesisInstituteGroup
+		% \thesisInstituteDepartment
+		\thesisInstituteInstitute
+		% \thesisInstituteGroup
 	\end{minipage}
 %
 	\vfill
-	{\large \thesisSubject} \\[5mm]
+	{\LARGE \thesisSubject} \\[5mm]
 	{\LARGE \color{ctcolortitle}\textbf{\thesisTitle} \\[10mm]}
 	{\Large \thesisName} \\
 %
@@ -71,8 +71,8 @@
 	  	{\footnotesize \thesisFirstSupervisorDepartment} \\[-1.75mm]
 		{\footnotesize \thesisFirstSupervisorUniversity}
 	\end{minipage} \\[10mm]
-%
-	\thesisDate \\
+% 
+	\thesisDate \\[3.5mm]
 %
 \end{titlepage}
 %
@@ -82,25 +82,32 @@
 \vfill
 {
 	\small
-	\textbf{\thesisName} \\
-	\textit{\thesisTitle} \\
-	\thesisSubject, \thesisDate \\
-	Reviewers: \thesisFirstReviewer\ and \thesisSecondReviewer \\
-	Supervisor: \thesisFirstSupervisor \\[1.5em]
+	\begin{minipage}[t]{.95\textwidth}
+		\textbf{\thesisName} \\
+		\textit{\thesisTitle} \\
+		\thesisSubject, \thesisDate \\
+		Reviewers: \thesisFirstReviewer\ and \thesisSecondReviewer \\
+		Supervisor: \thesisFirstSupervisor
+	\end{minipage}
+	\phantom{} \\[1.5em]
 % 
-    \begin{minipage}[t]{.475\textwidth}
+	\begin{minipage}[t]{.475\textwidth}
 		\textbf{\thesisUniversity} \\
     	\thesisUniversityDepartment \\
     	\thesisUniversityStreetAddress \\
-    	\thesisUniversityPostalCode
+    	\thesisUniversityPostalCode \\
+		\phantom{} \\
+		\phantom{} \\
+		\phantom{}
 	\end{minipage}
-	\hspace*{5pt}
+	\hspace*{15pt}
 	\begin{minipage}[t]{.475\textwidth}
-	    \textbf{\thesisInstitute} \\
+		\textbf{\thesisInstitute} \\
     	\thesisInstituteDepartment \\
     	\thesisInstituteInstitute \\
     	\thesisInstituteGroup \\
     	\thesisInstituteStreetAddress \\
-    	\thesisInstitutePostalCode
+    	\thesisInstitutePostalCode \\
+		\phantom{}
 	\end{minipage}
 }
