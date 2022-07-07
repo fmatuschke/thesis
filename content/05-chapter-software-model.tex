@@ -342,10 +342,10 @@ The main function is composed of the following sequential parts (see \cref{alg:p
     def step():
         # Reset Parameter
         SetSpeed(objects, 0)
-  
+
         # Building Octree
         octree = Octree(objects)
-  
+
         # Collision Detection
         for leaf in octree:
             colliding_objs = CheckLeaf(leaf.fiber_list)
