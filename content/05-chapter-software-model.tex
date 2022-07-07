@@ -342,22 +342,22 @@ The main function is composed of the following sequential parts (see \cref{alg:p
     def step():
         # Reset Parameter
         SetSpeed(objects, 0)
-
+        
         # Building Octree
         octree = Octree(objects)
-
+        
         # Collision Detection
         for leaf in octree:
             colliding_objs = CheckLeaf(leaf.fiber_list)
             colliding_list.insert(colliding_objs)
-
+        
         # Separation Process
         MoveObject(colliding_list)
-
+        
         # Shape Control
         SegmentLength(colliding_list, target_length)
         BendingRadius(colliding_list, target_curvature)
-
+        
         return colliding_list.is_empty()
     \end{lstlisting}
     \caption[]{Main structure in a single step of the collision checking and shape controlling algorithm.}

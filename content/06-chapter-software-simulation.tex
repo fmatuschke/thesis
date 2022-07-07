@@ -330,7 +330,7 @@ for light in light_beams:
         light.intensity *= exp(-step_size * properties.absorbtion)
         light = matrix(properties) * light
         light.pos += step_size
-
+    
     light = optical_elements_end * light
     ccd_array[light.ccd_pos] = light.intensity
 \end{lstlisting}
