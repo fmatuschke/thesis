@@ -185,21 +185,21 @@
 \usepackage{blindtext}
 %\usepackage{ifplatform}
 \usepackage{mwe}
-% 
+%
 \usepackage{acro}
 \DeclareAcroEnding{possessive}{'s}{'s}
 \NewAcroCommand\acg{m}{\acropossessive\UseAcroTemplate{first}{#1}}
 \NewAcroCommand\acsg{m}{\acropossessive\UseAcroTemplate{short}{#1}}
 \NewAcroCommand\aclg{m}{\acropossessive\UseAcroTemplate{long}{#1}}
 \NewAcroCommand\acfg{m}{\acrofull\acropossessive\UseAcroTemplate{first}{#1}}
-% 
+%
 \usepackage{dirtytalk}
 \usepackage{tabularx}
 % \usepackage{stackengine}    % for double sided floats
 \usepackage{pdflscape}
-\usepackage{rotating}    
-\usepackage{shadowtext}    
-\newsavebox{\largestimage}   
+\usepackage{rotating}
+\usepackage{shadowtext}
+\newsavebox{\largestimage}
 \newsavebox{\newtable}
 %
 \acsetup{barriers/use=true,barriers/reset = true}
@@ -259,7 +259,6 @@
 \DeclareMathOperator{\integer}{int}
 \DeclareMathOperator{\round}{round}
 \DeclareMathOperator{\circmean}{circmean}
-
 %
 % **************************************************
 % Syntax Highlighting
@@ -300,7 +299,7 @@
     % identifierstyle=\color{syntax_mauve},
     tabsize=2,
 }
-% 
+%
 \lstdefinestyle{python}{%
     language=Python,
     style=common,
@@ -405,9 +404,9 @@
 % 	}}
 % }
 % \makeatother
-% 
+%
 \makeatletter
-% 
+%
 \tikzdeclarecoordinatesystem{rel}{%
     \tikzset{cs/.cd,x=0pt,y=0pt,#1}%
     \pgfpointlineattime{(\tikz@cs@x)}%
@@ -419,7 +418,7 @@
        {\pgfpointanchor{\tikz@pp@name{\tikz@cs@node}}{north west}}%
     \pgfpoint{\tikz@cs@x}{\pgf@y}%
   }
-% 
+%
 % % Hook into Tikz coordinate parse to provide (<name>:<rel x>x<rel y>)
 % \def\tikz@parse@relcs#1(#2:#3,#4){%
 % \tikz@parse@coordinatesystem#1(rel cs:name={#2},x={#3},y={#4})%
@@ -434,9 +433,8 @@
 %   \fi%
 %   \@next#1(#2:#3)%
 % }
-
 \makeatother
-% 
+%
 %
 \usepackage{environ}
 \makeatletter
@@ -534,7 +532,7 @@
 \newcommand{\dummy}{\textcolor{blue!75!white}{\textbf{\{...\}}}}
 \newcommand{\todo}[1]{\textcolor{blue!75!white}{\textbf{\{#1\}}}}
 \newcommand{\TODO}[1]{\textcolor{red!75!white}{\textbf{\{#1\}}}}
-% 
+%
 % **************************************************
 % Debug LaTeX Information
 % **************************************************

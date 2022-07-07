@@ -2,15 +2,15 @@
 \setcounter{chapter}{10}
 \chapter{Conclusion}
 \label{sec:conclusion}
-% 
+%
 In this work, two algorithms were presented within the software package \ac{fastPLI}.
 The first algorithm is capable of designing non-colliding nerve fiber models in a 3D volume.
 These models can then be used in the second algorithm, which simulates the interaction of polarized light with the modeled nerve fibers in a virtual \ac{3D-PLI} microscopic setup.
-% 
-% 
-% 
+%
+%
+%
 \paragraph{Nerve fiber modeling software}
-% 
+%
 The algorithm for developing non-colliding nerve fiber models takes as input a list of 4D points for each nerve fiber, where the first three values are the $x,y,z$ coordinate in space and the fourth value is the radius of the nerve fiber at that point.
 Therefore, a nerve fiber is represented as a cylindrical conical segments that can change its radius along the path.
 For each fiber segment containing two adjacent points, a test is performed to determine if there is a collision with another fiber segment.
@@ -19,18 +19,18 @@ This is done for all fiber segments in the volume as long as a collision is dete
 Both the length of a fiber segment and the bending radius of a nerve fiber are controlled by the user-defined software parameters.
 These parameters change the discretization and stiffness of the fiber models.
 \par
-% 
+%
 To speed up model generation, an octree is used in the algorithm to divide the volume into sub-volumes.
 This octree can be executed in parallel on multiple \acp{CPU}.
 A visualization is provided to display the volume, allowing the user to interact with the algorithm after each computation step.
 \par
-% 
+%
 An additional project called \ac{MEDUSA} was developed in collaboration with Neurospin at \ac{CEA}, which allows designing non-colliding nerve fiber models with cells such as astrocytes or oligodendrocytes that connect to myelin-enveloped axons.
-% 
-% 
-% 
+%
+%
+%
 \paragraph{Simulation software}
-% 
+%
 The simulation software for \ac{3D-PLI} takes a configuration of nerve fibers as input and simulates the light matter interaction within a \ac{3D-PLI} setup.
 The simulation is divided into two consistent parts.
 The first part generates a discretized 3D volume.
@@ -39,94 +39,94 @@ The final light intensity is stored in a 2D array, which can be modeled as a \ac
 The simulation is capable of simulating multiple tilted light beams, allowing multiple views of the same sub-volume that the light is traversing.
 In addition, the analysis algorithms are implemented into the software package, allowing the nerve fiber orientation to be calculated using the tilt analysis \ac{ROFL}.
 \par
-% 
+%
 The simulation is capable of using multiple cores as well as a system with multiple nodes communicating via \ac{MPI}.
 This allows the simulation of a large volume of nerve fibers, which takes up a large amount of memory due to the discretized volume required.
-% 
-% 
-% 
+%
+%
+%
 \paragraph{Software package \acs{fastPLI}}
-% 
+%
 All algorithms are written as modules in \python{} within the software package \ac{fastPLI}.
-The software package is published as an open source software package so that users can share, ask, and further develop the software to ensure high interchangeability. 
+The software package is published as an open source software package so that users can share, ask, and further develop the software to ensure high interchangeability.
 The software has been tested by several users and published in \ac{JOSS}.
-% 
-% 
-% 
+%
+%
+%
 \paragraph{Nerve fiber modeling results}
-% 
+%
 The nerve fiber modeling algorithm controls the necessary movement of the fibers to solve the collisions via the length of the fiber segments and the bending radius of the fibers.
 Both parameters were characterized in terms of the resulting orientations and computational speed.
 To reduce the dimensionality of the possible configurations, a set of parameters was designed to describe the model.
 This set consists of a relative angle between the two fiber populations, an inclination angle of the first fiber population, a rotation angle of the second fiber population around the first one and a population fraction parameter.
 The set allows nerve fiber models with up to two nerve fiber populations with arbitrary crossing angles to be examined in 3D without describing each fiber separately.
 \par
-% 
+%
 Based on these parameters, the properties of the modeling parameters were first characterized.
 A set of values suitable to generate non-colliding nerve fiber models without introducing significant distortion to the initial configuration was identified.
 In addition, these parameter values are suitable to reduce the runtime to a reasonable extent without losing configuration characteristics or distorting the resulting models.
 To reduce the runtime even further, it was found that about an order of magnitude of computation time can be reduced by not solving the models completely.
 However, the impact of a non-collision-free model remains to be investigated in an additional study.
 \par
-% 
+%
 With the model software parameters found, a library of up to two nerve fiber models described by the four model parameters was created for the \ac{3D-PLI} simulation.
 The orientation distribution was analyzed to be used as a comparison for the orientation analysis of the simulation.
-% 
-% 
-% 
+%
+%
+%
 \paragraph{\acs{3D-PLI} simulation results}
-% 
+%
 Analogous to the nerve fiber modeling software, the parameters of the simulation software were first characterized and measured.
 The optical resolution of the microscope used was reproduced with previous results, as was the optical noise of the system.
 Tissue properties were derived from tissue samples measured in \ac{3D-PLI} so that the simulation could reproduce the results with its limitations.
 The most important characteristic of the simulation, the accuracy and runtime, was characterized by studying multiple \Voxelsize{}.
 It was possible to identify a lower bound that must be used for a given nerve fiber radius.
 \par
-% 
+%
 Using the identified software parameters and the prepared nerve fiber models, simulations were performed and analyzed with the tilt analysis.
 The models were divided into four groups: a single, a flat crossing, an oblique crossing, and a free crossing nerve fiber population.
 This allowed to focus on a specific behavior.
 \par
-% 
+%
 In the case of a single nerve fiber population, only the inclination of the models was a variable.
 With the simulation results, it was shown that in the case of a single fiber population, the orientation can be correctly identified, with an increased uncertainty for very steep fibers.
 Statistically the mean can be measured correctly when measuring a homogenous volume with multiple image pixel.
 For very steep nerve fibers, the relative effective tissue thickness becomes unstable in the tilt analysis.
 This behavior can be used as an indication of how uncertain the results are.
 \par
-% 
+%
 The flat crossing nerve fiber population results in a single value for the tilt analysis that appears to follow the circular mean value of the individual orientations.
 With this behavior, the predominant nerve fiber population is mostly visible, with a slight systematic error due to the orientation to the second nerve fiber direction.
 With the nerve fiber radius distribution and image resolution chosen here, the underlying orientation of the individual nerve fiber population could not be resolved.
 \par
-% 
+%
 The population of inclined crossing nerve fibers has similar characteristics to the population of flat crossing nerve fibers.
 The inclination also appears to follow the circular mean value of each population, but due to the fact that inclined nerve fibers result in less change in the polarization of the light, the resulting orientation is biased toward the less inclined fiber population.
 At this resolution, the current tilt analysis cannot identify the individual nerve fiber populations.
 \par
-% 
+%
 The last models examined were unrestricted nerve fiber populations, so any configuration describable by the four model parameters was possible.
 As a comparison an \ac{ODF} metric was used to determine the orientations of the models for which the tilt analysis of the \ac{3D-PLI} signal was error-prone and which were highly reliable.
 In addition, the individual parameters were discussed and the underlying behavior leading to the erroneous orientations was determined.
 \par
-% 
+%
 An analysis of the simulation speed has shown that the simulation software can be parallelized very well with the capabilities of \ac{MPI} and can use a multi-node system that allows large volumes to be simulated without loss of computation time.
 However, the tissue generation process is slightly less efficient.
 Nevertheless, since multiple \ac{3D-PLI} simulations with tilted light beams are run on the same discretized tissue, this is not a critical issue.
 \par
-% 
+%
 Many possible further optimizations of the algorithm could be identified.
 The general advice is to increase the computational power by using parallel computing architectures like a \ac{GPU}.
 Existing algorithms suitable for this type of computation for both the nerve fiber modeling and \ac{3D-PLI} simulations could be identified and should be implemented in the future.
 \par
-% 
+%
 Overall this thesis presents a software package able to generate complex non colliding tubic nerve fiber models which can be simulated inside a virtual \ac{3D-PLI} microscope setup.
-% 
+%
 The algorithms are highly parallelized and able to run on current supercomputing facilities.
 Additionally, the software package was designed with ease of use in mind.
-% 
+%
 For the future, possible improvements were presented that further reduce the runtime.
-% 
+%
 During the development phase of this software package, several publications with a release of the final software code in the \ac{JOSS} were created.
-% 
+%
 Simulation showed the behavior of the \ac{3D-PLI} signal for multiple fiber populations for the first time.

@@ -66,8 +66,8 @@ the identity $\nabla \times \left( \nabla \times \vec{A} \right) = \nabla(\nabla
 %
 which shows that $c^2 \frac{\partial B} {\partial z} = \frac{\partial E}{\partial t} \Rightarrow \vec{E} \cdot \vec{B} = 0$ and thus the electric and magnetic field components are perpendicular to each other.
 Furthermore, this implies that space and time are linked, and that light propagates in vacuum with the speed of light $c$.
-% 
-% 
+%
+%
 %
 \subsection{Solving Maxwell's equations in vacuum}\label{sec::SolvMaxEqVac}
 %
@@ -111,10 +111,10 @@ Since the light wave propagates in one direction and the electric field and magn
 \caption[]{Illustration of the polarization state of light. Unpolarized light passes through a linear polarizer, polarizing the light in one direction. It then passes through a quarter-wave retarder that converts linearly polarized light (of a specific wavelength) into circularly polarized light, where $E_x$ and $E_y$ are $\pi/2$ in phase.}
 \label{fig:polarization_state}
 \end{figure}
-% 
+%
 Without additional information, the polarization orientation is conventionally in the direction of the electric field component.
 A superposition of x- and y-wave with z-axis equal to the propagation direction gives the general form:
-% 
+%
 \begin{align}
     \vec{E}(z,t) &= \begin{pmatrix} E_{0x} \cdot e^{ -i \phi_x } \\ E_{0y} \cdot e^{ -i \phi_y } \\ 0 \end{pmatrix}
 e^{ -i (kz - \omega t)}
@@ -139,33 +139,33 @@ In addition, the states can be described by the Jones or Stokes calculus, which 
 %
 The general Maxwell's equations \cref{eq::maxwell_general} can be solved similar to \cref{sec::SolvMaxEqVac}, which yields a special behavior, \eg{} the magnetic and electric field component get out of phase.
 In this work, only the two decisive properties absorption and refraction are described.
-% 
-% 
+%
+%
 %
 \subsection{Absorption}\label{sec:theoAbsorption}
 %
 Absorption is the property of reducing the intensity or energy of an electromagnetic wave passing through a medium.
 It is described by the Beer–Lambert law of absorption
-% 
-\begin{align} 
+%
+\begin{align}
     I = I_0 \exp(-\mu x) \label{eq:absorption}
 \end{align}
 %
 with $\mu = \frac{4\pi \kappa}{\lambda}$ as absorption coefficient, with $\lambda$ is the wavelength and $\kappa$ is the imaginary part of the complex refractive index of the medium (see \cref{sec:theoRefraction}).
 If the complex number is inserted into the wave equation, the intensity is reduced exponentially along the path (see \cref{eq:absorption}).
 %
-% 
-% 
+%
+%
 \subsection{Refraction}\label{sec:theoRefraction}
 %
 Refraction is the change of direction of light as it passes from one medium to another.
-Refraction can be explained by using the full Maxwell's equations for non-conductive materials, 
-%, \ie{}, $\vec{j} = \vec{0}$ \TODO{$, \rho = 0$}, 
+Refraction can be explained by using the full Maxwell's equations for non-conductive materials,
+%, \ie{}, $\vec{j} = \vec{0}$ \TODO{$, \rho = 0$},
 \ie{}, the differential equation consists of a primary wave with secondary waves induced by the atomic medium, resulting in a decrease in the velocity of the resulting wave.
 Mathematically, this can be described by a complex number $n = c' / c$.
 Using this relationship at a boundary surface between two media, one can show that the incident light beam splits into a reflecting and transmitting light wave.
 The reflecting light wave has the same angle as the incident light beam relative to the surface normal.
-% 
+%
 However, the transmitting light beam, due to the reduction of the velocity, changes its direction described by the Snell's law (see \cref{fig:optic_refraction}):
 %
 \begin{figure}[!t]
@@ -175,17 +175,17 @@ However, the transmitting light beam, due to the reduction of the velocity, chan
 \caption[]{Illustration of refraction by Snell's law.}
 \label{fig:optic_refraction}
 \end{figure}
-% 
+%
 \begin{align}
     n_\alpha \sin \alpha = n_\beta \sin \beta \label{eq:Snellius}
 \end{align}
-% 
+%
 The refractive index $n$ can also be described as complex refractive index, where the imaginary part describes the absorption of light along the material (see \cref{sec:theoAbsorption}):
-% 
+%
 \begin{align}
 \underline{n} = n + i\kappa
 \end{align}
-% 
+%
 %
 %
 \subsection{Birefringence}
@@ -205,7 +205,7 @@ The refractive index can be described by the ordinary refractive index $n_o$ and
     This leads in the case of a $\lambda/4$ retarder to a circular polarized light wave.}
 \label{fig:optic_retardation}
 \end{figure}
-% 
+%
 Therefore, the light ray can be split into the same perpendicular parts and each can be described by itself.
 These two light rays can have a different direction due to refraction.
 If the separation is relatively small, the two light beams (or multiple light beams) can be modeled as they would recombine when leaving the material.
@@ -219,7 +219,7 @@ The phase change is called birefringence and the physical property is described 
 %
 \subsection{Jones calculus}
 \label{sec:jones}
-% 
+%
 The Jones calculus, introduced by Robert Clark Jones in 1941 \cite{Jones1941}, describes the polarization state of a light beam by a complex vector $J$ (see \cref{fig:polarization_state_vectors}):
 %
 \begin{align}
@@ -241,7 +241,7 @@ Optical elements that change the polarization state, such as polarization filter
 0 & 0 \\ 0 & 1
 \end{pmatrix}
 \end{align}
-% 
+%
 \paragraph{Retarder (fast axis x-axis)}
 \begin{align}
 \mat{M} =
@@ -249,14 +249,14 @@ Optical elements that change the polarization state, such as polarization filter
 e^{i \delta_x} & 0 \\ 0 & e^{i \delta_y}
 \end{pmatrix}
 , \enspace
-% 
+%
 \Lambda_{1/4}=
 e^{\frac{i \pi}{4}}
 \begin{pmatrix}
 1 & 0 \\ 0 & -i
 \end{pmatrix}
 \end{align}
-% 
+%
 with $\delta$ as retardation and $\Lambda_{1/4}$ as quarter-wave retarder.
 %
 \paragraph{Rotation matrix}
@@ -272,7 +272,7 @@ A rotation of an optical element $\mat{E}$ can be achieved by a 2D rotation matr
 \end{pmatrix}
 \end{split}
 \end{align}
-% 
+%
 %
 %
 \subsection{M{\"u}ller-Stokes calculus}\label{sec:MuellerStokes}
@@ -282,19 +282,19 @@ However, it does not use the absolute electric components, but the relative pola
 %
 \paragraph{Stokes vector}
 \begin{align}
-% 
+%
 \vec{S} =
 \begin{pmatrix} S_0 \\ S_1 \\ S_2 \\ S_3\end{pmatrix} , \quad
-% 
+%
 \begin{split}
 S_0 &= I \\
 S_1 &= I p \cos 2\psi \cos 2\chi \\
 S_2 &= I p \sin 2\psi \cos 2\chi \\
 S_3 &= I p \sin 2\chi
 \end{split}
-% 
+%
 \hspace{-7em}
-% 
+%
 \begin{split}
 & \\
 & \\
@@ -312,7 +312,7 @@ where $I$ is the intensity, $p$ the polarization state, $\Psi$ and $\delta$ the 
 \caption[]{Poincar{\'e} sphere illustrating Stokes component.}
 \label{fig:stokesPoincare}
 \end{figure}
-% 
+%
 With this description, the phase can no longer be described as in the Jones calculus.
 However, the relative phase information is stored and can be used to describe unpolarized light or partial polarized light as well as the polarization states of polarization filters, which the Jones calculus cannot describe.
 Analogous to the Jones calculus, one can formulate the matrices for the optical components:
@@ -346,7 +346,7 @@ Analogous to the Jones calculus, one can formulate the matrices for the optical 
     0 & 0 & -\sin \delta &  \cos \delta
 \end{pmatrix}
 , \enspace
-% 
+%
 \Lambda_{1/4}=\
 \begin{pmatrix}
     1 & 0 & 0 &  0 \\

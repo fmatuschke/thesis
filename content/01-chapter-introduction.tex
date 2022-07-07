@@ -3,25 +3,25 @@
 \cleanchapterquote{Inside you is the potential to make yourself better ... and that is what it is to be human. \hspace{2em}
 To make yourself more than you are.}{Jean-Luc Picard}{Captain USS Enterprise NCC-1701-E} %Captain USS Enterprise NCC-1701-E
 \cleardoublepage
-% 
-% 
-% 
+%
+%
+%
 \setcounter{chapter}{0}
 \chapter{Introduction}
 \label{sec:intro}
-% 
+%
 One of the biggest unsolved questions in science today is how the brain, especially the human brain, functions.
 An important role plays the connectivity of neurons among each other.
 They may be connected via nerve fibers over a relatively short distance to neighboring neurons or to more distant regions of the brain.
 Understanding the brain's connectome, the interconnection of brain cells, will allow us to explore and harness the origins of cognitive abilities such as object recognition and memory.
 Since the brain is such a large and complex structure relative to the size of its individual building blocks, neuroscientists are joining forces in collaborative projects such as the Human Brain Project to solve this problem together \cite{Markram2006, Shen2012, Amunts2013, Amunts2016}.
 \par
-% 
-Techniques in machine learning \cite{murphy2013machine, Goodfellow-et-al-2016}, especially deep learning, profit from a better understanding of the brain. 
+%
+Techniques in machine learning \cite{murphy2013machine, Goodfellow-et-al-2016}, especially deep learning, profit from a better understanding of the brain.
 Different types of neural networks are able to solve difficult problems that are almost impossible to solve with a classical algorithm.
 A better understanding of the neural network as a subset of the connectome can therefore help to design artificial neural networks to efficiently solve tasks like image recognition, and vice versa.
 \par
-% 
+%
 The only technique currently able to measure the human connectome in vivo (\ie{}, the living brain) is by using \ac{dMRI}.
 \ac{dMRI} provides a rather low resolution of about one millimeter relative to the structural configuration of nerve fiber bundles of several micrometers in vivo.
 This imaging resolution at the \si{\milli\meter}-scale can lead to misleading results due to the models and resolution limits involved, in particular in regions of fiber crossings or fiber \say{kissing} \cite{MaierHein2017, Schilling2021}.
@@ -31,7 +31,7 @@ Microscopic imaging techniques on the other side can reach up to the order of mi
 The challenge at such low scales is not only to measure a portion of the brain (not to mention an entire human brain), but also to be able to process this massive amount of data.
 Such datasets will help to learn from and improve the models applied to the lower resolution datasets, which will help with \eg{} diagnostics \cite{Yendiki2021}.
 \par
-% 
+%
 \ac{3D-PLI} is a microscopic imaging technique that allows the measurement of the orientation of nerve fibers inside a brain section \cite{Axer2011a, Axer2011, Axer2016}.
 A nerve fiber is the extension of a nerve cell.
 The nerve fiber consists of an axon, which transmits the electrical signal from the nerve cell.
@@ -49,12 +49,12 @@ Therefore, there is no change for the polarization state of the light.
 Crossing nerve fibers on the other hand are a mixture of multiple light waves.
 Since however only the sum of all light waves reaching the same sensor pixel is measured, the individual information is lost.
 \par
-% 
+%
 To improve the understanding of the underlying architecture including the nerve fiber orientations and its effect on the measured polarization signal, simulations play therefore an important role.
 Due to the involved spatial sizes and the multitude of possible orientations of nerve fibers and further cells, no phantom currently exists, allowing to investigate all necessary possibilities.
 Complementary imaging techniques, such as two-photon microscopy, allow the tissue to be examined at higher resolution and lower deformations, but this has the disadvantage of longer measurement time \cite{Costantini2020, Costantini2021}.
 \par
-% 
+%
 For this reason, simulations are used.
 Simulations make studies of physical effects possible which cannot be easily addressed by experimental setups \cite{Callaghan2019, Menzel2020}.
 Clear benefits of simulations are the repeatability of experiments and the possibility to generate relevant statistics (\ie{}, large data sets) to meet \eg{} the requirements of machine learning \cite{Ginsburger2018, ginsburgerDis2019}.
@@ -64,6 +64,6 @@ Therefore, the simulation and generation of such datasets should be done as fast
 This dissertation provides a novel open-source software package, the \ac{fastPLI}, whose main purpose is to provide a method for modeling dense, non-colliding 3D nerve fiber models \cite{Matuschke2019, Matuschke2021, Reuter2019}.
 These models are then used to simulate them in a virtual \ac{3D-PLI} experiment by calculating the effect of birefringence on polarized light using the M{\"u}ller-Stokes calculus.
 \par
-% 
+%
 An important issue is the use of supercomputing architectures with efficiently developed algorithms to enable simulations of larger models and volumes.
 The usefulness will be investigated and limitations will be demonstrated.

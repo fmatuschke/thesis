@@ -3,13 +3,13 @@
 \part{Software Application and Evaluation}
 % \acbarrier
 \parttoc
-% 
-% 
-% 
+%
+%
+%
 \setcounter{chapter}{7}
 \chapter{Dense Nerve Fiber Modeling}
 \label{cha:model_analysis}
-% 
+%
 \section{Introduction}
 %
 In the previous chapter \cref{chap:sof:modeling}, the module \pymodule{fastpli.model} was described for creating non-colliding nerve fiber models.
@@ -48,16 +48,16 @@ These parameters of a fiber population have the advantage of being anatomically 
 This is for example also used in \ac{dMRI} simulations \cite{Ginsburger2018,Ginsburger2019,ginsburgerDis2019}.
 The number of fiber populations is limited to two to reduce the degrees of freedom within the models.
 %
-% 
-% 
+%
+%
 \subsection{Orientation and proportion}\label{sec:modelParamet}
 %
-For the study of a single fiber population, only one model is needed, since the model can be rotated to any 3D orientation. 
+For the study of a single fiber population, only one model is needed, since the model can be rotated to any 3D orientation.
 For two fiber populations, the crossing angle $\modelOmega$ between the two fiber population orientations is relevant (see \cref{fig:modelinit}).
 By introducing a rotation $\modelRot$ along the first fiber population, the orientation of the second fiber population can be changed (see \cref{fig:modelrota}).
 If the first fiber population is tilted by an angle $\modelInc$, an arbitrary fiber configuration with two fiber populations can be described (see \cref{fig:modelrotb}).
 \par
-% 
+%
 %
 \begin{figure}[!t]
     \centering
@@ -79,7 +79,7 @@ If the first fiber population is tilted by an angle $\modelInc$, an arbitrary fi
     \caption[]{Parameterization of two mutually relatively oriented fiber populations for the creation of a library.}
     \label{fig:twomodelpopdesign}
     \end{figure}
-% 
+%
 A further parameter is the first population proportion:
 \begin{align}
     \modelPsi=\frac{N_0}{N_0+N_1}
@@ -95,21 +95,21 @@ There are fairly good approximations, but one would still have to create a model
 For simplicity, the intersection angle $\modelOmega$ is sampled instead.
 By rotating the model with $\modelRot$ along the first fiber population axis for all sampled crossing angles $\modelOmega$, one can sample the entire sphere.
 \par
-% 
+%
 Therefore, the following parameter samples are chosen:
-% 
+%
 \begin{align}
     \begin{split}
         \modelOmega &= \{\SI{10}{\degree}, \SI{20}{\degree}, ..., \SI{90}{\degree}\}\\
         \modelPsi &= \{\SI{10}{\percent}, \SI{20}{\percent}, ..., \SI{90}{\percent}\}
     \end{split}
 \end{align}
-% 
+%
 In the case of $\modelOmega = \SI{0}{\degree}, \modelPsi = 0$ or $\modelPsi = 1$, no second unique orientation exists, so the single fiber population model can be applied.
 This results in a total number of $\SI{82}{}$ models that are required.
 %
-% 
-% 
+%
+%
 \subsection{Fiber placement}
 %
 To design the individual fiber configurations for each fiber population, the methods described in \cref{sec:sandbox} are used, \ie{}, the generation of fiber bundles with seed points.
@@ -194,7 +194,7 @@ To investigate the behavior of \segLength{} and \segRadius{}, the two relative f
         \segRadius &= \segRadiusFactor \cdot \fiberRadiusMean
     \end{split}
 \end{align}
-% 
+%
 This allows the investigation of the model characterization independent of the fiber radius.
 The parameter ranges selected to study the effects are listed in \cref{tab:parameterSetupChar}.
 %
@@ -324,7 +324,7 @@ There is a slight decrease in the number and a significant increase with a decre
 The splitting of the curves for the \segRadiusFactor{} is also visible, but not as prominent as in the case of the number of colliding objects.
 In the case of $\segLengthFactor = \SI{1}{}$ and $\segRadiusFactor = \SI{8}{}$, an increase in the number of objects is observed in the last phase of the collision solver algorithm.
 \par
-% 
+%
 The time per step decreases for all parameters over the number of steps until it reaches a constant value for each \segLengthFactor{}.
 The \segRadiusFactor{} does not seem to play a significant role.
 For $\segLengthFactor{} = \SI{8}{}$, the variance increases again at the end of the runtime, as in the case of the single fiber population, but not as much.
@@ -372,9 +372,9 @@ For a mean fiber radius $\fiberRadiusMean = \SIlist{1;2}{\micro\meter}$ the beha
 The variance increases and the median decreases significantly for $\fiberRadiusMean \geq \SI{5}{\micro\meter}$.
 The effect of the parameter is not changed otherwise.
 For mean fiber radii $\fiberRadiusMean \geq \SI{5}{\micro\meter}$, the volume fraction does not decrease significantly.
-% 
-% 
-% 
+%
+%
+%
 \subsection{Discussion}
 %
 For parallel fibers, the collision solving process is always faster than for crossing bundles.
@@ -460,7 +460,7 @@ It should be noted that this is only the fraction of the fiber segment that stil
 The number of colliding fiber segments decreases steadily for the chosen parameters.
 This potentially saves an order of magnitude in runtime.
 Here, the influence on the simulation must also be investigated in advance.
-% 
+%
 %
 %
 \section{Nerve Fiber Model Library for \acs{3D-PLI} Simulations}
@@ -469,7 +469,7 @@ Here, the influence on the simulation must also be investigated in advance.
 With the model parameters selected above (see \cref{sec:modelSetup}), the simulation models are generated.
 As described in \cref{sec:modelParamet}, only fibers with $\modelOmega = \SIrange{10}{90}{\degree}$ and $\modelPsi = \SIrange{0.1}{0.9}{}$ are generated with the addition of $\modelOmega=\SI{0}{\degree}, \modelPsi=\SI{1.0}{}$.
 The volume for the simulation is scaled up to a sphere with a diameter of $\SI{135}{\micro\meter}$ so that a simulated volume can be generated from the sphere in any orientation.
-% 
+%
 %
 %
 \subsection{Results}
@@ -490,7 +490,7 @@ The rest of the dataset is available in \cref{app:modelOrientation}.
 The orientation distributions show that the individual fiber segments statistically follow the orientation of the fiber population.
 The density reflects the population fraction $\modelPsi$ of the fiber populations.
 \par
-% 
+%
 \begin{figure}[!t]
     \centering
     \includegraphics[]{gfx/rc1/model/cube_2pop_domega_analysis_output_.pdf}
@@ -502,7 +502,7 @@ The density reflects the population fraction $\modelPsi$ of the fiber population
 Since the inclination depends on the direction, the opening angle is also analyzed.
 The individual measurements of the opening angle distributions are available in \cref{app:modelDistribution}.
 \par
-% 
+%
 The direction and inclination angles are around $\SI{0}{\degree}$ for the first fiber population $\popa$ for all parameter combinations.
 The variance decreases with increasing population fraction $\modelPsi$ of the second fiber population.
 The crossing angle $\modelOmega$ does not seem to have any influence.
@@ -510,10 +510,10 @@ The opening angle $\openingAngle$ has its mean value between about $\SI{10}{\deg
 The variance decreases with increasing fiber population fraction $\modelPsi$.
 The crossing angle $\modelOmega$ does not seem to have any influence.
 \par
-% 
+%
 % second fiber population
 The mean direction $\dir$ follows the initial crossing angle $\modelOmega$.
-The fiber population fraction $\modelPsi$ does not seem to have a significant influence. 
+The fiber population fraction $\modelPsi$ does not seem to have a significant influence.
 The inclination $\modelInc$ is stable around $\SI{0}{\degree}$ for all parameters.
 The parameters do not seem to have a significant effect on their distribution.
 The opening angle $\openingAngle$ is between $\SI{15}{\degree}$ and $\SI{20}{\degree}$ for the second fiber population.
@@ -528,18 +528,18 @@ For large crossing angles, the mean value of the opening angle increases with in
 The inner $\SI{10}{\micro\meter} \times \SI{10}{\micro\meter} \times \SI{10}{\micro\meter}$ of the volumes are shown.}
 \label{fig:modelImages}
 \end{figure}
-% 
+%
 \Cref{fig:modelImages} shows the visualization of the fiber models.
 The visualization shows the inner $\SI{10}{\micro\meter} \times \SI{10}{\micro\meter} \times \SI{10}{\micro\meter}$ cube, so more details are visible.
 Depending on the population $\modelPsi$, more or less layered distinct structures are visibly parallel to the intersection plane.
 \par
-% 
+%
 % Depending on the parallel or crossing fiber populations, the runtime was in the range of $\SIrange{32}{40}{\hour}$ per model with $\SIrange{11000}{17000}{\steps}$.
 %
-% 
-% 
+%
+%
 \subsection{Discussion}
-% 
+%
 These models have the advantage of producing a naturally inspired angular distribution, which should result in a more realistic distribution.
 The orientation distribution of the simulation model library is stable at all crossing angles.
 However, the distribution variance is lower for the fiber population with higher population fraction and vice versa.
@@ -554,7 +554,7 @@ Real fabric will also have a different pattern, \eg{} interwoven fiber bundles i
 In linear \ac{3D-PLI} simulations, this has no effect because the retardation matrices for the intensity signal are commutative.
 Or more generally, the order of the tissue matrices is commutative for the intensity signal.
 In other fields, such as \ac{dMRI}, additional models are probably required in this regard.
-% 
+%
 %
 %
 \section{Multicore CPU Acceleration}
@@ -562,7 +562,7 @@ In other fields, such as \ac{dMRI}, additional models are probably required in t
 As described in \cref{sec:modelOpt}, \ac{OpenMP} is used to accelerate \code{for} loops in the algorithm.
 This means that it is currently not possible to use multiple compute nodes.
 \par
-% 
+%
 To investigate the speedup, the runtime for the parameters from \cref{tab:parameterSetup} is measured for parallel and crossing fibers.
 The volume used is $\SI{60}{\micro\meter} \times \SI{60}{\micro\meter} \times \SI{60}{\micro\meter}$.
 Speedup is calculated for an average of 100 consecutive steps.
@@ -570,36 +570,36 @@ To measure whether the speedup changes with time, the measurements are started a
 The calculation is repeated for each case $n=\SI{24}{}$ times.
 For the measurements, the cores were bound to physical CPU cores.
 %
-% 
-% 
+%
+%
 \subsection{Results}
-% 
+%
 \begin{figure}[!t]
 \centering
 \includegraphics{gfx/rc1/speed/boxplot_output_r_0.5__.pkl_speedup.csv.pdf}
 \caption[]{\code{model.Sovler} speedup. Time measurements are performed after $\Delta_{\mathit{steps}}$ for the next $\SI{25}{\steps}$ for parallel \pfbs{} and crossing \cfbs{} fiber configurations.}
 \label{fig:solverSpeedup}
 \end{figure}
-% 
+%
 \Cref{fig:solverSpeedup} shows the speedup for different starting positions $\Delta_{\mathit{steps}}$ for the parallel \pfbs{} and crossing \cfbs{} fiber bundles.
 Up to $\SI{4}{cores}$, the speedup increases linearly to a speedup of $\SI{3}{}$.
 From $\SI{4}{cores}$, the speedup increases more slowly until a significant increase to a speedup of about $\SI{5}{}$ is observed for $\SI{8}{cores}$.
 \par
-% 
+%
 Overall, no significant change is visible for parallel or crossing fibers.
 Also, for different starting points $\Delta_{\mathit{steps}}$, no change in acceleration is visible.
 The speedup increases up to $\SI{8}{}$.
-% 
-% 
-% 
+%
+%
+%
 \subsection{Discussion}
-% 
+%
 Up to $\SI{4}{cores}$ the speedup is expected with $\SI{3}{}$.
 The slower increase and jump for $\SI{8}{cores}$ can be explained by the structure of the \name{octree}.
 Since for $\SI{8}{cores}$ the parallel alignment on a \name{octree} (can) be optimal, the speedup increases.
 More cores are not feasible.
 \par
-% 
+%
 Nevertheless, the data suggests that using a multicore system shortens the runtime considerably.
 However, for small volumes or low-fiber objects, one should use only one or two cores and prefer to run multiple models in parallel.
 The results also show that an optimized algorithm is needed, especially when the volume or the number of objects increases.

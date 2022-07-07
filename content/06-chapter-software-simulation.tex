@@ -7,10 +7,10 @@ Simulations of \ac{3D-PLI} have been used to study multiple effects of the micro
 The algorithm presented here for designing new collision-free fiber models allowed to simulate the effect of scattered light in  simulations based on a finite-difference time-domain algorithm without superimposed interference signals.
 These simulations enabled the understanding of scattering effects due to fiber bundle and crossing configurations as well as the transmission change for tilted fiber configurations \cite{MenzelDissertation,Menzel2020,Menzel2021}.
 \par
-% 
+%
 The current formulation allows reproducing linear optics simulations coherent with the experimental results of \cite{Dohmen2015,Menzel2015,Menzel2016}.
 In contrast to \cite{Dohmen2015,Menzel2015,Menzel2016}, whose algorithm is computationally and memory intensive due to the pre-computations for discretized tissue volume, this work proposes using the foundations for more efficient parallel computing within a supercomputer architecture presented in \cite{Lucksch2016}.
-The simulation algorithm was redesigned considering computational efficiency and the manufacturing design of the new \ac{LMP3D} microscope. 
+The simulation algorithm was redesigned considering computational efficiency and the manufacturing design of the new \ac{LMP3D} microscope.
 Additionally, the linear optics simulation uses the M{\"u}ller-Stokes calculus also to take the polarization effects of filters into account.
 \par
 %
@@ -21,8 +21,8 @@ A parallelization technique with \ac{MPI} allows the volume to be partitioned am
 Due to the tilting approach, the light vector in such a parallelized volume must be able to leave the current volume of a single \ac{CPU} and traverse to the next volume/process.
 The computationally intensive algorithms are written in \cpp{} with an additionally user-friendly designed wrapper function in \python{}.
 %
-% 
-% 
+%
+%
 \section{Discrete Volume Generator}
 \label{sec:dv_generator}
 %
@@ -69,7 +69,7 @@ Each layer requires a number of physical properties in addition to its radius:
 %
 The properties are specified as a list of tuples within the algorithm (see \cref{alg:fiberbundleprops}).
 Subsequently, the discretized volume generator returns the arrays \tissue{}, \opticalaxis{} and \propertylist{} for used in the light matter simulation.
-% 
+%
 \begin{lstfloat}[!ht]
 \lstset{style=python}
 \begin{lstlisting}[]
@@ -80,9 +80,9 @@ fbs_properties = [[(r, dn, mu, 'p'), (second layer), ...],
 \caption[]{Definition of the properties of fiber bundles.}
 \label{alg:fiberbundleprops}
 \end{lstfloat}
-% 
-% 
-% 
+%
+%
+%
 \subsection{Discretization of a nerve fiber model}
 %
 \begin{figure}[!t]
@@ -110,7 +110,7 @@ a computation analogously to the collision between two nerve fiber segments is c
 The distance vector $\vec{d}$ is used to check whether the voxel is inside the fiber segment, and if so, in which layer of the fiber segment it is located, and to calculate the orientation of the birefringence axis.
 \par
 %
-Two values are stored in the case of a voxel occupied by a fiber segment. 
+Two values are stored in the case of a voxel occupied by a fiber segment.
 The first one is an index within an array \name{tissue} which will be used later to retrieve the properties from a list with the same index order.
 The second information is the orientation of the optic axis within the current layer, stored in the array \name{optic\_axis}.
 The orientation can be parallel to the fiber segment in the case of the macroscopic model or radial in the case of the microscopic model.
@@ -161,17 +161,17 @@ for fiber_segment in fiber_bundle:
 %
 The parameter \Voxelsize{} is an essential property of the light matter simulation.
 It determines how accurate the volume is represented (see \cref{fig:vectorfield_disc_error}).
-Additionally, in the light matter simulation one light ray is cast from each voxel of the bottom plane (see \cref{sec:pathOfLight}). 
+Additionally, in the light matter simulation one light ray is cast from each voxel of the bottom plane (see \cref{sec:pathOfLight}).
 Therefore it is also responsible for the sampling of the resulting intensities.
 %
 %
-% 
+%
 \subsection{Code optimizations}\label{sec:dvOpti}
 %
 All arrays are implemented as contiguous c-arrays, accessible externally as \name{NumPy-arrays} without copying the data.
 Since these arrays grow with $\mathcal{O}(\frac{1}{\voxelsize}^3)$, the ownership of the data is movable in both the \cpp{} libraries and \python{} code.
 The memory order of the arrays is in the $x\text{-}y\text{-}z$ direction, so the largest memory shift is in $x$ and the smallest in $z$.
-Thus, when the light moves along the $z$-direction, the information can be read out linearly from the memory, and the acp{CPU} cache prefetcher can be used effectively. 
+Thus, when the light moves along the $z$-direction, the information can be read out linearly from the memory, and the acp{CPU} cache prefetcher can be used effectively.
 \par
 %
 Two methods are used to parallelize the algorithm on the \ac{CPU}.
@@ -196,12 +196,12 @@ To share the work, thread $n$ processes only the memory for the first index $i$ 
 \caption[]{Discretization volume parallelization with \ac{OpenMP}. Each thread processes every $n$-th $yz$-section. This ensures both thread safety and a more balanced workload.}
 \label{fig:discVolThread}
 \end{figure}
-% 
-Instead of dividing the volume into $n$ subvolumes, each thread loops over every $N_{\mathit{num\_threads}}$ slice of the volume (see \cref{fig:discVolThread}) to distribute the work if the volume is not filled homogeneously with fibers. 
+%
+Instead of dividing the volume into $n$ subvolumes, each thread loops over every $N_{\mathit{num\_threads}}$ slice of the volume (see \cref{fig:discVolThread}) to distribute the work if the volume is not filled homogeneously with fibers.
 This procedure leads to a thread-safe writable operation.
 One disadvantage of this algorithm is that all threads have to check if the \ac{AABB} of all fiber segments is inside the current \ac{VOI}.
-% 
-% 
+%
+%
 %
 \section{Light Matter Simulation}
 \label{sec:simulation}
@@ -211,7 +211,7 @@ Since no scattering or refraction effects are considered in this simulation, eac
 Initially, the light vector is multiplied by the first polarizer of the optical system (see \cref{sec:expSetup}).
 The path inside the tissue is discretized into steps.
 The interaction between the light ray and the tissue is calculated after each step according to $ \vec{S}' = \prod_i \left(\mat{R}_i \mat{M}_i \mat{R}_i\right) \cdot \vec{S}$ (see \cref{sec:MuellerStokes}).
-% 
+%
 %
 %
 \subsection{Light ray path}
@@ -230,7 +230,7 @@ For this purpose, the \ac{LAP} uses a tilting stage to which the tissue sections
 \caption[]{3D tilting: around $xy$-axis, \raisebox{.25em}{\tikz \draw[red,thick](0,0)--(0.25,0);} top, \raisebox{.25em}{\tikz \draw[green,thick](0,0)--(0.25,0);} middle, \raisebox{.25em}{\tikz \draw[blue,thick](0,0)--(0.25,0);} bottom, \raisebox{.25em}{\tikz \draw[dash pattern=on 1.25pt off 1.25pt,thick](0,0)--(0.25,0);} original, \raisebox{.25em}{\tikz \draw[gray](0,0)--(0.25,0);} axis of rotation.}
 \label{fig:tilting_camera_view}
 \end{figure}
-% 
+%
 The \ac{LMP3D}, on the other hand, has a tilted light beam.
 This is achieved by a conical light path, from which an aperture is then used to sample the desired light direction \cite{Wiese:887678}.
 Both methods can be mathematically represented by the same procedure.
@@ -254,7 +254,6 @@ Since this only adds a parallel shift, simulation is only necessary when the eff
 %
 The initial position of the light beam is calculated by traversing the light path backwards (see \cref{fig:tilted_side_view}).
 This has the advantage that each index inside the \ac{CCD} always receives exactly one light beam.
-
 From the \ac{CCD} array, the light path can be shifted back to the top plane of the tissue $\mathfrak{S}_{top}$.
 Subsequently, the light beam $\vec{l}_1$ is traced back through the tissue to the bottom plane $\mathfrak{S}_{bottom}$.
 The point on the lower tissue plane corresponds to the initial position of the light beam.
@@ -282,9 +281,9 @@ where $\vec{x}$ is the coordinate input, $\mat{A}$ and $\vec{t}$ are the transfo
 The light matter simulation with the light paths sampling as described above takes this distorted view into account and removes it.
 The simulation can also sample the light rays so that distortion occurs.
 Thus, the resulting images have to be registered onto each other by an affine transformation which is also available in the algorithm.
-% 
-% 
-% 
+%
+%
+%
 \subsection{Tissue voxel interpolation}
 %
 If the \Stepsize{} of the light ray is not equal to the \Voxelsize{} or if the light path is tilted, the light ray position after a step no longer matches the center of the voxel.
@@ -324,7 +323,6 @@ The pseudocode is shown in \cref{alg:simulationLoop}.
 \lstset{style=python}
 \begin{lstlisting}[]
 light_beams = calculate_light_starting_positions()
-
 for light in light_beams:
     light = optical_elements_start * light
     while light.pos in volume:
@@ -332,7 +330,7 @@ for light in light_beams:
         light.intensity *= exp(-step_size * properties.absorbtion)
         light = matrix(properties) * light
         light.pos += step_size
-   
+
     light = optical_elements_end * light
     ccd_array[light.ccd_pos] = light.intensity
 \end{lstlisting}
@@ -341,8 +339,8 @@ for light in light_beams:
 \end{lstfloat}
 %
 To resample the array to the final size of the \ac{CCD} sensor and apply the noise model, there are \python{} functions outside the simulation software available.
-% 
-% 
+%
+%
 %
 \subsection{Optical system and signal analysis}
 \label{sec:ccdOptic}
@@ -358,13 +356,13 @@ To analyze the signal, the same algorithms are implemented as in the \ac{3D-PLI}
 These include the modalities analysis transmittance, direction and retardation and the tilt analysis performed by \ac{ROFL}.
 The tilt analysis is a fork of the existing routine analysis developed in python.
 To parallelize the execution, the native \code{multiprocessing} library of \python{} can be used.
-% 
-% 
+%
+%
 %
 \section{Speedup Strategies}\label{sec:sim:opt}
 %
 \subsection{Code design}
-% 
+%
 The following key optimizations are used in the pipeline:
 \begin{itemize}
     \item The order of the tissues stored in memory is along the z-axis (as described in \cref{sec:dvOpti}) so that the light ray \textit{traverses} along the aligned memory.
@@ -374,7 +372,7 @@ The following key optimizations are used in the pipeline:
 \end{itemize}
 %
 %
-% 
+%
 \subsection{MPI parallelization}\label{sec:mpiSim}
 %
 The algorithms for discrete volume generation and light matter simulation can additionally use a parallelization technique.
@@ -390,7 +388,7 @@ A method is implemented to automatically partition the volume along the $x$-axis
     \caption[]{ This example uses six \ac{MPI} ranks to split the entire volume into six sub-volumes. To calculate the value at a given point a eight-neighborhood is necessary. Therefore a \name{halo} area (coloured voxels) with the same information shared by neighboring \ac{MPI} process is necessary.}
     \label{fig:com_halo}
 \end{figure}
-% 
+%
 Each \ac{CPU} can perform the discrete volume generation without the knowledge of each other.
 The exception is the light matter simulation for tilted light beams.
 Here, when a light ray leaves the local volume, it must be transmitted to the adjacent volume.
@@ -402,7 +400,7 @@ To solve this communication problem, the algorithm uses a \name{halo}.
 This is a commonly used concept where the boundaries (in this case the volume) are increased by a certain size so that the same information about the shared regions is available everywhere (see \cref{fig:com_halo}).
 Such approach reduces the number of necessary communications between different ranks (see \cref{fig:com_halo}).
 \par
-% 
+%
 To further speed up the communication process, all outgoing light beams are first stored locally in a communication buffer, and only after all local light beams have been processed the buffer is passed to the neighbors.
 This ensures minimal communication overhead.
 The main loop of the light beam algorithm is then restarted on all \ac{MPI} \name{ranks} for the communicated light beams.

@@ -2,9 +2,9 @@
 \clearpage{\thispagestyle{empty}\cleardoublepage}
 \part{Basics}
 \parttoc
-% 
-% 
-% 
+%
+%
+%
 \cleardoublepage
 \setcounter{chapter}{1}
 \chapter{Neuroanatomy}
@@ -18,13 +18,13 @@ Techniques such as \ac{dMRI}, fluorescence microscopy, microscopy on stained tis
 \par
 %
 This chapter gives a general overview of the structure of the brain with its most important regions as well as the nerve fiber architecture.
-% 
-% 
+%
+%
 %
 \section{Brain Architecture}
 %
 The mammal brain consists of three main parts: the brainstem, the cerebellum and the cerebrum (see \cref{fig:humanBrain}).
-% 
+%
 The brainstem performs various tasks such as controlling the cardiovascular system. It also serves as a connection between the various brain areas and the spinal cord in the lower part of the brain.
 It can be further subdivided into the midbrain, the pons and the medulla oblongata.
 The cerebellum is located at the lower rear of the brain.
@@ -41,7 +41,7 @@ The primary function of the occipital lobe is signal processing of the visual sy
 The temporal lobe contains auditory functions and language perception in addition to visual memories.
 Beneath the brain surface there are other structures such as the basal ganglia or the thalamus.
 \par
-% 
+%
 \begin{figure}[!t]
 \centering
 \setlength{\tikzwidth}{0.475\textwidth}
@@ -61,7 +61,7 @@ Beneath the brain surface there are other structures such as the basal ganglia o
                 node[anchor=south, pos=1] {\color[RGB]{230,171,2}Lobus parietalis};
             \draw[<-] (rel cs:name=fig,x=0.95,y=0.75) -- ++(30:0.66)
                 node[anchor=south, pos=1] {\color[RGB]{231,41,138}Lobus occipitalis};
-            \draw[<-] (rel cs:name=fig,x=0.4,y=0.125) -- ++(210:0.25) 
+            \draw[<-] (rel cs:name=fig,x=0.4,y=0.125) -- ++(210:0.25)
                 node[anchor=north, pos=1] {\color[RGB]{27,158,119}Lobus temporalis};
             \draw[<-] (rel cs:name=fig,x=0.95,y=0.2) -- ++(-20:0.66)
                 node[anchor=north, pos=1] {\color[RGB]{102,166,30}Cerebellum};
@@ -96,7 +96,7 @@ Beneath the brain surface there are other structures such as the basal ganglia o
             \draw[white, <-] (rel cs:name=fig,x=0.725,y=0.85) -- ++(30:0.5);
             \draw[RED, <-] (rel cs:name=fig,x=0.725,y=0.85) -- ++(30:0.5) node[anchor=west, pos=1] {\color{RED}GM};
         \end{scope}
-    \end{tikzpicture}    
+    \end{tikzpicture}
     }
 \caption[]{Illustration of the human brain and a cell body stained coronal section.}
 \label{fig:humanBrain}
@@ -163,14 +163,14 @@ To enhance the contrast of the nerve fibers with respect to the background, stai
 This allows to follow small nerve fibers down to individual nerves depending on their myelination degree.
 Larger nerve fiber bundles are so dark that mostly no orientation can be extracted.
 \par
-% 
+%
 \Cref{fig:brainMyelinStain} shows a Nissl stained brain section.
 Between neurons, individual nerve fibers form complex reticular structures.
 Several nerve fiber bundles traverse the thalamus and can be seen as dark structures.
 A closer look with an electron microscope into a nerve fiber bundle of the corpus callosum of a rodent is shown in \cref{fig:elecMic}.
 The nerve fibers of the $\SI{100}{\nano\meter}$ thin section are densely packed together.
 Axon diameter and myelin thickness vary from nerve fiber to nerve fiber.
-% 
+%
 \begin{figure}[!t]
 	\centering
     \tikzset{external/export=false}
@@ -182,39 +182,39 @@ Axon diameter and myelin thickness vary from nerve fiber to nerve fiber.
         In between \textcolor{ProcessBlue}{net-like structures} are formed from individual nerve fibers.
         \url{http://brainmaps.org/HBP3/h.sapiens/sag/h5thal-myelin/17a}}
     [\tikzwidth]{
-        \begin{tikzpicture}[]  
+        \begin{tikzpicture}[]
             \node[inner sep=0pt, anchor = south west] (fig) at (0,0)
             {\includegraphics[width=\tikzwidth, trim=281 152 0 0, clip]{gfx/neuroanatomy/NeuralNet-BrainAtlasDotOrg.png}};
-            %  
+            %
             \draw[Orange, ultra thick] (rel cs:name=fig,x=0.42,y=0.49) ellipse (0.75 and 0.375);
             \draw[ProcessBlue, ultra thick] (rel cs:name=fig,x=0.7,y=0.3) ellipse (1.1 and 0.7);
-            % 
+            %
             \draw[white, ultra thick] let
-                \p1=(rel cs:name=fig,x=0,y=0), 
-                \p2=(rel cs:name=fig,x=0.1041,y=0), 
+                \p1=(rel cs:name=fig,x=0,y=0),
+                \p2=(rel cs:name=fig,x=0.1041,y=0),
                 \n1={veclen(\x1-\x2,\y1-\y2)}
             in
                 ($(fig.south east)+(-0.2,0.2)$) -- ++ (180:\n1) node[above, midway, anchor=south]{$\SI{50}{\micro\meter}$};
-        \end{tikzpicture}        
+        \end{tikzpicture}   
     }
     \hfill
     \subcaptionbox{%
         \label{fig:elecMic} Electron microscope image of a $\SI{100}{\nano\meter}$ thin section of rodent corpus callosum \cite{WALHOVD20142}.
         The myelin is visible as dark surroundings around the inner axon.}
     [\tikzwidth]{
-        \begin{tikzpicture}[]  
+        \begin{tikzpicture}[]
             \node[inner sep=0pt, anchor = south west] (fig) at (0,0)
             {\includegraphics[width=\tikzwidth]{gfx/brain/elec_micrograph_rodent_cc.jpg}};
             \draw[white, ultra thick] let
-                \p1=(rel cs:name=fig,x=0,y=0), 
-                \p2=(rel cs:name=fig,x=0.1347,y=0), 
+                \p1=(rel cs:name=fig,x=0,y=0),
+                \p2=(rel cs:name=fig,x=0.1347,y=0),
                 \n1={veclen(\x1-\x2,\y1-\y2)}
             in
                 ($(fig.south east)+(-0.2,0.2)$) -- ++ (180:\n1) node[above, midway, anchor=south]{$\SI{1}{\micro\meter}$};
         \end{tikzpicture}
     }
 \end{figure}
-% 
+%
 %
 %
 \section{Axon Dimensions}

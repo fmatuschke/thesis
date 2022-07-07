@@ -2,25 +2,24 @@
 \setcounter{chapter}{6}
 \chapter{\acs{fastPLI}}
 \label{chap:Software}
-% 
-% 
-% 
+%
+%
+%
 \section{Introduction}\label{sec:fastpliIntro}
 %
 The previous chapters described the algorithms for creating dense \ac{WM} fiber models (see \cref{chap:sof:modeling}) and light matter simulation of \ac{3D-PLI} (see \cref{cha:sof:simulation}).
 Both algorithms operate independently, simplifying the use of the algorithms for other domains.
 For example, the fiber models can be used in \ac{dMRI} as well (\cite{Ginsburger2019,ginsburgerDis2019}).
-
 These implemented algorithms were developed with a focus on computational efficiency and usability.
 Therefore, an \ac{API} is available to provide a friendly user interface.
-Furthermore, the implementation provides a high level of abstraction within an easily installable framework. 
+Furthermore, the implementation provides a high level of abstraction within an easily installable framework.
 \par
 %
 In order to accomplish the usability goals, the \python{} programming language was chosen as the user interface.
 Meanwhile, to boost the performance of the optimization steps and heavy computation \cpp{} was used as described in \cref{sec:modelOpt,sec:sim:opt} to ensure efficiency and parallelization.
 %
-% 
-% 
+%
+%
 \section{fastPLI Toolbox}
 %
 \begin{figure}[!ht]
@@ -35,7 +34,7 @@ Its source code is publicly available and reviewed in the \acreset{JOSS} \ac{JOS
 The software package includes functionalities for analysis and visualization of nerve fiber models as well as for evaluation of simulation analogous to current routine experimental measurements, \eg{} tilt analysis (see \cref{fig:fastpli}).
 %
 %
-% 
+%
 \newpage
 \subsection{Dependencies}
 %
@@ -92,7 +91,7 @@ pip3 install .
 In order to ensure the continuous integration and continuous deployment of the \ac{fastPLI} project, the CI/CD actions were set up within the \name{Github} repository.
 The action runs the two latest Ubuntu Long Term Support versions (currently 18.04 LTS and 20.04 LTS) and the most commonly used Python3 versions (currently 3.6 and 3.8) to provide a wide range of standard supported versions.
 \par
-% 
+%
 In addition, the \name{Github actions} run all test scripts, check tutorial files, check code format and linting for consistency, and publish the latest documentation after a successfully tested release.
 \par
 %
@@ -102,8 +101,8 @@ However, it is also used to discuss ideas and new features.
 As part of the open-source release, it was also used to communicate with the reviewers, allowing the development process tracking.
 \footnote{\url{https://github.com/openjournals/joss-reviews/issues/3042}}
 %
-% 
-% 
+%
+%
 \section{Modules}
 %
 The following section describes the different modules that comprise the \cref{fig:fastpli} \python{} package.
@@ -117,12 +116,12 @@ This module contains all functionalities to analyze the \ac{3D-PLI} simulations 
 Furthermore, it provides the tilt analysis \ac{ROFL} \cite{Schmitz2018}.
 In addition, other helper functions exist that provide methods to convert the direction and tilt results into a \ac{FOM}.
 \par
-% 
+%
 For fiber model analysis, the module provides a few simple helper functions.
 For example, it allows the user to generate a histogram of the orientations of the fiber segments like the ones shown in this thesis.
 %
-% 
-% 
+%
+%
 \subsection{\Code{fastpli.io}}
 %
 This method provides the read-write routines that allow users to load and save fiber models (\ie{}, \code{fiber\_bundles}) to or from disk.
@@ -142,7 +141,6 @@ This data format is provided to allow a straightforward  format for manipulating
                          # empty line indicates new fiber
 -1.96 -10.07 -52.5 2.92
 -1.03 -9.4 -48.62 2.93
-
                          # two empty lines indicates new fiber bundle
 3.4 -4.02 -44.76 3.11
 6.22 -1.04 -42.45 3.26
@@ -201,7 +199,7 @@ GROUP "/" { # fiber_bundles path
 The sandbox module provides all the functions described in \cref{sec:sandbox}.
 The module is divided into two submodules: \code{fastpli.sandbox.build} and \code{fastpli.sandbox.seeds}.
 \par
-% 
+%
 \code{fastpli.sandbox.seeds} contain all the methods for populating a 2d-plane, as described in \cref{sec:seeds}.
 The sandbox .build module provides the methods to populate the fiber from the seeds, which includes all the described functions from \cref{sec:fillBundle}.
 %
@@ -227,27 +225,27 @@ This module provides a wrapper class for \code{fastpli.objects.fibers} and \code
 Essentially, \code{layers} are a \code{list} of \code{layer}, which are a \code{tuple} of the four attributes \code{absorption}, \code{birefringence}, \code{model}, and \code{scale} (see \cref{sec:dv_generator}).
 This wrapper class contains attributes that allow users to access these values by name.
 \par
-% 
+%
 The class \code{fastpli.objects.Fiber} stores the 4d-points of a nerve fiber as \code{numpy.ndarray}.
 Multiple nerve fibers can be grouped into a \code{list} represented by the class \code{fastpli.objects.FiberBundle}.
 Similarly, a fiber bundle is represented by a list of \code{fastpli.objects.FiberBundle} in the class \code{fastpli.objects.Fiber}.
 \par
-% 
+%
 Each class provides member functions to \code{translate}, \code{rotate}, \code{scale}, and \code{cut} the model.
 This allows users to manipulate and place the objects in space.
 %
 %
 %
 \subsection{\Code{fastpli.simulation}}
-% 
+%
 The \code{fastpli.simulation} module provides a wrapper for the simulation called \code{fastpli.simulation.Simpli}, based on the original algorithm \cite{Dohmen2015,Lucksch2016}.
 It contains the two algorithms \code{generator} and \code{simulation} described in \cref{sec:dv_generator,sec:simulation}.
-These two algorithms operate separately, but they coexist within the class since they share several parameters. 
+These two algorithms operate separately, but they coexist within the class since they share several parameters.
 As in the \code{fastpli.model.solver.Solver} class, all necessary attributes are available and checked for input errors.
 Since analysis is always performed on the resulting simulations, they are also available in this class and are performed with the same defined parameters as in the simulation.
 Methods for saving the variables as \code{dict} or \ac{HDF5} files are available as well.
 \par
-% 
+%
 The simulation is performed with the same procedure used with the real measurements, using four tiltings and analyzing the simulated data.
 \code{Pipeline} methods exists (see \cref{alg:Pipeline}), which provide a high level of abstraction to simplify the execution for the users.
 %
@@ -261,19 +259,19 @@ The simulation is performed with the same procedure used with the real measureme
 \label{alg:Pipeline}
 \end{lstfloat}
 %
-% 
+%
 %
 \subsection{\Code{fastpli.tools}}
-% 
+%
 The last module contains a set of helper functions.
 They provide access to the current version and  to the git hash so that all calculations can be reproduced.
 For fiber modeling, rotation matrices are provided to allow the use of linear algebra.
-% 
-% 
-% 
+%
+%
+%
 \section{Computational Speedup Techniques}\label{sec:theorySpeedup}
 %
-Among other specific techniques described in \cref{chap:sof:modeling,cha:sof:simulation}, two essential techniques are used to speed up the calculations. 
+Among other specific techniques described in \cref{chap:sof:modeling,cha:sof:simulation}, two essential techniques are used to speed up the calculations.
 \par
 %
 The computationally intensive code is written in \cpp{}.
@@ -293,15 +291,15 @@ They use built-in algorithms to optimize the code for the machine's architecture
 For example, if the number of iterations is known at compile time, a for loop can be \name{unrolled} to speed up the computations since it no longer needs to check if the conditions  are met at the end of each loop cycle.
 To review these optimizations, the time critical code was tested with tools like \name{Compiler Explorer}\footnote{\url{https://godbolt.org/}} and \name{C++ Insight}\footnote{\url{https://cppinsights.io/}}.
 %
-% 
-% 
+%
+%
 \section{Documentation}
 %
 All methods contain documentation strings (docstrings)
 which modern editors automatically display during programming.
 These docstrings are also used for an automatic release of the \ac{API} documentation and wiki pages(see \cref{fig:fastpli_wiki}).
 \footnote{\url{https://3d-pli.github.io/fastpli/}}
-% 
+%
 \begin{figure}[!t]
    \centering
    \resizebox{\textwidth}{!}{\fbox{
@@ -313,8 +311,8 @@ These docstrings are also used for an automatic release of the \ac{API} document
   \caption[]{Documentation wiki page of the \name{Github} repository \url{https://github.com/3d-pli/fastpli/wiki}.}
   \label{fig:fastpli_wiki}
 \end{figure}
-% 
+%
 The wiki is an essential part of the review process for release in \ac{JOSS} \cite{Matuschke2021}, and it is structured as a guide that walks through the aspects of designing nerve fiber models, applying the collision solver algorithm, visualizing nerve fibers, an introduction in \ac{3D-PLI}, and finally applying the models in the simulation.
 \par
-% 
+%
 Both executable \python{} scripts and Jupyter notebooks are provided examples for a friendly user familiarization with the tool. A nerve fiber crossing is presented as a general example using all presented methods. The example is based on the optic chiasm's anatomy, which is the nerve fiber pathway from the eyes to the occipital lobe.
