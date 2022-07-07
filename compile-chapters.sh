@@ -27,6 +27,7 @@ compile-chapter() {
 
 if [ $# -eq 0 ]; then
 	echo "No arguments supplied"
+	exit
 fi
 
 if [ $1 = "all" ]; then
