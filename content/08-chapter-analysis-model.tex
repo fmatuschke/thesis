@@ -76,13 +76,6 @@ If the first fiber population is tilted by an angle $\modelInc$, an arbitrary fi
     \subcaptionbox{\label{fig:modelrotb}
     The inclination of the first fiber population is modified by $\modelInc$.}
     [.475\textwidth]{\inputtikz{gfx/model/sphere_models_b}}
-    % \\
-    % %
-    % \setlength{\tikzwidth}{0.40\textwidth}
-    % \subcaptionbox{\label{subfig:sphere:hista1} The 3D plots above can be represented as 2D polar plots. The thicker circle indicates the currect orientation of the first fiber population.}
-    % [.475\textwidth]{\inputtikz{gfx/model/sphere_hist_a}}\hfill
-    % \subcaptionbox{\label{subfig:sphere:histb} The 3D plots above can be represented as 2D polar plots.}
-    % [.475\textwidth]{\inputtikz{gfx/model/sphere_hist_b}}
     \caption{Parameterization of two mutually relatively oriented fiber populations for the creation of a library.}
     \label{fig:twomodelpopdesign}
     \end{figure}
@@ -156,7 +149,7 @@ Thus, also with respect to the fiber radius distribution introduced next, there 
         \addplot[GREEN,thick,domain=0.6:1.4, samples=2*42, smooth]{1/(\sigmaValue*x*sqrt(2*pi))*exp(-(ln(x)-\muValue)^2/(2*\sigmaValue^2))}; \addlegendentry{$\mu=0.0,\sigma=0.1$}
     \end{axis}
 \end{tikzpicture}
-\caption[]{Probability density function of a multiplicative \name{log normal} distribution.
+\caption{Probability density function of a multiplicative \name{log normal} distribution.
 $\sigma=0.1$ is used for the initial variation of each fiber radius.
 $\sigma=0.05$ for the variation along the fiber for each fiber point.}
 \label{fig:logNormal}
@@ -230,7 +223,7 @@ fiber bundle fraction/crossing & $\modelPsi$/$\modelOmega$ & $\SI{1.0}{}/\SI{0}{
 \label{tab:parameterSetupChar}
 \end{table}
 %
-To be able to check the results statistically, the generation of the models with different seed points is repeated  $n_{\mathit{repeat}} = \SI{24}{}$ times.\footnote{The choosen \ac{CPU} architeture has $\SI{24}{\cores}$.}
+To be able to check the results statistically, the generation of the models with different seed points is repeated  $n_{\mathit{repeat}} = \SI{24}{}$ times. \footnote{The chosen \ac{CPU} architecture has $\SI{24}{\cores}$.}
 For characterization, the pairs $\modelPsi/\modelOmega$ with $\pfbs = \SI{1.0}{}/\SI{0}{\degree}$ and $\cfbs=\SI{0.5}{}/\SI{90}{\degree}$ are considered since they are edge cases.
 The number of steps is limited to $n_{\mathit{max}}=\SI{100000}{}$ to constrain the computation.\footnote{In hindsight, this should have been limited by the runtime.}
 A cubic volume of $\SI{60}{\micro\meter} \times \SI{60}{\micro\meter} \times \SI{60}{\micro\meter}$ is picked.
@@ -308,7 +301,7 @@ The runtime ranges from $\SI{1000}{\second}$ to $\SI{10000}{\second}$.
 \par
 %
 % CROSSING
-The crossing fiber population \cfbs{} in \cref{fig:timeDevelopmentCross} shows an equaly linear behavier for all parameter sets for the number of steps as in the case of the single fiber population.
+The crossing fiber population \cfbs{} in \cref{fig:timeDevelopmentCross} shows an equally linear behavior for all parameter sets for the number of steps as in the case of the single fiber population.
 The total runtime is significantly increased compared to the models with a single fiber population.
 Further the runtime increases with a decrease in \segLengthFactor{} and decreases with a decrease in \segRadiusFactor{}.
 In the case of $\segLengthFactor = \SI{1}{}$ and $\segLengthFactor = \SI{2}{}$, the maximum number of steps is reached.
@@ -387,7 +380,7 @@ For mean fiber radii $\fiberRadiusMean \geq \SI{5}{\micro\meter}$, the volume fr
 For parallel fibers, the collision solving process is always faster than for crossing bundles.
 This is visible in the plot of the overlap fraction \cref{fig:timeDevelopmentNone,fig:timeDevelopmentCross}.
 The overlap is significantly higher for the crossing fibers than for the single fibers.
-Not only does this mean that the fiber segments that need to be moved out of the way are longer, but also that in hiher octree levels the segments cannot be seperated anymore and therefore exists in multiple leafs.
+Not only does this mean that the fiber segments that need to be moved out of the way are longer, but also that in higher octree levels the segments cannot be separated anymore and therefore exists in multiple leafs.
 As a result, the runtime for solving the volume increases significantly.
 \par
 %
@@ -531,7 +524,7 @@ For large crossing angles, the mean value of the opening angle increases with in
 \begin{figure}[!t]
 \centering
 \includegraphics[page=1]{gfx/rc1/images/cube_2pop_images_output_cube_2pop_135_rc1.pdf}
-\caption[]{3D visualization of the simulation model library \ac{3D-PLI}.
+\caption{3D visualization of the simulation model library \ac{3D-PLI}.
 The inner $\SI{10}{\micro\meter} \times \SI{10}{\micro\meter} \times \SI{10}{\micro\meter}$ of the volumes are shown.}
 \label{fig:modelImages}
 \end{figure}

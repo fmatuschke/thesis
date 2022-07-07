@@ -24,7 +24,7 @@ It is the main fiber connection between the two cerebral hemispheres (see \cref{
 \par
 % 
 \Cref{fig:brain_ret_trans_zoom} shows transmittance and retardation maps of the coronal section of a vervet monkey \footnote{Section id: 549, Brain id: PE-2012-00102-V}.
-Two \acp{ROI} are manually selected at high retardance regions of the corpus callosum (\ie{} mostyl in-plane parallel fibers).
+Two \acp{ROI} are manually selected at high retardants regions of the corpus callosum (\ie{} mostly in-plane parallel fibers).
 \ac{ROI} (A) contains $\SI{1064629}{\pixel}$ and \ac{ROI} (B) sums up to $\SI{1125858}{\pixel}$.
 The entire section and the analysis for a human and a rodent section are described in the appendix (see \cref{app:brain_rodent,app:brain_human}).
 % 
@@ -51,7 +51,7 @@ The entire section and the analysis for a human and a rodent section are describ
     \end{tabular}
     \caption{
     Transmittance and retardation map of coronal section of a vervet monkey.
-    The absorption coefficient and birefringence is estimated from the measurments in the corpus callosum.
+    The absorption coefficient and birefringence is estimated from the measurements in the corpus callosum.
     Two homogeneous regions are labeled for this purpose.
     (A) includes $\SI{1064629}{\pixel}$, $(B)$ $\SI{1125858}{\pixel}$.
     }
@@ -61,7 +61,7 @@ The entire section and the analysis for a human and a rodent section are describ
 \paragraph{Evaluation}
 To calculate the absorption coefficient from the brain section, the volume fraction of the tissue, \ie{}, density of the cells, must be considered.
 For the models $\fiberRadiusMean = \SI{0.5}{\micro\meter}$, the volume fraction is about $\SI{75}{\percent}$.
-The average transmittance in the foreground is about $\SI{1000}{\arbitraryunit}$ and in the backgroundit is about $\SI{4500}{\arbitraryunit}$.\footnote{The relative transmittance can be changed by adjusting the exposure time of the microscope}
+The average transmittance in the foreground is about $\SI{1000}{\arbitraryunit}$ and in the background it is about $\SI{4500}{\arbitraryunit}$.\footnote{The relative transmittance can be changed by adjusting the exposure time of the microscope}
 This leads to an absorption coefficient of $\mu = \SI{30}{\milli\meter\tothe{-1}}$.
 To approximate the birefringence, the g-ratio, \ie{}, the myelin density, must also be taken into consideration.
 The g-ratio of $\SI{75}{\percent}$ results in a birefringence of about $\SI{0.008}{}$ for the radial model when using a median value of the retardation of $\SI{0.8}{}$.
@@ -81,7 +81,7 @@ It consists of several patterns that have three slots with specific spacing and 
 They are arranged in fields of three vertical and horizontal lines.
 The fields are arranged in a spiral that shrinks from group to group by a factor $\SI{0.5}{}$.
 To determine the line width, the fields are numerically ordered according to a main group $i$ and a subgroup $j$.
-To determine the resolution of the microscope, it is necessary to determine if the neughboring slits can still be differentiated according to the Rayleigh criterion (see \cref{fig:rayleigh}).
+To determine the resolution of the microscope, it is necessary to determine if the neighboring slits can still be differentiated according to the Rayleigh criterion (see \cref{fig:rayleigh}).
 For this purpose, the intensity profiles perpendicular to the three vertical and horizontal slits were analyzed.
 % 
 % 
@@ -114,7 +114,7 @@ For this purpose, the intensity profiles perpendicular to the three vertical and
 % 
 \Cref{fig:usaf_image} shows a section of the USAF resolution test chart taken with the \ac{LMP} microscope.
 The highlighted areas show the analyzed groups 7-6 to 8-2.
-The area of group 7-6 \raisebox{.25em}{\tikzset{external/export next=false}\tikz \draw[RED,ultra thick,dashed](0,0)--(0.25,0);} has a linewidth of $\SI{2.19}{\micro\meter}$, group 8-1 \raisebox{.25em}{\tikzset{external/export next=false}\tikz \draw[GREEN,ultra thick,dashed](0,0)--(0.25,0);} of $\SI{1.95}{\micro\meter}$ and group 8-2 \raisebox{.25em}{\tikzset{external/export next=false}\tikz \draw[BLUE,ultra thick,dashed](0,0)--(0.25,0);} of $\SI{1.74}{\micro\meter}$.
+The area of group 7-6 \raisebox{.25em}{\tikzset{external/export next=false}\tikz \draw[RED,ultra thick,dashed](0,0)--(0.25,0);} has a line width of $\SI{2.19}{\micro\meter}$, group 8-1 \raisebox{.25em}{\tikzset{external/export next=false}\tikz \draw[GREEN,ultra thick,dashed](0,0)--(0.25,0);} of $\SI{1.95}{\micro\meter}$ and group 8-2 \raisebox{.25em}{\tikzset{external/export next=false}\tikz \draw[BLUE,ultra thick,dashed](0,0)--(0.25,0);} of $\SI{1.74}{\micro\meter}$.
 The intensity line profiles for the vertical and horizontal cases are shown in \cref{fig:usaf_lines_lr,fig:usaf_lines_ud}.
 The Rayleigh criterion can be used to determine the resolution in the second group, which is thus in the range of $\SI{1.95}{\micro\meter}$.
 This reproduces the measurements in \cite{MenzelMaster}.
@@ -157,7 +157,7 @@ For this purpose, the sample stage is covered with a fully absorbing cover so th
 \\[-1em]
 %
 % SUBCAPTIONS
-\subcaptiontab{0.475\textwidth}{\label{fig:parameterModelNoise} Histrogram of intensity vs variance with linear regression. The gain factor results in $\opticgain_{\mathit{LMP}} = \SI{0.1175(7)}{}$.} &
+\subcaptiontab{0.475\textwidth}{\label{fig:parameterModelNoise} Histogram of intensity vs variance with linear regression. The gain factor results in $\opticgain_{\mathit{LMP}} = \SI{0.1175(7)}{}$.} &
 \subcaptiontab{0.475\textwidth}{\label{fig:noiseplot}Expected noise range for human, vervet monkey and rodent. The noise correlates linearly with the light intensity.}
 \end{tabular}
 %
@@ -284,9 +284,9 @@ model rotation step $\Delta\modelRot$ & $\SI{15}{\degree}$\\
 With a pixel size of $\SI{1.3}{\micro\meter}$ and a volume of $\SI{65}{\micro\meter} \times \SI{65}{\micro\meter} \times \SI{60}{\micro\meter}$, $\SI{2500}{\pixel}$ are available per simulation for statistical analysis.
 \par
 % 
-To analyze the simulation results the \ac{3D-PLI} analysis pipline, containing the Fourier analysis (see \cref{eq:pli_signal}) and the tilt analysis (see \cref{sec::InclAnalysis}), are performed.
+To analyze the simulation results the \ac{3D-PLI} analysis pipeline, containing the Fourier analysis (see \cref{eq:pli_signal}) and the tilt analysis (see \cref{sec::InclAnalysis}), are performed.
 From the Fourier analysis the modalities transmittance and retardation are shown.
-The tilt analysis estimates the orientation of each pixel, \ie{}, direction and inclination, the effective birefringend thickness \trel{} and the \rvalue{} of the fitting model:
+The tilt analysis estimates the orientation of each pixel, \ie{}, direction and inclination, the effective birefringent thickness \trel{} and the \rvalue{} of the fitting model:
 \begin{align}
     R = \mean{|I_i-F_i|} \label{eq:rvalue}
 \end{align}
@@ -453,17 +453,17 @@ The variance of the retardation is slightly increased for fiber population fract
 \par
 % Direction
 The direction analysis for all simulated fiber population fractions \modelPsi{} follows the theoretical \name{circmean} function.
-In the case for $\modelPsi<\SI{50}{\percent}$ the median is slighly higher than the theoretical prediction and in the case for $\modelPsi>\SI{50}{\percent}$ slightly lower.
+In the case for $\modelPsi<\SI{50}{\percent}$ the median is slightly higher than the theoretical prediction and in the case for $\modelPsi>\SI{50}{\percent}$ slightly lower.
 Depending on the fiber population fraction, the variance increases with the crossing angle.
 In the case of $\modelPsi=\SI{50}{\percent}$ and a crossing angle of $\modelRot = \SI{90}{\degree}$, the directions are uniformly distributed $\SIrange{-90}{90}{\degree}$.
-The distribution of the individual nerve fiber populations show the seperation of the orientation with increasing crossing angle \modelOmega{}.
+The distribution of the individual nerve fiber populations show the separation of the orientation with increasing crossing angle \modelOmega{}.
 The models \bvariance{} variance for both populations remains constant.
 The dominant fiber population has a slightly lower variance than its counterpart.
 \par
 % Inclination
 The inclination median is about $\SI{0}{\degree}$ for all simulated parameters.
 The variance increases with increasing crossing angle \modelOmega{} and slightly for fiber population fractions close to $\modelPsi=\SI{50}{\percent}$.
-The models \bvariance{} variance of both fiber models increases with increasing crossing angle and is slighly larger for the dominant fiber population.
+The models \bvariance{} variance of both fiber models increases with increasing crossing angle and is slightly larger for the dominant fiber population.
 Compared to the simulation results the \bvariance{} variance is significantly higher.
 \par
 % Trel
@@ -566,7 +566,7 @@ The variance of the \trel{} value is increased at about $\inc_{\popb}=\SI{45}{\d
 \par
 % r-value
 The \rvalue{} shows no significant effect for low fiber population fraction. 
-Higher fiber poulation fractions have an increased \rvalue{}.
+Higher fiber population fractions have an increased \rvalue{}.
 With increasing inclination angle $\inc_{\popb}$ the \rvalue{} and its variance increases slightly for lower fiber population fractions and more strongly for higher fiber population fractions.
 \par
 % domega
@@ -713,7 +713,7 @@ The exceptions are $\modelInc=\SIlist{60;90}{\degree}$ with secondary fiber popu
 % 
 Areas of reduced \trel{} become visible for $\modelPsi=\SI{30}{\percent}$.
 For $\modelInc=\SI{0}{\degree}$ this is located at a secondary fiber inclination of $\inc_1 = \SI{90}{\degree}$.
-For $\modelInc=\SIlist[]{30;60}{\degree}$ the reduction of \trel{} is slighly towards the negative x-axis next to the z-axis.
+For $\modelInc=\SIlist[]{30;60}{\degree}$ the reduction of \trel{} is slightly towards the negative x-axis next to the z-axis.
 For $\modelInc=\SI{90}{\degree}$ the \trel{} value remains constant with the exception of both fiber populations orientated along the z-axis, where $\trel \geq 1$.
 \par
 % 
@@ -863,7 +863,7 @@ The variance of the transmittance corresponds to the variance of the noise model
 The retardation behaves similarly to the theoretical curve for a single retardation signal (see \cref{eq:pli_signal}).
 However, the analyzed retardation is slightly higher.
 The theoretical signal is calculated by normalizing $\cos(\modelInc)^2$ with the analyzed retardation for the flat case, \ie{}, $\modelInc = \SI{0}{\degree}$.
-This could explain the reduced values of the theretical line compared to the simulation results for the mid range inclinations.
+This could explain the reduced values of the theoretical line compared to the simulation results for the mid range inclinations.
 \par
 %
 The direction values have a very small variance, which increases strongly for high inclination values.
@@ -932,7 +932,7 @@ The reason for this is, that the retardation and the individual light intensitie
 %
 The direction for the flat fiber crossings follows the expected theoretical curve of the circular mean.
 For the case $\modelPsi=\SI{50}{\percent}$ and $\modelOmega=\SI{90}{\degree}$, the direction values are uniformly distributed since there is no unique direction in the sinosoidal.
-This is the effect of retardation cancelation and signal noise.
+This is the effect of retardation cancellation and signal noise.
 For the here investigated distribution of fiber radii at microscopes resolution and pixel size individual fiber population for an interwoven dense fiber bundle cannot be distinguished.
 However, the tilt analysis used here uses only a single fiber orientation, or more generally, a single optic axis.
 In the future, more comprehensive models may be able to reveal the difference.
@@ -986,7 +986,7 @@ The free crossing fiber population results can be interpreted as a summary of th
 \par
 % 
 The transmittance shows the expected behavior, that the lowest values are reached for non crossing fiber population.
-Here, the fiber density is the highest and therefore as well the aborption of the light intensity.
+Here, the fiber density is the highest and therefore as well the absorption of the light intensity.
 For orientations with increasing crossing angles, transmittance increases as the fibers require more space to be collision free.
 This effect is further increased for fiber population fractions closer to $\SI{50}{\percent}$.
 \par
@@ -994,7 +994,7 @@ This effect is further increased for fiber population fractions closer to $\SI{5
 The highest retardation values are reached for flat and non crossing fiber populations.
 Here no extinction effect of the \ac{3D-PLI} signal is present.
 The retardation value shows a map of which orientations from two fiber population fractions the tilting analysis will lead to a result with high certainty.
-This, however, does not mean that the resulting orienation is the orientation of the underlying fibers, as it can seen in the results of the direction and inclination.
+This, however, does not mean that the resulting orientation is the orientation of the underlying fibers, as it can seen in the results of the direction and inclination.
 As in the previous results of the single flat crossing and oblique crossing fiber population(s), the analyzed angle corresponds to the circular value for flat fibers and the inclination is strongly influenced by the inclination angle.
 \par
 % 

@@ -227,7 +227,7 @@ For this purpose, the \ac{LAP} uses a tilting stage to which the tissue sections
 \subcaptionbox{perspective view}
 [.475\textwidth]{\inputtikz{gfx/simpli/tilting_3d_b}}
 \tikzset{external/export=false}
-\caption[3D tilting]{3D tilting: around $xy$-axis, \raisebox{.25em}{\tikz \draw[red,thick](0,0)--(0.25,0);} top, \raisebox{.25em}{\tikz \draw[green,thick](0,0)--(0.25,0);} middle, \raisebox{.25em}{\tikz \draw[blue,thick](0,0)--(0.25,0);} bottom, \raisebox{.25em}{\tikz \draw[dash pattern=on 1.25pt off 1.25pt,thick](0,0)--(0.25,0);} original, \raisebox{.25em}{\tikz \draw[gray](0,0)--(0.25,0);} axis of rotation.}
+\caption{3D tilting: around $xy$-axis, \raisebox{.25em}{\tikz \draw[red,thick](0,0)--(0.25,0);} top, \raisebox{.25em}{\tikz \draw[green,thick](0,0)--(0.25,0);} middle, \raisebox{.25em}{\tikz \draw[blue,thick](0,0)--(0.25,0);} bottom, \raisebox{.25em}{\tikz \draw[dash pattern=on 1.25pt off 1.25pt,thick](0,0)--(0.25,0);} original, \raisebox{.25em}{\tikz \draw[gray](0,0)--(0.25,0);} axis of rotation.}
 \label{fig:tilting_camera_view}
 \end{figure}
 % 
@@ -248,7 +248,7 @@ Since this only adds a parallel shift, simulation is only necessary when the eff
 \inputtikz{gfx/simpli/tilting_a}}\hfill
 \subcaptionbox{tilted}[.475\textwidth]{
 \inputtikz{gfx/simpli/tilting_b}}
-\caption[Light path]{Light ray path for a normal (a) and a tilted (b) case. In the tilted case, the light beam $\vec{l}_1$ is tilted within the tissue and thus experiences an optical shift $\Delta$.}
+\caption{Light ray path for a normal (a) and a tilted (b) case. In the tilted case, the light beam $\vec{l}_1$ is tilted within the tissue and thus experiences an optical shift $\Delta$.}
 \label{fig:tilted_side_view}
 \end{figure}
 %
@@ -326,14 +326,14 @@ The pseudocode is shown in \cref{alg:simulationLoop}.
 light_beams = calculate_light_starting_positions()
 
 for light in light_beams:
-    light = optical_elemts_start * light
+    light = optical_elements_start * light
     while light.pos in volume:
         properties = get_properties(light.pos)
         light.intensity *= exp(-step_size * properties.absorbtion)
         light = matrix(properties) * light
         light.pos += step_size
    
-    light = optical_elemts_end * light
+    light = optical_elements_end * light
     ccd_array[light.ccd_pos] = light.intensity
 \end{lstlisting}
 \caption{Loop over the light vectors for the light-tissue interaction. Their intensity value is stored inside the \ac{CCD} array.}

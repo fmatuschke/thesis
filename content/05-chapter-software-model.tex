@@ -81,7 +81,7 @@ The fiber is then described by a list of 4D points $(x,y,z,r)$, which can be int
     \centering
     % \tikzset{external/export next=false}
     \inputtikz{gfx/model/fiber_model}
-	\caption[]{Representation of a nerve fiber from a list of spheres.}
+	\caption{Representation of a nerve fiber from a list of spheres.}
 	\label{fig:fiberReb}
 \end{figure}
 % 
@@ -100,7 +100,7 @@ Therefore, the fiber segments describe a \ac{CC} (see \cref{fig:conical}).
     \centering
     \setlength{\tikzwidth}{0.5\textwidth}
     \inputtikz{gfx/model/capsule}
-	\caption{Schematic of a fiber segment represented by a distance $\vec{d}$ and two radii $r_0$ and $r_1$ which descibes a \acreset{CC} \ac{CC}.}
+	\caption{Schematic of a fiber segment represented by a distance $\vec{d}$ and two radii $r_0$ and $r_1$ which describes a \acreset{CC} \ac{CC}.}
 	\label{fig:conical}
 \end{figure}
 %
@@ -187,7 +187,7 @@ A more reasonable solution is to perform a rotation such that the rotation along
     \label{fig:torsion}
 \end{figure}
 % 
-The rotation matrix $\mat{R}(\vec{a}, \vec{b})$ for bewteen two non parallel vectors $\vec{a} \nparallel \vec{b}$ is
+The rotation matrix $\mat{R}(\vec{a}, \vec{b})$ for between two non parallel vectors $\vec{a} \nparallel \vec{b}$ is
 \begin{align}
 \begin{split}
     \vec{a} =& \; \vec{a} / |\vec{a}|\\
@@ -296,8 +296,8 @@ The seed points are placed on the lower plane, with identical coordinate origins
     \inputtikz{gfx/model/cylinder_parallel}}
 	\caption{Populating of cylindrical objects.
     The green area shows the area corresponding to the seed point plane.
-    The coordinate system indicates the coordinate origin coresponding to the seed points origin.
-    The origin of the coordinate system $O$ of the resulting fibers is at the botom center as shown in \cref{fig:cylRadial}.
+    The coordinate system indicates the coordinate origin corresponding to the seed points origin.
+    The origin of the coordinate system $O$ of the resulting fibers is at the bottom center as shown in \cref{fig:cylRadial}.
     Two angles $\alpha$ and $\beta$ can be used to limit the angular range of the cylinder.}
 \end{figure}
 %
@@ -351,7 +351,7 @@ The main function is composed of the following sequential parts (see \cref{alg:p
             colliding_objs = CheckLeaf(leaf.fiber_list)
             colliding_list.insert(colliding_objs)
     
-        # Seperation Process
+        # Separation Process
         MoveObject(colliding_list)
     
         # Shape Control
@@ -402,7 +402,7 @@ Therefore, it was decided to change the object representation for the collision 
     \setlength{\tikzwidth}{0.6\textwidth}
     \inputtikz{gfx/model/conical_capsule_bb}
     \tikzset{external/export=false}
-    \caption[]{Fiber segment representations with the \acp{AABB}: \raisebox{.25em}{\tikz \draw[black](0,0)--(0.275,0);} \ac{CC}, \raisebox{.25em}{\tikz \draw[blue, dash pattern=on 2.5pt off 2.5pt](0,0)--(0.275,0);} capsule, \raisebox{.25em}{\tikz \draw[red, dash pattern={on 2.5pt off 0.9pt on 0.42pt off 0.9pt}](0,0)--(0.275,0);} bounding box.}
+    \caption{Fiber segment representations with the \acp{AABB}: \raisebox{.25em}{\tikz \draw[black](0,0)--(0.275,0);} \ac{CC}, \raisebox{.25em}{\tikz \draw[blue, dash pattern=on 2.5pt off 2.5pt](0,0)--(0.275,0);} capsule, \raisebox{.25em}{\tikz \draw[red, dash pattern={on 2.5pt off 0.9pt on 0.42pt off 0.9pt}](0,0)--(0.275,0);} bounding box.}
     \label{fig:conical_capsule}
 \end{figure}
 % 
@@ -493,7 +493,7 @@ In this algorithm a recursion function  generates the tree structure (see \cref{
 def octree(volume, objects):
     if num(objects) > threshold:
         sub_volumes, sub_objects = split(volume, objects)
-        leaves = [octree(v,o) for v,o in zip(sub_volumes, sub_objets)]
+        leaves = [octree(v,o) for v,o in zip(sub_volumes, sub_objects)]
     else:
         leaves = [objects]
     return leaves
@@ -569,9 +569,6 @@ The average segment length is the distance between the two points of a fiber seg
 \begin{figure}[!t]
     \centering
     \setlength{\tikzwidth}{0.75\textwidth}
-    % disable tikz externalize for overlayed circle lines
-    % \def\forcetikzscale{true}
-    % \tikzset{external/export=false}
     \inputtikz{gfx/model/model_length}
 	\caption{Different fiber segment lengths as factor of the mean fiber radius $\fiberRadiusMean$.}
 	\label{fig:modelLength}
@@ -623,7 +620,10 @@ If any point $\vec{p}_{i}$ in a fiber fails these boundary conditions, the three
     \setlength{\tikzheight}{.75\textwidth}
     % \tikzset{external/export next=false}
     \inputtikz{gfx/model/model_circle}
-	\caption{A fiber along its path can be characterized by circles from three adjacent points. A minimal radius for these circles is applied as boundry condition. Additionally the inner angle has to be $\eta \geq \SI{60}{\degree}$. If a condition is not fullfiled, a force (\textcolor{GREEN}{arrows}) is applied to smoothen the curviture at these points.}
+	\caption{A fiber along its path can be characterized by circles from three adjacent points.
+    A minimal radius for these circles is applied as boundary condition.
+    Additionally the inner angle has to be $\eta \geq \SI{60}{\degree}$.
+    If a condition is not fulfilled, a force (\textcolor{GREEN}{arrows}) is applied to smoothen the curvature at these points.}
 	\label{fig:modelCircle}
 \end{figure}
 %
@@ -645,7 +645,7 @@ Its default value is set to $\SI{0}{}$ so that the velocity is reset to $\vec{0}
 % 
 % 
 % 
-\subsection{Optimization and parallelisation}\label{sec:modelOpt}
+\subsection{Optimization and parallelization}\label{sec:modelOpt}
 % 
 The computational architecture to optimize the octree (see \cref{sec:octree}) for solving the fiber collision is presented in this section.
 The optimization requires millions of objects to be checked for collisions.
