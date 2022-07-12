@@ -2,51 +2,8 @@
 \clearpage{\thispagestyle{empty}\cleardoublepage}
 \part{Appendices}
 %
-%
-%
-\chapter{}%Software
-\label{app:fastpli}
-%
-\todo{sortieren}
-%
-% \lstinputlisting[language=python, caption=fastpli/src/fastpli/\_\_init\_\_.py]{fastpli/src/fastpli/__init__.py}
-% \lstinputlisting[language=c++, caption=fastpli/src/model/solver/cone\_class.cpp]{fastpli/src/model/solver/cone_class.cpp}
-%
-\begin{lstfloat}[!p]
-	\lstinputlisting[style=cpp,basicstyle=\scriptsize\ttfamily,]{code/simulation.cpp}
-	\caption[]{Main simulation algorithm inside the \cpp{} library.}
-	\label{alg:simulation}
-\end{lstfloat}
-%
-%
-%
-\chapter{Modeling} % Model analysis
+\chapter{Modeling}
 \label{app:modelAnalysis}
-%
-%
-%
-% \fakesection{Model parameter}
-%
-\begin{figure}[!ht]
-    \centering
-    \includegraphics[width=1\textwidth]{gfx/rc1/mpara/pre_stats_box_plot_volume_all_output_parameter_statistic_rc1.pdf}
-    \caption[]{Caption}
-    \label{app:appModelVolumeBoxPlot}
-\end{figure}
-%
-% % \foreach \n in {1,3,...,10}{
-% % \begin{landscape}
-% \begin{figure}[!t]
-% \centering
-% % \resizebox{\textwidth}{!}{
-% \includegraphics[width=\textwidth,page=1]{gfx/rc1/mpara/pre_stats_time_evolve_all_output_parameter_statistic_rc1.pdf}
-% \includegraphics[width=\textwidth,page=2]{gfx/rc1/mpara/pre_stats_time_evolve_all_output_parameter_statistic_rc1.pdf}
-% \end{figure}
-% % \end{landscape}
-%
-%
-%
-% \fakesection{Time evolution}
 %
 \setlength{\tikzwidth}{\textwidth}
 \begin{sidewaysfigure}[!ht]
@@ -54,6 +11,7 @@
 \includegraphics[height=\tikzwidth,page=1]{gfx/rc1/mpara/pre_stats_time_evolve_all_output_parameter_statistic_rc1.pdf}
 \includegraphics[height=\tikzwidth,page=2]{gfx/rc1/mpara/pre_stats_time_evolve_all_output_parameter_statistic_rc1.pdf}
 \label{app:pste1}
+\caption{Time evolution of the model building process of parallel and crossing fiber populations with $\fiberRadiusMean=\SI{0.5}{\micro\meter}$. Error bars indicate $\SI{25}{\percent}$ and $\SI{75}{\percent}$ quantiles (see \cref{sec:solverParameterResults}).}
 \end{sidewaysfigure}
 %
 \begin{sidewaysfigure}[!ht]
@@ -63,6 +21,7 @@
 \includegraphics[height=\tikzwidth,page=4]{gfx/rc1/mpara/pre_stats_time_evolve_all_output_parameter_statistic_rc1.pdf}
 % }
 \label{app:pste2}
+\caption{Time evolution of the model building process of parallel and crossing fiber populations with $\fiberRadiusMean=\SI{1.0}{\micro\meter}$. Error bars indicate $\SI{25}{\percent}$ and $\SI{75}{\percent}$ quantiles (see \cref{sec:solverParameterResults}).}
 \end{sidewaysfigure}
 %
 \begin{sidewaysfigure}[!ht]
@@ -71,6 +30,7 @@
 \includegraphics[height=\tikzwidth,page=5]{gfx/rc1/mpara/pre_stats_time_evolve_all_output_parameter_statistic_rc1.pdf}
 \includegraphics[height=\tikzwidth,page=6]{gfx/rc1/mpara/pre_stats_time_evolve_all_output_parameter_statistic_rc1.pdf}
 \label{app:pste3}
+\caption{Time evolution of the model building process of parallel and crossing fiber populations with $\fiberRadiusMean=\SI{2.0}{\micro\meter}$. Error bars indicate $\SI{25}{\percent}$ and $\SI{75}{\percent}$ quantiles (see \cref{sec:solverParameterResults}).}
 \end{sidewaysfigure}
 %
 \begin{sidewaysfigure}[!ht]
@@ -79,6 +39,7 @@
 \includegraphics[height=\tikzwidth,page=7]{gfx/rc1/mpara/pre_stats_time_evolve_all_output_parameter_statistic_rc1.pdf}
 \includegraphics[height=\tikzwidth,page=8]{gfx/rc1/mpara/pre_stats_time_evolve_all_output_parameter_statistic_rc1.pdf}
 \label{app:pste4}
+\caption{Time evolution of the model building process of parallel and crossing fiber populations with $\fiberRadiusMean=\SI{5.0}{\micro\meter}$. Error bars indicate $\SI{25}{\percent}$ and $\SI{75}{\percent}$ quantiles (see \cref{sec:solverParameterResults}).}
 \end{sidewaysfigure}
 %
 \begin{sidewaysfigure}[!ht]
@@ -87,33 +48,43 @@
 \includegraphics[height=\tikzwidth,page=9]{gfx/rc1/mpara/pre_stats_time_evolve_all_output_parameter_statistic_rc1.pdf}
 \includegraphics[height=\tikzwidth,page=10]{gfx/rc1/mpara/pre_stats_time_evolve_all_output_parameter_statistic_rc1.pdf}
 \label{app:pste5}
+\caption{Time evolution of the model building process of parallel and crossing fiber populations with $\fiberRadiusMean=\SI{10.0}{\micro\meter}$. Error bars indicate $\SI{25}{\percent}$ and $\SI{75}{\percent}$ quantiles (see \cref{sec:solverParameterResults}).}
 \end{sidewaysfigure}
-%
-%
-%
-% \fakesection{Histogramms}
+% 
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=1\textwidth]{gfx/rc1/mpara/pre_stats_box_plot_volume_all_output_parameter_statistic_rc1.pdf}
+    \caption[]{Volume fractions $V_f/V_0$ for parallel \pfbs{} and crossing \cfbs{} fiber populations of different relative fiber segment lengths $\segLengthFactor$ and relative fiber bending radii $\segRadiusFactor$ and multiple mean fiber radii $\fiberRadiusMean$. (see \cref{sec:solverParameterResults}).}
+    \label{app:appModelVolumeBoxPlot}
+\end{figure}
 %
 \begin{figure}[!ht]
     \centering
-    \includegraphics[width=\textwidth, page=2]{gfx/rc1/cube_2pop_orientation_hist2d_output_cube_2pop_135_rc1.pdf}
-    \caption[]{Caption}
-    \label{app:modelHistOrientation}
+    \includegraphics[width=\textwidth, page=2]{gfx/rc1/model/cube_2pop_orientation_hist2d_output_cube_2pop_135_rc1.pdf}
+    \caption[]{Density distribution of fiber segment orientation in the simulation models.
+    The value of the segments is weighted according to the area on a spherical surface and normalized so that the integral over one hemisphere is $\SI{1}{}$.
+    The dashed white line indicates the orientation of the two fiber populations. (see \cref{sec:08Results}).}
+    \label{app:modelOrientation}
 \end{figure}
 %
-%
-\begin{figure}[!t]
+\begin{figure}[!ht]
     \centering
     \includegraphics[]{gfx/rc1/model/cube_2pop_domega_analysis_all_output.pdf}
-    \caption[]{Direction and inclination distribution of simulation model library.}
-    % \label{fig:my_label}
+    \caption[]{Direction $\dir$, inclination $\inc$ and opening angle $\openingAngle$ distribution of the model library (see \cref{sec:08Results}).}
+    \label{app:modelAngleBoxPlot}
 \end{figure}
 %
+\begin{figure}[!ht]
+    \centering
+    \resizebox{\textwidth}{!}{
+    \includegraphics[page=2]{gfx/rc1/images/cube_2pop_images_output_cube_2pop_135_rc1.pdf}}
+    \caption[]{D: Simulation model library. The inner $\SI{10}{\micro\meter} \times \SI{10}{\micro\meter} \times \SI{10}{\micro\meter}$ of the volume is shown (see \cref{sec:08Results}).}
+    \label{app:modelImages}
+\end{figure}
 %
-%
-% \fakesection{Simulation Library}
 \begin{table}[!ht]
 \centering
-\caption[]{Orientation statistic of simulation model library.}
+\caption[]{Orientation statistic of simulation model library (see \cref{sec:08Results}).}
 \resizebox{\textwidth}{!}{
 \pgfplotstabletypeset[%
     thesisTableStyle,
@@ -122,10 +93,11 @@
         before row={
             \toprule
         },
-        after row={$\si{\degree}$ & & & $\si{\degree}$ & $\si{\degree}$ & $\si{\degree}$ & $\si{\degree}$ & $\si{\degree}$ & $\si{\degree}$ & $\si{\degree}$ & $\si{\degree}$ & $\si{\degree}$ & $\si{\degree}$ & $\si{\degree}$ & $\si{\degree}$ & $\si{\degree}$ & $\si{\degree}$ & $\si{\degree}$ \\ \midrule},
+        after row={$\si{\degree}$ & $\si{\percent}$ & & $\si{\degree}$ & $\si{\degree}$ & $\si{\degree}$ & $\si{\degree}$ & $\si{\degree}$ & $\si{\degree}$ & $\si{\degree}$ & $\si{\degree}$ & $\si{\degree}$ & $\si{\degree}$ & $\si{\degree}$ & $\si{\degree}$ & $\si{\degree}$ & $\si{\degree}$ & $\si{\degree}$ \\ \midrule},
     },
     columns/omega/.style={column name=$\Omega$},
-    columns/psi/.style={column name=$\Psi$},
+    columns/psi/.style={column name=$\Psi$, multiply by=100,zerofill,precision=0},
+    columns/pop/.style={column name={pop.}},
     columns/mean/.style={column name=$<\openingAngle>$,zerofill,precision=0},
     columns/std/.style={column name=$\sigma(\openingAngle)$,zerofill,precision=0},
     columns/25/.style={column name=$25(\openingAngle)$,zerofill,precision=0},
@@ -146,18 +118,8 @@
 ]
 {gfx/rc1/model/omegas_ms_2pop.csv}
 }
-\label{app:modelDistribution}
+\label{app:modelDistributionTable}
 \end{table}
-%
-%
-%
-\begin{figure}[!ht]
-\centering
-\resizebox{\textwidth}{!}{
-\includegraphics[page=2]{gfx/rc1/images/cube_2pop_images_output_cube_2pop_135_rc1.pdf}}
-\caption[]{Simulation model library. The inner $\SI{10}{\micro\meter} \times \SI{10}{\micro\meter} \times \SI{10}{\micro\meter}$ of the volume is shown.}
-\label{app:modelOrientation}
-\end{figure}
 %
 %
 %

@@ -472,7 +472,13 @@ The volume for the simulation is scaled up to a sphere with a diameter of $\SI{1
 %
 %
 %
-\subsection{Results}
+\subsection{Results}\label{sec:08Results}
+%
+\Cref{fig:modelOrientation} shows the orientation distribution of the fiber segments as a polar histogram.
+The full dataset is available in \cref{app:modelOrientation}.
+The orientation distributions show that the individual fiber segments statistically follow the orientation of the fiber population.
+The density reflects the population fraction $\modelPsi$ of the fiber populations.
+\par
 %
 \begin{figure}[!t]
 \centering
@@ -485,10 +491,10 @@ The dashed white line indicates the orientation of the two fiber populations.}
 \label{fig:modelOrientation}
 \end{figure}
 %
-\Cref{fig:modelOrientation} shows the orientation distribution of the fiber segments as a polar histogram.
-The rest of the dataset is available in \cref{app:modelOrientation}.
-The orientation distributions show that the individual fiber segments statistically follow the orientation of the fiber population.
-The density reflects the population fraction $\modelPsi$ of the fiber populations.
+\Cref{fig:modelAngleBoxPlot} shows the distributions of direction $\varphi$, inclination $\modelInc$, and opening angle $\openingAngle$, which is the relative angle to the mean fiber population orientation.
+Since the inclination depends on the direction, the opening angle is also analyzed.
+The full dataset is available at \cref{app:modelAngleBoxPlot}.
+The individual measurements of the opening angle distributions are available in \cref{app:modelDistributionTable}.
 \par
 %
 \begin{figure}[!t]
@@ -497,11 +503,6 @@ The density reflects the population fraction $\modelPsi$ of the fiber population
     \caption[]{Direction $\dir$, inclination $\inc$ and opening angle $\openingAngle$ distribution of the model library.}
     \label{fig:modelAngleBoxPlot}
 \end{figure}
-%
-\Cref{fig:modelAngleBoxPlot} shows the distributions of direction $\varphi$, inclination $\modelInc$, and opening angle $\openingAngle$, which is the relative angle to the mean fiber population orientation.
-Since the inclination depends on the direction, the opening angle is also analyzed.
-The individual measurements of the opening angle distributions are available in \cref{app:modelDistribution}.
-\par
 %
 The direction and inclination angles are around $\SI{0}{\degree}$ for the first fiber population $\popa$ for all parameter combinations.
 The variance decreases with increasing population fraction $\modelPsi$ of the second fiber population.
@@ -521,6 +522,12 @@ For smaller crossing angles, the mean values almost do not change.
 For large crossing angles, the mean value of the opening angle increases with increasing $\modelPsi$.
 \par
 %
+\Cref{fig:modelImages} shows the visualization of the fiber models.
+The visualization shows the inner $\SI{10}{\micro\meter} \times \SI{10}{\micro\meter} \times \SI{10}{\micro\meter}$ cube, so more details are visible.
+Depending on the population $\modelPsi$, more or less layered distinct structures are visibly parallel to the intersection plane.
+The full dataset is available at \cref{app:modelImages}.
+\par
+%
 \begin{figure}[!t]
 \centering
 \includegraphics[page=1]{gfx/rc1/images/cube_2pop_images_output_cube_2pop_135_rc1.pdf}
@@ -528,15 +535,8 @@ For large crossing angles, the mean value of the opening angle increases with in
 The inner $\SI{10}{\micro\meter} \times \SI{10}{\micro\meter} \times \SI{10}{\micro\meter}$ of the volumes are shown.}
 \label{fig:modelImages}
 \end{figure}
-%
-\Cref{fig:modelImages} shows the visualization of the fiber models.
-The visualization shows the inner $\SI{10}{\micro\meter} \times \SI{10}{\micro\meter} \times \SI{10}{\micro\meter}$ cube, so more details are visible.
-Depending on the population $\modelPsi$, more or less layered distinct structures are visibly parallel to the intersection plane.
-\par
-%
-% Depending on the parallel or crossing fiber populations, the runtime was in the range of $\SIrange{32}{40}{\hour}$ per model with $\SIrange{11000}{17000}{\steps}$.
-%
-%
+% 
+% 
 %
 \subsection{Discussion}
 %
