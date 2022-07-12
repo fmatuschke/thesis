@@ -23,7 +23,7 @@ In a coronal section, the corpus callosum is suitable for this purpose.
 It is the main fiber connection between the two cerebral hemispheres (see \cref{fig:coronalStained}).
 \par
 %
-\Cref{fig:brain_ret_trans_zoom} shows transmittance and retardation maps of the coronal section of a Vervet monkey \footnote{Section id: 549, Brain id: PE-2012-00102-V}.
+\Cref{fig:brain_ret_trans_zoom} shows transmittance and retardation maps of the coronal section of a Vervet monkey (Brain id: PE-2012-00102-V, section: 550).
 Two \acp{ROI} are manually selected at high retardants regions of the corpus callosum (\ie{} mostly in-plane parallel fibers).
 \ac{ROI} (A) contains $\SI{1064629}{\pixel}$ and \ac{ROI} (B) sums up to $\SI{1125858}{\pixel}$.
 The entire section and the analysis for a human and a rodent section are described in the appendix (see \cref{app:brain_rodent,app:brain_human}).
@@ -50,10 +50,10 @@ The entire section and the analysis for a human and a rodent section are describ
     \subcaptiontab{0.475\textwidth}{\label{fig:histRet}Retardation histogram.}
     \end{tabular}
     \caption[]{
-    Transmittance and retardation map of coronal section of a vervet monkey.
+    Transmittance and retardation map of coronal section of a Vervet monkey (Brain id: PE-2012-00102-V, section: 550).
     The absorption coefficient and birefringence is estimated from the measurements in the corpus callosum.
     Two homogeneous regions are labeled for this purpose.
-    (A) includes $\SI{1064629}{\pixel}$, $(B)$ $\SI{1125858}{\pixel}$.
+    (A) includes $\SI{1064629}{\pixel}$, (B) $\SI{1125858}{\pixel}$.
     }
     \label{fig:brain_ret_trans_zoom}
 \end{figure}
@@ -158,7 +158,7 @@ For this purpose, the sample stage is covered with a fully absorbing cover so th
 %
 % SUBCAPTIONS
 \subcaptiontab{0.475\textwidth}{\label{fig:parameterModelNoise} Histogram of intensity vs variance with linear regression. The gain factor results in $\opticgain_{\mathit{LMP}} = \SI{0.1175(7)}{}$.} &
-\subcaptiontab{0.475\textwidth}{\label{fig:noiseplot}Expected noise range for human, vervet monkey and rodent. The noise correlates linearly with the light intensity.}
+\subcaptiontab{0.475\textwidth}{\label{fig:noiseplot}Expected noise range for human, Vervet monkey and rodent. The noise correlates linearly with the light intensity.}
 \end{tabular}
 %
 \caption[]{\ac{LMP} camera noise measurements.}
@@ -178,7 +178,7 @@ for intensities $I > 0$ and $I \gg \sqrt{\opticgain I}$.
 %
 %
 %
-\subsection{\Voxelsize{} \texorpdfstring{\voxelsize{}}{}}
+\subsection{\Voxelsize{} \texorpdfstring{\voxelsize{}}{}} \label{sec:simvoxelsize}
 %
 The parameter \Voxelsize{} $\voxelsize$ is the most important parameter for simulation accuracy, as it determines by how many voxels the models are discretized and how many light rays are modeled.
 However, the voxel size cannot be arbitrarily small because the number of calculations and memory consumption increase by $O(n_{\mathit{voxel}}^3)$.
@@ -206,17 +206,17 @@ with $i$ from $0$ to $24$.
 The results in \cref{fig:voxelsizeNoise} show that the relative difference to the smallest voxel size increases statically significantly from a value of $\SI{0.1}{\micro\meter}$.
 %
 \begin{figure}[!t]
-% 2_simulation/0_parameter/fiber_radii.py
-\centering
-\includegraphics[width=\textwidth, page=1]{gfx/rc1/voxel_size/voxel_size_plots_data_r05_output_vs_135_0.01_6_25_vervet_r_rc1.pdf}
-\caption[]{Comparison of the simulation results with different voxel sizes and different fiber configurations.}
-\label{fig:voxelsizeNoise}
+    \centering
+    \includegraphics[width=\textwidth, page=1]{gfx/rc1/voxel_size/voxel_size_plots_data_r05_output_vs_135_0.01_6_25_vervet_r_rc1.pdf}
+    \caption[]{Comparison of the simulation results with different voxel sizes $\voxelsize$ and fiber configurations.}
+    \label{fig:voxelsizeNoise}
 \end{figure}
 %
 The variance of the relative difference increases with increasing voxel size from this value.
 For a voxel size smaller than $\SI{0.1}{\micro\meter}$, the difference from the reference simulation does not increase.
 Therefore, the voxel size $\voxelsize = \SI{0.1}{\micro\meter}$ is a good compromise between runtime and accuracy.
 However, such assumption is only valid for a pixel size of $\SI{1.3}{\micro\meter}$ and fiber radii of $\SI{0.5}{\micro\meter}$.
+Additional parameters are available in \cref{app:voxelsizeNoise}.
 %
 %
 %
@@ -321,7 +321,7 @@ The area corresponds to the $\SI{25}{\percent}$ to $\SI{75}{\percent}$ quantile 
 \begin{figure}[!t]
     \centering
     \includegraphics[page=1]{gfx/rc1/analysis/plots_single_pop_hist_output_cube_2pop_135_rc1_single.pdf}
-    \caption[]{Single fiber population orientation histograms.}
+    \caption[]{Single fiber population orientation histograms of the initial fiber model and the simulation results.}
     \label{fig:single_fiber_pop_hist}
 \end{figure}
 %
@@ -395,6 +395,9 @@ In comparison, the fiber models opening angle \openingAngle{} shows a significan
 The \accvalue{} remains close to $1$ and starts to decrease significantly at an inclination angle of about $\SI{60}{\degree}$.
 It reaches a minimum at an inclination angle of $\SI{80}{\degree}$, from it increases again.
 At an inclination angle of $\SI{90}{\degree}$ the maximum \accvalue{} is reached.
+\par
+% 
+Additional data is available in \cref{app:single_fiber_pop_hist}.
 %
 %
 %
@@ -485,6 +488,9 @@ The dominant fiber population has a lower median and \bvariance{} variance than 
 % acc
 The \accvalue{} starts close to a value of $\SI{1}{}$ and decreases up to a crossing angle of about $\modelOmega \approx \SI{60}{\degree}$ depending on the fiber population fraction \modelPsi{}.
 After the minimum is reached it starts to increase significantly and with the exception for a fiber population fraction of $\modelPsi=\SI{50}{\percent}$ reaching a value closer to $\SI{1}{}$ again.
+\par
+% 
+Additional data is available in \cref{app:flat_fiber_pop_hist,app:flat_fiber_pop_a,app:flat_fiber_pop_b,app:flat_fiber_pop_c,app:flat_fiber_pop_d,app:flat_fiber_pop_e}.
 %
 %
 %
@@ -504,13 +510,13 @@ The fiber models orientations show a higher variance as the tilt analysis result
 \begin{figure}[!p]
 \centering
 \includegraphics[page=3]{gfx/rc1/analysis/plots_inclined_pop_hist_output_cube_2pop_135_rc1_inclined.pdf}
-\caption[]{Population of inclined crossing fibers: $\modelPsi=\SI{30}{\percent}$.
+\caption[]{Inclined crossing fiber population: $\modelPsi=\SI{30}{\percent}$.
 }
 \label{fig:inclined_03_fiber_pop_hist}
 %
 \vspace{2em}
 \includegraphics[page=5]{gfx/rc1/analysis/plots_inclined_pop_hist_output_cube_2pop_135_rc1_inclined.pdf}
-\caption[]{Population of inclined crossing fibers: $\modelPsi=\SI{50}{\percent}$.
+\caption[]{Inclined crossing fiber population: $\modelPsi=\SI{50}{\percent}$.
 }
 \label{fig:inclined_05_fiber_pop_hist}
 \end{figure}
@@ -578,6 +584,9 @@ The \accvalue{} shows a decrease with increasing inclination angle to a minimum 
 The position of the minimum strongly depends on the fiber population fraction.
 For lower \modelPsi{} the minimum is close to higher inclination angles and for higher \modelPsi{} the minimum moves to an inclination angle of about $\inc_{\popb} \approx \SI{45}{\degree}$.
 The value of the \accvalue{} is closer to zero for median fiber population fractions and closer to one for \modelPsi{} at $\SI{10}{\percent}$ and $\SI{90}{\percent}$.
+\par
+% 
+Additional data is available in \cref{app:incl_fiber_pop_hist,app:incl_fiber_pop_a,app:incl_fiber_pop_b,app:incl_fiber_pop_c,app:incl_fiber_pop_d,app:incl_fiber_pop_e}.
 %
 %
 %
