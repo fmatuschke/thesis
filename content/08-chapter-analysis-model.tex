@@ -276,7 +276,7 @@ The total number increases with decreasing \segLengthFactor{}.
 The \segRadiusFactor{} also has no significant effect here.
 \par
 %
-The overlap fraction for all parameters is about $\SI{5}{\percent}$ at the beginning and decreases with time to about $\SI{1}{\percent}$.
+The overlap fraction for all parameters is about $\SI{5}{\percent}$ at the beginning, and decreases with time to about $\SI{1}{\percent}$.
 The decrease is approximately linear after the initial phase.
 At the end of the collision solver process, the variance increases significantly.
 The curve behavior between the different \segLengthFactor{} is about the same, except of course for an offset in the total runtime.
@@ -303,7 +303,7 @@ The runtime ranges from $\SI{1000}{\second}$ to $\SI{10000}{\second}$.
 % CROSSING
 The crossing fiber population \cfbs{} in \cref{fig:timeDevelopmentCross} shows an equally linear behavior for all parameter sets for the number of steps as in the case of the single fiber population.
 The total runtime is significantly increased compared to the models with a single fiber population.
-Further the runtime increases with a decrease in \segLengthFactor{} and decreases with a decrease in \segRadiusFactor{}.
+Further, the runtime increases with a decrease in \segLengthFactor{} and decreases with a decrease in \segRadiusFactor{}.
 In the case of $\segLengthFactor = \SI{1}{}$ and $\segLengthFactor = \SI{2}{}$, the maximum number of steps is reached.
 For $\segLengthFactor = \SI{1}{}$ this has happened after $\SI{24}{\hour}$.
 \par
@@ -449,7 +449,7 @@ In addition, boundary effects become apparent due to the limited volume.
 For example, the mean volume fraction for each configuration decreases significantly and the variance increases.
 This is the effect of being able to place only a few fibers into a $\SI{60}{\micro\meter}$ thick volume.
 If they are then randomly arranged and deformed, as in this case, the volume fraction must decrease.
-If the volume were infinite, there would be no difference between the results since all parameters are independent of the radii.
+If the volume were infinite, there would be no difference between the results, since all parameters are independent of the radii.
 Therefore, an increase in the fiber radii should be considered if the volume to be calculated is larger or the runtime is finite.
 It should then be verified that the simulation does not cause significant changes in the results.
 \par
@@ -549,7 +549,7 @@ The stiff models lead to a volume fraction that depends on the crossing angle.
 Whether this is also true for anatomical tissue remains to be explored.
 However, since real nerve fibers are not stiff and also not perfectly cylindrical, it can be expected to be higher.
 Also, the orientation distribution may differ slightly from real tissue due to the stiffness of the model.
-The layered structure can be understood for a randomly introduced pattern.
+The layered structure can be understood as a randomly introduced pattern.
 Real fabric will also have a different pattern, \eg{} interwoven fiber bundles instead of interwoven single fibers.
 In linear \ac{3D-PLI} simulations, this has no effect because the retardation matrices for the intensity signal are commutative.
 Or more generally, the order of the tissue matrices is commutative for the intensity signal.

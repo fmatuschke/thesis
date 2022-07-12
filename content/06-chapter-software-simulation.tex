@@ -10,7 +10,7 @@ These simulations enabled the understanding of scattering effects due to fiber b
 %
 The current formulation allows reproducing linear optics simulations coherent with the experimental results of \cite{Dohmen2015,Menzel2015,Menzel2016}.
 In contrast to \cite{Dohmen2015,Menzel2015,Menzel2016}, whose algorithm is computationally and memory intensive due to the pre-computations for discretized tissue volume, this work proposes using the foundations for more efficient parallel computing within a supercomputer architecture presented in \cite{Lucksch2016}.
-The simulation algorithm was redesigned considering computational efficiency and the manufacturing design of the new \ac{LMP3D} microscope.
+The simulation algorithm was redesigned, considering computational efficiency and the manufacturing design of the new \ac{LMP3D} microscope.
 Additionally, the linear optics simulation uses the M{\"u}ller-Stokes calculus also to take the polarization effects of filters into account.
 \par
 %
@@ -257,7 +257,7 @@ From the \ac{CCD} array, the light path can be shifted back to the top plane of 
 Subsequently, the light beam $\vec{l}_1$ is traced back through the tissue to the bottom plane $\mathfrak{S}_{bottom}$.
 The point on the lower tissue plane corresponds to the initial position of the light beam.
 This light path change results in a shift $\delta$ along the same direction of the tilting.
-In the light matter simulation only light rays are considered, which will go at least partially through the volume.
+In the light matter simulation, only light rays are considered, which will go at least partially through the volume.
 All remaining \ac{CCD} elements are left with a \code{NaN} value.
 \par
 %
@@ -314,7 +314,7 @@ Thus, the use of \name{spherical interpolation} considers the relationship exist
 %
 After the initial light positions are calculated, each light beam is traversed within the tissue.
 To calculate the light-tissue interaction, the change of the Stokes vector is calculated after each light beam step.
-The step size is a user defined value with a default value of the \Voxelsize{} $\voxelsize$.
+The step size is a user defined value, with a default value of the \Voxelsize{} $\voxelsize$.
 To simulate the light beam hitting the volume's boundary, the light beam is multiplied by the matrix of the remaining optical elements of the microscope and the intensity is stored in the \ac{CCD}-array.
 The pseudocode is shown in \cref{alg:simulationLoop}.
 %

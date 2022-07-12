@@ -6,7 +6,7 @@
 \section{Introduction}
 %
 This chapter covers with the simulation of \ac{3D-PLI} using the generated nerve fiber library.
-The first part focuses on the determination of all necessary physical parameters of the tissue and the microscope as well as on the characterization of the simulation parameters.
+The first part focuses on the determination of all necessary physical parameters of the tissue and the microscope, as well as on the characterization of the simulation parameters.
 Then, the simulation of the previously generated nerve fiber models is created and analyzed.
 The orientation of the simulations is calculated using the routine algorithms implemented in \ac{fastPLI}.
 The focus of the evaluation is on the accuracy of the tilt analysis for different orientations and crossing configurations.
@@ -118,7 +118,7 @@ The area of group 7-6 \raisebox{.25em}{\tikzset{external/export next=false}\tikz
 The intensity line profiles for the vertical and horizontal cases are shown in \cref{fig:usaf_lines_lr,fig:usaf_lines_ud}.
 The Rayleigh criterion can be used to determine the resolution in the second group, which is thus in the range of $\SI{1.95}{\micro\meter}$.
 This reproduces the measurements in \cite{MenzelMaster}.
-Therefore, for the simulation the convolution parameter is set to $\opticsigma = \SI{0.75}{\pixel}$ (see \cref{sec:opticalResolution}).
+Therefore, the convolution parameter is set to $\opticsigma = \SI{0.75}{\pixel}$ in the simulation (see \cref{sec:opticalResolution}).
 %
 %
 %
@@ -190,7 +190,7 @@ The smallest voxel size $\SI{0.01}{\micro\meter}$ is used as a reference.
 Since this voxel size is relatively small, the simulated volume is $3 \cdot \SI{1.3}{\micro\meter} \times 3 \cdot \SI{1.3}{\micro\meter} \times \SI{60}{\micro\meter}$ without tilts to limit the memory consumption.
 During the simulation, the previously determined tissue and noise parameters are used.
 The models to be simulated are parallel models without inclination $\left( \pfbs, \modelInc = \SI{0}{\degree} \right)$, inclined parallel fiber models $\left( \pfbs, \modelInc = \SI{90}{\degree} \right)$, flat crossing fiber models $\left( \cfbs, \modelInc = \SI{0}{\degree} \right)$, and crossing inclined fiber models $\left( \cfbs, \modelInc = \SI{90}{\degree} \right)$ with a fraction of $\modelPsi = \SI{0.5}{}$, since these configurations represent the extreme for two fiber populations.
-For statistics the simulations are repeated $\SI{25}{}$ times with the volumes center at
+For statistics, the simulations are repeated $\SI{25}{}$ times with the volumes center at
 \begin{align}
 % \begin{split}
     x=\frac{i\,\%\,5}{5} \cdot \SI{60}{\micro\meter} - \SI{30}{\micro\meter} \hspace{5ex}
@@ -285,14 +285,14 @@ With a pixel size of $\SI{1.3}{\micro\meter}$ and a volume of $\SI{65}{\micro\me
 \par
 %
 To analyze the simulation results the \ac{3D-PLI} analysis pipeline, containing the Fourier analysis (see \cref{eq:pli_signal}) and the tilt analysis (see \cref{sec::InclAnalysis}), are performed.
-From the Fourier analysis the modalities transmittance and retardation are shown.
+From the Fourier analysis, the modalities transmittance and retardation are shown.
 The tilt analysis estimates the orientation of each pixel, \ie{}, direction and inclination, the effective birefringent thickness \trel{} and the \rvalue{} of the fitting model:
 \begin{align}
     R = \mean{|I_i-F_i|} \label{eq:rvalue}
 \end{align}
 where $I$ is the signal intensity and $F$ the best solution found by the model.
 Finally, the opening angle \openingAngle{} and angular correlation coefficient \accvalue{} between the nerve fiber models orientation and simulation resulting orientation are calculated from the orientations.
-The \accvalue{} is the angular correlation coefficient which measures the similarity between two \acp{ODF}. The \acp{ODF} are calculated by an analytical function from the individual orientations \cite{Alimi2020}.
+The \accvalue{} is the angular correlation coefficient, which measures the similarity between two \acp{ODF}. The \acp{ODF} are calculated by an analytical function from the individual orientations \cite{Alimi2020}.
 The \accvalue{} is then be calculated by:
 \begin{align}
     acc = \frac{\sum_i{\mathit{sh}_{0,i} \cdot \mathit{sh}_{1,i}}}{\sqrt{\sum_i{\mathit{sh}_{0,i}^2}} \cdot \sqrt{\sum_i{\mathit{sh}_{1,i}^2}}}
@@ -302,13 +302,13 @@ where $\mathit{sh}_i$ is the $i-$th spherical coefficient of the orientations \a
 %
 To visualize the distribution of the data boxplots are used.
 The distribution of the angular parameters requires caution, since the values are periodic.
-To overcome this problem the values are centered around the circular mean value in the range of $\big[\circmean (\xi)-\SI{90}{\degree}, \circmean(\xi)+\SI{90}{\degree}\big)$, where $\xi$ is the angular parameter.
+To overcome this problem, the values are centered around the circular mean value in the range of $\big[\circmean (\xi)-\SI{90}{\degree}, \circmean(\xi)+\SI{90}{\degree}\big)$, where $\xi$ is the angular parameter.
 The circular mean value is calculated via:
 \begin{align}
     \circmean(x) = \atantwo \left ( \frac{\sum \sin(x_i) }{\sum \cos(x_i) } \right )
 \end{align}
 This contributes to the interpretability of the angular results with variances $\ll \SI{90}{\degree}$.
-Additionally for the angular parameters the distribution of the underlying fiber models are plotted for the individual fiber populations \popa{} and \popb{}.
+Additionally, for the angular parameters the distribution of the underlying fiber models are plotted for the individual fiber populations \popa{} and \popb{}.
 The area corresponds to the $\SI{25}{\percent}$ to $\SI{75}{\percent}$ quantile and will be referred to as \bvariance{} variance.
 %
 %
@@ -896,7 +896,7 @@ This may be one of the following three reasons.
 First, there is no local minimum with $\trel<1$.
 Second, there is a local minimum, but the optimizer is not able to find it with the initial values.
 Finally, there is a local minimum, but the solution found with a \trel{} value $>1$ is a better choice, \ie{}, has a lower $R^2$ value.
-Which of these is true cannot be said from this data and remains an interesting investigation for the future.
+Which of these is true cannot be said from this data, and remains an interesting investigation for the future.
 However, up to this point, the \trel{} value can be used to indicate that these values cannot be trusted, \ie{}, the resulting orientation is not trustworthy.
 \par
 %

@@ -239,7 +239,7 @@ Therefore, a method exists to fill a cube with a fiber population of orientation
 \end{figure}
 %
 The individual fibers are initialized with a seed point plane.
-This plane is placed virtually in front of and behind the cubic volume with a user-defined orientation.
+This plane is placed virtually in front of and behind the cubic volume, with a user-defined orientation.
 The coordinate origins of the cube and the two seed point planes are on a line.
 To fill the volume with nerve fibers the seed points are connected.
 When a line hits the volume, the entry and exit points are calculated and stored as fibers of the returned fiber bundle.
@@ -462,7 +462,7 @@ The final \name{nodes} at the end of a \name{branch} are called \name{leaves} co
 Traversing a uniformly distributed \name{tree} has the advantage that the cost of traversal is $\mathcal{O}(\log(n))$.
 \par
 %
-An \name{octree} is a special \name{tree} where each node contains eight children allowing a cubic volume to be divided into eight subvolumes.
+An \name{octree} is a special \name{tree} where each node contains eight children, allowing a cubic volume to be divided into eight subvolumes.
 An example is shown in \cref{fig:octreeCube}.
 %
 \begin{figure}[!t]
@@ -608,7 +608,7 @@ r_{new} = \frac{r_{i} + r_{i+1}}{2},\enspace
 \subsection{Bending radius}
 %
 The bending radius matches the radius of the circle defined by three adjacent points $\vec{p}_{i-1}, \vec{p}_{i}, \vec{p}_{i+1}$ (see \cref{fig:modelCircle}).
-To limit the bending radius of the fiber a minimal allowed radius $r_{\min}$ is defined.
+To limit the bending radius of the fiber, a minimal allowed radius $r_{\min}$ is defined.
 Additionally, three adjacent points are not allowed to have an enclosing angle $\eta \geq \SI{60}{\degree}$.
 If any point $\vec{p}_{i}$ in a fiber fails these boundary conditions, the three points $\vec{p}_{i-1}, \vec{p}_{i}$ and $\vec{p}_{i+1}$ will be moved parallel to reduce curvature (see \cref{fig:modelCircle}).
 %
@@ -705,7 +705,7 @@ In \cref{sec:medusa} the need of transparent objects is necessary.
 Not only the outer hull of the myelin, but also the inner axon needs to be seen in the visualization.
 Additionally, cells, \eg{} astrocytes, have to be visualized.
 For this purpose, the former algorithm was rewritten.
-For the transparent effects the algorithm needs to know the order in which the objects or triangular surfaces needs to be rendered.
+For the transparent effects, the algorithm needs to know the order in which the objects or triangular surfaces needs to be rendered.
 This means, that the triangular surfaces have to be sorted in z-direction, \ie{}, the view direction.
 To order the triangular surfaces, they first have to be calculated.
 The fiber segments are no longer represented as a cylinder, but as \ac{CC} which consist out of a hexagonal grid (see \cref{fig:vis_mesh}).
