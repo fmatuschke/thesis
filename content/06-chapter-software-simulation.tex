@@ -88,11 +88,11 @@ fbs_properties = [[(r, dn, mu, 'p'), (second layer), ...],
 \begin{figure}[!t]
 \centering
 \setlength{\tikzwidth}{0.3\textwidth}
-\subcaptionbox{\label{fig:myelinLayer}Schematic representation of a nerve fiber with axon and myelin sheath}
+\subcaptionbox{\label{fig:myelinLayer}Schematic representation of a nerve fiber with axon and myelin sheath.}
 [\tikzwidth]{\includegraphics[height=\tikzwidth]{gfx/brain/myelin_layers.pdf}\vspace{0mm}}\hfill
-\subcaptionbox{\label{fig:fiberLayer}Cross section through a nerve fiber with layered structure defined by $n$ radii}
+\subcaptionbox{\label{fig:fiberLayer}Cross section through a nerve fiber with layered structure defined by $n$ radii.}
 [\tikzwidth]{\inputtikz{gfx/simpli/fiber_layer}\vspace{-5mm}}\hfill
-\subcaptionbox{\label{fig:vectormodel}Cross section of a discretized nerve fiber with resulting optic axis vectors}
+\subcaptionbox{\label{fig:vectormodel}Cross section of a discretized nerve fiber with resulting optic axis vectors.}
 [\tikzwidth]{\inputtikz{gfx/simpli/vector_model}\vspace{-5mm}}
 \caption[]{Discretization of nerve fibers with layered structure.}
 \label{fig:fiber_discretization}
@@ -292,10 +292,10 @@ In order to correctly recreate the physical properties, interpolation is require
 \centering
 \setlength{\tikzwidth}{0.475\textwidth}
 % \tikzset{external/force remake=true}
-\subcaptionbox{\label{fig:triInterp}Trilinear interpolation}
+\subcaptionbox{\label{fig:triInterp}trilinear interpolation}
 [\tikzwidth]{
 \hfill\inputtikz{gfx/simpli/trilinear_interpolation}\hfill}\hfill
-\subcaptionbox{\label{fig:sphInterp}Spherical interpolation}
+\subcaptionbox{\label{fig:sphInterp}spherical interpolation}
 [\tikzwidth]{
 \inputtikz{gfx/simpli/vector_interpolation}}
 \caption[]{Interpolation techniques: Trilinear interpolation can be represented as an axial step interpolation. The difference between linear and spherical interpolation is that linear interpolation has a constant distance $s$ between each point, while spherical interpolation has a constant angle $\varphi$ between two steps.}

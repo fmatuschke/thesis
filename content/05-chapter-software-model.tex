@@ -137,13 +137,13 @@ For a circular boundary with radius $R$, this can be sampled from a $\mathrm{uni
 \begin{figure}[!t]
     \setlength{\tikzheight}{0.25\textwidth}
     \centering
-    \subcaptionbox{\label{fig:triGrid}equilateral triangle grid}
+    \subcaptionbox{\label{fig:triGrid}Equilateral triangle grid.}
     [0.3\textwidth]{\inputtikz{gfx/model/triangular_grid}}
     \hfill
-    \subcaptionbox{\label{fig:rndGrid}random grid}
+    \subcaptionbox{\label{fig:rndGrid}Random grid.}
     [0.3\textwidth]{\inputtikz{gfx/model/rnd_circle_points}}
     \hfill
-    \subcaptionbox{\label{fig:crossBundle}populated fiber bundles}
+    \subcaptionbox{\label{fig:crossBundle}Populated fiber bundles.}
     [0.3\textwidth]{\inputtikz{gfx/model/crossing_bundle}}
     \caption[]{Populating fiber bundles with 2D seed points.}
 \end{figure}
@@ -513,7 +513,7 @@ The usual approach is to impose the following two constraints:
 \paragraph{Maximum number of levels}
 In the case of nerve fibers, it can be assumed that the size of the objects is approximately in the same order of magnitude.
 Therefore, the largest object in a volume can be used as the lower bound for the smallest volume in the octree.
-A difference in a higher order of magnitude consequently increases the computational cost to the point where each object must be retested with each object.\footnote{There are other, more suitable algorithms for this case. However, since this case is not expected, they are not implemented}.
+A difference in a higher order of magnitude consequently increases the computational cost to the point where each object must be retested with each object.\footnote{There are other, more suitable algorithms for this case. However, since this case is not expected, they are not implemented.}
 %
 \paragraph{Minimal number of objects}
 Once a leaf is created, all objects contained in it must be checked for collisions.
@@ -765,7 +765,7 @@ Since all objects are represented as a collection of spheres (see \cref{fig:medu
 \begin{figure}[!t]
     \centering
     \setlength{\tikzwidth}{0.75\textwidth}
-    \subcaptionbox{modified from \cite{Ginsburger2019}. Outer blue spheres myelin, inner red spheres axon}
+    \subcaptionbox{Modified from \cite{Ginsburger2019}. Outer blue spheres myelin, inner red spheres axon.}
     [0.75\textwidth]{\inputtikz{gfx/model/medusa/medusa_spheres}}
     \\[2em]
     %
