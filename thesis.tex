@@ -51,7 +51,7 @@
 % \includeonly{%
 % content/titlepages,
 % content/abstract,
-% content/acknowledgment,
+% content/acknowledgement,
 % content/01-chapter-introduction,
 % content/02-chapter-neuroanatomy,
 % content/03-chapter-theory,
@@ -64,7 +64,6 @@
 % content/10-chapter-outlook,
 % content/11-chapter-conclusion,
 % content/appendix,
-% content/colophon,
 % content/declaration
 % }
 %
@@ -109,14 +108,14 @@
 \pagenumbering{roman}			% roman page numbing (invisible for empty page style)
 \pagestyle{empty}				% no header or footers
 \include{content/titlepages}
-% \cleardoublepage
+\cleardoublepage
 %
 \pagestyle{plain}				% display just page numbers
 \include{content/abstract}
-% \cleardoublepage
+\cleardoublepage
 %
 \include{content/acknowledgement}
-% \cleardoublepage
+\cleardoublepage
 %
 % Table of content
 \currentpdfbookmark{\contentsname}{toc}
@@ -199,9 +198,6 @@
 \appendix
 \include{content/appendix}
 }
-%
-\cleardoublepage
-\input{content/colophon}
 % 
 \cleardoublepage
 \include{content/declaration}
