@@ -18,96 +18,79 @@
 	\pdfbookmark[0]{Titlepage}{Titlepage}
 	\tgherosfont
 	\centering
-%
-	\phantom{}\\[10mm]
-%
-	\begin{minipage}[t]{.45\textwidth}
-		\includegraphics[width=6cm]{gfx/logo-hhu.pdf} \\[7mm]
-		\thesisUniversity\\
-		\thesisUniversityDepartment
-	\end{minipage}
-	\hspace*{25pt}
-	\begin{minipage}[t]{.45\textwidth}
-		\includegraphics[width=6cm]{gfx/logo-fzj.pdf} \\[7mm]
-		\thesisInstitute\\
-		% \thesisInstituteDepartment
-		\thesisInstituteInstitute
-		% \thesisInstituteGroup
-	\end{minipage}
-%
+	\phantom{}\\[0mm]
 	\vfill
-	{\LARGE \thesisSubject} \\[5mm]
-	{\LARGE \color{ctcolortitle}\textbf{\thesisTitle} \\[10mm]}
-	{\Large \thesisName} \\
-%
+	{\Huge \color{ctcolortitle}\textbf{\thesisTitle} \\[25mm]}
+	{\LARGE \thesisSubject} \\[20mm]
+	{\Large zur Erlangung des Doktorgrades	der Mathematisch-Naturwissenschaftlichen Fakultät der Heinrich-Heine-Universität Düsseldorf} \\[15mm]
+	{\Large vorgelegt von} \\[5mm]
+	{\Large \thesisName} \\[0mm]
+	{\small aus \thesisBirthPlace} \\[30mm]
+	{\Large D{\"u}sseldorf, \thesisDate}
 	\vfill
-	\begin{minipage}[t]{.27\textwidth}
-		\raggedleft
-		\textit{1. Reviewer}
-	\end{minipage}
-	\hspace*{15pt}
-	\begin{minipage}[t]{.65\textwidth}
-		{\Large \thesisFirstReviewer} \\
-	  	{\small \thesisFirstReviewerDepartment} \\[-1mm]
-		{\small \thesisFirstReviewerUniversity}
-	\end{minipage} \\[5mm]
-	\begin{minipage}[t]{.27\textwidth}
-		\raggedleft
-		\textit{2. Reviewer}
-	\end{minipage}
-	\hspace*{15pt}
-	\begin{minipage}[t]{.65\textwidth}
-		{\Large \thesisSecondReviewer} \\
-	  	{\small \thesisSecondReviewerDepartment} \\[-1mm]
-		{\small \thesisSecondReviewerUniversity}
-	\end{minipage} \\[10mm]
-	\begin{minipage}[t]{.27\textwidth}
-		\raggedleft
-		\textit{Supervisor}
-	\end{minipage}
-	\hspace*{20pt}
-	\begin{minipage}[t]{.65\textwidth}
-		{\Large \thesisFirstSupervisor} \\
-	  	{\small \thesisFirstSupervisorDepartment} \\[-1mm]
-		{\small \thesisFirstSupervisorUniversity}
-	\end{minipage} \\[10mm]
-%
-	\thesisDate \\[3.5mm]
-%
 \end{titlepage}
 %
 %
 % ------------------------------------  --> lower title back for single page layout
-\hfill
+% 
+\begin{minipage}[t]{6.475cm}
+	\includegraphics[width=6.475cm]{gfx/logo-hhu.pdf} \\[5mm]
+	\textbf{\thesisUniversity} \\
+	\small
+	\thesisUniversityDepartment \\
+	\thesisUniversityStreetAddress \\
+	\thesisUniversityPostalCode \\
+	\phantom{} \\
+	\phantom{} \\
+	\phantom{}
+\end{minipage}
+\hspace*{1.02303cm}%13.87303cm
+% \hfill
+\begin{minipage}[t]{6.475cm}
+	\includegraphics[width=6.475cm]{gfx/logo-fzj.pdf} \\[5mm]
+	\textbf{\thesisInstitute} \\
+	\small
+	\thesisInstituteDepartment \\
+	\thesisInstituteInstitute \\
+	\thesisInstituteGroup \\
+	\thesisInstituteStreetAddress \\
+	\thesisInstitutePostalCode 
+\end{minipage}
+% 
+\vfill
+% \centering
+{\large
+Gedruckt mit Genehmigung der\\
+Mathematisch-Naturwissenschaftlichen Fakult{\"a}t der\\
+Heinrich-Heine-Universit{\"a}t Düsseldorf
+}
 \vfill
 {
-	\small
-	\begin{minipage}[t]{.95\textwidth}
-		\textbf{\thesisName} \\
-		\textit{\thesisTitle} \\
-		\thesisSubject, \thesisDate \\
-		Reviewers: \thesisFirstReviewer\ and \thesisSecondReviewer \\
-		Supervisor: \thesisFirstSupervisor
-	\end{minipage}
-	\phantom{} \\[1.5em]
-%
-	\begin{minipage}[t]{.475\textwidth}
-		\textbf{\thesisUniversity} \\
-    	\thesisUniversityDepartment \\
-    	\thesisUniversityStreetAddress \\
-    	\thesisUniversityPostalCode \\
-		\phantom{} \\
-		\phantom{} \\
-		\phantom{}
-	\end{minipage}
-	\hspace*{15pt}
-	\begin{minipage}[t]{.475\textwidth}
-		\textbf{\thesisInstitute} \\
-    	\thesisInstituteDepartment \\
-    	\thesisInstituteInstitute \\
-    	\thesisInstituteGroup \\
-    	\thesisInstituteStreetAddress \\
-    	\thesisInstitutePostalCode \\
-		\phantom{}
-	\end{minipage}
+% \centering
+\begin{minipage}[t]{.35\textwidth}
+	\raggedleft
+	\textit{1. Berichterstatter}
+\end{minipage}
+\hspace*{15pt}
+\begin{minipage}[t]{.65\textwidth}
+	{\Large \thesisFirstReviewer} \\
+	  {\small \thesisFirstReviewerDepartment} \\[-1mm]
+	{\small \thesisFirstReviewerUniversity}
+\end{minipage} \\[5mm]
+\begin{minipage}[t]{.35\textwidth}
+	\raggedleft
+	\textit{2. Berichterstatter}
+\end{minipage}
+\hspace*{15pt}
+\begin{minipage}[t]{.65\textwidth}
+	{\Large \thesisSecondReviewer} \\
+	  {\small \thesisSecondReviewerDepartment} \\[-1mm]
+	{\small \thesisSecondReviewerUniversity}
+\end{minipage}
 }
+% 
+\vfill
+{\large Tag der m{\"u}ndlichen Pr{\"u}fung:}
+% 
+\hfill
+\vfill
